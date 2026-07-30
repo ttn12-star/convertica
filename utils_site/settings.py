@@ -1241,6 +1241,13 @@ CELERY_BEAT_SCHEDULE = {
         "task": "api_quota.reset_monthly",
         "schedule": crontab(minute=1, hour=0, day_of_month=1),
     },
+    # Publish blog articles whose YAML `publish_on` date has arrived (07:10 UTC,
+    # daytime in RU/EU/IN so the IndexNow ping lands while crawlers are active).
+    # Re-runs the idempotent importer; a no-op on days with nothing scheduled.
+    "publish-scheduled-articles": {
+        "task": "maintenance.publish_scheduled_articles",
+        "schedule": crontab(minute=10, hour=7),
+    },
     # NB: no scheduled IndexNow sweep. Re-submitting all ~735 sitemap URLs every
     # night made Bing Webmaster Tools raise "Avoid IndexNow Batch Mode to prevent
     # excessive server load and potential indexing delays" — the same

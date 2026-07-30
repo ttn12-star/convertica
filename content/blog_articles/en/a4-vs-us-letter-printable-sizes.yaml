@@ -1,0 +1,162 @@
+slug: a4-vs-us-letter-printable-sizes
+cover_image: blog/images/cover-a4-vs-us-letter-printable-sizes.jpg
+status: published
+publish_on: 2026-08-11
+category_slug: best-practices
+relevant_tool: resize_pdf
+title_en: "A4 or US Letter? Sizing Printables for an International Audience"
+meta_title_en: "A4 vs US Letter for Printables | Convertica"
+meta_description_en: "Letter is 6 mm wider and 18 mm shorter than A4, so no scale factor turns one into the other. How to ship both from one design, and what breaks if you do not."
+meta_keywords_en: "a4 vs us letter, a4 or letter printable, us letter size mm, convert a4 to letter pdf, printable paper sizes, international printable sizes, a4 letter difference, page size for etsy printables"
+excerpt_en: "A4 and US Letter are not two sizes of the same shape. Letter is wider and shorter, which means there is no percentage you can print at to turn one into the other. That single geometric fact decides how you design a printable, how you package it, and which half of the world can actually use it. Here is the arithmetic, and the workflow that gets you both sizes without designing twice."
+ai_metadata:
+  topics:
+    - difference between A4 and US Letter
+    - designing one printable for both paper standards
+    - safe margin that survives a size conversion
+    - which countries use which paper size
+    - converting a finished PDF between page sizes
+  entities:
+    - A4
+    - US Letter
+    - Legal
+    - ISO 216
+    - ANSI
+    - Etsy
+    - Convertica
+  summary: "Explains why A4 and US Letter cannot be converted by scaling: A4 is 210x297 mm, Letter is 215.9x279.4 mm, so Letter is 5.9 mm wider and 17.6 mm shorter and the aspect ratios differ. Covers what happens when a buyer prints the wrong standard with fit-to-page, which regions use which paper, why a 10 to 12 mm safe margin is the thing that makes one design survive both sizes, how to export both from a design tool, how to re-sheet a finished PDF when the source file is gone, and how to label and package the two files so buyers pick the right one."
+  related_terms:
+    - a4 letter size difference mm
+    - printable in two paper sizes
+    - which countries use us letter
+    - resize pdf to letter without cropping
+    - safe margin printable design
+    - a4 and letter bundle
+  reading_time_minutes: 9
+  target_audience: "Designers and sellers of printable digital products, and anyone preparing a document that will be printed in more than one country, who needs to decide between A4 and US Letter and wants to ship both without redesigning or cropping."
+content_en: |
+  There is a small piece of arithmetic behind a surprising number of one-star reviews on printable products. A4 measures 210 by 297 mm. US Letter measures 215.9 by 279.4 mm. Letter is about 6 mm wider and about 18 mm shorter. Those are not two sizes of one shape: the proportions themselves differ, 1:1.41 against 1:1.29.
+
+  The consequence is the part people miss. There is no percentage you can print at that turns one into the other. Scale an A4 design until it fits the width of Letter and it is still too tall. Scale it until the height fits and it no longer fills the width. Every "just print it scaled to fit" workaround is a choice about which of those two compromises the buyer gets, made silently by their printer driver.
+
+  <h2>Who uses which</h2>
+
+  <p>The split is geographic and almost total:</p>
+
+  <ul>
+    <li><strong>US Letter</strong> in the United States, Canada, and commonly in Mexico, the Philippines, Chile and parts of Central and South America.</li>
+    <li><strong>A4</strong> essentially everywhere else, including all of Europe, most of Asia, Africa, Australia and the rest of South America. It is the ISO 216 standard.</li>
+    <li><strong>Local extras exist.</strong> F4 (also sold as folio, 215 by 330 mm) is still common in Indonesia and parts of South East Asia, and Legal (215.9 by 355.6 mm) shows up in North American offices for contracts.</li>
+  </ul>
+
+  <p>If you sell digital products, that means a shop offering only A4 quietly loses its North American conversions, and a shop offering only Letter loses most of the world. Neither loss shows up in your analytics as a refund: the buyer just does not buy, or buys once and leaves a review about the margins.</p>
+
+  <h2>What actually happens when the buyer prints the wrong one</h2>
+
+  <p>Almost every PDF reader defaults to something like "fit to printable area". Hand a buyer with Letter paper an A4 file and that setting does the only thing it can: it shrinks the page by roughly 94 per cent so the height fits, and centres it. The visible results:</p>
+
+  <table>
+    <thead>
+      <tr><th>What you designed</th><th>What the buyer gets</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A planner grid sized for A4</td><td>The same grid at 94 per cent, with uneven white bands on the sides</td></tr>
+      <tr><td>A wall print meant to fit a frame</td><td>Something a few millimetres short of every standard frame size</td></tr>
+      <tr><td>Cut lines for stickers or cards</td><td>Cut lines that no longer match a cutting mat or a die</td></tr>
+      <tr><td>A binder-punched planner page</td><td>Holes that miss the rings, because the margin moved</td></tr>
+      <tr><td>Body text at 11 pt</td><td>Body text at about 10.3 pt, which reads as "cheap" without anyone knowing why</td></tr>
+    </tbody>
+  </table>
+
+  <p>For a text-only worksheet none of this matters much. For anything the buyer measures, cuts, frames or binds, it is the whole product.</p>
+
+  <h2>The margin is what makes one design work as two</h2>
+
+  <p>Here is the useful consequence of the numbers. Going from A4 to Letter you lose 17.6 mm of height, which is 8.8 mm off the top and 8.8 mm off the bottom if the content stays centred. Going from Letter to A4 you lose 5.9 mm of width, so about 3 mm from each side.</p>
+
+  <p>So a design that keeps everything important at least 10 to 12 mm inside the trim edge survives the trip in both directions at full size. A design that runs a border 4 mm from the edge does not, in either direction. That single decision, made at the start, is the difference between one file that serves both markets and two files you have to maintain forever.</p>
+
+  <p>It also happens to be the same margin a home printer needs anyway, because consumer printers cannot lay ink on the outer few millimetres of the sheet. Our guide on <a href="/en/blog/sell-printable-pdf-on-etsy/">preparing a printable PDF to sell</a> covers that unprintable edge and the rest of the pre-upload checks.</p>
+
+  <h2>The workflow: design once, export twice</h2>
+
+  <p>If you still have the file you designed in, this is the correct route and nothing beats it:</p>
+
+  <ol>
+    <li><strong>Design at A4</strong> with a 12 mm safe margin. Starting at the taller, narrower shape is the easier direction, because the extra width you gain on Letter is easy to absorb and the height you lose is already inside your margin.</li>
+    <li><strong>Duplicate the artboard at Letter</strong> and let the layout re-centre. Only check the vertical: your header and footer have 8.8 mm less room than before.</li>
+    <li><strong>Export both</strong> with fonts embedded, and name them so they are unambiguous out of context: <code>weekly-planner-A4.pdf</code> and <code>weekly-planner-US-Letter.pdf</code>.</li>
+  </ol>
+
+  <p>Only a real design tool can genuinely re-lay-out for the new proportions, which is why this beats every conversion. Paragraphs can re-wrap, a grid can gain a row, a footer can move.</p>
+
+  <h2>When the source file is gone</h2>
+
+  <p>The common awkward case: you bought a commercial-use template, you inherited a file, or the original went with an old laptop. All you have is a finished PDF, and a finished PDF describes finished pages. Nothing can reflow it.</p>
+
+  <p>What you can do is re-sheet it, which is the next best thing. <a href="/en/pdf-edit/page-size/">Change PDF page size</a> places the existing pages onto the other paper standard. Two details make it usable rather than dangerous:</p>
+
+  <ul>
+    <li><strong>It measures where the content actually is.</strong> Since A4 to Letter costs 8.8 mm top and bottom, a file with a 12 mm margin has room to spare and stays at exactly 100 per cent. Printed sizes stay true, which is the whole point for anything measured.</li>
+    <li><strong>It shrinks instead of cropping when it must.</strong> A design that runs to the edge has no spare room, so it is scaled down by the smallest amount that keeps everything, rather than losing 9 mm of your border. One scale is used for the whole document, so a multi-page set still lines up sheet to sheet.</li>
+  </ul>
+
+  <p>Do not try to do this with a crop tool. <a href="/en/pdf-edit/crop/">Cropping</a> trims the page down to a smaller rectangle, so pointing a Letter-shaped box at an A4 design gives you a Letter-shaped window with the bottom of the page missing. Cropping is for removing margins you do not want, not for changing paper standards.</p>
+
+  <h2>What to tell the buyer</h2>
+
+  <p>Packaging is where most of the remaining friction lives. A few habits remove nearly all of it:</p>
+
+  <ul>
+    <li><strong>Put both sizes in the download</strong> and say so in the listing description, not only in the images. Buyers filter on the description.</li>
+    <li><strong>Name the files, not the folders.</strong> People extract a ZIP and lose the folder structure immediately.</li>
+    <li><strong>Add one line of print instructions:</strong> print at 100 per cent, actual size, scaling off. This is the single sentence that prevents the most support messages, because it stops the reader silently shrinking a correct file.</li>
+    <li><strong>Say which one you designed first</strong> if the two differ in any way a buyer might notice. Honesty here costs nothing and pre-empts the review.</li>
+  </ul>
+
+  <p>If the bundle grows past a couple of files, a single archive keeps it tidy and keeps you inside marketplace file-count limits; our note on <a href="/en/blog/pdf-naming-conventions-best-practices/">file naming</a> is written for documents but the rules transfer exactly.</p>
+
+  <h2>Quick reference</h2>
+
+  <table>
+    <thead>
+      <tr><th>Size</th><th>Millimetres</th><th>Inches</th><th>Ratio</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A4</td><td>210 × 297</td><td>8.27 × 11.69</td><td>1:1.414</td></tr>
+      <tr><td>US Letter</td><td>215.9 × 279.4</td><td>8.5 × 11</td><td>1:1.294</td></tr>
+      <tr><td>Legal</td><td>215.9 × 355.6</td><td>8.5 × 14</td><td>1:1.647</td></tr>
+      <tr><td>A5</td><td>148 × 210</td><td>5.83 × 8.27</td><td>1:1.414</td></tr>
+      <tr><td>F4 / folio</td><td>215 × 330</td><td>8.46 × 12.99</td><td>1:1.535</td></tr>
+    </tbody>
+  </table>
+
+  <p>The ratio column is worth a second look. A4 and A5 share it, which is why halving an A4 sheet gives you a perfect A5 and why A-series documents scale between each other cleanly. Letter shares its ratio with nothing, which is exactly why it cannot be scaled into an A-series size.</p>
+
+  <h2>What happens to the file you upload</h2>
+
+  <p>Our tools run on the server, so the file is uploaded. It is deleted as soon as the job finishes, and the download link is yours alone. Nothing is indexed, kept or reused for training. Our note on <a href="/en/blog/is-convertica-safe-pdf-file-security-privacy-explained/">how Convertica handles your files</a> sets out the retention rules if you are working on something unreleased.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Can I just print A4 on Letter paper?</h3>
+  <p>You can, and for a plain text document it is fine. Your reader's print dialogue will shrink the page to about 94 per cent and centre it, which costs you a little type size and leaves uneven white margins. For anything that gets measured, cut, framed or punched, that is not acceptable, and for anything you sell it is a review waiting to happen.</p>
+
+  <h3>Which size should I design in first?</h3>
+  <p>A4, in most cases. It is the standard for the larger share of the world, and it is the more forgiving starting point: converting to Letter gains you width, which is easy, and costs height, which your safe margin already covers. Design at Letter first only if your audience is specifically North American.</p>
+
+  <h3>Is A4 to Letter conversion lossless?</h3>
+  <p>The page content is. Re-sheeting places existing vector content on a new sheet, so text and line art stay vector and print as sharply as before. What is not preserved is layout intent: nothing re-wraps or rearranges for the new proportions, and if your content has no spare margin it has to be scaled down to avoid being cropped.</p>
+
+  <h3>What about A5, Legal or F4?</h3>
+  <p>A5 is exactly half an A4 and shares its proportions, so A-series conversions are clean. Legal is much taller than both A4 and Letter, so content re-sheeted onto it sits in the middle with generous margins rather than being clipped. F4 sits between A4 and Legal in height and is worth offering only if you sell into markets where it is common.</p>
+
+  <h3>Do I need separate listing images for each size?</h3>
+  <p>No, and it usually clutters the listing. One set of mockups plus a clear line in the description saying both A4 and US Letter are included works better. What does help is a small note on the last preview image listing what is in the download.</p>
+
+  <h3>My design has a full-bleed background. What now?</h3>
+  <p>Accept that it cannot convert at full size, because it has no spare margin anywhere. Either scale it down when re-sheeting, which adds thin white borders that a home printer would have added regardless, or maintain genuinely separate files for the two standards. Full-bleed and home printing were never a comfortable pair.</p>
+
+  <h2>Pick your sizes</h2>
+
+  <p>Decide the two standards you will support before you draw anything, and keep 12 mm of margin so the decision stays cheap. If you are holding a finished PDF and no source file, put it through <a href="/en/pdf-edit/page-size/">change PDF page size</a>, print one page at 100 per cent, and check all four edges before you ship it. Everything else is in <a href="/en/all-tools/">all tools</a>.</p>

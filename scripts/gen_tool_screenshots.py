@@ -63,6 +63,7 @@ TOOL_PATHS = [
     "pdf-edit/add-watermark/",
     "pdf-edit/crop/",
     "pdf-edit/flatten/",
+    "pdf-edit/page-size/",
     "pdf-edit/sign/",
     "pdf-edit/add-text/",
     "pdf-editor/",
@@ -126,6 +127,7 @@ DEMO_OVERRIDES = {
     "image-password-protect-image": ["project_nightingale_dossier.jpg"],
     "pdf-editor": ["delorean_rental_agreement.pdf"],
     "pdf-edit-add-text": ["hogwarts_permission_slip.pdf"],
+    "pdf-edit-page-size": ["dunder_mifflin_paper_order.pdf"],
 }
 
 # paste-text tools have no file picker: type demo text into their textarea so
@@ -362,6 +364,7 @@ def badge_parts(slug: str) -> tuple[str, ...]:
         "rotate": "ROTATE",
         "crop": "CROP",
         "flatten": "FLATTEN",
+        "page-size": "A4 \u2192 LETTER",
         "sign": "SIGN",
         "organize": "REORDER",
         "pages": "PAGES",

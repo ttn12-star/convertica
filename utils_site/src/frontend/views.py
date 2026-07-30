@@ -220,6 +220,13 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>',
             "gradient": "from-cyan-500 to-blue-600",
         },
+        "resize_pdf": {
+            "name": _("Change PDF Page Size"),
+            "url": "frontend:resize_pdf_page",
+            "description": _("Move pages to A4, US Letter or Legal"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/>',
+            "gradient": "from-sky-500 to-indigo-600",
+        },
         "sign_pdf": {
             "name": _("Sign PDF"),
             "url": "frontend:sign_pdf_page",
@@ -326,11 +333,11 @@ def _get_related_tools(current_tool):
         "pdf_to_word": ["word_to_pdf", "pdf_to_excel", "pdf_to_text"],
         "word_to_pdf": ["pdf_to_word", "merge_pdf", "compress_pdf"],
         "pdf_to_jpg": ["jpg_to_pdf", "convert_image", "split_pdf"],
-        "jpg_to_pdf": ["pdf_to_jpg", "optimize_image", "convert_image"],
+        "jpg_to_pdf": ["pdf_to_jpg", "resize_pdf", "convert_image"],
         "rotate_pdf": ["organize_pdf", "crop_pdf", "flatten_pdf"],
         "add_page_numbers": ["rotate_pdf", "organize_pdf", "add_watermark"],
         "add_watermark": ["protect_pdf", "sign_pdf", "flatten_pdf"],
-        "crop_pdf": ["rotate_pdf", "compress_pdf", "organize_pdf"],
+        "crop_pdf": ["resize_pdf", "rotate_pdf", "compress_pdf"],
         "merge_pdf": ["split_pdf", "compress_pdf", "organize_pdf"],
         "split_pdf": ["merge_pdf", "extract_pages", "organize_pdf"],
         "remove_pages": ["split_pdf", "organize_pdf", "extract_pages"],
@@ -356,7 +363,8 @@ def _get_related_tools(current_tool):
         # at three siblings to give every page at least three outgoing
         # internal links — closes the "only one dofollow incoming internal
         # link" warnings on these tool/category pairs.
-        "flatten_pdf": ["add_watermark", "rotate_pdf", "organize_pdf"],
+        "flatten_pdf": ["add_watermark", "rotate_pdf", "resize_pdf"],
+        "resize_pdf": ["crop_pdf", "jpg_to_pdf", "compress_pdf"],
         "sign_pdf": ["add_text_pdf", "add_watermark", "protect_pdf"],
         "add_text_pdf": ["pdf_editor", "sign_pdf", "add_watermark", "flatten_pdf"],
         "pdf_editor": ["sign_pdf", "add_text_pdf", "flatten_pdf", "organize_pdf"],
@@ -698,6 +706,12 @@ def crop_pdf_page(request):
 def flatten_pdf_page(request):
     """Flatten PDF page."""
     return _render_tool_page(request, "flatten_pdf")
+
+
+@anonymous_cache_page(60 * 60)
+def resize_pdf_page(request):
+    """Change PDF page size page."""
+    return _render_tool_page(request, "resize_pdf")
 
 
 @anonymous_cache_page(60 * 60)
@@ -2120,6 +2134,7 @@ def _get_sitemap_pages():
         },
         {"url": "pdf-edit/add-watermark/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-edit/crop/", "priority": "0.8", "changefreq": "weekly"},
+        {"url": "pdf-edit/page-size/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-organize/merge/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "pdf-organize/split/", "priority": "0.8", "changefreq": "weekly"},
         {
@@ -2226,7 +2241,10 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}_v7"  # v7: image/password-protect-image/ added
+    # v8: image/password-protect-image/ (v7) + /pdf-edit/page-size/ — both
+    # landed as v7 on separate branches, so bump again or the cached
+    # sitemap never picks up the second one.
+    cache_key = f"sitemap_{lang}_v8"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")

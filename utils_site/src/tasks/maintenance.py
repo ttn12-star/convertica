@@ -172,6 +172,8 @@ _CONVERTER_TMP_PREFIXES = (
     # pdf edit (all route through BasePDFProcessor(tmp_prefix=…); the error
     # path orphans the prepared dir, so every prefix MUST be swept here).
     "flatten_pdf_",
+    "resize_pdf_",  # also resize_batch_
+    "resize_batch_",
     "rotate_pdf_",
     "add_pages_",
     "watermark_",
@@ -732,3 +734,25 @@ def submit_sitemap_indexnow():
     except Exception as e:
         logger.warning("IndexNow sitemap submit failed: %s: %s", type(e).__name__, e)
         return {"submitted": False, "error": str(e)}
+
+
+@shared_task(name="maintenance.publish_scheduled_articles", queue="maintenance")
+def publish_scheduled_articles():
+    """Flip blog articles whose `publish_on` date has arrived to published.
+
+    The scheduling logic lives in import_blog_articles (YAML is the source of
+    truth, since that importer rewrites the DB from YAML on every deploy — a
+    date stored only in the DB would be clobbered). All this task does is re-run
+    the importer so a date can arrive without a deploy. The importer is
+    idempotent and skips byte-identical rows, so on an ordinary day this changes
+    nothing and leaves the sitemap's <lastmod> alone.
+    """
+    from django.core.management import call_command
+
+    try:
+        call_command("import_blog_articles", verbosity=0)
+        logger.info("Scheduled-article check complete")
+        return {"ok": True}
+    except Exception as e:
+        logger.warning("Scheduled-article publish failed: %s: %s", type(e).__name__, e)
+        return {"ok": False, "error": str(e)}

@@ -128,6 +128,30 @@ def pdf_chords():
     return path
 
 
+def pdf_paper_order():
+    """Prop for the page-size tool: a paper order, on paper, about paper sizes."""
+    path = OUT / "dunder_mifflin_paper_order.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    _page_frame(c, "Paper Order Form — Scranton Branch", INDIGO)
+    _body_lines(
+        c,
+        [
+            "Reams, A4 .................................. 40",
+            "Reams, US Letter ........................... 40",
+            "Reams, Legal ................................ 2",
+            "",
+            "Note: the A4 boxes do not fit the Letter shelf.",
+            "Nobody warned us. Assistant to the Regional Manager",
+            "says we should just print it scaled to fit.",
+            "",
+            "Slogan draft: limitless paper in a paperless world.",
+        ],
+    )
+    c.showPage()
+    c.save()
+    return path
+
+
 def pdf_voyager():
     path = OUT / "voyager_golden_record_tracklist.pdf"
     c = canvas.Canvas(str(path), pagesize=A4)
@@ -524,6 +548,7 @@ if __name__ == "__main__":
         pdf_titan_plan(),
         pdf_chapters(),
         pdf_chords(),
+        pdf_paper_order(),
         pdf_voyager(),
         pdf_principia(),
         pdf_delorean_agreement(),

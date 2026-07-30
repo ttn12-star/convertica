@@ -16782,3 +16782,144 @@ msgstr "Convertica का पासवर्ड रीसेट करें"
 
 msgid "no text layer found. This looks like a scanned PDF, so use the Scanned PDF to Word tool to run OCR on it."
 msgstr "इसमें कोई टेक्स्ट लेयर नहीं मिली। यह स्कैन किया हुआ PDF लगता है, इसलिए OCR के लिए स्कैन्ड PDF से Word टूल का उपयोग करें।"
+msgid "Change PDF Page Size Online Free - A4 to Letter | Convertica"
+msgstr "PDF पेज साइज़ बदलें: A4 से Letter | Convertica"
+
+msgid "Change PDF page size online free: convert A4 to US Letter, Letter to A4 or Legal. Content is never cropped and stays vector-sharp for printing. No registration required."
+msgstr "PDF का पेज साइज़ ऑनलाइन मुफ़्त बदलें: A4 से US Letter, Letter से A4 या Legal। सामग्री कभी नहीं कटती और छपाई के लिए वेक्टर जैसी साफ़ रहती है। रजिस्ट्रेशन की ज़रूरत नहीं।"
+
+msgid "Put your PDF on a different paper size"
+msgstr "अपनी PDF को दूसरे कागज़ के नाप पर रखें"
+
+msgid "Change PDF Page Size"
+msgstr "PDF पेज साइज़ बदलें"
+
+msgid "Change Page Size"
+msgstr "पेज साइज़ बदलें"
+
+msgid "A4, Letter and Legal"
+msgstr "A4, Letter और Legal"
+
+msgid "Ship the same document on the paper standard your reader actually has"
+msgstr "एक ही दस्तावेज़ उस कागज़ी मानक पर दें जो आपके पाठक के पास असल में है"
+
+msgid "Nothing Gets Cropped"
+msgstr "कुछ भी नहीं कटता"
+
+msgid "We measure where your content actually sits and only shrink it if it would not fit"
+msgstr "हम देखते हैं कि आपकी सामग्री असल में कहाँ है, और उसे तभी छोटा करते हैं जब वह समा न पाए"
+
+msgid "Print Quality Kept"
+msgstr "प्रिंट क्वालिटी बची रहती है"
+
+msgid "Text and vector graphics are re-placed, not rasterised, so they stay sharp on paper"
+msgstr "टेक्स्ट और वेक्टर ग्राफ़िक्स दोबारा रखे जाते हैं, रैस्टर नहीं किए जाते, इसलिए कागज़ पर साफ़ रहते हैं"
+
+msgid "Consistent Across Pages"
+msgstr "हर पेज पर एक जैसा"
+
+msgid "Every page gets the same scale, so a multi-page set still lines up"
+msgstr "हर पेज को एक ही स्केल मिलता है, इसलिए कई पेज वाला सेट अब भी मेल खाता है"
+
+msgid "Can I convert A4 to US Letter without losing content?"
+msgstr "क्या A4 को US Letter में सामग्री खोए बिना बदला जा सकता है?"
+
+msgid "Yes, and that is the default. A4 and Letter are different shapes: Letter is about 6 mm wider and 18 mm shorter, so simply centring an A4 page on Letter would cut roughly 9 mm off the top and the bottom. This tool measures where the content on your pages actually sits. If it fits the new sheet, nothing is scaled at all. If it does not, the pages are shrunk by the smallest amount that keeps everything."
+msgstr "हाँ, और यही डिफ़ॉल्ट है। A4 और Letter के अनुपात अलग हैं: Letter करीब 6 मिमी चौड़ा और 18 मिमी छोटा है, इसलिए A4 पेज को Letter पर बस बीच में रख देने से ऊपर और नीचे से करीब 9 मिमी कट जाता। यह टूल देखता है कि आपके पेजों पर सामग्री असल में कहाँ बैठी है। अगर वह नए कागज़ में समा जाती है, तो स्केल बिल्कुल नहीं बदलता। अगर नहीं समाती, तो पेज उतना ही छोटा किया जाता है जितने से सब कुछ बचा रहे।"
+
+msgid "Will my document be scaled down?"
+msgstr "क्या मेरा दस्तावेज़ छोटा कर दिया जाएगा?"
+
+msgid "Only if it has to be. A document with a normal margin of 10 mm or more usually moves from A4 to Letter at 100%, so printed sizes stay exact. A design that runs to the edge of the page has no spare room, so it is scaled to fit rather than clipped."
+msgstr "सिर्फ़ तब, जब कोई चारा न हो। 10 मिमी या उससे ज़्यादा के सामान्य मार्जिन वाला दस्तावेज़ आमतौर पर A4 से Letter पर 100% में चला जाता है, इसलिए छपाई के नाप सटीक रहते हैं। जिस डिज़ाइन में रंग पेज के किनारे तक जाता है, उसमें बचत की जगह नहीं होती, इसलिए वह कटने के बजाय छोटा किया जाता है।"
+
+msgid "Does this reflow or redesign my pages?"
+msgstr "क्या इससे मेरे पेजों की वर्तनी या डिज़ाइन बदल जाएगा?"
+
+msgid "No, and no tool can. A PDF describes finished pages, so the content can be placed on a different sheet or scaled, but paragraphs will not re-wrap and layouts will not be rearranged. If you need a genuine redesign for another paper size, go back to the file you designed in."
+msgstr "नहीं, और कोई टूल यह कर भी नहीं सकता। PDF तैयार पेजों का ब्यौरा होता है, इसलिए सामग्री को दूसरे कागज़ पर रखा या स्केल किया जा सकता है, लेकिन पैराग्राफ़ दोबारा नहीं बहेंगे और तत्व दोबारा नहीं जमाए जाएँगे। अगर दूसरे कागज़ी नाप के लिए असल में नया डिज़ाइन चाहिए, तो उस फ़ाइल पर लौटें जिसमें आपने मूल मैक्अप बनाया था।"
+
+msgid "Is the quality reduced?"
+msgstr "क्या क्वालिटी घट जाती है?"
+
+msgid "No. Pages are re-placed as vector content, so text, lines and vector illustration stay resolution-independent and print as sharply as your printer allows. Images keep their original resolution; if pages are scaled down, images effectively gain pixel density rather than losing it."
+msgstr "नहीं। पेज वेक्टर सामग्री के रूप में दोबारा रखे जाते हैं, इसलिए टेक्स्ट, लाइनें और वेक्टर चित्र रिज़ॉल्यूशन से आज़ाद रहते हैं और उतना ही साफ़ छपते हैं जितना आपका प्रिंटर कर सकता है। तस्वीरें अपना मूल रिज़ॉल्यूशन बनाए रखती हैं; अगर पेज छोटे किए जाते हैं, तो तस्वीरों की पिक्सेल घनता असल में बढ़ती है, घटती नहीं।"
+
+msgid "Which size should I use for printables I sell?"
+msgstr "जो प्रिंटेबल मैं बेचता हूँ, उनके लिए कौन सा नाप लूँ?"
+
+msgid "Offer both A4 and US Letter if you can. A4 is standard almost everywhere, US Letter in the United States and Canada, and buyers holding the other standard are a common source of refund requests. Keeping at least 10 to 12 mm of margin in your design is what lets one file convert cleanly to the other."
+msgstr "हो सके तो A4 और US Letter दोनों दें। A4 लगभग पूरी दुनिया में मानक है, US Letter अमेरिका और कनाडा में, और दूसरा कागज़ी मानक रखने वाले खरीदार रिफंड की मांग की आम वजह होते हैं। डिज़ाइन में कम से कम 10 से 12 मिमी का मार्जिन रखना ही वह चीज़ है जिससे एक फ़ाइल साफ़-सुथरे ढंग से दूसरे नाप में बदल पाती है।"
+
+msgid "Change PDF Page Size FAQ"
+msgstr "PDF पेज साइज़ बदलने पर सवाल-जवाब"
+
+msgid "Leave 10 to 12 mm of margin in your design and A4 converts to Letter at full size."
+msgstr "अपने डिज़ाइन में 10 से 12 मिमी का मार्जिन छोड़ें और A4 पूरे नाप में Letter बन जाएगा।"
+
+msgid "Selling printables? Offer A4 and US Letter so buyers on either paper standard can print."
+msgstr "प्रिंटेबल बेचते हैं? A4 और US Letter दोनों दें, ताकि किसी भी कागज़ी मानक वाले खरीदार छाप सकें।"
+
+msgid "Print one page and check all four edges before you trust the result."
+msgstr "नतीजे पर भरोसा करने से पहले एक पेज छापकर चारों किनारे देख लें।"
+
+msgid "Tips for Changing Page Size"
+msgstr "पेज साइज़ बदलने के सुझाव"
+
+msgid "Change a PDF page size without cropping it"
+msgstr "PDF का पेज साइज़ बिना काटे कैसे बदलें"
+
+msgid "<p><strong>Change PDF page size</strong> places every page of your document on a different paper standard: A4, US Letter or Legal. This matters because A4 and Letter are not the same shape. Letter is roughly 6 mm wider and 18 mm shorter, so there is no scale factor that turns one into the other, and centring an A4 page on Letter at full size quietly removes about 9 mm from the top and the bottom of the sheet.</p><p>The default <em>auto</em> mode avoids that. It looks at where the ink on your pages actually is, keeps the document at full size when the content fits the new sheet, and otherwise scales it down by the smallest amount that loses nothing. One scale is applied to the whole document, so a planner or workbook still lines up from sheet to sheet. Choose <em>fit</em> instead when you want the predictable behaviour of scaling every page to the sheet.</p><p>Pages are re-placed as vector content rather than rasterised, so text and line art stay sharp when printed. What no PDF tool can do is reflow the design: paragraphs will not re-wrap and elements will not be rearranged for the new proportions. For that, return to the source file you designed in.</p>"
+msgstr "<p><strong>PDF पेज साइज़ बदलना</strong> आपके दस्तावेज़ के हर पेज को दूसरे कागज़ी मानक पर रखता है: A4, US Letter या Legal। यह मायने रखता है क्योंकि A4 और Letter एक ही आकार के नहीं हैं। Letter करीब 6 मिमी चौड़ा और 18 मिमी छोटा है, इसलिए कोई स्केल फ़ैक्टर एक को दूसरा नहीं बनाता, और A4 पेज को Letter पर पूरे नाप में बीच में रखने से चुपचाप कागज़ के ऊपर और नीचे से करीब 9 मिमी हट जाता है।</p><p>डिफ़ॉल्ट <em>auto</em> मोड ऐसा होने नहीं देता। वह देखता है कि आपके पेजों पर स्याही असल में कहाँ है, और जब सामग्री नए कागज़ में समा जाती है तो दस्तावेज़ को 100% पर रखता है; वरना उसे उतना ही छोटा करता है जितने से कुछ न खोए। एक ही स्केल पूरे दस्तावेज़ पर लगता है, इसलिए प्लानर या वर्कबुक अब भी पेज-दर-पेज मेल खाती है। जब हर पेज को कागज़ के हिसाब से स्केल करने वाला अंदाज़ा लगाने योग्य बर्ताव चाहिए, तो <em>fit</em> चुनें।</p><p>पेज रैस्टर करने के बजाय वेक्टर सामग्री के रूप में दोबारा रखे जाते हैं, इसलिए छपाई में टेक्स्ट और लाइन आर्ट साफ़ रहते हैं। जो कोई भी PDF टूल नहीं कर सकता, वह है डिज़ाइन को दोबारा जमाना: पैराग्राफ़ नए अनुपात के हिसाब से दोबारा नहीं बहेंगे और तत्व दोबारा नहीं सजाए जाएँगे। उसके लिए उस स्रोत फ़ाइल पर लौटें जिसमें आपने डिज़ाइन किया था।</p>"
+
+msgid "Page Size Settings"
+msgstr "पेज साइज़ सेटिंग"
+
+msgid "Target paper size"
+msgstr "लक्ष्य कागज़ नाप"
+
+msgid "US Letter (216 × 279 mm)"
+msgstr "US Letter (216 × 279 मिमी)"
+
+msgid "A4 (210 × 297 mm)"
+msgstr "A4 (210 × 297 मिमी)"
+
+msgid "Legal (216 × 356 mm)"
+msgstr "Legal (216 × 356 मिमी)"
+
+msgid "How to handle the difference in shape"
+msgstr "अनुपात के अंतर का क्या करें"
+
+msgid "Keep full size when it fits (recommended)"
+msgstr "जब समा जाए तो पूरा नाप रखें (सुझाया गया)"
+
+msgid "Always scale pages to the sheet"
+msgstr "पेजों को हमेशा कागज़ के हिसाब से स्केल करें"
+
+msgid "Either way nothing is cropped. The first option keeps printed sizes exact whenever your margins leave room."
+msgstr "किसी भी हाल में कुछ नहीं कटता। पहला विकल्प तब छपाई के नाप सटीक रखता है, जब आपके मार्जिन इसकी गुंजाइश देते हैं।"
+
+msgid "A4 and Letter are different shapes"
+msgstr "A4 और Letter के अनुपात अलग हैं"
+
+msgid "US Letter is about 6 mm wider and 18 mm shorter than A4, so there is no scale factor that turns one into the other. We measure where your content sits and keep it at full size whenever the new sheet has room for it."
+msgstr "US Letter, A4 से करीब 6 मिमी चौड़ा और 18 मिमी छोटा है, इसलिए कोई स्केल फ़ैक्टर एक को दूसरा नहीं बनाता। हम देखते हैं कि आपकी सामग्री कहाँ है, और जब नए कागज़ में उसके लिए जगह होती है तो पूरा नाप बनाए रखते हैं।"
+
+msgid "Pick the paper size you need: US Letter, A4 or Legal"
+msgstr "जो कागज़ नाप चाहिए वह चुनें: US Letter, A4 या Legal"
+
+msgid "Click the button and your pages are placed on the new sheet"
+msgstr "बटन दबाएँ और आपके पेज नए कागज़ पर रख दिए जाएँगे"
+
+msgid "Download the result and print one page to check all four edges"
+msgstr "नतीजा डाउनलोड करें और चारों किनारे जाँचने के लिए एक पेज छापें"
+
+msgid "Move pages to A4, US Letter or Legal"
+msgstr "पेजों को A4, US Letter या Legal पर ले जाएँ"
+
+msgid "Move your pages to A4, US Letter or Legal without cropping them."
+msgstr "अपने पेजों को बिना काटे A4, US Letter या Legal पर ले जाएँ।"
+
+#, python-format
+msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
+msgstr "%(max_pages)s पेज तक की PDF फ़ाइलें समर्थित हैं। पेज वेक्टर सामग्री के रूप में दोबारा रखे जाते हैं, इसलिए टेक्स्ट और लाइन आर्ट साफ़ रहते हैं। डिज़ाइन खुद दोबारा नहीं जमाया जाता: पैराग्राफ़ नए अनुपात के हिसाब से दोबारा नहीं बहेंगे।"

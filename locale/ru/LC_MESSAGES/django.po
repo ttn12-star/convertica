@@ -16993,3 +16993,144 @@ msgstr "Сброс пароля в Convertica"
 
 msgid "no text layer found. This looks like a scanned PDF, so use the Scanned PDF to Word tool to run OCR on it."
 msgstr "текстового слоя не найдено. Похоже, это сканированный PDF, поэтому распознайте его инструментом «Сканированный PDF в Word»."
+msgid "Change PDF Page Size Online Free - A4 to Letter | Convertica"
+msgstr "Изменить размер страницы ПДФ: A4 в Letter | Convertica"
+
+msgid "Change PDF page size online free: convert A4 to US Letter, Letter to A4 or Legal. Content is never cropped and stays vector-sharp for printing. No registration required."
+msgstr "Измените размер страницы PDF онлайн бесплатно: A4 в US Letter, Letter в A4 или Legal. Содержимое не обрезается и остаётся векторно-резким для печати. Без регистрации."
+
+msgid "Put your PDF on a different paper size"
+msgstr "Переложите ваш ПДФ на другой формат бумаги"
+
+msgid "Change PDF Page Size"
+msgstr "Изменить размер страницы PDF"
+
+msgid "Change Page Size"
+msgstr "Изменить формат"
+
+msgid "A4, Letter and Legal"
+msgstr "A4, Letter и Legal"
+
+msgid "Ship the same document on the paper standard your reader actually has"
+msgstr "Отдавайте один документ на том формате бумаги, который реально есть у читателя"
+
+msgid "Nothing Gets Cropped"
+msgstr "Ничего не обрезается"
+
+msgid "We measure where your content actually sits and only shrink it if it would not fit"
+msgstr "Мы определяем, где действительно находится содержимое, и уменьшаем его только если оно не влезает"
+
+msgid "Print Quality Kept"
+msgstr "Качество печати сохранено"
+
+msgid "Text and vector graphics are re-placed, not rasterised, so they stay sharp on paper"
+msgstr "Текст и векторная графика переносятся, а не растеризуются, поэтому на бумаге остаются резкими"
+
+msgid "Consistent Across Pages"
+msgstr "Одинаково на всех страницах"
+
+msgid "Every page gets the same scale, so a multi-page set still lines up"
+msgstr "Все страницы получают один масштаб, поэтому многостраничный набор по-прежнему совпадает"
+
+msgid "Can I convert A4 to US Letter without losing content?"
+msgstr "Можно перевести A4 в US Letter без потери содержимого?"
+
+msgid "Yes, and that is the default. A4 and Letter are different shapes: Letter is about 6 mm wider and 18 mm shorter, so simply centring an A4 page on Letter would cut roughly 9 mm off the top and the bottom. This tool measures where the content on your pages actually sits. If it fits the new sheet, nothing is scaled at all. If it does not, the pages are shrunk by the smallest amount that keeps everything."
+msgstr "Да, и это поведение по умолчанию. A4 и Letter — разные пропорции: Letter примерно на 6 мм шире и на 18 мм короче, поэтому простое центрирование страницы A4 на Letter срезало бы около 9 мм сверху и снизу. Этот инструмент определяет, где на ваших страницах реально расположено содержимое. Если оно влезает в новый лист, масштаб не меняется вообще. Если не влезает, страницы уменьшаются ровно настолько, чтобы сохранить всё."
+
+msgid "Will my document be scaled down?"
+msgstr "Мой документ уменьшат?"
+
+msgid "Only if it has to be. A document with a normal margin of 10 mm or more usually moves from A4 to Letter at 100%, so printed sizes stay exact. A design that runs to the edge of the page has no spare room, so it is scaled to fit rather than clipped."
+msgstr "Только если иначе никак. Документ с обычным полем от 10 мм чаще всего переходит с A4 на Letter в масштабе 100%, поэтому печатные размеры остаются точными. У макета, где изображение уходит под край страницы, запаса нет, поэтому он масштабируется, а не обрезается."
+
+msgid "Does this reflow or redesign my pages?"
+msgstr "Изменится ли вёрстка или дизайн страниц?"
+
+msgid "No, and no tool can. A PDF describes finished pages, so the content can be placed on a different sheet or scaled, but paragraphs will not re-wrap and layouts will not be rearranged. If you need a genuine redesign for another paper size, go back to the file you designed in."
+msgstr "Нет, и ни один инструмент этого не может. ПДФ описывает уже готовые страницы, поэтому содержимое можно переложить на другой лист или отмасштабировать, но абзацы не переверстаются заново, а элементы не переставятся. Если нужна настоящая переработка под другой формат бумаги, возвращайтесь к исходному файлу, в котором делали макет."
+
+msgid "Is the quality reduced?"
+msgstr "Качество ухудшится?"
+
+msgid "No. Pages are re-placed as vector content, so text, lines and vector illustration stay resolution-independent and print as sharply as your printer allows. Images keep their original resolution; if pages are scaled down, images effectively gain pixel density rather than losing it."
+msgstr "Нет. Страницы переносятся как векторное содержимое, поэтому текст, линии и векторные иллюстрации не зависят от разрешения и печатаются настолько резко, насколько позволяет принтер. Изображения сохраняют исходное разрешение: если страницы уменьшаются, плотность пикселей у картинок фактически растёт, а не падает."
+
+msgid "Which size should I use for printables I sell?"
+msgstr "Какой формат выбрать для печатных шаблонов на продажу?"
+
+msgid "Offer both A4 and US Letter if you can. A4 is standard almost everywhere, US Letter in the United States and Canada, and buyers holding the other standard are a common source of refund requests. Keeping at least 10 to 12 mm of margin in your design is what lets one file convert cleanly to the other."
+msgstr "Если можете, отдавайте и A4, и US Letter. A4 стандарт почти во всём мире, US Letter — в США и Канаде, а покупатели с другим стандартом бумаги это частая причина запросов на возврат. Именно поле не меньше 10–12 мм в макете и позволяет одному файлу аккуратно переводиться в другой формат."
+
+msgid "Change PDF Page Size FAQ"
+msgstr "Вопросы об изменении размера страницы PDF"
+
+msgid "Leave 10 to 12 mm of margin in your design and A4 converts to Letter at full size."
+msgstr "Оставьте в макете поле 10–12 мм, и A4 переведётся в Letter без уменьшения."
+
+msgid "Selling printables? Offer A4 and US Letter so buyers on either paper standard can print."
+msgstr "Продаёте печатные шаблоны? Отдавайте A4 и US Letter, чтобы покупатели с любой бумагой смогли распечатать."
+
+msgid "Print one page and check all four edges before you trust the result."
+msgstr "Распечатайте одну страницу и проверьте все четыре края, прежде чем доверять результату."
+
+msgid "Tips for Changing Page Size"
+msgstr "Советы по изменению размера страницы"
+
+msgid "Change a PDF page size without cropping it"
+msgstr "Как изменить размер страницы ПДФ, не обрезав его"
+
+msgid "<p><strong>Change PDF page size</strong> places every page of your document on a different paper standard: A4, US Letter or Legal. This matters because A4 and Letter are not the same shape. Letter is roughly 6 mm wider and 18 mm shorter, so there is no scale factor that turns one into the other, and centring an A4 page on Letter at full size quietly removes about 9 mm from the top and the bottom of the sheet.</p><p>The default <em>auto</em> mode avoids that. It looks at where the ink on your pages actually is, keeps the document at full size when the content fits the new sheet, and otherwise scales it down by the smallest amount that loses nothing. One scale is applied to the whole document, so a planner or workbook still lines up from sheet to sheet. Choose <em>fit</em> instead when you want the predictable behaviour of scaling every page to the sheet.</p><p>Pages are re-placed as vector content rather than rasterised, so text and line art stay sharp when printed. What no PDF tool can do is reflow the design: paragraphs will not re-wrap and elements will not be rearranged for the new proportions. For that, return to the source file you designed in.</p>"
+msgstr "<p><strong>Изменение размера страницы PDF</strong> перекладывает каждую страницу вашего документа на другой формат бумаги: A4, US Letter или Legal. Это важно, потому что A4 и Letter — не одна и та же форма. Letter примерно на 6 мм шире и на 18 мм короче, поэтому никакой коэффициент масштаба не превращает один в другой, а центрирование страницы A4 на Letter в полном размере тихо убирает около 9 мм сверху и снизу листа.</p><p>Режим <em>auto</em> по умолчанию этого не допускает. Он смотрит, где на ваших страницах действительно лежит краска, оставляет документ в масштабе 100%, если содержимое влезает в новый лист, и иначе уменьшает его ровно настолько, чтобы ничего не потерять. Один масштаб применяется ко всему документу, поэтому планер или рабочая тетрадь по-прежнему совпадают от листа к листу. Выбирайте <em>fit</em>, когда нужно предсказуемое поведение с масштабированием каждой страницы под лист.</p><p>Страницы переносятся как векторное содержимое, а не растеризуются, поэтому текст и линейная графика остаются резкими при печати. Чего не умеет ни один инструмент для ПДФ, так это переверстать дизайн: абзацы не перетекут заново, а элементы не переставятся под новые пропорции. Для этого вернитесь к исходному файлу, в котором вы делали макет.</p>"
+
+msgid "Page Size Settings"
+msgstr "Настройки размера страницы"
+
+msgid "Target paper size"
+msgstr "Целевой формат бумаги"
+
+msgid "US Letter (216 × 279 mm)"
+msgstr "US Letter (216 × 279 мм)"
+
+msgid "A4 (210 × 297 mm)"
+msgstr "A4 (210 × 297 мм)"
+
+msgid "Legal (216 × 356 mm)"
+msgstr "Legal (216 × 356 мм)"
+
+msgid "How to handle the difference in shape"
+msgstr "Что делать с разницей в пропорциях"
+
+msgid "Keep full size when it fits (recommended)"
+msgstr "Сохранить полный размер, если влезает (рекомендуем)"
+
+msgid "Always scale pages to the sheet"
+msgstr "Всегда масштабировать страницы под лист"
+
+msgid "Either way nothing is cropped. The first option keeps printed sizes exact whenever your margins leave room."
+msgstr "В любом случае ничего не обрезается. Первый вариант сохраняет точные печатные размеры, когда ваши поля это позволяют."
+
+msgid "A4 and Letter are different shapes"
+msgstr "A4 и Letter — разные пропорции"
+
+msgid "US Letter is about 6 mm wider and 18 mm shorter than A4, so there is no scale factor that turns one into the other. We measure where your content sits and keep it at full size whenever the new sheet has room for it."
+msgstr "US Letter примерно на 6 мм шире и на 18 мм короче A4, поэтому никакой коэффициент масштаба не превращает один в другой. Мы определяем, где расположено ваше содержимое, и сохраняем полный размер, когда на новом листе для него есть место."
+
+msgid "Pick the paper size you need: US Letter, A4 or Legal"
+msgstr "Выберите нужный формат бумаги: US Letter, A4 или Legal"
+
+msgid "Click the button and your pages are placed on the new sheet"
+msgstr "Нажмите кнопку, и ваши страницы лягут на новый лист"
+
+msgid "Download the result and print one page to check all four edges"
+msgstr "Скачайте результат и распечатайте одну страницу, чтобы проверить все четыре края"
+
+msgid "Move pages to A4, US Letter or Legal"
+msgstr "Переложить страницы на A4, US Letter или Legal"
+
+msgid "Move your pages to A4, US Letter or Legal without cropping them."
+msgstr "Переложите ваши страницы на A4, US Letter или Legal, не обрезая их."
+
+#, python-format
+msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
+msgstr "Поддерживаются файлы ПДФ до %(max_pages)s страниц. Страницы переносятся как векторное содержимое, поэтому текст и линейная графика остаются резкими. Сам дизайн при этом не переверстывается: абзацы не перетекут заново под новые пропорции."

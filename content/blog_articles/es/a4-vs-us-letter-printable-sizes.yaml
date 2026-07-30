@@ -1,0 +1,157 @@
+slug: a4-vs-us-letter-printable-sizes
+title_es: "¿A4 o Carta? Elegir el tamaño de tus imprimibles para el mundo entero"
+meta_title_es: "A4 o Carta para imprimibles | Convertica"
+meta_description_es: "Carta es 6 mm más ancha y 18 mm más corta que A4, así que ningún factor de escala convierte una en otra. Cómo entregar las dos desde un solo diseño."
+meta_keywords_es: "a4 o carta, tamaño carta en mm, convertir a4 a carta pdf, tamaños de papel imprimibles, diferencia a4 carta, imprimible internacional, tamaño de página para imprimibles"
+excerpt_es: "A4 y Carta no son dos tamaños de la misma forma. Carta es más ancha y más corta, lo que significa que no existe un porcentaje al que puedas imprimir para convertir una en la otra. Ese único hecho geométrico decide cómo diseñas un imprimible, cómo lo empaquetas y qué mitad del mundo puede usarlo. Aquí está la aritmética y el flujo de trabajo que te da los dos tamaños sin diseñar dos veces."
+ai_metadata:
+  topics:
+    - diferencia entre A4 y Carta
+    - un solo diseño para dos estándares de papel
+    - margen seguro que sobrevive a un cambio de tamaño
+    - qué países usan cada tamaño
+    - cambiar el tamaño de un PDF terminado
+  entities:
+    - A4
+    - Carta
+    - Oficio
+    - ISO 216
+    - ANSI
+    - Etsy
+    - Convertica
+  summary: "Explica por qué A4 y Carta no se pueden convertir escalando: A4 mide 210x297 mm y Carta 215,9x279,4 mm, así que Carta es 5,9 mm más ancha y 17,6 mm más corta y las proporciones difieren. Cubre qué pasa cuando el comprador imprime el estándar equivocado con ajuste a página, qué regiones usan cada papel, por qué un margen seguro de 10 a 12 mm es lo que permite que un diseño sirva para los dos tamaños, cómo exportar ambos desde una herramienta de diseño, cómo recolocar un PDF terminado cuando ya no existe el archivo original, y cómo nombrar y empaquetar los dos archivos."
+  related_terms:
+    - diferencia a4 carta mm
+    - imprimible en dos tamaños de papel
+    - qué países usan tamaño carta
+    - cambiar tamaño de pdf sin recortar
+    - margen seguro diseño imprimible
+    - paquete a4 y carta
+  reading_time_minutes: 9
+  target_audience: "Diseñadores y vendedores de productos imprimibles, y cualquiera que prepare un documento que se va a imprimir en más de un país, que necesite decidir entre A4 y Carta y quiera entregar los dos sin rediseñar ni recortar."
+content_es: |
+  Detrás de una cantidad sorprendente de reseñas de una estrella en productos imprimibles hay una aritmética sencilla. A4 mide 210 por 297 mm. Carta mide 215,9 por 279,4 mm. Carta es unos 6 mm más ancha y unos 18 mm más corta. No son dos tamaños de una misma forma: las proporciones son distintas, 1:1,41 frente a 1:1,29.
+
+  La consecuencia es la parte que se pasa por alto. No existe un porcentaje al que puedas imprimir para convertir una en la otra. Escala un diseño A4 hasta que quepa en el ancho de Carta y seguirá siendo demasiado alto. Escálalo hasta que quepa la altura y dejará de llenar el ancho. Cada atajo del tipo «imprímelo ajustado a la página» es una decisión sobre cuál de esos dos compromisos le toca al comprador, tomada en silencio por el controlador de su impresora.
+
+  <h2>Quién usa cada uno</h2>
+
+  <p>La división es geográfica y casi total:</p>
+
+  <ul>
+    <li><strong>Carta</strong> en Estados Unidos, Canadá y habitualmente en México, Filipinas, Chile y parte de Centroamérica y Sudamérica.</li>
+    <li><strong>A4</strong> básicamente en el resto del mundo, incluida toda Europa, la mayor parte de Asia, África, Australia y el resto de Sudamérica. Es el estándar ISO 216.</li>
+    <li><strong>Hay añadidos locales.</strong> F4, que también se vende como folio, 215 por 330 mm, sigue siendo común en Indonesia y parte del sudeste asiático, y Oficio, 215,9 por 355,6 mm, aparece en oficinas norteamericanas para contratos.</li>
+  </ul>
+
+  <p>Si vendes productos digitales, eso significa que una tienda que solo ofrece A4 pierde en silencio sus conversiones norteamericanas, y una que solo ofrece Carta pierde a casi todo el mundo. Ninguna de las dos pérdidas aparece en tu analítica como devolución: el comprador simplemente no compra, o compra una vez y deja una reseña sobre los márgenes.</p>
+
+  <h2>Qué pasa de verdad cuando el comprador imprime el equivocado</h2>
+
+  <p>Casi todos los lectores de PDF eligen por defecto algo como «ajustar al área imprimible». Dale a un comprador con papel Carta un archivo A4 y ese ajuste hará lo único que puede: reducir la página en torno al 94 por ciento para que quepa la altura, y centrarla. Los resultados visibles:</p>
+
+  <table>
+    <thead>
+      <tr><th>Lo que diseñaste</th><th>Lo que recibe el comprador</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Una cuadrícula de planificador para A4</td><td>La misma cuadrícula al 94 por ciento, con franjas blancas desiguales a los lados</td></tr>
+      <tr><td>Una lámina pensada para un marco</td><td>Algo unos milímetros más pequeño que cualquier medida estándar de marco</td></tr>
+      <tr><td>Líneas de corte para pegatinas o tarjetas</td><td>Líneas que ya no coinciden con una base de corte ni con un troquel</td></tr>
+      <tr><td>Una hoja de planificador perforada</td><td>Agujeros que no encajan en las anillas, porque el margen se movió</td></tr>
+      <tr><td>Texto de 11 pt</td><td>Texto de unos 10,3 pt, que se lee como «barato» sin que nadie sepa por qué</td></tr>
+    </tbody>
+  </table>
+
+  <p>En una ficha de solo texto nada de esto importa demasiado. En cualquier cosa que el comprador mida, recorte, enmarque o encuaderne, es el producto entero.</p>
+
+  <h2>El margen es lo que convierte un diseño en dos</h2>
+
+  <p>Esta es la consecuencia útil de los números. Al pasar de A4 a Carta pierdes 17,6 mm de altura, es decir 8,8 mm arriba y 8,8 mm abajo si el contenido queda centrado. Al pasar de Carta a A4 pierdes 5,9 mm de ancho, unos 3 mm por lado.</p>
+
+  <p>Así que un diseño que mantiene todo lo importante a 10 o 12 mm del borde como mínimo sobrevive el viaje en las dos direcciones a tamaño completo. Un diseño con un borde a 4 mm del canto no sobrevive en ninguna. Esa única decisión, tomada al principio, es la diferencia entre un archivo que sirve a los dos mercados y dos archivos que tendrás que mantener para siempre.</p>
+
+  <p>Además resulta ser el mismo margen que una impresora doméstica necesita de todos modos, porque el equipo de consumo no puede depositar tinta en los últimos milímetros de la hoja. Nuestra guía sobre <a href="/es/blog/sell-printable-pdf-on-etsy/">preparar un PDF imprimible para vender</a> cubre ese borde no imprimible y el resto de comprobaciones previas.</p>
+
+  <h2>El flujo de trabajo: diseña una vez, exporta dos</h2>
+
+  <p>Si todavía tienes el archivo con el que diseñaste, esta es la ruta correcta y nada la supera:</p>
+
+  <ol>
+    <li><strong>Diseña en A4</strong> con un margen seguro de 12 mm. Empezar por la forma más alta y estrecha es la dirección fácil, porque el ancho extra que ganas en Carta se absorbe sin problema y la altura que pierdes ya está dentro de tu margen.</li>
+    <li><strong>Duplica la mesa de trabajo en Carta</strong> y deja que la maquetación se recentre. Comprueba solo la vertical: tu encabezado y tu pie tienen 8,8 mm menos de sitio que antes.</li>
+    <li><strong>Exporta las dos</strong> con las tipografías incrustadas, y nómbralas para que sean inequívocas fuera de contexto: <code>planificador-semanal-A4.pdf</code> y <code>planificador-semanal-Carta.pdf</code>.</li>
+  </ol>
+
+  <p>Solo una herramienta de diseño real puede recomponer de verdad para las proporciones nuevas, y por eso esto supera a cualquier conversión. Los párrafos pueden recomponerse, una cuadrícula puede ganar una fila, un pie puede moverse.</p>
+
+  <h2>Cuando el archivo original ya no está</h2>
+
+  <p>El caso incómodo habitual: compraste una plantilla con licencia comercial, heredaste un archivo, o el original se fue con un portátil viejo. Solo tienes un PDF terminado, y un PDF terminado describe páginas terminadas. Nada lo puede recomponer.</p>
+
+  <p>Lo que sí puedes hacer es recolocarlo en otra hoja, que es lo siguiente mejor. <a href="/es/pdf-edit/page-size/">Cambiar el tamaño de página del PDF</a> coloca las páginas existentes en el otro estándar de papel. Dos detalles lo hacen utilizable en vez de peligroso:</p>
+
+  <ul>
+    <li><strong>Mide dónde está realmente el contenido.</strong> Como pasar de A4 a Carta cuesta 8,8 mm arriba y abajo, un archivo con un margen de 12 mm tiene sitio de sobra y se queda exactamente al 100 por cien. Los tamaños impresos siguen siendo fieles, que es justo el objetivo en todo lo que se mide.</li>
+    <li><strong>Reduce en lugar de recortar cuando no hay alternativa.</strong> Un diseño que llega al borde no tiene margen de sobra, así que se escala lo mínimo necesario para conservarlo todo, en vez de perder 9 mm de tu borde. Se usa una sola escala para todo el documento, así que un conjunto de varias páginas sigue cuadrando de hoja en hoja.</li>
+  </ul>
+
+  <p>No intentes hacer esto con una herramienta de recorte. <a href="/es/pdf-edit/crop/">Recortar</a> reduce la página a un rectángulo menor, así que apuntar una caja con forma de Carta a un diseño A4 te da una ventana con forma de Carta a la que le falta la parte inferior de la página. Recortar sirve para quitar márgenes que no quieres, no para cambiar de estándar de papel.</p>
+
+  <h2>Qué decirle al comprador</h2>
+
+  <p>La mayor parte de la fricción que queda vive en el empaquetado. Unos pocos hábitos la eliminan casi por completo:</p>
+
+  <ul>
+    <li><strong>Incluye los dos tamaños en la descarga</strong> y dilo en la descripción del anuncio, no solo en las imágenes. Los compradores filtran por la descripción.</li>
+    <li><strong>Nombra los archivos, no las carpetas.</strong> La gente descomprime un ZIP y pierde la estructura de carpetas al instante.</li>
+    <li><strong>Añade una línea de instrucciones:</strong> imprimir al 100 por cien, tamaño real, escalado desactivado. Esta frase es la que evita más mensajes de soporte, porque impide que el lector reduzca en silencio un archivo correcto.</li>
+    <li><strong>Di cuál diseñaste primero</strong> si los dos se diferencian en algo que el comprador pueda notar. La honestidad aquí no cuesta nada y se adelanta a la reseña.</li>
+  </ul>
+
+  <p>Si el paquete crece más allá de un par de archivos, un único archivo comprimido lo mantiene ordenado y te deja dentro de los límites de número de archivos de la plataforma; nuestra nota sobre <a href="/es/blog/pdf-naming-conventions-best-practices/">nomenclatura de archivos</a> está escrita para documentos, pero las reglas se trasladan igual.</p>
+
+  <h2>Referencia rápida</h2>
+
+  <table>
+    <thead>
+      <tr><th>Tamaño</th><th>Milímetros</th><th>Pulgadas</th><th>Proporción</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A4</td><td>210 × 297</td><td>8,27 × 11,69</td><td>1:1,414</td></tr>
+      <tr><td>Carta</td><td>215,9 × 279,4</td><td>8,5 × 11</td><td>1:1,294</td></tr>
+      <tr><td>Oficio</td><td>215,9 × 355,6</td><td>8,5 × 14</td><td>1:1,647</td></tr>
+      <tr><td>A5</td><td>148 × 210</td><td>5,83 × 8,27</td><td>1:1,414</td></tr>
+      <tr><td>F4 / folio</td><td>215 × 330</td><td>8,46 × 12,99</td><td>1:1,535</td></tr>
+    </tbody>
+  </table>
+
+  <p>La columna de la proporción merece una segunda mirada. A4 y A5 la comparten, y por eso partir una hoja A4 por la mitad da un A5 perfecto y los documentos de la serie A escalan entre sí con limpieza. Carta no comparte su proporción con nada, y eso es exactamente por lo que no se puede escalar a un tamaño de la serie A.</p>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>Nuestras herramientas funcionan en el servidor, así que el archivo se sube. Se elimina en cuanto termina el trabajo y el enlace de descarga es solo tuyo. Nada se indexa, se guarda ni se reutiliza para entrenar. Nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención si estás trabajando en algo sin publicar.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Puedo imprimir A4 en papel Carta sin más?</h3>
+  <p>Puedes, y para un documento de solo texto está bien. El diálogo de impresión reducirá la página en torno al 94 por ciento y la centrará, lo que te cuesta un poco de cuerpo de letra y deja márgenes blancos desiguales. Para cualquier cosa que se mida, recorte, enmarque o perfore no es aceptable, y para algo que vendes es una reseña esperando su turno.</p>
+
+  <h3>¿En qué tamaño diseño primero?</h3>
+  <p>En A4, en la mayoría de los casos. Es el estándar de la mayor parte del mundo y el punto de partida más indulgente: convertir a Carta te da ancho, que es fácil, y te cuesta altura, que tu margen seguro ya cubre. Diseña primero en Carta solo si tu público es específicamente norteamericano.</p>
+
+  <h3>¿La conversión de A4 a Carta es sin pérdidas?</h3>
+  <p>El contenido de la página sí. Recolocar sitúa el contenido vectorial existente en una hoja nueva, así que el texto y el trazo siguen siendo vectoriales y se imprimen igual de nítidos. Lo que no se conserva es la intención de maquetación: nada se recompone ni se reorganiza para las proporciones nuevas, y si tu contenido no tiene margen de sobra hay que reducirlo para no recortarlo.</p>
+
+  <h3>¿Y A5, Oficio o F4?</h3>
+  <p>A5 es exactamente la mitad de un A4 y comparte sus proporciones, así que las conversiones dentro de la serie A son limpias. Oficio es mucho más alto que A4 y Carta, así que el contenido recolocado en él queda centrado con márgenes generosos en lugar de recortarse. F4 se sitúa entre A4 y Oficio en altura y solo merece la pena ofrecerlo si vendes en mercados donde es común.</p>
+
+  <h3>¿Necesito imágenes de anuncio distintas para cada tamaño?</h3>
+  <p>No, y normalmente solo recarga el anuncio. Un juego de mockups más una línea clara en la descripción diciendo que se incluyen A4 y Carta funciona mejor. Lo que sí ayuda es una nota pequeña en la última imagen de vista previa con la lista de lo que hay en la descarga.</p>
+
+  <h3>Mi diseño tiene un fondo a sangre. ¿Ahora qué?</h3>
+  <p>Aceptar que no se puede convertir a tamaño completo, porque no tiene margen de sobra en ningún sitio. O lo reduces al recolocarlo, lo que añade bordes blancos finos que una impresora doméstica habría añadido de todas formas, o mantienes archivos realmente separados para los dos estándares. El sangrado y la impresión en casa nunca fueron una pareja cómoda.</p>
+
+  <h2>Elige tus tamaños</h2>
+
+  <p>Decide los dos estándares que vas a ofrecer antes de dibujar nada, y deja 12 mm de margen para que la decisión siga siendo barata. Si tienes un PDF terminado y ningún archivo original, pásalo por <a href="/es/pdf-edit/page-size/">cambiar el tamaño de página del PDF</a>, imprime una página al 100 por cien y revisa los cuatro bordes antes de entregarlo. Todo lo demás está en <a href="/es/all-tools/">todas las herramientas</a>.</p>

@@ -340,6 +340,20 @@ COVERS = {
         "badge",
         "Premium tool",
     ),
+    "sell-printable-pdf-on-etsy": (
+        "Prepare a Printable\nPDF to Sell",
+        "PRINTABLES \u00b7 SELLING",
+        ("#be123c", "#f59e0b"),
+        "#fecdd3",
+        "tag",
+    ),
+    "a4-vs-us-letter-printable-sizes": (
+        "A4 or US Letter?\nSizing Printables",
+        "PRINT \u00b7 PAPER SIZES",
+        ("#0369a1", "#4f46e5"),
+        "#bae6fd",
+        "scale",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()

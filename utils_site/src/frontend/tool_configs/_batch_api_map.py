@@ -68,6 +68,10 @@ BATCH_API_MAP = BATCH_API_MAP = {
         "batch_url": "flatten_pdf_batch_api",
         "field_name": "pdf_files",
     },
+    "resize_pdf_api": {
+        "batch_url": "resize_pdf_batch_api",
+        "field_name": "pdf_files",
+    },
     "pdf_to_text_api": {
         "batch_url": "pdf_to_text_batch_api",
         "field_name": "pdf_files",

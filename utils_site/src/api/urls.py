@@ -70,6 +70,8 @@ from .pdf_edit.crop_pdf.views import CropPDFAPIView
 from .pdf_edit.flatten_pdf.batch_views import FlattenPDFBatchAPIView
 from .pdf_edit.flatten_pdf.views import FlattenPDFAPIView
 from .pdf_edit.pdf_editor.views import PdfEditorAPIView
+from .pdf_edit.resize_pdf.batch_views import ResizePDFBatchAPIView
+from .pdf_edit.resize_pdf.views import ResizePDFAPIView
 from .pdf_edit.rotate_pdf.views import RotatePDFAPIView
 from .pdf_edit.sign_pdf.batch_views import SignPDFBatchAPIView
 from .pdf_edit.sign_pdf.views import SignPDFAPIView
@@ -326,6 +328,12 @@ urlpatterns = [
         "pdf-edit/flatten/batch/",
         FlattenPDFBatchAPIView.as_view(),
         name="flatten_pdf_batch_api",
+    ),
+    path("pdf-edit/page-size/", ResizePDFAPIView.as_view(), name="resize_pdf_api"),
+    path(
+        "pdf-edit/page-size/batch/",
+        ResizePDFBatchAPIView.as_view(),
+        name="resize_pdf_batch_api",
     ),
     # PDF Organize endpoints
     path("pdf-organize/merge/", MergePDFAPIView.as_view(), name="merge_pdf_api"),

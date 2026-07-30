@@ -17147,3 +17147,144 @@ msgstr "Cambio de contraseña en Convertica"
 
 msgid "no text layer found. This looks like a scanned PDF, so use the Scanned PDF to Word tool to run OCR on it."
 msgstr "no se encontró ninguna capa de texto. Parece un PDF escaneado, así que usa la herramienta PDF escaneado a Word para aplicarle OCR."
+msgid "Change PDF Page Size Online Free - A4 to Letter | Convertica"
+msgstr "Cambiar tamaño de página PDF: A4 a Carta | Convertica"
+
+msgid "Change PDF page size online free: convert A4 to US Letter, Letter to A4 or Legal. Content is never cropped and stays vector-sharp for printing. No registration required."
+msgstr "Cambia el tamaño de página de un PDF gratis: convierte A4 a Carta, Carta a A4 o Oficio. El contenido nunca se recorta y mantiene la nitidez vectorial para imprimir. Sin registro."
+
+msgid "Put your PDF on a different paper size"
+msgstr "Pon tu PDF en otro tamaño de papel"
+
+msgid "Change PDF Page Size"
+msgstr "Cambiar el tamaño de página del PDF"
+
+msgid "Change Page Size"
+msgstr "Cambiar el tamaño"
+
+msgid "A4, Letter and Legal"
+msgstr "A4, Carta y Oficio"
+
+msgid "Ship the same document on the paper standard your reader actually has"
+msgstr "Entrega el mismo documento en el tamaño de papel que tu lector realmente tiene"
+
+msgid "Nothing Gets Cropped"
+msgstr "Nada se recorta"
+
+msgid "We measure where your content actually sits and only shrink it if it would not fit"
+msgstr "Medimos dónde está realmente tu contenido y solo lo reducimos si no cabe"
+
+msgid "Print Quality Kept"
+msgstr "Calidad de impresión intacta"
+
+msgid "Text and vector graphics are re-placed, not rasterised, so they stay sharp on paper"
+msgstr "El texto y los gráficos vectoriales se recolocan, no se rasterizan, así que se imprimen nítidos"
+
+msgid "Consistent Across Pages"
+msgstr "Coherente en todas las páginas"
+
+msgid "Every page gets the same scale, so a multi-page set still lines up"
+msgstr "Todas las páginas reciben la misma escala, así que un conjunto de varias páginas sigue cuadrando"
+
+msgid "Can I convert A4 to US Letter without losing content?"
+msgstr "¿Puedo convertir A4 a Carta sin perder contenido?"
+
+msgid "Yes, and that is the default. A4 and Letter are different shapes: Letter is about 6 mm wider and 18 mm shorter, so simply centring an A4 page on Letter would cut roughly 9 mm off the top and the bottom. This tool measures where the content on your pages actually sits. If it fits the new sheet, nothing is scaled at all. If it does not, the pages are shrunk by the smallest amount that keeps everything."
+msgstr "Sí, y es el comportamiento por defecto. A4 y Carta tienen proporciones distintas: Carta es unos 6 mm más ancha y 18 mm más corta, así que centrar una página A4 en Carta recortaría unos 9 mm por arriba y por abajo. Esta herramienta mide dónde está realmente el contenido de tus páginas. Si cabe en la hoja nueva, no se escala nada. Si no cabe, las páginas se reducen lo mínimo necesario para conservarlo todo."
+
+msgid "Will my document be scaled down?"
+msgstr "¿Se va a reducir mi documento?"
+
+msgid "Only if it has to be. A document with a normal margin of 10 mm or more usually moves from A4 to Letter at 100%, so printed sizes stay exact. A design that runs to the edge of the page has no spare room, so it is scaled to fit rather than clipped."
+msgstr "Solo si no hay otra opción. Un documento con un margen normal de 10 mm o más suele pasar de A4 a Carta al 100%, de modo que los tamaños impresos siguen siendo exactos. Un diseño que llega al borde de la página no tiene margen de sobra, así que se escala en lugar de recortarse."
+
+msgid "Does this reflow or redesign my pages?"
+msgstr "¿Esto rehace o rediseña mis páginas?"
+
+msgid "No, and no tool can. A PDF describes finished pages, so the content can be placed on a different sheet or scaled, but paragraphs will not re-wrap and layouts will not be rearranged. If you need a genuine redesign for another paper size, go back to the file you designed in."
+msgstr "No, y ninguna herramienta puede. Un PDF describe páginas ya terminadas, así que el contenido se puede colocar en otra hoja o escalar, pero los párrafos no se recomponen y los elementos no se reorganizan. Si necesitas un rediseño real para otro tamaño de papel, vuelve al archivo con el que diseñaste."
+
+msgid "Is the quality reduced?"
+msgstr "¿Se pierde calidad?"
+
+msgid "No. Pages are re-placed as vector content, so text, lines and vector illustration stay resolution-independent and print as sharply as your printer allows. Images keep their original resolution; if pages are scaled down, images effectively gain pixel density rather than losing it."
+msgstr "No. Las páginas se recolocan como contenido vectorial, así que el texto, las líneas y la ilustración vectorial siguen siendo independientes de la resolución y se imprimen tan nítidos como permita tu impresora. Las imágenes conservan su resolución original; si las páginas se reducen, en la práctica ganan densidad de píxeles en vez de perderla."
+
+msgid "Which size should I use for printables I sell?"
+msgstr "¿Qué tamaño uso para los imprimibles que vendo?"
+
+msgid "Offer both A4 and US Letter if you can. A4 is standard almost everywhere, US Letter in the United States and Canada, and buyers holding the other standard are a common source of refund requests. Keeping at least 10 to 12 mm of margin in your design is what lets one file convert cleanly to the other."
+msgstr "Ofrece A4 y Carta si puedes. A4 es el estándar en casi todo el mundo y Carta en Estados Unidos, Canadá y buena parte de México, y los compradores que tienen el otro estándar son una causa habitual de solicitudes de devolución. Es precisamente dejar al menos 10 o 12 mm de margen en el diseño lo que permite que un archivo se convierta con limpieza al otro."
+
+msgid "Change PDF Page Size FAQ"
+msgstr "Preguntas frecuentes sobre el tamaño de página"
+
+msgid "Leave 10 to 12 mm of margin in your design and A4 converts to Letter at full size."
+msgstr "Deja de 10 a 12 mm de margen en tu diseño y A4 pasa a Carta a tamaño completo."
+
+msgid "Selling printables? Offer A4 and US Letter so buyers on either paper standard can print."
+msgstr "¿Vendes imprimibles? Ofrece A4 y Carta para que puedan imprimir los compradores de cualquier estándar de papel."
+
+msgid "Print one page and check all four edges before you trust the result."
+msgstr "Imprime una página y revisa los cuatro bordes antes de fiarte del resultado."
+
+msgid "Tips for Changing Page Size"
+msgstr "Consejos para cambiar el tamaño de página"
+
+msgid "Change a PDF page size without cropping it"
+msgstr "Cómo cambiar el tamaño de página de un PDF sin recortarlo"
+
+msgid "<p><strong>Change PDF page size</strong> places every page of your document on a different paper standard: A4, US Letter or Legal. This matters because A4 and Letter are not the same shape. Letter is roughly 6 mm wider and 18 mm shorter, so there is no scale factor that turns one into the other, and centring an A4 page on Letter at full size quietly removes about 9 mm from the top and the bottom of the sheet.</p><p>The default <em>auto</em> mode avoids that. It looks at where the ink on your pages actually is, keeps the document at full size when the content fits the new sheet, and otherwise scales it down by the smallest amount that loses nothing. One scale is applied to the whole document, so a planner or workbook still lines up from sheet to sheet. Choose <em>fit</em> instead when you want the predictable behaviour of scaling every page to the sheet.</p><p>Pages are re-placed as vector content rather than rasterised, so text and line art stay sharp when printed. What no PDF tool can do is reflow the design: paragraphs will not re-wrap and elements will not be rearranged for the new proportions. For that, return to the source file you designed in.</p>"
+msgstr "<p><strong>Cambiar el tamaño de página de un PDF</strong> coloca cada página de tu documento en otro estándar de papel: A4, Carta u Oficio. Esto importa porque A4 y Carta no tienen la misma forma. Carta es unos 6 mm más ancha y 18 mm más corta, así que no hay factor de escala que convierta una en otra, y centrar una página A4 en Carta a tamaño completo elimina en silencio unos 9 mm de la parte superior e inferior de la hoja.</p><p>El modo <em>auto</em>, que es el predeterminado, evita eso. Observa dónde está realmente la tinta de tus páginas, mantiene el documento al 100 por cien cuando el contenido cabe en la hoja nueva y, si no cabe, lo reduce lo mínimo necesario para no perder nada. Se aplica una sola escala a todo el documento, así que un planificador o un cuaderno sigue cuadrando de hoja en hoja. Elige <em>fit</em> cuando quieras el comportamiento predecible de escalar cada página a la hoja.</p><p>Las páginas se recolocan como contenido vectorial en lugar de rasterizarse, así que el texto y el trazo se mantienen nítidos al imprimir. Lo que ninguna herramienta de PDF puede hacer es rehacer el diseño: los párrafos no se recomponen y los elementos no se reorganizan para las proporciones nuevas. Para eso, vuelve al archivo de origen con el que diseñaste.</p>"
+
+msgid "Page Size Settings"
+msgstr "Ajustes de tamaño de página"
+
+msgid "Target paper size"
+msgstr "Tamaño de papel de destino"
+
+msgid "US Letter (216 × 279 mm)"
+msgstr "Carta (216 × 279 mm)"
+
+msgid "A4 (210 × 297 mm)"
+msgstr "A4 (210 × 297 mm)"
+
+msgid "Legal (216 × 356 mm)"
+msgstr "Oficio (216 × 356 mm)"
+
+msgid "How to handle the difference in shape"
+msgstr "Qué hacer con la diferencia de proporción"
+
+msgid "Keep full size when it fits (recommended)"
+msgstr "Mantener el tamaño completo cuando cabe (recomendado)"
+
+msgid "Always scale pages to the sheet"
+msgstr "Escalar siempre las páginas a la hoja"
+
+msgid "Either way nothing is cropped. The first option keeps printed sizes exact whenever your margins leave room."
+msgstr "En ambos casos no se recorta nada. La primera opción mantiene exactos los tamaños impresos siempre que tus márgenes lo permitan."
+
+msgid "A4 and Letter are different shapes"
+msgstr "A4 y Carta tienen proporciones distintas"
+
+msgid "US Letter is about 6 mm wider and 18 mm shorter than A4, so there is no scale factor that turns one into the other. We measure where your content sits and keep it at full size whenever the new sheet has room for it."
+msgstr "Carta es unos 6 mm más ancha y 18 mm más corta que A4, así que no hay factor de escala que convierta una en otra. Medimos dónde está tu contenido y lo mantenemos a tamaño completo siempre que la hoja nueva tenga sitio para él."
+
+msgid "Pick the paper size you need: US Letter, A4 or Legal"
+msgstr "Elige el tamaño de papel que necesitas: Carta, A4 u Oficio"
+
+msgid "Click the button and your pages are placed on the new sheet"
+msgstr "Pulsa el botón y tus páginas se colocarán en la hoja nueva"
+
+msgid "Download the result and print one page to check all four edges"
+msgstr "Descarga el resultado e imprime una página para revisar los cuatro bordes"
+
+msgid "Move pages to A4, US Letter or Legal"
+msgstr "Pasa las páginas a A4, Carta u Oficio"
+
+msgid "Move your pages to A4, US Letter or Legal without cropping them."
+msgstr "Pasa tus páginas a A4, Carta u Oficio sin recortarlas."
+
+#, python-format
+msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
+msgstr "Se admiten archivos PDF de hasta %(max_pages)s páginas. Las páginas se recolocan como contenido vectorial, así que el texto y el trazo siguen nítidos. El diseño en sí no se rehace: los párrafos no se recompondrán para las proporciones nuevas."

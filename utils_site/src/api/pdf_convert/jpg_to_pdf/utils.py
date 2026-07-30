@@ -3,7 +3,7 @@ import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
 from PIL import Image, UnidentifiedImageError
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
@@ -49,6 +49,7 @@ async def _convert_jpg_to_pdf_sequential(
     tmp_dir: str = None,
     context: dict = None,
     quality: int = 85,
+    page_size: str = "a4",
     **kwargs,
 ) -> tuple[str, str]:
     """Sequential JPG to PDF conversion (fallback implementation)."""
@@ -107,9 +108,11 @@ async def _convert_jpg_to_pdf_sequential(
         # Get image dimensions
         img_width, img_height = image.size
 
-        # Create PDF with A4 page size
-        c = canvas.Canvas(pdf_path, pagesize=A4)
-        page_width, page_height = A4
+        # Page size must match whatever the other two code paths would have
+        # produced for the same request; see JPGToPDFSerializer.page_size.
+        target = letter if str(page_size).lower() == "letter" else A4
+        c = canvas.Canvas(pdf_path, pagesize=target)
+        page_width, page_height = target
 
         # Calculate scaling to fit image on page
         margin = 72  # 1 inch margin

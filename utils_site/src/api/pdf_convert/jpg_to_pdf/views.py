@@ -9,7 +9,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
 from django.utils.translation import gettext as _
 from PIL import Image, UnidentifiedImageError
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from rest_framework import status
@@ -98,8 +98,10 @@ class JPGToPDFAPIView(BaseConversionAPIView):
         tmp_dir = tempfile.mkdtemp(prefix="jpg2pdf_multi_")
         try:
             pdf_path = os.path.join(tmp_dir, "merged_convertica.pdf")
-            c = canvas.Canvas(pdf_path, pagesize=A4)
-            page_width, page_height = A4
+            page_size = request.POST.get("page_size", "a4")
+            target = letter if str(page_size).lower() == "letter" else A4
+            c = canvas.Canvas(pdf_path, pagesize=target)
+            page_width, page_height = target
             margin = 72
             available_width = page_width - (2 * margin)
             available_height = page_height - (2 * margin)

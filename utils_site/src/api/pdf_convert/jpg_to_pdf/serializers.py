@@ -26,3 +26,14 @@ class JPGToPDFSerializer(serializers.Serializer):
         max_value=95,
         help_text="JPEG quality for images in PDF (60-95). Higher quality = better image clarity but larger file size. Default: 85 (recommended).",
     )
+
+    # Before this existed the answer depended on which code path ran: the
+    # optimized converter defaulted to Letter while the sequential fallback and
+    # the multi-file branch hardcoded A4, so the same upload could come back on
+    # either sheet. Now it is one explicit choice everywhere.
+    page_size = serializers.ChoiceField(
+        choices=["a4", "letter"],
+        required=False,
+        default="a4",
+        help_text="Page size of the generated PDF: a4 (default) or letter.",
+    )

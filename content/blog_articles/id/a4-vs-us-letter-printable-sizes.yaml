@@ -1,0 +1,157 @@
+slug: a4-vs-us-letter-printable-sizes
+title_id: "A4 atau US Letter? Menentukan Ukuran Printable untuk Pembeli Global"
+meta_title_id: "A4 atau US Letter untuk Printable | Convertica"
+meta_description_id: "Letter 6 mm lebih lebar dan 18 mm lebih pendek dari A4, jadi tidak ada faktor skala yang mengubah satu jadi yang lain. Cara mengirim keduanya dari satu desain."
+meta_keywords_id: "a4 atau us letter, ukuran us letter mm, konversi a4 ke letter pdf, ukuran kertas printable, beda a4 dan letter, f4 folio, ukuran halaman printable etsy"
+excerpt_id: "A4 dan US Letter bukan dua ukuran dari bentuk yang sama. Letter lebih lebar dan lebih pendek, artinya tidak ada persentase cetak yang bisa mengubah satu jadi yang lain. Satu fakta geometris ini menentukan bagaimana kamu mendesain printable, bagaimana mengemasnya, dan separuh dunia mana yang benar-benar bisa memakainya. Ini hitungannya, dan alur kerja yang memberi kamu dua ukuran tanpa mendesain dua kali."
+ai_metadata:
+  topics:
+    - perbedaan A4 dan US Letter
+    - satu desain untuk dua standar kertas
+    - margin aman yang selamat saat ukuran diubah
+    - negara mana memakai ukuran apa
+    - mengubah ukuran PDF yang sudah jadi
+  entities:
+    - A4
+    - US Letter
+    - Legal
+    - F4
+    - ISO 216
+    - Etsy
+    - Convertica
+  summary: "Menjelaskan mengapa A4 dan US Letter tidak bisa dikonversi dengan penskalaan: A4 berukuran 210x297 mm, Letter 215,9x279,4 mm, jadi Letter lebih lebar 5,9 mm dan lebih pendek 17,6 mm, dan proporsinya berbeda. Membahas apa yang terjadi saat pembeli mencetak standar yang salah dengan fit to page, wilayah mana memakai kertas apa, mengapa margin aman 10 sampai 12 mm adalah yang membuat satu desain selamat di kedua ukuran, cara mengekspor keduanya dari aplikasi desain, cara memindahkan PDF yang sudah jadi saat file sumbernya hilang, serta cara menamai dan mengemas dua file."
+  related_terms:
+    - beda a4 dan letter dalam mm
+    - printable dua ukuran kertas
+    - negara pengguna us letter
+    - ubah ukuran pdf tanpa memotong
+    - margin aman desain printable
+    - bundel a4 dan letter
+  reading_time_minutes: 9
+  target_audience: "Desainer dan penjual produk digital printable, serta siapa pun yang menyiapkan dokumen untuk dicetak di lebih dari satu negara, yang perlu memilih antara A4 dan US Letter dan ingin mengirim keduanya tanpa mendesain ulang atau memotong."
+content_id: |
+  Di belakang cukup banyak ulasan satu bintang pada produk printable ada hitungan sederhana. A4 berukuran 210 kali 297 mm. US Letter berukuran 215,9 kali 279,4 mm. Letter kira-kira 6 mm lebih lebar dan 18 mm lebih pendek. Itu bukan dua ukuran dari satu bentuk: proporsinya sendiri berbeda, 1:1,41 melawan 1:1,29.
+
+  Akibatnya inilah yang sering terlewat. Tidak ada persentase cetak yang mengubah satu jadi yang lain. Skalakan desain A4 sampai muat lebar Letter, dia masih terlalu tinggi. Skalakan sampai tingginya muat, dia tidak lagi mengisi lebarnya. Setiap saran "cetak saja dengan fit to page" adalah pilihan tentang kompromi mana dari dua itu yang diterima pembeli, diambil diam-diam oleh driver printernya.
+
+  <h2>Siapa memakai apa</h2>
+
+  <p>Pembagiannya geografis dan hampir mutlak:</p>
+
+  <ul>
+    <li><strong>US Letter</strong> di Amerika Serikat, Kanada, dan umum juga di Meksiko, Filipina, Chile, serta sebagian Amerika Tengah dan Selatan.</li>
+    <li><strong>A4</strong> pada dasarnya di semua tempat lain, termasuk seluruh Eropa, sebagian besar Asia, Afrika, Australia, dan sisa Amerika Selatan. Ini standar ISO 216.</li>
+    <li><strong>Ada tambahan lokal.</strong> F4 alias folio, 215 kali 330 mm, masih umum di Indonesia dan sebagian Asia Tenggara, sementara Legal, 215,9 kali 355,6 mm, muncul di kantor Amerika Utara untuk kontrak.</li>
+  </ul>
+
+  <p>Kalau kamu menjual produk digital, itu berarti toko yang hanya menyediakan A4 diam-diam kehilangan konversi Amerika Utara, dan toko yang hanya menyediakan Letter kehilangan sebagian besar dunia. Kedua kerugian itu tidak muncul di analitik sebagai refund: pembelinya cuma tidak membeli, atau membeli sekali lalu menulis ulasan soal margin.</p>
+
+  <h2>Apa yang sebenarnya terjadi saat pembeli mencetak ukuran yang salah</h2>
+
+  <p>Hampir semua pembaca PDF secara bawaan memilih semacam "fit to printable area". Beri pembeli berkertas Letter sebuah file A4, dan setelan itu melakukan satu-satunya hal yang bisa: mengecilkan halaman ke sekitar 94 persen supaya tingginya muat, lalu menengahkannya. Hasil yang kelihatan:</p>
+
+  <table>
+    <thead>
+      <tr><th>Yang kamu desain</th><th>Yang diterima pembeli</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Grid planner untuk A4</td><td>Grid yang sama pada 94 persen, dengan garis putih tidak rata di sisi-sisinya</td></tr>
+      <tr><td>Poster yang pas untuk satu ukuran pigura</td><td>Sesuatu yang beberapa milimeter lebih kecil dari semua ukuran pigura standar</td></tr>
+      <tr><td>Garis potong untuk stiker atau kartu</td><td>Garis yang tidak lagi cocok dengan cutting mat atau pisau potong</td></tr>
+      <tr><td>Halaman planner untuk dilubangi</td><td>Lubang yang melewati ring, karena marginnya bergeser</td></tr>
+      <tr><td>Teks isi 11 pt</td><td>Teks sekitar 10,3 pt, yang terasa "murahan" tanpa ada yang tahu sebabnya</td></tr>
+    </tbody>
+  </table>
+
+  <p>Untuk lembar kerja berisi teks saja, semua ini tidak begitu penting. Untuk apa pun yang diukur, dipotong, dipigura, atau dijilid pembeli, inilah keseluruhan produknya.</p>
+
+  <h2>Margin itulah yang membuat satu desain jadi dua</h2>
+
+  <p>Ini konsekuensi berguna dari angka-angka tadi. Dari A4 ke Letter kamu kehilangan 17,6 mm tinggi, artinya 8,8 mm di atas dan 8,8 mm di bawah kalau isinya tetap di tengah. Dari Letter ke A4 kamu kehilangan 5,9 mm lebar, sekitar 3 mm di setiap sisi.</p>
+
+  <p>Jadi desain yang menjaga semua hal penting minimal 10 sampai 12 mm dari tepi selamat menempuh perjalanan itu di kedua arah pada ukuran penuh. Desain dengan bingkai 4 mm dari tepi tidak selamat, ke arah mana pun. Satu keputusan itu, diambil di awal, adalah beda antara satu file yang melayani dua pasar dan dua file yang harus kamu rawat selamanya.</p>
+
+  <p>Kebetulan itu juga margin yang tetap dibutuhkan printer rumahan, karena perangkat konsumen tidak bisa menaruh tinta di beberapa milimeter terluar lembar. Panduan kami soal <a href="/id/blog/sell-printable-pdf-on-etsy/">menyiapkan PDF printable untuk dijual</a> membahas tepi tak tercetak itu dan pemeriksaan lain sebelum unggah.</p>
+
+  <h2>Alur kerja: desain sekali, ekspor dua kali</h2>
+
+  <p>Kalau file tempat kamu mendesain masih ada, ini jalur yang benar dan tidak ada yang mengalahkannya:</p>
+
+  <ol>
+    <li><strong>Desain di A4</strong> dengan margin aman 12 mm. Mulai dari bentuk yang lebih tinggi dan lebih sempit itu arah yang lebih mudah, karena lebar tambahan yang kamu dapat di Letter gampang diserap, sedangkan tinggi yang hilang sudah ada di dalam marginmu.</li>
+    <li><strong>Duplikat artboard ke Letter</strong> dan biarkan tata letaknya menengah kembali. Cek hanya arah vertikal: header dan footer kamu punya ruang 8,8 mm lebih sedikit.</li>
+    <li><strong>Ekspor keduanya</strong> dengan font tertanam, dan beri nama supaya jelas di luar konteks: <code>weekly-planner-A4.pdf</code> dan <code>weekly-planner-US-Letter.pdf</code>.</li>
+  </ol>
+
+  <p>Hanya aplikasi desain sungguhan yang benar-benar bisa menata ulang untuk proporsi baru, dan karena itu jalur ini mengalahkan konversi apa pun. Paragraf bisa tersusun ulang, grid bisa dapat satu baris tambahan, footer bisa berpindah.</p>
+
+  <h2>Kalau file sumbernya sudah hilang</h2>
+
+  <p>Kasus tidak nyaman yang umum: kamu membeli templat berlisensi komersial, mewarisi file dari orang lain, atau aslinya ikut pergi bersama laptop lama. Yang ada cuma PDF jadi, dan PDF jadi menggambarkan halaman yang sudah selesai. Tidak ada yang bisa menatanya ulang.</p>
+
+  <p>Yang bisa kamu lakukan adalah memindahkannya ke kertas lain, dan itu hal terbaik berikutnya. <a href="/id/pdf-edit/page-size/">Ubah ukuran halaman PDF</a> meletakkan halaman yang ada ke standar kertas satunya. Dua detail membuatnya berguna, bukan berbahaya:</p>
+
+  <ul>
+    <li><strong>Dia mengukur di mana isinya benar-benar berada.</strong> Karena A4 ke Letter memakan 8,8 mm di atas dan bawah, file dengan margin 12 mm punya sisa ruang dan tetap tepat 100 persen. Ukuran cetaknya tetap benar, dan itulah intinya untuk apa pun yang diukur.</li>
+    <li><strong>Dia mengecilkan, bukan memotong, saat memang harus.</strong> Desain yang mencapai tepi tidak punya sisa ruang, jadi dikecilkan seminimal mungkin supaya semuanya tetap ada, bukan kehilangan 9 mm bingkaimu. Satu skala dipakai untuk seluruh dokumen, jadi set banyak halaman tetap sejajar dari lembar ke lembar.</li>
+  </ul>
+
+  <p>Jangan coba melakukan ini dengan tool crop. <a href="/id/pdf-edit/crop/">Crop</a> memangkas halaman jadi kotak yang lebih kecil, jadi mengarahkan kotak berproporsi Letter ke desain A4 memberimu jendela Letter dengan bagian bawah halaman yang hilang. Crop untuk membuang margin yang tidak kamu inginkan, bukan untuk mengganti standar kertas.</p>
+
+  <h2>Apa yang perlu kamu sampaikan ke pembeli</h2>
+
+  <p>Sisa gesekan terbesar ada di pengemasan. Beberapa kebiasaan menghapus hampir semuanya:</p>
+
+  <ul>
+    <li><strong>Masukkan kedua ukuran ke unduhan</strong> dan tulis itu di deskripsi listing, bukan cuma di gambar. Pembeli memfilter dari deskripsi.</li>
+    <li><strong>Beri nama file, bukan folder.</strong> Orang mengekstrak ZIP dan langsung kehilangan struktur foldernya.</li>
+    <li><strong>Tambahkan satu baris panduan cetak:</strong> cetak 100 persen, ukuran asli, penskalaan dimatikan. Satu kalimat inilah yang paling banyak mencegah pesan ke penjual, karena menghentikan pembaca PDF mengecilkan file yang sudah benar.</li>
+    <li><strong>Sebutkan mana yang kamu desain lebih dulu</strong> kalau keduanya berbeda dalam hal yang mungkin disadari pembeli. Kejujuran di sini tidak berbiaya dan mendahului ulasan.</li>
+  </ul>
+
+  <p>Kalau bundelnya tumbuh lebih dari beberapa file, satu arsip menjaga kerapian dan menahanmu di dalam batas jumlah file platform; catatan kami soal <a href="/id/blog/pdf-naming-conventions-best-practices/">penamaan file</a> ditulis untuk dokumen kerja, tapi aturannya berpindah persis.</p>
+
+  <h2>Acuan cepat</h2>
+
+  <table>
+    <thead>
+      <tr><th>Ukuran</th><th>Milimeter</th><th>Inci</th><th>Rasio</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A4</td><td>210 × 297</td><td>8,27 × 11,69</td><td>1:1,414</td></tr>
+      <tr><td>US Letter</td><td>215,9 × 279,4</td><td>8,5 × 11</td><td>1:1,294</td></tr>
+      <tr><td>Legal</td><td>215,9 × 355,6</td><td>8,5 × 14</td><td>1:1,647</td></tr>
+      <tr><td>A5</td><td>148 × 210</td><td>5,83 × 8,27</td><td>1:1,414</td></tr>
+      <tr><td>F4 / folio</td><td>215 × 330</td><td>8,46 × 12,99</td><td>1:1,535</td></tr>
+    </tbody>
+  </table>
+
+  <p>Kolom rasio layak dilihat dua kali. A4 dan A5 memilikinya sama, karena itu membelah lembar A4 jadi dua menghasilkan A5 yang sempurna, dan karena itu dokumen seri A berskala rapi satu ke lainnya. Letter tidak berbagi rasionya dengan apa pun, dan tepat karena itu dia tidak bisa diskalakan menjadi ukuran seri A.</p>
+
+  <h2>Apa yang terjadi pada file yang kamu unggah</h2>
+
+  <p>Tool kami berjalan di server, jadi filenya diunggah. File dihapus begitu prosesnya selesai, dan tautan unduhannya hanya milikmu. Tidak ada yang diindeks, disimpan, atau dipakai untuk pelatihan. Catatan kami soal <a href="/id/blog/is-convertica-safe-pdf-file-security-privacy-explained/">bagaimana Convertica memperlakukan filemu</a> menjelaskan aturan penyimpanannya kalau kamu sedang mengerjakan sesuatu yang belum diluncurkan.</p>
+
+  <h2>Pertanyaan yang sering muncul</h2>
+
+  <h3>Bisakah saya langsung mencetak A4 di kertas Letter?</h3>
+  <p>Bisa, dan untuk dokumen teks biasa itu tidak masalah. Dialog cetak akan mengecilkan halaman ke sekitar 94 persen lalu menengahkannya, yang memakan sedikit ukuran huruf dan meninggalkan margin putih tidak rata. Untuk apa pun yang diukur, dipotong, dipigura, atau dilubangi, itu tidak bisa diterima, dan untuk produk yang dijual itu ulasan yang sedang menunggu waktunya.</p>
+
+  <h3>Sebaiknya mendesain di ukuran mana lebih dulu?</h3>
+  <p>A4, dalam banyak kasus. Itu standar untuk bagian dunia yang lebih besar, dan titik awal yang lebih pemaaf: konversi ke Letter menambah lebar, yang mudah, dan memakan tinggi, yang sudah ditutup margin amanmu. Mulai dari Letter hanya kalau audiensmu memang Amerika Utara.</p>
+
+  <h3>Apakah konversi A4 ke Letter tanpa kehilangan kualitas?</h3>
+  <p>Isi halamannya ya. Pemindahan meletakkan isi vektor yang ada ke lembar baru, jadi teks dan gambar garis tetap vektor dan tercetak sama tajam. Yang tidak dipertahankan adalah niat tata letaknya: tidak ada yang tersusun ulang atau diatur ulang untuk proporsi baru, dan kalau isimu tidak punya sisa margin, dia harus dikecilkan supaya tidak terpotong.</p>
+
+  <h3>Bagaimana dengan A5, Legal, atau F4?</h3>
+  <p>A5 tepat setengah A4 dan berbagi proporsinya, jadi konversi di dalam seri A bersih. Legal jauh lebih tinggi daripada A4 maupun Letter, jadi isi yang dipindahkan ke sana duduk di tengah dengan margin lega, bukan terpotong. F4 tingginya di antara A4 dan Legal, dan layak disediakan hanya kalau kamu menjual ke pasar tempat dia umum, seperti Indonesia.</p>
+
+  <h3>Perlu gambar listing terpisah untuk tiap ukuran?</h3>
+  <p>Tidak, dan biasanya itu cuma membuat listing berantakan. Satu set mockup plus satu baris jelas di deskripsi bahwa A4 dan US Letter keduanya termasuk lebih ampuh. Yang benar-benar membantu adalah catatan kecil di gambar pratinjau terakhir yang mendaftar isi unduhannya.</p>
+
+  <h3>Desain saya punya latar full bleed. Sekarang bagaimana?</h3>
+  <p>Terima bahwa dia tidak bisa dikonversi pada ukuran penuh, karena tidak punya sisa margin di mana pun. Entah kecilkan saat memindahkan, yang menambah garis putih tipis yang tetap akan ditambahkan printer rumahan, atau rawat file yang benar-benar terpisah untuk dua standar. Full bleed dan cetak rumahan memang tidak pernah jadi pasangan yang nyaman.</p>
+
+  <h2>Pilih ukuranmu</h2>
+
+  <p>Tentukan dua standar yang akan kamu dukung sebelum menggambar apa pun, dan jaga margin 12 mm supaya keputusan itu tetap murah. Kalau yang kamu pegang PDF jadi tanpa file sumber, lewatkan ke <a href="/id/pdf-edit/page-size/">ubah ukuran halaman PDF</a>, cetak satu halaman pada 100 persen, dan periksa keempat tepinya sebelum kamu kirim. Sisanya ada di <a href="/id/all-tools/">semua tool</a>.</p>

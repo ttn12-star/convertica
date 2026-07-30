@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import timedelta
 from io import StringIO
 from pathlib import Path
 
@@ -9,6 +10,8 @@ import yaml
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test import TestCase
+from django.utils import timezone
+from src.blog.management.commands.import_blog_articles import resolve_publish_date
 from src.blog.models import Article, ArticleCategory
 
 
@@ -192,6 +195,49 @@ class ImporterBaseLanguageTests(TestCase):
         self.assertEqual(article.status, "published")
         self.assertIsNotNone(article.published_at)
 
+    def test_future_publish_on_is_held_as_draft_then_goes_live(self):
+        """The whole staggered-release mechanism, in one pass.
+
+        A future `publish_on` must hold the row at draft (drafts are what keeps
+        it out of the blog list, search, the article page and the sitemap). Once
+        the date arrives, the same unchanged YAML must publish it and stamp
+        published_at — that flip is what maintenance.publish_scheduled_articles
+        relies on, and it is also what fires the per-locale IndexNow ping.
+        """
+        today = timezone.localdate()
+
+        _write_yaml(
+            self.source / "en" / "demo.yaml",
+            _base_payload(status="published", publish_on=today + timedelta(days=7)),
+        )
+        output = self._run()
+        article = Article.objects.get(slug="demo-article")
+        self.assertEqual(article.status, "draft")
+        self.assertIsNone(article.published_at)
+        self.assertIn("Scheduled (held draft)", output)
+
+        # The date arrives; the YAML itself has not changed.
+        _write_yaml(
+            self.source / "en" / "demo.yaml",
+            _base_payload(status="published", publish_on=today),
+        )
+        self._run()
+        article.refresh_from_db()
+        self.assertEqual(article.status, "published")
+        self.assertIsNotNone(article.published_at)
+
+    def test_unparseable_publish_on_is_an_error(self):
+        """A typo'd date must fail loudly, not publish today or never."""
+        _write_yaml(
+            self.source / "en" / "demo.yaml",
+            _base_payload(publish_on="next tuesday"),
+        )
+
+        output = self._run()
+
+        self.assertIn("publish_on must be an ISO date", output)
+        self.assertEqual(Article.objects.count(), 0)
+
 
 class ImporterTranslationsTests(TestCase):
     def setUp(self):
@@ -348,12 +394,28 @@ class ImporterRealCorpusTests(TestCase):
         # One Article per EN base YAML — derived so adding articles never
         # silently breaks this smoke test.
         self.assertEqual(Article.objects.count(), expected_count)
+
+        # An article with a future `publish_on` is deliberately held at draft,
+        # so read the scheduled slugs off disk rather than asserting that the
+        # whole corpus is live.
+        today = timezone.localdate()
+        scheduled = set()
+        for yaml_path in (source / "en").glob("*.yaml"):
+            data = yaml.safe_load(yaml_path.read_text(encoding="utf-8"))
+            publish_on = (data or {}).get("publish_on")
+            if publish_on and resolve_publish_date(publish_on) > today:
+                scheduled.add(data["slug"])
+
         # Every imported article must be wired to a category.
         for article in Article.objects.all():
             self.assertIsNotNone(article.category)
             self.assertTrue(article.title_en)
             self.assertTrue(article.content_en)
-            self.assertEqual(article.status, "published")
-            self.assertIsNotNone(article.published_at)
+            if article.slug in scheduled:
+                self.assertEqual(article.status, "draft")
+                self.assertIsNone(article.published_at)
+            else:
+                self.assertEqual(article.status, "published")
+                self.assertIsNotNone(article.published_at)
         # Output must be error-free.
         self.assertIn("Errors:                  0", out.getvalue())
