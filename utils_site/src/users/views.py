@@ -18,7 +18,7 @@ from django.views.generic import UpdateView
 from django_ratelimit.decorators import ratelimit
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
 
-from .forms import CustomUserCreationForm, LoginForm
+from .forms import CustomUserCreationForm, LoginForm, stale_unverified_user
 from .models import APIKey, Payment, UserSubscription
 
 
@@ -90,40 +90,83 @@ def user_login(request):
     return render(request, "users/login.html", {"form": form})
 
 
-@ratelimit(key="ip", rate="5/m", method="POST", block=True)
-@ratelimit(key="ip", rate="20/h", method="POST", block=True)
+def _signup_spam_error(request):
+    """Return an error message if the signup POST looks automated, else None.
+
+    Bots have nothing to gain from an account here (login requires a verified
+    email), so the POST itself is the payload. Rejecting it before we mail a
+    confirmation is what matters: every bogus signup is one bounce against our
+    sending domain, which is what pushes real receipts into spam.
+    """
+    from django.conf import settings
+    from src.api.client_ip import get_client_ip
+    from src.api.spam_protection import check_honeypot, verify_turnstile
+
+    if not check_honeypot(request):
+        return _("Registration could not be completed. Please try again.")
+
+    if not getattr(settings, "TURNSTILE_SITE_KEY", ""):
+        # No site key means no widget is rendered, so there is no token to
+        # demand — don't wall real users out of a misconfigured environment.
+        return None
+
+    token = request.POST.get("cf-turnstile-response", "") or request.POST.get(
+        "turnstile_token", ""
+    )
+    if not verify_turnstile(token, get_client_ip(request)):
+        return _("Please complete the CAPTCHA verification.")
+
+    return None
+
+
+@ratelimit(key="ip", rate="3/m", method="POST", block=True)
+@ratelimit(key="ip", rate="5/h", method="POST", block=True)
 def user_register(request):
     """Handle user registration with email verification."""
     if request.user.is_authenticated:
         return redirect("users:profile")
 
+    form = CustomUserCreationForm()
+
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        spam_error = _signup_spam_error(request)
+        if spam_error:
+            # Falls through to a re-render with the user's input intact. A bot
+            # stops here, before the account recycling below.
+            messages.error(request, spam_error)
+        else:
+            # Freed before validation so the unique-email (and username) checks
+            # in _post_clean see the address as available.
+            stale = stale_unverified_user(request.POST.get("email", ""))
+            if stale is not None:
+                stale.delete()
 
-            # Send email verification
-            from allauth.account.models import EmailAddress
+            if form.is_valid():
+                user = form.save()
 
-            email_address, _created = EmailAddress.objects.get_or_create(
-                user=user,
-                email=user.email,
-                defaults={"primary": True, "verified": False},
-            )
-            email_address.send_confirmation(request, signup=True)
+                # Send email verification
+                from allauth.account.models import EmailAddress
 
-            # Show success message and redirect to login
-            messages.success(
-                request,
-                _(
-                    "Registration successful! Please check your email to verify your account before logging in."
-                ),
-            )
-            return redirect("users:login")
-    else:
-        form = CustomUserCreationForm()
+                email_address, _created = EmailAddress.objects.get_or_create(
+                    user=user,
+                    email=user.email,
+                    defaults={"primary": True, "verified": False},
+                )
+                email_address.send_confirmation(request, signup=True)
 
-    return render(request, "users/register.html", {"form": form})
+                # Show success message and redirect to login
+                messages.success(
+                    request,
+                    _(
+                        "Registration successful! Please check your email to verify your account before logging in."
+                    ),
+                )
+                return redirect("users:login")
+
+    return render(
+        request, "users/register.html", {"form": form, "needs_turnstile": True}
+    )
 
 
 def user_logout(request):

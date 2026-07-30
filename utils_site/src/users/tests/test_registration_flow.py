@@ -1,9 +1,10 @@
 """End-to-end registration + email-verification flow tests.
 
-Exercises the project's two complementary signup paths:
+Exercises the project's signup paths:
 
-* `/accounts/signup/` — django-allauth's built-in signup view (used for
-  social/auth integrations & the canonical email-confirmation pipeline).
+* `/<lang>/users/register/` — the project's own signup view, the only one that
+  creates accounts (allauth's `/accounts/signup/` redirects here so bots can't
+  bypass the honeypot/CAPTCHA gate).
 * `/<lang>/users/login/` — the project's custom login view (LoginForm)
   which enforces verified email before granting a session.
 
@@ -19,6 +20,8 @@ adapter, and real custom login view.
 """
 
 from __future__ import annotations
+
+from unittest.mock import patch
 
 from allauth.account.models import EmailAddress, EmailConfirmationHMAC
 from django.test import Client, TestCase, override_settings
@@ -40,28 +43,42 @@ from src.users.models import User
 class RegistrationFlowTests(TestCase):
     """Signup → unverified → cannot-login → verify → login → profile."""
 
-    SIGNUP_URL = "/accounts/signup/"
-
     def setUp(self):
         self.client = Client()
         self.email = "newuser@convertica.test"
         self.password = "Sup3rStr0ngPass!42"
+        self.signup_url = reverse("users:register")
+        self.signup_data = {
+            "email": self.email,
+            "username": "newuser",
+            "password1": self.password,
+            "password2": self.password,
+            "agree_terms": "on",
+        }
 
     # ------------------------------------------------------------------
-    # 1. Signup creates an unverified user.
+    # 0. allauth's ungated signup form is not reachable.
     # ------------------------------------------------------------------
-    def test_signup_creates_unverified_user(self):
+    def test_allauth_signup_redirects_to_gated_form(self):
         response = self.client.post(
-            self.SIGNUP_URL,
+            "/accounts/signup/",
             data={
-                "email": self.email,
+                "email": "bot@convertica.test",
                 "password1": self.password,
                 "password2": self.password,
             },
         )
-        # allauth redirects on success (302) to verification-sent page.
-        # Some configs render a 200 page; both are acceptable.
-        self.assertIn(response.status_code, (200, 302))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("users/register", response.url)
+        self.assertFalse(User.objects.filter(email="bot@convertica.test").exists())
+
+    # ------------------------------------------------------------------
+    # 1. Signup creates an unverified user.
+    # ------------------------------------------------------------------
+    @patch("src.api.spam_protection.verify_turnstile", return_value=True)
+    def test_signup_creates_unverified_user(self, _mock):
+        response = self.client.post(self.signup_url, data=self.signup_data)
+        self.assertEqual(response.status_code, 302)
 
         # User row exists.
         self.assertTrue(User.objects.filter(email=self.email).exists())
@@ -70,7 +87,7 @@ class RegistrationFlowTests(TestCase):
         # Email row exists but is NOT verified.
         self.assertTrue(
             EmailAddress.objects.filter(user=user, email=self.email).exists(),
-            "allauth must create EmailAddress on signup",
+            "signup must create EmailAddress",
         )
         self.assertFalse(
             EmailAddress.objects.filter(
@@ -164,23 +181,24 @@ class RegistrationFlowTests(TestCase):
     CELERY_TASK_EAGER_PROPAGATES=True,
 )
 class SignupFormValidationTests(TestCase):
-    """Smoke-check that the allauth signup endpoint actually validates input.
+    """Smoke-check that the signup endpoint actually validates input.
 
     Without this, a regression that allows e.g. mismatched passwords would
     silently let the verification flow proceed with a bogus user.
     """
 
-    SIGNUP_URL = "/accounts/signup/"
-
-    def test_signup_rejects_password_mismatch(self):
+    @patch("src.api.spam_protection.verify_turnstile", return_value=True)
+    def test_signup_rejects_password_mismatch(self, _mock):
         response = self.client.post(
-            self.SIGNUP_URL,
+            reverse("users:register"),
             data={
                 "email": "mismatch@convertica.test",
+                "username": "mismatch",
                 "password1": "Sup3rStr0ngPass!42",
                 "password2": "DifferentPass!99",
+                "agree_terms": "on",
             },
         )
-        # On invalid input allauth re-renders the form (200) — not a redirect.
+        # On invalid input the view re-renders the form (200) — not a redirect.
         self.assertEqual(response.status_code, 200)
         self.assertFalse(User.objects.filter(email="mismatch@convertica.test").exists())
