@@ -16925,3 +16925,68 @@ msgstr "Содержание"
 
 msgid "Registration could not be completed. Please try again."
 msgstr "Не удалось завершить регистрацию. Пожалуйста, попробуйте снова."
+
+# Account emails (confirmation / password reset)
+
+msgid "Hi %(greeting_name)s,"
+msgstr "Здравствуйте, %(greeting_name)s!"
+
+msgid "Hi there,"
+msgstr "Здравствуйте!"
+
+msgid "If the button does not work, copy this link into your browser:"
+msgstr "Если кнопка не работает, скопируйте эту ссылку в браузер:"
+
+msgid "Thanks,"
+msgstr "Спасибо,"
+
+msgid "The Convertica Team"
+msgstr "Команда Convertica"
+
+msgid "One click and your account is ready."
+msgstr "Один клик, и аккаунт готов."
+
+msgid "Confirm your email address"
+msgstr "Подтвердите адрес почты"
+
+msgid "Your Convertica account is almost ready. Confirm this email address and every tool on the site is yours to use."
+msgstr "Аккаунт в Convertica почти готов. Подтвердите этот адрес, и все инструменты сайта в вашем распоряжении."
+
+msgid "Confirm my email"
+msgstr "Подтвердить почту"
+
+msgid "Did not sign up for Convertica? Then someone mistyped their address. Ignore this email and nothing will happen."
+msgstr "Не регистрировались в Convertica? Значит, кто-то ошибся адресом. Удалите это письмо, ничего не произойдёт."
+
+msgid "You are receiving this email because this address was used to create an account on convertica.net."
+msgstr "Вы получили это письмо, потому что с этого адреса создали аккаунт на convertica.net."
+
+msgid "Open this link to confirm your email address:"
+msgstr "Откройте эту ссылку, чтобы подтвердить адрес почты:"
+
+msgid "Confirm your email to finish signing up"
+msgstr "Подтвердите почту, чтобы завершить регистрацию"
+
+msgid "A fresh link to set a new password."
+msgstr "Свежая ссылка, чтобы задать новый пароль."
+
+msgid "Reset your password"
+msgstr "Сброс пароля"
+
+msgid "We received a request to reset the password for the Convertica account on this email address."
+msgstr "Мы получили запрос на сброс пароля для аккаунта Convertica с этим адресом почты."
+
+msgid "Set a new password"
+msgstr "Задать новый пароль"
+
+msgid "If you did not ask for this, ignore this email. Your current password stays as it is."
+msgstr "Если вы этого не просили, просто удалите письмо: текущий пароль останется прежним."
+
+msgid "You are receiving this email because a password reset was requested for your Convertica account."
+msgstr "Вы получили это письмо, потому что для вашего аккаунта Convertica запросили сброс пароля."
+
+msgid "Open this link to choose a new password:"
+msgstr "Откройте эту ссылку, чтобы задать новый пароль:"
+
+msgid "Reset your Convertica password"
+msgstr "Сброс пароля в Convertica"

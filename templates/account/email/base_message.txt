@@ -1,0 +1,19 @@
+{% comment %}
+Overrides allauth's base_message.txt, which wrapped every email in
+"Hello from {{ site_name }}!" / "Thank you for using {{ site_name }}!" — the
+prod Site row has no name or domain, so those rendered as "Hello from !" and
+"Thank you for using !". Its Russian translation also mangles the brand
+("сайта «Convertica!»"), so the wrapper is ours now: same greeting and signoff
+as the HTML version, reusing the same msgids.
+
+Emails we don't restyle (unknown account, account already exists, security
+notifications) inherit this wrapper and keep allauth's translated bodies.
+{% endcomment %}
+{% load i18n %}{% autoescape off %}{% if greeting_name %}{% blocktranslate %}Hi {{ greeting_name }},{% endblocktranslate %}{% else %}{% translate "Hi there," %}{% endif %}
+
+{% block content %}{% endblock content %}
+
+{% translate "Thanks," %}
+{% translate "The Convertica Team" %}
+convertica.net
+{% endautoescape %}
