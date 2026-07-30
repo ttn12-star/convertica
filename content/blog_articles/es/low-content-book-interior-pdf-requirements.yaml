@@ -1,0 +1,138 @@
+slug: low-content-book-interior-pdf-requirements
+title_es: "Interiores de libros low-content: cómo debe ser el PDF antes de subirlo"
+meta_title_es: "Requisitos del interior de un libro low-content | Convertica"
+meta_description_es: "La impresión bajo demanda rechaza interiores por una lista corta: tamaño de página incorrecto, medianil fino, sangrado ausente, tipografías sin incrustar, transparencia viva."
+meta_keywords_es: "interior libro low content pdf, requisitos kdp interior, trim size sangrado márgenes, medianil según número de páginas, incrustar tipografías impresión, pdf rechazado impresión bajo demanda"
+excerpt_es: "Los servicios de impresión bajo demanda rechazan los archivos de interior por una lista de motivos sorprendentemente corta, y casi todos son mecánicos, no creativos. Un tamaño de página que no es exactamente el trim size, un medianil demasiado fino para el número de páginas, sangrado ausente o mal calculado, tipografías que nunca se incrustaron y transparencia viva. Aquí está cada uno, con los números."
+ai_metadata:
+  topics:
+    - requisitos del PDF de interior para impresión bajo demanda
+    - trim size, sangrado y aritmética del tamaño de página
+    - medianil que crece con el número de páginas
+    - incrustar tipografías y aplanar transparencia
+    - comprobar un interior antes de subirlo
+  entities:
+    - KDP
+    - Amazon
+    - PDF
+    - PDF/A
+    - Impresión bajo demanda
+    - Convertica
+  summary: "Lista previa a la subida para interiores de libros low-content: por qué el tamaño de página del PDF debe ser exactamente el trim size y qué le añade el sangrado (0,125 pulgadas arriba, abajo y en el borde exterior), por qué el medianil interior debe crecer con el número de páginas de unas 0,375 a 0,875 pulgadas, el mínimo de 0,25 pulgadas en los otros tres bordes y 0,375 con sangrado, por qué las tipografías sin incrustar son un rechazo silencioso, por qué hay que aplanar la transparencia viva, por qué páginas sueltas y no dobles, y cómo verificar todo esto en un archivo terminado."
+  related_terms:
+    - lista de trim size kdp
+    - sangrado 0.125 pulgadas interior
+    - calcular medianil
+    - páginas sueltas no dobles pdf
+    - aplanar transparencia para imprenta
+    - plantilla interior de cuaderno
+  reading_time_minutes: 9
+  target_audience: "Personas que publican libros low-content (cuadernos, diarios, planificadores, libros de pasatiempos y para colorear) mediante impresión bajo demanda, y necesitan que el PDF del interior pase la revisión a la primera."
+content_es: |
+  La publicación low-content es peculiar porque la parte creativa suele ser la fácil. Un cuaderno de rayas es una cuadrícula; un libro de pasatiempos es la salida de un script. Donde la gente se atasca es en la subida, y el aviso de rechazo casi nunca se explica bien.
+
+  La buena noticia es que la lista de motivos es corta, mecánica e igual en todos los servicios de impresión. Acierta en estas cinco cosas y el archivo pasa. Los números concretos siguen la especificación del servicio más grande en el momento de escribir esto; consulta siempre la vigente para tu trim size, porque se revisan.
+
+  <h2>1. El tamaño de página debe ser el trim size, exactamente</h2>
+
+  <p>Este es el rechazo más común y el más evitable. Si tu libro mide 6 por 9 pulgadas, cada página del PDF debe medir 6 por 9 pulgadas. Un libro de 6 por 9 maquetado en páginas Carta se rechaza automáticamente, aunque el contenido quede dentro de un área de 6 por 9 en el centro.</p>
+
+  <p>El matiz es el sangrado. Si algún elemento llega al borde de la página, necesitas sangrado, y el sangrado cambia el tamaño de página: suma 0,125 pulgadas arriba, abajo y en el borde exterior. Un interior de 6 por 9 con sangrado pasa a 6,125 por 9,25 pulgadas. Fíjate en que el borde interior no recibe nada, porque ese borde se encuaderna, no se recorta.</p>
+
+  <p>Si tu interior son líneas, puntos o texto que se detienen bien antes del borde, no necesitas sangrado en absoluto, y el tamaño de página es simplemente el trim size. La mayoría de cuadernos y planificadores caen aquí, lo que los convierte en el caso fácil.</p>
+
+  <p>Una limitación honesta que conviene conocer: convertir un PDF terminado a un trim size de libro no es algo que una herramienta de tamaño de página pueda hacer por ti. Nuestra herramienta para <a href="/es/pdf-edit/page-size/">cambiar el tamaño de página</a> maneja A4, Carta y Oficio, que son estándares de papel de oficina, no los trim size de 6 por 9 u 8,5 por 11 que espera un servicio de impresión. Para un interior de libro, fija el tamaño de página en el archivo con el que diseñaste. Si solo tienes un PDF terminado al tamaño equivocado, no estás convirtiendo, estás reconstruyendo.</p>
+
+  <h2>2. El medianil tiene que crecer con el número de páginas</h2>
+
+  <p>El margen interior, el que da al lomo, es el requisito que se olvida, y es el que produce un libro donde el texto desaparece en la encuadernación.</p>
+
+  <p>Los libros más gruesos se curvan más en el lomo, así que se comen más borde interior. El requisito, por tanto, escala:</p>
+
+  <table>
+    <thead>
+      <tr><th>Páginas de interior</th><th>Medianil interior mínimo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Hasta unas 150</td><td>0,375 pulgadas</td></tr>
+      <tr><td>Unas 150 a 300</td><td>0,5 pulgadas</td></tr>
+      <tr><td>Unas 300 a 500</td><td>0,625 pulgadas</td></tr>
+      <tr><td>Unas 500 a 700</td><td>0,75 pulgadas</td></tr>
+      <tr><td>Más de unas 700</td><td>0,875 pulgadas</td></tr>
+    </tbody>
+  </table>
+
+  <p>Los otros tres bordes son más simples: al menos 0,25 pulgadas, y 0,375 en páginas con sangrado. Trata ambos como mínimos, no como objetivos. Un cuaderno con márgenes exteriores de 0,5 pulgadas parece deliberado; uno con exactamente 0,25 parece que aprobó por los pelos.</p>
+
+  <p>Como el medianil alterna de lado, la página izquierda y la derecha no son la misma maquetación. Si tu herramienta tiene márgenes simétricos o páginas enfrentadas, úsalo. Construir todas las páginas iguales es como acabas con un libro cuyas páginas pares están bien y las impares son ilegibles junto al lomo.</p>
+
+  <h2>3. Las tipografías deben estar incrustadas</h2>
+
+  <p>Un interior con tipografías sin incrustar o se rechaza o, peor, se imprime con una letra sustituida que recompone todo tu espaciado cuidado. Es un fallo silencioso: el archivo se ve correcto en tu equipo porque la tipografía está instalada ahí.</p>
+
+  <p>Cualquier diálogo de exportación serio tiene una opción de incrustar tipografías, y las herramientas de navegador lo hacen solas. Verifica en lugar de suponer: abre el PDF, mira las propiedades del documento, busca la pestaña de tipografías y confirma que en cada una dice Incrustada o Subconjunto incrustado. Si una tipografía se niega a incrustarse por su licencia, convierte ese texto a trazados.</p>
+
+  <h2>4. Hay que aplanar la transparencia</h2>
+
+  <p>La transparencia viva, las sombras, los modos de fusión y las capas semiopacas son fuente habitual de sorpresas en la fase de impresión: el efecto desaparece o se convierte en un rectángulo gris. Los servicios piden que se aplane, y lo seguro es aplanar antes de subir en lugar de confiar en que el conversor acierte.</p>
+
+  <p><a href="/es/pdf-edit/flatten/">Aplanar un PDF</a> funde capas y elementos interactivos en contenido estático de página, y de paso elimina campos de formulario y anotaciones que no quieres en un interior impreso. No remuestrea imágenes, así que la resolución de impresión no se ve afectada. Para una salida más estricta y de grado archivístico, <a href="/es/pdf-to-pdfa/">convertir a PDF/A</a> exige por diseño tipografías incrustadas y contenido autosuficiente, una comprobación útil incluso cuando el servicio no pide PDF/A explícitamente. Nuestra nota sobre <a href="/es/blog/what-is-pdf-a-and-how-to-convert/">qué es PDF/A</a> explica qué garantiza el estándar y qué no.</p>
+
+  <h2>5. Páginas sueltas, no dobles</h2>
+
+  <p>Exporta una página por página. Una doble página exportada como una sola página ancha se lee como una página enorme al tamaño equivocado y se rechaza. Esto pilla a quien diseñó en una herramienta con páginas enfrentadas visibles en pantalla: la vista son dobles, la exportación debe ser suelta.</p>
+
+  <p>Lo mismo con las marcas de corte y de registro. Pertenecen a los trabajos de imprenta comercial, no a una subida de impresión bajo demanda, y un servicio que recorta por sus propias marcas imprimirá encantado las tuyas como contenido.</p>
+
+  <h2>Números de página y cuándo omitirlos</h2>
+
+  <p>Los libros low-content se dividen aquí. Un cuaderno de rayas normalmente no debería llevar números, porque el comprador puede usar las páginas en cualquier orden y el número es ruido visual. Un libro de pasatiempos, un cuaderno de ejercicios o cualquier cosa con índice sí los necesita.</p>
+
+  <p>Si los añades, hazlo cuando el orden de páginas sea definitivo, con <a href="/es/pdf-edit/add-page-numbers/">añadir números de página</a>, y dentro de los márgenes seguros de arriba. Un número a 0,2 pulgadas del borde de corte es lo primero que desaparece. Recuerda también que la posición debe alternar si quieres los números en el borde exterior de cada página, y nuestro <a href="/es/blog/add-page-numbers-to-pdf/">recorrido sobre numeración</a> cubre los desplazamientos para saltarse las páginas iniciales.</p>
+
+  <h2>La comprobación previa a la subida</h2>
+
+  <table>
+    <thead>
+      <tr><th>Qué comprobar</th><th>Cómo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cada página es exactamente el trim size (más sangrado si lo hay)</td><td>Abrir el PDF y leer las dimensiones; confirmar en la primera, una del medio y la última</td></tr>
+      <tr><td>El medianil corresponde al número de páginas</td><td>Comparar con la tabla y revisar una página izquierda y una derecha por separado</td></tr>
+      <tr><td>Los otros márgenes al menos 0,25 pulgadas, o 0,375 con sangrado</td><td>Medir desde el borde de corte, no desde el de sangrado</td></tr>
+      <tr><td>Tipografías incrustadas</td><td>Propiedades del documento, pestaña de tipografías, todas Incrustadas</td></tr>
+      <tr><td>Sin transparencia viva, capas ni campos de formulario</td><td>Aplanar y confirmar que al hacer clic nada se selecciona</td></tr>
+      <tr><td>Páginas sueltas, sin dobles ni marcas de corte</td><td>Recorrer el archivo: cada página es una página del libro</td></tr>
+      <tr><td>Número de páginas par y por encima del mínimo del servicio</td><td>La mayoría quiere al menos 24 páginas de interior y un total par</td></tr>
+    </tbody>
+  </table>
+
+  <p>La última fila pilla a más gente de la que debería. La impresión exige un número par de páginas porque las páginas van en hojas, y los servicios fijan un mínimo por debajo del cual un libro no se puede encuadernar. Añade una página en blanco antes que recortar contenido.</p>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>Nuestras herramientas funcionan en el servidor, así que el archivo se sube. Se elimina en cuanto termina el trabajo y el enlace de descarga es solo tuyo. Nada se indexa, se guarda ni se reutiliza para entrenar. Nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención si el manuscrito está inédito.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Necesito sangrado para un cuaderno de rayas?</h3>
+  <p>Casi nunca. El sangrado existe para que la ilustración a borde sobreviva al recorte, y un cuaderno cuyas líneas terminan bien dentro de los márgenes no tiene nada que proteger en el borde. Omite el sangrado, deja el tamaño de página igual al trim size y habrás eliminado toda una clase de error aritmético.</p>
+
+  <h3>¿Puedo convertir un interior A4 en un libro de 6 por 9?</h3>
+  <p>No de una forma que dé un buen libro. Las proporciones difieren, así que algo hay que escalar o recortar, y tus márgenes cuidadosamente fijados dejan de cumplir el requisito de medianil. Reconstruye el interior al trim size en tu herramienta de diseño. Este es uno de los pocos casos donde rehacer la maquetación es de verdad más rápido que pelearse con una conversión.</p>
+
+  <h3>¿Con qué mínimo de páginas debo contar?</h3>
+  <p>La mayoría de los servicios de impresión bajo demanda quieren al menos 24 páginas de interior, y todos quieren un total par. Para libros low-content eso es fácil, pero comprueba el servicio concreto antes de quedarte en 100 páginas de un pasatiempo generado, porque el número redondo que elegiste puede estar una página por debajo de un umbral.</p>
+
+  <h3>¿El interior tiene que ser PDF/A?</h3>
+  <p>Normalmente no es obligatorio, a veces es útil. El valor de pasar un interior por <a href="/es/pdf-to-pdfa/">la conversión a PDF/A</a> es que el estándar prohíbe justo lo que causa problemas en imprenta: tipografías sin incrustar y contenido que depende de algo fuera del archivo. Trátalo como un paso de validación, no como un requisito.</p>
+
+  <h3>¿Por qué rechazaron mi archivo si a mí me parece correcto?</h3>
+  <p>Por orden de probabilidad: el tamaño de página no es exactamente el trim size, el medianil es demasiado fino para el número de páginas, las tipografías no están incrustadas, o exportaste dobles páginas. Los cuatro se ven bien en pantalla, y por eso son los cuatro habituales. Compruébalos en ese orden.</p>
+
+  <h3>¿Pongo el nombre de mi tienda o una página de licencia en el interior?</h3>
+  <p>Una página de créditos es normal y esperable en un libro, a diferencia de una descarga imprimible donde la página de licencia hace más trabajo. Mantenla en las páginas iniciales y no añadas un pie en todas: un libro impreso con la URL de tu tienda en las 120 páginas se lee como una plantilla, que es justo la impresión que un editor low-content quiere evitar.</p>
+
+  <h2>Deja el interior listo</h2>
+
+  <p>Fija el tamaño de página en tu herramienta de diseño antes de dibujar nada, activa los márgenes simétricos, luego <a href="/es/pdf-edit/flatten/">aplana</a> la exportación y revisa la pestaña de tipografías. Si quieres la validación más estricta, pásalo por <a href="/es/pdf-to-pdfa/">PDF/A</a> y mira si protesta. Si además vendes imprimibles junto a tus libros, nuestra guía sobre <a href="/es/blog/sell-printable-pdf-on-etsy/">preparar un PDF imprimible para vender</a> y la nota sobre <a href="/es/blog/stop-buyers-editing-reselling-your-pdf/">qué consigue realmente proteger un archivo</a> cubren ese lado. Todo lo demás está en <a href="/es/all-tools/">todas las herramientas</a>.</p>

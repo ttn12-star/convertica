@@ -1,0 +1,159 @@
+slug: digital-product-pdf-checklist-before-you-publish
+cover_image: blog/images/cover-digital-product-pdf-checklist-before-you-publish.jpg
+status: published
+publish_on: 2026-09-01
+category_slug: best-practices
+relevant_tool: all_tools
+title_en: "The Pre-Launch Checklist for a PDF You Are About to Sell"
+meta_title_en: "Pre-Launch Checklist for a PDF Product | Convertica"
+meta_description_en: "The file is only part of it. This is the last gate before you publish: the bundle, the licence page, the buyer's actual download experience, and the listing claims."
+meta_keywords_en: "digital product checklist, before you publish pdf, digital download quality check, test buyer experience, licence page, file versioning digital products, pdf product launch"
+excerpt_en: "By the time a digital product is ready to list, the file itself has usually been checked. What has not been checked is everything around it: the bundle a buyer actually receives, whether the download works on a phone, whether the listing promises match the contents, and what you will do when you find a mistake after the fiftieth sale. This is that gate."
+ai_metadata:
+  topics:
+    - final quality gate before publishing a digital product
+    - testing the real buyer download experience
+    - bundle structure, naming and licence page
+    - making listing claims match the file
+    - versioning and fixing a product after launch
+  entities:
+    - Etsy
+    - Gumroad
+    - PDF
+    - ZIP
+    - Convertica
+  summary: "A pre-publish gate for digital PDF products that covers what file-level checks miss: opening the delivered bundle as a buyer would including on a phone, naming files so they survive extraction, putting a licence page and a short instructions page inside, checking that every claim in the listing is true of the actual file, keeping a version number so a later fix is traceable, and the short list of things to verify after the first few sales."
+  related_terms:
+    - digital download quality checklist
+    - test download on phone
+    - zip structure digital product
+    - version number pdf product
+    - listing description accuracy
+    - update digital product after sale
+  reading_time_minutes: 8
+  target_audience: "Sellers about to publish a PDF digital product who have already checked the file and want the final pass over the bundle, the listing and the delivery before it goes live."
+content_en: |
+  There is a moment right before you hit publish where everything looks done. The design is finished, the file has been checked, the mockups are made. This is the cheapest possible moment to catch a mistake, and the most commonly skipped.
+
+  The checks below deliberately skip the file itself. Page size, resolution, embedded fonts and file weight are covered in our guide on <a href="/en/blog/sell-printable-pdf-on-etsy/">preparing a printable PDF to sell</a>, and if your product ships in two paper standards, <a href="/en/blog/a4-vs-us-letter-printable-sizes/">the A4 and US Letter decision</a> is there too. Assume that work is done. What follows is everything around the file, which is where the remaining refunds live.
+
+  <h2>1. Open the bundle the way a buyer will</h2>
+
+  <p>Not the folder on your desktop. The actual thing that gets delivered. Download it from the platform's preview if it offers one, or email the ZIP to yourself and open it from the email.</p>
+
+  <ul>
+    <li><strong>On a phone.</strong> A large share of buyers open the download on a phone first, and a ZIP on a phone is a worse experience than you remember. If a phone cannot get to your file in two taps, expect messages.</li>
+    <li><strong>With the folder structure gone.</strong> Many people extract everything into one directory. If your files are only distinguishable by folder name, they are now indistinguishable.</li>
+    <li><strong>Without your fonts installed.</strong> Someone else's device is the only real test of embedded fonts, and it takes one message to a friend.</li>
+  </ul>
+
+  <h2>2. Name the files, not the folders</h2>
+
+  <p>Every filename should make sense out of context, six months later, in a downloads directory with four hundred other things. That means the product, the variant, and nothing else.</p>
+
+  <p>Good: <code>weekly-planner-A4-portrait.pdf</code>. Bad: <code>final_v3.pdf</code>, <code>Untitled-1.pdf</code>, or a name containing your internal revision numbers. Avoid characters that behave badly across systems, keep it lowercase, and use hyphens rather than spaces. Our note on <a href="/en/blog/pdf-naming-conventions-best-practices/">file naming conventions</a> is written for documents but the rules are identical.</p>
+
+  <h2>3. Put two extra pages inside</h2>
+
+  <p>Two pages that cost you nothing and prevent most support messages:</p>
+
+  <ul>
+    <li><strong>A licence page.</strong> Plain language, one page: what the buyer may do, what they may not, whether commercial use is included, and how to reach you. Our note on <a href="/en/blog/stop-buyers-editing-reselling-your-pdf/">what file protection actually achieves</a> explains why this page does more work than any technical measure.</li>
+    <li><strong>A one-page how-to-print.</strong> Print at 100 per cent, actual size, scaling off. Which paper. Which pages are optional. This single page removes the most common complaint, which is a correct file printed at the wrong scale.</li>
+  </ul>
+
+  <p>Keep both short. A ten-page terms document in a five-dollar planner reads as a warning sign.</p>
+
+  <h2>4. Check that the listing is true</h2>
+
+  <p>Read your own description as an adversary. Every number and noun in it is a promise:</p>
+
+  <table>
+    <thead>
+      <tr><th>If the listing says</th><th>Verify</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>"12 pages"</td><td>Open the file and count. Cover pages and licence pages change the number</td></tr>
+      <tr><td>"A4 and US Letter included"</td><td>Both files are actually in the bundle, and both are the size they claim</td></tr>
+      <tr><td>"Editable"</td><td>It is editable in the tool a buyer will have, not only in yours</td></tr>
+      <tr><td>"Instant download"</td><td>The platform really does deliver instantly for this listing type</td></tr>
+      <tr><td>"Commercial use allowed"</td><td>The licence page inside the file says the same thing</td></tr>
+      <tr><td>"300 DPI"</td><td>The images really are, at final print size</td></tr>
+    </tbody>
+  </table>
+
+  <p>The last row is worth a moment. Claiming 300 DPI when the source image was upscaled is the kind of specific, checkable claim that produces the angriest reviews, because the buyer can verify it and you cannot argue.</p>
+
+  <h2>5. Give the file a version, quietly</h2>
+
+  <p>Put a small version marker somewhere unobtrusive, in the file metadata or in tiny type on the licence page. Not in the filename, where it looks unfinished.</p>
+
+  <p>You will find a mistake after the fiftieth sale. When you do, a version number tells you whether a complaining buyer has the old file, lets you tell buyers what changed, and stops you wondering which copy is on your hard drive. This is thirty seconds of work that pays off exactly once, expensively.</p>
+
+  <h2>6. Do the final mechanical pass</h2>
+
+  <p>Short, and all of it catches something real:</p>
+
+  <ul>
+    <li><strong>Flatten the deliverable.</strong> <a href="/en/pdf-edit/flatten/">Flattening</a> removes the layers and stray form fields a buyer can nudge, and makes the file open faster. Skip this only if the product is meant to be filled in.</li>
+    <li><strong>Check the page order and the page numbers.</strong> If it is a multi-page set, <a href="/en/pdf-edit/add-page-numbers/">numbering</a> goes on last, after the order is final.</li>
+    <li><strong>Confirm the file size against the platform limit</strong> per file, not per bundle, and <a href="/en/pdf-organize/compress/">compress</a> only if you must.</li>
+    <li><strong>Strip metadata you did not mean to ship.</strong> Author fields and software names from the export often carry your real name or an unrelated client's project title.</li>
+    <li><strong>Open it once more, all the way through.</strong> Not skimming. The blank page you left at position 7 is easier to find now than in a review.</li>
+  </ul>
+
+  <h2>7. After the first sales</h2>
+
+  <p>Publishing is not the end of the check. Two things worth doing in the first week:</p>
+
+  <ul>
+    <li><strong>Buy your own product</strong> if the platform lets you, or ask someone to. The full path from checkout to open file is the only test that covers the platform's own behaviour, which you do not control and which changes.</li>
+    <li><strong>Read the first questions as bug reports.</strong> The first three buyer messages tell you exactly which page of your listing or instructions is unclear. Fix the listing rather than answering the same question forever.</li>
+  </ul>
+
+  <h2>The whole gate, in one table</h2>
+
+  <table>
+    <thead>
+      <tr><th>Check</th><th>Catches</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Open the delivered bundle on a phone</td><td>ZIP friction, unopenable files, missing pieces</td></tr>
+      <tr><td>Extract everything into one folder</td><td>Filenames that only worked inside folders</td></tr>
+      <tr><td>Open on a device without your fonts</td><td>Unembedded fonts, reflowed layout</td></tr>
+      <tr><td>Licence page and print instructions inside</td><td>Most support messages, most licence disputes</td></tr>
+      <tr><td>Every listing claim verified against the file</td><td>The reviews you cannot argue with</td></tr>
+      <tr><td>Version marker recorded</td><td>Not knowing which copy a buyer has</td></tr>
+      <tr><td>Flattened, ordered, numbered, under the size limit</td><td>Accidental edits, rejected uploads</td></tr>
+      <tr><td>Metadata cleaned</td><td>Shipping your real name or a client's project title</td></tr>
+      <tr><td>Read the file end to end once</td><td>The blank page, the duplicate page, the typo in the title</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What happens to the file you upload</h2>
+
+  <p>Our tools run on the server, so the file is uploaded. It is deleted as soon as the job finishes, and the download link is yours alone. Nothing is indexed, kept or reused for training. For an unreleased product, our note on <a href="/en/blog/is-convertica-safe-pdf-file-security-privacy-explained/">how Convertica handles your files</a> sets out the retention rules.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>How long should this take?</h3>
+  <p>Twenty minutes for a single-file product, closer to an hour for a bundle with several sizes. That is genuinely the cheapest twenty minutes in the whole process, because every item on the list costs multiples of that to fix after publication.</p>
+
+  <h3>Do I really need a licence page in a cheap printable?</h3>
+  <p>Yes, and more so in a cheap one. Low-priced products get bought casually and reused casually, mostly by people who are not sure what they are allowed to do. One page of plain language prevents the confusion, and it is the document you point at if you ever need to report a copy.</p>
+
+  <h3>Should the version number be visible to buyers?</h3>
+  <p>Barely. Small type on the licence page or in the file metadata is right. A version in the filename or on the cover makes a finished product look like a work in progress, and invites questions about what was wrong with version one.</p>
+
+  <h3>What do I do if I find a mistake after selling it?</h3>
+  <p>Fix the file, bump the version, replace it on the platform, and message the buyers if the mistake affects use rather than looks. Most platforms let you update a digital file in place, and buyers who get an unprompted corrected version tend to leave better reviews than buyers who never saw a problem.</p>
+
+  <h3>Is it worth buying my own product?</h3>
+  <p>Once per product type, yes. You are not testing your file, you are testing the platform: the receipt email, the download link expiry, whether the file arrives with the name you gave it. That path breaks in ways you will never see from the seller dashboard.</p>
+
+  <h3>How much should I strip from the file metadata?</h3>
+  <p>Author, title and any software or template fields. It is common for an export to carry the name of the template you bought, a previous client's project name, or your legal name when you sell under a shop name. None of that helps you, and one of them can genuinely embarrass you.</p>
+
+  <h2>Run the gate</h2>
+
+  <p>Take the product you were about to publish and do items one through six now, in order. Most files need <a href="/en/pdf-edit/flatten/">flattening</a> and nothing else; what usually needs work is the bundle and the listing. If your product is a book interior rather than a printable, the requirements are different and stricter: see <a href="/en/blog/low-content-book-interior-pdf-requirements/">what a low-content book interior must look like</a>. Everything else is in <a href="/en/all-tools/">all tools</a>.</p>

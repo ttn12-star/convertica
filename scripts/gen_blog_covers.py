@@ -354,6 +354,34 @@ COVERS = {
         "#bae6fd",
         "scale",
     ),
+    "stop-buyers-editing-reselling-your-pdf": (
+        "Can You Stop\nPDF Resale?",
+        "SELLING \u00b7 PROTECTION",
+        ("#334155", "#0f766e"),
+        "#99f6e4",
+        "lock",
+    ),
+    "low-content-book-interior-pdf-requirements": (
+        "Low-Content Book\nInteriors",
+        "PRINT \u00b7 BOOK INTERIOR",
+        ("#7c2d12", "#b45309"),
+        "#fed7aa",
+        "pages",
+    ),
+    "digital-product-pdf-checklist-before-you-publish": (
+        "Pre-Launch Checklist\nfor a PDF Product",
+        "SELLING \u00b7 CHECKLIST",
+        ("#1e3a8a", "#7c3aed"),
+        "#c4b5fd",
+        "badge",
+    ),
+    "deliver-digital-downloads-to-buyers": (
+        "Deliver Downloads\nWithout Tickets",
+        "SELLING \u00b7 DELIVERY",
+        ("#065f46", "#0ea5e9"),
+        "#a7f3d0",
+        "zip",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()

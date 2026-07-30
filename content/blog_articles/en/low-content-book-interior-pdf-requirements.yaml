@@ -1,0 +1,143 @@
+slug: low-content-book-interior-pdf-requirements
+cover_image: blog/images/cover-low-content-book-interior-pdf-requirements.jpg
+status: published
+publish_on: 2026-08-25
+category_slug: how-to-guides
+relevant_tool: pdf_to_pdfa
+title_en: "Low-Content Book Interiors: What the PDF Must Look Like Before Upload"
+meta_title_en: "Low-Content Book Interior PDF Requirements | Convertica"
+meta_description_en: "Print-on-demand rejects interiors for a short list of reasons: wrong page size, thin gutter, missing bleed, unembedded fonts, live transparency. Here is the whole list."
+meta_keywords_en: "low content book interior pdf, kdp interior requirements, trim size bleed margins, gutter margin page count, embed fonts pdf print, print on demand pdf rejected, journal notebook interior"
+excerpt_en: "Print-on-demand services reject interior files for a surprisingly short list of reasons, and almost all of them are mechanical rather than creative. Page size that is not exactly the trim size, a gutter margin too thin for the page count, bleed that is missing or the wrong amount, fonts that were never embedded, and live transparency. Here is each one, with the numbers."
+ai_metadata:
+  topics:
+    - interior PDF requirements for print on demand
+    - trim size, bleed and page size arithmetic
+    - gutter margin scaling with page count
+    - embedding fonts and flattening transparency
+    - checking an interior before upload
+  entities:
+    - KDP
+    - Amazon
+    - PDF
+    - PDF/A
+    - Print on demand
+    - Convertica
+  summary: "A pre-upload checklist for low-content book interiors: why the PDF page size must equal the trim size exactly and what bleed adds to it (0.125 inch on top, bottom and outside), why the inside gutter margin has to grow with page count from roughly 0.375 to 0.875 inch, the 0.25 inch minimum on the other three edges and 0.375 inch when bleed is used, why unembedded fonts are a silent rejection, why live transparency has to be flattened, why single pages rather than spreads, and how to verify each of these on a finished file."
+  related_terms:
+    - kdp trim size list
+    - bleed 0.125 inch interior
+    - gutter margin calculator
+    - single pages not spreads pdf
+    - flatten transparency print pdf
+    - journal interior template
+  reading_time_minutes: 9
+  target_audience: "People publishing low-content books (journals, notebooks, planners, puzzle and colouring books) through print on demand, who need the interior PDF to pass review the first time."
+content_en: |
+  Low-content publishing is unusual in that the creative part is often the easy part. A lined journal is a grid; a puzzle book is a script output. What stops people is the upload, and the rejection notice rarely explains itself well.
+
+  The good news is that the list of reasons is short, mechanical, and the same across print-on-demand services. Get these five things right and the file passes. The specific numbers below follow the largest service's spec at the time of writing; always check the current one for your trim size, because these do get revised.
+
+  <h2>1. The page size must be the trim size, exactly</h2>
+
+  <p>This is the single most common rejection, and the most avoidable. If your book is 6 by 9 inches, every page of the PDF must measure 6 by 9 inches. A 6 by 9 book laid out on US Letter pages is rejected automatically, even if the content sits inside a 6 by 9 area in the middle.</p>
+
+  <p>The wrinkle is bleed. If any element runs to the edge of the page, you need bleed, and bleed changes the page size: add 0.125 inch to the top, the bottom and the outside edge. A 6 by 9 interior with bleed becomes 6.125 by 9.25 inches. Note that the inside edge gets nothing, because that edge is bound, not trimmed.</p>
+
+  <p>If your interior is plain lines, dots or text that stops well before the edge, you do not need bleed at all, and the page size is simply the trim size. Most journals and planners fall here, which makes them the easy case.</p>
+
+  <p>One honest limitation worth knowing: converting a finished PDF to a book trim size is not something a page-size tool can do for you. Our <a href="/en/pdf-edit/page-size/">change PDF page size</a> tool handles A4, US Letter and Legal, which are office paper standards, not the 6 by 9 or 8.5 by 11 trim sizes a print service expects. For a book interior, set the page size in the file you designed in. If you only have a finished PDF at the wrong size, you are rebuilding, not converting.</p>
+
+  <h2>2. The gutter margin has to grow with the page count</h2>
+
+  <p>The inside margin, the one against the spine, is the requirement people forget, and it is the one that produces a book where text disappears into the binding.</p>
+
+  <p>Thicker books curve more at the spine, so they swallow more of the inside edge. The requirement therefore scales:</p>
+
+  <table>
+    <thead>
+      <tr><th>Interior pages</th><th>Minimum inside (gutter) margin</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Up to about 150</td><td>0.375 in</td></tr>
+      <tr><td>About 150 to 300</td><td>0.5 in</td></tr>
+      <tr><td>About 300 to 500</td><td>0.625 in</td></tr>
+      <tr><td>About 500 to 700</td><td>0.75 in</td></tr>
+      <tr><td>More than about 700</td><td>0.875 in</td></tr>
+    </tbody>
+  </table>
+
+  <p>The other three edges are simpler: at least 0.25 inch, rising to 0.375 inch on pages that use bleed. Treat both as minimums rather than targets. A journal with 0.5 inch outside margins looks deliberate; one at exactly 0.25 inch looks like it barely passed.</p>
+
+  <p>Because the gutter alternates sides, left page and right page are not the same layout. If your design tool has a mirrored-margins or facing-pages option, use it. Building every page identically is how you end up with a book whose even pages are fine and odd pages are unreadable near the spine.</p>
+
+  <h2>3. Fonts must be embedded</h2>
+
+  <p>An interior with unembedded fonts either gets rejected or, worse, prints with substituted type that reflows your careful spacing. This is a silent failure: the file looks correct on your machine because the font is installed there.</p>
+
+  <p>Every serious export dialogue has an embed-fonts option, and browser-based tools do it automatically. Verify rather than assume: open the PDF, look at document properties, find the Fonts tab, and confirm every entry says Embedded or Embedded Subset. If a font refuses to embed because of its licence, convert that text to outlines instead.</p>
+
+  <h2>4. Transparency has to be flattened</h2>
+
+  <p>Live transparency, drop shadows, blend modes and semi-opaque layers, is a common source of rendering surprises at the print stage: the effect either disappears or turns into a grey box. Print services ask for it flattened, and the safest route is to flatten before you upload rather than hope the converter guesses right.</p>
+
+  <p><a href="/en/pdf-edit/flatten/">Flattening a PDF</a> merges layers and interactive elements into static page content, which also removes form fields and annotations you do not want in a printed interior. It does not resample images, so print resolution is unaffected. For a stricter, archival-grade output, <a href="/en/pdf-to-pdfa/">converting to PDF/A</a> enforces embedded fonts and self-contained content by design, which is a useful belt-and-braces check even when the service does not require PDF/A specifically. Our note on <a href="/en/blog/what-is-pdf-a-and-how-to-convert/">what PDF/A actually is</a> explains what the standard does and does not guarantee.</p>
+
+  <h2>5. Single pages, not spreads</h2>
+
+  <p>Export one page per page. A two-page spread exported as a single wide page is read as one enormous page at the wrong size and rejected. This catches people who designed in a layout tool with facing pages visible on screen: the view is spreads, the export must be singles.</p>
+
+  <p>The same applies to crop marks and registration marks. Those belong to commercial print jobs, not to print-on-demand uploads, and a service that trims to its own marks will happily print yours as content.</p>
+
+  <h2>Page numbers, and when to skip them</h2>
+
+  <p>Low-content books split on this. A lined journal usually should not have page numbers, because the buyer may use the pages in any order and a number is visual noise. A puzzle book, a workbook or anything with an index needs them.</p>
+
+  <p>If you do add them, do it after the page order is final, with <a href="/en/pdf-edit/add-page-numbers/">add page numbers</a>, and place them inside the safe margins above. A number that sits 0.2 inch from the trim edge is the first thing to disappear. Remember also that the position must alternate if you want numbers on the outside edge of each page, and our <a href="/en/blog/add-page-numbers-to-pdf/">walkthrough on numbering</a> covers offsets for skipping front matter.</p>
+
+  <h2>The pre-upload check</h2>
+
+  <table>
+    <thead>
+      <tr><th>Check</th><th>How</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Every page is exactly the trim size (plus bleed if used)</td><td>Open the PDF and read the page dimensions; confirm they are identical on the first, a middle and the last page</td></tr>
+      <tr><td>Gutter margin matches the page count</td><td>Compare against the table above, and check a left page and a right page separately</td></tr>
+      <tr><td>Other margins at least 0.25 in, or 0.375 in with bleed</td><td>Measure from the trim edge, not from the bleed edge</td></tr>
+      <tr><td>Fonts embedded</td><td>Document properties, Fonts tab, all Embedded</td></tr>
+      <tr><td>No live transparency, no layers, no form fields</td><td>Flatten, then confirm nothing selects when you click</td></tr>
+      <tr><td>Single pages, no spreads, no crop marks</td><td>Scroll the file; each page should be one book page</td></tr>
+      <tr><td>Page count is even and meets the service minimum</td><td>Most services want at least 24 interior pages and an even total</td></tr>
+    </tbody>
+  </table>
+
+  <p>The last row catches more people than it should. Print requires an even page count because pages come in leaves, and services set a minimum below which a book cannot be bound. Add a blank page rather than cutting content.</p>
+
+  <h2>What happens to the file you upload</h2>
+
+  <p>Our tools run on the server, so the file is uploaded. It is deleted as soon as the job finishes, and the download link is yours alone. Nothing is indexed, kept or reused for training. Our note on <a href="/en/blog/is-convertica-safe-pdf-file-security-privacy-explained/">how Convertica handles your files</a> sets out the retention rules if the manuscript is unpublished.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Do I need bleed for a lined journal?</h3>
+  <p>Almost never. Bleed exists so that edge-to-edge artwork survives trimming, and a journal whose lines stop well inside the margins has nothing at the edge to protect. Skip bleed, keep the page size equal to the trim size, and you have removed a whole class of arithmetic error.</p>
+
+  <h3>Can I convert an A4 interior into a 6 by 9 book?</h3>
+  <p>Not in any way that produces a good book. The proportions differ, so something has to be scaled or cropped, and your carefully set margins stop matching the gutter requirement. Rebuild the interior at the trim size in your design tool. This is the one place where redoing the layout is genuinely faster than fighting a conversion.</p>
+
+  <h3>What page count minimum should I plan for?</h3>
+  <p>Most print-on-demand services want at least 24 interior pages, and all of them want an even total. For low-content books that is easy to hit, but check the specific service before you settle on 100 pages of a puzzle you generated, because the round number you chose may be one page under a threshold.</p>
+
+  <h3>Does the interior need to be PDF/A?</h3>
+  <p>Usually not required, sometimes useful. The value of running an interior through <a href="/en/pdf-to-pdfa/">PDF/A conversion</a> is that the standard forbids the things that cause print problems: unembedded fonts and content that depends on anything outside the file. Treat it as a validation step rather than a requirement.</p>
+
+  <h3>Why was my file rejected when it looks fine to me?</h3>
+  <p>In order of likelihood: the page size is not exactly the trim size, the gutter is too thin for the page count, fonts are not embedded, or you exported spreads. All four look fine on screen, which is exactly why they are the common four. Check them in that order.</p>
+
+  <h3>Should I put my shop name or a licence page in a book interior?</h3>
+  <p>A copyright page is normal and expected in a book, unlike in a printable download where a licence page does more work. Keep it to the front matter, and do not add a footer on every page: a printed book with a shop URL on all 120 pages reads as a template, which is exactly the impression a low-content publisher wants to avoid.</p>
+
+  <h2>Get the interior ready</h2>
+
+  <p>Set the page size in your design tool before you draw anything, mirror the margins, then <a href="/en/pdf-edit/flatten/">flatten</a> the export and check the Fonts tab. If you want the stricter validation, run it through <a href="/en/pdf-to-pdfa/">PDF/A</a> and see whether it complains. If you are also selling printables alongside your books, our guide on <a href="/en/blog/sell-printable-pdf-on-etsy/">preparing a printable PDF to sell</a> and the note on <a href="/en/blog/stop-buyers-editing-reselling-your-pdf/">what file protection actually achieves</a> cover that side. Everything else is in <a href="/en/all-tools/">all tools</a>.</p>

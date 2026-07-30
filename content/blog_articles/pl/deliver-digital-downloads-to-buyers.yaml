@@ -1,0 +1,142 @@
+slug: deliver-digital-downloads-to-buyers
+title_pl: "Jak dostarczyć PDF kupującemu i nie dostać lawiny wiadomości"
+meta_title_pl: "Dostarczanie plików cyfrowych bez zgłoszeń | Convertica"
+meta_description_pl: "Prawie wszystkie skargi na dostawę wyrastają z trzech decyzji: jeden plik czy archiwum, jaka waga i co kupujący widzi najpierw. Jak podjąć wszystkie trzy świadomie."
+meta_keywords_pl: "dostarczanie plików cyfrowych, jeden pdf czy zip, hasło do zip, wygaśnięcie linku, pobieranie na telefonie, wydanie produktu cyfrowego"
+excerpt_pl: "Niemal każda skarga na dostawę sprowadza się do trzech decyzji, które podjąłeś bez zastanowienia: czy wysłać jeden plik czy archiwum, jaką wagę ma pobranie i co kupujący napotyka w pierwszych dziesięciu sekundach. Żadna z nich nie jest trudna, wszystkie trzy tanio zrobić dobrze, a zrobione źle generują wiadomości na zawsze."
+ai_metadata:
+  topics:
+    - wybór między jednym PDF a archiwum
+    - co widzi kupujący na telefonie
+    - waga pobrania i limity platformy
+    - czy zabezpieczać archiwum hasłem
+    - ponowne wysłanie i wygasłe linki
+  entities:
+    - ZIP
+    - PDF
+    - Etsy
+    - Gumroad
+    - Convertica
+  summary: "Jak zaprojektować dostawę produktu PDF, żeby nie generowała zgłoszeń: kiedy jeden plik bije archiwum a kiedy nie, dlaczego archiwum to realna przeszkoda na telefonie, jak utrzymać każdy plik pod limitem platformy zamiast sumy zestawu, dlaczego hasło na płatnym pobraniu zwykle kosztuje więcej niż chroni, jak nazwać pliki, żeby przetrwały rozpakowanie, i jak odpowiadać na prośbę o ponowne wysłanie, która przychodzi zawsze."
+  related_terms:
+    - jeden pdf czy zip dla kupującego
+    - otworzyć zip na telefonie
+    - limit na plik marketplace
+    - hasło do pobrania zip
+    - ponownie wysłać produkt cyfrowy
+    - link do pobrania wygasł
+  reading_time_minutes: 8
+  target_audience: "Sprzedawcy produktów PDF decydujący, jak spakować i dostarczyć pobranie, oraz każdy, czyja obecna dostawa generuje powtarzające się pytania kupujących."
+content_pl: |
+  Z plikiem można zrobić wszystko dobrze i wciąż stracić kupującego w ostatnich dziesięciu sekundach. Dostawa to ta część produktu cyfrowego, którą sprzedawcy projektują przypadkiem: plików było cztery, więc je spakowałeś, a teraz część kupujących nie może otworzyć zakupu na urządzeniu, z którego go opłaciła.
+
+  Prawie wszystko zamykają trzy decyzje.
+
+  <h2>Decyzja 1: jeden plik czy archiwum</h2>
+
+  <p>Instynkt każe spakować wszystko razem. Opieraj się, kiedy możesz, bo archiwum to realna przeszkoda dla odczuwalnej części kupujących.</p>
+
+  <table>
+    <thead>
+      <tr><th>Jeden PDF, gdy</th><th>Archiwum, gdy</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Produkt to jedna rzecz w jednym formacie</td><td>Masz kilka formatów papieru albo wersji kolorystycznych</td></tr>
+      <tr><td>Mieścisz się w limicie na plik</td><td>Inaczej wyjdziesz za limit platformy na liczbę plików</td></tr>
+      <tr><td>Większość ruchu jest mobilna</td><td>Produkt naprawdę jest zestawem, który kupujący będzie sortował</td></tr>
+    </tbody>
+  </table>
+
+  <p>Jeśli masz dwa albo trzy pliki, a platforma pozwala na dwa albo trzy, wyślij je osobno. Kupujący dotyka tego, którego chce, i koniec. To ściśle lepsze niż zmuszanie wszystkich do rozpakowania archiwum, żeby dojść do tego samego pliku.</p>
+
+  <h2>Decyzja 2: co robi telefon</h2>
+
+  <p>Duża część kupujących otwiera zakup na telefonie, często w ciągu minuty od zapłaty, często stojąc gdzieś. Co ta osoba przeżywa z archiwum:</p>
+
+  <ul>
+    <li><strong>Starsze Androidy i iOS potrzebują dodatkowego kroku</strong>, żeby dojść od pobranego archiwum do czytelnego PDF. Nowe wersje radzą sobie, ale słowo „nowe” nosi w tym zdaniu wiele, a nie wszyscy twoi kupujący mają nowe telefony.</li>
+    <li><strong>Rozpakowane pliki często lądują w jednym płaskim katalogu</strong>, więc twoja struktura folderów znika. Jeśli dwa pliki różniły się tylko folderem, teraz się nie różnią.</li>
+    <li><strong>Pobranie 40 MB na danych mobilnych</strong> to pauza, a pauza to miejsce, gdzie ludzie zamykają kartę z zamiarem powrotu.</li>
+  </ul>
+
+  <p>Nie wynika z tego „nigdy nie używaj archiwum”. Wynika: jeśli używasz, nazwij pliki tak, żeby przetrwały rozpakowanie, i trzymaj pobranie na tyle małe, żeby skończyło się w pociągu.</p>
+
+  <h2>Decyzja 3: waga, na każdy plik</h2>
+
+  <p>Limity platform liczą się na plik, nie na zestaw, i właśnie ta różnica decyduje o pakowaniu. Marketplace'y zwykle ograniczają każdy plik cyfrowy do około 20 MB, a liczbę plików na ofertę do pięciu, więc zestaw czterech formatów w trzech kolorach musi zostać archiwum, czy tego chcesz, czy nie. Sprawdź aktualne liczby swojej platformy, zanim zbudujesz zestaw wokół nich.</p>
+
+  <p>Jeśli jesteś nad limitem, szukaj przyczyny, zanim złapiesz kompresję. PDF z samego tekstu waży tyle co nic, a planer na 30 MB waży tyle z powodu podkładki na całą stronę albo tekstury papieru. Zamiana tej tekstury na płaski kolor zwykle ścina plik o rząd wielkości i nic nie kosztuje na domowym wydruku. I tylko potem bierz <a href="/pl/pdf-organize/compress/">kompresję PDF</a>, która zostawia tekst i wektory w pełnej jakości i przelicza grafiki, a przed zaufaniem wynikowi wydrukuj jedną stronę.</p>
+
+  <h2>Zabezpieczać archiwum hasłem?</h2>
+
+  <p>Możesz <a href="/pl/archive/protect/">zabezpieczyć ZIP hasłem</a>, a przy płatnym pobraniu zwykle nie powinieneś. Arytmetyka jest nieprzyjazna: hasło potrzebuje teraz każdy kupujący, czyli mieszka w opisie oferty albo w mailu z dostawą, czyli nic nie chroni, a przy tym część kupujących nie wpisze go poprawnie i napisze do ciebie.</p>
+
+  <p>Przypadki, w których to ma sens, są wąskie: plik idący do jednego konkretnego klienta, kopia przedpremierowa dla recenzenta albo zestaw wysyłany poza platformą do określonej osoby. Nasza notka o <a href="/pl/blog/how-to-password-protect-a-zip-file/">haśle do archiwum ZIP</a> omawia mechanikę, a szersze pytanie o to, co ochrona w ogóle daje, jest w <a href="/pl/blog/stop-buyers-editing-reselling-your-pdf/">co powstrzymuje kupujących od edycji i odsprzedaży PDF</a>. Krótko: przy produktach pracuje strona licencji, nie hasło.</p>
+
+  <h2>Co kupujący powinien zobaczyć najpierw</h2>
+
+  <p>Przyjmij, że kupujący rozpakuje wszystko do folderu pobranych i nic nie przeczyta. Projektuj pod tę osobę:</p>
+
+  <ul>
+    <li><strong>Nazwy plików mówiące produkt i wariant</strong> i nic więcej. <code>weekly-planner-A4.pdf</code>, nie <code>final_v3.pdf</code>.</li>
+    <li><strong>Jedna krótka strona z instrukcją</strong>, i tylko jedna. Jeśli dokładasz plik tekstowy <code>READ ME FIRST.txt</code> obok czterech PDF-ów, większość go nie przeczyta, więc ważną linijkę zduplikuj w samym PDF.</li>
+    <li><strong>Instrukcja druku, powiedziana raz i wprost.</strong> Drukuj w 100 procentach, rozmiar rzeczywisty, skalowanie wyłączone. Ta jedna linijka zapobiega większej liczbie skarg niż cokolwiek innego w tym tekście.</li>
+  </ul>
+
+  <h2>Prośba o ponowne wysłanie</h2>
+
+  <p>Przychodzi zawsze: kupujący zgubił plik, zmienił telefon albo trafił na wygasły link. Zdecyduj swoją odpowiedź zawczasu, nie improwizuj o jedenastej wieczorem.</p>
+
+  <ul>
+    <li><strong>Znaj politykę linków swojej platformy.</strong> Gdzieś linki wygasają, gdzieś jest licznik pobrań, gdzieś żyją tak długo jak konto. Bez tej wiedzy nie odpowiesz kupującemu.</li>
+    <li><strong>Trzymaj dokładny wysłany plik dla każdej wersji.</strong> Jeśli wysyłałeś dwie wersje, musisz wiedzieć, którą kupił ten kupujący. Tu opłaca się znacznik wersji z kontroli przed publikacją.</li>
+    <li><strong>Mów „tak” i idź dalej.</strong> Ponowne wysłanie pliku nic cię nie kosztuje i kupuje przychylność kogoś, kto już zapłacił. Spór kosztuje opinię.</li>
+  </ul>
+
+  <h2>Lista kontrolna dostawy</h2>
+
+  <table>
+    <thead>
+      <tr><th>Kontrola</th><th>Po co</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Osobne pliki, jeśli platforma pozwala na tę liczbę</td><td>Usuwa krok z archiwum całkowicie</td></tr>
+      <tr><td>Każdy plik pod limitem na plik</td><td>Limit liczy się na plik, nie na zestaw</td></tr>
+      <tr><td>Nazwy plików sensowne po rozpakowaniu</td><td>Struktura folderów znika</td></tr>
+      <tr><td>Pobranie otwiera się na telefonie w dwa dotknięcia</td><td>Tam zdarza się większość pierwszych otwarć</td></tr>
+      <tr><td>Jedna strona instrukcji, skala druku podana</td><td>Zapobiega najczęstszej skardze</td></tr>
+      <tr><td>Bez hasła, jeśli nie ma konkretnego odbiorcy</td><td>Nic nie chroni, generuje wiadomości</td></tr>
+      <tr><td>Znasz politykę wygasania linków</td><td>Zostaniesz o to zapytany</td></tr>
+      <tr><td>Trzymasz wysłany plik per wersja</td><td>Ponowne wysłanie potrzebuje właściwej kopii</td></tr>
+    </tbody>
+  </table>
+
+  <p>Jeśli nie zrobiłeś jeszcze przejścia po pliku i ofercie, ono idzie wcześniej: nasza <a href="/pl/blog/digital-product-pdf-checklist-before-you-publish/">lista kontrolna przed publikacją</a> to ta brama, a <a href="/pl/blog/sell-printable-pdf-on-etsy/">przygotowanie PDF do druku na sprzedaż</a> zamyka sam plik.</p>
+
+  <h2>Co dzieje się z plikiem, który wysyłasz</h2>
+
+  <p>Nasze narzędzia działają na serwerze, więc plik jest wysyłany. Zostaje usunięty zaraz po zakończeniu zadania, a link do pobrania należy tylko do ciebie. Nic nie jest indeksowane, przechowywane ani używane do trenowania. Nasza notka o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z plikami</a>, opisuje zasady przechowywania.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Czy archiwum naprawdę jest takim tarciem?</h3>
+  <p>Na komputerze nie. Na telefonie to dodatkowy krok, którego część kupujących nie dokończy, a telefon to miejsce, gdzie zdarza się wiele pierwszych otwarć. Nie chodzi o to, że archiwa są złe, a o to, że mają być decyzją, nie domyślnym wyborem. Jeśli dwa osobne pliki mieszczą się w regułach platformy, wyślij dwa osobne pliki.</p>
+
+  <h3>Jaka łączna waga pobrania jest rozsądna?</h3>
+  <p>Na tyle mała, żeby skończyła się na danych mobilnych, a kupujący nie zaczął się zastanawiać, czy nie zawiesiła się. Dla pliku do druku to u większości produktów jednocyfrowe megabajty. Jeśli jesteś znacznie wyżej, przyczyną prawie zawsze jest grafika, a znalezienie jej bije kompresowanie wokół niej.</p>
+
+  <h3>Czy dołączać plik read-me?</h3>
+  <p>Jeden, krótki, a krytyczną linijkę zduplikuj w samym PDF, bo plik tekstowy obok czterech PDF-ów w większości zostaje nieprzeczytany. Krytyczna linijka to skala druku.</p>
+
+  <h3>Czy mogę zablokować dzielenie się linkiem do pobrania?</h3>
+  <p>Sensownie nie, i rzadko stamtąd biorą się straty. Linki platform zwykle są powiązane z zamówieniem, a kto zdecydował się podzielić, podzieli się plikiem, nie linkiem. Wysiłek wydaj na stronę licencji.</p>
+
+  <h3>Kupujący pisze, że plik się nie otwiera. O co spytać najpierw?</h3>
+  <p>Jakie urządzenie i czy rozpakował archiwum. Te dwa pytania rozwiązują większość zgłoszeń „nie otwiera się”, bo typowe odpowiedzi to stary telefon i nierozpakowany ZIP. Następne pytanie to czytnik, bo podgląd w przeglądarce czasem wywala się na pliku, który w aplikacji PDF otwiera się bez problemu.</p>
+
+  <h3>Czy dostarczać A4 i US Letter osobno?</h3>
+  <p>Jeśli limit platformy na liczbę plików pozwala, tak, i oznacz je w nazwie pliku. To najczytelniejsza możliwa odpowiedź na pytanie o format, i oszczędza kupującemu otwierania niewłaściwego. Dlaczego warto dawać oba, jest w <a href="/pl/blog/a4-vs-us-letter-printable-sizes/">A4 czy US Letter</a>.</p>
+
+  <h2>Napraw swoją dostawę</h2>
+
+  <p>Otwórz własne ostatnie zamówienie tak, jak zrobiłby to kupujący, na telefonie, i policz dotknięcia do czytelnej strony. Jeśli jest ich więcej niż dwa, lekiem jest zwykle rozbicie archiwum na osobne pliki albo zmiana nazw tak, żeby miały sens same. Jeśli archiwum jednak jest potrzebne i ma być zamknięte dla konkretnego odbiorcy, wtedy <a href="/pl/archive/protect/">zabezpiecz ZIP</a>, i tylko wtedy. Reszta jest we <a href="/pl/all-tools/">wszystkich narzędziach</a>.</p>

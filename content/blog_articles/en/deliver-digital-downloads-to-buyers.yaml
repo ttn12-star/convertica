@@ -1,0 +1,147 @@
+slug: deliver-digital-downloads-to-buyers
+cover_image: blog/images/cover-deliver-digital-downloads-to-buyers.jpg
+status: published
+publish_on: 2026-09-08
+category_slug: best-practices
+relevant_tool: protect_zip
+title_en: "Delivering a PDF to Buyers Without Support Tickets"
+meta_title_en: "Deliver Digital Downloads Without Support Tickets | Convertica"
+meta_description_en: "Most delivery complaints come from three decisions: one file or a ZIP, how big it is, and what the buyer sees first. Here is how to make all three deliberately."
+meta_keywords_en: "deliver digital downloads, zip or single pdf, digital download support, password protect zip, download link expiry, mobile download digital product, file delivery digital product"
+excerpt_en: "Almost every delivery complaint traces back to three decisions you made without thinking about them: whether to ship one file or an archive, how large the download is, and what the buyer encounters in the first ten seconds. None of them are hard, all of them are cheap to get right, and getting them wrong generates messages forever."
+ai_metadata:
+  topics:
+    - choosing between a single PDF and a ZIP archive
+    - what buyers experience on a phone
+    - download size and platform limits
+    - whether to password-protect an archive
+    - handling re-delivery and expired links
+  entities:
+    - ZIP
+    - PDF
+    - Etsy
+    - Gumroad
+    - Convertica
+  summary: "How to design the delivery of a PDF product so it does not generate support messages: when a single file beats an archive and when it does not, why a ZIP is a real obstacle on a phone, how to keep each file under the platform's per-file limit rather than the bundle total, why password-protecting a paid download usually costs more than it protects, what to name things so they survive extraction, and how to answer the re-delivery request that always arrives."
+  related_terms:
+    - single pdf or zip for buyers
+    - open zip on phone
+    - per file size limit marketplace
+    - password protect zip download
+    - resend digital download
+    - download link expired
+  reading_time_minutes: 8
+  target_audience: "Sellers of PDF digital products deciding how to package and deliver the download, and anyone whose current delivery generates repeated buyer questions."
+content_en: |
+  You can do everything right with a file and still lose the buyer in the last ten seconds. Delivery is the part of a digital product that sellers design by accident: you had four files, so you zipped them, and now a share of your buyers cannot open their purchase on the device they bought it with.
+
+  Three decisions cover almost all of it.
+
+  <h2>Decision 1: one file, or an archive</h2>
+
+  <p>The instinct is to bundle everything. Resist it when you can, because an archive is a real obstacle for a meaningful share of buyers.</p>
+
+  <table>
+    <thead>
+      <tr><th>Ship a single PDF when</th><th>Ship an archive when</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>The product is one thing in one size</td><td>You have several paper sizes or colourways</td></tr>
+      <tr><td>You can stay inside the per-file limit</td><td>You would otherwise exceed the platform's file count</td></tr>
+      <tr><td>Most of your traffic is mobile</td><td>The product is genuinely a set the buyer will sort</td></tr>
+    </tbody>
+  </table>
+
+  <p>If you have two or three files and the platform allows two or three files, upload them separately. The buyer taps the one they want and is done. That is strictly better than making everyone extract an archive to reach the same file.</p>
+
+  <h2>Decision 2: what the phone does</h2>
+
+  <p>A large share of buyers open a purchase on a phone, often within a minute of paying, often standing somewhere. What that person experiences with an archive:</p>
+
+  <ul>
+    <li><strong>Older Android and iOS need a step</strong> to get from a downloaded archive to a readable PDF. Modern versions handle it, but "modern" is doing a lot of work in that sentence, and your buyers are not all on new phones.</li>
+    <li><strong>Extracted files often land in one flat directory</strong>, so your folder structure disappears. If two files are only distinguishable by their folder, they are now indistinguishable.</li>
+    <li><strong>A 40 MB download on mobile data</strong> is a pause, and a pause is where people close the tab and mean to come back.</li>
+  </ul>
+
+  <p>None of this means never use an archive. It means: if you use one, name the files so they survive extraction, and keep the download small enough to finish on a train.</p>
+
+  <h2>Decision 3: size, per file</h2>
+
+  <p>Platform limits are per file, not per bundle, and that distinction decides your packaging. Marketplaces commonly cap each digital file at around 20 MB and the number of files per listing at five, so a bundle of four sizes in three colourways has to become an archive whether you like it or not. Check the current numbers for your platform before you build a bundle around them.</p>
+
+  <p>If you are over the limit, look for the cause before reaching for compression. A text-only PDF is tiny; a 30 MB planner is 30 MB because of a full-page background or a paper texture. Replacing that texture with a flat colour usually cuts the file by an order of magnitude and costs nothing visible on a home printer. Only then use the <a href="/en/pdf-organize/compress/">PDF compressor</a>, which keeps text and vector art at full quality and recompresses images, and print one page before you trust the result.</p>
+
+  <h2>Should you password-protect the archive?</h2>
+
+  <p>You can <a href="/en/archive/protect/">password-protect a ZIP</a>, and for a paid download you usually should not. The arithmetic is unkind: every buyer now needs the password, which means it lives in the listing or the delivery email, which means it protects nothing, and meanwhile a share of buyers will fail to enter it correctly and message you.</p>
+
+  <p>The cases where it does make sense are narrow: a file going to one named client, a pre-release copy to a reviewer, or a bundle you are sending outside the platform to a specific person. Our note on <a href="/en/blog/how-to-password-protect-a-zip-file/">password-protecting a ZIP</a> covers the mechanics, and the wider question of what protection actually achieves is in <a href="/en/blog/stop-buyers-editing-reselling-your-pdf/">what stops buyers editing or reselling a PDF</a>. Short version: for products, the licence page does the work, not the password.</p>
+
+  <h2>What the buyer should see first</h2>
+
+  <p>Assume the buyer extracts everything into a downloads folder and reads nothing. Design for that person:</p>
+
+  <ul>
+    <li><strong>Filenames that state the product and the variant</strong> and nothing else. <code>weekly-planner-A4.pdf</code>, not <code>final_v3.pdf</code>.</li>
+    <li><strong>One short read-me or instructions page</strong>, and only one. If you ship a text file called <code>READ ME FIRST.txt</code> alongside four PDFs, most people will not, so put the important line inside the PDF as well.</li>
+    <li><strong>The print instruction, stated once, plainly.</strong> Print at 100 per cent, actual size, scaling off. This one line prevents more complaints than anything else in this article.</li>
+  </ul>
+
+  <h2>The re-delivery request</h2>
+
+  <p>It always arrives: a buyer who lost the file, changed phones, or hit an expired link. Decide your answer before it happens rather than improvising at eleven at night.</p>
+
+  <ul>
+    <li><strong>Know your platform's link policy.</strong> Some links expire, some have a download count, some are permanent while the account exists. You cannot answer the buyer without knowing which.</li>
+    <li><strong>Keep the exact delivered file, per version.</strong> If you have shipped two versions, you need to know which one that buyer bought. This is where the version marker from your pre-launch check pays off.</li>
+    <li><strong>Say yes and move on.</strong> Re-sending a file costs you nothing and buys goodwill from someone who already paid. Arguing costs a review.</li>
+  </ul>
+
+  <h2>Delivery checklist</h2>
+
+  <table>
+    <thead>
+      <tr><th>Check</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Separate files if the platform allows the count</td><td>Removes the archive step entirely</td></tr>
+      <tr><td>Each file under the per-file limit</td><td>The limit is per file, not per bundle</td></tr>
+      <tr><td>Filenames meaningful after extraction</td><td>Folder structure disappears</td></tr>
+      <tr><td>Download opens on a phone in two taps</td><td>That is where most first opens happen</td></tr>
+      <tr><td>One instructions page, print scale stated</td><td>Prevents the most common complaint</td></tr>
+      <tr><td>No password unless there is a named recipient</td><td>Protects nothing, generates messages</td></tr>
+      <tr><td>You know the link expiry policy</td><td>You will be asked</td></tr>
+      <tr><td>You keep the delivered file per version</td><td>Re-delivery needs the right copy</td></tr>
+    </tbody>
+  </table>
+
+  <p>If you have not yet done the pass over the file and the listing, that comes before this: our <a href="/en/blog/digital-product-pdf-checklist-before-you-publish/">pre-launch checklist</a> is the gate, and <a href="/en/blog/sell-printable-pdf-on-etsy/">preparing a printable PDF to sell</a> covers the file itself.</p>
+
+  <h2>What happens to the file you upload</h2>
+
+  <p>Our tools run on the server, so the file is uploaded. It is deleted as soon as the job finishes, and the download link is yours alone. Nothing is indexed, kept or reused for training. Our note on <a href="/en/blog/is-convertica-safe-pdf-file-security-privacy-explained/">how Convertica handles your files</a> sets out the retention rules.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Is a ZIP really that much friction?</h3>
+  <p>On a desktop, no. On a phone it is an extra step that some buyers will not complete, and phones are where a lot of first opens happen. The point is not that archives are bad, it is that they should be a decision rather than a default. If two separate files fit the platform's rules, ship two separate files.</p>
+
+  <h3>What is a sensible total download size?</h3>
+  <p>Small enough to finish on mobile data without the buyer wondering whether it stalled. For a printable, that is single-digit megabytes for most products. If you are far above that, the cause is almost always an image, and finding it beats compressing around it.</p>
+
+  <h3>Should I include a read-me file?</h3>
+  <p>One, short, and duplicate the critical line inside the PDF itself, because a text file next to four PDFs mostly goes unread. The critical line is the print scale.</p>
+
+  <h3>Can I stop people sharing the download link?</h3>
+  <p>Not meaningfully, and it is rarely where losses come from. Platform links are usually tied to the order, and someone determined to share will share the file rather than the link. Spend the effort on the licence page instead.</p>
+
+  <h3>A buyer says the file will not open. What do I ask first?</h3>
+  <p>Which device, and whether they extracted the archive. Those two questions resolve the large majority of "will not open" reports, because the usual answers are an old phone and an un-extracted ZIP. The next question is which reader, since a browser preview sometimes fails on a file that opens fine in a PDF app.</p>
+
+  <h3>Do I need to deliver both A4 and US Letter separately?</h3>
+  <p>If the platform's file count allows it, yes, and label them in the filename. It is the clearest possible answer to the size question, and it saves the buyer from opening the wrong one. The reasoning behind offering both is in <a href="/en/blog/a4-vs-us-letter-printable-sizes/">A4 or US Letter</a>.</p>
+
+  <h2>Fix your delivery</h2>
+
+  <p>Open your own most recent order the way a buyer would, on a phone, and count the taps to a readable page. If the answer is more than two, the fix is usually to split an archive into separate files or to rename them so they make sense alone. If you do need an archive and it must be locked for a specific recipient, <a href="/en/archive/protect/">protect the ZIP</a>, and only then. Everything else is in <a href="/en/all-tools/">all tools</a>.</p>

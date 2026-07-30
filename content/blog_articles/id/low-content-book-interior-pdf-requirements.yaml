@@ -1,0 +1,138 @@
+slug: low-content-book-interior-pdf-requirements
+title_id: "Isi Buku Low-Content: PDF-nya Harus Seperti Apa Sebelum Diunggah"
+meta_title_id: "Syarat PDF Isi Buku Low-Content | Convertica"
+meta_description_id: "Print on demand menolak file isi karena daftar alasan yang pendek: ukuran halaman salah, margin jilid terlalu tipis, bleed hilang, font tidak ditanam, transparansi hidup."
+meta_keywords_id: "isi buku low content pdf, syarat kdp interior, trim size bleed margin, margin jilid jumlah halaman, tanam font untuk cetak, pdf ditolak print on demand"
+excerpt_id: "Layanan print on demand menolak file isi karena daftar alasan yang mengejutkan pendeknya, dan hampir semuanya mekanis, bukan kreatif. Ukuran halaman yang bukan tepat trim size, margin jilid yang terlalu tipis untuk jumlah halaman, bleed yang hilang atau salah hitung, font yang tidak pernah ditanam, dan transparansi hidup. Ini masing-masingnya, lengkap dengan angkanya."
+ai_metadata:
+  topics:
+    - syarat PDF isi untuk print on demand
+    - trim size, bleed, dan hitungan ukuran halaman
+    - margin jilid yang tumbuh seiring jumlah halaman
+    - menanam font dan meratakan transparansi
+    - memeriksa file isi sebelum unggah
+  entities:
+    - KDP
+    - Amazon
+    - PDF
+    - PDF/A
+    - Print on demand
+    - Convertica
+  summary: "Checklist sebelum unggah untuk isi buku low-content: mengapa ukuran halaman PDF harus tepat sama dengan trim size dan apa yang ditambahkan bleed padanya (0,125 inci di atas, bawah, dan tepi luar), mengapa margin jilid dalam harus tumbuh seiring jumlah halaman dari sekitar 0,375 sampai 0,875 inci, minimum 0,25 inci di tiga tepi lain dan 0,375 saat memakai bleed, mengapa font yang tidak ditanam adalah penolakan diam-diam, mengapa transparansi hidup harus diratakan, mengapa halaman tunggal bukan bentangan, dan cara memverifikasi semuanya di file yang sudah jadi."
+  related_terms:
+    - daftar trim size kdp
+    - bleed 0.125 inci isi buku
+    - hitung margin jilid
+    - halaman tunggal bukan bentangan pdf
+    - flatten transparansi untuk cetak
+    - templat isi jurnal
+  reading_time_minutes: 9
+  target_audience: "Orang yang menerbitkan buku low-content (jurnal, notebook, planner, buku puzzle dan mewarnai) lewat print on demand, yang butuh PDF isinya lolos peninjauan pada percobaan pertama."
+content_id: |
+  Penerbitan low-content itu unik karena bagian kreatifnya sering justru yang paling mudah. Jurnal bergaris itu sebuah grid; buku puzzle itu keluaran skrip. Yang menghentikan orang adalah proses unggahnya, dan pemberitahuan penolakan jarang menjelaskan dirinya dengan baik.
+
+  Kabar baiknya, daftar alasannya pendek, mekanis, dan sama di berbagai layanan cetak. Benarkan lima hal ini dan file lolos. Angka-angka spesifik di bawah mengikuti spesifikasi layanan terbesar pada saat tulisan ini dibuat; selalu cek yang berlaku untuk trim size kamu, karena angka-angka ini memang direvisi.
+
+  <h2>1. Ukuran halaman harus tepat sama dengan trim size</h2>
+
+  <p>Ini penolakan yang paling sering dan paling mudah dihindari. Kalau bukumu 6 kali 9 inci, setiap halaman PDF harus berukuran 6 kali 9 inci. Buku 6 kali 9 yang ditata di halaman US Letter ditolak otomatis, walau isinya duduk di area 6 kali 9 di tengah.</p>
+
+  <p>Yang jadi kerumitan adalah bleed. Kalau ada elemen yang mencapai tepi halaman, kamu butuh bleed, dan bleed mengubah ukuran halaman: tambahkan 0,125 inci di atas, di bawah, dan di tepi luar. Isi 6 kali 9 dengan bleed jadi 6,125 kali 9,25 inci. Perhatikan bahwa tepi dalam tidak mendapat tambahan apa pun, karena tepi itu dijilid, bukan dipotong.</p>
+
+  <p>Kalau isimu cuma garis, titik, atau teks yang berhenti jauh sebelum tepi, kamu tidak butuh bleed sama sekali, dan ukuran halamannya cukup sama dengan trim size. Sebagian besar jurnal dan planner masuk kategori ini, dan itu membuatnya jadi kasus yang mudah.</p>
+
+  <p>Satu batasan jujur yang perlu diketahui: mengubah PDF yang sudah jadi ke trim size buku bukan sesuatu yang bisa dilakukan tool ukuran halaman untukmu. Tool <a href="/id/pdf-edit/page-size/">ubah ukuran halaman PDF</a> kami menangani A4, US Letter, dan Legal, yaitu standar kertas kantor, bukan trim size semacam 6 kali 9 atau 8,5 kali 11 yang diharapkan layanan cetak. Untuk isi buku, tetapkan ukuran halaman di file tempat kamu mendesain. Kalau yang kamu punya cuma PDF jadi dengan ukuran salah, kamu bukan mengonversi, tapi membangun ulang.</p>
+
+  <h2>2. Margin jilid harus tumbuh seiring jumlah halaman</h2>
+
+  <p>Margin dalam, yang menempel ke punggung buku, adalah syarat yang paling sering dilupakan, dan itulah yang menghasilkan buku dengan teks yang hilang ke dalam jilidan.</p>
+
+  <p>Buku yang lebih tebal melengkung lebih besar di punggungnya, jadi lebih banyak memakan tepi dalam. Karena itu syaratnya berskala:</p>
+
+  <table>
+    <thead>
+      <tr><th>Halaman isi</th><th>Margin dalam (jilid) minimum</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>sampai sekitar 150</td><td>0,375 inci</td></tr>
+      <tr><td>sekitar 150 sampai 300</td><td>0,5 inci</td></tr>
+      <tr><td>sekitar 300 sampai 500</td><td>0,625 inci</td></tr>
+      <tr><td>sekitar 500 sampai 700</td><td>0,75 inci</td></tr>
+      <tr><td>lebih dari sekitar 700</td><td>0,875 inci</td></tr>
+    </tbody>
+  </table>
+
+  <p>Tiga tepi lainnya lebih sederhana: minimal 0,25 inci, naik ke 0,375 inci pada halaman yang memakai bleed. Anggap keduanya sebagai batas minimum, bukan target. Jurnal dengan margin luar 0,5 inci terlihat disengaja; yang tepat 0,25 terlihat baru lolos tipis.</p>
+
+  <p>Karena margin jilid berganti sisi, halaman kiri dan kanan bukan tata letak yang sama. Kalau aplikasi desainmu punya opsi margin cermin atau halaman berhadapan, pakailah. Membangun setiap halaman identik adalah cara pasti mendapat buku yang halaman genapnya baik dan halaman ganjilnya tidak terbaca di dekat punggung.</p>
+
+  <h2>3. Font harus ditanam</h2>
+
+  <p>Isi buku dengan font yang tidak ditanam entah ditolak, atau lebih buruk, tercetak dengan huruf gantian yang menyusun ulang seluruh spasi yang kamu atur hati-hati. Ini kegagalan yang sunyi: di komputermu filenya terlihat benar karena fontnya terpasang di sana.</p>
+
+  <p>Setiap dialog ekspor yang serius punya opsi menanam font, dan tool berbasis browser melakukannya otomatis. Verifikasi, jangan berasumsi: buka PDF-nya, lihat properti dokumen, cari tab font, dan pastikan setiap entri bertanda Embedded atau Embedded Subset. Kalau ada font yang menolak ditanam karena lisensinya, ubah teks itu jadi outline.</p>
+
+  <h2>4. Transparansi harus diratakan</h2>
+
+  <p>Transparansi hidup, bayangan, mode blending, dan layer setengah tembus adalah sumber kejutan yang umum di tahap cetak: efeknya entah hilang, entah berubah jadi kotak abu-abu. Layanan cetak meminta itu diratakan, dan lebih aman meratakannya sebelum unggah daripada berharap konverternya menebak benar.</p>
+
+  <p><a href="/id/pdf-edit/flatten/">Flatten PDF</a> melebur layer dan elemen interaktif jadi isi halaman yang statis, sekaligus menghapus kolom formulir dan anotasi yang tidak kamu inginkan di isi buku cetak. Dia tidak me-resample gambar, jadi resolusi cetak tidak terpengaruh. Untuk keluaran yang lebih ketat dan setara arsip, <a href="/id/pdf-to-pdfa/">konversi ke PDF/A</a> memang mewajibkan font tertanam dan isi yang mandiri, dan itu pemeriksaan tambahan yang berguna bahkan saat layanannya tidak meminta PDF/A secara khusus. Catatan kami soal <a href="/id/blog/what-is-pdf-a-and-how-to-convert/">apa itu PDF/A</a> menjelaskan apa yang dijamin standar itu dan apa yang tidak.</p>
+
+  <h2>5. Halaman tunggal, bukan bentangan</h2>
+
+  <p>Ekspor satu halaman per halaman. Bentangan dua halaman yang diekspor jadi satu halaman lebar dibaca sebagai satu halaman raksasa berukuran salah dan ditolak. Ini menjebak orang yang mendesain di aplikasi tata letak dengan halaman berhadapan terlihat di layar: tampilannya bentangan, ekspornya harus tunggal.</p>
+
+  <p>Hal yang sama berlaku untuk tanda potong dan tanda register. Itu milik pekerjaan cetak komersial, bukan unggahan print on demand, dan layanan yang memotong sesuai tandanya sendiri akan dengan senang hati mencetak tandamu sebagai isi.</p>
+
+  <h2>Nomor halaman dan kapan tidak perlu</h2>
+
+  <p>Buku low-content terbelah di sini. Jurnal bergaris biasanya sebaiknya tanpa nomor halaman, karena pembeli boleh memakai halamannya dalam urutan apa pun dan nomor jadi kebisingan visual. Buku puzzle, buku latihan, dan apa pun yang punya daftar isi memerlukannya.</p>
+
+  <p>Kalau kamu menambahkannya, lakukan setelah urutan halaman final, lewat <a href="/id/pdf-edit/add-page-numbers/">tambah nomor halaman</a>, dan di dalam margin aman di atas. Nomor yang duduk 0,2 inci dari tepi potong adalah yang pertama hilang. Ingat juga posisinya harus bergantian kalau kamu ingin nomor di tepi luar setiap halaman, dan <a href="/id/blog/add-page-numbers-to-pdf/">pembahasan penomoran</a> kami mencakup pergeseran untuk melewati halaman awal.</p>
+
+  <h2>Pemeriksaan sebelum unggah</h2>
+
+  <table>
+    <thead>
+      <tr><th>Yang diperiksa</th><th>Caranya</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Setiap halaman tepat trim size (plus bleed kalau dipakai)</td><td>Buka PDF dan baca dimensinya; cek halaman pertama, tengah, dan terakhir</td></tr>
+      <tr><td>Margin jilid sesuai jumlah halaman</td><td>Bandingkan dengan tabel di atas, cek halaman kiri dan kanan terpisah</td></tr>
+      <tr><td>Margin lain minimal 0,25 inci, atau 0,375 dengan bleed</td><td>Ukur dari tepi potong, bukan dari tepi bleed</td></tr>
+      <tr><td>Font tertanam</td><td>Properti dokumen, tab font, semuanya Embedded</td></tr>
+      <tr><td>Tidak ada transparansi hidup, layer, kolom formulir</td><td>Flatten, lalu pastikan klik tidak memilih apa pun</td></tr>
+      <tr><td>Halaman tunggal, tanpa bentangan dan tanda potong</td><td>Gulir filenya: setiap halaman adalah satu halaman buku</td></tr>
+      <tr><td>Jumlah halaman genap dan memenuhi minimum layanan</td><td>Sebagian besar layanan mau minimal 24 halaman isi dan total genap</td></tr>
+    </tbody>
+  </table>
+
+  <p>Baris terakhir menjebak lebih banyak orang daripada seharusnya. Cetak memerlukan jumlah halaman genap karena halaman datang per lembar, dan layanan menetapkan minimum yang di bawahnya buku tidak bisa dijilid. Tambahkan halaman kosong, jangan memotong isi.</p>
+
+  <h2>Apa yang terjadi pada file yang kamu unggah</h2>
+
+  <p>Tool kami berjalan di server, jadi filenya diunggah. File dihapus begitu prosesnya selesai, dan tautan unduhannya hanya milikmu. Tidak ada yang diindeks, disimpan, atau dipakai untuk pelatihan. Catatan kami soal <a href="/id/blog/is-convertica-safe-pdf-file-security-privacy-explained/">bagaimana Convertica memperlakukan filemu</a> menjelaskan aturan penyimpanannya kalau manuskripnya belum diterbitkan.</p>
+
+  <h2>Pertanyaan yang sering muncul</h2>
+
+  <h3>Apakah jurnal bergaris butuh bleed?</h3>
+  <p>Hampir tidak pernah. Bleed ada supaya karya yang mencapai tepi selamat dari pemotongan, dan jurnal yang garisnya berhenti jauh di dalam margin tidak punya apa pun di tepi untuk dilindungi. Lewati bleed, biarkan ukuran halaman sama dengan trim size, dan kamu sudah menghapus satu kelas kesalahan hitung.</p>
+
+  <h3>Bisakah saya mengubah isi A4 jadi buku 6 kali 9?</h3>
+  <p>Tidak dengan cara yang menghasilkan buku bagus. Proporsinya berbeda, jadi ada yang harus diskalakan atau dipotong, dan margin yang kamu atur hati-hati berhenti memenuhi syarat margin jilid. Bangun ulang isinya pada trim size di aplikasi desainmu. Ini satu-satunya tempat di mana menata ulang benar-benar lebih cepat daripada bergelut dengan konversi.</p>
+
+  <h3>Minimum jumlah halaman berapa yang perlu saya rencanakan?</h3>
+  <p>Sebagian besar layanan print on demand mau minimal 24 halaman isi, dan semuanya mau total genap. Untuk buku low-content itu mudah dicapai, tapi cek layanan spesifiknya sebelum kamu berhenti di 100 halaman puzzle hasil generate, karena angka bulat yang kamu pilih bisa jadi satu halaman di bawah ambang.</p>
+
+  <h3>Apakah isinya harus PDF/A?</h3>
+  <p>Biasanya tidak diwajibkan, kadang berguna. Nilai melewatkan isi buku ke <a href="/id/pdf-to-pdfa/">konversi PDF/A</a> adalah standarnya melarang tepat hal-hal yang menimbulkan masalah cetak: font yang tidak ditanam dan isi yang bergantung pada apa pun di luar file. Anggap itu langkah validasi, bukan syarat.</p>
+
+  <h3>Kenapa file saya ditolak padahal kelihatan baik?</h3>
+  <p>Berdasarkan urutan kemungkinan: ukuran halamannya bukan tepat trim size, margin jilidnya terlalu tipis untuk jumlah halaman, fontnya tidak ditanam, atau kamu mengekspor bentangan. Keempatnya kelihatan baik di layar, dan justru karena itu mereka jadi empat yang paling umum. Cek dalam urutan itu.</p>
+
+  <h3>Perlu menaruh nama toko atau halaman lisensi di isi buku?</h3>
+  <p>Halaman hak cipta itu normal dan diharapkan ada di buku, berbeda dari unduhan printable di mana halaman lisensi bekerja lebih keras. Simpan di halaman-halaman awal, dan jangan menambah footer di setiap halaman: buku cetak dengan URL tokomu di seluruh 120 halaman terbaca seperti templat, dan itu justru kesan yang ingin dihindari penerbit low-content.</p>
+
+  <h2>Siapkan isinya</h2>
+
+  <p>Tetapkan ukuran halaman di aplikasi desain sebelum menggambar apa pun, aktifkan margin cermin, lalu <a href="/id/pdf-edit/flatten/">flatten</a> hasil ekspornya dan cek tab font. Kalau ingin validasi lebih ketat, lewatkan ke <a href="/id/pdf-to-pdfa/">PDF/A</a> dan lihat apakah dia protes. Kalau kamu juga menjual printable di samping buku, panduan kami soal <a href="/id/blog/sell-printable-pdf-on-etsy/">menyiapkan PDF printable untuk dijual</a> dan catatan soal <a href="/id/blog/stop-buyers-editing-reselling-your-pdf/">apa yang sebenarnya dicapai proteksi file</a> menutup sisi itu. Sisanya ada di <a href="/id/all-tools/">semua tool</a>.</p>
