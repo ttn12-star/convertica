@@ -1,0 +1,138 @@
+slug: low-content-book-interior-pdf-requirements
+title_pl: "Wnętrze książki low-content: jak musi wyglądać PDF przed wysłaniem"
+meta_title_pl: "Wymagania wnętrza książki low-content | Convertica"
+meta_description_pl: "Print on demand odrzuca wnętrza z krótkiej listy powodów: zły format strony, cienki margines przy grzbiecie, brak spadów, nieosadzone czcionki, żywa przezroczystość."
+meta_keywords_pl: "wnętrze książki low content pdf, wymagania kdp wnętrze, trim size spady marginesy, margines grzbietowy liczba stron, osadzić czcionki do druku, odrzucony pdf print on demand"
+excerpt_pl: "Serwisy print on demand odrzucają pliki wnętrza z zaskakująco krótkiej listy powodów, i niemal wszystkie są mechaniczne, nie twórcze. Format strony niebędący dokładnie trim size, margines grzbietowy zbyt cienki dla liczby stron, brakujące albo błędne spady, czcionki, które nigdy nie zostały osadzone, i żywa przezroczystość. Oto każdy z nich, z liczbami."
+ai_metadata:
+  topics:
+    - wymagania PDF wnętrza dla print on demand
+    - trim size, spady i arytmetyka formatu strony
+    - margines grzbietowy rosnący z liczbą stron
+    - osadzanie czcionek i spłaszczanie przezroczystości
+    - sprawdzenie wnętrza przed wysłaniem
+  entities:
+    - KDP
+    - Amazon
+    - PDF
+    - PDF/A
+    - Print on demand
+    - Convertica
+  summary: "Lista kontrolna przed wysłaniem wnętrza książki low-content: dlaczego format strony PDF musi dokładnie równać się trim size i co dodają do niego spady (0,125 cala na górze, dole i krawędzi zewnętrznej), dlaczego wewnętrzny margines grzbietowy musi rosnąć z liczbą stron z około 0,375 do 0,875 cala, minimum 0,25 cala na pozostałych trzech krawędziach i 0,375 przy spadach, dlaczego nieosadzone czcionki to ciche odrzucenie, dlaczego żywą przezroczystość trzeba spłaszczyć, dlaczego pojedyncze strony a nie rozkładówki, i jak to wszystko sprawdzić na gotowym pliku."
+  related_terms:
+    - lista trim size kdp
+    - spad 0.125 cala wnętrze
+    - obliczenie marginesu grzbietowego
+    - pojedyncze strony nie rozkładówki pdf
+    - spłaszczyć przezroczystość do druku
+    - szablon wnętrza notesu
+  reading_time_minutes: 9
+  target_audience: "Osoby publikujące książki low-content (notesy, dzienniki, planery, książki z łamigłówkami i kolorowanki) przez print on demand, które potrzebują, żeby PDF wnętrza przeszedł weryfikację za pierwszym razem."
+content_pl: |
+  Publikowanie low-content jest niezwykłe tym, że część twórcza często okazuje się najprostsza. Notes w linie to siatka, książka z łamigłówkami to wynik skryptu. Ludzie potykają się na wysłaniu, a powiadomienie o odrzuceniu rzadko tłumaczy się zrozumiale.
+
+  Dobra wiadomość: lista powodów jest krótka, mechaniczna i taka sama w różnych serwisach druku. Zrób dobrze te pięć rzeczy i plik przejdzie. Konkretne liczby poniżej odpowiadają specyfikacji największego serwisu na moment pisania; zawsze sprawdzaj aktualną dla swojego trim size, bo bywają zmieniane.
+
+  <h2>1. Format strony musi dokładnie równać się trim size</h2>
+
+  <p>To najczęstszy powód odrzucenia i najłatwiejszy do usunięcia. Jeśli książka ma 6 na 9 cali, każda strona PDF musi mieć 6 na 9 cali. Książka 6 na 9 złożona na stronach US Letter jest odrzucana automatycznie, nawet jeśli treść siedzi w obszarze 6 na 9 na środku.</p>
+
+  <p>Niuansem są spady. Jeśli jakikolwiek element dochodzi do krawędzi strony, spady są potrzebne, a spady zmieniają format strony: dodaj 0,125 cala u góry, u dołu i na krawędzi zewnętrznej. Wnętrze 6 na 9 ze spadami staje się 6,125 na 9,25 cala. Zwróć uwagę, że krawędź wewnętrzna nie dostaje nic, bo ta krawędź jest zszywana, nie obcinana.</p>
+
+  <p>Jeśli wnętrze to zwykłe linie, kropki albo tekst kończący się daleko od krawędzi, spady nie są potrzebne wcale, a format strony to po prostu trim size. Większość notesów i planerów trafia tutaj, i to czyni je łatwym przypadkiem.</p>
+
+  <p>Uczciwe ograniczenie warte znajomości: przeliczenie gotowego PDF na książkowy trim size nie jest czymś, co narzędzie do zmiany formatu zrobi za ciebie. Nasze <a href="/pl/pdf-edit/page-size/">narzędzie zmiany rozmiaru strony</a> obsługuje A4, US Letter i Legal, czyli biurowe standardy papieru, a nie trim size w rodzaju 6 na 9 czy 8,5 na 11, których oczekuje drukarnia. Do wnętrza książki ustaw format strony w pliku, w którym projektowałeś. Jeśli masz tylko gotowy PDF w złym formacie, nie konwertujesz, a przebudowujesz.</p>
+
+  <h2>2. Margines grzbietowy musi rosnąć z liczbą stron</h2>
+
+  <p>Margines wewnętrzny, ten przy grzbiecie, to wymóg, o którym się zapomina, i właśnie on daje książkę, w której tekst wchodzi w oprawę.</p>
+
+  <p>Grubsze książki mocniej wyginają się przy grzbiecie, więc zjadają więcej krawędzi wewnętrznej. Wymóg zatem skaluje się:</p>
+
+  <table>
+    <thead>
+      <tr><th>Stron wnętrza</th><th>Minimalny margines wewnętrzny (grzbietowy)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>do około 150</td><td>0,375 cala</td></tr>
+      <tr><td>około 150–300</td><td>0,5 cala</td></tr>
+      <tr><td>około 300–500</td><td>0,625 cala</td></tr>
+      <tr><td>około 500–700</td><td>0,75 cala</td></tr>
+      <tr><td>ponad około 700</td><td>0,875 cala</td></tr>
+    </tbody>
+  </table>
+
+  <p>Pozostałe trzy krawędzie są prostsze: minimum 0,25 cala, a 0,375 cala na stronach ze spadami. Traktuj obie liczby jako minima, nie jako cel. Notes z zewnętrznymi marginesami 0,5 cala wygląda przemyślanie; ten z dokładnie 0,25 wygląda, jakby ledwo przeszedł.</p>
+
+  <p>Ponieważ grzbiet zmienia stronę, lewa i prawa strona to nie ten sam układ. Jeśli twój program ma opcję marginesów lustrzanych albo widoku rozkładówek, użyj jej. Budowanie każdej strony identycznie to pewny sposób na książkę, w której strony parzyste są w porządku, a nieparzyste nieczytelne przy grzbiecie.</p>
+
+  <h2>3. Czcionki muszą być osadzone</h2>
+
+  <p>Wnętrze z nieosadzonymi czcionkami albo zostaje odrzucone, albo, co gorsza, drukuje się z podmienionym krojem, który przelewa całe twoje starannie ustawione światło. To ciche niepowodzenie: na twojej maszynie plik wygląda poprawnie, bo czcionka jest tam zainstalowana.</p>
+
+  <p>Każde poważne okno eksportu ma opcję osadzania czcionek, a narzędzia przeglądarkowe robią to same. Sprawdzaj, nie zakładaj: otwórz PDF, zajrzyj we właściwości dokumentu, znajdź zakładkę czcionek i potwierdź, że przy każdej stoi „Osadzona” albo „Osadzony podzbiór”. Jeśli czcionka nie chce się osadzić z powodu licencji, zamień ten tekst na krzywe.</p>
+
+  <h2>4. Przezroczystość trzeba spłaszczyć</h2>
+
+  <p>Żywa przezroczystość, cienie, tryby mieszania i półprzezroczyste warstwy, to częste źródło niespodzianek na etapie druku: efekt albo znika, albo zamienia się w szary prostokąt. Drukarnie proszą o jej spłaszczenie, a bezpieczniej spłaszczyć przed wysłaniem niż liczyć, że konwerter zgadnie.</p>
+
+  <p><a href="/pl/pdf-edit/flatten/">Spłaszczenie PDF</a> scala warstwy i elementy interaktywne w statyczną treść strony, usuwając przy okazji pola formularzy i komentarze, którym w drukowanym wnętrzu nie ma miejsca. Nie przelicza grafik, więc rozdzielczość druku nie cierpi. Dla surowszego, archiwalnego wyniku <a href="/pl/pdf-to-pdfa/">konwersja do PDF/A</a> z założenia wymaga osadzonych czcionek i samowystarczalnej treści, i to przydatna kontrola nawet wtedy, gdy serwis nie wymaga PDF/A wprost. Nasza notka o tym, <a href="/pl/blog/what-is-pdf-a-and-how-to-convert/">czym jest PDF/A</a>, wyjaśnia, co standard gwarantuje, a czego nie.</p>
+
+  <h2>5. Pojedyncze strony, nie rozkładówki</h2>
+
+  <p>Eksportuj po jednej stronie na stronę. Rozkładówka z dwóch stron wyeksportowana jako jedna szeroka jest czytana jako jedna ogromna strona w złym formacie i odrzucana. Łapie to osoby projektujące w programie z widocznymi rozkładówkami: widok to rozkładówki, eksport musi być pojedynczy.</p>
+
+  <p>To samo dotyczy znaczników cięcia i pasków pasowania. Należą do druku przemysłowego, nie do wysyłki print on demand, a serwis, który obcina po swoich znacznikach, chętnie wydrukuje twoje jako treść.</p>
+
+  <h2>Numery stron i kiedy bez nich</h2>
+
+  <p>Książki low-content dzielą się tutaj. Notesowi w linie numery zwykle nie są potrzebne, bo kupujący może używać stron w dowolnej kolejności, a numer to szum wizualny. Książce z łamigłówkami, zeszytowi ćwiczeń i wszystkiemu, co ma spis treści, są potrzebne.</p>
+
+  <p>Jeśli dodajesz, zrób to po ustaleniu ostatecznej kolejności stron, przez <a href="/pl/pdf-edit/add-page-numbers/">dodanie numerów stron</a>, i w obrębie bezpiecznych marginesów powyżej. Numer 0,2 cala od krawędzi cięcia znika pierwszy. Pamiętaj też, że pozycja musi się zmieniać, jeśli chcesz numery na zewnętrznej krawędzi każdej strony, a nasze <a href="/pl/blog/add-page-numbers-to-pdf/">omówienie numeracji</a> pokazuje przesunięcia do pominięcia stron wstępnych.</p>
+
+  <h2>Kontrola przed wysłaniem</h2>
+
+  <table>
+    <thead>
+      <tr><th>Co sprawdzić</th><th>Jak</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Każda strona dokładnie równa trim size (plus spady, jeśli są)</td><td>Otworzyć PDF i odczytać wymiary; sprawdzić pierwszą, środkową i ostatnią</td></tr>
+      <tr><td>Margines grzbietowy odpowiada liczbie stron</td><td>Porównać z tabelą powyżej, sprawdzając lewą i prawą stronę osobno</td></tr>
+      <tr><td>Pozostałe marginesy min. 0,25 cala, albo 0,375 ze spadami</td><td>Mierzyć od krawędzi cięcia, nie od krawędzi spadu</td></tr>
+      <tr><td>Czcionki osadzone</td><td>Właściwości dokumentu, zakładka czcionek, wszędzie „Osadzona”</td></tr>
+      <tr><td>Brak żywej przezroczystości, warstw, pól formularzy</td><td>Spłaszczyć, potem upewnić się, że klik nic nie zaznacza</td></tr>
+      <tr><td>Pojedyncze strony, bez rozkładówek i znaczników cięcia</td><td>Przewinąć plik: każda strona to jedna strona książki</td></tr>
+      <tr><td>Liczba stron parzysta i nie mniejsza od minimum serwisu</td><td>Większość serwisów chce minimum 24 strony wnętrza i parzystą sumę</td></tr>
+    </tbody>
+  </table>
+
+  <p>Ostatni wiersz łapie więcej osób, niż powinien. Druk wymaga parzystej liczby stron, bo strony idą arkuszami, a serwisy ustawiają minimum, poniżej którego książki nie da się oprawić. Dodaj pustą stronę, nie tnij treści.</p>
+
+  <h2>Co dzieje się z plikiem, który wysyłasz</h2>
+
+  <p>Nasze narzędzia działają na serwerze, więc plik jest wysyłany. Zostaje usunięty zaraz po zakończeniu zadania, a link do pobrania należy tylko do ciebie. Nic nie jest indeksowane, przechowywane ani używane do trenowania. Nasza notka o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z plikami</a>, opisuje zasady przechowywania, jeśli rękopis jest niewydany.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Czy notes w linie potrzebuje spadów?</h3>
+  <p>Prawie nigdy. Spady istnieją, żeby grafika dochodząca do krawędzi przetrwała obcięcie, a notes, którego linie kończą się daleko w marginesach, nie ma przy krawędzi czego chronić. Pomiń spady, zostaw format strony równy trim size, i usunąłeś całą klasę błędów arytmetycznych.</p>
+
+  <h3>Czy mogę przeliczyć wnętrze A4 na książkę 6 na 9?</h3>
+  <p>Nie w sposób dający dobrą książkę. Proporcje są różne, więc coś trzeba przeskalować albo obciąć, a twoje starannie ustawione marginesy przestaną odpowiadać wymogowi grzbietowemu. Przebuduj wnętrze w trim size w programie graficznym. To jedno z niewielu miejsc, gdzie złożenie od nowa jest naprawdę szybsze niż walka z konwersją.</p>
+
+  <h3>Na jakie minimum stron się nastawić?</h3>
+  <p>Większość serwisów print on demand chce minimum 24 strony wnętrza, a wszystkie chcą parzystej sumy. Dla książek low-content to łatwe, ale sprawdź konkretny serwis, zanim zatrzymasz się na 100 stronach wygenerowanej łamigłówki, bo okrągła liczba, którą wybrałeś, może być o jedną stronę poniżej progu.</p>
+
+  <h3>Czy wnętrze musi być PDF/A?</h3>
+  <p>Zwykle nie musi, czasem się przydaje. Wartość przepuszczenia wnętrza przez <a href="/pl/pdf-to-pdfa/">konwersję do PDF/A</a> polega na tym, że standard zabrania dokładnie tego, co powoduje problemy na druku: nieosadzonych czcionek i treści zależnej od czegokolwiek poza plikiem. Traktuj to jako krok weryfikacji, nie jako wymóg.</p>
+
+  <h3>Dlaczego plik odrzucono, jeśli wygląda dobrze?</h3>
+  <p>W kolejności prawdopodobieństwa: format strony nie równa się dokładnie trim size, grzbiet jest zbyt cienki dla liczby stron, czcionki nie są osadzone, albo wyeksportowałeś rozkładówki. Wszystkie cztery wyglądają dobrze na ekranie, i właśnie dlatego są tą typową czwórką. Sprawdzaj w tej kolejności.</p>
+
+  <h3>Wstawiać nazwę sklepu albo stronę licencji do wnętrza książki?</h3>
+  <p>Strona z prawami autorskimi w książce jest normalna i oczekiwana, w odróżnieniu od pobieranego pliku do druku, gdzie strona licencji robi więcej roboty. Trzymaj ją w stronach wstępnych i nie dodawaj stopki na każdej: drukowana książka z adresem sklepu na wszystkich 120 stronach czyta się jak szablon, a to dokładnie to wrażenie, którego wydawca low-content chce uniknąć.</p>
+
+  <h2>Przygotuj wnętrze</h2>
+
+  <p>Ustaw format strony w programie graficznym przed pierwszą kreską, włącz marginesy lustrzane, potem <a href="/pl/pdf-edit/flatten/">spłaszcz</a> eksport i sprawdź zakładkę czcionek. Jeśli chcesz surowszej weryfikacji, przepuść plik przez <a href="/pl/pdf-to-pdfa/">PDF/A</a> i zobacz, czy nie zaprotestuje. Jeśli sprzedajesz też pliki do druku obok książek, nasz przewodnik <a href="/pl/blog/sell-printable-pdf-on-etsy/">jak przygotować PDF do druku na sprzedaż</a> i notka o tym, <a href="/pl/blog/stop-buyers-editing-reselling-your-pdf/">co naprawdę daje ochrona pliku</a>, zamykają tę stronę. Reszta jest we <a href="/pl/all-tools/">wszystkich narzędziach</a>.</p>

@@ -1,0 +1,142 @@
+slug: deliver-digital-downloads-to-buyers
+title_es: "Entregar un PDF al comprador sin generar mensajes de soporte"
+meta_title_es: "Entregar descargas digitales sin soporte | Convertica"
+meta_description_es: "Casi todas las quejas de entrega vienen de tres decisiones: un archivo o un ZIP, cuánto pesa y qué ve el comprador primero. Cómo tomar las tres a propósito."
+meta_keywords_es: "entregar descargas digitales, un pdf o zip, contraseña zip, caducidad del enlace, descarga en el móvil, entrega producto digital"
+excerpt_es: "Casi cualquier queja de entrega se remonta a tres decisiones que tomaste sin pensarlas: enviar un archivo o un comprimido, cuánto pesa la descarga y qué encuentra el comprador en los primeros diez segundos. Ninguna es difícil, las tres son baratas de acertar, y equivocarse en ellas genera mensajes para siempre."
+ai_metadata:
+  topics:
+    - elegir entre un solo PDF y un archivo comprimido
+    - qué experimenta el comprador en el móvil
+    - peso de la descarga y límites de la plataforma
+    - si conviene proteger el comprimido con contraseña
+    - reenvíos y enlaces caducados
+  entities:
+    - ZIP
+    - PDF
+    - Etsy
+    - Gumroad
+    - Convertica
+  summary: "Cómo diseñar la entrega de un producto PDF para que no genere mensajes de soporte: cuándo un solo archivo gana al comprimido y cuándo no, por qué un ZIP es un obstáculo real en el móvil, cómo mantener cada archivo bajo el límite por archivo de la plataforma en lugar del total del paquete, por qué poner contraseña a una descarga de pago suele costar más de lo que protege, cómo nombrar las cosas para que sobrevivan a la extracción, y cómo responder a la petición de reenvío que siempre llega."
+  related_terms:
+    - un pdf o zip para el comprador
+    - abrir zip en el móvil
+    - límite por archivo marketplace
+    - contraseña zip descarga
+    - reenviar descarga digital
+    - enlace de descarga caducado
+  reading_time_minutes: 8
+  target_audience: "Quien vende productos PDF y está decidiendo cómo empaquetar y entregar la descarga, y cualquiera cuya entrega actual genere preguntas repetidas de compradores."
+content_es: |
+  Puedes hacerlo todo bien con un archivo y aun así perder al comprador en los últimos diez segundos. La entrega es la parte de un producto digital que los vendedores diseñan por accidente: tenías cuatro archivos, así que los comprimiste, y ahora una parte de tus compradores no puede abrir su compra en el dispositivo con el que la pagó.
+
+  Tres decisiones cubren casi todo.
+
+  <h2>Decisión 1: un archivo o un comprimido</h2>
+
+  <p>El instinto es empaquetar todo. Resístelo cuando puedas, porque un comprimido es un obstáculo real para una parte significativa de los compradores.</p>
+
+  <table>
+    <thead>
+      <tr><th>Un solo PDF cuando</th><th>Un comprimido cuando</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>El producto es una cosa en un tamaño</td><td>Tienes varios tamaños de papel o variantes de color</td></tr>
+      <tr><td>Cabes dentro del límite por archivo</td><td>Si no, superarías el número de archivos de la plataforma</td></tr>
+      <tr><td>La mayoría de tu tráfico es móvil</td><td>El producto es de verdad un conjunto que el comprador ordenará</td></tr>
+    </tbody>
+  </table>
+
+  <p>Si tienes dos o tres archivos y la plataforma permite dos o tres, súbelos por separado. El comprador toca el que quiere y ya está. Eso es estrictamente mejor que obligar a todos a extraer un comprimido para llegar al mismo archivo.</p>
+
+  <h2>Decisión 2: qué hace el móvil</h2>
+
+  <p>Buena parte de los compradores abre la compra en el móvil, muchas veces en el minuto siguiente al pago, muchas veces de pie en algún sitio. Lo que esa persona vive con un comprimido:</p>
+
+  <ul>
+    <li><strong>Android e iOS antiguos necesitan un paso extra</strong> para pasar de un comprimido descargado a un PDF legible. Las versiones modernas lo manejan, pero «modernas» está cargando mucho en esa frase, y no todos tus compradores tienen móviles nuevos.</li>
+    <li><strong>Los archivos extraídos suelen caer en un único directorio plano</strong>, así que tu estructura de carpetas desaparece. Si dos archivos solo se distinguían por su carpeta, ya no se distinguen.</li>
+    <li><strong>Una descarga de 40 MB con datos móviles</strong> es una pausa, y una pausa es donde la gente cierra la pestaña con intención de volver.</li>
+  </ul>
+
+  <p>Nada de esto significa no usar nunca un comprimido. Significa: si lo usas, nombra los archivos para que sobrevivan a la extracción, y mantén la descarga lo bastante pequeña para que termine en un trayecto de tren.</p>
+
+  <h2>Decisión 3: el peso, por archivo</h2>
+
+  <p>Los límites de las plataformas son por archivo, no por paquete, y esa distinción decide tu empaquetado. Los marketplaces suelen limitar cada archivo digital a unos 20 MB y el número de archivos por anuncio a cinco, así que un lote de cuatro tamaños en tres variantes de color tiene que convertirse en un comprimido te guste o no. Consulta las cifras vigentes de tu plataforma antes de construir un lote alrededor de ellas.</p>
+
+  <p>Si te pasas del límite, busca la causa antes de recurrir a la compresión. Un PDF de solo texto pesa nada; un planificador de 30 MB pesa eso por un fondo a página completa o una textura de papel. Cambiar esa textura por un color plano suele reducir el archivo un orden de magnitud y no cuesta nada visible en una impresora doméstica. Solo entonces usa el <a href="/es/pdf-organize/compress/">compresor de PDF</a>, que mantiene texto y vectores a plena calidad y recomprime imágenes, e imprime una página antes de fiarte del resultado.</p>
+
+  <h2>¿Poner contraseña al comprimido?</h2>
+
+  <p>Puedes <a href="/es/archive/protect/">proteger un ZIP con contraseña</a>, y para una descarga de pago normalmente no deberías. La aritmética es cruel: ahora cada comprador necesita la contraseña, lo que significa que vive en la descripción o en el correo de entrega, lo que significa que no protege nada, y mientras tanto una parte de los compradores no logrará introducirla bien y te escribirá.</p>
+
+  <p>Los casos en que sí tiene sentido son estrechos: un archivo que va a un cliente concreto, una copia previa al lanzamiento para un reseñador, o un lote que envías fuera de la plataforma a una persona determinada. Nuestra nota sobre <a href="/es/blog/how-to-password-protect-a-zip-file/">proteger un ZIP con contraseña</a> cubre la mecánica, y la pregunta más amplia de qué consigue realmente la protección está en <a href="/es/blog/stop-buyers-editing-reselling-your-pdf/">qué impide que editen o revendan tu PDF</a>. En corto: en productos trabaja la página de licencia, no la contraseña.</p>
+
+  <h2>Qué debe ver el comprador primero</h2>
+
+  <p>Supón que el comprador extrae todo en una carpeta de descargas y no lee nada. Diseña para esa persona:</p>
+
+  <ul>
+    <li><strong>Nombres de archivo que digan el producto y la variante</strong> y nada más. <code>planificador-semanal-A4.pdf</code>, no <code>final_v3.pdf</code>.</li>
+    <li><strong>Una página corta de instrucciones</strong>, y solo una. Si metes un archivo de texto llamado <code>LÉEME PRIMERO.txt</code> junto a cuatro PDF, la mayoría no lo hará, así que duplica la línea importante dentro del propio PDF.</li>
+    <li><strong>La instrucción de impresión, dicha una vez y llana.</strong> Imprimir al 100 por cien, tamaño real, escalado desactivado. Esa única línea evita más quejas que nada más en este artículo.</li>
+  </ul>
+
+  <h2>La petición de reenvío</h2>
+
+  <p>Siempre llega: un comprador que perdió el archivo, cambió de móvil o se topó con un enlace caducado. Decide tu respuesta antes de que pase, en lugar de improvisar a las once de la noche.</p>
+
+  <ul>
+    <li><strong>Conoce la política de enlaces de tu plataforma.</strong> Algunos caducan, otros tienen un contador de descargas, otros son permanentes mientras exista la cuenta. No puedes responder al comprador sin saber cuál es.</li>
+    <li><strong>Guarda el archivo entregado exacto, por versión.</strong> Si has enviado dos versiones, necesitas saber cuál compró ese comprador. Aquí es donde se paga la marca de versión de tu comprobación previa.</li>
+    <li><strong>Di sí y sigue adelante.</strong> Reenviar un archivo no te cuesta nada y compra buena voluntad de alguien que ya pagó. Discutir cuesta una reseña.</li>
+  </ul>
+
+  <h2>Lista de entrega</h2>
+
+  <table>
+    <thead>
+      <tr><th>Comprobación</th><th>Por qué</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Archivos separados si la plataforma permite el número</td><td>Elimina el paso del comprimido por completo</td></tr>
+      <tr><td>Cada archivo bajo el límite por archivo</td><td>El límite es por archivo, no por paquete</td></tr>
+      <tr><td>Nombres con sentido después de extraer</td><td>La estructura de carpetas desaparece</td></tr>
+      <tr><td>La descarga se abre en el móvil en dos toques</td><td>Ahí ocurren la mayoría de las primeras aperturas</td></tr>
+      <tr><td>Una página de instrucciones, escala de impresión indicada</td><td>Evita la queja más común</td></tr>
+      <tr><td>Sin contraseña salvo destinatario concreto</td><td>No protege nada y genera mensajes</td></tr>
+      <tr><td>Conoces la política de caducidad del enlace</td><td>Te lo van a preguntar</td></tr>
+      <tr><td>Guardas el archivo entregado por versión</td><td>El reenvío necesita la copia correcta</td></tr>
+    </tbody>
+  </table>
+
+  <p>Si aún no has hecho el repaso al archivo y al anuncio, eso va antes: nuestra <a href="/es/blog/digital-product-pdf-checklist-before-you-publish/">lista previa al lanzamiento</a> es la puerta, y <a href="/es/blog/sell-printable-pdf-on-etsy/">preparar un PDF imprimible para vender</a> cubre el archivo en sí.</p>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>Nuestras herramientas funcionan en el servidor, así que el archivo se sube. Se elimina en cuanto termina el trabajo y el enlace de descarga es solo tuyo. Nada se indexa, se guarda ni se reutiliza para entrenar. Nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿De verdad un ZIP es tanta fricción?</h3>
+  <p>En un ordenador, no. En el móvil es un paso extra que algunos compradores no completarán, y el móvil es donde ocurren muchas primeras aperturas. El punto no es que los comprimidos sean malos, sino que deberían ser una decisión y no un valor por defecto. Si dos archivos separados encajan en las reglas de la plataforma, entrega dos archivos separados.</p>
+
+  <h3>¿Qué peso total de descarga es sensato?</h3>
+  <p>Lo bastante pequeño para terminar con datos móviles sin que el comprador se pregunte si se ha quedado colgado. Para un imprimible, eso son megabytes de un dígito en la mayoría de productos. Si estás muy por encima, la causa casi siempre es una imagen, y encontrarla es mejor que comprimir a su alrededor.</p>
+
+  <h3>¿Debo incluir un archivo léeme?</h3>
+  <p>Uno, corto, y duplica la línea crítica dentro del propio PDF, porque un archivo de texto junto a cuatro PDF suele quedar sin leer. La línea crítica es la escala de impresión.</p>
+
+  <h3>¿Puedo impedir que compartan el enlace de descarga?</h3>
+  <p>No de forma significativa, y rara vez es de ahí de donde vienen las pérdidas. Los enlaces de plataforma suelen estar ligados al pedido, y quien decide compartir comparte el archivo, no el enlace. Gasta el esfuerzo en la página de licencia.</p>
+
+  <h3>Un comprador dice que el archivo no abre. ¿Qué pregunto primero?</h3>
+  <p>Qué dispositivo y si extrajo el comprimido. Esas dos preguntas resuelven la gran mayoría de los avisos de «no abre», porque las respuestas habituales son un móvil antiguo y un ZIP sin extraer. La siguiente pregunta es qué lector, ya que una previsualización en el navegador a veces falla con un archivo que abre bien en una app de PDF.</p>
+
+  <h3>¿Hay que entregar A4 y Carta por separado?</h3>
+  <p>Si el número de archivos de la plataforma lo permite, sí, y etiquétalos en el nombre. Es la respuesta más clara posible a la pregunta del tamaño, y evita que el comprador abra el equivocado. El razonamiento para ofrecer los dos está en <a href="/es/blog/a4-vs-us-letter-printable-sizes/">A4 o Carta</a>.</p>
+
+  <h2>Arregla tu entrega</h2>
+
+  <p>Abre tu propio pedido más reciente como lo haría un comprador, en el móvil, y cuenta los toques hasta una página legible. Si son más de dos, la solución suele ser partir un comprimido en archivos separados o renombrarlos para que tengan sentido solos. Si de verdad necesitas un comprimido y hay que cerrarlo para un destinatario concreto, entonces <a href="/es/archive/protect/">protege el ZIP</a>, y solo entonces. Todo lo demás está en <a href="/es/all-tools/">todas las herramientas</a>.</p>

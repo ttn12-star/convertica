@@ -1,0 +1,146 @@
+slug: stop-buyers-editing-reselling-your-pdf
+title_pl: "Czy da się zabronić kupującym edycji i odsprzedaży twojego PDF? Co naprawdę działa"
+meta_title_pl: "Ochrona PDF przed edycją i odsprzedażą | Convertica"
+meta_description_pl: "Uprawnienia w PDF to prośba, nie zamek. Oto co realnie zatrzymuje każde zabezpieczenie, czego nie zatrzymuje żadne, i jaka nudna kombinacja faktycznie zmniejsza kradzieże."
+meta_keywords_pl: "zabezpieczyć pdf przed edycją, zablokować odsprzedaż pdf, uprawnienia pdf, hasło właściciela pdf, zablokować kopiowanie pdf, drm pdf, strona licencji, spłaszczyć pdf przed sprzedażą"
+excerpt_pl: "Każdy sprzedawca produktów cyfrowych w końcu pyta, jak zabronić kupującym edycji i odsprzedaży pliku. Uczciwa odpowiedź ma dwie połowy: część rzeczy naprawdę zapobiega przypadkowym uszkodzeniom i niefrasobliwej edycji, a nic nie zapobiega kopii, jeśli ktoś naprawdę chce. Rozróżnienie tych dwóch grup oszczędza wydatki na teatr DRM i kieruje cię do środków, które realnie zmniejszają straty."
+ai_metadata:
+  topics:
+    - co uprawnienia PDF naprawdę wymuszają
+    - hasło właściciela a hasło otwarcia
+    - spłaszczanie jako ochrona przed przypadkiem, nie przed kradzieżą
+    - strony licencji i zgłoszenia na platformie
+    - dlaczego DRM nie zatrzyma zdeterminowanej kopii
+  entities:
+    - PDF
+    - DRM
+    - Etsy
+    - Adobe Acrobat
+    - Convertica
+  summary: "Oddziela zabezpieczenia PDF, które naprawdę działają, od tych, które tylko tak wyglądają. Wyjaśnia różnicę między hasłem otwarcia (prawdziwe szyfrowanie, blokuje otwarcie) i hasłem właściciela (flagi uprawnień, o których poszanowanie czytniki są tylko proszone), dlaczego spłaszczanie zapobiega przypadkowej edycji, ale nie kopii, co daje znak wodny na płatnym pliku w odróżnieniu od podglądu, i dlaczego strona licencji plus proces zgłoszeń platformy to kombinacja, która faktycznie zmniejsza odsprzedaż."
+  related_terms:
+    - hasło właściciela pdf różnica
+    - czy można zdjąć uprawnienia pdf
+    - ochrona produktu cyfrowego przed odsprzedażą
+    - znak wodny na płatnym pdf
+    - strona licencji do plików do druku
+    - nieedytowalny pdf
+  reading_time_minutes: 9
+  target_audience: "Sprzedawcy produktów cyfrowych i każdy, kto rozdaje PDF, którego nie chce widzieć zmienionego, i musi wiedzieć, które zabezpieczenia są prawdziwe, zanim zdecyduje, ile wysiłku w nie włożyć."
+content_pl: |
+  Wcześniej czy później każdy sprzedawca cyfrowego pliku zadaje to samo pytanie, zwykle po znalezieniu swojego planera na obcej stronie: jak zabronić ludziom to edytować i jak zabronić odsprzedawać?
+
+  Uczciwa odpowiedź jest niewygodna, ale przydatna. Część zabezpieczeń naprawdę działa i rozwiązuje realny problem, który nie jest kradzieżą. Inne wyglądają jak ochrona, a bliżej im do uprzejmej prośby. A w formacie PDF nie ma zupełnie nic, co zatrzyma człowieka z klawiszem zrzutu ekranu. Rozłożenie tych trzech grup na osobne półki oszczędza weekend zmarnowany na środki, które nic nie chronią, i kieruje cię do tej garści, która się opłaca.
+
+  <h2>Dwa rodzaje hasła w PDF i dlaczego różnica ma znaczenie</h2>
+
+  <p>PDF od dekad obsługuje dwa całkowicie różne hasła, a niemal cała konfuzja wokół ochrony wyrasta z traktowania ich jako jednego.</p>
+
+  <table>
+    <thead>
+      <tr><th></th><th>Hasło otwarcia</th><th>Hasło właściciela</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Zwane też</td><td>Hasło dokumentu, user password</td><td>Hasło uprawnień, hasło główne</td></tr>
+      <tr><td>Co robi</td><td>Szyfruje plik. Bez niego treści nie da się przeczytać wcale</td><td>Ustawia flagi proszące czytnik o ograniczenie druku, kopiowania lub edycji</td></tr>
+      <tr><td>Czym zabezpieczone</td><td>Matematyką</td><td>Dobrą wolą programu czytającego</td></tr>
+      <tr><td>Do czego się nadaje</td><td>Wysłanie poufnego dokumentu jednemu odbiorcy</td><td>Odstraszenie niefrasobliwej edycji pliku, który ludzie mają czytać</td></tr>
+      <tr><td>Nadaje się do płatnego pobrania</td><td>Nie. Kupujący musi go otworzyć</td><td>Ledwo, jako próg zwalniający</td></tr>
+    </tbody>
+  </table>
+
+  <p>Ostatni wiersz jest tu najważniejszy. Hasło otwarcia to prawdziwe szyfrowanie, ale nie da się go użyć na produkcie: kupujący musi otworzyć plik, więc musiałbyś mu je podać, a wtedy ochrony już nie ma. Nasza notka o tym, <a href="/pl/blog/password-protect-pdf-before-emailing/">co naprawdę chroni hasło do PDF</a>, wchodzi głębiej w oba rodzaje, jeśli rozsyłasz też poufne dokumenty.</p>
+
+  <p>Hasło właściciela to to, co ludzie mają na myśli, mówiąc „zablokuj edycję”. Wpisuje do pliku flagi uprawnień, a każdy porządny czytnik ich przestrzega. Słowo „porządny” niesie tu całe zdanie. Flagi nie są szyfrowaniem treści; to dołączona do niej notatka. Czytniki, które postanawiają notatkę zignorować, znajduje się w mgnieniu oka, dlatego <a href="/pl/blog/unlock-pdf-remove-password/">zdejmowanie ograniczeń z PDF</a> istnieje i działa.</p>
+
+  <h2>Co uprawnienia naprawdę ci dają</h2>
+
+  <p>Czyli uprawnienia są bezwartościowe? Nie, ale ich wartość jest inna, niż większość ludzi oczekuje. <a href="/pl/pdf-security/protect/">Ustawienie uprawnień w PDF</a> niezawodnie osiąga trzy rzeczy:</p>
+
+  <ul>
+    <li><strong>Zatrzymuje zwykły wypadek.</strong> Kupujący otwiera planer, klika gdzieś, przesuwa blok tekstu o 3 mm, a potem pisze do ciebie, dlaczego masz zepsuty plik. To realny i częsty koszt obsługi.</li>
+    <li><strong>Ustala intencję.</strong> Ktoś, kto zdjął ograniczenie, świadomie obszedł przeszkodę. W sporze to zupełnie inna pozycja niż „plik był otwarty, więc założyłem, że mogę”.</li>
+    <li><strong>Odsiewa leniwych.</strong> Większość tych, którzy niefrasobliwie użyliby pliku ponownie, nie pójdzie szukać narzędzia. To mniejszy udział, niż byś chciał, ale nie zerowy.</li>
+  </ul>
+
+  <p>Czego uprawnienia nie robią, to nie chronią treści. Kto może przeczytać plik, może zrobić zrzut, a kto może go wydrukować, może wydrukować do nowego PDF. Traktuj uprawnienia jako próg zwalniający, wyceń je odpowiednio w budżecie wysiłku i nigdy nie pisz kupującemu, że pliku „nie można” skopiować.</p>
+
+  <h2>Spłaszczanie: ochrona, z której naprawdę się korzysta</h2>
+
+  <p>Jeśli miałbyś zrobić z plikiem przed sprzedażą tylko jedno, <a href="/pl/pdf-edit/flatten/">spłaszcz go</a>. Warstwy, pola formularzy, komentarze i żywe obiekty tekstowe to wszystko rzeczy, które kupujący może przesunąć. Spłaszczanie scala je w statyczną treść strony, a wynik szybciej się otwiera i przewidywalniej drukuje w tych dziwnych czytnikach, których ludzie faktycznie używają.</p>
+
+  <p>Tylko formułuj precyzyjnie, czym to jest. Spłaszczanie to higiena pliku, nie ochrona praw autorskich. Zapobiega wypadkowi, nie kopii. I nie obniża jakości druku: scala warstwy i elementy interaktywne bez przeliczania grafik, więc nic się nie rozmywa. Jakość może kosztować kompresja, ale to osobna decyzja.</p>
+
+  <p>Jedno zastrzeżenie warte znajomości: jeśli twój produkt ma być wypełniany na ekranie, wypełniany planer albo formularz, nie spłaszczaj go. Usunąłbyś samą funkcję. Sprzedawaj wersję wypełnianą jak jest, a jeśli oferujesz też wersję do druku, spłaszcz tę.</p>
+
+  <h2>Znaki wodne: przydatne na podglądach, niezręczne na produkcie</h2>
+
+  <p>Znak wodny to jedyny środek, którego wartość zależy całkowicie od tego, na jaki plik trafił.</p>
+
+  <ul>
+    <li><strong>Na stronach podglądu jest dokładnie na miejscu.</strong> Pokaż dwie wewnętrzne strony zeszytu z czytelnym znakiem na wierzchu i masz efekt marketingowy bez oddania produktu. <a href="/pl/pdf-edit/add-watermark/">Dodanie znaku wodnego</a> zajmuje minutę, a nasza notka o <a href="/pl/blog/watermark-pdf-confidential-draft/">położeniu i przezroczystości</a> mówi, jak zrobić go czytelnym, nie zasypując projektu.</li>
+    <li><strong>Na płatnym pliku pomyśl dwa razy.</strong> Widoczny znak na produkcie, za który zapłacono, czyta się jako brak zaufania i psuje plakat, który miał wisieć na ścianie. Sprzedawcom, którzy tak robią, piszą o tym w opiniach.</li>
+    <li><strong>Znak spersonalizowany to inne narzędzie.</strong> Stempel z imieniem kupującego albo numerem zamówienia na jego kopii faktycznie odstrasza od dzielenia się, bo wyciekły plik wskazuje na osobę. Ale wymaga generowania pliku na każde zamówienie, czyli systemu realizacji, nie checkboxa. Warte tego przy drogich plikach, przesada przy planerze za trzy dolary.</li>
+  </ul>
+
+  <h2>Co realnie zmniejsza odsprzedaż</h2>
+
+  <p>Żaden ze środków technicznych powyżej odsprzedaży nie zatrzyma. A te zmniejszają, na tyle, na ile to w ogóle możliwe:</p>
+
+  <ol>
+    <li><strong>Strona licencji w pliku.</strong> Jedna strona prostym językiem: co kupującemu wolno, czego nie, czy użycie komercyjne jest w cenie i jak się z tobą skontaktować. To najcenniejsza rzecz na tej liście. Rozwiewa uczciwą konfuzję, która stanowi większość problemu, i jest dokumentem, na który wskazujesz, zgłaszając kopię.</li>
+    <li><strong>Twoja nazwa i adres sklepu w stopce.</strong> Nie jako ochrona, jako atrybucja. Plik krążący z twoim nazwiskiem to marketing, za który nie zapłaciłeś, a pochodzenie staje się oczywiste.</li>
+    <li><strong>Proces zgłoszeń platformy.</strong> Marketplace'y faktycznie zdejmują naruszające oferty i działają szybciej, gdy możesz pokazać datę swojej oferty i warunki licencji. Nudne i skuteczne.</li>
+    <li><strong>Uczynienie kopii mniej atrakcyjną niż oryginał.</strong> Darmowe aktualizacje, historia wersji, dodatkowe formaty, wsparcie. Piracki plik to zdjęcie, a żywy produkt nie.</li>
+  </ol>
+
+  <p>Jest też punkt strategiczny, który łatwo przeoczyć w złości. Ci, którzy rozdają tani plik cyfrowy, w większości i tak nie mieli go kupić, a wysiłek na walkę z nimi to wysiłek niewłożony w ofertę, zdjęcia albo następny produkt. Odmierz na ochronę ustaloną, niewielką część i idź dalej.</p>
+
+  <h2>A prawdziwy DRM?</h2>
+
+  <p>Prawdziwy DRM, gdzie plik dzwoni do domu i można go odwołać, istnieje i jest używany do drogich materiałów korporacyjnych i akademickich. Wymaga platformy, serwera licencji i czytnika, który kupujący musi zainstalować. Dla pliku do druku, szablonu albo zeszytu ćwiczeń upada na własnych zasadach: twój kupujący chce to wydrukować na domowej drukarce, a każdy format pozwalający wydrukować pozwala też zachować. Nie szukaj wtyczki, która obiecuje inaczej.</p>
+
+  <h2>Rozsądny domyślny zestaw</h2>
+
+  <table>
+    <thead>
+      <tr><th>Produkt</th><th>Co zrobić</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Planer, plakat, karta pracy do druku</td><td>Spłaszczyć, strona licencji, atrybucja w stopce. Hasła pominąć</td></tr>
+      <tr><td>Formularz wypełniany albo planer cyfrowy</td><td>Nie spłaszczać. Strona licencji, uprawnienia przeciw zmianom struktury</td></tr>
+      <tr><td>Strony podglądu do oferty</td><td>Znak wodny, niska rozdzielczość, tylko kilka stron</td></tr>
+      <tr><td>Drogi szablon albo zeszyt do kursu</td><td>Rozważyć personalizację na zamówienie i wliczyć pracę realizacji</td></tr>
+      <tr><td>Poufny dokument klienta</td><td>Hasło otwarcia, wysłane osobnym kanałem. Jedyny przypadek, gdzie szyfrowanie jest właściwą odpowiedzią</td></tr>
+    </tbody>
+  </table>
+
+  <p>Jeśli przygotowujesz plik do sprzedaży po raz pierwszy, reszta pracy przed wysłaniem liczy się bardziej niż ochrona: format strony, rozdzielczość, osadzone czcionki i waga to rzeczy, które generują zwroty. Nasz przewodnik <a href="/pl/blog/sell-printable-pdf-on-etsy/">jak przygotować PDF do druku na sprzedaż</a> przechodzi całą listę, a <a href="/pl/blog/a4-vs-us-letter-printable-sizes/">wybór między A4 i US Letter</a> zamyka decyzję o formacie, z powodu której jest najwięcej skarg.</p>
+
+  <h2>Co dzieje się z plikiem, który wysyłasz</h2>
+
+  <p>Nasze narzędzia działają na serwerze, więc plik jest wysyłany. Zostaje usunięty zaraz po zakończeniu zadania, a link do pobrania należy tylko do ciebie. Nic nie jest indeksowane, przechowywane ani używane do trenowania. Jeśli chronisz coś niewydanego, nasza notka o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z plikami</a>, opisuje zasady przechowywania.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Czy mogę zrobić PDF całkowicie nieedytowalnym?</h3>
+  <p>Możesz uczynić edycję niewygodną, i warto to zrobić, a niemożliwą nie możesz. Spłaszczanie usuwa łatwe uchwyty, uprawnienia dodają flagę, którą większość czytników przestrzega. Zdeterminowany człowiek wciąż zrasteryzuje strony, przepisze tekst albo zdejmie ograniczenia narzędziem. Celuj w „żadnych wypadków i żadnego niefrasobliwego użycia ponownie” i trafisz; celuj w „niemożliwe” i stracisz weekend.</p>
+
+  <h3>Czy hasło zatrzyma ludzi dzielących się moim produktem?</h3>
+  <p>Nie, a stworzy nowy problem. Hasło otwarcia trzeba by podać każdemu kupującemu, po czym jest publiczne, a ty dodałeś sobie obsługę za darmo. Hasło właściciela otwarcia w ogóle nie ogranicza. Hasła mieszkają na poufnych dokumentach ze znanym odbiorcą, nie na produktach.</p>
+
+  <h3>Czy zdejmowanie moich ograniczeń PDF jest legalne?</h3>
+  <p>Zdjęcie ograniczeń z pliku, który się posiada, na własny użytek zwykle jest bez znaczenia. Zrobienie tego, żeby rozpowszechniać albo odsprzedawać twoją pracę, jest w większości jurysdykcji naruszeniem praw autorskich niezależnie od tego, jak plik był zabezpieczony, i właśnie dlatego strona licencji i proces zgłoszeń liczą się bardziej niż flagi.</p>
+
+  <h3>Stawiać znak wodny na pliku, za który zapłacono?</h3>
+  <p>Zasadniczo nie. To sygnał braku zaufania i zepsucie wszystkiego, co miało być wyeksponowane. Wyjątkami są strony podglądu, gdzie znak wodny jest dokładnie właściwym narzędziem, i drogie pliki, gdzie stemplujesz na kopii dane konkretnego kupującego, żeby wyciek dał się namierzyć.</p>
+
+  <h3>Czy spłaszczanie traci jakość albo coś psuje?</h3>
+  <p>Nie przelicza grafik i nie zmienia rozdzielczości, więc na jakość druku nie wpływa. Co psuje celowo, to interaktywność: pola formularzy przestają się wypełniać, komentarze przestają się edytować. Trzymaj edytowalny plik źródłowy i nie spłaszczaj produktu, którego główną wartością jest to, że da się go wypełnić.</p>
+
+  <h3>Co właściwie ma być na stronie licencji?</h3>
+  <p>Jedna strona prostym językiem: plik do użytku osobistego kupującego; drukować dla siebie można ile razy się chce; odsprzedawać, rozpowszechniać ani używać komercyjnie bez osobnej licencji nie wolno; a tak można się skontaktować po taką licencję. Wyliczenie dozwolonego wprost zapobiega większej liczbie nadużyć niż jakikolwiek środek techniczny, bo większość nadużyć to szczera niepewność.</p>
+
+  <h2>Zabezpiecz plik i idź dalej</h2>
+
+  <p>Weź produkt, który zamierzasz wystawić, przepuść go przez <a href="/pl/pdf-edit/flatten/">spłaszczanie</a>, dodaj stronę licencji i nazwę sklepu w stopce, i zatrzymaj się. Jeśli potrzebujesz jeszcze <a href="/pl/pdf-security/protect/">uprawnień</a>, dodaj je, znając ich cenę. A potem poświęć resztę dnia ofercie, która zarobi więcej niż jakikolwiek zamek. Reszta jest we <a href="/pl/all-tools/">wszystkich narzędziach</a>.</p>

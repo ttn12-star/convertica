@@ -1,0 +1,146 @@
+slug: stop-buyers-editing-reselling-your-pdf
+title_es: "¿Puedes impedir que editen o revendan tu PDF? Lo que funciona de verdad"
+meta_title_es: "Proteger un PDF de edición y reventa | Convertica"
+meta_description_es: "Los permisos de un PDF son una petición, no un candado. Qué impide realmente cada protección, qué no impide ninguna, y la combinación aburrida que sí reduce el robo."
+meta_keywords_es: "proteger pdf de edición, impedir reventa pdf, permisos pdf, contraseña de propietario pdf, evitar copiar pdf, drm pdf, página de licencia, aplanar pdf antes de vender"
+excerpt_es: "Todo el que vende productos digitales acaba preguntando cómo impedir que editen o revendan su archivo. La respuesta honesta tiene dos mitades: varias cosas evitan de verdad los daños accidentales y la edición despreocupada, y ninguna evita una copia decidida. Saber cuál es cuál te ahorra pagar por teatro de DRM y te señala las medidas que sí reducen pérdidas."
+ai_metadata:
+  topics:
+    - qué imponen realmente los permisos de PDF
+    - contraseña de propietario frente a contraseña de apertura
+    - aplanar como prevención de accidentes, no de robo
+    - páginas de licencia y denuncias en la plataforma
+    - por qué el DRM no detiene una copia decidida
+  entities:
+    - PDF
+    - DRM
+    - Etsy
+    - Adobe Acrobat
+    - Convertica
+  summary: "Separa las protecciones de PDF que funcionan de verdad de las que solo lo parecen. Explica la diferencia entre la contraseña de apertura (cifrado real, bloquea abrir) y la de propietario (indicadores de permisos que a los lectores solo se les pide respetar), por qué aplanar evita la edición accidental pero no la copia, qué aporta una marca de agua en un archivo de pago frente a una vista previa, y por qué una página de licencia más el proceso de denuncia de la plataforma es la combinación que sí reduce la reventa."
+  related_terms:
+    - contraseña de propietario pdf diferencia
+    - se pueden quitar los permisos de un pdf
+    - proteger producto digital de reventa
+    - marca de agua en pdf de pago
+    - página de licencia para imprimibles
+    - pdf no editable
+  reading_time_minutes: 9
+  target_audience: "Quien vende productos digitales y cualquiera que distribuya un PDF que no quiere ver alterado, y necesita saber qué protecciones son reales antes de decidir cuánto esfuerzo dedicarles."
+content_es: |
+  Antes o después, todo el que vende un archivo digital hace la misma pregunta, normalmente después de encontrar su planificador en una web ajena: cómo impido que la gente edite esto, y cómo impido que lo revenda.
+
+  La respuesta honesta es incómoda pero útil. Algunas protecciones funcionan de verdad, y resuelven un problema real que no es el robo. Otras parecen protección y están más cerca de una petición amable. Y no hay nada en el formato PDF que detenga a una persona con la tecla de captura de pantalla. Separar esos tres montones te ahorra un fin de semana gastado en medidas que no protegen nada, y te lleva al puñado que sí compensa.
+
+  <h2>Los dos tipos de contraseña de PDF y por qué importa la diferencia</h2>
+
+  <p>El PDF admite dos contraseñas completamente distintas desde hace décadas, y casi toda la confusión sobre protección nace de tratarlas como una sola.</p>
+
+  <table>
+    <thead>
+      <tr><th></th><th>Contraseña de apertura</th><th>Contraseña de propietario</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>También llamada</td><td>Contraseña de documento, user password</td><td>Contraseña de permisos, contraseña maestra</td></tr>
+      <tr><td>Qué hace</td><td>Cifra el archivo. Sin ella el contenido no se puede leer en absoluto</td><td>Escribe indicadores que piden al lector restringir impresión, copia o edición</td></tr>
+      <tr><td>Quién la hace cumplir</td><td>Las matemáticas</td><td>La buena voluntad de la aplicación lectora</td></tr>
+      <tr><td>Sirve para</td><td>Enviar un documento confidencial a un destinatario</td><td>Desalentar la edición despreocupada de un archivo pensado para leerse</td></tr>
+      <tr><td>Sirve para una descarga de pago</td><td>No. El comprador tiene que abrirlo</td><td>Apenas, como un badén</td></tr>
+    </tbody>
+  </table>
+
+  <p>Esa última fila es la que importa aquí. La contraseña de apertura es cifrado real, pero no puedes usarla en un producto: tu comprador tiene que abrir el archivo, así que tendrías que darle la contraseña, y entonces la protección desaparece. Nuestra nota sobre <a href="/es/blog/password-protect-pdf-before-emailing/">qué protege realmente una contraseña de PDF</a> profundiza en los dos tipos si además envías documentos confidenciales.</p>
+
+  <p>La contraseña de propietario es lo que la gente quiere decir con «restringir la edición». Escribe indicadores de permisos en el archivo, y todo lector que se porte bien los respeta. El «que se porte bien» sostiene la frase entera. Los indicadores no cifran el contenido; son una nota pegada a él. Los lectores que deciden ignorar la nota se encuentran en un momento, y por eso <a href="/es/blog/unlock-pdf-remove-password/">quitar restricciones de un PDF</a> existe y funciona.</p>
+
+  <h2>Qué te dan realmente los permisos</h2>
+
+  <p>Entonces, ¿los permisos no valen nada? Sí valen, pero su valor es distinto del que casi todo el mundo espera. <a href="/es/pdf-security/protect/">Establecer permisos en un PDF</a> consigue de forma fiable tres cosas:</p>
+
+  <ul>
+    <li><strong>Detiene el accidente corriente.</strong> El comprador que abre tu planificador, hace clic en algún sitio, arrastra un bloque de texto 3 mm y luego te escribe preguntando por qué tu archivo está roto. Ese es un coste de soporte real y frecuente.</li>
+    <li><strong>Fija la intención.</strong> Quien quita una restricción ha rodeado algo a sabiendas. En una disputa, esa es una posición materialmente distinta de «el archivo estaba abierto, así que supuse que podía».</li>
+    <li><strong>Filtra a los perezosos.</strong> La mayoría de quienes reutilizarían un archivo sin pensar no se van a poner a buscar una herramienta. Es una proporción menor de la que te gustaría, pero no es cero.</li>
+  </ul>
+
+  <p>Lo que no hacen es proteger el contenido. Quien puede leer el archivo puede capturarlo, y quien puede imprimirlo puede imprimirlo a un PDF nuevo. Trata los permisos como un badén, presupuéstalos en consecuencia y nunca le digas a un comprador que el archivo «no se puede» copiar.</p>
+
+  <h2>Aplanar: la protección que sí se usa</h2>
+
+  <p>Si solo vas a hacerle una cosa al archivo antes de venderlo, <a href="/es/pdf-edit/flatten/">aplánalo</a>. Las capas, los campos de formulario, las anotaciones y los objetos de texto vivos son cosas que un comprador puede descolocar. Aplanar las funde en contenido estático de página, y el resultado abre más rápido e imprime de forma más predecible en los lectores raros que la gente usa de verdad.</p>
+
+  <p>Eso sí, sé preciso sobre lo que es. Aplanar es higiene del archivo, no defensa de derechos de autor. Evita el accidente, no la copia. Y no reduce la calidad de impresión: funde capas y elementos interactivos sin remuestrear imágenes, así que nada se ablanda. El paso que puede costar calidad es la compresión, y esa es otra decisión.</p>
+
+  <p>Una advertencia que conviene conocer: si tu producto está pensado para rellenarse en pantalla, un planificador rellenable o un formulario, no lo aplanes. Estarías eliminando la función. Vende la versión rellenable tal cual y, si además ofreces una de impresión, aplana esa.</p>
+
+  <h2>Marcas de agua: útiles en vistas previas, incómodas en el producto</h2>
+
+  <p>La marca de agua es la única medida cuyo valor depende por completo de en qué archivo aterrice.</p>
+
+  <ul>
+    <li><strong>En las páginas de vista previa es exactamente lo correcto.</strong> Muestra dos páginas interiores de un cuaderno con una marca legible encima y consigues el beneficio de marketing sin regalar el producto. <a href="/es/pdf-edit/add-watermark/">Añadir una marca de agua</a> lleva un minuto, y nuestra nota sobre <a href="/es/blog/watermark-pdf-confidential-draft/">posición y opacidad</a> explica cómo dejarla legible sin enterrar el diseño.</li>
+    <li><strong>En el archivo de pago, piénsalo dos veces.</strong> Una marca visible en un producto que el comprador pagó se lee como desconfianza y arruina una lámina que pensaba colgar. A los vendedores que hacen esto se lo dicen en las reseñas.</li>
+    <li><strong>La marca personalizada es otra herramienta.</strong> Estampar el nombre del comprador o el número de pedido en su copia sí desalienta compartirlo, porque un archivo filtrado señala a una persona. Pero exige generar un archivo por pedido, o sea un sistema de entrega, no una casilla. Merece la pena en archivos caros, es excesivo en un planificador de tres dólares.</li>
+  </ul>
+
+  <h2>Qué reduce la reventa de verdad</h2>
+
+  <p>Ninguna de las medidas técnicas anteriores detiene la reventa. Estas sí la reducen, en la medida en que algo puede hacerlo:</p>
+
+  <ol>
+    <li><strong>Una página de licencia dentro del archivo.</strong> Una página en lenguaje claro: qué puede hacer el comprador, qué no, si el uso comercial está incluido y cómo contactarte. Es lo más valioso de esta lista. Resuelve la confusión honesta, que es la mayor parte del problema, y es el documento al que señalas al denunciar una copia.</li>
+    <li><strong>Tu nombre y la dirección de tu tienda en el pie.</strong> No como protección, como atribución. Un archivo que circula con tu nombre es marketing que no pagaste, y hace obvia la procedencia.</li>
+    <li><strong>El proceso de denuncia de la plataforma.</strong> Los marketplaces sí retiran anuncios infractores, y actúan más rápido cuando puedes mostrar la fecha de tu anuncio y las condiciones de licencia. Poco glamuroso y eficaz.</li>
+    <li><strong>Hacer la copia menos atractiva que el original.</strong> Actualizaciones gratuitas, historial de versiones, tamaños extra, soporte. Un archivo pirateado es una foto fija; un producto vivo no.</li>
+  </ol>
+
+  <p>Hay además un punto estratégico que es fácil pasar por alto cuando estás enfadado. Quien redistribuye un archivo digital barato en general no iba a comprarlo nunca, y el esfuerzo que dedicas a pelear con esa gente es esfuerzo que no dedicas al anuncio, a las fotos o al siguiente producto. Reserva una parte fija y pequeña para la protección y sigue adelante.</p>
+
+  <h2>¿Y el DRM de verdad?</h2>
+
+  <p>El DRM genuino, donde el archivo llama a casa y se puede revocar, existe y se usa para material corporativo y académico caro. Requiere una plataforma, un servidor de licencias y un lector que el comprador debe instalar. Para un imprimible, una plantilla o un cuaderno, falla en sus propios términos: tu comprador quiere imprimirlo en una impresora doméstica, y cualquier formato que permita imprimir permite también conservar. No busques un plugin que prometa lo contrario.</p>
+
+  <h2>Un punto de partida sensato</h2>
+
+  <table>
+    <thead>
+      <tr><th>Producto</th><th>Qué hacer</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Planificador, lámina o ficha imprimible</td><td>Aplanar, página de licencia, atribución en el pie. Saltarse las contraseñas</td></tr>
+      <tr><td>Formulario rellenable o planificador digital</td><td>No aplanar. Página de licencia y permisos contra cambios estructurales</td></tr>
+      <tr><td>Páginas de vista previa del anuncio</td><td>Marca de agua, resolución baja, solo unas páginas</td></tr>
+      <tr><td>Plantilla cara o cuaderno de un curso</td><td>Considerar personalización por pedido y presupuestar el trabajo de entrega</td></tr>
+      <tr><td>Documento confidencial de un cliente</td><td>Contraseña de apertura, enviada por otro canal. El único caso en que el cifrado es la respuesta correcta</td></tr>
+    </tbody>
+  </table>
+
+  <p>Si preparas un archivo para venderlo por primera vez, el resto del trabajo previo importa más que la protección: el tamaño de página, la resolución, las tipografías incrustadas y el peso son lo que genera devoluciones. Nuestra guía sobre <a href="/es/blog/sell-printable-pdf-on-etsy/">preparar un PDF imprimible para vender</a> recorre la lista completa, y <a href="/es/blog/a4-vs-us-letter-printable-sizes/">elegir entre A4 y Carta</a> cierra la decisión de tamaño que provoca más quejas.</p>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>Nuestras herramientas funcionan en el servidor, así que el archivo se sube. Se elimina en cuanto termina el trabajo y el enlace de descarga es solo tuyo. Nada se indexa, se guarda ni se reutiliza para entrenar. Si estás protegiendo algo sin publicar, nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Puedo hacer un PDF totalmente no editable?</h3>
+  <p>Puedes hacer que editarlo sea incómodo, y merece la pena, y no puedes hacerlo imposible. Aplanar quita los agarres fáciles y los permisos añaden un indicador que la mayoría de lectores respeta. Alguien decidido puede rasterizar las páginas, reescribir el texto o quitar las restricciones con una herramienta. Apunta a «ningún accidente y ninguna reutilización despreocupada» y llegarás; apunta a «imposible» y perderás el fin de semana.</p>
+
+  <h3>¿Una contraseña impedirá que compartan mi producto?</h3>
+  <p>No, y crea un problema nuevo. La contraseña de apertura habría que dársela a cada comprador, y a partir de ahí es pública y te has añadido soporte a cambio de nada. La de propietario no restringe la apertura en absoluto. Las contraseñas viven en documentos confidenciales con destinatario conocido, no en productos.</p>
+
+  <h3>¿Es legal que alguien quite las restricciones de mi PDF?</h3>
+  <p>Quitar restricciones de un archivo que posees para tu propio uso suele ser irrelevante. Hacerlo para redistribuir o revender tu trabajo es infracción de derechos de autor en la mayoría de jurisdicciones, con independencia de cómo estuviera protegido el archivo, y precisamente por eso la página de licencia y el proceso de denuncia importan más que los indicadores.</p>
+
+  <h3>¿Debo poner marca de agua en el archivo que paga el comprador?</h3>
+  <p>En general no. Señala desconfianza y arruina cualquier cosa pensada para exhibirse. Las excepciones son las páginas de vista previa, donde la marca de agua es justo la herramienta adecuada, y los archivos de alto valor donde estampas en cada copia los datos del comprador para que una filtración sea rastreable.</p>
+
+  <h3>¿Aplanar pierde calidad o rompe algo?</h3>
+  <p>No remuestrea imágenes ni cambia la resolución, así que la calidad de impresión no se ve afectada. Lo que sí rompe, a propósito, es la interactividad: los campos de formulario dejan de rellenarse y las anotaciones dejan de editarse. Guarda una copia maestra editable y no aplanes un producto cuyo argumento de venta es que se puede rellenar.</p>
+
+  <h3>¿Qué debe decir la página de licencia?</h3>
+  <p>Una página en lenguaje claro: este archivo es para uso personal del comprador; puede imprimirlo tantas veces como quiera para sí mismo; no puede revenderlo, redistribuirlo ni usarlo comercialmente sin una licencia aparte; y así se te contacta para esa licencia. Enumerar los usos permitidos de forma explícita evita más mal uso que cualquier medida técnica, porque la mayor parte del mal uso es incertidumbre genuina.</p>
+
+  <h2>Protege el archivo y sigue adelante</h2>
+
+  <p>Coge el producto que vas a publicar, pásalo por <a href="/es/pdf-edit/flatten/">aplanar</a>, añade una página de licencia y el nombre de tu tienda en el pie, y para ahí. Si además necesitas <a href="/es/pdf-security/protect/">permisos</a>, añádelos sabiendo lo que valen. Y luego dedica el resto de la tarde al anuncio, que te dará más dinero que cualquier candado. Todo lo demás está en <a href="/es/all-tools/">todas las herramientas</a>.</p>

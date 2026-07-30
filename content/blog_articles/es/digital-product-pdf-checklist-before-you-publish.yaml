@@ -1,0 +1,154 @@
+slug: digital-product-pdf-checklist-before-you-publish
+title_es: "La lista previa al lanzamiento de un PDF que vas a vender"
+meta_title_es: "Lista previa al lanzamiento de un PDF | Convertica"
+meta_description_es: "El archivo es solo una parte. Esta es la última puerta antes de publicar: el paquete, la página de licencia, la descarga real del comprador y las promesas del anuncio."
+meta_keywords_es: "lista producto digital, antes de publicar pdf, calidad descarga digital, probar experiencia del comprador, página de licencia, versionado archivos producto"
+excerpt_es: "Cuando un producto digital está listo para publicarse, el archivo suele estar ya revisado. Lo que no está revisado es todo lo que lo rodea: el paquete que el comprador recibe de verdad, si la descarga funciona en el móvil, si las promesas del anuncio coinciden con el contenido, y qué harás cuando encuentres un error después de la venta cincuenta. Esta es esa puerta."
+ai_metadata:
+  topics:
+    - control de calidad final antes de publicar un producto digital
+    - probar la experiencia real de descarga
+    - estructura del paquete, nombres y página de licencia
+    - que las promesas del anuncio coincidan con el archivo
+    - versionado y corrección del producto tras el lanzamiento
+  entities:
+    - Etsy
+    - Gumroad
+    - PDF
+    - ZIP
+    - Convertica
+  summary: "Una puerta previa a la publicación de productos digitales en PDF que cubre lo que se les escapa a las comprobaciones del archivo: abrir el paquete entregado como lo haría un comprador, incluido en el móvil, nombrar los archivos para que sobrevivan a la extracción, incluir una página de licencia y otra breve de instrucciones de impresión, comprobar que cada afirmación del anuncio es cierta para el archivo real, mantener un número de versión para que una corrección posterior sea trazable, y la lista corta de cosas a verificar tras las primeras ventas."
+  related_terms:
+    - lista de calidad descarga digital
+    - probar descarga en el móvil
+    - estructura zip producto digital
+    - número de versión producto pdf
+    - exactitud de la descripción
+    - actualizar producto digital tras vender
+  reading_time_minutes: 8
+  target_audience: "Quien está a punto de publicar un producto digital en PDF, ya ha revisado el archivo y quiere el repaso final al paquete, al anuncio y a la entrega antes de que salga a la venta."
+content_es: |
+  Hay un momento justo antes de pulsar publicar en el que todo parece terminado. El diseño está hecho, el archivo revisado, los mockups montados. Es el momento más barato posible para pillar un error, y el que más se salta.
+
+  Las comprobaciones de abajo dejan a propósito fuera el archivo. El tamaño de página, la resolución, las tipografías incrustadas y el peso están en nuestra guía sobre <a href="/es/blog/sell-printable-pdf-on-etsy/">preparar un PDF imprimible para vender</a>, y si tu producto sale en dos estándares de papel, <a href="/es/blog/a4-vs-us-letter-printable-sizes/">la decisión entre A4 y Carta</a> también está ahí. Damos por hecho ese trabajo. Lo que sigue es todo lo que rodea al archivo, que es donde viven las devoluciones restantes.
+
+  <h2>1. Abre el paquete como lo hará un comprador</h2>
+
+  <p>No la carpeta de tu escritorio. Exactamente lo que se entrega. Descárgalo desde la previsualización de la plataforma si la ofrece, o mándate el ZIP por correo y ábrelo desde el correo.</p>
+
+  <ul>
+    <li><strong>En el móvil.</strong> Buena parte de los compradores abre la descarga primero en el móvil, y un ZIP en el móvil es peor experiencia de lo que recuerdas. Si desde un móvil no se llega a tu archivo en dos toques, espera mensajes.</li>
+    <li><strong>Sin la estructura de carpetas.</strong> Mucha gente extrae todo en un solo directorio. Si tus archivos solo se distinguían por el nombre de la carpeta, ya no se distinguen.</li>
+    <li><strong>Sin tus tipografías instaladas.</strong> El dispositivo de otra persona es la única prueba real de las tipografías incrustadas, y cuesta un mensaje a un amigo.</li>
+  </ul>
+
+  <h2>2. Nombra los archivos, no las carpetas</h2>
+
+  <p>Cada nombre de archivo debe tener sentido fuera de contexto, seis meses después, en una carpeta de descargas con cuatrocientas cosas más. Es decir: producto, variante y nada más.</p>
+
+  <p>Bien: <code>planificador-semanal-A4-vertical.pdf</code>. Mal: <code>final_v3.pdf</code>, <code>Untitled-1.pdf</code>, o un nombre con tus números internos de revisión. Evita caracteres que se portan mal entre sistemas, usa minúsculas y guiones en lugar de espacios. Nuestra nota sobre <a href="/es/blog/pdf-naming-conventions-best-practices/">nomenclatura de archivos</a> está escrita para documentos, pero las reglas son idénticas.</p>
+
+  <h2>3. Mete dos páginas extra dentro</h2>
+
+  <p>Dos páginas que no te cuestan nada y evitan la mayoría de los mensajes de soporte:</p>
+
+  <ul>
+    <li><strong>Una página de licencia.</strong> Lenguaje claro, una página: qué puede hacer el comprador, qué no, si el uso comercial está incluido y cómo contactarte. Nuestra nota sobre <a href="/es/blog/stop-buyers-editing-reselling-your-pdf/">qué consigue realmente proteger un archivo</a> explica por qué esta página hace más trabajo que cualquier medida técnica.</li>
+    <li><strong>Una página de cómo imprimir.</strong> Imprimir al 100 por cien, tamaño real, escalado desactivado. Qué papel. Qué páginas son opcionales. Esta única página elimina la queja más común, que es un archivo correcto impreso a la escala equivocada.</li>
+  </ul>
+
+  <p>Mantén las dos cortas. Un documento de condiciones de diez páginas en un planificador de cinco dólares se lee como una señal de alarma.</p>
+
+  <h2>4. Comprueba que el anuncio dice la verdad</h2>
+
+  <p>Lee tu propia descripción como un adversario. Cada número y cada sustantivo es una promesa:</p>
+
+  <table>
+    <thead>
+      <tr><th>Si el anuncio dice</th><th>Verifica</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>«12 páginas»</td><td>Abre el archivo y cuenta. La portada y la página de licencia cambian el número</td></tr>
+      <tr><td>«A4 y Carta incluidos»</td><td>Los dos archivos están de verdad en el paquete y ambos tienen el tamaño que dicen</td></tr>
+      <tr><td>«Editable»</td><td>Es editable en la herramienta que tendrá el comprador, no solo en la tuya</td></tr>
+      <tr><td>«Descarga instantánea»</td><td>La plataforma entrega de verdad al instante para este tipo de anuncio</td></tr>
+      <tr><td>«Uso comercial permitido»</td><td>La página de licencia dentro del archivo dice lo mismo</td></tr>
+      <tr><td>«300 ppp»</td><td>Las imágenes lo son de verdad, al tamaño final de impresión</td></tr>
+    </tbody>
+  </table>
+
+  <p>La última fila merece un momento. Afirmar 300 ppp cuando la imagen de origen se amplió es ese tipo de promesa concreta y verificable que produce las reseñas más furiosas, porque el comprador puede comprobarlo y tú no puedes discutir.</p>
+
+  <h2>5. Dale al archivo una versión, sin ruido</h2>
+
+  <p>Pon una marca de versión pequeña en algún lugar discreto: en los metadatos del archivo o en letra pequeña en la página de licencia. No en el nombre del archivo, donde parece inacabado.</p>
+
+  <p>Encontrarás un error después de la venta cincuenta. Cuando pase, un número de versión te dice si el comprador que se queja tiene el archivo antiguo, te permite explicar qué cambió y te ahorra preguntarte qué copia tienes en el disco. Son treinta segundos de trabajo que se pagan exactamente una vez, y cara.</p>
+
+  <h2>6. Haz el repaso mecánico final</h2>
+
+  <p>Corto, y cada punto pilla algo real:</p>
+
+  <ul>
+    <li><strong>Aplana lo que entregas.</strong> <a href="/es/pdf-edit/flatten/">Aplanar</a> quita las capas y los campos de formulario sueltos que un comprador puede descolocar, y hace que el archivo abra más rápido. Sáltatelo solo si el producto está pensado para rellenarse.</li>
+    <li><strong>Revisa el orden de páginas y la numeración.</strong> Si es un conjunto de varias páginas, la <a href="/es/pdf-edit/add-page-numbers/">numeración</a> va al final, cuando el orden es definitivo.</li>
+    <li><strong>Confirma el peso frente al límite de la plataforma</strong> por archivo, no por paquete, y <a href="/es/pdf-organize/compress/">comprime</a> solo si no hay más remedio.</li>
+    <li><strong>Limpia los metadatos que no querías enviar.</strong> Los campos de autor y los nombres de software de la exportación suelen llevar tu nombre real o el título del proyecto de un cliente ajeno.</li>
+    <li><strong>Ábrelo una vez más, de principio a fin.</strong> Sin ojear. La página en blanco que dejaste en la posición 7 es más fácil de encontrar ahora que en una reseña.</li>
+  </ul>
+
+  <h2>7. Después de las primeras ventas</h2>
+
+  <p>Publicar no es el final de la comprobación. Dos cosas que merecen la pena la primera semana:</p>
+
+  <ul>
+    <li><strong>Compra tu propio producto</strong> si la plataforma lo permite, o pide a alguien que lo haga. El camino completo desde el pago hasta el archivo abierto es la única prueba que cubre el comportamiento de la propia plataforma, que no controlas y que cambia.</li>
+    <li><strong>Lee las primeras preguntas como informes de error.</strong> Los tres primeros mensajes de compradores te dicen exactamente qué parte de tu anuncio o de tus instrucciones no está clara. Arregla el anuncio en lugar de responder la misma pregunta para siempre.</li>
+  </ul>
+
+  <h2>Toda la puerta en una tabla</h2>
+
+  <table>
+    <thead>
+      <tr><th>Comprobación</th><th>Qué pilla</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Abrir el paquete entregado en el móvil</td><td>Fricción del ZIP, archivos que no abren, piezas que faltan</td></tr>
+      <tr><td>Extraer todo en una sola carpeta</td><td>Nombres que solo funcionaban dentro de carpetas</td></tr>
+      <tr><td>Abrir en un dispositivo sin tus tipografías</td><td>Tipografías sin incrustar, maquetación recompuesta</td></tr>
+      <tr><td>Página de licencia e instrucciones de impresión dentro</td><td>La mayoría de mensajes de soporte y disputas de licencia</td></tr>
+      <tr><td>Cada afirmación del anuncio verificada</td><td>Las reseñas que no puedes discutir</td></tr>
+      <tr><td>Marca de versión registrada</td><td>No saber qué copia tiene un comprador</td></tr>
+      <tr><td>Aplanado, ordenado, numerado, bajo el límite</td><td>Ediciones accidentales, subidas rechazadas</td></tr>
+      <tr><td>Metadatos limpios</td><td>Enviar tu nombre real o el proyecto de un cliente</td></tr>
+      <tr><td>Archivo leído de principio a fin</td><td>La página en blanco, la duplicada, la errata del título</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>Nuestras herramientas funcionan en el servidor, así que el archivo se sube. Se elimina en cuanto termina el trabajo y el enlace de descarga es solo tuyo. Nada se indexa, se guarda ni se reutiliza para entrenar. Para un producto sin publicar, nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Cuánto debería llevar esto?</h3>
+  <p>Veinte minutos para un producto de un solo archivo, cerca de una hora para un paquete con varios tamaños. Son, de verdad, los veinte minutos más baratos de todo el proceso, porque cada punto de la lista cuesta múltiplos de eso si se arregla después de publicar.</p>
+
+  <h3>¿Un imprimible barato necesita de verdad página de licencia?</h3>
+  <p>Sí, y más aún si es barato. Los productos de bajo precio se compran a la ligera y se reutilizan a la ligera, sobre todo por gente que no está segura de lo que puede hacer. Una página de lenguaje claro evita la confusión, y es el documento al que señalarás si algún día tienes que denunciar una copia.</p>
+
+  <h3>¿El número de versión debe verlo el comprador?</h3>
+  <p>Apenas. Letra pequeña en la página de licencia o en los metadatos es lo correcto. Una versión en el nombre del archivo o en la portada hace que un producto terminado parezca un borrador, e invita a preguntar qué estaba mal en la primera.</p>
+
+  <h3>¿Qué hago si encuentro un error después de venderlo?</h3>
+  <p>Arregla el archivo, sube la versión, sustitúyelo en la plataforma y avisa a los compradores si el error afecta al uso y no solo al aspecto. La mayoría de plataformas permiten actualizar un archivo digital en su sitio, y los compradores que reciben sin pedirla una versión corregida suelen dejar mejores reseñas que los que nunca vieron un problema.</p>
+
+  <h3>¿Merece la pena comprar mi propio producto?</h3>
+  <p>Una vez por tipo de producto, sí. No estás probando tu archivo, estás probando la plataforma: el correo del recibo, la caducidad del enlace, si el archivo llega con el nombre que le diste. Ese camino se rompe de maneras que nunca verás desde el panel de vendedor.</p>
+
+  <h3>¿Cuánto hay que limpiar de los metadatos?</h3>
+  <p>Autor, título y cualquier campo de software o plantilla. Es habitual que una exportación lleve el nombre de la plantilla que compraste, el proyecto de un cliente anterior o tu nombre legal cuando vendes con nombre de tienda. Nada de eso te ayuda, y uno de ellos puede avergonzarte de verdad.</p>
+
+  <h2>Pasa la puerta</h2>
+
+  <p>Coge el producto que ibas a publicar y haz los puntos uno a seis ahora, en orden. La mayoría de archivos necesitan <a href="/es/pdf-edit/flatten/">aplanarse</a> y nada más; lo que suele necesitar trabajo es el paquete y el anuncio. Si tu producto es el interior de un libro y no un imprimible, los requisitos son otros y más estrictos: mira <a href="/es/blog/low-content-book-interior-pdf-requirements/">cómo debe ser el interior de un libro low-content</a>. Todo lo demás está en <a href="/es/all-tools/">todas las herramientas</a>.</p>
