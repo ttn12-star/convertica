@@ -28,7 +28,10 @@ LOCALES = [code for code, _label in settings.LANGUAGES]
 class AccountEmailRenderTests(TestCase):
     def _send(self, prefix, ctx, lang="en"):
         user = type("U", (), {"first_name": "Nikita", "username": "nikita"})()
-        request = RequestFactory().get("/", HTTP_HOST="convertica.net")
+        # allauth renders with the request, so the site's context processors run
+        # too — keep the default "testserver" host, which the test runner allows
+        # (a real domain here needs ALLOWED_HOSTS and fails on CI).
+        request = RequestFactory().get("/")
         with translation.override(lang), context.request_context(request):
             CustomAccountAdapter().send_mail(prefix, "x@y.com", {**ctx, "user": user})
         self.assertEqual(len(mail.outbox), 1)
