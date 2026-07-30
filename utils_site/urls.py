@@ -146,6 +146,16 @@ urlpatterns += i18n_patterns(
 
 # Add allauth URLs outside i18n_patterns
 urlpatterns += [
+    # allauth's own signup page is a second, unadvertised door into registration
+    # with no honeypot and no CAPTCHA — and /accounts/signup/ is the first URL a
+    # spam bot tries on a Django site. Send everyone to the gated form instead.
+    # Declared BEFORE the include so it wins; a POST here loses its body on the
+    # redirect, which is the point. Social signup uses its own
+    # /accounts/social/signup/ route and is unaffected.
+    path(
+        "accounts/signup/",
+        RedirectView.as_view(pattern_name="users:register", permanent=False),
+    ),
     path("accounts/", include("allauth.urls")),
 ]
 

@@ -26,6 +26,35 @@ class LoginForm(forms.Form):
     )
 
 
+def _is_claimed_account(user) -> bool:
+    """True if the account is genuinely in use and must never be recycled."""
+    from allauth.account.models import EmailAddress
+
+    if user.is_staff or user.is_superuser or user.is_premium:
+        return True
+    # SOCIALACCOUNT_EMAIL_VERIFICATION="optional": a Google user can log in and
+    # use the site without ever owning a verified EmailAddress row.
+    if user.socialaccount_set.exists():
+        return True
+    return EmailAddress.objects.filter(user=user, verified=True).exists()
+
+
+def stale_unverified_user(email: str):
+    """Return the abandoned unverified account holding `email`, if any.
+
+    Nobody ever proved they own that address — typically a spam bot squatting a
+    harvested one. Keeping the row would block the real owner from registering
+    until the 30-day cleanup task removes it, so the signup view drops it first.
+    """
+    email = (email or "").strip()
+    if not email:
+        return None
+    existing = User.objects.filter(email=email).first()
+    if existing is None or _is_claimed_account(existing):
+        return None
+    return existing
+
+
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
         label=_("Email"),
