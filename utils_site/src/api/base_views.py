@@ -276,29 +276,10 @@ class BaseConversionAPIView(APIView, ABC):
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
                 )
 
-        # Check content type
-        content_type = getattr(file, "content_type", None)
-        if (
-            content_type
-            and self.ALLOWED_CONTENT_TYPES
-            and content_type not in self.ALLOWED_CONTENT_TYPES
-        ):
-            log_file_validation_error(
-                logger,
-                f"Unsupported content type: {content_type}",
-                context,
-                content_type=content_type,
-                allowed_types=list(self.ALLOWED_CONTENT_TYPES),
-            )
-            return Response(
-                {
-                    "error": _("Unsupported content-type: %(content_type)s")
-                    % {"content_type": content_type}
-                },
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        # Check file extension
+        # Check file extension first: browsers derive content_type from the
+        # filename extension (OS registry), so the MIME header can never be
+        # stricter than this check — only wronger. A misconfigured registry
+        # sends e.g. application/x-msdownload for a genuine .zip.
         safe_name = get_valid_filename(os.path.basename(file.name))
         _base, ext = os.path.splitext(safe_name.lower())
         if self.ALLOWED_EXTENSIONS and ext not in self.ALLOWED_EXTENSIONS:
@@ -315,6 +296,36 @@ class BaseConversionAPIView(APIView, ABC):
                     % {"extensions": ", ".join(self.ALLOWED_EXTENSIONS)}
                 },
                 status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Content type is client-supplied; reject on it only when there is no
+        # extension whitelist to rely on, otherwise just log the mismatch.
+        content_type = getattr(file, "content_type", None)
+        if (
+            content_type
+            and self.ALLOWED_CONTENT_TYPES
+            and content_type not in self.ALLOWED_CONTENT_TYPES
+        ):
+            if not self.ALLOWED_EXTENSIONS:
+                log_file_validation_error(
+                    logger,
+                    f"Unsupported content type: {content_type}",
+                    context,
+                    content_type=content_type,
+                    allowed_types=list(self.ALLOWED_CONTENT_TYPES),
+                )
+                return Response(
+                    {
+                        "error": _("Unsupported content-type: %(content_type)s")
+                        % {"content_type": content_type}
+                    },
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            logger.info(
+                "Accepting whitelisted extension %s despite content type %s",
+                ext,
+                content_type,
+                extra={**context, "event": "content_type_mismatch_allowed"},
             )
 
         return None

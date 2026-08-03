@@ -160,6 +160,33 @@ class ProtectUnlockZipAPITests(TestCase):
         )
         self.assertEqual(resp.status_code, 400)
 
+    def test_protect_zip_api_accepts_zip_with_misreported_mime(self):
+        # Browsers derive content_type from the filename extension via the OS
+        # registry; a misconfigured registry sends e.g. application/x-msdownload
+        # for a genuine .zip, so MIME must not veto a whitelisted extension.
+        raw = _plain_zip_upload({"a.txt": b"hello"}).read()
+        upload = SimpleUploadedFile(
+            "docs.zip", raw, content_type="application/x-msdownload"
+        )
+        resp = self.client.post(
+            reverse("protect_zip_api"),
+            data={"archive_file": upload, "password": "s3cret!"},
+        )
+        body = self._read_response(resp)
+        self.assertEqual(resp.status_code, 200, body[:500])
+        self.assertEqual(body[:2], b"PK")
+
+    def test_protect_zip_api_wrong_extension_gets_extension_message(self):
+        upload = SimpleUploadedFile(
+            "setup.exe", b"MZ" + b"x" * 200, content_type="application/x-msdownload"
+        )
+        resp = self.client.post(
+            reverse("protect_zip_api"),
+            data={"archive_file": upload, "password": "s3cret!"},
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn(".zip", resp.json()["error"])
+
     def test_unlock_zip_api_wrong_password_400(self):
         raw = _aes_zip_upload({"a.txt": b"hi"}, password=b"correct").read()
         upload = SimpleUploadedFile("enc.zip", raw, content_type="application/zip")
