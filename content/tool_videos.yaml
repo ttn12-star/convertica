@@ -6,7 +6,9 @@
 # new videos can be added incrementally as they are published — no code change.
 #
 # Schema (all fields required):
-#   <tool_key>:            # must match a key in TOOL_CONFIGS, or "homepage"
+#   <tool_key>:            # a key in TOOL_CONFIGS, "homepage", or one of the
+#                          # bespoke premium landings that read TOOL_VIDEOS
+#                          # directly (compare_pdf, ocr_pdf_to_word, batch_converter)
 #     video_id: <11-char YouTube id>
 #     upload_date: <ISO 8601, from the video's YouTube uploadDate>
 #     duration: <ISO 8601 duration, e.g. PT1M38S>
@@ -57,6 +59,14 @@ pdf_to_text:
   video_id: m3LRIZNij3c
   upload_date: "2026-07-02T14:00:11+00:00"
   duration: PT1M22S
+pdf_to_html:
+  video_id: FB8UwYoIQFc
+  upload_date: "2026-07-23T14:00:28+00:00"
+  duration: PT1M6S
+html_to_pdf:
+  video_id: KJyApZWfrgw
+  upload_date: "2026-07-25T14:00:21+00:00"
+  duration: PT1M8S
 
 # --- pdf_organize ---
 merge_pdf:
@@ -105,12 +115,30 @@ flatten_pdf:
   video_id: fhQl17-yQIY
   upload_date: "2026-07-03T14:00:38+00:00"
   duration: PT1M18S
+sign_pdf:
+  video_id: IQWUavA9atE
+  upload_date: "2026-07-26T14:00:16+00:00"
+  duration: PT1M2S
 
 # --- pdf_security ---
 protect_pdf:
   video_id: aRIe9FLQfcM
   upload_date: "2026-07-07T14:00:20+00:00"
   duration: PT1M8S
+unlock_pdf:
+  video_id: lyrX657LQ70
+  upload_date: "2026-07-22T14:00:21+00:00"
+  duration: PT1M9S
+
+# --- archive_tools ---
+protect_zip:
+  video_id: 0--L2xntCw0
+  upload_date: "2026-07-19T14:00:01+00:00"
+  duration: PT1M6S
+unlock_zip:
+  video_id: L7oXNpzs4TM
+  upload_date: "2026-07-20T14:00:08+00:00"
+  duration: PT1M11S
 
 # --- epub_and_other ---
 epub_to_pdf:
@@ -143,3 +171,52 @@ image_to_text:
   video_id: OIppnR2edD0
   upload_date: "2026-07-14T07:00:17-07:00"
   duration: PT1M5S
+png_to_ico:
+  video_id: Iql5plD35TA
+  upload_date: "2026-07-15T14:00:00+00:00"
+  duration: PT1M8S
+jpg_to_ico:
+  video_id: Ww63Tlb0CKA
+  upload_date: "2026-07-16T14:00:18+00:00"
+  duration: PT1M5S
+webp_to_ico:
+  video_id: OaYXHAKmL9k
+  upload_date: "2026-07-17T14:00:30+00:00"
+  duration: PT1M2S
+ico_to_png:
+  video_id: Kh8Q19YRTgg
+  upload_date: "2026-07-18T14:00:05+00:00"
+  duration: PT1M2S
+svg_to_ico:
+  video_id: YrIMTKNT60A
+  upload_date: "2026-07-21T14:00:36+00:00"
+  duration: PT1M7S
+generate_favicon:
+  video_id: 5eUXzkoU3Rw
+  upload_date: "2026-07-23T22:00:12+00:00"
+  duration: PT1M12S
+password_protect_image:
+  video_id: RkV9dxRHWEc
+  upload_date: "2026-08-04T14:00:00+00:00"
+  duration: PT1M31S
+
+# --- premium tools (bespoke landings, video wired in their own templates) ---
+compare_pdf:
+  video_id: T9kDvMXAtT8
+  upload_date: "2026-07-27T14:00:14+00:00"
+  duration: PT1M9S
+ocr_pdf_to_word:
+  video_id: bgJiUX4Miwg
+  upload_date: "2026-07-27T22:00:33+00:00"
+  duration: PT1M11S
+batch_converter:
+  video_id: oisuNoweXD4
+  upload_date: "2026-07-29T14:00:20+00:00"
+  duration: PT1M5S
+
+# Scheduled on YouTube, still private — add here on/after each publish date,
+# an unlisted id renders an "unavailable" player:
+#   text_to_pdf   r37HZwd7fNE  2026-08-12T19:00Z  PT1M22S
+#   pdf_to_pdfa   5aACkEBmIgs  2026-08-13T19:00Z  PT1M21S
+#   add_text_pdf  G6MbFZY_ZSA  2026-08-14T19:00Z  PT1M15S
+#   pdf_editor    gqiOfO1c7eM  2026-08-15T19:00Z  PT1M19S

@@ -12,6 +12,8 @@
 
 {% block structured_data %}
   {{ block.super }}
+
+  {% include "frontend/includes/video_jsonld.html" %}
   {% if page_faq %}
     <script type="application/ld+json">
       {
@@ -69,6 +71,11 @@
           </a>
         </div>
       </section>
+
+      <!-- Video Tutorial -->
+      {% if video %}
+        {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+      {% endif %}
 
       <!-- How it works -->
       <section class="mt-8 sm:mt-10">

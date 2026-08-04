@@ -12,6 +12,8 @@
 
 {% block structured_data %}
   {{ block.super }}
+
+  {% include "frontend/includes/video_jsonld.html" %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -136,6 +138,12 @@
     <div id="loadingContainer" class="hidden mt-6"></div>
     <div id="downloadContainer" class="hidden mt-6"></div>
     <div id="converterResult" class="hidden mt-6"></div>
+
+    <!-- Video Tutorial -->
+    {% if video %}
+      {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+    {% endif %}
+
     <div id="comparisonPreview" class="hidden mt-8 sm:mt-10">
       <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
         <div class="px-5 sm:px-7 py-5 border-b border-gray-200 bg-gradient-to-r from-amber-50 to-orange-50">
