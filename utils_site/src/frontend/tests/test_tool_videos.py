@@ -2,6 +2,7 @@
 
 import json
 import re
+from unittest import mock
 
 from django.core.cache import cache
 from django.test import Client, TestCase
@@ -30,7 +31,7 @@ class ToolVideoLoaderTests(TestCase):
 
     def test_tool_without_video_is_absent(self):
         # Gating: a tool with no YAML entry must not resolve to a video.
-        self.assertIsNone(TOOL_VIDEOS.get("sign_pdf"))
+        self.assertIsNone(TOOL_VIDEOS.get("no_such_tool"))
 
     def test_malformed_entries_are_dropped(self):
         # One bad edit must not 500 every page: entries missing video_id / not a
@@ -74,13 +75,19 @@ class ToolVideoRenderTests(TestCase):
         )
 
     def test_bespoke_template_tool_renders_video(self):
-        # crop_pdf/add_watermark/jpg_to_pdf have hand-written templates that
-        # extend base.html directly (not the generic), so the video must be
-        # wired into them too — regression guard for that gap.
+        # These tools have hand-written templates that extend base.html directly
+        # (not the generic), so the video must be wired into them too — plus the
+        # premium landings, which build their context by hand and so also need an
+        # explicit TOOL_VIDEOS lookup. Regression guard for both gaps.
         for path, vid in (
             ("/pdf-edit/crop/", "GfvVwZyu-h0"),
             ("/pdf-edit/add-watermark/", "s0OG8dU8G0o"),
             ("/jpg-to-pdf/", "vx_Mrk4DkMw"),
+            ("/pdf-edit/sign/", "IQWUavA9atE"),
+            ("/html-to-pdf/", "KJyApZWfrgw"),
+            ("/compare-pdf/", "T9kDvMXAtT8"),
+            ("/scanned-pdf-to-word/", "bgJiUX4Miwg"),
+            ("/batch-converter/", "oisuNoweXD4"),
         ):
             resp = self.client.get(path, follow=True)
             self.assertEqual(resp.status_code, 200, path)
@@ -89,7 +96,10 @@ class ToolVideoRenderTests(TestCase):
             self.assertIn("VideoObject", html, path)
 
     def test_tool_page_without_video_renders_neither(self):
-        resp = self.client.get("/pdf-edit/sign/", follow=True)
+        # Every shipped tool now has a video, so simulate the gap instead: with
+        # no entry, the page must render neither the embed nor the JSON-LD.
+        with mock.patch.dict(TOOL_VIDEOS, clear=True):
+            resp = self.client.get("/pdf-edit/sign/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
         self.assertNotIn("yt-facade", html)

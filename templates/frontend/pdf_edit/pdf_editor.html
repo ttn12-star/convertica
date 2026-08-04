@@ -10,6 +10,12 @@
 {% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
 {% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+
+  {% include "frontend/includes/video_jsonld.html" %}
+{% endblock %}
+
 {% block extra_head %}
   {% comment %}Caveat: handwriting-style font for the signature "Type" tab{% endcomment %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -416,6 +422,11 @@
         </div>
       </div>
     </div>
+
+    <!-- Video Tutorial -->
+    {% if video %}
+      {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+    {% endif %}
 
     <!-- How it works -->
     <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">

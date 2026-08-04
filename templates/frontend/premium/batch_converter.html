@@ -12,6 +12,8 @@
 
 {% block structured_data %}
   {{ block.super }}
+
+  {% include "frontend/includes/video_jsonld.html" %}
   {% if page_faq %}
     <script type="application/ld+json">
       {
@@ -72,7 +74,12 @@
           {% endfor %}
         </ol>
 
-        <h2 class="text-lg font-bold mb-3">{% trans "Converters with batch mode" %}</h2>
+        <!-- Video Tutorial -->
+        {% if video %}
+          {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+        {% endif %}
+
+        <h2 class="mt-8 text-lg font-bold mb-3">{% trans "Converters with batch mode" %}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {% for tool in batch_tools %}
             <a href="{{ tool.url }}"

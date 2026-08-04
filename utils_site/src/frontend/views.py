@@ -1178,6 +1178,7 @@ def compare_pdf_page(request):
         ],
     }
     context["auto_generate_tool_schema"] = False  # template has its own schema
+    context["video"] = TOOL_VIDEOS.get("compare_pdf")
     return render(request, "frontend/premium/compare_pdf.html", context)
 
 
@@ -1247,6 +1248,7 @@ def ocr_pdf_to_word_page(request):
             },
         ],
     }
+    context["video"] = TOOL_VIDEOS.get("ocr_pdf_to_word")
     return render(request, "frontend/premium/ocr_pdf_to_word.html", context)
 
 
@@ -1349,6 +1351,7 @@ def batch_converter_page(request):
             },
         ],
     }
+    context["video"] = TOOL_VIDEOS.get("batch_converter")
     return render(request, "frontend/premium/batch_converter.html", context)
 
 
