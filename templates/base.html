@@ -299,6 +299,48 @@
       }
     </style>
 
+    <script nonce="{{ csp_nonce }}">
+      /* Reduced motion for programmatic scrolling.
+         `scroll-behavior: auto` from the reduced-motion block loses to an
+         explicit `behavior: 'smooth'` passed from JS, and the tool scripts pass
+         it from 28 call sites. Taming the two entry points every one of them
+         routes through beats editing (and re-editing) each site.
+         When the user has no reduced-motion preference this is a strict
+         pass-through: tame() returns the very same options object it was given,
+         so the native call is byte-for-byte what it was before.
+         matchMedia is read per call, so toggling the OS setting needs no reload. */
+      (function () {
+        var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (!mq) return;
+
+        function tame(opts) {
+          if (!mq.matches || !opts || typeof opts !== 'object' || opts.behavior !== 'smooth') return opts;
+          var out = {};
+          for (var k in opts) out[k] = opts[k];
+          out.behavior = 'auto';
+          return out;
+        }
+
+        var scrollIntoView = Element.prototype.scrollIntoView;
+        Element.prototype.scrollIntoView = function (opts) {
+          // scrollIntoView(true) / scrollIntoView() are the legacy forms — tame()
+          // passes a boolean or undefined straight through.
+          return scrollIntoView.call(this, tame(opts));
+        };
+
+        ['scroll', 'scrollTo', 'scrollBy'].forEach(function (name) {
+          var fn = window[name];
+          if (typeof fn !== 'function') return;
+          window[name] = function () {
+            // Two-arg form is scrollTo(x, y) — no options object to tame.
+            return arguments.length === 1
+              ? fn.call(window, tame(arguments[0]))
+              : fn.apply(window, arguments);
+          };
+        });
+      })();
+    </script>
+
     {% if ADSENSE_PUBLISHER_ID and not user.is_premium_active %}
     <!-- Google AdSense Auto Ads — suppressed for premium ("Ad-free experience") -->
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_PUBLISHER_ID }}" crossorigin="anonymous"></script>
