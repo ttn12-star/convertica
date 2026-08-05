@@ -11,7 +11,7 @@ from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
-from django.utils import timezone
+from django.utils import timezone, translation
 from django.utils.translation import activate, deactivate
 
 
@@ -90,8 +90,12 @@ class FrontendViewsTestCase(TestCase):
             "ru",
         ]:  # Test only main languages to avoid encoding issues
             try:
-                activate(lang_code)
-                response = self.client.get(f"/{lang_code}/", follow=True)
+                # `override` and not `activate`: this loop used to leave "ru"
+                # active for every later test in the same worker, so anything
+                # asserting English copy failed depending on execution order —
+                # the install-page checks and the encrypted-PDF message did.
+                with translation.override(lang_code):
+                    response = self.client.get(f"/{lang_code}/", follow=True)
                 self.assertEqual(
                     response.status_code, 200, f"Failed for language {lang_code}"
                 )
@@ -109,8 +113,11 @@ class FrontendViewsTestCase(TestCase):
     def test_tool_page_has_screenshot_image(self):
         """Tool pages embed their styled screenshot (lazy, below the fold)."""
         response = self.client.get(self._get_url_with_lang("pdf-to-word/"), follow=True)
-        self.assertContains(response, "images/tools/pdf-to-word.webp")
-        self.assertContains(response, "images/tools/pdf-to-word.jpg")
+        # static-hash agnostic, like the og:image check below: a collectstatic
+        # manifest turns these into pdf-to-word.<hash>.webp/.jpg
+        body = response.content.decode()
+        self.assertRegex(body, r"images/tools/pdf-to-word(\.[0-9a-f]+)?\.webp")
+        self.assertRegex(body, r"images/tools/pdf-to-word(\.[0-9a-f]+)?\.jpg")
         self.assertContains(response, 'loading="lazy"')
         # regression guards: converter config must stay intact
         self.assertContains(response, "window.API_URL")
@@ -214,7 +221,10 @@ class FrontendViewsTestCase(TestCase):
             'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"', content
         )
         self.assertIn("<image:loc>", content)
-        self.assertIn("images/tools/pdf-to-word.jpg", content)
+        # static-hash agnostic: with a collectstatic manifest present the URL is
+        # pdf-to-word.<hash>.jpg, so a plain substring only matches when no
+        # manifest exists — i.e. it passes in CI and fails anywhere prod-like.
+        self.assertRegex(content, r"images/tools/pdf-to-word(\.[0-9a-f]+)?\.jpg")
         # must stay well-formed XML with the extra namespace
         root = ET.fromstring(response.content)
         ns = {"image": "http://www.google.com/schemas/sitemap-image/1.1"}

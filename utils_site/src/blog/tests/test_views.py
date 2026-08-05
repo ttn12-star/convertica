@@ -97,10 +97,17 @@ class BlogViewsTestCase(TestCase):
         response = self.client.get(
             self._get_url_with_lang(f"blog/{article.slug}/"), follow=True
         )
-        self.assertContains(response, "tool-word-to-pdf.webp")
+        # Built from static() rather than hard-coded: with a collectstatic
+        # manifest present the URL carries a content hash, so the literal path
+        # only matches when no manifest exists — it passed in CI and failed in
+        # any prod-like environment.
+        from django.templatetags.static import static
+
+        webp_url = static("blog/images/tool-word-to-pdf.webp")
+        self.assertContains(response, webp_url)
         self.assertContains(
             response,
-            '<source srcset="/static/blog/images/tool-word-to-pdf.webp" type="image/webp">',
+            f'<source srcset="{webp_url}" type="image/webp">',
             html=False,
         )
         # og:image must stay JPG for messenger compatibility

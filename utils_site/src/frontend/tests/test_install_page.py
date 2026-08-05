@@ -1,9 +1,20 @@
 # utils_site/src/frontend/tests/test_install_page.py
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import translation
 
 
 class InstallPageTests(TestCase):
+    def setUp(self):
+        # These assertions are on English copy, and reverse() builds the URL with
+        # whatever language is currently active under i18n_patterns. Without
+        # pinning it, a test that left another language active in this worker made
+        # the page render translated and these fail depending on run order.
+        translation.activate("en")
+
+    def tearDown(self):
+        translation.deactivate()
+
     def test_install_page_returns_200(self):
         resp = self.client.get(reverse("frontend:install_page"))
         self.assertEqual(resp.status_code, 200)
