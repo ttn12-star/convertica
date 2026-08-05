@@ -74,8 +74,14 @@
       <!-- Left side: Logo + All Tools -->
       <div class="flex items-center flex-1 min-w-0">
         <!-- Logo -->
+        {% comment %}
+          The logo link is min-w-0, not flex-shrink-0: the parent is
+          `flex-1 min-w-0` and does shrink, so a non-shrinking logo overflowed it
+          and slid under the mobile "All Tools" pill — 78px of overlap at 320px,
+          38px at 360px, 8px at 390px.
+        {% endcomment %}
         <a href="{% if LANGUAGE_CODE == default_language_code %}{% url 'frontend:index_page_lang' %}{% else %}{% url 'frontend:index_page_lang' %}{% endif %}"
-           class="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 flex-shrink-0"
+           class="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 min-w-0"
            aria-label="{% trans 'Convertica - Home' %}"
            itemprop="url">
           <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
@@ -85,7 +91,14 @@
               <img src="{% static 'images/logo-56.png' %}" alt="{% trans 'Convertica Logo' %}" class="w-full h-full object-contain" width="56" height="56" loading="eager" fetchpriority="high">
             </picture>
           </div>
-          <span itemprop="name" class="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-blue-700 transition-all duration-300 tracking-tight whitespace-nowrap">
+          {% comment %}
+            Below 414px the wordmark cannot fit next to the mobile All Tools +
+            Premium pills and the burger, so it goes sr-only rather than being
+            removed: it stays available to screen readers and keeps the
+            schema.org itemprop="name", while taking up no layout space. The
+            logo icon carries the brand at those widths.
+          {% endcomment %}
+          <span itemprop="name" class="sr-only min-[414px]:not-sr-only truncate text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-blue-700 transition-all duration-300 tracking-tight whitespace-nowrap">
             {% trans "Convertica" %}
           </span>
         </a>
