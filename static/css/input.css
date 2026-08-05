@@ -3,3 +3,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* One card for every tool link (homepage "Popular Tools" + /all-tools/).
+     Before this existed each card carried its own border recipe — border-l-4,
+     border-t-4, a full 2px ring, a dashed ring, a gradient fill — so a single
+     screen showed eight different cards and the 4px side borders pushed the
+     icons off a shared baseline by a few pixels. The accent colour now lives
+     only in the icon tile. */
+  .tool-card {
+    @apply relative flex flex-col rounded-2xl p-6 sm:p-8 cursor-pointer
+           bg-white dark:bg-gray-900
+           border border-gray-200 dark:border-gray-800 shadow-sm
+           text-gray-900 dark:text-gray-100;
+    /* Named properties, not `all`: `all` also animates layout properties. */
+    transition-property: transform, box-shadow, border-color;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Hover-capable pointers only — a tap on a touch device would otherwise
+     leave the card stuck in its lifted state. */
+  @media (hover: hover) and (pointer: fine) {
+    .tool-card:hover {
+      @apply -translate-y-0.5 shadow-lg border-gray-300 dark:border-gray-700;
+    }
+  }
+
+  /* Press feedback: the global :where() rule in base.html loses to Tailwind's
+     own `transform` utility, so cards used to have no response to a tap at all
+     — on mobile they are the primary navigation. */
+  .tool-card:active {
+    @apply translate-y-0 scale-[0.99];
+  }
+}
