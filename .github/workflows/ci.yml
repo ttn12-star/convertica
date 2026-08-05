@@ -864,6 +864,39 @@ jobs:
               exit 1
             fi
 
+            # Step 5.5: Restart web so the freshly built static assets are served.
+            #
+            # The container starts (Step 1) BEFORE Tailwind is rebuilt (Step 4)
+            # and before collectstatic writes staticfiles.json (Step 5), so the
+            # live process keeps two pieces of pre-build state for its whole
+            # lifetime: the ManifestStaticFilesStorage manifest it loaded at
+            # startup, and inline_static's per-process lru_cache of the inlined
+            # stylesheet. Without this restart a CSS-only release ships its
+            # templates but keeps serving the PREVIOUS stylesheet until the next
+            # deploy — v2.2.223's CSS only became visible after v2.2.224 shipped.
+            #
+            # `docker restart` keeps the same container id, so $NEW_WEB_ID and
+            # the rollback paths below stay valid. Step 7's health check is left
+            # to decide the deploy: no rollback here, or a slow first request
+            # would tear down a container that is merely still warming up.
+            echo "🔄 Restarting web to pick up the rebuilt static assets..."
+            docker restart "$NEW_WEB_ID" > /dev/null 2>&1 || echo "⚠️ Web restart command failed"
+            restart_attempt=0
+            web_back=false
+            while [ $restart_attempt -lt 30 ]; do
+              if docker inspect --format='{{.State.Health.Status}}' "$NEW_WEB_ID" 2>/dev/null | grep -q "healthy"; then
+                echo "✅ Web healthy again after restart"
+                web_back=true
+                break
+              fi
+              restart_attempt=$((restart_attempt + 1))
+              echo "   Waiting for web after restart... (${restart_attempt}/30)"
+              sleep 2
+            done
+            if [ "$web_back" = false ]; then
+              echo "⚠️ Web not reporting healthy after restart — leaving it to the Step 7 health check"
+            fi
+
             # Step 6: Clear Django cache (Redis) to ensure fresh content after deploy.
             # Preserve the cookieless unique-visitor HLLs (uv:*) — a plain
             # cache.clear() FLUSHDBs them and resets the day's uniques on every deploy.
