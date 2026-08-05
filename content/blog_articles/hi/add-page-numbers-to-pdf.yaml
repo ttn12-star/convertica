@@ -1,91 +1,91 @@
 slug: add-page-numbers-to-pdf
-title_hi: "PDF में Page Numbers कैसे Add करें (और Cover Page को कैसे Skip करें)"
-meta_title_hi: "PDF में Page Numbers Add करें - Free Online | Convertica"
-meta_description_hi: "किसी भी PDF में seconds में page numbers add करें: position और format choose करें, किसी भी number से शुरू करें, और cover page skip करें ताकि numbering वहीं से शुरू हो जहाँ होनी चाहिए।"
-meta_keywords_hi: "pdf में page numbers add करें, pdf pages number करें, pdf page numbering, bates numbering pdf, page numbers pdf free, cover page numbering skip करें"
-excerpt_hi: "Page numbers तब तक trivial लगते हैं जब तक आपने पाँच documents को एक 60-page bundle में merge न कर लिया हो जिसमें किसी चीज़ को reference करने का कोई तरीका न हो। यहाँ है उन्हें cleanly add करना - और numbering cover के बाद शुरू करना, उस पर नहीं।"
+title_hi: "PDF में पन्ना संख्या कैसे डालें (और कवर पन्ना कैसे छोड़ें)"
+meta_title_hi: "PDF में पन्ना संख्या डालें, मुफ़्त | Convertica"
+meta_description_hi: "किसी भी PDF में सेकंडों में पन्ना संख्या डालिए: जगह और रूप चुनिए, किसी भी संख्या से शुरू कीजिए, और कवर पन्ना छोड़कर गिनती सही जगह से शुरू कीजिए।"
+meta_keywords_hi: "PDF में पन्ना संख्या डालें, PDF के पन्ने गिनें, PDF पन्ना नंबर, bates numbering, पन्ना संख्या मुफ़्त, कवर पन्ना छोड़ें"
+excerpt_hi: "पन्ना संख्या तब तक मामूली लगती है, जब तक आप पाँच दस्तावेज़ों को साठ पन्नों के एक पुलिंदे में जोड़ न दें, जिसमें किसी चीज़ का हवाला देने का कोई तरीक़ा ही न हो। उन्हें साफ़-सुथरे ढंग से डालने का, और गिनती कवर के बाद शुरू करने का तरीक़ा।"
 content_hi: |
-  आप एक cover letter, एक CV, और तीन reference documents को एक application के लिए एक PDF में merge करते हैं, उसे भेज देते हैं, और reviewer वापस email करता है: "क्या आप मुझे बता सकते हैं कि आप budget कहाँ mention करते हैं?" Point करने के लिए कोई page number नहीं है। Page numbers एक formatting afterthought लगते हैं ठीक उस moment तक जब किसी को एक long document में एक specific page reference करना होता है - और तब उनकी अनुपस्थिति genuinely annoying होती है।
+  आप एक आवेदन के लिए चिट्ठी, सीवी और तीन सहायक काग़ज़ों को एक PDF में जोड़ते हैं, भेज देते हैं, और सामने से जवाब आता है: बजट का ज़िक्र कहाँ किया है? इशारा करने के लिए कोई पन्ना संख्या ही नहीं है। पन्ना संख्या सजावट की मामूली बात लगती है, ठीक उस पल तक जब किसी को लंबे दस्तावेज़ में एक ख़ास पन्ना बताना पड़े, और तब उसकी कमी वाक़ई खलती है।
 
-  उन्हें एक existing PDF में add करने में लगभग बीस seconds लगते हैं। सोचने लायक एकमात्र decisions यह हैं कि numbers कहाँ जाएँ, उनका format क्या हो, और cover page को count किया जाना चाहिए या नहीं। यह guide तीनों cover करती है, साथ ही legal-world variant (Bates numbering) और merged-bundle case जहाँ page numbers सबसे ज़्यादा matter करते हैं।
+  किसी बनी हुई PDF में इसे डालने में करीब बीस सेकंड लगते हैं। सोचने लायक बस तीन बातें हैं: संख्या कहाँ आए, किस रूप में आए, और कवर पन्ना गिना जाए या नहीं। यह गाइड तीनों बताती है, साथ में कानूनी दुनिया का रूप (Bates numbering) और वह जुड़े पुलिंदे वाला मामला, जहाँ पन्ना संख्या सबसे ज़्यादा काम आती है।
 
-  <figure><img src="/static/blog/images/tool-page-numbers-hero.jpg" alt="Convertica add page numbers tool file upload area के साथ" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-page-numbers-hero.jpg" alt="Convertica का पन्ना संख्या डालने वाला टूल, फ़ाइल अपलोड की जगह के साथ" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>PDF के exist करने के बाद numbers क्यों add करें</h2>
+  <h2>PDF बन जाने के बाद संख्या क्यों डालें</h2>
 
-  अगर आपने document को Word या Google Docs में authored किया, आप वहीं numbers add कर सकते थे। लेकिन ज़्यादातर numbering problems वहाँ से नहीं आतीं। वे उन PDFs से आती हैं जिन्हें आपने नहीं लिखा या easily re-edit नहीं कर सकते:
+  अगर दस्तावेज़ आपने Word या Google Docs में लिखा है, तो संख्या वहीं डाल सकते थे। पर गिनती की ज़्यादातर दिक्क़तें वहाँ से नहीं आतीं। वे उन PDF से आती हैं जो आपने लिखी नहीं हैं या जिन्हें आसानी से दोबारा नहीं बदला जा सकता:
 
   <ul>
-    <li>एक bundle जिसे आपने <a href="/hi/pdf-organize/merge/">कई files से merge</a> किया, हर एक की अपनी numbering या कोई नहीं।</li>
-    <li>एक scanned document जो सिर्फ़ एक PDF के रूप में exist करता है।</li>
-    <li>एक file जो किसी और ने आपको भेजी जिसे एक meeting से पहले consistent references चाहिए।</li>
+    <li>वह पुलिंदा जो आपने <a href="/hi/pdf-organize/merge/">कई फ़ाइलों से जोड़ा</a>, जिसमें हर फ़ाइल की अपनी गिनती थी या कोई नहीं थी।</li>
+    <li>स्कैन किया दस्तावेज़, जो सिर्फ़ PDF के रूप में मौजूद है।</li>
+    <li>वह फ़ाइल जो किसी और ने भेजी है और मीटिंग से पहले उसमें एक जैसे हवाले चाहिए।</li>
   </ul>
 
-  इन सबमें, source को re-edit करना practical नहीं है, इसलिए आप finished PDF पर numbers stamp करते हैं। एक page-numbering tool ठीक यही करता है - यह page content को touch किए बिना एक margin में एक text layer add करता है।
+  इन सबमें मूल फ़ाइल दोबारा बदलना मुमकिन नहीं, इसलिए आप तैयार PDF पर संख्या छाप देते हैं। पन्ना संख्या वाला टूल ठीक यही करता है, वह पन्ने की सामग्री को छुए बिना हाशिये में एक परत जोड़ देता है।
 
-  <h2>Step-by-step: एक PDF को number करें</h2>
+  <h2>कदम-दर-कदम: PDF पर संख्या डालना</h2>
 
-  <figure><img src="/static/blog/images/tool-page-numbers-options.jpg" alt="Page number options जिनमें position, format, और starting number शामिल हैं" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-page-numbers-options.jpg" alt="पन्ना संख्या के विकल्प: जगह, रूप और शुरुआती संख्या" width="1280" height="800" loading="lazy"></figure>
 
-  <a href="/hi/pdf-edit/add-page-numbers/">page numbers online add</a> करने के लिए:
+  <a href="/hi/pdf-edit/add-page-numbers/">ऑनलाइन पन्ना संख्या डालने</a> के लिए:
 
   <ol>
-    <li>PDF upload करें। एक preview दिखाता है कि numbers कहाँ आएँगे।</li>
-    <li>एक position choose करें - bottom-centre safe default है; bottom-right उन documents को suit करता है जो left पर bound होंगे।</li>
-    <li>एक format pick करें। एक plain "1" cleanest है; "Page 1 of 20" reader को बताता है कि कितना बाक़ी है; "1 of 20" compact middle ground है।</li>
-    <li>Starting number और number करने वाला first page set करें (नीचे देखें)।</li>
-    <li>Apply और download करें। Confirm करने के लिए एक बार scroll करें कि numbers existing text से clear बैठते हैं।</li>
+    <li>PDF अपलोड कीजिए। झलक में दिख जाता है कि संख्या कहाँ आएगी।</li>
+    <li>जगह चुनिए। नीचे बीच में सुरक्षित दस्तूर है; नीचे दाईं तरफ़ उन दस्तावेज़ों पर जँचता है जिनकी जिल्द बाईं तरफ़ बँधेगी।</li>
+    <li>रूप चुनिए। सादा 1 सबसे साफ़ है; बीस में से पहला पन्ना पढ़ने वाले को बताता है कि कितना बचा है; 1/20 बीच का छोटा रास्ता है।</li>
+    <li>शुरुआती संख्या और वह पहला पन्ना तय कीजिए जिस पर संख्या छपेगी (नीचे देखिए)।</li>
+    <li>लागू कीजिए और डाउनलोड कर लीजिए। एक बार नीचे तक देख लीजिए कि संख्या पहले से मौजूद टेक्स्ट से टकरा नहीं रही।</li>
   </ol>
 
-  <h2>Cover-page का सवाल</h2>
+  <h2>कवर पन्ने का सवाल</h2>
 
-  सबसे common mistake cover को number करना है। एक title page या table of contents को usually एक "1" नहीं दिखाना चाहिए - numbering first content page पर शुरू होनी चाहिए। Tools इसे दो separate settings से handle करते हैं जिन्हें लोग अक्सर confuse करते हैं:
-
-  <ul>
-    <li><strong>First page to number</strong> - tool को बताता है कि page 1 (cover) पर number stamp करना skip करे और page 2 से printing शुरू करे।</li>
-    <li><strong>Starting number</strong> - tool को बताता है कि पहले कौन सा value print करना है। इसे 1 set करें ताकि first content page "1" read हो, "2" नहीं।</li>
-  </ul>
-
-  <blockquote class="callout">बिना number वाला cover और "1" से शुरू होने वाला content पाने के लिए: first page skip करें, और starting number 1 set करें। दोनों adjust करें - सिर्फ़ एक change करना ही वजह है कि लोगों का content page 2 से शुरू हो जाता है।</blockquote>
-
-  यही logic कई front-matter pages वाले documents पर भी लागू होता है। एक cover और दो-page contents section वाली report पहले तीन pages skip कर सकती है और printed count को page चार पर 1 से शुरू कर सकती है।
-
-  <h2>Legal documents के लिए Bates numbering</h2>
-
-  Law firms एक stricter variant use करते हैं जिसे Bates numbering कहते हैं - एक unique, sequential identifier जो documents के पूरे set के पार हर page पर stamp होता है, अक्सर एक prefix के साथ जैसे <code>SMITH-000123</code>। यह इसलिए exist करता है ताकि एक discovery production में किसी भी single page को unambiguously reference किया जा सके, भले ही वे अलग-अलग files के हज़ारों pages में फैले हों। अगर आप exhibits या एक discovery set तैयार कर रहे हैं, एक prefix option और एक fixed-width number (leading zeros) देखें ताकि identifiers cleanly sort और reference हों। रोज़मर्रा के documents के लिए, आपको बस plain numbering चाहिए।
-
-  <h2>एक merged bundle को number करना</h2>
-
-  Page numbers merged documents पर सबसे ज़्यादा अपनी कीमत वसूल करते हैं। Operations का सही order matter करता है: <strong>पहले merge, फिर number</strong>। अगर आप individual files को number करते हैं और फिर उन्हें merge करते हैं, आपको एक bundle में तीन "page 1" मिलते हैं। Merge के बाद number करके, पूरा document front से back तक एक continuous sequence carry करता है।
-
-  अगर आप बाद में एक page insert या remove करते हैं, stamped numbers edit करने के बजाय numbering फिर से run करें - tool पूरी file को consistently renumber करेगा, जबकि एक manual fix एक gap छोड़ देता है।
-
-  <h2>Numbers को readable रखना</h2>
+  सबसे आम ग़लती कवर पर भी संख्या डाल देना है। शीर्षक के पन्ने या विषय-सूची पर आम तौर पर 1 नहीं दिखना चाहिए, गिनती पहले असली पन्ने से शुरू होनी चाहिए। टूल इसे दो अलग सेटिंग से सँभालते हैं, जिन्हें लोग अक्सर एक समझ लेते हैं:
 
   <ul>
-    <li><strong>Margin का ध्यान रखें।</strong> अगर document में पहले से footer text है, numbers को एक corner में place करें ताकि वे overlap न करें।</li>
-    <li><strong>Tone match करें।</strong> Body text के same colour में एक small, neutral font deliberate दिखता है; एक large bold number ऊपर से चिपकाया हुआ दिखता है।</li>
-    <li><strong>Landscape pages check करें।</strong> एक mixed-orientation file में, confirm करें कि number rotated pages पर अब भी एक sensible spot पर बैठता है।</li>
-    <li><strong>Binding के लिए जगह छोड़ें।</strong> अगर document print और bound होगा, numbers को binding edge से दूर रखें।</li>
+    <li><strong>पहला पन्ना जिस पर संख्या छपे</strong>, यह टूल को बताता है कि पहले पन्ने (कवर) पर कुछ न छापे और दूसरे पन्ने से शुरू करे।</li>
+    <li><strong>शुरुआती संख्या</strong>, यह टूल को बताता है कि पहली बार कौन सा अंक छापना है। इसे 1 रखिए, ताकि पहला असली पन्ना 1 पढ़े, 2 नहीं।</li>
   </ul>
 
-  <h2>FAQ</h2>
+  <blockquote class="callout">बिना संख्या वाला कवर और 1 से शुरू होने वाली सामग्री पाने के लिए: पहला पन्ना छोड़िए, और शुरुआती संख्या 1 रखिए। दोनों बदलिए, सिर्फ़ एक बदलने की वजह से ही लोगों की सामग्री 2 से शुरू हो जाती है।</blockquote>
 
-  <h3>मैं PDF में page numbers free में कैसे add करूँ?</h3>
-  <p>File को एक page-numbering tool पर upload करें, position और format choose करें, starting number set करें, और download करें। यह page content को change किए बिना margin में एक text layer add करता है, और इसे कोई software या account नहीं चाहिए।</p>
+  यही बात उन दस्तावेज़ों पर भी लागू है जिनमें शुरू के कई पन्ने भूमिका के हैं। एक कवर और दो पन्नों की विषय-सूची वाली रिपोर्ट पहले तीन पन्ने छोड़ सकती है और छपी गिनती चौथे पन्ने पर 1 से शुरू कर सकती है।
 
-  <h3>मैं cover page के बाद numbering कैसे शुरू करूँ?</h3>
-  <p>"first page to number" को page 2 set करें ताकि cover blank रहे, और "starting number" को 1 set करें ताकि आपका first content page "1" read हो। दोनों settings adjust करें - सिर्फ़ एक change करना content को "2" से शुरू छोड़ देता है।</p>
+  <h2>कानूनी काग़ज़ों की Bates numbering</h2>
 
-  <h3>क्या मैं सिर्फ़ "1" के बजाय "Page 1 of 20" दिखा सकता हूँ?</h3>
-  <p>हाँ। ज़्यादातर tools एक format offer करते हैं जिसमें total page count शामिल होता है। "Page X of Y" long documents में helpful है क्योंकि यह reader को बताता है कि कितना बाक़ी है।</p>
+  वकीलों के दफ़्तर इसका सख़्त रूप इस्तेमाल करते हैं, जिसे Bates numbering कहते हैं, यानी पूरे सेट के हर पन्ने पर एक अलग, क्रम वाला पहचान अंक, अक्सर आगे एक शब्द के साथ, जैसे <code>SHARMA-000123</code>. यह इसलिए है कि अदालत में सौंपे गए हज़ारों पन्नों में से किसी एक पन्ने का हवाला बिना उलझन दिया जा सके। अगर आप अनुलग्नक या अदालत का सेट तैयार कर रहे हैं, तो आगे शब्द जोड़ने और तय चौड़ाई की संख्या (आगे शून्य) वाला विकल्प देखिए, ताकि पहचान अंक साफ़ क्रम में लगें। रोज़मर्रा के काग़ज़ों में सादी गिनती ही चाहिए।
 
-  <h3>मुझे files merge करने से पहले number करना चाहिए या बाद में?</h3>
-  <p>बाद में। पहले documents को एक PDF में merge करें, फिर combined file को number करें ताकि यह एक single continuous sequence carry करे। Merging से पहले numbering करना कई "page 1" produce करता है।</p>
+  <h2>जुड़े पुलिंदे पर संख्या डालना</h2>
+
+  पन्ना संख्या अपनी कीमत सबसे ज़्यादा जुड़े दस्तावेज़ों पर वसूल करती है। क्रम मायने रखता है: <strong>पहले जोड़िए, फिर संख्या डालिए</strong>। अगर आपने अलग-अलग फ़ाइलों पर संख्या डालकर उन्हें जोड़ा, तो एक ही पुलिंदे में तीन बार पहला पन्ना मिलेगा। जोड़ने के बाद संख्या डालने से पूरा दस्तावेज़ शुरू से आख़िर तक एक ही लगातार गिनती लिए रहता है।
+
+  अगर बाद में कोई पन्ना जोड़ें या हटाएँ, तो छपी संख्याएँ सुधारने के बजाय गिनती दोबारा चला दीजिए। टूल पूरी फ़ाइल एक जैसी गिन देगा, जबकि हाथ से सुधारने पर बीच में एक ख़ाली जगह रह जाती है।
+
+  <h2>संख्या पढ़ने लायक रखना</h2>
+
+  <ul>
+    <li><strong>हाशिये का ध्यान रखिए।</strong> दस्तावेज़ में नीचे पहले से कुछ लिखा है, तो संख्या किसी कोने में रखिए, ताकि दोनों एक-दूसरे पर न चढ़ें।</li>
+    <li><strong>रंग-रूप मिलाइए।</strong> मूल टेक्स्ट के रंग में छोटा, सादा फ़ॉन्ट सोचा-समझा लगता है; बड़ा मोटा अंक ऊपर से चिपकाया हुआ लगता है।</li>
+    <li><strong>आड़े पन्ने जाँच लीजिए।</strong> मिली-जुली दिशा वाली फ़ाइल में देख लीजिए कि घूमे पन्नों पर भी संख्या ठीक जगह बैठ रही है।</li>
+    <li><strong>जिल्द के लिए जगह छोड़िए।</strong> दस्तावेज़ छपकर बँधेगा, तो संख्या बँधने वाले किनारे से दूर रखिए।</li>
+  </ul>
+
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
+
+  <h3>PDF में पन्ना संख्या मुफ़्त में कैसे डालूँ?</h3>
+  <p>फ़ाइल पन्ना संख्या वाले टूल पर चढ़ाइए, जगह और रूप चुनिए, शुरुआती संख्या तय कीजिए, और डाउनलोड कर लीजिए। यह पन्ने की सामग्री बदले बिना हाशिये में एक परत जोड़ता है, और इसके लिए न सॉफ़्टवेयर चाहिए, न खाता।</p>
+
+  <h3>कवर पन्ने के बाद गिनती कैसे शुरू करूँ?</h3>
+  <p>पहला पन्ना जिस पर संख्या छपे, उसे दूसरा पन्ना कर दीजिए, ताकि कवर ख़ाली रहे, और शुरुआती संख्या 1 रखिए, ताकि पहला असली पन्ना 1 पढ़े। दोनों सेटिंग बदलिए; सिर्फ़ एक बदलने से सामग्री 2 से शुरू रह जाती है।</p>
+
+  <h3>सिर्फ़ 1 के बजाय बीस में से पहला पन्ना दिखा सकता हूँ?</h3>
+  <p>हाँ। ज़्यादातर टूल में कुल पन्नों वाली गिनती का रूप भी होता है। लंबे दस्तावेज़ों में यह काम का है, क्योंकि पढ़ने वाले को पता रहता है कि कितना बचा है।</p>
+
+  <h3>फ़ाइलें जोड़ने से पहले संख्या डालूँ या बाद में?</h3>
+  <p>बाद में। पहले दस्तावेज़ों को एक PDF में जोड़िए, फिर जुड़ी फ़ाइल पर संख्या डालिए, ताकि गिनती एक ही लगातार क्रम में रहे। जोड़ने से पहले संख्या डालने पर कई बार पहला पन्ना बन जाता है।</p>
 
   <h3>Bates numbering क्या है?</h3>
-  <p>एक legal numbering scheme जो एक document set के पार हर page पर एक unique sequential identifier stamp करती है - अक्सर एक prefix और leading zeros के साथ, जैसे SMITH-000123 - ताकि किसी भी page को unambiguously reference किया जा सके। इसके लिए एक prefix और fixed-width option वाला tool use करें।</p>
+  <p>यह कानूनी काम में चलने वाला तरीक़ा है, जो पूरे सेट के हर पन्ने पर एक अलग, क्रम वाला पहचान अंक छापता है, अक्सर आगे एक शब्द और शून्य के साथ, जैसे SHARMA-000123, ताकि किसी भी पन्ने का हवाला बिना उलझन दिया जा सके। इसके लिए आगे शब्द जोड़ने और तय चौड़ाई वाला टूल लीजिए।</p>
 
-  <h2>अभी try करें</h2>
+  <h2>अभी आज़माइए</h2>
 
-  <p><a href="/hi/pdf-edit/add-page-numbers/">add page numbers tool</a> खोलें, अपनी position और starting page set करें, और seconds में एक clean sequence stamp करें। पहले एक bundle बना रहे हैं? <a href="/hi/pdf-organize/merge/">अपनी files merge</a> करें, फिर number करें - या <a href="/hi/all-tools/">all PDF tools</a> browse करें।</p>
+  <p><a href="/hi/pdf-edit/add-page-numbers/">पन्ना संख्या वाला टूल</a> खोलिए, जगह और शुरुआती पन्ना तय कीजिए, और सेकंडों में साफ़ गिनती छाप दीजिए। पहले पुलिंदा बना रहे हैं? <a href="/hi/pdf-organize/merge/">फ़ाइलें जोड़िए</a>, फिर संख्या डालिए, या <a href="/hi/all-tools/">सभी PDF टूल</a> देख लीजिए।</p>
