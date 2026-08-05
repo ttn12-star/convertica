@@ -49,12 +49,11 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                <!-- PDF to Word - Featured with accent border -->
+                <!-- PDF to Word -->
           <a href="{% url 'frontend:pdf_to_word_page' %}"
-             class="group relative bg-gradient-to-br from-white to-blue-50/30 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-500 hover:border-blue-600 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
-            <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-bl-full transform translate-x-4 -translate-y-4"></div>
+             class="tool-card group">
             <div class="mb-4 relative z-10">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                 </svg>
@@ -68,12 +67,11 @@
             </p>
           </a>
 
-                <!-- Word to PDF - With subtle gradient -->
+                <!-- Word to PDF -->
           <a href="{% url 'frontend:word_to_pdf_page' %}"
-             class="group relative bg-gradient-to-br from-white via-purple-50/20 to-pink-50/20 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-purple-200/50 hover:border-purple-300 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+             class="tool-card group">
             <div class="mb-4 relative z-10">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -89,9 +87,9 @@
 
                 <!-- Excel to PDF -->
           <a href="{% url 'frontend:excel_to_pdf_page' %}"
-             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-green-400 hover:border-green-500 border-r border-b border-l border-gray-100 dark:border-gray-700 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -107,9 +105,9 @@
 
                 <!-- PowerPoint to PDF -->
           <a href="{% url 'frontend:ppt_to_pdf_page' %}"
-             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-orange-400 hover:border-orange-500 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                 </svg>
@@ -125,9 +123,9 @@
 
                 <!-- HTML to PDF -->
           <a href="{% url 'frontend:html_to_pdf_page' %}"
-             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-purple-400 hover:border-purple-500 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                 </svg>
@@ -143,9 +141,9 @@
 
                 <!-- Text to PDF -->
           <a href="{% url 'frontend:text_to_pdf_page' %}"
-             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-400 hover:border-blue-500 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
                 </svg>
@@ -161,10 +159,9 @@
 
                 <!-- PDF to JPG - With top accent bar -->
           <a href="{% url 'frontend:pdf_to_jpg_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-pink-400 hover:border-pink-500 border-r border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 rounded-t-2xl"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
@@ -178,16 +175,11 @@
             </p>
           </a>
 
-                <!-- JPG to PDF - With corner accent -->
+                <!-- JPG to PDF -->
           <a href="{% url 'frontend:jpg_to_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-dashed border-pink-200 hover:border-pink-300 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute -top-2 -right-2 w-8 h-8 bg-pink-500 rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -203,9 +195,9 @@
 
                 <!-- PDF to Excel -->
           <a href="{% url 'frontend:pdf_to_excel_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-green-400 hover:border-green-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -221,9 +213,9 @@
 
                 <!-- PDF to PowerPoint - New -->
           <a href="{% url 'frontend:pdf_to_ppt_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-orange-400 hover:border-orange-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                 </svg>
@@ -239,9 +231,9 @@
 
                 <!-- PDF to HTML - New -->
           <a href="{% url 'frontend:pdf_to_html_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-teal-400 hover:border-teal-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                 </svg>
@@ -255,9 +247,9 @@
             </p>
           </a>
           <a href="{% url 'frontend:pdf_to_text_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-200 hover:border-blue-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -272,9 +264,9 @@
           </a>
 
           <a href="{% url 'frontend:epub_to_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-200 hover:border-blue-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h10M7 17h6"></path>
                 </svg>
@@ -289,9 +281,9 @@
           </a>
 
           <a href="{% url 'frontend:pdf_to_epub_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-violet-200 hover:border-violet-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h12M4 12h8m-8 5h12m4-10v10a2 2 0 01-2 2h-1"></path>
                 </svg>
@@ -306,9 +298,9 @@
           </a>
 
           <a href="{% url 'frontend:pdf_to_markdown_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-slate-200 hover:border-slate-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7m8-6l2 2 4-4"></path>
                 </svg>
@@ -345,10 +337,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Rotate PDF - With side accent -->
           <a href="{% url 'frontend:rotate_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-r-4 border-purple-400 hover:border-purple-500 border-t border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-purple-400 to-purple-600 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                 </svg>
@@ -364,10 +355,9 @@
 
                 <!-- Crop PDF - With gradient background -->
           <a href="{% url 'frontend:crop_pdf_page' %}"
-             class="group relative bg-gradient-to-br from-green-50/40 via-white to-green-50/20 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-green-200/60 hover:border-green-300 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
                 </svg>
@@ -383,10 +373,9 @@
 
                 <!-- Add Page Numbers - With subtle pattern -->
           <a href="{% url 'frontend:add_page_numbers_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-300"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
                 </svg>
@@ -402,11 +391,9 @@
 
                 <!-- Add Watermark - With diagonal accent -->
           <a href="{% url 'frontend:add_watermark_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-cyan-200 hover:border-cyan-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
-            <div class="absolute -top-4 -right-4 w-24 h-24 bg-cyan-400/20 rounded-full blur-2xl group-hover:bg-cyan-400/30 transition-colors duration-300"></div>
-            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-300"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                 </svg>
@@ -422,9 +409,9 @@
 
                 <!-- Change PDF Page Size -->
           <a href="{% url 'frontend:resize_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-sky-200 hover:border-sky-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"></path>
                 </svg>
@@ -440,9 +427,9 @@
 
                 <!-- Flatten PDF -->
           <a href="{% url 'frontend:flatten_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-indigo-200 hover:border-indigo-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -457,9 +444,9 @@
           </a>
 
           <a href="{% url 'frontend:add_text_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-teal-200 hover:border-teal-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
@@ -474,9 +461,9 @@
           </a>
 
           <a href="{% url 'frontend:pdf_editor_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-violet-200 hover:border-violet-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
@@ -491,9 +478,9 @@
           </a>
 
           <a href="{% url 'frontend:sign_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                 </svg>
@@ -529,13 +516,11 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-8">
-                <!-- Merge PDF - Featured with badge -->
+                <!-- Merge PDF -->
           <a href="{% url 'frontend:merge_pdf_page' %}"
-             class="group relative bg-gradient-to-br from-green-50/50 to-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-green-300/50 hover:border-green-400 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
-            <div class="absolute top-3 right-3 w-3 h-3 bg-green-500 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 rounded-t-2xl"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
@@ -551,10 +536,9 @@
 
                 <!-- Split PDF - With corner accent -->
           <a href="{% url 'frontend:split_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-400 hover:border-blue-500 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute top-0 right-0 w-16 h-16 bg-blue-100/30 rounded-bl-full transform translate-x-4 -translate-y-4 group-hover:bg-blue-200/40 transition-colors duration-300"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                 </svg>
@@ -570,11 +554,9 @@
 
                 <!-- Remove Pages - With warning accent -->
           <a href="{% url 'frontend:remove_pages_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-red-200/60 hover:border-red-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
-            <div class="absolute bottom-0 left-0 right-0 w-full h-1 bg-gradient-to-r from-red-400 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-            <div class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                 </svg>
@@ -590,10 +572,9 @@
 
                 <!-- Extract Pages - With highlight effect -->
           <a href="{% url 'frontend:extract_pages_page' %}"
-             class="group relative bg-gradient-to-br from-yellow-50/30 via-white to-orange-50/20 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-dashed border-yellow-300/50 hover:border-yellow-400 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -609,11 +590,9 @@
 
                 <!-- Organize PDF - With subtle pattern -->
           <a href="{% url 'frontend:organize_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-teal-200/60 hover:border-teal-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
-            <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-teal-300/20 rounded-full blur-2xl group-hover:bg-teal-400/30 group-hover:scale-150 transition duration-300"></div>
-            <div class="absolute top-0 left-0 w-20 h-20 bg-cyan-200/20 rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
                 </svg>
@@ -629,9 +608,9 @@
 
                 <!-- Compress PDF - New -->
           <a href="{% url 'frontend:compress_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-orange-200 hover:border-orange-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                 </svg>
@@ -668,9 +647,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Protect PDF -->
           <a href="{% url 'frontend:protect_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-red-200 hover:border-red-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
@@ -686,9 +665,9 @@
 
                 <!-- Unlock PDF -->
           <a href="{% url 'frontend:unlock_pdf_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-green-200 hover:border-green-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
                 </svg>
@@ -725,9 +704,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Password Protect ZIP -->
           <a href="{% url 'frontend:protect_zip_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-teal-200 hover:border-teal-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
                 </svg>
@@ -743,9 +722,9 @@
 
                 <!-- Unlock ZIP -->
           <a href="{% url 'frontend:unlock_zip_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-cyan-200 hover:border-cyan-300 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
                 </svg>
@@ -782,9 +761,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Optimize Image -->
           <a href="{% url 'frontend:optimize_image_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-violet-500 hover:border-violet-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
@@ -800,9 +779,9 @@
 
                 <!-- Convert Image -->
           <a href="{% url 'frontend:convert_image_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-fuchsia-500 hover:border-fuchsia-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-fuchsia-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-fuchsia-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                 </svg>
@@ -818,9 +797,9 @@
 
                 <!-- Image to Text (OCR) -->
           <a href="{% url 'frontend:image_to_text_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-violet-500 hover:border-violet-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -836,9 +815,9 @@
 
                 <!-- Favicon Generator -->
           <a href="{% url 'frontend:favicon_generator_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-amber-500 hover:border-amber-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                 </svg>
@@ -854,9 +833,9 @@
 
                 <!-- PNG to ICO -->
           <a href="{% url 'frontend:png_to_ico_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-sky-500 hover:border-sky-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
@@ -872,9 +851,9 @@
 
                 <!-- JPG to ICO -->
           <a href="{% url 'frontend:jpg_to_ico_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-rose-500 hover:border-rose-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-rose-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-rose-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -891,9 +870,9 @@
 
                 <!-- SVG to ICO -->
           <a href="{% url 'frontend:svg_to_ico_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-orange-500 hover:border-orange-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                 </svg>
@@ -909,9 +888,9 @@
 
                 <!-- WebP to ICO -->
           <a href="{% url 'frontend:webp_to_ico_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-cyan-500 hover:border-cyan-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>
                 </svg>
@@ -927,9 +906,9 @@
 
                 <!-- ICO to PNG -->
           <a href="{% url 'frontend:ico_to_png_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-emerald-500 hover:border-emerald-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                 </svg>
@@ -943,9 +922,9 @@
             </p>
           </a>
           <a href="{% url 'frontend:password_protect_image_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-indigo-200 hover:border-indigo-500 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
@@ -960,9 +939,9 @@
           </a>
 
           <a href="{% url 'frontend:heic_to_jpg_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-rose-200 hover:border-rose-500 animate-fade-in text-gray-900 cursor-pointer">
+             class="tool-card group">
             <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-rose-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-rose-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                 </svg>
@@ -1005,7 +984,7 @@
                 PRO
               </div>
               <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A2 2 0 0121 14.066v3.868a2 2 0 01-1.447 1.79L15 22m0-12v12m0-12L9 7m6 3L9 13m0-6L4.447 4.724A2 2 0 003 6.514v3.868a2 2 0 001.447 1.79L9 14m0-7v7"></path>
                   </svg>
@@ -1026,7 +1005,7 @@
                 PRO
               </div>
               <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                   </svg>
@@ -1047,7 +1026,7 @@
                 PRO
               </div>
               <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-9 4h12m-9 4h6m-7 6h8a2 2 0 002-2V7a2 2 0 00-2-2H8a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                   </svg>
@@ -1068,7 +1047,7 @@
                 PRO
               </div>
               <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 12h10m-10 4h12M18 6v12m0 0l-2-2m2 2l2-2"></path>
                   </svg>
@@ -1083,12 +1062,12 @@
             </a>
 
             <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
-               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+               class="tool-card group">
               <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
                 PRO
               </div>
               <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
@@ -1104,12 +1083,12 @@
             </a>
 
             <a href="{% url 'frontend:compare_pdf_page' %}"
-               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+               class="tool-card group">
               <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
                 PRO
               </div>
               <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"></path>
                   </svg>
@@ -1124,7 +1103,7 @@
             </a>
 
             <a href="{% url 'frontend:premium_tools_page' %}"
-               class="group relative bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 sm:p-8 transform hover:-translate-y-2 text-white cursor-pointer">
+               class="tool-card group">
               <div class="mb-4">
                 <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white/20 rounded-xl flex items-center justify-center shadow-md group-hover:bg-white/30 transition-colors duration-300">
                   <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
