@@ -180,25 +180,25 @@
     <style>
       @keyframes progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
       @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-      @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-      @keyframes ping {75%,100%{transform:scale(2);opacity:0;}}
+      @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
       .animate-progress { animation: progress 2s linear infinite; background-size: 200% 100%; }
-      .animate-fade-in { animation: fadeIn 0.5s ease-out; }
-      .animate-scale-in { animation: scaleIn 0.3s ease-out; }
+      .animate-fade-in { animation: fadeIn 0.25s ease-out; }
+      .animate-scale-in { animation: scaleIn 0.25s ease-out; }
       .shadow-3xl { box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25); }
 
       /* Prevent horizontal scroll without blocking vertical scroll/touch */
       html { overflow-x: hidden; max-width: 100%; width: 100%; }
       body { max-width: 100%; width: 100%; -webkit-overflow-scrolling: touch; }
 
-      /* Smooth transitions for theme switching */
-      html {
-        transition: background-color 0.2s ease;
-      }
-
+      /* Smooth transitions for theme switching.
+         `color` is deliberately not transitioned: `transition` does not inherit,
+         so only <body>'s own text faded while every child (which takes
+         `color: inherit` below) snapped instantly — a half-and-half theme
+         switch. Background alone is consistent. */
+      html,
       body {
-        transition: background-color 0.2s ease, color 0.2s ease;
+        transition: background-color 0.2s ease;
       }
 
       body { color: #111827; background-color: #ffffff; }
@@ -285,18 +285,17 @@
     {% block extra_head %}{% endblock %}
 
     <style>
-    /* Ripple click animation for buttons */
-      .btn-ripple { position: relative; overflow: hidden; }
-      .btn-ripple-wave {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.35);
-        transform: scale(0);
-        animation: btn-ripple-anim 0.55s ease-out forwards;
-        pointer-events: none;
+    /* Press feedback. Replaces a 550ms JS ripple: ~4x over the 100-160ms budget
+       for press feedback, on an element pressed dozens of times per session. It
+       also ran getComputedStyle on every click in the app and left
+       `overflow: hidden` on the button for good, clipping absolutely-positioned
+       badges. `:where()` keeps specificity at zero so any Tailwind transition
+       or `active:scale-*` already on the element still wins. */
+      :where(button:not([disabled]), a.group, [role="button"]) {
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
       }
-      @keyframes btn-ripple-anim {
-        to { transform: scale(4); opacity: 0; }
+      :where(button:not([disabled]), a.group, [role="button"]):active {
+        transform: scale(0.97);
       }
     </style>
 
@@ -519,32 +518,6 @@
             }
           });
         }
-      })();
-    </script>
-    <script nonce="{{ csp_nonce }}">
-    /* Button ripple animation — fires on any button click */
-      (function(){
-        var SELECTORS = 'button:not([disabled]), a.group, [role="button"]';
-        document.addEventListener('click', function(e){
-          var el = e.target.closest(SELECTORS);
-          if(!el) return;
-        // Don't ripple on plain text links or nav items
-          var bg = getComputedStyle(el).backgroundColor;
-          if(bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') return;
-          el.classList.add('btn-ripple');
-          var rect = el.getBoundingClientRect();
-          var size = Math.max(rect.width, rect.height);
-          var wave = document.createElement('span');
-          wave.className = 'btn-ripple-wave';
-          wave.style.cssText = [
-            'width:' + size + 'px',
-            'height:' + size + 'px',
-            'left:' + (e.clientX - rect.left - size/2) + 'px',
-            'top:' + (e.clientY - rect.top - size/2) + 'px'
-          ].join(';');
-          el.appendChild(wave);
-          wave.addEventListener('animationend', function(){ wave.remove(); }, {once:true});
-        }, true);
       })();
     </script>
 

@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class', // Enable dark mode with 'dark' class
+  future: {
+    // Wraps every `hover:` utility in @media (hover: hover) and (pointer: fine).
+    // Without it a tap on touch devices leaves ~285 hover:scale-*/hover:-translate-*
+    // elements stuck in their hovered state until you tap elsewhere.
+    // Default in Tailwind v4; opt-in in v3.
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     './templates/**/*.html',
     './static/js/**/*.js'
