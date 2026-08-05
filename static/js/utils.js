@@ -322,20 +322,6 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
             </div>
         </div>
 
-        <style>
-            @keyframes fade-in {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            /* ponytail: duplicates .animate-fade-in from base.html (opposite
-               translate direction). Kept only because this <style> is injected
-               after the stylesheet and would otherwise change the loading
-               screen's enter direction; collapse into base.html when someone
-               can eyeball it. Duration matched to base.html's 0.25s. */
-            .animate-fade-in {
-                animation: fade-in 0.25s ease-out forwards;
-            }
-        </style>
     `;
 
     container.classList.remove('hidden');
