@@ -4,10 +4,10 @@ status: published
 category_slug: how-to-guides
 relevant_tool: favicon_generator
 title_hi: "Favicon कैसे बनाएं: 2026 का सही तरीका"
-meta_title_hi: "Favicon कैसे बनाएं: Sizes, Formats और HTML | Convertica"
-meta_description_hi: "सिर्फ एक 16x16 icon अब काफी नहीं। जानिए favicon कैसे बनाएं जो browser tab, iPhone home screen और PWA में बिल्कुल sharp दिखे, सही sizes और ready HTML के साथ।"
-meta_keywords_hi: "favicon कैसे बनाएं, favicon generator, favicon साइज़, png to favicon, favicon.ico, apple-touch-icon, वेबसाइट आइकन, favicon बनाने का तरीका, favicon html"
-excerpt_hi: "Favicon वो छोटी सी image है जिस पर कोई ध्यान नहीं देता, जब तक वो blur, generic या missing न हो जाए। सिर्फ एक 16x16 icon बरसों पहले ही काफी नहीं रहा। यहां जानिए favicon कैसे बनाएं जो browser tab, iPhone home screen और installable app सब जगह cover करे, सही sizes और paste करने लायक HTML के साथ।"
+meta_title_hi: "Favicon कैसे बनाएं: साइज़, फ़ॉर्मैट और HTML | Convertica"
+meta_description_hi: "अब सिर्फ एक 16x16 आइकन काफी नहीं। ऐसा favicon बनाइए जो ब्राउज़र टैब, iPhone की होम स्क्रीन और PWA में साफ दिखे, सही साइज़ और तैयार HTML के साथ।"
+meta_keywords_hi: "favicon कैसे बनाएं, favicon जेनरेटर, favicon साइज़, PNG से favicon, favicon.ico, apple-touch-icon, वेबसाइट का आइकन, favicon का HTML"
+excerpt_hi: "Favicon वो छोटी सी तस्वीर है जिस पर कोई ध्यान नहीं देता, जब तक वो धुँधली, बेरंग या गायब न हो जाए। सिर्फ एक 16x16 आइकन बरसों पहले ही काफी नहीं रहा। यहां जानिए ऐसा favicon कैसे बनाएं जो ब्राउज़र टैब, iPhone की होम स्क्रीन और इंस्टॉल होने वाले ऐप, सब जगह चले, सही साइज़ और चिपकाने लायक HTML के साथ।"
 ai_metadata:
   topics:
     - favicon बनाने का तरीका
@@ -37,64 +37,64 @@ ai_metadata:
   reading_time_minutes: 8
   target_audience: "कोई भी जो website, blog, portfolio या web app launch या maintain कर रहा हो और चाहता हो कि उसका favicon हर जगह sharp दिखे, developers और designers से लेकर छोटे business owners और no-code builders तक जिन्हें icon sizes और markup के चक्कर में नहीं पड़ना।"
 content_hi: |
-  Favicon आपके brand का सबसे छोटा टुकड़ा है, और वही जिसे लोग सबसे ज़्यादा बार देखते हैं। यह browser tab में बैठता है, bookmarks bar में, search results में आपके नाम के बगल में, और phone की home screen पर जब कोई आपका page save करता है। एक अच्छे favicon को कोई notice नहीं करता। लेकिन missing favicon, blur favicon, या वो generic grey globe जो browser tab दिखाता है जब आप favicon लगाना भूल जाते हो, उसे लोग तुरंत notice करते हैं। एक सही favicon बनाने में सिर्फ कुछ minute लगते हैं, बस एक बार समझ लो कि modern browsers और devices असल में मांगते क्या हैं। यहां पूरी तस्वीर है, और इसमें सबसे तेज़ रास्ता भी।
+  Favicon आपके ब्रांड का सबसे छोटा टुकड़ा है, और वही जिसे लोग सबसे ज़्यादा बार देखते हैं। यह ब्राउज़र टैब में बैठता है, बुकमार्क की पट्टी में, खोज के नतीजों में आपके नाम के बगल में, और फोन की होम स्क्रीन पर जब कोई आपका पन्ना सहेजता है। अच्छे favicon को कोई नोटिस नहीं करता। लेकिन गायब favicon, धुँधला favicon, या वो सलेटी गोला जो ब्राउज़र दिखाता है जब आप favicon लगाना भूल जाते हो, उसे लोग तुरंत नोटिस करते हैं। सही favicon बनाने में सिर्फ कुछ मिनट लगते हैं, बस एक बार समझ लो कि आज के ब्राउज़र और डिवाइस असल में मांगते क्या हैं। यहां पूरी तस्वीर है, और इसमें सबसे तेज़ रास्ता भी।
 
   <h2>Favicon असल में होता क्या है</h2>
 
-  <p>Favicon, यानी "favorite icon", वो छोटी square image है जो किसी website को represent करती है। इसकी शुरुआत 1990s के आखिर में एक अकेली 16x16 pixel file favicon.ico से हुई थी, और लंबे समय तक बस इतनी ही कहानी थी। अब ऐसा नहीं है। आज वही छोटा सा logo एक high-resolution laptop के browser tab में crisp दिखना चाहिए, bookmark में, iPhone home screen पर 180 pixel पर, Android device पर, एक installable web app के अंदर, और कभी कभी search engine में आपकी listing के बगल में भी। इन सब जगहों को अलग size चाहिए, और कुछ जगह तो specific filename भी मांगती हैं।</p>
+  <p>Favicon, यानी पसंदीदा आइकन, वो छोटी चौकोर तस्वीर है जो किसी वेबसाइट की पहचान बनती है। इसकी शुरुआत नब्बे के दशक के आखिर में एक अकेली 16x16 पिक्सल फाइल favicon.ico से हुई थी, और लंबे समय तक कहानी इतनी ही थी। अब ऐसा नहीं है। आज वही छोटा लोगो ऊँचे रेज़ोल्यूशन वाले लैपटॉप के ब्राउज़र टैब में साफ दिखना चाहिए, बुकमार्क में, iPhone की होम स्क्रीन पर 180 पिक्सल पर, Android डिवाइस पर, इंस्टॉल होने वाले वेब ऐप के अंदर, और कभी-कभी खोज के नतीजों में आपकी पंक्ति के बगल में भी। इन सब जगहों को अलग नाप चाहिए, और कुछ जगह तो नाम भी तय मांगती हैं।</p>
 
-  <p>इसी वजह से "बस एक 16x16 upload कर दो" वाली पुरानी सलाह आज एक fuzzy गड़बड़ी पैदा करती है। एक छोटी image को 180 pixel के home-screen icon तक बड़ा करो तो वो soft और pixelated दिखती है। सही तरीका यह है कि एक बड़ी, साफ image से शुरू करो और उससे सही size वाली छोटी files का एक set बनाओ।</p>
+  <p>इसी वजह से बस एक 16x16 चढ़ा दो वाली पुरानी सलाह आज धुँधली गड़बड़ी पैदा करती है। छोटी तस्वीर को 180 पिक्सल के होम-स्क्रीन आइकन तक बड़ा करो तो वो नरम और दानेदार दिखती है। सही तरीका यह है कि एक बड़ी, साफ तस्वीर से शुरू करो और उससे सही नाप वाली छोटी फाइलों का एक सेट बनाओ।</p>
 
-  <h2>अब एक size क्यों काफी नहीं</h2>
+  <h2>अब एक नाप क्यों काफी नहीं</h2>
 
-  <p>अलग अलग जगह अलग अलग icon उठाती है। हर एक कहां जाता है यह समझ लो तो नीचे दी गई size list बेवजह लगने के बजाय logical लगेगी:</p>
+  <p>अलग-अलग जगह अलग-अलग आइकन उठाती है। हर एक कहां जाता है यह समझ लो तो नीचे दी गई सूची बेवजह लगने के बजाय सीधी लगेगी:</p>
 
   <ul>
-    <li><strong>Browser tab और bookmarks</strong> classic favicon use करते हैं, आम तौर पर 16x16 या 32x32 image, और modern high-DPI screens पर 32 बेहतर रहता है।</li>
-    <li><strong>iPhone और iPad home screen</strong> 180x180 apple-touch-icon use करते हैं जब कोई आपका page अपनी home screen पर add करता है।</li>
-    <li><strong>Android और installable web apps (PWAs)</strong> 192x192 और 512x512 icons use करते हैं जो एक छोटी manifest file में define होते हैं।</li>
-    <li><strong>Windows और ज़्यादा resolution वाली displays</strong> बीच के sizes जैसे 48, 64, 96, 128 और 256 से फायदा उठाती हैं, ताकि icon कभी अपने native size से दूर तक scale न करना पड़े।</li>
-    <li><strong>Search results</strong> आपका favicon page title के बगल में दिखा सकते हैं, जो चुपके से हर listing पर आपके brand को मज़बूत करता है।</li>
+    <li><strong>ब्राउज़र टैब और बुकमार्क</strong> पुराना favicon लेते हैं, आम तौर पर 16x16 या 32x32, और आजकल की बारीक स्क्रीन पर 32 बेहतर रहता है।</li>
+    <li><strong>iPhone और iPad की होम स्क्रीन</strong> 180x180 का apple-touch-icon लेते हैं, जब कोई आपका पन्ना अपनी होम स्क्रीन पर जोड़ता है।</li>
+    <li><strong>Android और इंस्टॉल होने वाले वेब ऐप (PWA)</strong> 192x192 और 512x512 के आइकन लेते हैं, जो एक छोटी manifest फाइल में लिखे होते हैं।</li>
+    <li><strong>Windows और ज़्यादा रेज़ोल्यूशन वाली स्क्रीन</strong> को बीच के नाप, जैसे 48, 64, 96, 128 और 256, फायदा देते हैं, ताकि आइकन को अपने असली नाप से दूर तक खींचना न पड़े।</li>
+    <li><strong>खोज के नतीजे</strong> आपका favicon पन्ने के शीर्षक के बगल में दिखा सकते हैं, जो चुपके से हर पंक्ति पर आपके ब्रांड को मज़बूत करता है।</li>
   </ul>
 
-  <h2>2026 में आपको असल में जो sizes चाहिए</h2>
+  <h2>2026 में असल में जो नाप चाहिए</h2>
 
-  <p>आपको अंदाज़ा लगाने या सौ files बनाने की ज़रूरत नहीं। यह practical set हर mainstream browser और device को cover करता है, और यह बिल्कुल वही है जो एक अच्छा generator आपको देता है:</p>
+  <p>अंदाज़ा लगाने या सौ फाइलें बनाने की ज़रूरत नहीं। यह काम का सेट हर बड़े ब्राउज़र और डिवाइस को ढक लेता है, और बिल्कुल यही एक अच्छा जेनरेटर आपको देता है:</p>
 
   <table>
     <thead>
-      <tr><th>File</th><th>Size</th><th>कहां दिखता है</th></tr>
+      <tr><th>फाइल</th><th>नाप</th><th>कहां दिखता है</th></tr>
     </thead>
     <tbody>
-      <tr><td>favicon.ico</td><td>16, 32, 48 (multi-size)</td><td>Universal fallback: tabs, address bar, bookmarks, पुराने browsers</td></tr>
-      <tr><td>favicon-16x16.png</td><td>16x16</td><td>छोटे tab और bookmark rendering</td></tr>
-      <tr><td>favicon-32x32.png</td><td>32x32</td><td>Modern desktop browsers पर standard tab icon</td></tr>
-      <tr><td>apple-touch-icon.png</td><td>180x180</td><td>iPhone और iPad home screen shortcut</td></tr>
-      <tr><td>android-chrome-192x192.png</td><td>192x192</td><td>Android home screen और PWA install</td></tr>
-      <tr><td>android-chrome-512x512.png</td><td>512x512</td><td>Android splash screen और high-resolution PWA</td></tr>
-      <tr><td>48, 64, 96, 128, 256 px PNGs</td><td>various</td><td>High-DPI displays और Windows, ताकि icon कम ही scale हो</td></tr>
+      <tr><td>favicon.ico</td><td>16, 32, 48 (एक ही फाइल में)</td><td>हर जगह चलने वाला सहारा: टैब, पता-पट्टी, बुकमार्क, पुराने ब्राउज़र</td></tr>
+      <tr><td>favicon-16x16.png</td><td>16x16</td><td>छोटे टैब और बुकमार्क</td></tr>
+      <tr><td>favicon-32x32.png</td><td>32x32</td><td>आजकल के डेस्कटॉप ब्राउज़र का आम टैब आइकन</td></tr>
+      <tr><td>apple-touch-icon.png</td><td>180x180</td><td>iPhone और iPad की होम स्क्रीन</td></tr>
+      <tr><td>android-chrome-192x192.png</td><td>192x192</td><td>Android की होम स्क्रीन और PWA इंस्टॉल</td></tr>
+      <tr><td>android-chrome-512x512.png</td><td>512x512</td><td>Android की शुरुआती स्क्रीन और ऊँचे रेज़ोल्यूशन का PWA</td></tr>
+      <tr><td>48, 64, 96, 128, 256 पिक्सल के PNG</td><td>कई</td><td>बारीक स्क्रीन और Windows, ताकि आइकन कम ही खिंचे</td></tr>
     </tbody>
   </table>
 
-  <p>यानी कुल मिलाकर ग्यारह files: एक ICO, दस PNG, साथ में एक छोटी manifest और थोड़ा सा HTML। इन्हें हाथ से image editor में बनाना boring है और गलती होने के chances ज़्यादा। इन्हें एक ही step में बनाना ही अगले section का पूरा point है।</p>
+  <p>यानी कुल ग्यारह फाइलें: एक ICO, दस PNG, साथ में एक छोटी manifest और थोड़ा सा HTML। इन्हें हाथ से किसी इमेज एडिटर में बनाना उबाऊ है और गलती की गुंजाइश ज़्यादा। इन्हें एक ही कदम में बना लेना अगले हिस्से की पूरी बात है।</p>
 
-  <h2>सबसे तेज़ तरीका: पूरा package एक साथ generate करो</h2>
+  <h2>सबसे तेज़ तरीका: पूरा सेट एक साथ बनाओ</h2>
 
-  <figure><img src="/static/images/tools/image-favicon-generator.jpg" alt="Convertica favicon generator एक image को पूरे favicon package में बदलते हुए" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/images/tools/image-favicon-generator.jpg" alt="Convertica का favicon जेनरेटर एक तस्वीर को पूरे favicon सेट में बदलते हुए" width="1280" height="800" loading="lazy"></figure>
 
-  <p>एक एक size अलग export करने के बजाय, एक high-quality image से शुरू करो और generator को पूरा set बनाने दो। <a href="/hi/image/favicon-generator/">favicon generator</a> के साथ flow ऐसा है:</p>
+  <p>एक-एक नाप अलग बनाने के बजाय, एक अच्छी तस्वीर से शुरू करो और जेनरेटर को पूरा सेट बनाने दो। <a href="/hi/image/favicon-generator/">favicon जेनरेटर</a> के साथ रास्ता ऐसा है:</p>
 
   <ol>
-    <li><a href="/hi/image/favicon-generator/">favicon generator</a> खोलो और अपनी source image upload करो। PNG, JPG, WebP या SVG सब चलते हैं, और SVG या एक बड़ी PNG सबसे crisp result देती है।</li>
-    <li>Tool आपकी image को square में center-crop करता है और हर size आपके लिए render करता है: multi-resolution favicon.ico, 16 से 512 तक की पूरी range के PNG icons, 180 pixel apple-touch-icon, और 192 और 512 वाले Android icons।</li>
-    <li>ZIP download करो। अंदर आपको सारे icons, PWA और Android support के लिए तैयार site.webmanifest, और अपनी site में paste करने के लिए थोड़ा सा HTML block मिलता है।</li>
+    <li><a href="/hi/image/favicon-generator/">favicon जेनरेटर</a> खोलो और अपनी तस्वीर चढ़ा दो। PNG, JPG, WebP या SVG, सब चलते हैं, और SVG या कोई बड़ी PNG सबसे साफ नतीजा देती है।</li>
+    <li>टूल आपकी तस्वीर को चौकोर में बीच से काटता है और हर नाप आपके लिए बना देता है: कई नाप वाली favicon.ico, 16 से 512 तक के PNG आइकन, 180 पिक्सल का apple-touch-icon, और 192 तथा 512 वाले Android आइकन।</li>
+    <li>ZIP डाउनलोड करो। अंदर सारे आइकन मिलते हैं, PWA और Android के लिए तैयार site.webmanifest, और अपनी साइट में चिपकाने के लिए थोड़ा सा HTML।</li>
   </ol>
 
-  <p>आपकी upload की गई image processing के बाद server से हटा दी जाती है, इसलिए जो logo आपने अभी launch नहीं किया वो कहीं रुका नहीं रहता। Result: एक ही upload से एक complete, standards के हिसाब से सही icon set, बिना किसी image editor के। और हां, यह बिल्कुल free है।</p>
+  <p>आपकी चढ़ाई हुई तस्वीर काम पूरा होने के बाद सर्वर से हटा दी जाती है, इसलिए जो लोगो आपने अभी सार्वजनिक नहीं किया वो कहीं रुका नहीं रहता। नतीजा: एक ही अपलोड से पूरा, मानकों के हिसाब से सही आइकन सेट, बिना किसी इमेज एडिटर के। और हां, यह पूरी तरह मुफ़्त है।</p>
 
-  <h2>जो HTML आप paste करते हो, line by line समझा हुआ</h2>
+  <h2>जो HTML आप चिपकाते हो, लाइन दर लाइन</h2>
 
-  <p>Favicon तभी काम करता है जब browser को पता हो कि उसे कहां ढूंढना है। Generator आपको इस तरह का snippet देता है जो आपके pages के <code>&lt;head&gt;</code> के अंदर रखा जाता है:</p>
+  <p>Favicon तभी चलता है जब ब्राउज़र को पता हो कि उसे कहां ढूंढना है। जेनरेटर आपको इस तरह का हिस्सा देता है, जो आपके पन्नों के <code>&lt;head&gt;</code> के अंदर जाता है:</p>
 
   <pre><code>&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
   &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
@@ -102,60 +102,60 @@ content_hi: |
   &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
   &lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
 
-  <p>Line by line, हर एक क्या करती है:</p>
+  <p>लाइन दर लाइन, हर एक क्या करती है:</p>
 
   <ul>
-    <li>पहली line <strong>favicon.ico</strong> की तरफ इशारा करती है, वो universal fallback जिसे हर browser समझता है, पुराने वाले भी।</li>
-    <li>दो PNG lines modern browsers को sharper <strong>32x32</strong> और <strong>16x16</strong> icon देती हैं और उन्हें screen के हिसाब से सही वाला चुनने देती हैं।</li>
-    <li><strong>apple-touch-icon</strong> line वही है जिसे iPhone और iPad use करते हैं जब कोई आपका page अपनी home screen पर save करता है, ताकि वो एक असली app icon जैसा दिखे न कि blur screenshot।</li>
-    <li><strong>manifest</strong> line web manifest की तरफ इशारा करती है, जहां से Android और installable web apps अपने icons और app details पढ़ते हैं।</li>
+    <li>पहली लाइन <strong>favicon.ico</strong> की तरफ इशारा करती है, वो सबका सहारा जिसे हर ब्राउज़र समझता है, पुराने वाले भी।</li>
+    <li>दो PNG लाइनें नए ब्राउज़र को साफ <strong>32x32</strong> और <strong>16x16</strong> आइकन देती हैं और उन्हें स्क्रीन के हिसाब से सही वाला चुनने देती हैं।</li>
+    <li><strong>apple-touch-icon</strong> वाली लाइन वही है जिसे iPhone और iPad लेते हैं जब कोई आपका पन्ना होम स्क्रीन पर सहेजता है, ताकि वो असली ऐप आइकन जैसा दिखे, धुँधले स्क्रीनशॉट जैसा नहीं।</li>
+    <li><strong>manifest</strong> वाली लाइन उस फाइल की तरफ इशारा करती है, जहां से Android और इंस्टॉल होने वाले वेब ऐप अपने आइकन और बाकी ब्यौरा पढ़ते हैं।</li>
   </ul>
 
-  <p>Icon files और manifest को अपनी site के root में upload करो ताकि ऊपर दिए paths सही resolve हो जाएं, बाकी browser खुद संभाल लेता है।</p>
+  <p>आइकन फाइलें और manifest अपनी साइट की जड़ में रखो, ताकि ऊपर लिखे रास्ते ठीक मिलें, बाकी ब्राउज़र खुद संभाल लेता है।</p>
 
   <h2>Web manifest किस काम का है</h2>
 
-  <p>site.webmanifest एक छोटी text file है जो आपकी site को एक installable app की तरह describe करती है। Favicon के लिए इसका सबसे बड़ा काम है 192x192 और 512x512 वाले icons list करना, जिन्हें Android और Progressive Web Apps home screen और splash screen के लिए use करते हैं। अगर आप कभी अपनी site को installable नहीं बनाना चाहते, तब भी manifest से कोई नुकसान नहीं और Android खुश रहता है। और अगर चाहते हो, तो यही दो icons चाहिए होते हैं, और generator इन्हें आपके लिए भर देता है।</p>
+  <p>site.webmanifest एक छोटी टेक्स्ट फाइल है, जो आपकी साइट को इंस्टॉल होने वाले ऐप की तरह बताती है। Favicon के लिए इसका सबसे बड़ा काम है 192x192 और 512x512 वाले आइकन गिना देना, जिन्हें Android और इंस्टॉल होने वाले वेब ऐप होम स्क्रीन और शुरुआती स्क्रीन पर लेते हैं। अगर आप अपनी साइट को कभी इंस्टॉल होने लायक नहीं बनाना चाहते, तब भी manifest से कोई नुकसान नहीं और Android खुश रहता है। और अगर चाहते हो, तो यही दो आइकन चाहिए होते हैं, और जेनरेटर इन्हें आपके लिए भर देता है।</p>
 
-  <h2>Source image चुनना और तैयार करना</h2>
+  <h2>तस्वीर चुनना और तैयार करना</h2>
 
-  <p>सबसे बड़ा quality lever वही image है जिससे आप शुरू करते हो। कुछ आदतें हर generated size को बेहतर बनाती हैं:</p>
-
-  <ul>
-    <li><strong>बड़ी और square से शुरू करो।</strong> एक 512x512 image, या एक SVG, साफ तरह से छोटी होती है। एक छोटी source हमेशा छोटी ही दिखेगी।</li>
-    <li><strong>Simple रखो।</strong> Favicon अक्सर 16 pixel पर दिखता है। छोटी detail, पतली lines और छोटा text उस size पर गायब हो जाते हैं। एक bold letter, एक symbol या एक simplified logo mark आपके पूरे logo और tagline से कहीं बेहतर पढ़ा जाता है।</li>
-    <li><strong>Strong contrast use करो।</strong> Icon को light और dark दोनों browser themes के सामने अलग दिखना होता है। Mark और उसके background के बीच ज़्यादा contrast हर जगह legible रखता है।</li>
-    <li><strong>Margins का ध्यान रखो।</strong> Mark के आसपास थोड़ी जगह छोड़ो ताकि जब कोई platform app icon के corners round करे तो वो clip न हो।</li>
-  </ul>
-
-  <p>अगर आप सोच रहे हो कि कौन से format से शुरू करें, तो <a href="/hi/blog/webp-vs-jpeg-vs-png-best-image-format/">WebP vs JPEG vs PNG</a> वाली guide trade-offs cover करती है, और अगर आप सोच रहे हो कि upload किए logo का क्या होता है, तो <a href="/hi/blog/is-convertica-safe-pdf-file-security-privacy-explained/">Convertica आपकी files कैसे handle करता है</a> वाला note privacy का पहलू समझाता है।</p>
-
-  <h2>वो common गलतियां जिनसे favicon टूटा रह जाता है</h2>
+  <p>गुणवत्ता की सबसे बड़ी चाबी वही तस्वीर है जिससे आप शुरू करते हो। कुछ आदतें हर बने नाप को बेहतर बनाती हैं:</p>
 
   <ul>
-    <li><strong>सिर्फ favicon.ico भेजना।</strong> यह tabs cover करता है लेकिन iPhone home screen या PWA install नहीं। वो gaps apple-touch-icon और manifest icons भरते हैं।</li>
-    <li><strong>गलत file paths।</strong> अगर link tags का <code>href</code> उस जगह से match नहीं करता जहां आपने files असल में upload की हैं, तो browser कुछ नहीं दिखाता। Icons को site root पर रखो या paths को match करने के लिए update करो।</li>
-    <li><strong>Browser cache को दोष देना।</strong> Favicons को बहुत aggressively cache किया जाता है। एक नया लगाने या बदलने के बाद, hard refresh या private window में एक visit अक्सर वो नया icon दिखा देता है जिसे normal reload अब तक छुपा रहा था।</li>
-    <li><strong>छोटी image से शुरू करना।</strong> एक छोटे logo को 180 या 512 pixel तक बड़ा करने से soft, pixelated icon बनता है। हमेशा अपने पास मौजूद सबसे बड़ी साफ version से शुरू करो।</li>
+    <li><strong>बड़ी और चौकोर से शुरू करो।</strong> 512x512 की तस्वीर, या कोई SVG, साफ तरह से छोटी होती है। छोटी तस्वीर हमेशा छोटी ही दिखेगी।</li>
+    <li><strong>सादा रखो।</strong> Favicon अक्सर 16 पिक्सल पर दिखता है। बारीक ब्यौरा, पतली लकीरें और छोटे अक्षर उस नाप पर गायब हो जाते हैं। एक मोटा अक्षर, एक निशान या हल्का किया हुआ लोगो पूरे लोगो और उसकी लाइन से कहीं बेहतर पढ़ा जाता है।</li>
+    <li><strong>गहरा अंतर रखो।</strong> आइकन को हल्की और गहरी, दोनों तरह की ब्राउज़र सजावट के सामने अलग दिखना है। निशान और उसके पीछे के रंग के बीच अच्छा अंतर उसे हर जगह पढ़ने लायक रखता है।</li>
+    <li><strong>हाशिये का ध्यान रखो।</strong> निशान के आसपास थोड़ी जगह छोड़ो, ताकि कोई डिवाइस आइकन के कोने गोल करे तो वो कटे नहीं।</li>
   </ul>
 
-  <h2>FAQ</h2>
+  <p>अगर सोच रहे हो कि किस फ़ॉर्मैट से शुरू करें, तो <a href="/hi/blog/webp-vs-jpeg-vs-png-best-image-format/">WebP, JPEG या PNG</a> वाली गाइड सारे सौदे बताती है, और अगर सोच रहे हो कि चढ़ाए हुए लोगो का क्या होता है, तो <a href="/hi/blog/is-convertica-safe-pdf-file-security-privacy-explained/">Convertica आपकी फाइलें कैसे संभालता है</a> वाला लेख प्राइवेसी का पहलू समझाता है।</p>
 
-  <h3>क्या मुझे अभी भी favicon.ico चाहिए, या PNG काफी है?</h3>
-  <p>दोनों रखो। Modern browsers खुशी खुशी PNG icons use करते हैं, लेकिन favicon.ico safe universal fallback बना रहता है, और कुछ browsers और tools अभी भी उसे site root पर नाम से ढूंढते हैं। एक complete set में दोनों होते हैं, इसीलिए generator PNGs के साथ ICO भी बनाता है।</p>
+  <h2>वो आम गलतियां जिनसे favicon टूटा रह जाता है</h2>
+
+  <ul>
+    <li><strong>सिर्फ favicon.ico भेजना।</strong> यह टैब ढक लेता है, पर iPhone की होम स्क्रीन या PWA इंस्टॉल नहीं। वो कमी apple-touch-icon और manifest के आइकन भरते हैं।</li>
+    <li><strong>गलत रास्ते।</strong> अगर link वाली पंक्तियों का <code>href</code> उस जगह से मेल नहीं खाता जहां फाइलें असल में पड़ी हैं, तो ब्राउज़र कुछ नहीं दिखाता। आइकन साइट की जड़ में रखो, या रास्ते बदलकर मिला दो।</li>
+    <li><strong>ब्राउज़र की याद को दोष देना।</strong> Favicon बहुत ज़िद से सहेजा जाता है। नया लगाने या बदलने के बाद, ज़ोर से रीफ़्रेश करना या निजी विंडो में एक चक्कर अक्सर वही नया आइकन दिखा देता है जिसे आम रीलोड छिपा रहा था।</li>
+    <li><strong>छोटी तस्वीर से शुरू करना।</strong> छोटे लोगो को 180 या 512 पिक्सल तक खींचने से नरम, दानेदार आइकन बनता है। हमेशा अपने पास मौजूद सबसे बड़े साफ रूप से शुरू करो।</li>
+  </ul>
+
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
+
+  <h3>क्या अब भी favicon.ico चाहिए, या PNG काफी है?</h3>
+  <p>दोनों रखो। नए ब्राउज़र खुशी-खुशी PNG आइकन लेते हैं, लेकिन favicon.ico सबका सुरक्षित सहारा बना रहता है, और कुछ ब्राउज़र और टूल आज भी उसे साइट की जड़ में नाम से ढूंढते हैं। पूरे सेट में दोनों होते हैं, इसीलिए जेनरेटर PNG के साथ ICO भी बनाता है।</p>
 
   <h3>यहां ICO और PNG में फर्क क्या है?</h3>
-  <p>ICO एक पुराना format है जो एक ही file के अंदर कई sizes (16, 32 और 48) bundle कर सकता है, इसीलिए वो अकेले fallback favicon के रूप में इतना अच्छा काम करता है। PNG एक file में एक size रखता है लेकिन crisp, high-quality images और transparency support करता है, इसीलिए बड़े icons PNG होते हैं। आपको दोनों चाहिए, हर एक अपना best काम करता हुआ।</p>
+  <p>ICO पुराना फ़ॉर्मैट है, जो एक ही फाइल के अंदर कई नाप (16, 32 और 48) रख सकता है, इसीलिए वो अकेले सहारे के रूप में इतना अच्छा चलता है। PNG एक फाइल में एक नाप रखता है, पर साफ, ऊँची गुणवत्ता और पारदर्शिता देता है, इसीलिए बड़े आइकन PNG होते हैं। दोनों चाहिए, हर एक अपना काम करता हुआ।</p>
 
-  <h3>क्या मैं transparent background use कर सकता हूं?</h3>
-  <p>हां, और PNG इसे support करता है। Transparent background icon को light और dark दोनों browser themes पर naturally बैठने देता है। बस इतना ध्यान रखो कि mark खुद में इतना contrast रखता हो कि दोनों पर दिखता रहे।</p>
+  <h3>क्या पारदर्शी पीछे का रंग रख सकता हूं?</h3>
+  <p>हां, और PNG इसे चलाता है। पारदर्शी पीठ आइकन को हल्की और गहरी, दोनों सजावट पर अपने आप बैठने देती है। बस ध्यान रखो कि निशान खुद में इतना अंतर रखता हो कि दोनों पर दिखता रहे।</p>
 
   <h3>मेरा नया favicon क्यों नहीं दिख रहा?</h3>
-  <p>लगभग हमेशा cache। Browsers favicons को बाकी assets से ज़्यादा देर तक पकड़े रहते हैं। एक hard refresh करो, site को private window में खोलो, या icon file को उसके URL से सीधा check करो कि वो upload हुआ कि नहीं। जैसे ही cache clear होता है, नया icon दिखने लगता है।</p>
+  <p>लगभग हमेशा ब्राउज़र की याद। ब्राउज़र favicon को बाकी चीज़ों से ज़्यादा देर पकड़े रहते हैं। ज़ोर से रीफ़्रेश करो, साइट निजी विंडो में खोलो, या आइकन फाइल का पता सीधे खोलकर देख लो कि वो चढ़ी है या नहीं। याद साफ होते ही नया आइकन दिखने लगता है।</p>
 
   <h3>क्या SEO के लिए favicon ज़रूरी है?</h3>
-  <p>यह कोई ranking factor नहीं, लेकिन favicon search results में आपके page title के बगल में दिख सकता है, जो आपके brand को मज़बूत करता है और click-through बढ़ा सकता है। यह एक छोटा, एक बार का काम है जिसका visual फायदा लंबे समय तक रहता है, इसलिए इसे छोड़ने की कोई वजह नहीं।</p>
+  <p>यह जगह तय करने वाला कारण नहीं, लेकिन favicon खोज के नतीजों में आपके शीर्षक के बगल में दिख सकता है, जो ब्रांड को मज़बूत करता है और क्लिक बढ़ा सकता है। यह छोटा, एक बार का काम है जिसका फायदा लंबे समय तक रहता है, इसलिए इसे छोड़ने की कोई वजह नहीं।</p>
 
   <h2>अपना favicon अभी बनाओ</h2>
 
-  <p>अगर आपकी site बिना favicon के चल रही है, या बरसों पुराने blur icon के साथ, तो इसे दो minute में ठीक करो। अपना logo <a href="/hi/image/favicon-generator/">favicon generator</a> में upload करो, ZIP download करो, files को अपनी site root पर रखो, और HTML snippet paste कर दो। अगर आपको पूरे package के बजाय सिर्फ एक icon file चाहिए, तो <a href="/hi/image/png-to-ico/">PNG to ICO</a> और <a href="/hi/image/svg-to-ico/">SVG to ICO</a> converters वही एक काम करते हैं, और <a href="/hi/image/optimize/">image optimizer</a> पहले आपकी source image को trim करने में मदद करता है।</p>
+  <p>अगर आपकी साइट बिना favicon के चल रही है, या बरसों पुराने धुँधले आइकन के साथ, तो इसे दो मिनट में ठीक करो। अपना लोगो <a href="/hi/image/favicon-generator/">favicon जेनरेटर</a> में चढ़ाओ, ZIP डाउनलोड करो, फाइलें साइट की जड़ में रखो, और HTML वाला हिस्सा चिपका दो। अगर पूरे सेट के बजाय सिर्फ एक फाइल चाहिए, तो <a href="/hi/image/png-to-ico/">PNG से ICO</a> और <a href="/hi/image/svg-to-ico/">SVG से ICO</a> वाले टूल वही एक काम करते हैं, और <a href="/hi/image/optimize/">इमेज ऑप्टिमाइज़र</a> पहले आपकी तस्वीर हल्की करने में मदद करता है।</p>
