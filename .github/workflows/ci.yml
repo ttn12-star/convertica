@@ -893,6 +893,12 @@ jobs:
             print(f'📊 Operations: {OperationRun.objects.count()}')
             " || echo "⚠️ Final verification failed (non-critical)"
 
+            # Web started before Tailwind (4) and collectstatic (5), so it pins the
+            # stale manifest + inline_static's cached CSS; without this a CSS-only
+            # release ships a deploy late. The health loop below is the gate.
+            echo "🔄 Restarting web for the rebuilt static assets..."
+            docker restart "$NEW_WEB_ID" > /dev/null 2>&1 || true
+
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
