@@ -314,8 +314,17 @@
             : '';
 
         const toast = document.createElement('div');
-        toast.className = `${colors[type] || colors.info} border rounded-xl p-4 shadow-lg animate-fade-in`;
+        toast.className = `${colors[type] || colors.info} border rounded-xl p-4 shadow-lg`;
         toast.style.pointerEvents = 'auto';
+        // Enter and leave along the same axis as the stack itself (top-right):
+        // the old `animate-fade-in` slid the toast UP from below into a
+        // top-anchored stack, and it left by fading in place, so appearing and
+        // disappearing looked like two unrelated events. Transitions, not
+        // keyframes, so a toast arriving mid-animation retargets smoothly.
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(16px)';
+        toast.style.transition = 'opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),'
+                               + ' transform 200ms cubic-bezier(0.23, 1, 0.32, 1)';
         toast.innerHTML = `
             <div class="flex items-start gap-3">
                 <svg class="w-5 h-5 flex-shrink-0 mt-0.5 ${iconColors[type] || iconColors.info}" fill="none" stroke="currentColor" viewBox="0 0 24 24">${icons[type] || icons.info}</svg>
@@ -331,9 +340,20 @@
         `;
 
         container.appendChild(toast);
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(0)';
+        });
+
+        const dismiss = () => {
+            if (!toast.parentNode) return;
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(16px)';
+            setTimeout(() => toast.remove(), 200);
+        };
 
         // Close button
-        toast.querySelector('[data-toast-close]').addEventListener('click', () => toast.remove());
+        toast.querySelector('[data-toast-close]').addEventListener('click', dismiss);
 
         // Download button
         const dlBtn = toast.querySelector('[data-bg-download]');
@@ -342,13 +362,7 @@
         }
 
         // Auto-hide
-        setTimeout(() => {
-            if (toast.parentNode) {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.3s ease-out';
-                setTimeout(() => toast.remove(), 300);
-            }
-        }, TOAST_DURATION);
+        setTimeout(dismiss, TOAST_DURATION);
     }
 
     function escapeForHtml(str) {

@@ -20,12 +20,32 @@
   <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900">
     <!-- Hero Section -->
     <div class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      <!-- Background Effects -->
-      <div class="absolute inset-0">
-        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      {% comment %}
+        These blobs were written for a light background: mix-blend-multiply
+        darkens whatever is under it, so on the dark purple hero the yellow one
+        rendered as a muddy dark disc in the top-right corner instead of a glow.
+        blend-screen lightens, which is what a glow on a dark surface needs, and
+        the opacity comes down accordingly. Keyframes live in a <style> below
+        rather than being injected by JS after load — the blobs used to sit
+        still and then jump into motion once the script ran.
+      {% endcomment %}
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-400 rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-amber-300 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-400 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
+      <style>
+        @keyframes blob {
+          0%   { transform: translate(0, 0) scale(1); }
+          33%  { transform: translate(30px, -50px) scale(1.1); }
+          66%  { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
+        .animate-blob { animation: blob 7s ease-in-out infinite; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        @media (prefers-reduced-motion: reduce) { .animate-blob { animation: none; } }
+      </style>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div class="text-center">
@@ -39,7 +59,7 @@
 
           <!-- Main Title -->
           <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
-            <span class="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+            <span class="text-white">
               {% trans "Become a" %}
             </span>
             <br>
@@ -72,15 +92,15 @@
           <!-- Hero Stats -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div class="text-3xl font-bold text-yellow-400 mb-2">&infin;</div>
+              <div class="text-3xl font-bold text-amber-300 mb-2">&infin;</div>
               <div class="text-gray-300">{% trans "Daily Conversions" %}</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div class="text-3xl font-bold text-blue-400 mb-2">200&nbsp;MB</div>
+              <div class="text-3xl font-bold text-amber-300 mb-2">200&nbsp;MB</div>
               <div class="text-gray-300">{% trans "Max File Size" %}</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div class="text-3xl font-bold text-purple-400 mb-2">10</div>
+              <div class="text-3xl font-bold text-amber-300 mb-2">10</div>
               <div class="text-gray-300">{% trans "Files per Batch" %}</div>
             </div>
           </div>
@@ -97,7 +117,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <!-- Custom Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-emerald-400 transition duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-emerald-400 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-0.5 flex flex-col h-full">
           <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,13 +164,13 @@
             </li>
           </ul>
 
-          <a href="{% url 'frontend:contact_page' %}" class="w-full text-center bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition duration-200 transform hover:scale-105 mt-auto">
+          <a href="{% url 'frontend:contact_page' %}" class="w-full text-center bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
             {% trans "Request Terms" %}
           </a>
         </div>
 
         <!-- Monthly Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-400 transition duration-300 hover:transform hover:scale-105 relative flex flex-col h-full">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-400 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-0.5 relative flex flex-col h-full">
           <div class="absolute top-4 right-4">
             <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
               {% trans "MOST POPULAR" %}
@@ -240,7 +260,7 @@
           </ul>
 
           {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition duration-200 transform hover:scale-105 mt-auto">
+            <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
               {% trans "Become Monthly Hero" %}
             </button>
           {% else %}
@@ -252,7 +272,7 @@
 
 
         <!-- Yearly Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-400 transition duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-400 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-0.5 flex flex-col h-full">
           <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -301,7 +321,7 @@
           </ul>
 
           {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition duration-200 transform hover:scale-105 mt-auto">
+            <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
               {% trans "Become Yearly Hero" %}
             </button>
           {% else %}
@@ -844,26 +864,4 @@
       </script>
     {% endif %}
 
-    <script nonce="{{ csp_nonce }}">
-    // Add blob animations
-      const style = document.createElement('style');
-      style.textContent = `
-      @keyframes blob {
-        0% { transform: translate(0px, 0px) scale(1); }
-        33% { transform: translate(30px, -50px) scale(1.1); }
-        66% { transform: translate(-20px, 20px) scale(0.9); }
-        100% { transform: translate(0px, 0px) scale(1); }
-      }
-      .animate-blob {
-        animation: blob 7s infinite;
-      }
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
-      .animation-delay-4000 {
-        animation-delay: 4s;
-      }
-    `;
-      document.head.appendChild(style);
-    </script>
 {% endblock %}

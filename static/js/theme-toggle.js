@@ -67,6 +67,20 @@
                 theme = THEME_LIGHT;
             }
 
+            // The colour cross-fade is only wanted for the moment of the switch.
+            // dark-mode-helpers.css used to carry it as an unconditional `* {
+            // transition: background-color, color, border-color }`, so every
+            // element on the page dragged a 200ms colour fade around for the
+            // whole session — hover highlights felt sticky and every single
+            // hover paid for a transition nobody asked for. The `animate` flag
+            // was already in this signature and unused; now it means something.
+            if (animate) {
+                html.classList.add('theme-switching');
+                clearTimeout(this._switchTimer);
+                this._switchTimer = setTimeout(
+                    () => html.classList.remove('theme-switching'), 250);
+            }
+
             if (theme === THEME_DARK) {
                 html.classList.add('dark');
                 body.classList.add('dark-mode');

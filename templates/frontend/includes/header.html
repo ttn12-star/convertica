@@ -63,6 +63,28 @@
      section groupings stay intact); just tighten the gaps for the bucket. */
   .nav-overflowed .grid { gap: 0.5rem !important; }
   .nav-overflowed ul { margin: 0 !important; }
+  /* Dropdown motion. These menus are opened dozens of times per session and
+     used to cross-fade opacity over 300ms with no transform, so they felt like
+     a lag rather than a response. 150ms, and they scale up from their trigger
+     edge instead of materialising in place. The `.visible` half of the selector
+     is Tailwind's own visibility utility, which the nav JS already toggles, so
+     no JS change is needed; the :hover/:focus-within variants cover the two
+     panels that are pure-CSS. */
+  .header-dropdown {
+    transform: scale(0.98);
+    transform-origin: top;
+    transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1),
+                transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .header-dropdown.visible,
+  .group:hover .header-dropdown,
+  .group:focus-within .header-dropdown {
+    transform: scale(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .header-dropdown { transform: none; }
+  }
+
   /* Rotate the trigger chevron when expanded. */
   .nav-overflowed.open > button svg:last-of-type { transform: rotate(180deg); }
 </style>
@@ -125,7 +147,7 @@
 
         <!-- All Tools Dropdown (Desktop only) -->
           <div id="all-tools-menu-dropdown"
-               class="hidden md:block fixed top-full mt-2 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+               class="hidden md:block fixed top-full mt-2 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                style="position: fixed;"
                aria-labelledby="all-tools-menu-button"
                role="menu">
@@ -895,7 +917,7 @@
 
           <!-- Dropdown -->
               <div id="mega-menu-dropdown"
-                   class="absolute left-0 top-full mt-2 w-[500px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                   class="absolute left-0 top-full mt-2 w-[500px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                    aria-labelledby="mega-menu-button"
                    role="menu">
                 <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
@@ -1063,7 +1085,7 @@
 
           <!-- Edit PDF Dropdown -->
               <div id="edit-pdf-menu-dropdown"
-                   class="absolute left-0 top-full mt-2 w-[500px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                   class="absolute left-0 top-full mt-2 w-[500px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                    aria-labelledby="edit-pdf-menu-button"
                    role="menu">
                 <div class="grid grid-cols-2 gap-6 p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
@@ -1217,7 +1239,7 @@
 
           <!-- Organize PDF Dropdown -->
               <div id="organize-pdf-menu-dropdown"
-                   class="absolute left-0 top-full mt-2 w-[500px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                   class="absolute left-0 top-full mt-2 w-[500px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                    aria-labelledby="organize-pdf-menu-button"
                    role="menu">
                 <div class="grid grid-cols-2 gap-6 p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
@@ -1327,7 +1349,7 @@
 
           <!-- Images Dropdown -->
               <div id="images-menu-dropdown"
-                   class="absolute left-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                   class="absolute left-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                    aria-labelledby="images-menu-button"
                    role="menu">
                 <div class="p-5 bg-gradient-to-br from-white to-violet-50/30 dark:from-gray-800 dark:to-gray-900">
@@ -1488,7 +1510,7 @@
                 </button>
 
                 <div id="premium-tools-menu-dropdown"
-                     class="absolute right-0 top-full mt-2 w-[360px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                     class="absolute right-0 top-full mt-2 w-[360px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                      aria-labelledby="premium-tools-menu-button"
                      role="menu">
                   <div class="p-5 bg-gradient-to-br from-white to-amber-50/40 dark:from-gray-800 dark:to-gray-900">
@@ -1603,7 +1625,7 @@
               </button>
 
               <div id="more-tools-menu-dropdown"
-                   class="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-2rem)] max-h-[calc(100vh-6rem)] overflow-y-auto bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100"
+                   class="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-2rem)] max-h-[calc(100vh-6rem)] overflow-y-auto bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100"
                    aria-labelledby="more-tools-menu-button"
                    role="menu">
                 <div id="more-tools-menu-slots" class="p-2 space-y-1"></div>
@@ -1626,7 +1648,7 @@
 
               <!-- More Menu Dropdown -->
               <div id="more-menu-dropdown"
-                   class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                   class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible header-dropdown z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                    aria-labelledby="more-menu-button"
                    role="menu">
                 <div class="py-1">
@@ -1822,16 +1844,26 @@
             {% with path_without_lang=request.path|remove_language_prefix %}
               <input type="hidden" name="next" value="{{ path_without_lang }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}">
             {% endwith %}
-            <select name="language"
-                    onchange="this.form.submit();"
-                    aria-label="{% trans 'Select language' %}"
-                    class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 cursor-pointer hover:border-blue-400 transition-colors shadow-sm min-w-[100px] lg:min-w-[120px]">
-              {% for code, name in LANGUAGES %}
-                <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                  {% if code == 'en' %}English{% else %}{{ name }}{% endif %}
-                </option>
-              {% endfor %}
-            </select>
+            {% comment %}
+              appearance-none + our own chevron: the OS default arrow was the one
+              piece of raw browser chrome left in an otherwise custom header, and
+              it sat next to nav items that all use this exact chevron.
+            {% endcomment %}
+            <div class="relative">
+              <select name="language"
+                      onchange="this.form.submit();"
+                      aria-label="{% trans 'Select language' %}"
+                      class="w-full appearance-none border border-gray-300 dark:border-gray-700 rounded-lg ps-2 lg:ps-3 pe-8 py-1.5 lg:py-2 text-xs lg:text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 cursor-pointer hover:border-blue-400 transition-colors shadow-sm min-w-[100px] lg:min-w-[120px]">
+                {% for code, name in LANGUAGES %}
+                  <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
+                    {% if code == 'en' %}English{% else %}{{ name }}{% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+              <svg class="pointer-events-none absolute inset-y-0 end-2 my-auto w-3.5 h-3.5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
           </form>
         </div>
       </div>
