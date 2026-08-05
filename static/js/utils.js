@@ -263,7 +263,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                     </div>
                     <div class="h-3 bg-blue-100 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
                         <div id="progressBar"
-                             class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 dark:from-blue-600 dark:via-purple-600 dark:to-blue-600 rounded-full transition-all duration-300 ease-out"
+                             class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 dark:from-blue-600 dark:via-purple-600 dark:to-blue-600 rounded-full transition-[width] duration-300 ease-out"
                              style="width: 0%">
                         </div>
                     </div>
@@ -492,7 +492,7 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
 
                 <!-- Download Button -->
                 <button id="downloadButton"
-                        class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center space-x-3">
+                        class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition duration-200 flex items-center space-x-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>

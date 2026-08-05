@@ -127,7 +127,7 @@ class PWAInstaller {
         // Create install button
         const installBanner = document.createElement('div');
         installBanner.id = 'pwa-install-banner';
-        installBanner.className = 'fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-2xl p-4 z-50 transform transition-all duration-300 ease-in-out';
+        installBanner.className = 'fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-2xl p-4 z-50 transform transition duration-300 ease-in-out';
         installBanner.innerHTML = `
             <div class="flex items-start gap-3">
                 <div class="flex-shrink-0">

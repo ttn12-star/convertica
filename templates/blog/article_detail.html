@@ -538,7 +538,7 @@
               <ul class="space-y-1.5">
                 <li>
                   <a href="{% url 'blog:article_list' %}"
-                     class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 font-medium {% if not article.category %}bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700{% endif %}">
+                     class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-colors duration-200 font-medium {% if not article.category %}bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700{% endif %}">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                     </svg>
@@ -548,7 +548,7 @@
                 {% for cat in categories %}
                   <li>
                     <a href="{% url 'blog:article_list' %}?category={{ cat.slug }}"
-                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-200 font-medium {% if article.category == cat %}bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700{% else %}text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50{% endif %}">
+                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors duration-200 font-medium {% if article.category == cat %}bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700{% else %}text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50{% endif %}">
                       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                       </svg>
@@ -620,7 +620,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {% for related in related_articles %}
                     <a href="{{ related.get_absolute_url }}"
-                       class="group sidebar-card rounded-2xl overflow-hidden border border-gray-100/50 hover:shadow-2xl hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-2">
+                       class="group sidebar-card rounded-2xl overflow-hidden border border-gray-100/50 hover:shadow-2xl hover:border-blue-300 transition duration-300 transform hover:-translate-y-2">
                       {% if related.cover_image_url %}
                         <div class="w-full h-48 overflow-hidden">
                           <picture>
@@ -629,7 +629,7 @@
                             {% endif %}
                             <img src="{{ related.cover_image_url }}"
                                  alt="{{ related.get_title }}"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                                  width="400" height="192"
                                  loading="lazy"
                                  decoding="async">
@@ -662,7 +662,7 @@
                     <!-- Back to Blog with Modern Button -->
             <div class="mt-16 text-center">
               <a href="{% url 'blog:article_list' %}"
-                 class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-xl hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+                 class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-xl hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 font-bold text-lg transition duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
@@ -682,7 +682,7 @@
               </h3>
               <div class="space-y-2">
                 <a href="{% url 'frontend:pdf_to_word_page' %}"
-                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 transition-all duration-200 group border border-transparent hover:border-blue-200 hover:shadow-md">
+                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 transition duration-200 group border border-transparent hover:border-blue-200 hover:shadow-md">
                   <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
@@ -691,7 +691,7 @@
                   <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors text-center leading-tight">{% trans "PDF to Word" %}</span>
                 </a>
                 <a href="{% url 'frontend:merge_pdf_page' %}"
-                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100 transition-all duration-200 group border border-transparent hover:border-green-200 hover:shadow-md">
+                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100 transition duration-200 group border border-transparent hover:border-green-200 hover:shadow-md">
                   <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
@@ -700,7 +700,7 @@
                   <span class="text-xs font-bold text-gray-700 group-hover:text-green-600 transition-colors text-center leading-tight">{% trans "Merge PDF" %}</span>
                 </a>
                 <a href="{% url 'frontend:compress_pdf_page' %}"
-                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-purple-50 hover:to-purple-100 transition-all duration-200 group border border-transparent hover:border-purple-200 hover:shadow-md">
+                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-purple-50 hover:to-purple-100 transition duration-200 group border border-transparent hover:border-purple-200 hover:shadow-md">
                   <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
@@ -709,7 +709,7 @@
                   <span class="text-xs font-bold text-gray-700 group-hover:text-purple-600 transition-colors text-center leading-tight">{% trans "Compress PDF" %}</span>
                 </a>
                 <a href="{% url 'frontend:rotate_pdf_page' %}"
-                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-pink-50 hover:to-pink-100 transition-all duration-200 group border border-transparent hover:border-pink-200 hover:shadow-md">
+                   class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gradient-to-br hover:from-pink-50 hover:to-pink-100 transition duration-200 group border border-transparent hover:border-pink-200 hover:shadow-md">
                   <div class="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
@@ -720,7 +720,7 @@
               </div>
               <div class="mt-5 pt-5 border-t border-gray-200">
                 <a href="{% url 'frontend:all_tools_page' %}"
-                   class="block w-full text-center px-4 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-xl hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-sm font-bold transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                   class="block w-full text-center px-4 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-xl hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-sm font-bold transition shadow-lg hover:shadow-xl transform hover:scale-105">
                   {% trans "View All Tools" %}
                 </a>
               </div>

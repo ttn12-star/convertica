@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Create preview card
             const card = document.createElement('div');
-            card.className = 'pdf-page-card relative bg-white rounded-lg border-2 border-gray-300 p-2 cursor-move hover:border-blue-500 hover:shadow-md transition-all';
+            card.className = 'pdf-page-card relative bg-white rounded-lg border-2 border-gray-300 p-2 cursor-move hover:border-blue-500 hover:shadow-md transition';
             card.draggable = true;
             card.dataset.pageIndex = pageIndex;
             card.dataset.displayIndex = displayIndex;
