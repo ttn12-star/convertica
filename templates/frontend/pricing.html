@@ -97,7 +97,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <!-- Custom Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-emerald-400 transition-all duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-emerald-400 transition duration-300 hover:transform hover:scale-105 flex flex-col h-full">
           <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,13 +144,13 @@
             </li>
           </ul>
 
-          <a href="{% url 'frontend:contact_page' %}" class="w-full text-center bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition-all duration-200 transform hover:scale-105 mt-auto">
+          <a href="{% url 'frontend:contact_page' %}" class="w-full text-center bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition duration-200 transform hover:scale-105 mt-auto">
             {% trans "Request Terms" %}
           </a>
         </div>
 
         <!-- Monthly Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-400 transition-all duration-300 hover:transform hover:scale-105 relative flex flex-col h-full">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-400 transition duration-300 hover:transform hover:scale-105 relative flex flex-col h-full">
           <div class="absolute top-4 right-4">
             <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
               {% trans "MOST POPULAR" %}
@@ -240,7 +240,7 @@
           </ul>
 
           {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105 mt-auto">
+            <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition duration-200 transform hover:scale-105 mt-auto">
               {% trans "Become Monthly Hero" %}
             </button>
           {% else %}
@@ -252,7 +252,7 @@
 
 
         <!-- Yearly Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-400 transition-all duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-400 transition duration-300 hover:transform hover:scale-105 flex flex-col h-full">
           <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -301,7 +301,7 @@
           </ul>
 
           {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 mt-auto">
+            <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition duration-200 transform hover:scale-105 mt-auto">
               {% trans "Become Yearly Hero" %}
             </button>
           {% else %}
@@ -362,7 +362,7 @@
           <p class="text-lg text-gray-800 mb-2">{% trans "If you want to support the project without Premium, you can contribute here." %}</p>
           <p class="text-sm text-gray-800 mb-6">{% trans "Note: contributing does not unlock Premium features." %}</p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{% url 'frontend:contribute' %}" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:from-blue-800 hover:to-indigo-800 hover:shadow-xl hover:scale-105 transition-all duration-200 transform shadow-lg">
+            <a href="{% url 'frontend:contribute' %}" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:from-blue-800 hover:to-indigo-800 hover:shadow-xl hover:scale-105 transition duration-200 transform shadow-lg">
               {% trans "Contribute to the Project" %}
             </a>
           </div>
@@ -389,7 +389,7 @@
               </p>
               <div class="grid md:grid-cols-3 gap-8 mt-10">
                 <div class="text-center group">
-                  <div class="w-20 h-20 bg-gradient-to-br from-emerald-50 to-green-100 dark:from-emerald-900/20 dark:to-green-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-emerald-200/50 transition-all duration-300">
+                  <div class="w-20 h-20 bg-gradient-to-br from-emerald-50 to-green-100 dark:from-emerald-900/20 dark:to-green-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-emerald-200/50 transition duration-300">
                     <svg class="w-10 h-10 text-emerald-600 dark:text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
@@ -398,7 +398,7 @@
                   <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{% trans "Enjoy the site without any advertisements as a premium member" %}</p>
                 </div>
                 <div class="text-center group">
-                  <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-blue-200/50 transition-all duration-300">
+                  <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-blue-200/50 transition duration-300">
                     <svg class="w-10 h-10 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -408,7 +408,7 @@
                   <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{% trans "Your support powers our infrastructure and improvements" %}</p>
                 </div>
                 <div class="text-center group">
-                  <div class="w-20 h-20 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-200/50 transition-all duration-300">
+                  <div class="w-20 h-20 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-200/50 transition duration-300">
                     <svg class="w-10 h-10 text-purple-600 dark:text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>

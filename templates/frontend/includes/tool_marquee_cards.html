@@ -7,7 +7,7 @@
 {% endcomment %}
 {% for url_name, slug, label in tool_marquee_items %}
   <a href="{% url url_name %}"
-     class="tool-marquee-card group flex-shrink-0 w-72 rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+     class="tool-marquee-card group flex-shrink-0 w-72 rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
     <img src="{% static 'images/tools/' %}{{ slug }}-card.webp"
          alt="{{ label }}"
          width="480" height="300"

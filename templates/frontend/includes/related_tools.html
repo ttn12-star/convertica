@@ -11,7 +11,7 @@
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
     {% for tool in related_tools %}
-      <a href="{{ tool.url }}" class="group flex items-start p-3 sm:p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-md transition-all duration-200">
+      <a href="{{ tool.url }}" class="group flex items-start p-3 sm:p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-md transition duration-200">
         <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br {{ tool.gradient }} rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
           <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {{ tool.icon|safe }}
@@ -33,7 +33,7 @@
   </div>
 
   <div class="mt-4 sm:mt-6 text-center">
-    <a href="{% url 'frontend:all_tools_page' %}" class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-2 border-blue-600 dark:border-blue-400 rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 font-medium transition-all duration-200 text-sm sm:text-base">
+    <a href="{% url 'frontend:all_tools_page' %}" class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-2 border-blue-600 dark:border-blue-400 rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 font-medium transition-colors duration-200 text-sm sm:text-base">
       {% trans "View All Tools" %}
       <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
