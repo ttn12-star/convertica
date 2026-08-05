@@ -16314,3 +16314,9 @@ msgstr "انقل صفحاتك إلى A4 أو US Letter أو Legal دون اقت�
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "يُدعم ملف PDF حتى %(max_pages)s صفحة. تُعاد الصفحات كمحتوى متجه، فيبقى النص والرسم الخطي حاداً. أما التصميم نفسه فلا يُعاد تنسيقه: الفقرات لن تتوزع من جديد وفق النسب الجديدة."
+
+msgid "{count} files selected"
+msgstr "تم تحديد {count} ملفات"
+
+msgid "Total: {size}"
+msgstr "الإجمالي: {size}"

@@ -17288,3 +17288,9 @@ msgstr "Pasa tus páginas a A4, Carta u Oficio sin recortarlas."
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "Se admiten archivos PDF de hasta %(max_pages)s páginas. Las páginas se recolocan como contenido vectorial, así que el texto y el trazo siguen nítidos. El diseño en sí no se rehace: los párrafos no se recompondrán para las proporciones nuevas."
+
+msgid "{count} files selected"
+msgstr "{count} archivos seleccionados"
+
+msgid "Total: {size}"
+msgstr "Total: {size}"

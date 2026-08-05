@@ -12,8 +12,13 @@
   {% if PAYMENTS_ENABLED %}
     <!-- OCR Options for Premium Users -->
     <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800/60 rounded-lg" data-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}">
-      <!-- OCR Toggle (Premium Feature) -->
-      <div class="flex items-start space-x-3 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
+      {% comment %}
+        No inner amber panel here: it repeated the wrapper's own amber tint and
+        border 16px inside it, so the option rendered as a box inside a box
+        (very visible in dark mode, where the doubled border reads as an error
+        state). The wrapper is the panel; this row is just its content.
+      {% endcomment %}
+      <div class="flex items-start space-x-3">
         <input type="checkbox"
                id="ocrEnabled"
                name="ocr_enabled"
@@ -44,7 +49,6 @@
       </div>
 
         <!-- OCR Language Selection (visible only for premium users) -->
-        <!-- Debug: user.is_authenticated={{ user.is_authenticated }}, user.is_premium={{ user.is_premium }} -->
       {% if user.is_authenticated and user.is_premium_active %}
         <div id="ocrLanguageSection" class="pl-7 space-y-2">
           <label for="ocrLanguage" class="text-sm font-medium text-gray-900 dark:text-gray-100">

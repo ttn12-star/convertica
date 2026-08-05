@@ -16923,3 +16923,9 @@ msgstr "अपने पेजों को बिना काटे A4, US Let
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "%(max_pages)s पेज तक की PDF फ़ाइलें समर्थित हैं। पेज वेक्टर सामग्री के रूप में दोबारा रखे जाते हैं, इसलिए टेक्स्ट और लाइन आर्ट साफ़ रहते हैं। डिज़ाइन खुद दोबारा नहीं जमाया जाता: पैराग्राफ़ नए अनुपात के हिसाब से दोबारा नहीं बहेंगे।"
+
+msgid "{count} files selected"
+msgstr "{count} फ़ाइलें चुनी गईं"
+
+msgid "Total: {size}"
+msgstr "कुल: {size}"

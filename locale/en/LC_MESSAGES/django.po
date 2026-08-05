@@ -15654,3 +15654,9 @@ msgstr "Move your pages to A4, US Letter or Legal without cropping them."
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
+
+msgid "{count} files selected"
+msgstr "{count} files selected"
+
+msgid "Total: {size}"
+msgstr "Total: {size}"

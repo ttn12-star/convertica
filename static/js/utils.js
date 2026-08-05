@@ -109,6 +109,10 @@ function maybeShowQuotaNudge(response) {
  * @param {string} containerId - Optional container ID (defaults to finding first available)
  */
 function showError(message, containerId = null) {
+    // Belt and braces: every caller happens to hideLoading() first (which clears
+    // it), but a frozen form is a dead page, so never leave one behind.
+    if (typeof setConversionFormBusy === 'function') setConversionFormBusy(false);
+
     // Handle object with upgrade_url/upgrade_text from API
     let errorText = message;
     let upgradeUrl = null;
@@ -223,6 +227,23 @@ function hideError(containerId = null) {
  * @param {string} containerId - Container ID (default: 'loadingContainer')
  * @param {Object} options - Options for customization
  */
+/* While a conversion runs, the form that started it used to stay fully present
+   and fully lit above the progress panel — two live focal points, with a washed
+   out submit button competing for attention against the thing actually
+   happening. Dimming and freezing it is enough; the Cancel button lives in the
+   progress panel, outside the form, so it stays clickable. */
+function setConversionFormBusy(busy) {
+    document.querySelectorAll('#converterForm, #editorForm').forEach((form) => {
+        form.classList.toggle('opacity-50', busy);
+        form.classList.toggle('pointer-events-none', busy);
+        if (busy) {
+            form.setAttribute('aria-busy', 'true');
+        } else {
+            form.removeAttribute('aria-busy');
+        }
+    });
+}
+
 /* The "Progress" label and the status line under the bar were the last two
    hardcoded English strings in the conversion flow — on a 7-language site they
    rendered untranslated right next to localised copy. Neither earned a msgid:
@@ -325,6 +346,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
     `;
 
     container.classList.remove('hidden');
+    setConversionFormBusy(true);
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     // Wire up Cancel button
@@ -410,6 +432,7 @@ function hideLoading(containerId = 'loadingContainer', showComplete = false) {
     window._currentTaskId = null;
     window._currentAbortController = null;
     window._onCancelCallback = null;
+    setConversionFormBusy(false);
 
     // Only show 100% if explicitly requested (file is actually ready)
     if (showComplete) {
