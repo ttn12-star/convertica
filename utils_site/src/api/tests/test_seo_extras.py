@@ -33,9 +33,24 @@ class SeoMetaTests(SimpleTestCase):
         self.assertEqual(seo_meta(m), m)
 
     def test_dangling_connector_dropped(self):
-        # >155 chars, with a connector sitting right at the word-boundary cut.
+        # Over the limit, with a connector sitting right at the word-boundary
+        # cut. Passes max_len explicitly: this asserts cut behaviour, not the
+        # default cap, so it stays valid if the cap moves again.
         m = ("filler " * 25) + "and tail words that overflow the limit here"
         self.assertGreater(len(m), 155)
-        out = seo_meta(m)
+        out = seo_meta(m, 155)
         self.assertLessEqual(len(out), 155)
         self.assertNotEqual(out.rstrip().lower().split()[-1], "and", out)
+
+    def test_default_cap_keeps_a_190_char_description_whole(self):
+        # The corpus is written at 155-200 chars; a 155 cap silently dropped the
+        # tail of two thirds of it. Google puts no limit on the tag itself, so
+        # anything up to the twitter:description ceiling must survive intact.
+        m = (
+            "Useful guides, tips, and articles about PDF tools and document "
+            "management. Learn how to convert, edit, merge, split, compress, "
+            "and secure PDF files online for free, no registration required."
+        )
+        self.assertGreater(len(m), 155)
+        self.assertLessEqual(len(m), 200)
+        self.assertEqual(seo_meta(m), m)

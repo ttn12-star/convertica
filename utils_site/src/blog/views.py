@@ -147,9 +147,10 @@ def article_list(request):
     # trip "duplicate title / meta description" audits. Reuses the already
     # translated "Page" msgid — no new l10n strings. Pages self-canonicalize
     # to ?page=N, so differentiating text is all that's needed. The marker is
-    # PREFIXED on the description: the base text is >155 chars and the
-    # seo_meta filter truncates from the end, so a suffix marker would be
-    # cut off and the descriptions would still collide.
+    # PREFIXED on the description because seo_meta truncates from the end: the
+    # base text is 191 chars, which fits under today's 200-char cap, but a
+    # suffix marker would be the first thing dropped if that cap ever tightens
+    # and the descriptions would silently collide again.
     if page_obj.number > 1:
         page_marker = f"{_('Page')} {page_obj.number}"
         page_title = f"{_('Blog')} ({language_label}) - {page_marker} - Convertica"
