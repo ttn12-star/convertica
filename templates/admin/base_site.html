@@ -38,7 +38,9 @@
     .button, input[type=submit], input[type=button], .submit-row input, a.button {
       background: #417690;
       border-radius: 4px;
-      transition: all 0.3s;
+      /* The hover state changes background, transform and shadow — name them,
+         so padding/size changes from Django admin's own CSS don't animate. */
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
 
     .button:hover, input[type=submit]:hover, input[type=button]:hover {

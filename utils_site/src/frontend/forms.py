@@ -15,8 +15,8 @@ class ContactForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "class": "w-full px-4 py-3 border border-gray-300 rounded-lg "
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 "
-                "focus:border-transparent transition-all duration-200 "
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 "
+                "focus:border-transparent transition-colors duration-200 "
                 "bg-white text-gray-900",
                 "placeholder": _("Enter your name"),
             }
@@ -30,8 +30,8 @@ class ContactForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 "class": "w-full px-4 py-3 border border-gray-300 rounded-lg "
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 "
-                "focus:border-transparent transition-all duration-200 "
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 "
+                "focus:border-transparent transition-colors duration-200 "
                 "bg-white text-gray-900",
                 "placeholder": _("your.email@example.com"),
             }
@@ -45,8 +45,8 @@ class ContactForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "class": "w-full px-4 py-3 border border-gray-300 rounded-lg "
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 "
-                "focus:border-transparent transition-all duration-200 "
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 "
+                "focus:border-transparent transition-colors duration-200 "
                 "bg-white text-gray-900",
                 "placeholder": _("Enter subject"),
             }
@@ -59,8 +59,8 @@ class ContactForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 "class": "w-full px-4 py-3 border border-gray-300 rounded-lg "
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 "
-                "focus:border-transparent transition-all duration-200 "
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 "
+                "focus:border-transparent transition-colors duration-200 "
                 "bg-white text-gray-900 resize-y",
                 "rows": 6,
                 "placeholder": _("Enter your message"),
@@ -74,7 +74,7 @@ class ContactForm(forms.Form):
         widget=forms.CheckboxInput(
             attrs={
                 "class": "mt-1 mr-3 w-4 h-4 text-blue-600 border-gray-300 rounded "
-                "focus:ring-blue-500",
+                "focus-visible:ring-blue-500",
             }
         ),
     )
