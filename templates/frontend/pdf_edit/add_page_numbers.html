@@ -12,7 +12,7 @@
             {% trans "Select page" %}
           </label>
           <select id="pageNumberPageSelector"
-                  class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 text-sm">
+                  class="px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 text-sm">
           </select>
         </div>
       </div>
@@ -43,7 +43,7 @@
             {% trans "Position" %}
           </label>
           <select id="position" name="position"
-                  class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
             <option value="bottom-center">{% trans "Bottom Center" %}</option>
             <option value="bottom-left">{% trans "Bottom Left" %}</option>
             <option value="bottom-right">{% trans "Bottom Right" %}</option>
@@ -64,7 +64,7 @@
                  value="12"
                  min="8"
                  max="72"
-                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
         </div>
 
         <!-- Start Number -->
@@ -77,7 +77,7 @@
                  name="start_number"
                  value="1"
                  min="1"
-                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
         </div>
 
         <!-- Custom Format -->
@@ -119,7 +119,7 @@
                  name="format_str"
                  value="{page}"
                  placeholder="e.g., {page}, Page {page} of {total}"
-                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
           <p class="mt-1.5 text-xs text-gray-500">
             {% trans "Use {page} for page number, {total} for total pages. Click presets above or enter custom format." %}
           </p>
@@ -137,7 +137,7 @@
                      id="pageNumbersPagesAll"
                      value="all"
                      checked
-                     class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                     class="w-4 h-4 text-blue-600 border-gray-300 focus-visible:ring-blue-500">
               <span class="text-sm text-gray-700">{% trans "All pages" %}</span>
             </label>
             <label class="flex items-center space-x-2 cursor-pointer">
@@ -145,7 +145,7 @@
                      name="pagesOption"
                      id="pageNumbersPagesCurrent"
                      value="current"
-                     class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                     class="w-4 h-4 text-blue-600 border-gray-300 focus-visible:ring-blue-500">
               <span class="text-sm text-gray-700">{% trans "Current page only" %}</span>
             </label>
             <label class="flex items-center space-x-2 cursor-pointer">
@@ -153,7 +153,7 @@
                      name="pagesOption"
                      id="pageNumbersPagesCustom"
                      value="custom"
-                     class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                     class="w-4 h-4 text-blue-600 border-gray-300 focus-visible:ring-blue-500">
               <span class="text-sm text-gray-700">{% trans "Custom pages:" %}</span>
             </label>
             <input type="text"
@@ -161,7 +161,7 @@
                    name="pagesCustom"
                    placeholder="1,3,5 or 1-5"
                    disabled
-                   class="ml-6 w-full sm:w-auto min-w-[200px] px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                   class="ml-6 w-full sm:w-auto min-w-[200px] px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
                    pattern="^[\d,\- ]+$">
             <p class="ml-6 text-xs text-gray-500">
               {% trans "Enter specific pages like '1,3,5' or '1-5'" %}
@@ -184,7 +184,7 @@
           {% trans "Select page" %}
         </label>
         <select id="pageNumberPageSelector"
-                class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 text-sm">
+                class="px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 text-sm">
         </select>
       </div>
     </div>

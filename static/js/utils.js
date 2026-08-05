@@ -223,6 +223,15 @@ function hideError(containerId = null) {
  * @param {string} containerId - Container ID (default: 'loadingContainer')
  * @param {Object} options - Options for customization
  */
+/* The "Progress" label and the status line under the bar were the last two
+   hardcoded English strings in the conversion flow — on a 7-language site they
+   rendered untranslated right next to localised copy. Neither earned a msgid:
+   the label is redundant beside a progress bar showing a percentage, and the
+   status line only repeated the message above it.
+
+   The spinner icon also lost its `animate-pulse`: a second animation on the very
+   object the ring is already spinning around, one fading while the other turns,
+   muddies the single signal that matters. */
 function showLoading(containerId = 'loadingContainer', options = {}) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -242,7 +251,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                 <div class="relative">
                     <div class="w-20 h-20 sm:w-24 sm:h-24 border-8 border-blue-200 dark:border-gray-700 border-t-blue-600 dark:border-t-blue-500 rounded-full animate-spin"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 dark:text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                         </svg>
                     </div>
@@ -257,8 +266,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                 ${showProgress ? `
                 <!-- Progress Bar with Percentage -->
                 <div class="w-full max-w-md">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Progress</span>
+                    <div class="flex items-center justify-end mb-2">
                         <span id="progressPercentage" class="text-sm font-bold text-blue-600 dark:text-blue-400">0%</span>
                     </div>
                     <div class="h-3 bg-blue-100 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
@@ -267,7 +275,6 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                              style="width: 0%">
                         </div>
                     </div>
-                    <p id="progressStatusText" class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">Processing your file...</p>
                 </div>
                 ` : ''}
 
@@ -446,6 +453,9 @@ function hideLoading(containerId = 'loadingContainer', showComplete = false) {
  * @param {string} containerId - Container ID (default: 'downloadContainer')
  * @param {Object} options - Options for customization
  */
+/* The success tick used to sit behind an `animate-ping` ring — an infinite
+   animation celebrating a finished job, still pulsing in the corner of the eye
+   minutes later. The scale-in on the tick itself is the whole celebration. */
 async function showDownloadButton(blob, originalFileName, containerId = 'downloadContainer', options = {}) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -480,7 +490,6 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <div class="absolute inset-0 bg-green-400 dark:bg-green-600 rounded-full animate-ping opacity-75"></div>
                 </div>
 
                 <!-- Success Message -->
@@ -492,7 +501,7 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
 
                 <!-- Download Button -->
                 <button id="downloadButton"
-                        class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition duration-200 flex items-center space-x-3">
+                        class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-[transform,box-shadow] duration-150 flex items-center space-x-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
@@ -502,7 +511,7 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
                 ${showConvertAnother ? `
                 <!-- Convert Another Button -->
                 <button id="convertAnotherButton"
-                        class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm sm:text-base transition-colors">
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm sm:text-base underline decoration-dotted hover:decoration-solid underline-offset-4 transition-colors">
                     ${convertAnotherText}
                 </button>
                 ` : ''}
