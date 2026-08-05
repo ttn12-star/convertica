@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, wf-probe ]
     tags:
       - 'v*'  # Deploy on version tags (e.g., v1.0.0)
   pull_request:
