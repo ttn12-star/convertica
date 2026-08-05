@@ -893,6 +893,7 @@ jobs:
             print(f'📊 Operations: {OperationRun.objects.count()}')
             " || echo "⚠️ Final verification failed (non-critical)"
 
+            docker restart "$NEW_WEB_ID" >/dev/null 2>&1 || true
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
