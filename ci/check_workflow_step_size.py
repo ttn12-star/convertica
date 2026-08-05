@@ -17,7 +17,10 @@ import sys
 
 import yaml
 
-# GitHub's ceiling is ~21000; warn earlier so a normal edit has somewhere to go.
+# The ceiling is counted in BYTES, not characters — measured on this repo: a
+# script of 20765 bytes deploys, 21089 bytes does not, and these scripts are full
+# of multi-byte emoji, so a character count reads ~300 too low and lets a broken
+# workflow through. Warn early: the deploy script is already near the limit.
 HARD_LIMIT = 21000
 WARN_AT = 20000
 
@@ -42,10 +45,10 @@ def check(path):
     if not isinstance(workflow, dict):
         return errors, warnings
     for job_name, step_name, key, value in step_values(workflow):
-        size = len(value)
-        where = f"{path}: {job_name} / {step_name} / {key} = {size} chars"
+        size = len(value.encode("utf-8"))
+        where = f"{path}: {job_name} / {step_name} / {key} = {size} bytes"
         if size > HARD_LIMIT:
-            errors.append(f"{where} (over GitHub's {HARD_LIMIT} ceiling)")
+            errors.append(f"{where} (over GitHub's {HARD_LIMIT}-byte ceiling)")
         elif size > WARN_AT:
             warnings.append(f"{where} (only {HARD_LIMIT - size} left)")
     return errors, warnings
@@ -73,6 +76,9 @@ def demo():
     ok = {"jobs": {"j": {"steps": [{"name": "s", "with": {"script": "x" * 100}}]}}}
     over = {"jobs": {"j": {"steps": [{"name": "s", "with": {"script": "x" * 21001}}]}}}
     near = {"jobs": {"j": {"steps": [{"name": "s", "run": "x" * 20500}]}}}
+    # 7000 emoji = 28000 bytes but only 7000 characters: counting characters
+    # would call this fine, which is exactly the bug this guard exists for.
+    emoji = {"jobs": {"j": {"steps": [{"name": "s", "run": "\U0001f504" * 7000}]}}}
     import tempfile
 
     def run(doc):
@@ -85,6 +91,8 @@ def demo():
     assert errs and not warns, f"an oversized step must error, got {errs} {warns}"
     errs, warns = run(near)
     assert warns and not errs, f"a near-limit step must warn only, got {errs} {warns}"
+    errs, _ = run(emoji)
+    assert errs, "multi-byte content must be measured in bytes, not characters"
     print("self-check OK")
 
 
