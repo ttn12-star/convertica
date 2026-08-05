@@ -117,20 +117,54 @@ button {
     will-change: scroll-position;
 }
 
-/* Optimize animations for mobile */
+/* Optimize animations for mobile.
+   Reduced motion means gentler, not zero: movement goes away, but opacity and
+   colour transitions stay, because they are what makes a state change legible.
+   Killing every transition outright (the previous `transition-duration: .01ms`
+   on `*`) also made every hover and focus state snap. */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-property: opacity, color, background-color, border-color,
+            box-shadow, fill, stroke !important;
+        transition-duration: 150ms !important;
         scroll-behavior: auto !important;
     }
 
-    /* Neutralize card hover lift and icon scale for reduced-motion users */
-    .hover\:-translate-y-2:hover,
-    .group:hover .group-hover\:scale-110 {
+    /* Loaders are exempt — a frozen spinner reads as a hung conversion, which
+       is worse for the user than the motion. Same for the progress shimmer. */
+    .animate-spin {
+        animation: spin 1s linear infinite !important;
+    }
+    .animate-progress {
+        animation: progress 2s linear infinite !important;
+    }
+
+    /* Hover lift / icon scale: kill the whole family, not the two selectors
+       that happened to be noticed. */
+    [class*="hover\:scale"]:hover,
+    [class*="hover\:-translate"]:hover,
+    [class*="hover\:translate"]:hover,
+    [class*="hover\:rotate"]:hover,
+    .group:hover [class*="group-hover\:scale"],
+    .group:hover [class*="group-hover\:translate"],
+    .group:hover [class*="group-hover\:rotate"] {
+        transform: none !important;
+    }
+}
+
+/* `future.hoverOnlyWhenSupported` gates the `hover:` variant but NOT
+   `group-hover:` — 99 group-hover utilities stay ungated, so a tap on a tool
+   card leaves its icon scaled up until you tap elsewhere. Neutralise the
+   transform-carrying ones on coarse pointers. Colour/opacity group-hovers are
+   left alone: on touch they read as a harmless tap highlight. */
+@media (hover: none), (pointer: coarse) {
+    .group:hover [class*="group-hover\:scale"],
+    .group:hover [class*="group-hover\:translate"],
+    .group:hover [class*="group-hover\:rotate"] {
         transform: none !important;
     }
 }

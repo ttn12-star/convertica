@@ -431,7 +431,9 @@
     }
 
     .faq-answer {
-      animation: fadeIn 0.3s ease-in;
+      /* ease-out, not ease-in: an entering element with ease-in delays exactly
+         the moment the user is watching, which reads as sluggish. */
+      animation: fadeIn 0.3s ease-out;
     }
 
     @keyframes fadeIn {

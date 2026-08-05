@@ -320,8 +320,13 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                 from { opacity: 0; transform: translateY(-10px); }
                 to { opacity: 1; transform: translateY(0); }
             }
+            /* ponytail: duplicates .animate-fade-in from base.html (opposite
+               translate direction). Kept only because this <style> is injected
+               after the stylesheet and would otherwise change the loading
+               screen's enter direction; collapse into base.html when someone
+               can eyeball it. Duration matched to base.html's 0.25s. */
             .animate-fade-in {
-                animation: fade-in 0.5s ease-out forwards;
+                animation: fade-in 0.25s ease-out forwards;
             }
         </style>
     `;
@@ -488,7 +493,7 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
                 <!-- Download Button -->
                 <button id="downloadButton"
                         class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center space-x-3">
-                    <svg class="w-6 h-6 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
                     <span>${downloadButtonText}</span>
