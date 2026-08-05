@@ -1,184 +1,184 @@
 slug: compress-pdf-for-email-under-25mb
-title_hi: "PDF को Email से भेजने के लिए कैसे Compress करें (25 MB से कम) बिना Quality खोए"
-meta_title_hi: "Email के लिए PDF Compress: 25 MB से कम 2 मिनट में"
-meta_description_hi: "Gmail, Outlook और Yahoo 20-25 MB से बड़े PDF को bounce कर देते हैं। Email के लिए PDF छोटा करने के तीन भरोसेमंद तरीके, document type के हिसाब से size targets और quality tips।"
-meta_keywords_hi: "email के लिए pdf compress, email के लिए pdf size कम करें, pdf email के लिए बहुत बड़ा, gmail के लिए pdf shrink, 25mb से कम pdf"
-excerpt_hi: "Gmail attachment 25 MB पर cap करता है, Outlook 20 MB पर, और एक scanned 10-page contract दोनों limits पार कर सकता है। यहाँ है इसे बिना quality खोए सबसे तेज़ी से छोटा करने का तरीका।"
+title_hi: "PDF को ईमेल के लिए कैसे छोटा करें (25 MB से नीचे), गुणवत्ता बिगाड़े बिना"
+meta_title_hi: "ईमेल के लिए PDF छोटी करें: 25 MB से नीचे, दो मिनट में"
+meta_description_hi: "Gmail, Outlook और Yahoo 20 से 25 MB से बड़ी PDF लौटा देते हैं। PDF छोटी करने के तीन भरोसेमंद तरीक़े, किस्म के हिसाब से साइज़ और गुणवत्ता के नुस्ख़े।"
+meta_keywords_hi: "ईमेल के लिए PDF छोटी करें, PDF का साइज़ घटाएँ, PDF ईमेल के लिए बहुत बड़ी, Gmail के लिए PDF छोटी, 25MB से कम PDF"
+excerpt_hi: "Gmail अटैचमेंट पर 25 MB की हद रखता है, Outlook 20 MB की, और स्कैन किया दस पन्नों का कॉन्ट्रैक्ट दोनों हदें पार कर सकता है। उसे गुणवत्ता बिगाड़े बिना छोटा करने का सबसे तेज़ तरीक़ा।"
 content_hi: |
-  Email providers आज भी बड़े attachments को 2010 की समस्या की तरह treat करते हैं। Gmail outbound में 25 MB से ऊपर कुछ भी refuse कर देता है, Outlook.com 20 MB पर cut off कर देता है, और ज़्यादातर corporate Exchange servers इससे भी सख्त चलते हैं। एक scanned 12-page contract अक्सर bounce trigger करने के लिए काफी होता है, और failure message ("Message could not be delivered. The attachment exceeds the allowed size") एक घंटे बाद आता है, जब आप पहले ही आगे बढ़ चुके होते हैं।
+  ईमेल सेवाएँ आज भी बड़े अटैचमेंट को 2010 की समस्या मानती हैं। Gmail 25 MB से ऊपर कुछ भी भेजने से मना कर देता है, Outlook.com 20 MB पर रोक देता है, और दफ़्तरों के ज़्यादातर मेल सर्वर इससे भी सख़्त चलते हैं। स्कैन किया बारह पन्नों का कॉन्ट्रैक्ट अक्सर इतना भारी हो जाता है कि मेल लौट आए, और लौटने का संदेश एक घंटे बाद आता है, जब आप आगे बढ़ चुके होते हैं।
 
-  अच्छी खबर: सही approach से लगभग हर oversized PDF को दो मिनट से कम में cap के नीचे लाया जा सकता है। यह guide तीन methods cover करती है जो असल में काम करती हैं, document type के हिसाब से exact size expectations, और कब आपको email छोड़कर cloud link भेजनी चाहिए। हम walkthrough के लिए Convertica के <a href="/hi/pdf-organize/compress/">free PDF compressor</a> का इस्तेमाल करेंगे, लेकिन principles किसी भी tool पर apply होते हैं।
+  अच्छी ख़बर: सही तरीक़े से लगभग हर भारी PDF दो मिनट से कम में हद के नीचे आ जाती है। यह गाइड वे तीन तरीक़े बताती है जो असल में चलते हैं, दस्तावेज़ की किस्म के हिसाब से कितना घटने की उम्मीद रखिए, और कब ईमेल छोड़कर क्लाउड की कड़ी भेजनी चाहिए। समझाने के लिए हम Convertica का <a href="/hi/pdf-organize/compress/">मुफ़्त PDF कंप्रेसर</a> लेंगे, पर बात हर टूल पर लागू होती है।
 
-  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Convertica PDF compressor interface जो file upload और preset options दिखा रहा है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Convertica के PDF कंप्रेसर में फ़ाइल अपलोड और सेटिंग के विकल्प" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>2026 में email attachments के असली limits</h2>
+  <h2>2026 में अटैचमेंट की असली हदें</h2>
 
-  कुछ भी compress करने से पहले, यह जानना useful है कि आप किस number को target कर रहे हैं। बड़े providers थोड़े अलग limits publish करते हैं, और practical ceiling headline number से कम है क्योंकि email binary files को कैसे transport करता है।
+  कुछ छोटा करने से पहले जान लीजिए कि निशाना कौन सा आँकड़ा है। बड़ी सेवाएँ अलग-अलग हदें बताती हैं, और असल छत बताई गई संख्या से नीची रहती है, क्योंकि ईमेल फ़ाइलों को भेजने का तरीक़ा ही ऐसा है।
 
   <table>
     <thead>
-      <tr><th>Provider</th><th>Outgoing limit</th><th>Incoming limit</th></tr>
+      <tr><th>सेवा</th><th>भेजने की हद</th><th>पाने की हद</th></tr>
     </thead>
     <tbody>
       <tr><td>Gmail</td><td>25 MB</td><td>50 MB</td></tr>
       <tr><td>Outlook.com</td><td>20 MB</td><td>20 MB</td></tr>
       <tr><td>Yahoo Mail</td><td>25 MB</td><td>25 MB</td></tr>
       <tr><td>iCloud Mail</td><td>20 MB</td><td>20 MB</td></tr>
-      <tr><td>Corporate Exchange (typical)</td><td>10-25 MB</td><td>10-35 MB</td></tr>
+      <tr><td>दफ़्तर का Exchange (आम तौर पर)</td><td>10 से 25 MB</td><td>10 से 35 MB</td></tr>
     </tbody>
   </table>
 
-  एक और catch है जो ज़्यादातर लोग miss करते हैं: email attachments base64 (एक MIME standard) में encode होते हैं, जो transit में binary data को लगभग 33% inflate कर देता है। disk पर रखा एक 20 MB PDF wire पर लगभग 27 MB बनकर पहुँचता है। अगर आपके provider ने "25 MB" लिखा है, safe रहने के लिए disk पर 18 MB से कम file aim करें।
+  एक पेच, जो ज़्यादातर लोगों से छूट जाता है: अटैचमेंट base64 नाम के रूप में भेजे जाते हैं, जो रास्ते में फ़ाइल को करीब 33% फुला देता है। आपके कंप्यूटर पर 20 MB की PDF तार पर करीब 27 MB बनकर पहुँचती है। सेवा 25 MB लिखती है, तो सुरक्षित रहने के लिए कंप्यूटर पर 18 MB से नीचे की फ़ाइल रखिए।
 
-  <blockquote class="callout">Rule of thumb: किसी भी general-purpose email के लिए disk पर 15 MB target करें, और 8 MB अगर recipient corporate network पर बैठा है।</blockquote>
+  <blockquote class="callout">मोटा नियम: आम ईमेल के लिए कंप्यूटर पर 15 MB का निशाना रखिए, और 8 MB का, अगर सामने वाला दफ़्तर के नेटवर्क पर बैठा है।</blockquote>
 
-  कुछ specific gotchas जिन पर ध्यान देना ज़रूरी है, क्योंकि बहुत लोग इन पर ठोकर खाते हैं और मानते हैं कि उनकी file ठीक है:
-
-  <ul>
-    <li><strong>Distribution lists.</strong> 200 लोगों की list को एक बड़ा PDF mail करना delivery weight को multiply कर देता है, और कई corporate mail servers इसे daily quota में count करते हैं या सीधे reject कर देते हैं।</li>
-    <li><strong>Reply-all chains.</strong> एक hop survive करने वाला attachment भी reply-all पर bounce हो सकता है अगर किसी एक recipient की mailbox limit सख्त है। पूरा thread सबके लिए fail हो जाता है।</li>
-    <li><strong>Mobile carriers.</strong> कुछ carrier mail gateways आज भी incoming MMS-style relays पर 10 MB ceiling enforce करते हैं। अगर आपका recipient feature phone या पुराने mobile client पर mail पढ़ता है, उसके लिए plan करें।</li>
-    <li><strong>Anti-virus delays.</strong> बड़े attachments recipient के gateway पर scan होने में ज़्यादा time लेते हैं। एक "delivered" message जो 20 minutes नहीं दिखता, broken नहीं है; वो queue में है।</li>
-  </ul>
-
-  <h2>PDF पहली जगह में huge क्यों बनता है</h2>
-
-  Compression सबसे अच्छा काम तब करता है जब आप समझते हैं कि bytes कहाँ हैं। PDFs predictable reasons से balloon होते हैं:
+  कुछ ख़ास पेच, जिन पर लोग ठोकर खाते हैं और मानते रहते हैं कि फ़ाइल ठीक है:
 
   <ul>
-    <li><strong>High-DPI scans.</strong> 600 DPI color पर set duplex scanner per page 5-15 MB produce करता है। ज़्यादातर documents को सिर्फ़ 200 DPI grayscale चाहिए, और normal reading distance पर आँख फ़र्क नहीं बता पाएगी।</li>
-    <li><strong>Embedded fonts और color profiles.</strong> एक "Save as PDF/A" archival export सिर्फ़ embedded font subsets और ICC color profiles के लिए 1-3 MB add कर सकता है जिनकी आपको email के लिए ज़रूरत नहीं है। PDF/A archives के लिए बना है, inboxes के लिए नहीं।</li>
-    <li><strong>Uncompressed images.</strong> Word से paste किए गए pictures या PDF के अंदर PNG के रूप में save किए गए screenshots शायद ही कभी efficient image compression use करते हैं। एक 4K screenshot raw embedded करने पर 8 MB add कर सकता है।</li>
-    <li><strong>Hidden revision history.</strong> Acrobat में "Save" file को rewrite करने के बजाय incremental updates append करता है। सालों की edits invisible weight के रूप में जमा होती हैं - एक contract जो 200 KB पर शुरू हुआ था तीस edits के बाद 12 MB पर बैठ सकता है।</li>
-    <li><strong>Embedded files.</strong> कुछ PDFs अपने अंदर attached spreadsheets या zip files के साथ ship होते हैं। Compress करने से पहले attachments panel check करें (Acrobat में paperclip icon); हो सकता है आप एक 30 MB Excel file को passenger की तरह transport कर रहे हों।</li>
-    <li><strong>Bitmap field backgrounds वाले Forms.</strong> Government forms अक्सर हर input field को अलग छोटी image के रूप में render करते हैं। 80 fields से multiply करें और आपको आश्चर्यजनक रूप से chunky file मिलती है।</li>
+    <li><strong>बड़ी सूची को भेजना।</strong> दो सौ लोगों की सूची पर एक भारी PDF भेजना कुल बोझ कई गुना कर देता है, और दफ़्तर के कई सर्वर उसे दिन के हिस्से में गिनते हैं या सीधे लौटा देते हैं।</li>
+    <li><strong>सबको जवाब देने की कड़ी।</strong> एक बार पहुँच चुका अटैचमेंट भी सबको जवाब पर लौट सकता है, अगर किसी एक की सीमा सख़्त हो। तब पूरी कड़ी सबके लिए नाकाम हो जाती है।</li>
+    <li><strong>मोबाइल नेटवर्क।</strong> कुछ नेटवर्क के मेल गेटवे आज भी 10 MB की छत लगाते हैं। सामने वाला पुराने मोबाइल क्लाइंट पर मेल पढ़ता है, तो उसका हिसाब रखिए।</li>
+    <li><strong>वायरस जाँच की देरी।</strong> भारी अटैचमेंट सामने वाले के गेटवे पर जाँचने में ज़्यादा समय लेते हैं। जो मेल बीस मिनट तक नहीं दिखता, वह ख़राब नहीं है, क़तार में है।</li>
   </ul>
 
-  जानना कि आपकी file में इनमें से क्या dominate करता है आपको बताता है कि नीचे का कौन सा method सबसे ज़्यादा help करेगा। File को किसी भी reader में open करें और first page देखें। अगर वो clearly paper की photograph है, आप images से deal कर रहे हैं। अगर text crisp और selectable है, आप born-digital PDF से deal कर रहे हैं जो शायद किसी और कारण से bloat है।
+  <h2>PDF भारी क्यों हो जाती है</h2>
 
-  <h2>Method 1 - PDF Compress करें (recommended)</h2>
+  छोटा करना तब सबसे अच्छा चलता है जब आप जानते हों कि वज़न कहाँ है। PDF कुछ जाने-पहचाने कारणों से फूलती है:
 
-  80% oversized PDFs के लिए, सीधा compression सही answer है। यह file को smarter image और font handling के साथ rewrite करता है, page count या text content बदले बिना।
+  <ul>
+    <li><strong>ऊँचे DPI के स्कैन।</strong> 600 DPI रंगीन पर लगी मशीन हर पन्ने के 5 से 15 MB बनाती है। ज़्यादातर दस्तावेज़ों को 200 DPI स्लेटी ही चाहिए, और आम दूरी से आँख फ़र्क़ नहीं बता पाएगी।</li>
+    <li><strong>अंदर रखे फ़ॉन्ट और रंग की जानकारी।</strong> PDF/A वाली आर्काइव फ़ाइल सिर्फ़ फ़ॉन्ट और रंग की जानकारी के लिए 1 से 3 MB जोड़ देती है, जिसकी ईमेल में ज़रूरत नहीं। PDF/A आर्काइव के लिए बना है, इनबॉक्स के लिए नहीं।</li>
+    <li><strong>बिना दबाई तस्वीरें।</strong> Word से चिपकाई तस्वीरें या PDF के अंदर PNG के रूप में सहेजे स्क्रीनशॉट कभी ठीक से नहीं दबाए जाते। 4K का एक स्क्रीनशॉट सीधे रखने पर 8 MB जोड़ सकता है।</li>
+    <li><strong>छिपा हुआ बदलावों का इतिहास।</strong> Acrobat में सहेजना फ़ाइल दोबारा लिखने के बजाय बदलाव आगे जोड़ता जाता है। सालों के बदलाव अदृश्य बोझ बन जाते हैं, और 200 KB से शुरू हुआ कॉन्ट्रैक्ट तीस बदलावों के बाद 12 MB पर बैठ सकता है।</li>
+    <li><strong>अंदर रखी दूसरी फ़ाइलें।</strong> कुछ PDF अपने अंदर स्प्रेडशीट या ZIP लिए घूमती हैं। छोटा करने से पहले अटैचमेंट का पैनल देख लीजिए (Acrobat में पिन का निशान); हो सकता है आप 30 MB की Excel फ़ाइल मुफ़्त की सवारी करा रहे हों।</li>
+    <li><strong>तस्वीर वाले ख़ानों के फ़ॉर्म।</strong> सरकारी फ़ॉर्म अक्सर हर ख़ाने को अलग छोटी तस्वीर के रूप में बनाते हैं। अस्सी ख़ानों से गुणा कीजिए और हैरान करने वाली भारी फ़ाइल मिलती है।</li>
+  </ul>
 
-  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Step-by-step PDF compression जो low, medium और high preset selector के साथ" width="1280" height="800" loading="lazy"></figure>
+  यह जानना कि आपकी फ़ाइल में इनमें से क्या हावी है, यह भी बता देता है कि नीचे का कौन सा तरीक़ा सबसे ज़्यादा काम करेगा। फ़ाइल किसी भी रीडर में खोलिए और पहला पन्ना देखिए। अगर वह साफ़ तौर पर काग़ज़ की तस्वीर है, तो मामला तस्वीरों का है। अगर टेक्स्ट साफ़ है और चुना जा सकता है, तो फ़ाइल सीधे कंप्यूटर पर बनी है और किसी और वजह से फूली है।
+
+  <h2>तरीक़ा 1: PDF छोटी कीजिए (यही सुझाव है)</h2>
+
+  भारी PDF के अस्सी प्रतिशत मामलों में सीधे छोटा करना ही सही जवाब है। यह फ़ाइल को तस्वीरों और फ़ॉन्ट के समझदार बरताव के साथ दोबारा लिख देता है, पन्नों की गिनती या टेक्स्ट बदले बिना।
+
+  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="कदम-दर-कदम PDF छोटी करना, हल्की, मँझोली और तेज़ सेटिंग के साथ" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li>किसी भी browser में Convertica का <a href="/hi/pdf-organize/compress/">free PDF compressor</a> open करें।</li>
-    <li>अपना PDF upload area पर drag करें, या file pick करने के लिए click करें।</li>
-    <li>एक preset choose करें: <strong>low</strong> (best quality, modest reduction), <strong>medium</strong> (recommended), या <strong>high</strong> (aggressive, filler text और reference docs के लिए)।</li>
-    <li>File process होने के लिए wait करें। बड़े scans 20-40 seconds ले सकते हैं; बहुत बड़े (200+ pages) एक-दो मिनट ले सकते हैं।</li>
-    <li>Compressed copy download करें। Original आपके device पर untouched रहता है।</li>
+    <li>किसी भी ब्राउज़र में Convertica का <a href="/hi/pdf-organize/compress/">मुफ़्त PDF कंप्रेसर</a> खोलिए।</li>
+    <li>अपनी PDF अपलोड की जगह पर खींच दीजिए, या दबाकर फ़ाइल चुन लीजिए।</li>
+    <li>सेटिंग चुनिए: <strong>हल्की</strong> (गुणवत्ता सबसे अच्छी, कटौती थोड़ी), <strong>मँझोली</strong> (यही सुझाव है), या <strong>तेज़</strong> (ज़्यादा कटौती, पढ़ने भर के दस्तावेज़ों के लिए)।</li>
+    <li>फ़ाइल तैयार होने का इंतज़ार कीजिए। बड़े स्कैन 20 से 40 सेकंड ले सकते हैं; दो सौ पन्नों से ऊपर वाले एक-दो मिनट।</li>
+    <li>छोटी हुई कॉपी डाउनलोड कीजिए। मूल फ़ाइल आपके डिवाइस पर जैसी है वैसी रहती है।</li>
   </ol>
 
-  <h3>कौन सा preset choose करें?</h3>
+  <h3>कौन सी सेटिंग चुनें</h3>
 
-  Medium सही default है। यह images को लगभग 150 DPI तक downsample करता है और redundant metadata strip करता है, जो screen पर invisible है और A4 पर अब भी cleanly print होता है। High सिर्फ़ तब use करें जब recipient को print नहीं करना है, और low तब जब document में diagrams या photographs हों जो sharp रहने चाहिए।
+  मँझोली ही सही दस्तूर है। यह तस्वीरों को करीब 150 DPI तक ले आती है और बेकार ब्यौरा हटा देती है, जो स्क्रीन पर दिखता ही नहीं और A4 पर अब भी साफ़ छपता है। तेज़ सेटिंग सिर्फ़ तब लीजिए जब सामने वाले को छापना नहीं है, और हल्की तब, जब दस्तावेज़ में ऐसे नक़्शे या तस्वीरें हैं जिन्हें साफ़ रहना चाहिए।
 
-  एक छोटी पर useful keyboard habit: upload complete होने के बाद, आप usually mouse तक पहुँचने के बजाय default preset confirm करने के लिए Enter press कर सकते हैं। (मेरा कहना है कि browser tools को medium को default करना चाहिए और click skip करनी चाहिए, लेकिन defaults अलग होते हैं।)
+  छोटी पर काम की आदत: अपलोड पूरा होने के बाद आम तौर पर माउस तक हाथ बढ़ाने के बजाय Enter दबाकर पहले से चुनी सेटिंग पक्की कर सकते हैं।
 
-  <h3>Document type के हिसाब से expected size reduction</h3>
+  <h3>किस्म के हिसाब से कितनी कटौती</h3>
 
-  यहाँ ज़्यादातर "up to 90% smaller!" marketing claims टूट जाते हैं। Honest numbers, जो compression असल में कर सकता है:
+  यहीं नब्बे प्रतिशत तक छोटा वाले दावे टूटते हैं। छोटा करना असल में क्या कर सकता है:
 
   <table>
     <thead>
-      <tr><th>Document type</th><th>Typical reduction</th><th>Example</th></tr>
+      <tr><th>दस्तावेज़ की किस्म</th><th>आम कटौती</th><th>उदाहरण</th></tr>
     </thead>
     <tbody>
-      <tr><td>Text-only PDF (Word, web से export)</td><td>80-95%</td><td>40 MB → 2-8 MB</td></tr>
-      <tr><td>Mixed text + photos</td><td>40-70%</td><td>30 MB → 9-18 MB</td></tr>
-      <tr><td>Pure scan (हर page एक image है)</td><td>30-60%</td><td>50 MB → 20-35 MB</td></tr>
-      <tr><td>Already-compressed PDF</td><td>0-15%</td><td>दूसरा method try करें</td></tr>
+      <tr><td>सिर्फ़ टेक्स्ट वाली PDF (Word या वेब से बनी)</td><td>80 से 95%</td><td>40 MB से 2 से 8 MB</td></tr>
+      <tr><td>टेक्स्ट और तस्वीरें, दोनों</td><td>40 से 70%</td><td>30 MB से 9 से 18 MB</td></tr>
+      <tr><td>पूरा स्कैन (हर पन्ना एक तस्वीर)</td><td>30 से 60%</td><td>50 MB से 20 से 35 MB</td></tr>
+      <tr><td>पहले से छोटी की गई PDF</td><td>0 से 15%</td><td>दूसरा तरीक़ा देखिए</td></tr>
     </tbody>
   </table>
 
-  अगर आपका scanned PDF medium compression के बाद भी cap से ऊपर है, Method 3 पर jump करें।
+  अगर आपकी स्कैन PDF मँझोली सेटिंग के बाद भी हद से ऊपर है, तो सीधे तीसरे तरीक़े पर जाइए।
 
-  <h2>Method 2 - PDF को छोटे chunks में Split करें</h2>
+  <h2>तरीक़ा 2: PDF को छोटे हिस्सों में बाँटिए</h2>
 
-  कभी-कभी file को genuinely full quality पर रहना चाहिए (legal exhibits, design proofs) और compression काफी नहीं है। Splitting compressing से बेहतर है जब:
+  कभी-कभी फ़ाइल को पूरी गुणवत्ता पर रहना ही चाहिए (अदालती सबूत, डिज़ाइन के प्रूफ़) और छोटा करना काफ़ी नहीं पड़ता। बाँटना तब बेहतर है जब:
 
   <ul>
-    <li>Recipient ने original quality माँगी है।</li>
-    <li>Compression अकेले 30 MB तक लाता है, 20 MB तक नहीं।</li>
-    <li>PDF में natural section boundaries हैं (chapters, monthly statements, exhibits A through D)।</li>
-    <li>आप एक regulator को evidence भेज रहे हैं जो re-encoded लगने वाली कोई भी चीज़ reject करेगा।</li>
+    <li>सामने वाले ने असली गुणवत्ता माँगी है।</li>
+    <li>छोटा करने से फ़ाइल 30 MB तक आती है, 20 MB तक नहीं।</li>
+    <li>PDF में क़ुदरती हिस्से हैं (अध्याय, महीनेवार स्टेटमेंट, अलग-अलग अनुलग्नक)।</li>
+    <li>आप किसी नियामक को सबूत भेज रहे हैं, जो दोबारा बनाई हुई लगने वाली फ़ाइल नामंज़ूर कर देगा।</li>
   </ul>
 
-  Convertica का tool use करें <a href="/hi/pdf-organize/split/">PDF को छोटे parts में split करने</a> के लिए, page range या count per part choose करें, और pieces download करें। Trick naming में है ताकि recipient उन्हें confusion के बिना वापस जोड़ सके:
+  Convertica के टूल से <a href="/hi/pdf-organize/split/">PDF को छोटे हिस्सों में बाँटिए</a>, पन्नों की गिनती या हर हिस्से के पन्ने चुनिए, और टुकड़े डाउनलोड कर लीजिए। असल तरकीब नाम में है, ताकि सामने वाला उन्हें बिना उलझन जोड़ सके:
 
   <pre><code>2026-04-28_proposal_part-1-of-3.pdf
   2026-04-28_proposal_part-2-of-3.pdf
   2026-04-28_proposal_part-3-of-3.pdf</code></pre>
 
-  हर part को एक छोटी note के साथ अलग email में भेजें: "Part 1 of 3 - बाकी अगले दो emails में है।" Recipient जब चाहे archive करने के लिए <a href="/hi/pdf-organize/merge/">compressed parts को वापस merge</a> कर सकता है। अगर आपको चिंता है कि वो दूसरा message खो देंगे, सभी parts को same thread में sequential subject lines के साथ भेजें ताकि inbox sort उन्हें adjacent रखे।
+  हर हिस्सा एक छोटी लाइन के साथ अलग ईमेल में भेजिए: तीन में से पहला हिस्सा, बाक़ी अगले दो ईमेल में। सामने वाला चाहे तो <a href="/hi/pdf-organize/merge/">हिस्सों को वापस जोड़</a> सकता है। डर हो कि वह दूसरा संदेश खो देगा, तो सारे हिस्से एक ही कड़ी में क्रम से लिखे विषय के साथ भेजिए, ताकि इनबॉक्स में वे साथ-साथ बैठें।
 
-  एक quirk जानने योग्य: कुछ corporate spam filters तीन near-identical emails के burst को suspicious behaviour के रूप में flag करते हैं। Sends को 60 seconds apart space करें, या gateway को calm रखने के लिए पहला heads-up message भेजें ("expect three parts in the next few minutes")।
+  एक टेढ़ी बात: दफ़्तरों के कुछ स्पैम फ़िल्टर लगभग एक जैसे तीन ईमेल की झड़ी को शक की नज़र से देखते हैं। भेजने के बीच एक मिनट का फ़ासला रखिए, या पहले एक सूचना भेज दीजिए कि अगले कुछ मिनट में तीन हिस्से आएँगे।
 
-  <h2>Method 3 - Scans को text-based PDF में Convert करें</h2>
+  <h2>तरीक़ा 3: स्कैन को टेक्स्ट वाली PDF में बदलिए</h2>
 
-  अगर आपकी file scanned contract, fax, या photo-of-a-page है, bytes images हैं, text नहीं। कोई compression preset 50 MB pure scan को visible quality loss के बिना 10 MB के नीचे नहीं ला सकता। Fix है optical character recognition (OCR) चलाना, जो words extract करता है और document को text-based PDF के रूप में re-export करता है।
+  अगर आपकी फ़ाइल स्कैन किया कॉन्ट्रैक्ट, फ़ैक्स या पन्ने की तस्वीर है, तो सारा वज़न तस्वीरों का है, टेक्स्ट का नहीं। कोई सेटिंग 50 MB के पूरे स्कैन को दिखने वाली गुणवत्ता गँवाए बिना 10 MB से नीचे नहीं ला सकती। इलाज है OCR चलाना, जो शब्द निकाल लेता है और दस्तावेज़ को टेक्स्ट वाली PDF के रूप में दोबारा बना देता है।
 
-  Workflow:
+  तरीक़ा:
 
   <ol>
-    <li>Word या text version produce करने के लिए scan पर OCR run करें।</li>
-    <li>First page पर accuracy verify करें - "rn" को "m" के रूप में, "1" को "l" के रूप में, और किसी भी cluster को देखें जहाँ recogniser ने hedge किया हो।</li>
-    <li>Word से PDF में re-export करें।</li>
-    <li>Method 1 के साथ नई file compress करें।</li>
+    <li>स्कैन पर OCR चलाकर Word या टेक्स्ट वाला रूप बनाइए।</li>
+    <li>पहले पन्ने पर सटीकता जाँच लीजिए, rn को m पढ़ा गया, 1 को l, और वे झुंड देखिए जहाँ पहचानने वाला डगमगाया हो।</li>
+    <li>Word से दोबारा PDF बना लीजिए।</li>
+    <li>नई फ़ाइल पहले तरीक़े से छोटी कर लीजिए।</li>
   </ol>
 
-  एक 50 MB scan अक्सर इस round trip के बाद 1-2 MB बनकर निकलता है क्योंकि text page images की ज़रूरत वाले bytes का छोटा fraction लेता है। Trade-off यह है कि handwriting, signatures, और stamps conversion में survive नहीं करेंगे, इसलिए अगर वे legally matter करते हैं तो original रखें। Court exhibits या authentication की ज़रूरत वाली किसी भी चीज़ के लिए, source को OCR'd version से कभी replace न करें - दोनों भेजें।
+  50 MB का स्कैन इस चक्कर के बाद अक्सर 1 से 2 MB का निकलता है, क्योंकि टेक्स्ट को तस्वीरों के मुक़ाबले जगह का छोटा हिस्सा ही चाहिए। कीमत यह है कि हाथ की लिखाई, दस्तख़त और मुहरें इस बदलाव में नहीं बचेंगी, इसलिए वे कानूनी तौर पर मायने रखती हों तो मूल फ़ाइल रखिए। अदालत के सबूत या पहचान साबित करने वाली किसी भी चीज़ में मूल फ़ाइल को OCR वाले रूप से बदलिए मत, दोनों भेजिए।
 
-  <h2>Quality vs size: क्या expect करें</h2>
+  <h2>गुणवत्ता और साइज़: क्या उम्मीद रखें</h2>
 
-  खुद से honest रहें कि recipient को असल में क्या चाहिए:
+  ख़ुद से साफ़ रहिए कि सामने वाले को असल में क्या चाहिए:
 
   <ul>
-    <li><strong>Screen पर पढ़ना.</strong> Medium compression invisible है। Freely use करें।</li>
-    <li><strong>Standard office paper पर printing.</strong> Medium अब भी fine है। High photos पर दिखने लगता है।</li>
-    <li><strong>Professional printing या signing.</strong> Low compression पर रहें या original रखें और cloud link भेजें।</li>
-    <li><strong>Legal exhibits या evidence.</strong> बिल्कुल compress न करें। File integrity email convenience से ज़्यादा matter करती है, और opposing counsel re-encoding को credibility argument के रूप में use कर सकता है।</li>
-    <li><strong>E-filing portals के through court filings.</strong> कई courts exact PDF specs publish करती हैं (PDF/A 1b, core 14 के बाहर embedded fonts नहीं, max 35 MB)। Guess करने के बजाय उनकी spec match करें।</li>
+    <li><strong>स्क्रीन पर पढ़ना।</strong> मँझोली सेटिंग का फ़र्क़ दिखता ही नहीं। बेझिझक लगाइए।</li>
+    <li><strong>आम दफ़्तरी काग़ज़ पर छपाई।</strong> मँझोली अब भी ठीक है। तेज़ सेटिंग तस्वीरों पर दिखने लगती है।</li>
+    <li><strong>पेशेवर छपाई या दस्तख़त।</strong> हल्की सेटिंग पर रहिए, या मूल फ़ाइल रखकर क्लाउड की कड़ी भेजिए।</li>
+    <li><strong>अदालती सबूत।</strong> बिल्कुल मत छोटा कीजिए। फ़ाइल की सलामती ईमेल की सहूलियत से बड़ी बात है, और दूसरा पक्ष फ़ाइल दोबारा बनने को भरोसे पर सवाल बना सकता है।</li>
+    <li><strong>ऑनलाइन दाख़िल किए जाने वाले काग़ज़।</strong> कई अदालतें PDF का ठीक ब्यौरा छापती हैं (PDF/A 1b, गिने-चुने फ़ॉन्ट के बाहर कुछ अंदर न रखा हो, ज़्यादा से ज़्यादा 35 MB)। अंदाज़ा लगाने के बजाय उनका बताया रूप मानिए।</li>
   </ul>
 
-  <h2>कब cloud link use करें</h2>
+  <h2>क्लाउड की कड़ी कब भेजें</h2>
 
-  अगर आपका PDF शुरू में 100 MB से ऊपर है, या आपको एक साथ कई large files भेजनी हैं, email से लड़ना बंद करें और link पर switch करें। ज़्यादातर लोगों के पास इनमें से एक already होता है:
+  अगर आपकी PDF शुरू में ही 100 MB से ऊपर है, या एक साथ कई भारी फ़ाइलें भेजनी हैं, तो ईमेल से लड़ना बंद कीजिए और कड़ी भेजिए। ज़्यादातर लोगों के पास इनमें से कोई एक पहले से है:
 
   <table>
     <thead>
-      <tr><th>Service</th><th>Free upload size</th><th>Notes</th></tr>
+      <tr><th>सेवा</th><th>मुफ़्त में जगह</th><th>ध्यान रखिए</th></tr>
     </thead>
     <tbody>
-      <tr><td>Google Drive</td><td>15 GB total free</td><td>Recipient को link permission set करना ज़रूरी है</td></tr>
-      <tr><td>WeTransfer (free)</td><td>2 GB per transfer</td><td>Link 7 days बाद expire हो जाती है</td></tr>
-      <tr><td>Dropbox</td><td>2 GB free total</td><td>Persistent share links</td></tr>
-      <tr><td>OneDrive</td><td>5 GB free</td><td>Outlook recipients के लिए best</td></tr>
+      <tr><td>Google Drive</td><td>कुल 15 GB मुफ़्त</td><td>कड़ी की अनुमति ख़ुद तय करनी पड़ती है</td></tr>
+      <tr><td>WeTransfer (मुफ़्त)</td><td>हर बार 2 GB</td><td>कड़ी सात दिन बाद ख़त्म हो जाती है</td></tr>
+      <tr><td>Dropbox</td><td>कुल 2 GB मुफ़्त</td><td>कड़ियाँ टिकी रहती हैं</td></tr>
+      <tr><td>OneDrive</td><td>5 GB मुफ़्त</td><td>Outlook वालों के लिए सबसे सहूलियत भरा</td></tr>
     </tbody>
   </table>
 
-  एक privacy note: cloud links आपकी organisation के बाहर एक copy create करते हैं। अगर document sensitive है, upload करने से पहले PDF password-protect करें और password अलग channel से share करें। Link permissions "specific people" पर set करें "anyone with link" के बजाय, और expiry set करें अगर platform support करे (Drive करता है; Dropbox paid plans पर करता है)।
+  प्राइवेसी की एक बात: क्लाउड की कड़ी आपकी संस्था के बाहर एक कॉपी बना देती है। दस्तावेज़ संवेदनशील है, तो चढ़ाने से पहले PDF पर पासवर्ड लगाइए और पासवर्ड अलग रास्ते से भेजिए। कड़ी की अनुमति सिर्फ़ चुने हुए लोगों पर रखिए, कड़ी वाले किसी पर नहीं, और सेवा में सुविधा हो तो समय-सीमा भी लगा दीजिए (Drive में है; Dropbox में पैसे वाले प्लान पर)।
 
-  बाकी सब के लिए, <a href="/hi/all-tools/">all PDF tools</a> देखें - compression, splitting और protection एक जगह।
+  बाक़ी सब के लिए <a href="/hi/all-tools/">सभी PDF टूल</a> देखिए, छोटा करना, बाँटना और पासवर्ड, सब एक जगह।
 
-  <h2>FAQ</h2>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
 
-  <h3>Compress करने के बाद भी मेरा PDF 25 MB से ऊपर क्यों है?</h3>
-  <p>या तो file ज़्यादातर scanned images है (Method 1 pure scans पर लगभग 60% reduction पर cap हो जाता है) या इसे पहले से एक बार compress किया गया है। Scans को OCR करने के लिए Method 3 try करें, या इसे दो emails में split करने के लिए Method 2। अगर यह born-digital PDF है जो shrink नहीं होगा, साथ चलने वाली embedded files के लिए attachments panel check करें।</p>
+  <h3>छोटी करने के बाद भी मेरी PDF 25 MB से ऊपर क्यों है?</h3>
+  <p>या फ़ाइल ज़्यादातर स्कैन की तस्वीरें हैं (पहला तरीक़ा पूरे स्कैन पर करीब साठ प्रतिशत कटौती पर रुक जाता है), या उसे पहले एक बार छोटा किया जा चुका है। स्कैन पर OCR के लिए तीसरा तरीक़ा देखिए, या दो ईमेल में बाँटने के लिए दूसरा। फ़ाइल सीधे कंप्यूटर पर बनी है और छोटी नहीं हो रही, तो अटैचमेंट का पैनल खोलकर देखिए कि उसके अंदर कोई और फ़ाइल सवारी नहीं कर रही।</p>
 
-  <h3>क्या PDF compress करने से quality कम होती है?</h3>
-  <p>Medium compression images को लगभग 150 DPI तक downsample करता है, जो normal reading distance पर invisible है और A4 पर fine print होता है। High compression photos और detailed diagrams पर दिखता है। Text किसी भी preset पर unaffected है क्योंकि vector text downsampled नहीं होता।</p>
+  <h3>PDF छोटी करने से गुणवत्ता घटती है?</h3>
+  <p>मँझोली सेटिंग तस्वीरों को करीब 150 DPI तक ले आती है, जो पढ़ने की आम दूरी पर दिखता नहीं और A4 पर ठीक छपता है। तेज़ सेटिंग तस्वीरों और बारीक नक़्शों पर दिखने लगती है। टेक्स्ट किसी भी सेटिंग पर वैसा ही रहता है, क्योंकि वह तस्वीर नहीं है।</p>
 
-  <h3>क्या मैं password-protected PDF compress कर सकता हूँ?</h3>
-  <p>आपको पहले अपने owned password से इसे unlock करना होगा, फिर compress करना होगा, फिर ज़रूरत हो तो re-protect करना होगा। Compression tools encrypted page contents read नहीं कर सकते, जो design से है - अगर कोई tool कर सकता, encryption meaningful नहीं होती।</p>
+  <h3>पासवर्ड वाली PDF छोटी कर सकता हूँ?</h3>
+  <p>पहले अपने पासवर्ड से खोलना पड़ेगा, फिर छोटा करना, फिर ज़रूरत हो तो दोबारा पासवर्ड लगाना। छोटा करने वाले टूल एन्क्रिप्ट हुए पन्ने पढ़ ही नहीं सकते, और यह जान-बूझकर ऐसा है, वरना एन्क्रिप्शन का मतलब क्या रह जाता।</p>
 
-  <h3>Corporate email के लिए safe file size क्या है?</h3>
-  <p>10 MB से कम aim करें। कई Exchange servers 10-15 MB से ऊपर attachments bounce करते हैं, और recipient का spam filter और margin add कर सकता है। Doubt हो तो 8 MB से कम compress करें या cloud link use करें।</p>
+  <h3>दफ़्तर के ईमेल के लिए सुरक्षित साइज़ क्या है?</h3>
+  <p>10 MB से नीचे रखिए। कई दफ़्तरी सर्वर 10 से 15 MB से ऊपर के अटैचमेंट लौटा देते हैं, और सामने वाले का स्पैम फ़िल्टर अपनी सख़्ती और जोड़ देता है। असमंजस हो तो 8 MB से नीचे छोटा कीजिए या क्लाउड की कड़ी भेजिए।</p>
 
-  <h3>क्या recipient मेरा compressed PDF print कर पाएगा?</h3>
-  <p>हाँ। Medium और low compression clean office printing के लिए काफ़ी resolution preserve करते हैं। अगर document professionally large format पर print होगा (A3 से बड़ा कुछ भी), low preset पर रहें या original भेजें।</p>
+  <h3>छोटी की हुई PDF सामने वाला छाप पाएगा?</h3>
+  <p>हाँ। मँझोली और हल्की सेटिंग दफ़्तरी छपाई के लिए काफ़ी साफ़ाई बचा लेती हैं। दस्तावेज़ पेशेवर तरीक़े से बड़े काग़ज़ पर छपना है (A3 से बड़ा कुछ भी), तो हल्की सेटिंग पर रहिए या मूल फ़ाइल भेजिए।</p>
 
-  <h2>अभी try करें</h2>
+  <h2>अभी आज़माइए</h2>
 
-  <p>"PDF too big to email" की ज़्यादातर problems medium preset के साथ एक minute में solve हो जाती हैं। अपनी file Convertica के compressor में drop करें और trimmed copy confidently भेजें। <a href="/hi/pdf-organize/compress/">PDF compressor tool open करें →</a></p>
+  <p>PDF ईमेल के लिए बहुत बड़ी है वाली ज़्यादातर दिक्क़तें मँझोली सेटिंग से एक मिनट में हल हो जाती हैं। अपनी फ़ाइल Convertica के कंप्रेसर में डालिए और छोटी हुई कॉपी बेझिझक भेज दीजिए। <a href="/hi/pdf-organize/compress/">PDF कंप्रेसर खोलें →</a></p>

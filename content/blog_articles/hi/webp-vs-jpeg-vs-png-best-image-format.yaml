@@ -2,102 +2,102 @@ slug: webp-vs-jpeg-vs-png-best-image-format
 status: published
 category_slug: comparisons
 relevant_tool: convert_image
-title_hi: "WebP vs JPEG vs PNG: कौन सा Image Format use करना चाहिए?"
-meta_title_hi: "WebP vs JPEG vs PNG: Best Image Format | Convertica"
-meta_description_hi: "WebP JPEG से 25-35% छोटा है, PNG lossless है, JPEG हर जगह खुलता है। Decision table, file-size examples, और हर format कब जीतता है — practical comparison।"
-meta_keywords_hi: "webp vs jpeg, webp vs png, web के लिए best image format, jpeg vs png, image format comparison, image format बदलें, webp format"
-excerpt_hi: "Web की लगभग हर image तीन formats में से किसी एक में होती है, और गलत चुनाव आपसे file size, quality, या compatibility छीन लेता है। यहाँ जानें WebP, JPEG, और PNG actually कैसे अलग हैं — और चुनने का एक simple rule।"
+title_hi: "WebP, JPEG या PNG: तस्वीर के लिए कौन सा फ़ॉर्मैट चुनें?"
+meta_title_hi: "WebP, JPEG या PNG: कौन सा फ़ॉर्मैट सही | Convertica"
+meta_description_hi: "WebP, JPEG से 25 से 35% हल्का है, PNG कुछ नहीं गँवाता, JPEG हर जगह खुलता है। फ़ैसले की सारणी, साइज़ के उदाहरण, और कौन सा कब जीतता है।"
+meta_keywords_hi: "WebP या JPEG, WebP या PNG, वेब के लिए सही इमेज फ़ॉर्मैट, JPEG या PNG, तस्वीर का फ़ॉर्मैट बदलें, image format hindi"
+excerpt_hi: "वेब की लगभग हर तस्वीर तीन फ़ॉर्मैट में से किसी एक में होती है, और ग़लत चुनाव आपसे साइज़, गुणवत्ता या हर जगह खुलने की सहूलियत छीन लेता है। तीनों का असली फ़र्क़, और चुनने का एक आसान नियम।"
 content_hi: |
-  आप जो भी image कभी upload करेंगे, वह लगभग हमेशा तीन containers में से एक में travel करती है: JPEG, PNG, या WebP। वे interchangeable लगते हैं — picture तो picture है — लेकिन अंदर से वे बहुत अलग trade-offs करते हैं, और गलत चुनाव चुपचाप आपसे कुछ न कुछ ले लेता है: blurry logo, 4 MB का screenshot, ऐसी photo जिसे कोई पुराना system accept ही नहीं करता। यह comparison साफ़ करता है कि हर format actually किसके लिए है।
+  आप जो भी तस्वीर कभी चढ़ाएँगे, वह लगभग हमेशा तीन में से किसी एक लिफ़ाफ़े में जाती है: JPEG, PNG या WebP। लगता है तीनों एक ही बात हैं, तस्वीर तो तस्वीर है, पर अंदर से तीनों बहुत अलग सौदे करते हैं, और ग़लत चुनाव चुपचाप कुछ न कुछ ले जाता है: धुँधला लोगो, 4 MB का स्क्रीनशॉट, या ऐसी तस्वीर जिसे कोई पुराना सिस्टम लेता ही नहीं। यह तुलना साफ़ करती है कि हर फ़ॉर्मैट असल में किसके लिए बना है।
 
   <h2>छोटा जवाब</h2>
 
   <ul>
-    <li><strong>WebP</strong> — websites के लिए default। Same quality पर JPEG से 25-35% छोटा, transparency और animation support करता है। जब भी आप control करते हैं कि image कहाँ display होगी, इसे use करें।</li>
-    <li><strong>JPEG</strong> — travel करने वाली photos के लिए default। 1990s से हर device, program, और upload form इसे accept करता है। जब compatibility आखिरी kilobyte से ज़्यादा matter करे, तब use करें।</li>
-    <li><strong>PNG</strong> — pixel-perfect graphics के लिए default। Lossless, clean transparency के साथ। Logos, UI screenshots, charts, और sharp edges व text वाली हर चीज़ के लिए use करें।</li>
+    <li><strong>WebP</strong>, वेबसाइट का दस्तूर। उसी गुणवत्ता पर JPEG से 25 से 35% हल्का, पारदर्शिता और चलती तस्वीर, दोनों चलते हैं। जब तस्वीर कहाँ दिखेगी यह आपके हाथ में हो, तब यही लीजिए।</li>
+    <li><strong>JPEG</strong>, बाहर भेजी जाने वाली तस्वीरों का दस्तूर। नब्बे के दशक से हर डिवाइस, हर प्रोग्राम और हर अपलोड का ख़ाना इसे लेता है। जब हर जगह खुलना आख़िरी किलोबाइट से बड़ी बात हो, तब यही लीजिए।</li>
+    <li><strong>PNG</strong>, बिंदु-दर-बिंदु सही ग्राफ़िक का दस्तूर। कुछ गँवाए बिना, साफ़ पारदर्शिता के साथ। लोगो, स्क्रीनशॉट, चार्ट, और तेज़ किनारों तथा अक्षरों वाली हर चीज़ के लिए।</li>
   </ul>
 
-  <h2>Side-by-side comparison</h2>
+  <h2>आमने-सामने तुलना</h2>
 
   <table>
     <thead>
       <tr><th></th><th>WebP</th><th>JPEG</th><th>PNG</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>Compression</strong></td><td>Lossy या lossless</td><td>Lossy</td><td>Lossless</td></tr>
-      <tr><td><strong>Typical photo size</strong></td><td>सबसे छोटा</td><td>Medium</td><td>सबसे बड़ा (अक्सर JPEG का 5-10x)</td></tr>
-      <tr><td><strong>Transparency</strong></td><td>हाँ</td><td>नहीं (white से भर देता है)</td><td>हाँ</td></tr>
-      <tr><td><strong>Animation</strong></td><td>हाँ</td><td>नहीं</td><td>नहीं (APNG rare है)</td></tr>
-      <tr><td><strong>Browser support</strong></td><td>सभी modern browsers</td><td>Universal</td><td>Universal</td></tr>
-      <tr><td><strong>पुराने software / devices</strong></td><td>कभी-कभी reject</td><td>हमेशा accepted</td><td>लगभग हमेशा accepted</td></tr>
-      <tr><td><strong>Best for</strong></td><td>Web pages, online stores</td><td>Sharing, email, print services के लिए photos</td><td>Logos, screenshots, text वाले graphics</td></tr>
+      <tr><td><strong>दबाने का ढंग</strong></td><td>गँवाकर या बिना गँवाए</td><td>गँवाकर</td><td>बिना गँवाए</td></tr>
+      <tr><td><strong>फ़ोटो का आम साइज़</strong></td><td>सबसे कम</td><td>बीच का</td><td>सबसे ज़्यादा (अक्सर JPEG से पाँच से दस गुना)</td></tr>
+      <tr><td><strong>पारदर्शिता</strong></td><td>हाँ</td><td>नहीं (सफ़ेद से भर देता है)</td><td>हाँ</td></tr>
+      <tr><td><strong>चलती तस्वीर</strong></td><td>हाँ</td><td>नहीं</td><td>नहीं (APNG कम चलता है)</td></tr>
+      <tr><td><strong>ब्राउज़र में</strong></td><td>सभी नए ब्राउज़र</td><td>हर जगह</td><td>हर जगह</td></tr>
+      <tr><td><strong>पुराने सॉफ़्टवेयर और डिवाइस</strong></td><td>कभी-कभी नामंज़ूर</td><td>हमेशा मंज़ूर</td><td>लगभग हमेशा मंज़ूर</td></tr>
+      <tr><td><strong>किसके लिए सबसे सही</strong></td><td>वेब पन्ने, ऑनलाइन दुकानें</td><td>भेजने, ईमेल और छपाई की तस्वीरें</td><td>लोगो, स्क्रीनशॉट, अक्षरों वाले ग्राफ़िक</td></tr>
     </tbody>
   </table>
 
-  <h2>File size जितना लगता है उससे ज़्यादा matter क्यों करता है</h2>
+  <h2>साइज़ लगने से ज़्यादा क्यों मायने रखता है</h2>
 
-  <p>Images usually page की सबसे heavy चीज़ होती हैं। उन्हें छोटा करना single सबसे आसान performance win है: pages faster load होते हैं, <strong>Core Web Vitals</strong> scores improve होते हैं, और mobile visitors कम data खर्च करते हैं। Page speed एक ranking signal है, इसलिए site owner के लिए format का चुनाव चुपचाप एक SEO decision भी है।</p>
+  <p>पन्ने पर सबसे भारी चीज़ आम तौर पर तस्वीरें ही होती हैं। उन्हें हल्का करना रफ़्तार बढ़ाने का सबसे आसान तरीक़ा है: पन्ने जल्दी खुलते हैं, <strong>Core Web Vitals</strong> के अंक सुधरते हैं, और मोबाइल पर आने वालों का डेटा बचता है। रफ़्तार खोज में जगह तय करने वाला संकेत भी है, इसलिए साइट चलाने वाले के लिए फ़ॉर्मैट का चुनाव चुपचाप SEO का फ़ैसला भी बन जाता है।</p>
 
-  <p>Numbers का concrete अंदाज़ा: typical 12-megapixel photo high-quality JPEG के रूप में लगभग 2-4 MB, same visual quality पर WebP के रूप में 1.5-3 MB, और PNG के रूप में 15-25 MB बैठती है। वह PNG number गलती नहीं है — photos की lossless storage बेहद महँगी है, इसीलिए PNG photographs के लिए गलत format है।</p>
+  <p>आँकड़ों का ठोस अंदाज़ा: 12 मेगापिक्सल की आम तस्वीर ऊँची गुणवत्ता वाली JPEG में करीब 2 से 4 MB बैठती है, उसी दिखने वाली गुणवत्ता पर WebP में 1.5 से 3 MB, और PNG में 15 से 25 MB। वह आख़िरी आँकड़ा ग़लती नहीं है। फ़ोटो को कुछ गँवाए बिना रखना बेहद महँगा पड़ता है, और यही वजह है कि फ़ोटो के लिए PNG ग़लत फ़ॉर्मैट है।</p>
 
-  <h2>JPEG अब भी कब सही choice है</h2>
+  <h2>JPEG अब भी कब सही है</h2>
 
-  <p>WebP size पर जीतता है, लेकिन JPEG के पास एक unbeatable feature है: तीस साल का universal support। जब image आपके control से बाहर जाए, JPEG चुनें:</p>
-
-  <ul>
-    <li>Email या documents में photos attach करते समय, जिन्हें कोई पुराने software में खोल सकता है।</li>
-    <li>Government portals, job applications, और strict file-type lists वाले forms पर upload करते समय।</li>
-    <li>Print service या photo kiosk को photos भेजते समय।</li>
-    <li>ऐसे लोगों के साथ share करते समय जिनके devices के बारे में आप कुछ नहीं जानते।</li>
-  </ul>
-
-  <p>ऐसा WebP attachment जिसे recipient खोल ही न पाए, आपको कुछ नहीं का 30% बचाता है।</p>
-
-  <h2>PNG कब एकमात्र सही जवाब है</h2>
-
-  <p>Lossy compression वह detail discard करके काम करता है जिसे आँख photo में माफ़ कर देती है — लेकिन graphics में आँख इसे माफ़ नहीं करती। JPEG-compressed text के चारों ओर fuzzy halos बन जाते हैं; sharp colour boundaries smear हो जाती हैं। PNG use करें:</p>
+  <p>WebP साइज़ पर जीतता है, पर JPEG के पास एक ऐसी बात है जिसे हराया नहीं जा सकता: तीस साल से हर जगह चलना। जब तस्वीर आपके हाथ से बाहर जा रही हो, JPEG चुनिए:</p>
 
   <ul>
-    <li><strong>Logos और icons</strong> के लिए, खासकर वे जो coloured backgrounds पर रखे जाते हैं (आपको transparency चाहिए)।</li>
-    <li><strong>UI screenshots</strong> के लिए जिनमें text है — documentation, bug reports, tutorials।</li>
-    <li><strong>Charts, diagrams, और pixel art</strong> के लिए — hard edges और flat colours के साथ।</li>
-    <li>हर वह image जिसे <strong>बार-बार edit और re-save</strong> किया जाएगा — lossless यानी कोई generational decay नहीं।</li>
+    <li>ईमेल या दस्तावेज़ों में तस्वीरें लगाते समय, जिन्हें कोई पुराने सॉफ़्टवेयर में खोल सकता है।</li>
+    <li>सरकारी पोर्टल, नौकरी के आवेदन, और उन फ़ॉर्म पर, जिनमें फ़ाइल की किस्म की सख़्त सूची है।</li>
+    <li>छपाई की दुकान या फ़ोटो कियोस्क को तस्वीरें भेजते समय।</li>
+    <li>उन लोगों को भेजते समय जिनके डिवाइस के बारे में आप कुछ नहीं जानते।</li>
   </ul>
 
-  <h2>Formats के बीच convert कैसे करें</h2>
+  <p>जो WebP सामने वाला खोल ही न पाए, वह आपके किसी काम का तीस प्रतिशत बचाती है, यानी कुछ नहीं।</p>
 
-  <figure><img src="/static/blog/images/tool-convert-image-hero.jpg" alt="Convertica image format converter का upload screen" width="1280" height="800" loading="lazy"></figure>
+  <h2>PNG कब अकेला सही जवाब है</h2>
 
-  <p>Format बदलने में seconds लगते हैं और कुछ install नहीं करना पड़ता:</p>
+  <p>गँवाकर दबाना उस ब्यौरे को फेंककर चलता है जिसे आँख फ़ोटो में माफ़ कर देती है, पर ग्राफ़िक में आँख उसे माफ़ नहीं करती। JPEG में दबाए अक्षरों के चारों तरफ़ धुँधली परछाई बन जाती है; रंगों की तेज़ सीमाएँ फैल जाती हैं। PNG लीजिए:</p>
+
+  <ul>
+    <li><strong>लोगो और आइकन</strong> के लिए, ख़ासकर वे जो रंगीन बैकग्राउंड पर रखे जाते हैं, क्योंकि वहाँ पारदर्शिता चाहिए।</li>
+    <li><strong>स्क्रीनशॉट</strong> के लिए जिनमें अक्षर हैं: दस्तावेज़ीकरण, बग की रिपोर्ट, सिखाने वाली गाइड।</li>
+    <li><strong>चार्ट, नक़्शे और पिक्सल कला</strong> के लिए, जहाँ किनारे तेज़ और रंग सपाट हैं।</li>
+    <li>हर उस तस्वीर के लिए जिसे <strong>बार-बार बदलकर सहेजा</strong> जाएगा, क्योंकि कुछ गँवाए बिना सहेजने से पीढ़ी-दर-पीढ़ी घिसाव नहीं होता।</li>
+  </ul>
+
+  <h2>एक फ़ॉर्मैट से दूसरे में कैसे बदलें</h2>
+
+  <figure><img src="/static/blog/images/tool-convert-image-hero.jpg" alt="Convertica के तस्वीर बदलने वाले टूल का अपलोड पन्ना" width="1280" height="800" loading="lazy"></figure>
+
+  <p>फ़ॉर्मैट बदलने में कुछ सेकंड लगते हैं और कुछ इंस्टॉल नहीं करना पड़ता:</p>
 
   <ol>
-    <li><a href="/hi/image/convert/">Convert Image</a> tool खोलें और JPEG, PNG, WebP, GIF, BMP, या TIFF file upload करें।</li>
-    <li>Target format चुनें और, JPEG या WebP के लिए, quality level (90 safe default है)।</li>
-    <li>Result download करें। Pixel dimensions exactly same रहते हैं — सिर्फ encoding बदलती है।</li>
+    <li><a href="/hi/image/convert/">तस्वीर बदलने वाला टूल</a> खोलिए और JPEG, PNG, WebP, GIF, BMP या TIFF फ़ाइल चढ़ा दीजिए।</li>
+    <li>जिस फ़ॉर्मैट में चाहिए वह चुनिए, और JPEG या WebP के लिए गुणवत्ता भी (90 सुरक्षित दस्तूर है)।</li>
+    <li>नतीजा डाउनलोड कर लीजिए। तस्वीर की चौड़ाई-ऊँचाई बिल्कुल वही रहती है, सिर्फ़ अंदर का ढंग बदलता है।</li>
   </ol>
 
-  <figure><img src="/static/blog/images/tool-convert-image-options.jpg" alt="Image converter में format और quality के options" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-convert-image-options.jpg" alt="तस्वीर बदलने वाले टूल में फ़ॉर्मैट और गुणवत्ता के विकल्प" width="1280" height="800" loading="lazy"></figure>
 
-  <p>Transparency वाले PNGs को WebP में convert करने पर alpha channel बचता है; उन्हें JPEG में convert करने पर transparent areas white से भर जाते हैं — इसलिए logo-to-JPEG usually एक गलती है। अगर आपका goal purely <em>same</em> format में छोटी file है, तो <a href="/hi/image/optimize/">Optimize Image</a> tool in place compress करता है और dimensions भी cap कर सकता है।</p>
+  <p>पारदर्शिता वाली PNG को WebP में बदलने पर पारदर्शिता बची रहती है; उसी को JPEG में बदलने पर पारदर्शी हिस्से सफ़ेद से भर जाते हैं, इसलिए लोगो को JPEG बनाना आम तौर पर ग़लती है। अगर मक़सद सिर्फ़ <em>उसी</em> फ़ॉर्मैट में हल्की फ़ाइल पाना है, तो <a href="/hi/image/optimize/">तस्वीर हल्की करने वाला टूल</a> उसे वहीं दबा देता है और चाहें तो नाप भी घटा देता है।</p>
 
-  <h2>FAQ</h2>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
 
-  <h3>क्या WebP की quality JPEG से कम है?</h3>
-  <p>नहीं — comparable settings पर WebP same visual quality को छोटी file में preserve करता है। इसका compressor बस JPEG के 1992-vintage compressor से newer और smarter है। Quality आपके चुने level से decide होती है, format के नाम से नहीं।</p>
+  <h3>WebP की गुणवत्ता JPEG से कम होती है?</h3>
+  <p>नहीं। एक जैसी सेटिंग पर WebP उसी दिखने वाली गुणवत्ता को हल्की फ़ाइल में रख लेता है। उसका दबाने वाला हिस्सा JPEG के 1992 के ज़माने वाले से नया और समझदार है। गुणवत्ता आपकी चुनी सेटिंग से तय होती है, फ़ॉर्मैट के नाम से नहीं।</p>
 
-  <h3>कुछ sites मेरा WebP upload reject क्यों करती हैं?</h3>
-  <p>उनका upload validation WebP की popularity से पहले का है और सिर्फ JPEG और PNG को whitelist करता है। उस upload के लिए JPEG में convert कर लें — दस seconds का काम है — और अपनी site के लिए WebP रखें।</p>
+  <h3>कुछ साइट मेरी WebP नामंज़ूर क्यों कर देती हैं?</h3>
+  <p>उनकी जाँच WebP के चलन में आने से पुरानी है और सिर्फ़ JPEG और PNG को मानती है। उस एक अपलोड के लिए JPEG बना लीजिए, दस सेकंड का काम है, और अपनी साइट पर WebP रखिए।</p>
 
-  <h3>क्या मुझे अपने existing JPEGs को WebP में convert करना चाहिए?</h3>
-  <p>अपनी चलाई जा रही site के लिए — हाँ, यह usually सबसे सस्ता page-speed win है। पहले से heavily compressed copy की बजाय सबसे high-quality source से re-encode करें, ताकि artifacts जमा न हों।</p>
+  <h3>मुझे अपनी पुरानी JPEG को WebP में बदलना चाहिए?</h3>
+  <p>अपनी चल रही साइट के लिए हाँ, यह आम तौर पर रफ़्तार बढ़ाने का सबसे सस्ता तरीक़ा है। पहले से दबी हुई कॉपी के बजाय सबसे ऊँची गुणवत्ता वाली मूल फ़ाइल से बनाइए, ताकि ख़राबी जमा न होती जाए।</p>
 
   <h3>GIF का क्या?</h3>
-  <p>Animation के लिए, WebP (या असली video file) size और colour depth में GIF को हरा देता है। Static images के लिए GIF की 256-colour limit इसे चारों में सबसे worst बनाती है — यह mostly आदत और meme tradition की वजह से ज़िंदा है।</p>
+  <p>चलती तस्वीर के लिए WebP (या सीधे वीडियो फ़ाइल) साइज़ और रंगों की गहराई, दोनों में GIF को हरा देता है। ठहरी तस्वीरों में GIF की 256 रंगों की हद उसे चारों में सबसे कमज़ोर बनाती है; वह ज़्यादातर आदत और मीम की परंपरा के भरोसे ज़िंदा है।</p>
 
-  <h3>JPEG और WebP के लिए best quality setting क्या है?</h3>
-  <p>Web use के लिए 80-85 — वह sweet spot जहाँ normal viewing sizes पर artifacts invisible रहते हैं। 90+ तब, जब image को फिर से edit किया जा सकता है या करीब से देखा जाएगा। 70 से नीचे savings बढ़ती रहती हैं, लेकिन visible blotches भी — खासकर skies और gradients में।</p>
+  <h3>JPEG और WebP के लिए सबसे अच्छी सेटिंग क्या है?</h3>
+  <p>वेब के लिए 80 से 85, यही वह जगह है जहाँ आम आकार में देखने पर ख़राबी दिखती नहीं। 90 से ऊपर तब, जब तस्वीर दोबारा बदली जा सकती है या ग़ौर से देखी जाएगी। 70 से नीचे बचत बढ़ती रहती है, पर दिखने वाले धब्बे भी, ख़ासकर आसमान और रंगों की ढलान में।</p>
 
-  <h2>एक बार चुनें, ज़रूरत पर convert करें</h2>
+  <h2>एक बार चुनिए, ज़रूरत पर बदल लीजिए</h2>
 
-  <p>Rule of thumb एक line में आता है: <strong>अपनी website के लिए WebP, travel करने वाली photos के लिए JPEG, edges वाले graphics के लिए PNG।</strong> और जब कोई image काम के लिए गलत format में आए, तो <a href="/hi/image/convert/">Convert Image</a> tool इसे one click में fix कर देता है — free, बिना registration, dimensions untouched।</p>
+  <p>मोटा नियम एक लाइन में आ जाता है: <strong>अपनी वेबसाइट के लिए WebP, बाहर भेजने वाली तस्वीरों के लिए JPEG, किनारों वाले ग्राफ़िक के लिए PNG।</strong> और जब कोई तस्वीर किसी काम के लिए ग़लत फ़ॉर्मैट में आ जाए, तो <a href="/hi/image/convert/">तस्वीर बदलने वाला टूल</a> उसे एक क्लिक में ठीक कर देता है, मुफ़्त, बिना रजिस्ट्रेशन, और नाप जैसा है वैसा।</p>
