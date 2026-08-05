@@ -79,7 +79,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <div>
             <label for="fontFamily" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Font" %}</label>
-            <select id="fontFamily" name="font" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            <select id="fontFamily" name="font" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent">
               <option value="sans">{% trans "Sans-serif" %}</option>
               <option value="serif">{% trans "Serif" %}</option>
               <option value="mono">{% trans "Monospace" %}</option>
@@ -88,7 +88,7 @@
           <div>
             <label for="fontSize" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Size" %}</label>
             <input type="number" id="fontSize" name="font_size" value="12" min="8" max="72"
-                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent">
           </div>
           <div>
             <label for="textColor" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Color" %}</label>
@@ -97,7 +97,7 @@
           </div>
           <div>
             <label for="align" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Alignment" %}</label>
-            <select id="align" name="align" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            <select id="align" name="align" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent">
               <option value="left">{% trans "Left" %}</option>
               <option value="center">{% trans "Center" %}</option>
               <option value="right">{% trans "Right" %}</option>
@@ -106,14 +106,14 @@
           </div>
           <div>
             <label for="pageSize" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Page Size" %}</label>
-            <select id="pageSize" name="page_size" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            <select id="pageSize" name="page_size" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent">
               <option value="A4">A4</option>
               <option value="Letter">Letter</option>
             </select>
           </div>
           <div>
             <label for="margin" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Margins" %}</label>
-            <select id="margin" name="margin" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            <select id="margin" name="margin" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent">
               <option value="narrow">{% trans "Narrow" %}</option>
               <option value="normal" selected>{% trans "Normal" %}</option>
               <option value="wide">{% trans "Wide" %}</option>
@@ -126,7 +126,7 @@
           <div>
             <label for="textInput" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Your text" %}</label>
             <textarea id="textInput" name="text" rows="16" dir="auto"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-y"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent resize-y"
                       placeholder="{% trans 'Paste or type your text here...' %}" required></textarea>
             <div id="charCounter" class="text-xs text-gray-500 mt-1"></div>
           </div>
@@ -150,7 +150,7 @@
         <div>
           <label for="filename" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Filename" %}</label>
           <input type="text" id="filename" name="filename" value="document"
-                 class="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                 class="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-green-500 focus:border-transparent">
         </div>
 
         {# CAPTCHA mount. Inside the form so Turnstile's injected #}

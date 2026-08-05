@@ -11,7 +11,7 @@
           {% trans "Target paper size" %}
         </label>
         <select id="target_size" name="target_size"
-                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
           <option value="letter" selected>{% trans "US Letter (216 × 279 mm)" %}</option>
           <option value="a4">{% trans "A4 (210 × 297 mm)" %}</option>
           <option value="legal">{% trans "Legal (216 × 356 mm)" %}</option>
@@ -23,7 +23,7 @@
           {% trans "How to handle the difference in shape" %}
         </label>
         <select id="mode" name="mode"
-                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
           <option value="auto" selected>{% trans "Keep full size when it fits (recommended)" %}</option>
           <option value="fit">{% trans "Always scale pages to the sheet" %}</option>
         </select>

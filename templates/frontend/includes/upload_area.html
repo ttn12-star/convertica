@@ -33,11 +33,18 @@ JS contract (unchanged from previous design):
          {% if batch_enabled %}multiple{% endif %}
          class="hidden">
 
+  {% comment %}
+    p-8/sm:p-12 and the prompt block are swapped out by file-input-handler.js
+    once a file is chosen (see #dropZonePrompt / #selectedFile below): the zone
+    used to keep shouting "Drop your file here" at full height while the file
+    the user just picked showed up in a strip underneath, usually below the fold
+    together with the submit button.
+  {% endcomment %}
   <div id="dropZone"
-       class="relative border-2 border-dashed border-gray-300 hover:border-blue-400 rounded-2xl p-8 sm:p-12 text-center transition-colors duration-300 group bg-gray-50 hover:bg-blue-50 cursor-pointer dark:bg-gray-900/30 dark:hover:bg-blue-900/20">
+       class="relative border-2 border-dashed border-gray-300 hover:border-blue-400 rounded-2xl p-8 sm:p-12 text-center transition-colors duration-150 group bg-gray-50 hover:bg-blue-50 cursor-pointer dark:bg-gray-900/30 dark:hover:bg-blue-900/20">
 
-    <div>
-      <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+    <div id="dropZonePrompt">
+      <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
         <svg class="w-9 h-9 sm:w-11 sm:h-11 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
         </svg>
@@ -99,6 +106,30 @@ JS contract (unchanged from previous design):
         {{ file_accept|upper }}{% if max_file_size_mb_current %} &middot; {% blocktrans with size=max_file_size_mb_current %}up to {{ size }} MB{% endblocktrans %}{% endif %}{% if batch_enabled %} &middot; {% trans "up to 10 files" %}{% endif %}
       </p>
     </div>
+
+      <!-- Selected file panel: lives inside #dropZone so the chosen file
+           takes the place of the prompt instead of appearing under it. -->
+    <div id="selectedFile" class="hidden p-4 text-left bg-blue-50 dark:bg-blue-900/30 rounded-lg border-2 border-blue-200 dark:border-blue-700 max-w-md mx-auto">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3 flex-1 min-w-0">
+          <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-gray-900 dark:text-white text-sm sm:text-base truncate" id="fileName"></p>
+            <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm" id="fileSize"></p>
+          </div>
+        </div>
+        <button type="button"
+                id="removeFile"
+                class="ml-3 p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors flex-shrink-0"
+                aria-label="{% trans 'Remove file' %}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 
   {% if google_picker_api_key or dropbox_app_key %}
@@ -116,26 +147,4 @@ JS contract (unchanged from previous design):
     </button>
   {% endif %}
 
-  <!-- Selected file display (shown by JS after selection) -->
-  <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg border-2 border-blue-200 dark:border-blue-700 max-w-md mx-auto">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center space-x-3 flex-1 min-w-0">
-        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-        <div class="flex-1 min-w-0">
-          <p class="font-semibold text-gray-900 dark:text-white text-sm sm:text-base truncate" id="fileName"></p>
-          <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm" id="fileSize"></p>
-        </div>
-      </div>
-      <button type="button"
-              id="removeFile"
-              class="ml-3 p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors flex-shrink-0"
-              aria-label="{% trans 'Remove file' %}">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-  </div>
 </div>

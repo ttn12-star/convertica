@@ -211,6 +211,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.bg-red-50.border-red-200').forEach(el => el.remove());
     }
 
+    // The prompt ("Drop your file here" + Browse + cloud buttons) is ~380px
+    // tall, so while it stayed up the file the user just picked, and the submit
+    // button under it, both fell below the fold. Swap the prompt for the file
+    // panel and shrink the zone's padding; the zone itself stays a drop target.
+    const dropZonePrompt = document.getElementById('dropZonePrompt');
+    const ROOMY_PADDING = ['p-8', 'sm:p-12'];
+
+    function collapsePrompt(collapsed) {
+        if (dropZonePrompt) dropZonePrompt.classList.toggle('hidden', collapsed);
+        if (!dropZone) return;
+        dropZone.classList.toggle('p-4', collapsed);
+        ROOMY_PADDING.forEach(cls => dropZone.classList.toggle(cls, !collapsed));
+    }
+
     function showSelectedFile(files) {
         if (!selectedFileDiv || !fileName || !fileSize) return;
 
@@ -230,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         selectedFileDiv.classList.remove('hidden');
         if (fileInfo) fileInfo.classList.add('hidden');
+        collapsePrompt(true);
 
         if (addMoreFilesButton) {
             if (isBatchUi && fileList.length > 0 && fileList.length < 10) {
@@ -266,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideSelectedFile() {
         if (selectedFileDiv) selectedFileDiv.classList.add('hidden');
         if (fileInfo) fileInfo.classList.remove('hidden');
+        collapsePrompt(false);
         if (fileInput) fileInput.value = '';
         if (fileInputDrop) fileInputDrop.value = '';
         if (addMoreFilesButton) addMoreFilesButton.classList.add('hidden');
@@ -334,13 +350,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Button click handler
     // Note: Don't preventDefault to allow other handlers to work
+    const openPicker = () => {
+        if (!fileInput) return;
+        // Small delay to ensure input is ready (fixes double-click issue)
+        setTimeout(() => {
+            fileInput.click();
+        }, 0);
+    };
+
+    // The zone has had `cursor-pointer` all along but no click handler, so the
+    // cursor promised something that only the inner button delivered. Clicks
+    // coming from a real control inside the zone (Browse, Google Drive,
+    // Dropbox, the remove button) are left alone.
+    if (dropZone && fileInput) {
+        dropZone.addEventListener('click', (e) => {
+            if (e.target.closest('button, a, [role="button"], input, label')) return;
+            openPicker();
+        });
+    }
+
     if (selectFileButton && fileInput) {
-        const openPicker = () => {
-            // Small delay to ensure input is ready (fixes double-click issue)
-            setTimeout(() => {
-                fileInput.click();
-            }, 0);
-        };
         selectFileButton.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
