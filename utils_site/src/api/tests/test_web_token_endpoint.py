@@ -58,6 +58,17 @@ class WebTokenRateLimitTest(TestCase):
         self.client = APIClient()
 
     def test_21st_mint_in_a_minute_blocked(self):
+        # django-ratelimit buckets a "20/m" cap into windows aligned to the
+        # minute. Starting the burst just before a boundary let the counter reset
+        # partway through, so the 21st request landed in a fresh window and came
+        # back 400 instead of 429 — the test failed on roughly one run in three
+        # with nothing wrong in the code. Wait out a boundary that is too close.
+        import time
+
+        seconds_left = 60 - (time.time() % 60)
+        if seconds_left < 10:
+            time.sleep(seconds_left + 0.2)
+
         # 20/m cap → 21st request from the same IP gets blocked.
         for _ in range(20):
             r = self.client.post("/api/v1/auth/web-token", {}, format="json")

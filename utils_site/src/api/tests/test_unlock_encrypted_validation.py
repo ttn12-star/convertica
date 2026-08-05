@@ -9,6 +9,7 @@ import os
 import tempfile
 
 from django.test import SimpleTestCase
+from django.utils import translation
 from pypdf import PdfReader, PdfWriter
 from src.api.conversion_limits import validate_pdf_pages
 
@@ -40,7 +41,17 @@ class UnlockEncryptedValidationTests(SimpleTestCase):
         self.assertIsNone(error)
 
     def test_other_operations_still_reject_encrypted_pdf(self):
-        is_valid, error, pages = validate_pdf_pages(self.pdf_path, operation="compress")
+        # The message is translated, and an earlier test in the same worker can
+        # leave another language active, so this asserted English text against a
+        # Russian string roughly one run in three. Pin the language instead.
+        with translation.override("en"):
+            is_valid, error, pages = validate_pdf_pages(
+                self.pdf_path, operation="compress"
+            )
+            # str() inside the block: the message is a lazy proxy, so it renders
+            # in whatever language is active when it is finally read, not when it
+            # is created.
+            error = str(error)
         self.assertFalse(is_valid)
         self.assertIn("password-protected", error)
 
