@@ -84,10 +84,7 @@ class HeaderNavigation {
     });
 
     // Desktop mega menu (hover) - always attach, check width in methods
-    if (this.megaParent) {
-      this.megaParent.addEventListener('mouseenter', () => this.showMega());
-      this.megaParent.addEventListener('mouseleave', () => this.hideMega());
-    }
+    this.bindHoverPanel(this.megaParent, () => this.showMega(), () => this.hideMega());
 
     // Desktop mega menu (click for accessibility)
     this.megaButton?.addEventListener('click', (e) => {
@@ -101,10 +98,7 @@ class HeaderNavigation {
     this.mobileMegaToggle?.addEventListener('click', () => this.toggleMobileMega());
 
     // Desktop edit PDF menu (hover) - always attach, check width in methods
-    if (this.editPdfParent) {
-      this.editPdfParent.addEventListener('mouseenter', () => this.showEditPdf());
-      this.editPdfParent.addEventListener('mouseleave', () => this.hideEditPdf());
-    }
+    this.bindHoverPanel(this.editPdfParent, () => this.showEditPdf(), () => this.hideEditPdf());
 
     // Desktop edit PDF menu (click for accessibility)
     this.editPdfButton?.addEventListener('click', (e) => {
@@ -115,10 +109,7 @@ class HeaderNavigation {
     });
 
     // Desktop organize PDF menu (hover) - always attach, check width in methods
-    if (this.organizePdfParent) {
-      this.organizePdfParent.addEventListener('mouseenter', () => this.showOrganizePdf());
-      this.organizePdfParent.addEventListener('mouseleave', () => this.hideOrganizePdf());
-    }
+    this.bindHoverPanel(this.organizePdfParent, () => this.showOrganizePdf(), () => this.hideOrganizePdf());
 
     // Desktop organize PDF menu (click for accessibility)
     this.organizePdfButton?.addEventListener('click', (e) => {
@@ -129,10 +120,7 @@ class HeaderNavigation {
     });
 
     // Desktop premium tools menu (hover) - always attach, check width in methods
-    if (this.premiumToolsParent) {
-      this.premiumToolsParent.addEventListener('mouseenter', () => this.showPremiumTools());
-      this.premiumToolsParent.addEventListener('mouseleave', () => this.hidePremiumTools());
-    }
+    this.bindHoverPanel(this.premiumToolsParent, () => this.showPremiumTools(), () => this.hidePremiumTools());
 
     // Desktop premium tools menu (click for accessibility)
     this.premiumToolsButton?.addEventListener('click', (e) => {
@@ -143,10 +131,7 @@ class HeaderNavigation {
     });
 
     // Desktop images menu (hover) - always attach, check width in methods
-    if (this.imagesParent) {
-      this.imagesParent.addEventListener('mouseenter', () => this.showImages());
-      this.imagesParent.addEventListener('mouseleave', () => this.hideImages());
-    }
+    this.bindHoverPanel(this.imagesParent, () => this.showImages(), () => this.hideImages());
 
     // Desktop images menu (click for accessibility)
     this.imagesButton?.addEventListener('click', (e) => {
@@ -170,10 +155,7 @@ class HeaderNavigation {
     this.mobilePremiumToggle?.addEventListener('click', () => this.toggleMobilePremium());
 
     // Desktop all tools menu (hover) - always attach, check width in methods
-    if (this.allToolsParent) {
-      this.allToolsParent.addEventListener('mouseenter', () => this.showAllTools());
-      this.allToolsParent.addEventListener('mouseleave', () => this.hideAllTools());
-    }
+    this.bindHoverPanel(this.allToolsParent, () => this.showAllTools(), () => this.hideAllTools());
 
     // Desktop all tools menu (click for accessibility and to prevent navigation)
     this.allToolsButton?.addEventListener('click', (e) => {
@@ -186,10 +168,7 @@ class HeaderNavigation {
     });
 
     // Desktop more menu (hover) - always attach, check width in methods
-    if (this.moreParent) {
-      this.moreParent.addEventListener('mouseenter', () => this.showMore());
-      this.moreParent.addEventListener('mouseleave', () => this.hideMore());
-    }
+    this.bindHoverPanel(this.moreParent, () => this.showMore(), () => this.hideMore());
 
     // Desktop more menu (click for accessibility)
     this.moreButton?.addEventListener('click', (e) => {
@@ -222,10 +201,7 @@ class HeaderNavigation {
 
     // --- Priority+ overflow nav ---
     // Bucket trigger (hover + click), mirrors the other desktop menus.
-    if (this.moreToolsParent) {
-      this.moreToolsParent.addEventListener('mouseenter', () => this.showMoreTools());
-      this.moreToolsParent.addEventListener('mouseleave', () => this.hideMoreTools());
-    }
+    this.bindHoverPanel(this.moreToolsParent, () => this.showMoreTools(), () => this.hideMoreTools());
     this.moreToolsButton?.addEventListener('click', (e) => {
       e.preventDefault();
       this.toggleMoreToolsDesktop();
@@ -327,6 +303,35 @@ class HeaderNavigation {
     const headerHeight = this.header.offsetHeight;
     this.mobileMenu.style.top = `${headerHeight}px`;
     this.mobileMenu.style.maxHeight = `calc(100vh - ${headerHeight}px)`;
+  }
+
+  /**
+   * Bind a hover-opened panel with a delayed close.
+   *
+   * Each panel sits `mt-2` below its parent (16px for the All Tools mega menu),
+   * so while the pointer travels from the trigger into the menu it is over
+   * neither element. Hiding immediately there sets `invisible`, and a panel with
+   * visibility:hidden can no longer be entered, so `mouseenter` never fires
+   * again and the menu could not be used with a mouse at all. The delay spans
+   * that gap; arriving in the panel re-enters the parent and cancels it.
+   */
+  bindHoverPanel(parent, show, hide) {
+    if (!parent) return;
+    let closeTimer = null;
+    parent.addEventListener('mouseenter', () => {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+      show();
+    });
+    parent.addEventListener('mouseleave', () => {
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        closeTimer = null;
+        hide();
+      }, 220);
+    });
   }
 
   showMega() {
