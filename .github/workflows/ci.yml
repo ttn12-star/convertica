@@ -893,6 +893,7 @@ jobs:
             print(f'📊 Operations: {OperationRun.objects.count()}')
             " || echo "⚠️ Final verification failed (non-critical)"
 
+            # drops the stale manifest + inline CSS cached before Step 4/5 ran
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
