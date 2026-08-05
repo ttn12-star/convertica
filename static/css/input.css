@@ -10,11 +10,15 @@
      border-t-4, a full 2px ring, a dashed ring, a gradient fill — so a single
      screen showed eight different cards and the 4px side borders pushed the
      icons off a shared baseline by a few pixels. The accent colour now lives
-     only in the icon tile. */
+     only in the icon tile — and in a 4px accent on the inline-start edge, which
+     every card carries at the same width on the same side, so the grid still
+     reads as one system. Depth (shadow-md, 4px lift) is deliberate: the first
+     pass flattened it to shadow-sm and 2px, which fixed nothing and made the
+     page look washed out. */
   .tool-card {
     @apply relative flex flex-col rounded-2xl p-6 sm:p-8 cursor-pointer
            bg-white dark:bg-gray-900
-           border border-gray-200 dark:border-gray-800 shadow-sm
+           border border-gray-200 dark:border-gray-800 shadow-md
            text-gray-900 dark:text-gray-100;
     /* Named properties, not `all`: `all` also animates layout properties. */
     transition-property: transform, box-shadow, border-color;
@@ -26,7 +30,7 @@
      leave the card stuck in its lifted state. */
   @media (hover: hover) and (pointer: fine) {
     .tool-card:hover {
-      @apply -translate-y-0.5 shadow-lg border-gray-300 dark:border-gray-700;
+      @apply -translate-y-1 shadow-xl;
     }
   }
 
