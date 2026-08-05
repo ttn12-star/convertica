@@ -1,122 +1,122 @@
 slug: rotate-pdf-pages-permanently
-title_hi: "PDF Pages को कैसे Rotate करें और Change को Permanently Save करें (सिर्फ़ Viewer में नहीं)"
-meta_title_hi: "PDF Rotate और Permanently Save - Free Online | Convertica"
-meta_description_hi: "Adobe Reader PDFs को सिर्फ़ viewer में 'rotate' करता है। Pages को permanently rotate करना सीखें ताकि change shared, emailed या printed होने पर भी बना रहे।"
-meta_keywords_hi: "rotate pdf permanently, rotated pdf save करें, sideways pdf fix करें, scanned pdf rotate करें, pdf rotation free"
-excerpt_hi: "अगर आपने कभी Adobe Reader में PDF rotate किया और reopen करते ही उसे वापस snap होते देखा, तो यह उसका fix है। Page-orientation flag file के अंदर रहता है।"
+title_hi: "PDF के पन्ने कैसे घुमाएँ और बदलाव हमेशा के लिए सहेजें (सिर्फ़ व्यूअर में नहीं)"
+meta_title_hi: "PDF घुमाकर हमेशा के लिए सहेजें, मुफ़्त | Convertica"
+meta_description_hi: "Adobe Reader PDF को सिर्फ़ अपने अंदर घुमाता है। पन्ने हमेशा के लिए घुमाना सीखिए, ताकि बदलाव साझा करने, ईमेल करने और छापने पर भी बना रहे।"
+meta_keywords_hi: "PDF हमेशा के लिए घुमाएँ, घुमाई PDF सहेजें, तिरछी PDF ठीक करें, स्कैन PDF घुमाएँ, rotate pdf permanently hindi"
+excerpt_hi: "अगर आपने कभी Adobe Reader में PDF घुमाई और दोबारा खोलते ही उसे वापस पुरानी जगह लौटते देखा, तो इलाज यही है। पन्ने की दिशा का निशान फ़ाइल के अंदर रहता है।"
 content_hi: |
-  Adobe Reader में PDF rotate करें, file close करें, फिर open करें, और pages वापस वहाँ snap हो जाते हैं जहाँ शुरू हुए थे। उसी पल ज़्यादातर लोगों को पता चलता है कि rotation दो बिलकुल अलग तरह के होते हैं, और उनमें से सिर्फ़ एक ही file को actually change करता है। Adobe Reader जो error message दिखाता है जब आप rotation save करने की कोशिश करते हैं - "this file has been rotated and you must use Adobe Acrobat to commit the change" - उन quiet rude awakenings में से एक है जो पहले से न भाँप पाने वाले किसी भी इंसान की पूरी afternoon बर्बाद कर देता है।
+  Adobe Reader में PDF घुमाइए, फ़ाइल बंद कीजिए, फिर खोलिए, और पन्ने वापस वहीं लौट आते हैं जहाँ से शुरू हुए थे। उसी पल ज़्यादातर लोगों को पता चलता है कि घुमाना दो बिल्कुल अलग चीज़ें हैं, और उनमें से सिर्फ़ एक फ़ाइल को असल में बदलती है। Adobe Reader जो संदेश दिखाता है, कि इस बदलाव को सहेजने के लिए Acrobat चाहिए, वह उन चुपचाप चौंका देने वाली बातों में से है जो पहले न जानने वाले की पूरी दोपहर खा जाती है।
 
-  यह guide उस तरह के बारे में है जो stick करता है। आपके पास ऐसा PDF होगा जो Chrome, Preview, Acrobat, किसी के phone पर, और आख़िर में जो printer उसे छापे उस पर भी same दिखता है। Downstream किसी को इसे खुद rotate करने की ज़रूरत नहीं होगी।
+  यह गाइड उस घुमाने के बारे में है जो टिकता है। आपके पास वह PDF होगी जो Chrome में, Preview में, Acrobat में, किसी के फ़ोन पर और आख़िर में उस प्रिंटर पर भी एक जैसी दिखे जो उसे छापेगा। आगे किसी को उसे ख़ुद घुमाने की ज़रूरत नहीं पड़ेगी।
 
-  <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Convertica rotate PDF tool thumbnail grid और rotation direction controls के साथ" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Convertica का PDF घुमाने वाला टूल, छोटी तस्वीरों और दिशा के कंट्रोल के साथ" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>आपका rotation गायब क्यों होता रहता है</h2>
+  <h2>आपका घुमाव ग़ायब क्यों होता रहता है</h2>
 
-  PDFs file structure के अंदर हर page के लिए orientation flag store करते हैं। जब आप Adobe Reader के free version के अंदर "rotate" करते हैं, आप viewer को सिर्फ़ बता रहे हैं कि इस session के लिए page को आपकी screen पर कैसे display करे। File में flag untouched है।
+  PDF अपने ढाँचे के अंदर हर पन्ने के लिए दिशा का एक निशान रखती है। जब आप Adobe Reader के मुफ़्त वर्शन में पन्ना घुमाते हैं, तो आप बस व्यूअर को बता रहे होते हैं कि इस बार स्क्रीन पर पन्ना कैसे दिखाए। फ़ाइल के अंदर वह निशान जैसा था वैसा ही रहता है।
 
-  Behind the scenes तीन चीज़ें happen हो रही हैं:
-
-  <ul>
-    <li><strong>Viewer-level rotation</strong> rendering change करता है, data नहीं। Document close करें और override gone है।</li>
-    <li><strong>File-level rotation</strong> page की orientation entry rewrite करता है। हर viewer फिर new value read करता है।</li>
-    <li><strong>Free Adobe Reader में "Save As"</strong> file को फिर से save कर सकता है, लेकिन यह view-only rotation commit नहीं करता। वो feature paid Acrobat के पीछे gated है।</li>
-  </ul>
-
-  <blockquote class="callout">अगर आप rotate कर सकते हैं लेकिन closing के बाद change vanish हो जाता है, आपने almost certainly viewer-level rotate use किया। ऐसा tool use करें जो page orientation को file में खुद rewrite करे।</blockquote>
-
-  Adobe Reader DC versions 2019 और बाद में behaviour थोड़ा shift हुआ: rotate button अब Tools &gt; Organize Pages के नीचे buried है, जहाँ ऐसा लगता है कि change commit होना चाहिए लेकिन तब तक नहीं होगा जब तक आप pay न करें। Free version एक छोटे footer message में explicitly बताता है कि "saving page rotations requires Acrobat Pro", जिसे कई users कभी read नहीं करते।
-
-  Fastest fix एक browser-based rotator है जो file को directly re-encode करता है। आप कुछ install किए बिना <a href="/hi/pdf-edit/rotate/">PDF online rotate</a> लगभग दस seconds में कर सकते हैं।
-
-  <h2>Step-by-step: हर page 90 degrees rotate करें</h2>
-
-  यह right approach है जब पूरा scan sideways आया, या जब किसी ने accidentally landscape report को portrait के रूप में export किया।
-
-  <figure><img src="/static/blog/images/tool-rotate-options.jpg" alt="हर page को 90 degrees clockwise एक batch action में rotate करें" width="1280" height="800" loading="lazy"></figure>
-
-  <ol>
-    <li>Rotate tool खोलें और अपना PDF drop करें। Files upload session पर processing के लिए ज़रूरत तक ही stay करती हैं।</li>
-    <li>Direction pick करें। 90 degrees clockwise ज़्यादातर sideways scans fix करता है। 180 degrees auto-feeders से wrong way up upside-down documents handle करता है।</li>
-    <li>सभी pages पर apply करें। Tool एक pass में हर page के लिए orientation flag rewrite करता है।</li>
-    <li>New file download करें। किसी भी viewer में open करके confirm करें।</li>
-  </ol>
-
-  Result को clear filename जैसे <code>contract_rotated.pdf</code> से save करें ताकि आप mistakenly original overwrite न करें। Original रखना cheap insurance है अगर rotation गलत direction में चला जाए - और गलत direction में rotate होना rotate tool पहली बार use करने वालों की सबसे common "मैंने दस minutes waste किए" शिकायत है। दो clockwise turns एक counter-clockwise turn के बराबर है, इसलिए recovery fast है, लेकिन सिर्फ़ अगर आपके पास source है।
-
-  <h2>Step-by-step: सिर्फ़ specific pages rotate करें</h2>
-
-  Mixed-orientation PDFs तब common हैं जब scan batch में portrait letters और landscape spreadsheet दोनों हैं, या जब किसी ने different sources से files merge कीं।
-
-  <ol>
-    <li>PDF upload करें। Thumbnail grid देखें identify करने के लिए कि कौन से pages गलत हैं।</li>
-    <li>Pages को number से select करें। ज़्यादातर tools आपको पूरी file के बजाय page 3, 7, और 9 independently rotate करने देते हैं।</li>
-    <li>ज़रूरत हो तो per page rotation direction set करें। Page 5 पर upside down scanned receipt को 180 degrees चाहिए हो सकती है जबकि page 7 को 90 clockwise।</li>
-    <li>Apply करें और download करें। File ship करने से पहले thumbnails corrected orientation दिखा रहे हैं verify करें।</li>
-  </ol>
-
-  अगर आप अक्सर page-by-page rotations से fight करते हैं, अक्सर एक combined view में <a href="/hi/pdf-organize/organize/">PDF pages organize</a> करना easier है जहाँ आप exporting से पहले rotate, delete, और reorder कर सकते हैं।
-
-  हमारे tool में (और ज़्यादातर browser-based वालों में) एक keyboard shortcut जानने लायक है: एक बार thumbnail focus में आ जाए, तो bracket keys अक्सर इसे rotate कर देती हैं। Right bracket clockwise, left bracket counter-clockwise. Tools के पार universal नहीं, लेकिन इतना common है कि mouse के लिए reach करने से पहले try करना worth है।
-
-  <h2>Common scenarios</h2>
-
-  <h3>Sideways scanned receipts</h3>
-
-  Flatbed scanners और phone-camera apps अक्सर small receipts को गलत orientation में capture करते हैं। 90-degree clockwise rotation usually उन्हें fix करती है। अगर आप mixed orientations के साथ stack scan करें, सबको एक साथ करें और rescanning के बजाय per page rotate करें। Thermal-paper receipts (जो fade हो जाती हैं) ख़ासकर 180 degrees off आती हैं क्योंकि उन्हें protection के लिए print-side down stack किया जाता है।
-
-  <h3>Mobile photos PDF में convert</h3>
-
-  iOS और Android कभी-कभी photo orientation को EXIF metadata में encode करते हैं जिसे PDF converter ignore करता है। Result एक portrait photo है जो landscape PDF page के रूप में saved है। File-level rotation cleanest fix है। एक बात जानने लायक: iOS 14 के आसपास यह noticeably worse हो गया, जब Apple ने default photo format को JPEG से HEIC में change किया। पुराने PDF tools जो conversion के दौरान HEIC orientation tags strip करते हैं हर बार sideways pages produce करते हैं। Camera को shooting से पहले "Most Compatible" पर वापस set करने से source पर problem solve होती है।
-
-  <h3>Mixed landscape और portrait reports</h3>
-
-  Annual reports और pitch decks अक्सर portrait text pages को landscape charts के साथ combine करते हैं। अगर converter ने सब कुछ portrait force किया, आपको chart pages को 90 degrees rotate करना पड़ सकता है ताकि वे landscape में scrolled या printed होने पर correctly read हों। PowerPoint में बने और PDF में export किए गए investor decks common offenders हैं; PowerPoint का "Print to PDF" path पूरी file को per slide के बजाय एक ही orientation के रूप में treat करता है।
-
-  <h3>Faxes के रूप में received forms</h3>
-
-  कई medical और legal forms आज भी fax से आते हैं, मतलब वो एक printer से pass होते हैं जो page को paper में fit करने के लिए rotate कर सकता है। Signature block का top पर आ जाना एक clue है - 180 rotate करें, save करें, ज़रूरत हो तो same fax line से वापस भेजें।
-
-  <h2>Verifying कि rotation stuck</h2>
-
-  File send करने से पहले, 30-second sanity check करें:
+  पर्दे के पीछे तीन बातें हो रही हैं:
 
   <ul>
-    <li>Rotated PDF को ऐसे viewer में reopen करें जिसे आपने rotate करने के लिए use नहीं किया। Chrome, macOS पर Preview, और Edge सब file को Acrobat से differently read करते हैं।</li>
-    <li>File को खुद को email करें और attachment phone से open करें। Mobile viewers file-level orientation flag respect करते हैं और instantly दिखाएँगे कि change real है या नहीं।</li>
-    <li>Print preview run करें। Preview file orientation reflect करता है, viewer override नहीं, इसलिए sideways preview मतलब rotation save नहीं हुई।</li>
-    <li>अपने file manager में thumbnail panel check करें। Windows Explorer और macOS Finder दोनों अपने preview pane में file-level orientation दिखाते हैं। अगर वहाँ thumbnail expected से match करता है, rotation committed हुआ।</li>
+    <li><strong>व्यूअर में घुमाना</strong> दिखावट बदलता है, डेटा नहीं। दस्तावेज़ बंद कीजिए और वह घुमाव चला गया।</li>
+    <li><strong>फ़ाइल में घुमाना</strong> पन्ने की दिशा की जानकारी नए सिरे से लिख देता है। हर व्यूअर फिर वही नई जानकारी पढ़ता है।</li>
+    <li><strong>मुफ़्त Adobe Reader में सहेजना</strong> फ़ाइल दोबारा लिख सकता है, पर व्यूअर में किया घुमाव उसमें नहीं उतरता। वह सुविधा पैसे वाले Acrobat के पीछे है।</li>
   </ul>
 
-  अगर file एक viewer में correct दिखे लेकिन दूसरे में wrong, rotation viewer-level था। File को ऐसे tool से re-run करें जो disk पर commit करता है।
+  <blockquote class="callout">अगर आप घुमा पा रहे हैं पर फ़ाइल बंद करने के बाद बदलाव ग़ायब हो जाता है, तो आपने लगभग पक्का व्यूअर वाला घुमाव इस्तेमाल किया। ऐसा टूल लीजिए जो पन्ने की दिशा फ़ाइल में ही नए सिरे से लिखता हो।</blockquote>
 
-  <h2>Bulk rotation tips</h2>
+  Adobe Reader DC के 2019 और उसके बाद के वर्शन में यह बात थोड़ी और उलझ गई: घुमाने का बटन अब Tools और Organize Pages के नीचे दबा हुआ है, जहाँ लगता है कि बदलाव सहेजा जाना चाहिए, पर वह पैसे दिए बिना नहीं सहेजा जाता। मुफ़्त वर्शन नीचे एक छोटी लाइन में साफ़ बता देता है कि पन्ने का घुमाव सहेजने के लिए Acrobat Pro चाहिए, जिसे कई लोग कभी पढ़ते ही नहीं।
 
-  जब आप कई PDFs combine करने वाले हैं, merge करने से <strong>पहले</strong> orientations fix करें। नहीं तो, आपको 200-page bundle के अंदर rotated pages identify करने होंगे, जो हर source file को individually fix करने से बहुत slower है।
+  सबसे तेज़ इलाज ब्राउज़र वाला टूल है, जो फ़ाइल को सीधे नए सिरे से लिख देता है। कुछ इंस्टॉल किए बिना आप <a href="/hi/pdf-edit/rotate/">PDF ऑनलाइन घुमा</a> सकते हैं, दस सेकंड में।
 
-  Reverse advice straight duplex feeder से scans पर apply होती है। अगर हर alternate page upside-down आया क्योंकि scanner ने back side को गलत flip किया, पहले rotate करें, फिर <a href="/hi/pdf-organize/merge/">उन्हें एक file में merge</a> करें। Combined PDF के अंदर alternate pages rotate करने की कोशिश करने के मुक़ाबले एक step बचेगा।
+  <h2>कदम-दर-कदम: हर पन्ना 90 डिग्री घुमाना</h2>
 
-  एक और बात: rotation underlying image data नहीं change करती, सिर्फ़ orientation entry। इसलिए आप quality lose नहीं करते, और file size effectively same रहती है (rewritten metadata के लिए कुछ bytes give or take)। यह rotation को legal exhibits और evidence files पर run करने के लिए safe बनाता है जहाँ underlying bitstream की integrity matter करती है - data hash change होगा क्योंकि metadata changed, लेकिन page content byte-identical है।
+  यह तरीक़ा तब सही है जब पूरा स्कैन तिरछा आया, या किसी ने ग़लती से आड़ी रिपोर्ट को खड़े पन्ने के रूप में बना दिया।
 
-  Print-driver gotcha worth flagging: कुछ enterprise printers PDF orientation flag ignore करते हैं और longest text run के basis पर अपनी auto-rotate logic use करते हैं। अगर आपका rotated PDF office Konica या Xerox से sideways print होता है, printer आपको overrule कर रहा है। Print dialog में "Auto-rotate" या "Orientation: From file" option check करें और इसे manual पर switch करें।
+  <figure><img src="/static/blog/images/tool-rotate-options.jpg" alt="हर पन्ना एक ही बार में 90 डिग्री दक्षिणावर्त घुमाना" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>FAQ</h2>
+  <ol>
+    <li>घुमाने वाला टूल खोलिए और अपनी PDF डाल दीजिए। फ़ाइलें उतनी देर ही रहती हैं जितनी काम के लिए ज़रूरी है।</li>
+    <li>दिशा चुनिए। 90 डिग्री दक्षिणावर्त ज़्यादातर तिरछे स्कैन ठीक कर देता है। 180 डिग्री उन दस्तावेज़ों के लिए है जो फ़ीडर से उलटे निकले।</li>
+    <li>सभी पन्नों पर लगाइए। टूल एक ही बार में हर पन्ने की दिशा नए सिरे से लिख देता है।</li>
+    <li>नई फ़ाइल डाउनलोड कीजिए। किसी भी व्यूअर में खोलकर पक्का कर लीजिए।</li>
+  </ol>
 
-  <h3>मेरा PDF Chrome में correct क्यों दिखता है लेकिन Adobe में sideways?</h3>
-  <p>Chrome कभी-कभी text-direction heuristics के basis पर orientation auto-correct करता है, जबकि Adobe file में literal page-orientation flag respect करता है। अगर दो viewers disagree करते हैं, file-level flag wrong है भले ही Chrome problem hide करता है। File को properly rotate करें ताकि दोनों viewers agree करें।</p>
+  नतीजे को साफ़ नाम से सहेजिए, जैसे <code>contract_rotated.pdf</code>, ताकि मूल फ़ाइल ग़लती से न मिट जाए। मूल फ़ाइल रखना सस्ता बीमा है, क्योंकि घुमाव ग़लत दिशा में जा सकता है, और यह घुमाने वाला टूल पहली बार चलाने वालों की सबसे आम शिकायत है। दो बार दक्षिणावर्त घुमाना एक बार वामावर्त के बराबर है, इसलिए सुधार जल्दी हो जाता है, पर तभी जब मूल फ़ाइल आपके पास हो।
 
-  <h3>क्या मैं multi-page PDF में सिर्फ़ एक page rotate कर सकता हूँ?</h3>
-  <p>हाँ। ऐसा tool use करें जो आपको individually pages select करने दे, या file को page-organizer view में open करें। Rotate करने वाले pages pick करें, per page direction choose करें, और export करें। आपने जो pages select नहीं किए वे untouched रहते हैं।</p>
+  <h2>कदम-दर-कदम: सिर्फ़ चुनिंदा पन्ने घुमाना</h2>
 
-  <h3>क्या Rotating PDF की quality कम करेगी?</h3>
-  <p>नहीं। Rotation सिर्फ़ file metadata में orientation entry change करती है। Image और text data re-encoded नहीं हैं, इसलिए कोई quality loss नहीं और file size essentially unchanged।</p>
+  मिली-जुली दिशा वाली PDF वहाँ आम हैं जहाँ एक ही ढेर में खड़ी चिट्ठियाँ और आड़ी स्प्रेडशीट, दोनों स्कैन हुई हों, या जहाँ किसी ने अलग-अलग स्रोतों की फ़ाइलें जोड़ दी हों।
 
-  <h3>मेरी rotation Adobe Reader free version में save क्यों नहीं होगी?</h3>
-  <p>Free Adobe Reader सिर्फ़ viewer-level rotation support करता है। File save करने से rotation disk पर commit नहीं होती। Permanent rotation paid Acrobat feature है, या आप एक free browser-based tool use कर सकते हैं जो orientation flag को directly rewrite करता है।</p>
+  <ol>
+    <li>PDF अपलोड कीजिए। छोटी तस्वीरों का जाल देखकर पहचानिए कि कौन से पन्ने ग़लत हैं।</li>
+    <li>पन्ने उनकी संख्या से चुनिए। ज़्यादातर टूल आपको पूरी फ़ाइल के बजाय पन्ना 3, 7 और 9 अलग-अलग घुमाने देते हैं।</li>
+    <li>ज़रूरत हो तो हर पन्ने की दिशा अलग रखिए। पन्ना 5 पर उलटी स्कैन हुई रसीद को 180 डिग्री चाहिए हो सकता है, जबकि पन्ना 7 को 90 डिग्री।</li>
+    <li>लागू कीजिए और डाउनलोड कर लीजिए। फ़ाइल भेजने से पहले छोटी तस्वीरों में दिशा जाँच लीजिए।</li>
+  </ol>
 
-  <h3>क्या मैं password-protected PDF rotate कर सकता हूँ?</h3>
-  <p>आपको पहले password supply करना होगा। ज़्यादातर online rotators encrypted file upload होने पर इसके लिए prompt करते हैं। अगर आपके पास password नहीं है, आप file legitimately modify नहीं कर सकते। अगर आप document own करते हैं और password भूल गए, यह एक different (और unfortunate) recovery problem है।</p>
+  अगर आपका पाला अक्सर पन्ना-दर-पन्ना घुमाव से पड़ता है, तो <a href="/hi/pdf-organize/organize/">पन्ने व्यवस्थित करने वाले</a> एक ही पन्ने पर काम करना आसान रहता है, जहाँ आप फ़ाइल बनाने से पहले घुमा भी सकते हैं, हटा भी सकते हैं और क्रम भी बदल सकते हैं।
 
-  <h2>अभी try करें</h2>
+  हमारे टूल में, और ब्राउज़र वाले ज़्यादातर टूल में, एक कीबोर्ड शॉर्टकट जानने लायक है: छोटी तस्वीर चुनी हो, तो ब्रैकेट की कुंजियाँ उसे घुमा देती हैं। दायाँ ब्रैकेट दक्षिणावर्त, बायाँ वामावर्त। यह हर टूल में नहीं है, पर इतना आम है कि माउस तक हाथ बढ़ाने से पहले आज़मा लेना चाहिए।
 
-  <p>Viewer से fight करना बंद करें। <a href="/hi/pdf-edit/rotate/">Rotate PDF tool</a> खोलें और एक pass में orientation file में commit करें, या <a href="/hi/all-tools/">all PDF tools</a> browse करें अगर आपको साथ में merge या reorder भी करना है।</p>
+  <h2>आम हालात</h2>
+
+  <h3>तिरछी स्कैन हुई रसीदें</h3>
+
+  सपाट स्कैनर और फ़ोन के स्कैनर ऐप छोटी रसीदें अक्सर ग़लत दिशा में उतारते हैं। 90 डिग्री दक्षिणावर्त आम तौर पर इसे ठीक कर देता है। अगर आपने मिली-जुली दिशा वाला ढेर स्कैन किया है, तो सबको एक साथ लेकर हर पन्ना अलग घुमाइए, दोबारा स्कैन मत कीजिए। थर्मल काग़ज़ की रसीदें, जो फीकी पड़ जाती हैं, ख़ासकर 180 डिग्री उलटी आती हैं, क्योंकि उन्हें बचाने के लिए छपे हुए हिस्से को नीचे रखकर ढेर लगाया जाता है।
+
+  <h3>मोबाइल की तस्वीरें PDF में बदलने पर</h3>
+
+  iOS और Android कभी-कभी तस्वीर की दिशा फ़ाइल के अंदरूनी ब्यौरे में लिख देते हैं, जिसे PDF बनाने वाला टूल अनदेखा कर देता है। नतीजा यह होता है कि खड़ी तस्वीर आड़े पन्ने के रूप में सहेजी जाती है। फ़ाइल में घुमाना ही सबसे साफ़ इलाज है। एक बात जानने लायक: iOS 14 के आसपास यह साफ़ तौर पर बिगड़ा, जब Apple ने तस्वीरों का फ़ॉर्मैट JPEG से HEIC कर दिया। जो पुराने PDF टूल बदलते समय HEIC की दिशा वाली जानकारी फेंक देते हैं, वे हर बार तिरछे पन्ने बनाते हैं। कैमरे को फ़ोटो लेने से पहले Most Compatible पर लौटा देने से दिक्क़त जड़ से हल हो जाती है।
+
+  <h3>आड़ी और खड़ी, दोनों तरह के पन्नों वाली रिपोर्ट</h3>
+
+  सालाना रिपोर्ट और निवेशकों की प्रस्तुतियों में खड़े टेक्स्ट के पन्ने और आड़े चार्ट साथ होते हैं। अगर बनाने वाले ने सब कुछ खड़ा कर दिया, तो चार्ट वाले पन्ने 90 डिग्री घुमाने पड़ सकते हैं, ताकि वे स्क्रीन पर और छपाई में ठीक पढ़े जाएँ। PowerPoint में बनी और PDF में बदली गई प्रस्तुतियाँ इसमें आगे हैं; PowerPoint का PDF में छापने वाला रास्ता पूरी फ़ाइल को एक ही दिशा का मानता है, हर स्लाइड का अलग नहीं।
+
+  <h3>फ़ैक्स से आए फ़ॉर्म</h3>
+
+  इलाज और कानून के कई फ़ॉर्म आज भी फ़ैक्स से आते हैं, यानी वे एक प्रिंटर से गुज़रते हैं, जो पन्ने को काग़ज़ में बिठाने के लिए घुमा सकता है। दस्तख़त वाला हिस्सा ऊपर आ जाना इसका इशारा है। 180 डिग्री घुमाइए, सहेजिए, और ज़रूरत हो तो उसी फ़ैक्स लाइन से वापस भेज दीजिए।
+
+  <h2>जाँच कि घुमाव टिका है</h2>
+
+  फ़ाइल भेजने से पहले तीस सेकंड की जाँच कर लीजिए:
+
+  <ul>
+    <li>घुमाई हुई PDF उस व्यूअर में खोलिए जिसमें आपने घुमाई नहीं थी। Chrome, macOS का Preview और Edge, सब फ़ाइल को Acrobat से अलग तरह पढ़ते हैं।</li>
+    <li>फ़ाइल ख़ुद को ईमेल कीजिए और अटैचमेंट फ़ोन पर खोलिए। मोबाइल के व्यूअर फ़ाइल की दिशा मानते हैं और तुरंत बता देंगे कि बदलाव असली है या नहीं।</li>
+    <li>छपाई की झलक देखिए। झलक फ़ाइल की दिशा दिखाती है, व्यूअर का घुमाव नहीं, इसलिए झलक तिरछी दिखे तो घुमाव सहेजा नहीं गया।</li>
+    <li>फ़ाइल मैनेजर में छोटी तस्वीर देखिए। Windows Explorer और macOS Finder, दोनों झलक में फ़ाइल की असली दिशा दिखाते हैं। वहाँ ठीक दिखे तो घुमाव सहेजा जा चुका है।</li>
+  </ul>
+
+  अगर फ़ाइल एक व्यूअर में सही और दूसरे में ग़लत दिखे, तो घुमाव व्यूअर वाला था। फ़ाइल उस टूल से दोबारा चलाइए जो बदलाव फ़ाइल में लिखता है।
+
+  <h2>बहुत सारी फ़ाइलों के घुमाव के नुस्ख़े</h2>
+
+  कई PDF जोड़नी हैं, तो दिशा जोड़ने से <strong>पहले</strong> ठीक कीजिए। वरना आपको दो सौ पन्नों के पुलिंदे के अंदर घूमे पन्ने ढूँढने पड़ेंगे, जो हर फ़ाइल को अलग ठीक करने से कहीं धीमा है।
+
+  उलटी सलाह दोनों तरफ़ स्कैन करने वाली मशीन के स्कैन पर लागू होती है। अगर हर दूसरा पन्ना उलटा आया, क्योंकि मशीन ने पीठ ग़लत तरफ़ पलटी, तो पहले घुमाइए, फिर <a href="/hi/pdf-organize/merge/">उन्हें एक फ़ाइल में जोड़</a> दीजिए। जुड़ी PDF के अंदर हर दूसरा पन्ना घुमाने की कोशिश करने से यह एक कदम बचा लेगा।
+
+  एक और बात: घुमाना अंदर पड़े तस्वीर के डेटा को नहीं बदलता, सिर्फ़ दिशा की जानकारी बदलता है। इसलिए गुणवत्ता नहीं घटती और साइज़ भी लगभग वही रहता है (नई जानकारी के कुछ बाइट इधर-उधर)। यही वजह है कि अदालती सबूत और गवाही की फ़ाइलों पर भी घुमाना सुरक्षित है, जहाँ अंदर पड़े डेटा की सलामती मायने रखती है। फ़ाइल का हैश बदलेगा, क्योंकि ब्यौरा बदला है, पर पन्ने की सामग्री बाइट-दर-बाइट वही रहती है।
+
+  प्रिंटर की एक टेढ़ी बात बताने लायक है: दफ़्तर के कुछ प्रिंटर PDF की दिशा अनदेखा कर देते हैं और सबसे लंबी टेक्स्ट लाइन देखकर अपने हिसाब से घुमा लेते हैं। अगर आपकी घुमाई PDF दफ़्तर के Konica या Xerox से तिरछी छप रही है, तो प्रिंटर आपकी बात काट रहा है। छपाई की खिड़की में अपने आप घुमाने वाला या दिशा फ़ाइल से लेने वाला विकल्प ढूँढिए और उसे हाथ वाली सेटिंग पर कर दीजिए।
+
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
+
+  <h3>मेरी PDF Chrome में सही और Adobe में तिरछी क्यों दिखती है?</h3>
+  <p>Chrome कभी-कभी टेक्स्ट की दिशा देखकर पन्ना ख़ुद सीधा कर देता है, जबकि Adobe फ़ाइल में लिखी दिशा को ही मानता है। दो व्यूअर अलग बात कह रहे हों, तो फ़ाइल की दिशा ग़लत है, चाहे Chrome उसे छिपा रहा हो। फ़ाइल को ठीक से घुमाइए, ताकि दोनों एक ही बात कहें।</p>
+
+  <h3>कई पन्नों की PDF में सिर्फ़ एक पन्ना घुमा सकता हूँ?</h3>
+  <p>हाँ। ऐसा टूल लीजिए जो पन्ने अलग-अलग चुनने देता है, या फ़ाइल पन्ने व्यवस्थित करने वाले रूप में खोलिए। जो घुमाने हैं उन्हें चुनिए, हर एक की दिशा तय कीजिए, और फ़ाइल बना लीजिए। जो पन्ने आपने नहीं चुने, वे जैसे हैं वैसे रहते हैं।</p>
+
+  <h3>घुमाने से PDF की गुणवत्ता घटेगी?</h3>
+  <p>नहीं। घुमाना फ़ाइल के ब्यौरे में सिर्फ़ दिशा बदलता है। तस्वीर और टेक्स्ट का डेटा दोबारा नहीं बनता, इसलिए गुणवत्ता वही रहती है और साइज़ भी लगभग वही।</p>
+
+  <h3>मेरा घुमाव मुफ़्त Adobe Reader में क्यों नहीं सहेजा जाता?</h3>
+  <p>मुफ़्त Adobe Reader सिर्फ़ व्यूअर वाला घुमाव करता है। फ़ाइल सहेजने से वह घुमाव फ़ाइल में नहीं उतरता। हमेशा के लिए घुमाना पैसे वाले Acrobat की सुविधा है, या आप कोई मुफ़्त ब्राउज़र टूल लीजिए जो दिशा सीधे फ़ाइल में लिख देता है।</p>
+
+  <h3>पासवर्ड वाली PDF घुमा सकता हूँ?</h3>
+  <p>पहले पासवर्ड देना पड़ेगा। ऑनलाइन घुमाने वाले ज़्यादातर टूल एन्क्रिप्ट हुई फ़ाइल पर पासवर्ड माँग लेते हैं। पासवर्ड न हो तो आप फ़ाइल में जायज़ तरीक़े से बदलाव नहीं कर सकते। दस्तावेज़ आपका है और पासवर्ड भूल गए हैं, तो यह अलग और दुखद क़िस्म की दिक्क़त है।</p>
+
+  <h2>अभी आज़माइए</h2>
+
+  <p>व्यूअर से लड़ना बंद कीजिए। <a href="/hi/pdf-edit/rotate/">PDF घुमाने वाला टूल</a> खोलिए और दिशा एक बार में फ़ाइल के अंदर लिख दीजिए, या साथ में जोड़ना और क्रम बदलना भी है तो <a href="/hi/all-tools/">सभी PDF टूल</a> देख लीजिए।</p>

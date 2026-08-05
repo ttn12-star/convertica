@@ -1,96 +1,96 @@
 slug: convert-excel-to-pdf-keep-formatting
-title_hi: "Excel को PDF में कैसे Convert करें बिना Formatting, Headers या Print Areas खोए"
-meta_title_hi: "Excel to PDF बिना Formatting खोए | Convertica"
-meta_description_hi: "Classic 'spreadsheet 8 pages पर slice' disaster से बचें। Excel को PDF में convert करने से पहले print areas, scale-to-fit और repeating headers सही set करें।"
-meta_keywords_hi: "excel to pdf, xlsx to pdf, spreadsheet to pdf, excel print to pdf, excel को pdf save करें"
-excerpt_hi: "ज़्यादातर Excel-to-PDF guides वो हिस्सा skip कर देती हैं जो असल में matter करता है: print areas set करना ताकि आपकी spreadsheet आठ awkward, half-empty pages पर slice न हो जाए।"
+title_hi: "Excel को PDF में कैसे बदलें, सजावट, हेडर और छपाई का दायरा बिगाड़े बिना"
+meta_title_hi: "Excel से PDF, सजावट बिगाड़े बिना | Convertica"
+meta_description_hi: "स्प्रेडशीट आठ पन्नों पर कट जाने वाली आम मुसीबत से बचिए। PDF बनाने से पहले छपाई का दायरा, एक पन्ने में समाना और दोहराने वाले हेडर ठीक कीजिए।"
+meta_keywords_hi: "Excel से PDF, xlsx को PDF, स्प्रेडशीट को PDF, Excel को PDF सहेजें, excel to pdf hindi"
+excerpt_hi: "Excel से PDF की ज़्यादातर गाइड ठीक वही हिस्सा छोड़ देती हैं जो मायने रखता है: छपाई का दायरा तय करना, ताकि आपकी शीट आठ अटपटे, आधे-ख़ाली पन्नों पर न कट जाए।"
 content_hi: |
-  लगभग सबने वो email receive किया है: एक 12-tab workbook सीधे PDF में convert किया गया, rows नौ pages पर बिखरी हुई, columns बीच से कटे हुए, और एक header जो सिर्फ़ page one पर appear होता है। Fix एक better converter नहीं है। Fix है Excel के अंदर export press करने से पहले बीस seconds का setup।
+  वह ईमेल लगभग सबको मिला है: बारह टैब वाली फ़ाइल सीधे PDF में बदली हुई, पंक्तियाँ नौ पन्नों पर बिखरी, कॉलम बीच से कटे, और हेडर सिर्फ़ पहले पन्ने पर। इलाज कोई बेहतर कन्वर्टर नहीं है। इलाज है Excel के अंदर, बदलने का बटन दबाने से पहले, बीस सेकंड की तैयारी।
 
-  यह guide उन setup steps को cover करती है जो clean, printable PDF को spreadsheet disaster से अलग करते हैं, साथ ही जब आपकी file already correctly configured है तो upload-and-go flow भी।
+  यह गाइड वही तैयारी बताती है जो साफ़, छपने लायक PDF को स्प्रेडशीट की दुर्घटना से अलग करती है, और साथ में वह सीधा रास्ता भी, जब आपकी फ़ाइल पहले से ठीक बनी हुई है।
 
-  <h2>Excel-to-PDF अक्सर गलत क्यों जाता है</h2>
+  <h2>Excel से PDF अक्सर बिगड़ता क्यों है</h2>
 
-  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Convertica Excel to PDF converter file upload area के साथ" width="1280" height="800" loading="lazy"></figure>
-  <p>Excel आपकी spreadsheet को "document" की तरह treat नहीं करता जैसे Word करता है। कोई fixed page नहीं है। Grid essentially infinite है, और PDF export को decisions लेनी पड़ती हैं कि कहाँ slice करना है। Default में, वो decisions great नहीं हैं:</p>
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Convertica का Excel से PDF कन्वर्टर, फ़ाइल अपलोड करने की जगह के साथ" width="1280" height="800" loading="lazy"></figure>
+  <p>Excel आपकी शीट को दस्तावेज़ की तरह नहीं देखता, जैसे Word देखता है। यहाँ कोई तय पन्ना नहीं होता। जाल असल में अनंत है, और PDF बनाते समय तय करना पड़ता है कि कहाँ काटा जाए। पहले से तय जवाब अच्छे नहीं होते:</p>
   <ul>
-    <li>Default print area पूरा used range होता है — इसमें column AZ की वह अकेली cell भी आ जाती है जो आपने कभी type की थी और भूल गए।</li>
-    <li>Automatic page breaks वहाँ गिरते हैं जहाँ page math कहता है, जो बहुत कम logical row groupings के साथ line up करता है।</li>
-    <li>Header rows repeat नहीं होते जब तक आप उन्हें बताएँ नहीं। Page 2 onwards tableless data dump जैसा लग सकता है।</li>
-    <li>Hidden columns properly hidden न हों तो आज भी print होते हैं, Excel version पर निर्भर करता है।</li>
+    <li>छपाई का पूरा दायरा वह सब मान लिया जाता है जो आपने कभी छुआ है, उस अकेली खानापूरी समेत जो कॉलम AZ में कभी लिखकर आप भूल गए थे।</li>
+    <li>पन्ना कहाँ ख़त्म होगा, यह गणित तय करता है, और वह गणित पंक्तियों के तार्किक समूहों से मेल नहीं खाता।</li>
+    <li>हेडर की पंक्तियाँ अपने आप नहीं दोहराई जातीं। दूसरे पन्ने से आगे आँकड़े बिना सिर-पैर के ढेर जैसे लगते हैं।</li>
+    <li>छिपे कॉलम ठीक से छिपे न हों, तो कुछ वर्शन में आज भी छप जाते हैं।</li>
   </ul>
-  <p>Result एक PDF है जो उस cleanly framed spreadsheet जैसा बिल्कुल नहीं दिखता जो आपने screen पर देखी थी।</p>
+  <p>नतीजा वह PDF है जो स्क्रीन पर दिखने वाली साफ़-सुथरी शीट जैसा बिल्कुल नहीं लगता।</p>
 
-  <h2>Pre-conversion Excel setup</h2>
-  <p>इन चार settings पर दो मिनट बिताएँ और conversion खुद trivial बन जाता है।</p>
+  <h2>बदलने से पहले Excel में तैयारी</h2>
+  <p>इन चार सेटिंग पर दो मिनट लगाइए और बदलना अपने आप मामूली काम रह जाता है।</p>
 
-  <h3>1. Print area set करें</h3>
-  <p>Exact range select करें जो आप PDF में चाहते हैं। Excel में, <code>Page Layout &gt; Print Area &gt; Set Print Area</code> पर जाएँ। इस point से, सिर्फ़ वो range export होगी। अगर आपके पास right side पर कोई tiny sparkline या note है जो आप print नहीं करना चाहते, यह single step उसे remove कर देता है।</p>
+  <h3>1. छपाई का दायरा तय कीजिए</h3>
+  <p>ठीक वही हिस्सा चुनिए जो PDF में चाहिए। Excel में <code>Page Layout &gt; Print Area &gt; Set Print Area</code> पर जाइए। इसके बाद सिर्फ़ वही हिस्सा बाहर आएगा। अगर दाईं तरफ़ कोई छोटा ग्राफ़ या टिप्पणी है जिसे आप नहीं छापना चाहते, यह एक कदम उसे हटा देता है।</p>
 
-  <h3>2. एक page wide पर scale to fit करें</h3>
-  <p>Wide spreadsheets "PDF 8 pages पर slice" reports का number one cause हैं। Page Layout tab पर, Scale to Fit group खोजें और set करें <code>Width: 1 page</code>, <code>Height: Automatic</code>. Result एक PDF है जहाँ हर column horizontally fit होता है और data ज़रूरत के मुताबिक pages पर नीचे flow होता है - spreadsheets को असल में इसी तरह print होना चाहिए।</p>
-  <p>अगर आपका sheet इतना wide है कि एक page पर scaling text microscopic बना देती है, यह एक sign है कि आपको landscape orientation पर switch करना चाहिए, या data को different column groups cover करने वाले दो PDFs में split करना चाहिए।</p>
+  <h3>2. चौड़ाई एक पन्ने में समाइए</h3>
+  <p>चौड़ी शीट ही PDF आठ पन्नों पर कट गया वाली शिकायतों की सबसे बड़ी वजह हैं। Page Layout में Scale to Fit वाला हिस्सा ढूँढिए और <code>Width: 1 page</code>, <code>Height: Automatic</code> कर दीजिए। नतीजा वह PDF है जिसमें हर कॉलम चौड़ाई में समा जाता है और आँकड़े ज़रूरत के मुताबिक़ नीचे के पन्नों पर बहते जाते हैं। शीट को असल में इसी तरह छपना चाहिए।</p>
+  <p>अगर शीट इतनी चौड़ी है कि एक पन्ने में समाने पर अक्षर सूक्ष्मदर्शी वाले हो जाएँ, तो यह इशारा है कि पन्ना आड़ा (landscape) कर लीजिए, या आँकड़ों को दो PDF में बाँट दीजिए, जिनमें अलग-अलग कॉलम आएँ।</p>
 
-  <h3>3. हर page पर header rows repeat करें</h3>
-  <p>यह single most-skipped step है। <code>Page Layout &gt; Print Titles</code> open करें और <code>Rows to repeat at top</code> field में, row 1 पर click करें (या जो भी rows आपका header बनाते हैं)। अब हर PDF page same column labels के साथ शुरू होता है। Readers को column F क्या था याद रखने के लिए page one पर वापस flip नहीं करना पड़ता।</p>
+  <h3>3. हेडर हर पन्ने पर दोहराइए</h3>
+  <p>यही सबसे ज़्यादा छूटने वाला कदम है। <code>Page Layout &gt; Print Titles</code> खोलिए और <code>Rows to repeat at top</code> में पहली पंक्ति चुनिए (या जो भी पंक्तियाँ आपका हेडर बनाती हैं)। अब हर पन्ना उन्हीं कॉलम के नामों से शुरू होगा। पढ़ने वाले को यह याद करने के लिए पहले पन्ने पर लौटना नहीं पड़ेगा कि कॉलम F में क्या था।</p>
 
-  <h3>4. ज़रूरत न पड़ने वाले columns को Hide vs delete</h3>
-  <p>उन columns को hide करें जिनकी आपको बाद में ज़रूरत हो सकती है (column letter पर right-click, Hide)। उन columns को delete करें जिनके बारे में sure हैं कि scrap हैं। Hidden columns print area से excluded होते हैं अगर आप hide करने के बाद print area set करें। अगर आप पहले area set करते हैं, फिर columns hide करते हैं, behaviour Excel version से vary हो सकता है - safe रहने के लिए किसी भी hide/unhide round के बाद print area फिर से set करें।</p>
+  <h3>4. जो कॉलम नहीं चाहिए: छिपाइए या मिटाइए</h3>
+  <p>जिनकी बाद में ज़रूरत पड़ सकती है, उन्हें छिपाइए (कॉलम के अक्षर पर दायाँ क्लिक, Hide)। जिनके बारे में पक्का है कि कचरा हैं, उन्हें मिटा दीजिए। छिपे कॉलम छपाई के दायरे से बाहर रहते हैं, बशर्ते आप छिपाने के बाद दायरा तय करें। अगर आपने पहले दायरा तय किया और फिर कॉलम छिपाए, तो नतीजा वर्शन के हिसाब से बदल सकता है। सुरक्षित रहने के लिए छिपाने या दिखाने के बाद छपाई का दायरा दोबारा तय कर लीजिए।</p>
 
-  <h2>Step-by-step: Convertica से convert करें</h2>
+  <h2>कदम-दर-कदम: Convertica से बदलना</h2>
 
-  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Convertica पर Excel to PDF conversion steps और options" width="1280" height="800" loading="lazy"></figure>
-  <p>Spreadsheet configured होने के साथ, actual conversion easy part है। आप तीन steps में <a href="/hi/excel-to-pdf/">Excel को PDF में convert</a> कर सकते हैं:</p>
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Convertica पर Excel से PDF बदलने के कदम और विकल्प" width="1280" height="800" loading="lazy"></figure>
+  <p>शीट तैयार हो जाए, तो बदलना ही सबसे आसान हिस्सा है। तीन कदम में <a href="/hi/excel-to-pdf/">Excel को PDF में बदल</a> सकते हैं:</p>
   <ol>
-    <li><strong>.xlsx file upload करें.</strong> Upload box में drag and drop करें। पुरानी .xls files भी काम करती हैं।</li>
-    <li><strong>Prompt हो तो orientation pick करें.</strong> Tall, narrow data के लिए Portrait; wide tables के लिए landscape।</li>
-    <li><strong>PDF download करें.</strong> इसे एक बार open करें confirm करने के लिए कि page breaks वहाँ landed हुए जहाँ आपने expect किया था, और आप done हैं।</li>
+    <li><strong>.xlsx फ़ाइल अपलोड कीजिए।</strong> अपलोड की जगह पर खींचकर छोड़ दीजिए। पुरानी .xls फ़ाइलें भी चलती हैं।</li>
+    <li><strong>पूछे जाने पर पन्ने की दिशा चुनिए।</strong> लंबे और सँकरे आँकड़ों के लिए खड़ा पन्ना; चौड़ी तालिकाओं के लिए आड़ा।</li>
+    <li><strong>PDF डाउनलोड कीजिए।</strong> उसे एक बार खोलकर देख लीजिए कि पन्ने वहीं टूटे जहाँ आपने सोचा था, और काम हो गया।</li>
   </ol>
-  <blockquote class="callout">अगर PDF अब भी wrong दिख रहा है, problem लगभग हमेशा upstream Excel में है - print area, scale, या repeat rows - converter में नहीं। Workbook reopen करें, setting fix करें, और re-export करें।</blockquote>
+  <blockquote class="callout">अगर PDF अब भी ग़लत दिख रहा है, तो गड़बड़ लगभग हमेशा Excel में है, छपाई का दायरा, पैमाना या दोहराने वाली पंक्तियाँ, कन्वर्टर में नहीं। फ़ाइल दोबारा खोलिए, सेटिंग ठीक कीजिए, और फिर से बना लीजिए।</blockquote>
 
-  <h2>Multi-sheet workbooks</h2>
-  <p>पाँच tabs वाला workbook एक question raise करता है: क्या आप per sheet एक PDF चाहते हैं, या पाँचों sheets एक ही file में जुड़ी हुई?</p>
+  <h2>कई शीट वाली फ़ाइलें</h2>
+  <p>पाँच टैब वाली फ़ाइल एक सवाल खड़ा करती है: आपको हर शीट की अलग PDF चाहिए, या पाँचों एक ही फ़ाइल में?</p>
   <ul>
-    <li><strong>Per sheet एक PDF</strong> तब right है जब हर tab standalone deliverable है - separate audiences के लिए separate report। Naming important बन जाता है; <code>YYYY-MM-DD_workbook_sheet-name.pdf</code> किसी भी folder में cleanly read होता है।</li>
-    <li><strong>सभी sheets एक PDF में</strong> तब right है जब tabs एक packet के रूप में belong करते हैं (cover, summary, detail, appendix)। अगर converter हर sheet अलग export करता है, आप second step में <a href="/hi/pdf-organize/merge/">multiple sheets को एक PDF में merge</a> कर सकते हैं।</li>
+    <li><strong>हर शीट की अलग PDF</strong> तब सही है जब हर टैब अपने आप में एक चीज़ है, अलग-अलग लोगों के लिए अलग रिपोर्ट। तब नाम मायने रखने लगता है; <code>YYYY-MM-DD_workbook_sheet-name.pdf</code> किसी भी फ़ोल्डर में साफ़ पढ़ा जाता है।</li>
+    <li><strong>सारी शीट एक PDF में</strong> तब सही है जब टैब मिलकर एक पुलिंदा बनते हैं (कवर, सारांश, ब्यौरा, परिशिष्ट)। अगर कन्वर्टर हर शीट अलग बनाता है, तो आप दूसरे कदम में <a href="/hi/pdf-organize/merge/">कई शीट को एक PDF में जोड़</a> सकते हैं।</li>
   </ul>
-  <p>किसी भी case में, हर उस sheet पर print area set करें जिसे आप export करने वाले हैं। एक blank tab blank page export करेगा; column AZ में stray cell वाला एक near-empty page export करेगा जिसमें वो cell space में floating होगी।</p>
+  <p>दोनों हालत में हर उस शीट पर छपाई का दायरा तय कीजिए जिसे आप बदलने वाले हैं। ख़ाली टैब से ख़ाली पन्ना बनेगा; कॉलम AZ में पड़ी भटकी खानापूरी से लगभग ख़ाली पन्ना बनेगा, जिसमें वह अकेली खानापूरी हवा में तैरती दिखेगी।</p>
 
-  <h2>Common formatting issues और fixes</h2>
-  <p>अगर आपके output PDF में अब भी problems हैं, symptom usually किसी specific Excel setting की ओर point करता है:</p>
+  <h2>आम गड़बड़ियाँ और उनका इलाज</h2>
+  <p>अगर बने हुए PDF में अब भी दिक्क़तें हैं, तो लक्षण आम तौर पर किसी एक Excel सेटिंग की तरफ़ इशारा करता है:</p>
   <table>
     <thead>
-      <tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr>
+      <tr><th>लक्षण</th><th>संभावित वजह</th><th>इलाज</th></tr>
     </thead>
     <tbody>
-      <tr><td>Rightmost column cut off है</td><td>Scale-to-fit 1 page wide पर set नहीं है</td><td>Page Layout &gt; Width: 1 page</td></tr>
-      <tr><td>Page 2 onwards कोई headers नहीं</td><td>Print titles configured नहीं हैं</td><td>Page Layout &gt; Print Titles &gt; Rows to repeat at top</td></tr>
-      <tr><td>Data के बीच random blank pages</td><td>Visible data के बाहर stray cell या formatted region</td><td>Strays delete करने के बाद print area फिर set करें</td></tr>
-      <tr><td>Formulas #REF! या #NAME? दिखाते हैं</td><td>Broken external references</td><td>Export से पहले flatten करने के लिए Copy &gt; Paste Values</td></tr>
-      <tr><td>Charts pages के बीच cut होते हैं</td><td>Auto page breaks embedded object को split कर रहे हैं</td><td>Chart के ऊपर manual page break insert करें, या chart move करें</td></tr>
-      <tr><td>Tiny, unreadable text</td><td>Scale-to-fit बहुत aggressively forced</td><td>Landscape पर switch करें, या दो exports में split करें</td></tr>
+      <tr><td>सबसे दाईं तरफ़ का कॉलम कटा हुआ है</td><td>चौड़ाई एक पन्ने में समाने पर सेट नहीं है</td><td>Page Layout, Width: 1 page</td></tr>
+      <tr><td>दूसरे पन्ने से आगे हेडर नहीं दिख रहे</td><td>दोहराने वाली पंक्तियाँ तय नहीं हैं</td><td>Page Layout, Print Titles, Rows to repeat at top</td></tr>
+      <tr><td>आँकड़ों के बीच बेतरतीब ख़ाली पन्ने</td><td>दिखने वाले हिस्से के बाहर भटकी खानापूरी या सजावट</td><td>उन्हें मिटाकर छपाई का दायरा दोबारा तय कीजिए</td></tr>
+      <tr><td>फ़ॉर्मूला #REF! या #NAME? दिखा रहे हैं</td><td>बाहरी फ़ाइलों की टूटी कड़ियाँ</td><td>बनाने से पहले Copy और Paste Values से मान चिपका दीजिए</td></tr>
+      <tr><td>चार्ट पन्नों के बीच कट जाते हैं</td><td>अपने आप पड़ा पन्ना-विराम चार्ट को बीच से काट रहा है</td><td>चार्ट के ऊपर हाथ से पन्ना-विराम डालिए, या चार्ट सरका दीजिए</td></tr>
+      <tr><td>बहुत छोटे, न पढ़े जाने वाले अक्षर</td><td>एक पन्ने में समाने का ज़ोर बहुत ज़्यादा है</td><td>पन्ना आड़ा कीजिए, या दो हिस्सों में बाँट दीजिए</td></tr>
     </tbody>
   </table>
 
-  <h2>कब Excel रखें और कब PDF भेजें</h2>
-  <p>PDF सही format है जब file read-only हो - quotes, signed reports, tax filings, board packs. PDF layout exactly preserve करता है, accidental edits prevent करता है, और sign या watermark करना easier है।</p>
-  <p>Excel सही format है जब recipient को filter, sort, या recalculate करना है। किसी ऐसे person को model का PDF भेजना जिसे assumption change करनी है, उन्हें scratch से सब retype करने पर force करता है। अगर आपने पहले से PDF ship किया है और recipient को data वापस चाहिए, आप बाद में <a href="/hi/pdf-to-excel/">PDF को Excel में वापस convert</a> कर सकते हैं, लेकिन round trip छोटे errors introduce करता है और पहली बार में सही format भेजने का poor substitute है।</p>
-  <p>Useful default: formal record के लिए PDF भेजें, अगर recipient को edit करना पड़े तो .xlsx अलग attach करें। PDF वो है जो archive होता है; .xlsx working file है।</p>
+  <h2>Excel कब रखें और PDF कब भेजें</h2>
+  <p>PDF तब सही है जब फ़ाइल सिर्फ़ पढ़ी जानी है: कोटेशन, दस्तख़त हुई रिपोर्ट, टैक्स के काग़ज़, बोर्ड की सामग्री। PDF ढाँचा जैसा है वैसा रखती है, ग़लती से बदलाव नहीं होने देती, और उस पर दस्तख़त या वॉटरमार्क लगाना आसान है।</p>
+  <p>Excel तब सही है जब सामने वाले को छाँटना, क्रम लगाना या हिसाब दोबारा करना है। जिस आदमी को मान बदलने हैं, उसे मॉडल की PDF भेजना उसे सब कुछ दोबारा टाइप करने पर मजबूर करता है। अगर PDF पहले भेज चुके हैं और सामने वाले को आँकड़े चाहिए, तो <a href="/hi/pdf-to-excel/">PDF को वापस Excel में बदल</a> सकते हैं, पर इस आने-जाने में छोटी ग़लतियाँ घुस जाती हैं, और यह पहली बार में सही फ़ॉर्मैट भेजने का घटिया विकल्प है।</p>
+  <p>काम का दस्तूर: औपचारिक रिकॉर्ड के लिए PDF भेजिए, और सामने वाले को बदलाव करना हो तो .xlsx अलग से लगा दीजिए। PDF वह है जो आर्काइव होती है; .xlsx काम करने की फ़ाइल है।</p>
 
-  <h2>एक और pass: file size</h2>
-  <p>Excel-to-PDF output surprisingly large हो सकता है, especially embedded charts और conditional formatting के साथ। अगर आप result को email कर रहे हैं, send hit करने से पहले इसे compressor से run करें ताकि यह recipient की mailbox limit से bounce न हो। <a href="/hi/blog/compress-pdf-for-email-under-25mb/">compress-for-email guide</a> realistic size targets पर walk करती है, और <a href="/hi/pdf-organize/compress/">compress tool</a> actual shrinking handle करता है।</p>
+  <h2>एक बात और: फ़ाइल का साइज़</h2>
+  <p>Excel से बनी PDF हैरान करने वाली भारी हो सकती है, ख़ासकर चार्ट और शर्तों वाली सजावट के साथ। नतीजा ईमेल से भेजना है, तो भेजने से पहले उसे छोटा कर लीजिए, ताकि वह सामने वाले की सीमा से टकराकर लौट न आए। <a href="/hi/blog/compress-pdf-for-email-under-25mb/">ईमेल के लिए छोटा करने की गाइड</a> बताती है कि कितना साइज़ रखना है, और <a href="/hi/pdf-organize/compress/">छोटा करने वाला टूल</a> असली काम कर देता है।</p>
 
-  <h2>FAQ</h2>
-  <h3>मेरी spreadsheet pages पर awkwardly क्यों split होती है?</h3>
-  <p>लगभग हमेशा क्योंकि print area बहुत wide है और Scale to Fit set नहीं है। Page Layout open करें, Width को 1 page पर set करें, फिर re-export करें। अगर result unreadably small है, landscape पर switch करें या data को दो PDFs में split करें।</p>
-  <h3>क्या मैं workbook के सभी sheets एक साथ convert कर सकता हूँ?</h3>
-  <p>हाँ। Converter multi-tab workbooks handle करता है। Default में यह data वाले हर sheet को single PDF में export करता है। अगर आप बल्कि per sheet एक PDF चाहते हैं, हर sheet का print area configure करें और per tab एक बार conversion run करें, या बाद में result split करें।</p>
-  <h3>क्या Charts और formulas correctly convert होंगे?</h3>
-  <p>Charts visual objects के रूप में convert होते हैं - जो आप Excel में देखते हैं वही PDF में मिलता है। Formulas conversion के दौरान उनकी current values पर evaluated होते हैं। Broken references (#REF!, #NAME?) PDF में भी appear होंगे, इसलिए उन्हें पहले Excel में fix करें या flatten करने के लिए paste-values करें।</p>
-  <h3>Headers हर PDF page पर repeat कैसे करें?</h3>
-  <p>Excel में, Page Layout &gt; Print Titles पर जाएँ और "Rows to repeat at top" field में click करें, फिर अपनी header row(s) select करें। Save करें और re-export करें। Setting per-sheet है, इसलिए इसे हर उस tab पर set करें जिसे आप convert करने वाले हैं।</p>
-  <h3>मेरा PDF Excel file से बहुत bigger क्यों है?</h3>
-  <p>PDFs fonts embed करते हैं, charts को rasterise करते हैं, और per page एक separate page object होता है। एक 200 KB workbook बिना कुछ wrong हुए 3 MB PDF produce कर सकता है। अगर size email के लिए problem है, conversion के बाद PDF compress करें - data और quality same रहती है, सिर्फ़ storage shrink होता है।</p>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
+  <h3>मेरी शीट पन्नों पर अटपटे ढंग से क्यों कट जाती है?</h3>
+  <p>लगभग हमेशा इसलिए कि छपाई का दायरा बहुत चौड़ा है और एक पन्ने में समाना सेट नहीं है। Page Layout खोलिए, Width को 1 page कीजिए, और दोबारा बनाइए। नतीजा पढ़ने लायक न बचे, तो पन्ना आड़ा कर लीजिए या आँकड़ों को दो PDF में बाँट दीजिए।</p>
+  <h3>क्या फ़ाइल की सारी शीट एक साथ बदल सकता हूँ?</h3>
+  <p>हाँ। कन्वर्टर कई टैब वाली फ़ाइलें सँभाल लेता है। पहले से वह हर उस शीट को एक ही PDF में डालता है जिसमें आँकड़े हैं। हर शीट की अलग PDF चाहिए, तो हर शीट का छपाई का दायरा तय कीजिए और हर टैब पर एक बार बदलिए, या बाद में नतीजा बाँट लीजिए।</p>
+  <h3>चार्ट और फ़ॉर्मूला ठीक से बदलेंगे?</h3>
+  <p>चार्ट तस्वीरों की तरह बदलते हैं, यानी जो Excel में दिखता है वही PDF में मिलता है। फ़ॉर्मूला अपने उस वक़्त के मान पर गिने जाते हैं। टूटी कड़ियाँ (#REF!, #NAME?) PDF में भी दिखेंगी, इसलिए उन्हें पहले Excel में ठीक कीजिए, या मान चिपकाकर सपाट कर दीजिए।</p>
+  <h3>हेडर हर पन्ने पर कैसे दोहराऊँ?</h3>
+  <p>Excel में Page Layout, Print Titles पर जाइए, Rows to repeat at top में क्लिक कीजिए, और अपनी हेडर पंक्तियाँ चुन लीजिए। सहेजिए और दोबारा बनाइए। यह सेटिंग हर शीट की अलग होती है, इसलिए हर उस टैब पर लगाइए जिसे आप बदलने वाले हैं।</p>
+  <h3>मेरी PDF Excel फ़ाइल से इतनी भारी क्यों है?</h3>
+  <p>PDF में फ़ॉन्ट अंदर रखे जाते हैं, चार्ट तस्वीर बन जाते हैं, और हर पन्ना अपनी अलग चीज़ होता है। 200 KB की Excel फ़ाइल से बिना किसी गड़बड़ी के 3 MB की PDF बन सकती है। साइज़ ईमेल के लिए दिक्क़त है, तो बनने के बाद PDF छोटी कर लीजिए, आँकड़े और गुणवत्ता वही रहती है, सिर्फ़ जगह घटती है।</p>
 
-  <h2>अभी try करें</h2>
-  <p>अपना print area set करें, scale-to-fit set करें, print titles set करें, फिर export करें। Excel के अंदर दो extra minutes आठ-page sliced spreadsheet की embarrassment से बचाते हैं। <a href="/hi/excel-to-pdf/">Excel to PDF tool open करें →</a></p>
+  <h2>अभी आज़माइए</h2>
+  <p>छपाई का दायरा तय कीजिए, एक पन्ने में समाना चुनिए, दोहराने वाली पंक्तियाँ लगाइए, फिर PDF बनाइए। Excel के अंदर के दो मिनट, आठ पन्नों पर कटी शीट भेजने की शर्मिंदगी बचा देते हैं। <a href="/hi/excel-to-pdf/">Excel से PDF टूल खोलें →</a></p>
