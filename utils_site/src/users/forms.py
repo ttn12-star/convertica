@@ -10,7 +10,7 @@ class LoginForm(forms.Form):
         label=_("Email"),
         widget=forms.EmailInput(
             attrs={
-                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-transparent",
                 "placeholder": _("Enter your email"),
             }
         ),
@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
         label=_("Password"),
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-transparent",
                 "placeholder": _("Enter your password"),
             }
         ),
@@ -60,7 +60,7 @@ class CustomUserCreationForm(UserCreationForm):
         label=_("Email"),
         widget=forms.EmailInput(
             attrs={
-                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-transparent",
                 "placeholder": _("Enter your email"),
             }
         ),
@@ -69,7 +69,7 @@ class CustomUserCreationForm(UserCreationForm):
         label=_("Username"),
         widget=forms.TextInput(
             attrs={
-                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-transparent",
                 "placeholder": _("Choose a username"),
             }
         ),
@@ -78,7 +78,7 @@ class CustomUserCreationForm(UserCreationForm):
         label=_("Password"),
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-transparent",
                 "placeholder": _("Enter your password"),
             }
         ),
@@ -87,7 +87,7 @@ class CustomUserCreationForm(UserCreationForm):
         label=_("Confirm Password"),
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-transparent",
                 "placeholder": _("Confirm your password"),
             }
         ),
@@ -97,7 +97,7 @@ class CustomUserCreationForm(UserCreationForm):
         required=True,
         widget=forms.CheckboxInput(
             attrs={
-                "class": "w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                "class": "w-4 h-4 text-blue-600 border-gray-300 rounded focus-visible:ring-blue-500"
             }
         ),
     )

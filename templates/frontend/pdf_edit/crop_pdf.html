@@ -56,7 +56,11 @@
       pointer-events: all !important;
       box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.6), 0 0 20px rgba(37, 99, 235, 0.7), inset 0 0 30px rgba(37, 99, 235, 0.2) !important;
       z-index: 20 !important;
-      transition: all 0.2s ease !important;
+      /* Colour and shadow only. `all` also covered left/top/width/height, which
+         the drag handler rewrites on every pointer move — so the selection
+         rectangle eased towards the cursor over 200ms instead of tracking it. */
+      transition: border-color 0.2s ease, background-color 0.2s ease,
+                  box-shadow 0.2s ease !important;
     }
     #cropSelection:hover,
     .crop-selection:hover,
