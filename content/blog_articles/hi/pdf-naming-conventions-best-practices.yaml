@@ -1,112 +1,112 @@
 slug: pdf-naming-conventions-best-practices
-title_hi: "PDF Naming Conventions: Freelancers, Teams और Archives के लिए Practical Guide"
-meta_title_hi: "PDF File Naming Conventions: Best Practices | Convertica"
-meta_description_hi: "'final_v2_REAL_final.pdf' search करना बंद करें। Invoices, contracts, scans और shared archives के लिए simple, durable naming convention जो years तक survive करे।"
-meta_keywords_hi: "pdf naming conventions, file naming best practices, document naming standard, pdf files organize करें, pdf filename format"
-excerpt_hi: "Searchable archive और 'मैंने वो contract कहाँ save किया था' moment के बीच का difference एक consistent naming rule है, जो दो हफ्ते steadily apply की जाए जब तक stick हो जाए।"
+title_hi: "PDF फ़ाइलों के नाम रखने का तरीक़ा: फ़्रीलांसर, टीम और आर्काइव के लिए"
+meta_title_hi: "PDF फ़ाइल के नाम रखने का सही तरीक़ा | Convertica"
+meta_description_hi: "final_v2_REAL_final.pdf ढूँढना बंद कीजिए। बिल, कॉन्ट्रैक्ट, स्कैन और साझा आर्काइव के लिए नाम रखने का ऐसा तरीक़ा जो सालों चलता है।"
+meta_keywords_hi: "PDF फ़ाइल के नाम, फ़ाइल नेमिंग का तरीक़ा, दस्तावेज़ नाम रखने का मानक, PDF फ़ाइलें व्यवस्थित करें, pdf naming conventions"
+excerpt_hi: "खोजने लायक आर्काइव और वह कॉन्ट्रैक्ट मैंने कहाँ सहेजा था वाले पल के बीच का फ़र्क़ नाम रखने का एक तय नियम है, जिसे दो हफ़्ते लगातार निभाया जाए ताकि वह आदत बन जाए।"
 content_hi: |
-  Folders आपको organisation का illusion देते हैं। Consistent filename आपको actual retrieval देता है। Proof simple है: अभी अपना downloads folder open करें और किसी specific vendor से last quarter का tax invoice दस seconds में find करने की कोशिश करें। अगर fail हों, problem आपकी folder structure नहीं है - आपके filenames हैं।
+  फ़ोल्डर आपको व्यवस्था का भ्रम देते हैं। एक जैसा नाम रखने की आदत आपको फ़ाइल असल में ढूँढ कर देती है। जाँच आसान है: अभी अपना डाउनलोड फ़ोल्डर खोलिए और किसी एक वेंडर का पिछली तिमाही का टैक्स बिल दस सेकंड में ढूँढने की कोशिश कीजिए। अगर नहीं मिला, तो दिक्क़त फ़ोल्डर की बनावट में नहीं है, फ़ाइलों के नाम में है।
 
-  यह उस तरह की naming convention के लिए reference guide है जो years तक quietly pay off करती है। कुछ fancy नहीं, कोई tool नहीं चाहिए, बस कुछ patterns जिन्हें आप अगली file save करते समय use करना शुरू कर सकते हैं।
+  यह उस तरह के नामकरण की गाइड है जो सालों तक चुपचाप फ़ायदा देती रहती है। कुछ भारी-भरकम नहीं, कोई टूल नहीं चाहिए, बस कुछ ढाँचे जिन्हें आप अगली फ़ाइल सहेजते ही अपना सकते हैं।
 
-  <h2>Folders से ज़्यादा Naming क्यों matter करता है</h2>
+  <h2>फ़ोल्डर से ज़्यादा नाम क्यों मायने रखता है</h2>
 
-  <figure><img src="/static/blog/images/tool-all-tools-hero.jpg" alt="सभी Convertica PDF tools एक ही जगह पर" width="1280" height="800" loading="lazy"></figure>
-  <p>Filenames scale पर जीतने के तीन reasons हैं:</p>
+  <figure><img src="/static/blog/images/tool-all-tools-hero.jpg" alt="Convertica के सभी PDF टूल एक ही जगह" width="1280" height="800" loading="lazy"></figure>
+  <p>जब फ़ाइलें बहुत हो जाती हैं, नाम तीन वजहों से जीत जाता है:</p>
   <ul>
-    <li><strong>Search hierarchy को beat करता है.</strong> कुछ hundred files cross करने के बाद, आप browse नहीं करते - आप search करते हैं। Cloud storage search, OS search, और email search सब filenames पहले index करते हैं। Descriptive name instantly मिलता है; generic वाला invisible है।</li>
-    <li><strong>Cloud sync फिर भी folder structures flatten कर देता है.</strong> File को Drive folders के बीच move करें और share link break हो सकती है। Email forward करें और attachment अपना folder context entirely खो देता है। Filename केवल वो metadata है जो file के साथ travel करता है।</li>
-    <li><strong>Filenames sharing survive करते हैं.</strong> जब आप client को PDF email करते हैं, आपकी folder structure कहीं नहीं जाती। Recipient file को उस name से save करता है जिससे आपने भेजा। Make sure वो name context के बाहर भी sense बनाए।</li>
+    <li><strong>खोज, ढाँचे को हरा देती है।</strong> कुछ सौ फ़ाइलों के बाद आप फ़ोल्डर खोलकर देखते नहीं, खोजते हैं। क्लाउड स्टोरेज की खोज, कंप्यूटर की खोज और ईमेल की खोज, सब पहले नाम पर काम करती हैं। बताने वाला नाम तुरंत मिल जाता है; आम नाम कहीं खो जाता है।</li>
+    <li><strong>क्लाउड सिंक फ़ोल्डर का ढाँचा चपटा कर देता है।</strong> फ़ाइल को Drive में एक फ़ोल्डर से दूसरे में ले जाइए और साझा लिंक टूट सकती है। ईमेल आगे भेजिए और अटैचमेंट अपना पूरा संदर्भ खो देता है। नाम ही वह एक जानकारी है जो फ़ाइल के साथ हमेशा चलती है।</li>
+    <li><strong>नाम, फ़ाइल के हाथ बदलने पर भी बचा रहता है।</strong> क्लाइंट को PDF भेजते समय आपके फ़ोल्डर उसके साथ नहीं जाते। सामने वाला फ़ाइल उसी नाम से सहेजता है जिससे आपने भेजी। इसलिए नाम ऐसा हो जो आपके संदर्भ के बाहर भी मतलब रखे।</li>
   </ul>
 
-  <h2>Universal pattern</h2>
-  <p>एक pattern 80% cases handle करता है:</p>
+  <h2>हर जगह चलने वाला ढाँचा</h2>
+  <p>एक ढाँचा 80% मामलों का काम कर देता है:</p>
   <pre><code>YYYY-MM-DD_party_subject_version.pdf</code></pre>
-  <p>उदाहरण के लिए: <code>2026-04-12_acme-corp_service-agreement_v02.pdf</code>.</p>
-  <p>यह साल दर साल काम करने के तीन reasons:</p>
+  <p>जैसे: <code>2026-04-12_acme-corp_service-agreement_v02.pdf</code>.</p>
+  <p>यह साल दर साल चलता रहता है, तीन वजहों से:</p>
   <ul>
-    <li><strong>ISO date correctly sort होती है.</strong> 2026-04-12 alphabetically 2026-04-11 के बाद sort होती है, मतलब alphabetical = chronological. World में कोई filesystem 04/12/2026 को उस तरह treat नहीं करता।</li>
-    <li><strong>Subject से पहले Party</strong> client से group करता है। आपकी सभी Acme files date के बाद की किसी भी चीज़ से alphabetically sort होने पर together cluster करती हैं।</li>
-    <li><strong>End में Version</strong> मतलब latest version हमेशा sort के bottom पर बैठता है। v01 v02 के ऊपर है, जो v03 के ऊपर है।</li>
+    <li><strong>ISO तारीख़ सही क्रम में लगती है।</strong> 2026-04-12 वर्णक्रम में 2026-04-11 के बाद आती है, यानी वर्णक्रम ही समय-क्रम बन जाता है। दुनिया का कोई भी सिस्टम 04/12/2026 के साथ यह नहीं करता।</li>
+    <li><strong>विषय से पहले पक्ष का नाम</strong> रखने से सब कुछ क्लाइंट के हिसाब से इकट्ठा हो जाता है। Acme की सारी फ़ाइलें तारीख़ के बाद वाले हिस्से से क्रम लगने पर एक साथ आ जाती हैं।</li>
+    <li><strong>वर्शन आख़िर में</strong> होने का मतलब है कि सबसे नया वर्शन हमेशा सूची के नीचे बैठेगा। v01 ऊपर, उसके नीचे v02, फिर v03।</li>
   </ul>
-  <blockquote class="callout">अगर इस guide से कुछ नहीं याद रहे, ISO dates use करना याद रखें। बाक़ी सब तो ऊपर से मिला bonus है।</blockquote>
+  <blockquote class="callout">इस गाइड से कुछ याद न रहे, तो इतना याद रखिए: तारीख़ ISO रूप में लिखिए। बाक़ी सब उसके ऊपर का फ़ायदा है।</blockquote>
 
-  <h2>Document type के हिसाब से Patterns</h2>
-  <p>Generic advice ignore हो जाती है। Document type के specific patterns bookmarked हो जाते हैं। यहाँ वो हैं जो muscle memory में commit करने worth हैं।</p>
+  <h2>दस्तावेज़ के हिसाब से ढाँचे</h2>
+  <p>आम सलाह अनसुनी रह जाती है। किस्म के हिसाब से बने ढाँचे लोग सहेज लेते हैं। ये वही हैं जिन्हें याद कर लेना फ़ायदे का है।</p>
 
-  <h3>Invoices</h3>
+  <h3>बिल</h3>
   <pre><code>YYYY-MM-DD_vendor_amount_invoice.pdf</code></pre>
-  <p>Example: <code>2026-04-15_aws_142-30_invoice.pdf</code>. Filename में amount audit और reconciliation work को कई गुना faster बनाता है - आपके accountant को totals देखने के लिए हर file open नहीं करनी पड़ती।</p>
+  <p>जैसे: <code>2026-04-15_aws_142-30_invoice.pdf</code>. नाम में रकम रख देने से हिसाब मिलाने का काम कई गुना तेज़ हो जाता है, क्योंकि आपके एकाउंटेंट को जोड़ देखने के लिए हर फ़ाइल खोलनी नहीं पड़ती।</p>
 
-  <h3>Contracts</h3>
+  <h3>कॉन्ट्रैक्ट</h3>
   <pre><code>YYYY-MM-DD_counterparty_contract-type_version.pdf</code></pre>
-  <p>Example: <code>2026-03-20_acme-corp_msa_v03.pdf</code>. State matter करे तो suffix की तरह <code>_DRAFT</code> या <code>_SIGNED</code> add करें: <code>2026-03-20_acme-corp_msa_v03_SIGNED.pdf</code>. Signed version किसी भी folder listing में drafts से immediately distinguishable बन जाता है।</p>
+  <p>जैसे: <code>2026-03-20_acme-corp_msa_v03.pdf</code>. हैसियत मायने रखती हो तो आख़िर में <code>_DRAFT</code> या <code>_SIGNED</code> जोड़ दीजिए: <code>2026-03-20_acme-corp_msa_v03_SIGNED.pdf</code>. इससे दस्तख़त हुआ वर्शन किसी भी फ़ोल्डर में ड्राफ़्ट से तुरंत अलग पहचान में आ जाता है।</p>
 
-  <h3>Bank statements</h3>
+  <h3>बैंक स्टेटमेंट</h3>
   <pre><code>YYYY-MM_bank_account4digits.pdf</code></pre>
-  <p>Example: <code>2026-04_chase_4421.pdf</code>. Statements monthly हैं इसलिए date day component drop करती है। Account number के last four digits same bank के साथ multiple accounts होने पर full number expose किए बिना disambiguate करते हैं।</p>
+  <p>जैसे: <code>2026-04_chase_4421.pdf</code>. स्टेटमेंट महीने के होते हैं, इसलिए तारीख़ में दिन की ज़रूरत नहीं। खाते के आख़िरी चार अंक एक ही बैंक के कई खातों को अलग पहचानने के लिए काफ़ी हैं, पूरा नंबर लिखे बिना।</p>
 
-  <h3>Scans और receipts</h3>
+  <h3>स्कैन और रसीदें</h3>
   <pre><code>YYYY-MM-DD_subject_scan.pdf</code></pre>
-  <p>Example: <code>2026-04-22_lunch-meeting-acme_scan.pdf</code>. <code>_scan</code> suffix flag करता है कि इस file को OCR की likely ज़रूरत है अगर कभी text चाहिए - useful future-you context।</p>
+  <p>जैसे: <code>2026-04-22_lunch-meeting-acme_scan.pdf</code>. आख़िर में <code>_scan</code> लगा होने से पता रहता है कि कभी इसमें से टेक्स्ट चाहिए तो OCR चलाना पड़ेगा, और यह इशारा छह महीने बाद अपने ही काम आता है।</p>
 
-  <h2>Versioning जो 'final_FINAL_v2' पर end नहीं होती</h2>
-  <p>हर किसी के पास कहीं एक folder है जहाँ files <code>contract_final.pdf</code>, <code>contract_final_v2.pdf</code>, <code>contract_final_REAL_final.pdf</code>, और <code>contract_finalfinal.pdf</code> name से हैं। Fix दो rules हैं:</p>
+  <h2>वह वर्शन-व्यवस्था जो final_FINAL_v2 पर ख़त्म न हो</h2>
+  <p>हर किसी के पास कहीं एक फ़ोल्डर है जिसमें <code>contract_final.pdf</code>, <code>contract_final_v2.pdf</code>, <code>contract_final_REAL_final.pdf</code> और <code>contract_finalfinal.pdf</code> पड़े हैं। इलाज दो नियम हैं:</p>
   <ul>
-    <li><strong>Zero-padded version numbers use करें.</strong> v01, v02, v03 - v1, v2, v10 नहीं। Zero-padding versions को v09 के बाद correctly sort रखती है। v10 alphabetically v9 से पहले sort होता है, लेकिन v10 v09 के बाद correctly sort होता है।</li>
-    <li><strong>State suffixes end में जाते हैं.</strong> <code>_DRAFT</code>, <code>_SIGNED</code>, <code>_FINAL</code>. Signed version canonical record है; इससे पहले सब draft है।</li>
+    <li><strong>वर्शन नंबर में शून्य लगाइए।</strong> v01, v02, v03, न कि v1, v2, v10। शून्य लगाने से v09 के बाद भी क्रम सही रहता है। v10 वर्णक्रम में v9 से पहले आ जाता है, लेकिन v09 के बाद ठीक अपनी जगह बैठता है।</li>
+    <li><strong>हैसियत का लेबल आख़िर में।</strong> <code>_DRAFT</code>, <code>_SIGNED</code>, <code>_FINAL</code>. दस्तख़त हुआ वर्शन ही असली रिकॉर्ड है; उससे पहले सब ड्राफ़्ट है।</li>
   </ul>
-  <h3>कब new file vs new version शुरू करें</h3>
-  <p>New version: same document, edits और revisions। Same base name, bumped <code>_vNN</code>.</p>
-  <p>New file: different counterparty, different subject, different transaction. इन्हें version chain में ज़बरदस्ती न ठूँसें। <code>2026-04_acme-corp_msa_v04.pdf</code> और <code>2026-05_beta-co_msa_v01.pdf</code> different files हैं, same की version 4 और version 5 नहीं।</p>
+  <h3>नया वर्शन कब, और नई फ़ाइल कब</h3>
+  <p>नया वर्शन: वही दस्तावेज़, उसमें बदलाव। नाम वही रहे, <code>_vNN</code> बढ़ जाए।</p>
+  <p>नई फ़ाइल: दूसरा पक्ष, दूसरा विषय, दूसरा सौदा। इन्हें एक ही वर्शन की कड़ी में ठूँसिए मत। <code>2026-04_acme-corp_msa_v04.pdf</code> और <code>2026-05_beta-co_msa_v01.pdf</code> दो अलग फ़ाइलें हैं, एक ही चीज़ के चौथे और पाँचवें वर्शन नहीं।</p>
 
-  <h2>Avoid करने वाले Characters</h2>
-  <p>Different operating systems और cloud platforms different characters reject करते हैं। Safe set पर stick करें और आप sync के दौरान कभी "filename invalid" error में नहीं पड़ेंगे:</p>
+  <h2>किन अक्षरों से बचना है</h2>
+  <p>अलग-अलग सिस्टम और क्लाउड सेवाएँ अलग-अलग अक्षर नामंज़ूर करती हैं। सुरक्षित सेट पर टिके रहिए और सिंक के बीच फ़ाइल का नाम ग़लत है वाली गलती कभी नहीं आएगी:</p>
   <ul>
-    <li><strong>कोई spaces नहीं.</strong> Field के अंदर word separation के लिए hyphens use करें, fields के बीच underscores। <code>acme-corp_msa_v02.pdf</code> <code>acme corp msa v02.pdf</code> से better पढ़ता है और URLs, terminals तथा पुराने systems में बचा रहता है।</li>
-    <li><strong>कोई special characters नहीं.</strong> Avoid करें <code>/ \ : * ? " &lt; &gt; |</code>. इनमें से कई filesystem द्वारा reserved हैं और silent failures cause करते हैं।</li>
-    <li><strong>100 characters के नीचे रहें.</strong> कुछ sync tools filename limits पर truncate या fail होते हैं, especially deep folder paths के साथ।</li>
-    <li><strong>ASCII letters, digits, hyphen, underscore, period पर stick करें.</strong> Accented characters और emoji unexpected places में break हो सकते हैं (पुराने email clients, FTP servers, certain backups)।</li>
+    <li><strong>खाली जगह मत छोड़िए।</strong> एक हिस्से के अंदर शब्द अलग करने के लिए हाइफ़न, और हिस्सों के बीच अंडरस्कोर। <code>acme-corp_msa_v02.pdf</code> पढ़ने में <code>acme corp msa v02.pdf</code> से बेहतर है और URL, टर्मिनल और पुराने सिस्टम में सही-सलामत रहता है।</li>
+    <li><strong>ख़ास चिह्न मत लगाइए।</strong> इनसे बचिए: <code>/ \ : * ? " &lt; &gt; |</code>. इनमें से कई सिस्टम ने अपने लिए रोक रखे हैं और चुपचाप गड़बड़ करते हैं।</li>
+    <li><strong>नाम 100 अक्षरों से नीचे रखिए।</strong> कुछ सिंक टूल हद पर पहुँचकर नाम काट देते हैं या रुक जाते हैं, ख़ासकर लंबे फ़ोल्डर रास्तों के साथ।</li>
+    <li><strong>ASCII अक्षर, अंक, हाइफ़न, अंडरस्कोर और बिंदु तक सीमित रहिए।</strong> मात्राओं वाले अक्षर और इमोजी अनचाही जगहों पर टूटते हैं: पुराने ईमेल क्लाइंट, FTP सर्वर, कुछ बैकअप सिस्टम।</li>
   </ul>
 
-  <h2>Backlog rename करना अपना weekend खोए बिना</h2>
-  <p>अगर आप यह <code>document(3).pdf</code> से भरे downloads folder के साथ पढ़ रहे हैं, आप इसे एक sitting में fix नहीं करने वाले। Try भी न करें। Trick है आज की files clean बनाना और backlog को छोटे batches में tackle करना।</p>
+  <h2>पुराना ढेर सुधारना, पूरा वीकेंड गँवाए बिना</h2>
+  <p>अगर आप यह <code>document(3).pdf</code> से भरे डाउनलोड फ़ोल्डर के साथ पढ़ रहे हैं, तो यह एक बैठक में ठीक नहीं होगा। कोशिश भी मत कीजिए। तरीक़ा यह है कि आज की फ़ाइलें साफ़ रखिए और पुराने ढेर को छोटी-छोटी किस्तों में निपटाइए।</p>
   <ol>
-    <li><strong>New files से शुरू करें.</strong> अब से save होने वाले हर PDF पर convention use करें। Two weeks की consistency एक weekend के cleanup से beat करती है।</li>
-    <li><strong>एक day 50 पुरानी files tackle करें.</strong> एक folder pick करें। जो obvious है rename करें। जो नहीं है skip करें। कल आगे बढ़ें।</li>
-    <li><strong>Bulk rename tools use करें.</strong> PowerToys (Windows) और Better Finder Rename या built-in batch rename (macOS) कई files पर एक साथ find-and-replace patterns handle करते हैं। 200 invoices को ISO date prefix add करके rename करना पाँच-minute job है, afternoon नहीं।</li>
-    <li><strong>Helpful हो तो renaming से पहले merge करें.</strong> अगर आपके पास बारह receipts हैं जो सब एक expense report की हैं, हर को separately rename करने के बजाय <a href="/hi/pdf-organize/merge/">related files को एक well-named PDF में merge</a> करें। एक अच्छा name बारह mediocre से beat करता है।</li>
-    <li><strong>Misnamed mega-file को split करें.</strong> अगर आपके पास एक giant <code>scans.pdf</code> है जिसमें एक year की receipts हैं, answer है <a href="/hi/pdf-organize/split/">misnamed mega-file को properly named pieces में split</a> करें और जाते-जाते parts rename करें।</li>
+    <li><strong>नई फ़ाइलों से शुरू कीजिए।</strong> अब से जो भी PDF सहेजें, उसी ढाँचे में। दो हफ़्ते की निरंतरता एक वीकेंड की सफ़ाई से भारी पड़ती है।</li>
+    <li><strong>रोज़ पचास पुरानी फ़ाइलें उठाइए।</strong> एक फ़ोल्डर चुनिए। जो साफ़ समझ आ रही हैं उनके नाम बदलिए। जो नहीं समझ आ रही, छोड़ दीजिए। कल आगे बढ़िए।</li>
+    <li><strong>थोक में नाम बदलने वाले टूल इस्तेमाल कीजिए।</strong> Windows पर PowerToys, macOS पर Better Finder Rename या अंदर से मिलने वाला batch rename, कई फ़ाइलों पर एक साथ ढूँढो-और-बदलो कर देते हैं। दो सौ बिलों पर ISO तारीख़ लगाना पाँच मिनट का काम है, पूरी दोपहर का नहीं।</li>
+    <li><strong>जहाँ ठीक लगे, नाम बदलने से पहले जोड़ लीजिए।</strong> अगर बारह रसीदें एक ही ख़र्च रिपोर्ट की हैं, तो हर एक का नाम बदलने के बजाय <a href="/hi/pdf-organize/merge/">उन्हें एक अच्छे नाम वाली PDF में जोड़</a> दीजिए। एक अच्छा नाम बारह ठीक-ठाक नामों से बेहतर है।</li>
+    <li><strong>ग़लत नाम वाली भारी फ़ाइल तोड़ दीजिए।</strong> अगर एक बड़ी <code>scans.pdf</code> में साल भर की रसीदें पड़ी हैं, तो <a href="/hi/pdf-organize/split/">उसे टुकड़ों में बाँटिए</a> और साथ-साथ हर टुकड़े को ठीक नाम देते जाइए।</li>
   </ol>
 
-  <h2>Naming और tooling: छोटे wins compound होते हैं</h2>
-  <p>एक consistent filename उससे ज़्यादा work करता है जितना लोग expect करते हैं जब बाक़ी toolchain के साथ paired हो:</p>
+  <h2>नाम और औज़ार: छोटे फ़ायदे जुड़ते जाते हैं</h2>
+  <p>एक तय नाम बाक़ी औज़ारों के साथ मिलकर उम्मीद से ज़्यादा काम करता है:</p>
   <ul>
-    <li><strong>Cloud search instant retrieval बन जाता है.</strong> Drive search में "2026-04 acme" type करना exactly वो return करता है जो आप चाहते थे, guesses की ranked list नहीं।</li>
-    <li><strong>Email forwarding clean रहती है.</strong> Recipient <code>document.pdf</code> के बजाय sensible name देखता है, जो आपको effort के बिना organised दिखाता है।</li>
-    <li><strong>Backups better deduplicate करते हैं.</strong> Versioned filenames obvious बनाते हैं कौन सी files different हैं और कौन सी same की resaves।</li>
-    <li><strong>Archiving easier है.</strong> Files को long-term storage में tucking से पहले, <a href="/hi/pdf-organize/compress/">archiving से पहले compress</a> करें space save करने के लिए और smaller file को descriptive name के साथ pair करें।</li>
+    <li><strong>क्लाउड की खोज सीधे नतीजे देने लगती है।</strong> Drive में 2026-04 acme लिखते ही वही फ़ाइल आती है जो आप चाहते थे, अंदाज़ों की सूची नहीं।</li>
+    <li><strong>ईमेल आगे भेजना साफ़ रहता है।</strong> सामने वाले को <code>document.pdf</code> की जगह समझदार नाम दिखता है, और आप बिना मेहनत व्यवस्थित लगते हैं।</li>
+    <li><strong>बैकअप कम जगह खाते हैं।</strong> वर्शन वाले नामों से साफ़ दिखता है कि कौन सी फ़ाइलें असल में अलग हैं और कौन सी वही चीज़ दोबारा सहेजी गई है।</li>
+    <li><strong>आर्काइव करना आसान हो जाता है।</strong> लंबे समय के लिए रखने से पहले <a href="/hi/pdf-organize/compress/">फ़ाइल छोटी कर लीजिए</a>, जगह बचेगी, और उस छोटी फ़ाइल को बताने वाला नाम दे दीजिए।</li>
   </ul>
 
-  <h2>एक two-week starter plan</h2>
-  <p>अगर आप project commit किए बिना यह try करना चाहते हैं:</p>
+  <h2>दो हफ़्ते की शुरुआती योजना</h2>
+  <p>अगर पूरा प्रोजेक्ट बनाए बिना इसे आज़माना है:</p>
   <ol>
-    <li><strong>Week 1.</strong> हर new file save पर universal pattern (<code>YYYY-MM-DD_party_subject.pdf</code>) apply करें। पुरानी files को touch न करें।</li>
-    <li><strong>Week 2.</strong> Type-specific patterns add करें (invoices, contracts, statements)। अपने downloads folder में most-used 50 files rename करने पर एक day दस minutes बिताएँ।</li>
+    <li><strong>पहला हफ़्ता।</strong> हर नई फ़ाइल पर सिर्फ़ आम ढाँचा (<code>YYYY-MM-DD_party_subject.pdf</code>) लगाइए। पुरानी फ़ाइलों को छुइए मत।</li>
+    <li><strong>दूसरा हफ़्ता।</strong> किस्म के हिसाब से ढाँचे जोड़िए (बिल, कॉन्ट्रैक्ट, स्टेटमेंट)। रोज़ दस मिनट डाउनलोड फ़ोल्डर की सबसे ज़्यादा काम आने वाली पचास फ़ाइलों पर लगाइए।</li>
   </ol>
-  <p>Day fifteen तक, search काम करना शुरू कर देगी। Day thirty तक, new convention automatic है और पुरानी chaos उन files के long-tail तक reduce हो गई है जिन्हें आप शायद ही कभी open करते हैं।</p>
+  <p>पंद्रहवें दिन तक खोज काम करने लगेगी। तीसवें दिन तक नया तरीक़ा आदत बन जाएगा और पुरानी अव्यवस्था उन फ़ाइलों तक सिमट जाएगी जिन्हें आप कभी-कभार ही खोलते हैं।</p>
 
-  <h2>FAQ</h2>
-  <h3>क्या PDF filenames में hyphens या underscores use करूँ?</h3>
-  <p>दोनों, different jobs के साथ। Field के अंदर word separation के लिए hyphens use करें (<code>acme-corp</code>) और fields के बीच underscores (<code>2026-04-15_acme-corp_invoice.pdf</code>). यह structure को एक नज़र में visible बनाता है और search engines public files के लिए जो convention most reliably parse करते हैं वो भी है।</p>
-  <h3>MM/DD/YYYY के बजाय ISO date format (YYYY-MM-DD) क्यों?</h3>
-  <p>क्योंकि ISO dates के साथ alphabetical sort = chronological sort. 2026-04-15 किसी भी system में, कहीं भी, 2026-04-14 के बाद sort होती है। MM-DD-YYYY April को January के बाद लेकिन March से पहले रखती है, जो useless है। ISO international standard भी है, इसलिए countries के पार काम करता है।</p>
-  <h3>PDF filename कितना long होना चाहिए?</h3>
-  <p>30-80 characters aim करें। इतना long कि descriptive हो, इतना short कि folder listing में truncation के बिना read हो। Hard limit system-dependent है (अक्सर 255 characters) लेकिन deep paths के साथ combine होने पर 200 के बाद problems hit कर सकते हैं।</p>
-  <h3>Version number start में या end में जाना चाहिए?</h3>
-  <p>End में। v01, v02 को end में रखना date sort intact रखता है और version variants किसी भी document group के bottom पर together cluster होते हैं। <code>2026-04_acme_msa_v01.pdf</code>, <code>v02</code>, <code>v03</code> सब एक दूसरे के बगल में बैठते हैं।</p>
-  <h3>क्या PDFs public होने पर filename conventions SEO को affect करते हैं?</h3>
-  <p>हाँ, modestly. Search engines PDF filenames को ranking signal के रूप में read करते हैं, especially URL slug में। <code>2026-acme-msa.pdf</code> जैसा descriptive, hyphenated filename discoverability के लिए <code>file_3242.pdf</code> से beat करता है। Keyword-stuff न करें - बस descriptive रहें।</p>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
+  <h3>PDF के नाम में हाइफ़न लगाऊँ या अंडरस्कोर?</h3>
+  <p>दोनों, अलग-अलग काम के लिए। एक हिस्से के अंदर शब्द अलग करने के लिए हाइफ़न (<code>acme-corp</code>) और हिस्सों के बीच अंडरस्कोर (<code>2026-04-15_acme-corp_invoice.pdf</code>). इससे ढाँचा एक नज़र में दिख जाता है, और सार्वजनिक फ़ाइलों के लिए सर्च इंजन भी इसी तरीक़े को सबसे भरोसे से पढ़ते हैं।</p>
+  <h3>MM/DD/YYYY की जगह ISO तारीख़ (YYYY-MM-DD) क्यों?</h3>
+  <p>क्योंकि ISO तारीख़ के साथ वर्णक्रम ही समय-क्रम बन जाता है। 2026-04-15 किसी भी सिस्टम में, कहीं भी, 2026-04-14 के बाद आएगी। MM-DD-YYYY अप्रैल को जनवरी के बाद पर मार्च से पहले रख देती है, जिसका कोई फ़ायदा नहीं। ISO अंतरराष्ट्रीय मानक भी है, इसलिए देशों के आर-पार चलता है।</p>
+  <h3>PDF का नाम कितना लंबा होना चाहिए?</h3>
+  <p>30 से 80 अक्षर ठीक रहते हैं। इतना लंबा कि बात बता दे, इतना छोटा कि फ़ोल्डर की सूची में कटे बिना पढ़ा जाए। पक्की हद सिस्टम पर निर्भर है (अक्सर 255 अक्षर), लेकिन लंबे फ़ोल्डर रास्तों के साथ मिलकर 200 के बाद दिक्क़तें शुरू हो सकती हैं।</p>
+  <h3>वर्शन नंबर शुरू में रखूँ या आख़िर में?</h3>
+  <p>आख़िर में। v01, v02 आख़िर में रहने से तारीख़ का क्रम बना रहता है और एक ही दस्तावेज़ के सारे वर्शन नीचे एक साथ इकट्ठे दिखते हैं। <code>2026-04_acme_msa_v01.pdf</code>, <code>v02</code>, <code>v03</code>, सब एक-दूसरे के बगल में।</p>
+  <h3>PDF सार्वजनिक हों तो नाम का SEO पर असर पड़ता है?</h3>
+  <p>हाँ, थोड़ा। सर्च इंजन PDF के नाम को भी संकेत की तरह पढ़ते हैं, ख़ासकर URL में। <code>2026-acme-msa.pdf</code> जैसा बताने वाला, हाइफ़न वाला नाम <code>file_3242.pdf</code> से बेहतर मिलता है। कीवर्ड ठूँसिए मत, बस बात साफ़ रखिए।</p>
 
-  <h2>अभी try करें</h2>
-  <p>एक document type pick करें जिसे आप weekly handle करते हैं - invoices, statements, contracts - और अगले दस को matching pattern से save और rename करें। Habit per file दस seconds cost करती है और हर बार जब आप search करते हैं pay off होती है। <a href="/hi/all-tools/">All PDF tools open करें →</a></p>
+  <h2>अभी आज़माइए</h2>
+  <p>वह एक किस्म चुनिए जिससे आपका हर हफ़्ते पाला पड़ता है (बिल, स्टेटमेंट, कॉन्ट्रैक्ट) और अगली दस फ़ाइलें उसी ढाँचे में सहेजिए। इस आदत की कीमत प्रति फ़ाइल दस सेकंड है, और फ़ायदा हर बार मिलता है जब आप कुछ ढूँढते हैं। <a href="/hi/all-tools/">सभी PDF टूल खोलें →</a></p>
