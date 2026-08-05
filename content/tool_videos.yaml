@@ -195,6 +195,10 @@ generate_favicon:
   video_id: 5eUXzkoU3Rw
   upload_date: "2026-07-23T22:00:12+00:00"
   duration: PT1M12S
+password_protect_image:
+  video_id: RkV9dxRHWEc
+  upload_date: "2026-08-04T07:00:33-07:00"
+  duration: PT1M30S
 
 # --- premium tools (bespoke landings, video wired in their own templates) ---
 compare_pdf:
@@ -212,7 +216,6 @@ batch_converter:
 
 # Scheduled on YouTube, still private — add here on/after each publish date,
 # a private id renders an "unavailable" player:
-#   password_protect_image  RkV9dxRHWEc  2026-08-04T14:00Z  PT1M31S
 #   resize_pdf    oUDxRwPVgOU  2026-08-21T19:00Z  PT1M13S
 #   text_to_pdf   r37HZwd7fNE  2026-08-12T19:00Z  PT1M22S
 #   pdf_to_pdfa   5aACkEBmIgs  2026-08-13T19:00Z  PT1M21S
