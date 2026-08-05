@@ -107,7 +107,7 @@
   <div class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/WebPage">
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-16 sm:py-24 md:py-32 overflow-hidden border-b border-gray-200 dark:border-gray-800">
+    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-14 sm:py-20 md:py-24 overflow-hidden border-b border-gray-200 dark:border-gray-800">
         <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-5">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
@@ -127,31 +127,25 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
             <a href="{% url 'frontend:pdf_to_word_page' %}"
-               class="group relative bg-blue-600 text-white font-bold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 active:scale-95 text-base w-full sm:w-auto whitespace-nowrap flex items-center justify-center">
-              <span class="relative z-10 flex items-center justify-center space-x-2">
-                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                </svg>
-                <span>{% trans "PDF to Word" %}</span>
-              </span>
+               class="group bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl py-3 px-6 rounded-xl text-base font-bold w-full sm:w-auto whitespace-nowrap flex items-center justify-center gap-2 active:scale-[0.98] transition-[transform,box-shadow,background-color,border-color] duration-150">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+              </svg>
+              <span>{% trans "PDF to Word" %}</span>
             </a>
             <a href="{% url 'frontend:merge_pdf_page' %}"
-               class="group relative bg-emerald-700 text-white font-bold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl hover:bg-emerald-800 transition duration-300 transform hover:scale-105 active:scale-95 text-base w-full sm:w-auto whitespace-nowrap flex items-center justify-center">
-              <span class="relative z-10 flex items-center justify-center space-x-2">
-                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-                <span>{% trans "Merge PDF" %}</span>
-              </span>
+               class="group bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-900 shadow-sm hover:shadow-md py-3 px-6 rounded-xl text-base font-bold w-full sm:w-auto whitespace-nowrap flex items-center justify-center gap-2 active:scale-[0.98] transition-[transform,box-shadow,background-color,border-color] duration-150">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <span>{% trans "Merge PDF" %}</span>
             </a>
             <a href="{% url 'frontend:compress_pdf_page' %}"
-               class="group relative bg-purple-600 text-white font-bold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl hover:bg-purple-700 transition duration-300 transform hover:scale-105 active:scale-95 text-base w-full sm:w-auto whitespace-nowrap flex items-center justify-center">
-              <span class="relative z-10 flex items-center justify-center space-x-2">
-                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                </svg>
-                <span>{% trans "Compress PDF" %}</span>
-              </span>
+               class="group bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm text-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-900 shadow-sm hover:shadow-md py-3 px-6 rounded-xl text-base font-bold w-full sm:w-auto whitespace-nowrap flex items-center justify-center gap-2 active:scale-[0.98] transition-[transform,box-shadow,background-color,border-color] duration-150">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+              </svg>
+              <span>{% trans "Compress PDF" %}</span>
             </a>
           </div>
           <!-- Trust indicators -->
@@ -355,394 +349,394 @@
     </section>
 
     <!-- Video Overview Section -->
-      {% if video %}
-        <section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 border-t border-gray-200 dark:border-gray-800">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-            <div class="text-center mb-6 sm:mb-8">
-              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{% trans "See Convertica in action" %}</h2>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-                {% trans "A quick tour of every PDF and image tool on the site — convert, edit, organize and secure your files, all free and right in your browser." %}
-              </p>
-            </div>
-            {% trans "Convertica — 45+ online PDF & image tools in one place" as video_title %}
-            {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=video_title hide_heading=True %}
-          </div>
-        </section>
-      {% endif %}
-
-      {% if PAYMENTS_ENABLED %}
-      <!-- Premium Hero Section — floating accent card with warm "Hero" glow -->
-        <section class="py-6 sm:py-8 md:py-10">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-            <div class="relative overflow-hidden rounded-2xl shadow-xl border border-blue-200 dark:border-gray-700 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100 px-6 py-10 sm:px-10 sm:py-12">
-              <div class="absolute top-0 right-0 rounded-full filter blur-3xl opacity-30 pointer-events-none" style="width:18rem;height:18rem;background-color:#fbbf24;transform:translate(28%,-38%);" aria-hidden="true"></div>
-              <div class="absolute bottom-0 left-0 rounded-full filter blur-3xl opacity-10 pointer-events-none" style="width:20rem;height:20rem;background-color:#f97316;transform:translate(-34%,40%);" aria-hidden="true"></div>
-              <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image:radial-gradient(circle at 2px 2px,#f59e0b 1px,transparent 0);background-size:28px 28px;" aria-hidden="true"></div>
-              <div class="relative z-10 text-center mb-6 sm:mb-8 animate-fade-in">
-                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold px-4 py-2 rounded-full text-sm mb-3">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                  </svg>
-                  <span>{% trans "Become a Convertica Hero" %}</span>
-                </div>
-                <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2 sm:mb-3 text-gray-900 drop-shadow-sm">
-                  {% trans "Support Our Project" %}
-                </h2>
-                <p class="text-sm sm:text-base text-gray-700 max-w-xl mx-auto drop-shadow-xs">
-                  {% trans "Process larger files with much higher limits, priority processing, and premium features" %}
-                </p>
-              </div>
-
-              <div class="relative z-10 text-center">
-                <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}"
-                   class="group inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:from-amber-600 hover:to-orange-700 transition duration-300 transform hover:scale-105 active:scale-95 text-base">
-                  <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                  </svg>
-                  <span>{% trans "Become a Hero" %}</span>
-                </a>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-3 font-medium">
-                  {% trans "Your support helps us keep Convertica free for everyone" %}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      {% endif %}
-
-    <!-- Organize PDF Section -->
+    {% if video %}
       <section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 border-t border-gray-200 dark:border-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <div class="text-center mb-10 sm:mb-12 animate-fade-in">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
-              {% trans "Organize PDF" %}
-            </h2>
-            <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
-              {% trans "Manage and organize your PDF documents with powerful tools" %}
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <div class="text-center mb-6 sm:mb-8">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{% trans "See Convertica in action" %}</h2>
+            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+              {% trans "A quick tour of every PDF and image tool on the site — convert, edit, organize and secure your files, all free and right in your browser." %}
             </p>
           </div>
+          {% trans "Convertica — 45+ online PDF & image tools in one place" as video_title %}
+          {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=video_title hide_heading=True %}
+        </div>
+      </section>
+    {% endif %}
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-
-                <!-- Organize Card 1: Merge PDF -->
-            <a href="{% url 'frontend:merge_pdf_page' %}"
-               class="tool-card group">
-              <div class="mb-4 relative z-10">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-green-600 transition-colors relative z-10">
-                {% trans "Merge PDF" %}
-              </h3>
-              <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
-                {% trans "Combine multiple PDF files into one document." %}
-              </p>
-              <div class="inline-flex items-center space-x-1.5 bg-green-50 text-green-700 font-semibold group-hover:bg-green-100 group-hover:text-green-800 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
-                <span>{% trans "Try it" %}</span>
+    {% if PAYMENTS_ENABLED %}
+      <!-- Premium Hero Section — floating accent card with warm "Hero" glow -->
+      <section class="py-6 sm:py-8 md:py-10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+          <div class="relative overflow-hidden rounded-2xl shadow-xl border border-blue-200 dark:border-gray-700 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100 px-6 py-10 sm:px-10 sm:py-12">
+            <div class="absolute top-0 right-0 rounded-full filter blur-3xl opacity-30 pointer-events-none" style="width:18rem;height:18rem;background-color:#fbbf24;transform:translate(28%,-38%);" aria-hidden="true"></div>
+            <div class="absolute bottom-0 left-0 rounded-full filter blur-3xl opacity-10 pointer-events-none" style="width:20rem;height:20rem;background-color:#f97316;transform:translate(-34%,40%);" aria-hidden="true"></div>
+            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image:radial-gradient(circle at 2px 2px,#f59e0b 1px,transparent 0);background-size:28px 28px;" aria-hidden="true"></div>
+            <div class="relative z-10 text-center mb-6 sm:mb-8 animate-fade-in">
+              <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold px-4 py-2 rounded-full text-sm mb-3">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
                 </svg>
+                <span>{% trans "Become a Convertica Hero" %}</span>
               </div>
-            </a>
-
-                <!-- Organize Card 2: Split PDF -->
-            <a href="{% url 'frontend:split_pdf_page' %}"
-               class="tool-card group">
-              <div class="mb-4 relative z-10">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors relative z-10">
-                {% trans "Split PDF" %}
-              </h3>
-              <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
-                {% trans "Split PDF into multiple files by pages or ranges." %}
+              <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2 sm:mb-3 text-gray-900 drop-shadow-sm">
+                {% trans "Support Our Project" %}
+              </h2>
+              <p class="text-sm sm:text-base text-gray-700 max-w-xl mx-auto drop-shadow-xs">
+                {% trans "Process larger files with much higher limits, priority processing, and premium features" %}
               </p>
-              <div class="inline-flex items-center space-x-1.5 bg-indigo-50 text-indigo-700 font-semibold group-hover:bg-indigo-100 group-hover:text-indigo-800 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
-                <span>{% trans "Try it" %}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
-            </a>
+            </div>
 
-                <!-- Organize Card 3: Remove Pages -->
-            <a href="{% url 'frontend:remove_pages_page' %}"
-               class="tool-card group">
-              <div class="mb-4 relative z-10">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-red-600 transition-colors relative z-10">
-                {% trans "Remove Pages" %}
-              </h3>
-              <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
-                {% trans "Remove unwanted pages from your PDF document." %}
+            <div class="relative z-10 text-center">
+              <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}"
+                 class="group inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:from-amber-600 hover:to-orange-700 transition duration-300 transform hover:scale-105 active:scale-95 text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                </svg>
+                <span>{% trans "Become a Hero" %}</span>
+              </a>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mt-3 font-medium">
+                {% trans "Your support helps us keep Convertica free for everyone" %}
               </p>
-              <div class="inline-flex items-center space-x-1.5 bg-red-50 text-red-700 font-semibold group-hover:bg-red-100 group-hover:text-red-800 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
-                <span>{% trans "Try it" %}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
-            </a>
-
-                <!-- Organize Card 4: Extract Pages -->
-            <a href="{% url 'frontend:extract_pages_page' %}"
-               class="tool-card group">
-              <div class="mb-4 relative z-10">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
-                {% trans "Extract Pages" %}
-              </h3>
-              <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
-                {% trans "Extract specific pages from your PDF into a new file." %}
-              </p>
-              <div class="inline-flex items-center space-x-1.5 bg-orange-50 text-orange-800 font-semibold group-hover:bg-orange-100 group-hover:text-orange-900 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
-                <span>{% trans "Try it" %}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
-            </a>
-
-                <!-- Organize Card 5: Organize PDF -->
-            <a href="{% url 'frontend:organize_pdf_page' %}"
-               class="tool-card group">
-              <div class="mb-4 relative z-10">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors relative z-10">
-                {% trans "Organize PDF" %}
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
-                {% trans "Reorder and organize pages in your PDF document." %}
-              </p>
-              <div class="inline-flex items-center space-x-1.5 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-200 font-semibold group-hover:bg-cyan-100 group-hover:text-cyan-800 dark:group-hover:bg-cyan-900/30 dark:group-hover:text-cyan-100 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
-                <span>{% trans "Try it" %}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
-            </a>
-
-                <!-- Organize Card 6: Compress PDF -->
-            <a href="{% url 'frontend:compress_pdf_page' %}"
-               class="tool-card group">
-              <div class="mb-4 relative z-10">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
-                {% trans "Compress PDF" %}
-              </h3>
-              <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
-                {% trans "Reduce PDF file size without losing quality." %}
-              </p>
-              <div class="inline-flex items-center space-x-1.5 bg-orange-50 text-orange-800 font-semibold group-hover:bg-orange-100 group-hover:text-orange-900 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
-                <span>{% trans "Try it" %}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
-            </a>
-
+            </div>
           </div>
         </div>
       </section>
+    {% endif %}
+
+    <!-- Organize PDF Section -->
+    <section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 border-t border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="text-center mb-10 sm:mb-12 animate-fade-in">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
+            {% trans "Organize PDF" %}
+          </h2>
+          <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+            {% trans "Manage and organize your PDF documents with powerful tools" %}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+                <!-- Organize Card 1: Merge PDF -->
+          <a href="{% url 'frontend:merge_pdf_page' %}"
+             class="tool-card group">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-green-600 transition-colors relative z-10">
+              {% trans "Merge PDF" %}
+            </h3>
+            <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
+              {% trans "Combine multiple PDF files into one document." %}
+            </p>
+            <div class="inline-flex items-center space-x-1.5 bg-green-50 text-green-700 font-semibold group-hover:bg-green-100 group-hover:text-green-800 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+                <!-- Organize Card 2: Split PDF -->
+          <a href="{% url 'frontend:split_pdf_page' %}"
+             class="tool-card group">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors relative z-10">
+              {% trans "Split PDF" %}
+            </h3>
+            <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
+              {% trans "Split PDF into multiple files by pages or ranges." %}
+            </p>
+            <div class="inline-flex items-center space-x-1.5 bg-indigo-50 text-indigo-700 font-semibold group-hover:bg-indigo-100 group-hover:text-indigo-800 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+                <!-- Organize Card 3: Remove Pages -->
+          <a href="{% url 'frontend:remove_pages_page' %}"
+             class="tool-card group">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-red-600 transition-colors relative z-10">
+              {% trans "Remove Pages" %}
+            </h3>
+            <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
+              {% trans "Remove unwanted pages from your PDF document." %}
+            </p>
+            <div class="inline-flex items-center space-x-1.5 bg-red-50 text-red-700 font-semibold group-hover:bg-red-100 group-hover:text-red-800 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+                <!-- Organize Card 4: Extract Pages -->
+          <a href="{% url 'frontend:extract_pages_page' %}"
+             class="tool-card group">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
+              {% trans "Extract Pages" %}
+            </h3>
+            <p class="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
+              {% trans "Extract specific pages from your PDF into a new file." %}
+            </p>
+            <div class="inline-flex items-center space-x-1.5 bg-orange-50 text-orange-800 font-semibold group-hover:bg-orange-100 group-hover:text-orange-900 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+                <!-- Organize Card 5: Organize PDF -->
+          <a href="{% url 'frontend:organize_pdf_page' %}"
+             class="tool-card group">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors relative z-10">
+              {% trans "Organize PDF" %}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
+              {% trans "Reorder and organize pages in your PDF document." %}
+            </p>
+            <div class="inline-flex items-center space-x-1.5 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-200 font-semibold group-hover:bg-cyan-100 group-hover:text-cyan-800 dark:group-hover:bg-cyan-900/30 dark:group-hover:text-cyan-100 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+                <!-- Organize Card 6: Compress PDF -->
+          <a href="{% url 'frontend:compress_pdf_page' %}"
+             class="tool-card group">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
+              {% trans "Compress PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10 flex-grow">
+              {% trans "Reduce PDF file size without losing quality." %}
+            </p>
+            <div class="inline-flex items-center space-x-1.5 bg-orange-50 text-orange-800 font-semibold group-hover:bg-orange-100 group-hover:text-orange-900 transition-colors duration-150 text-sm px-3 py-1.5 rounded-lg mt-auto self-start">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
 
     <!-- Call to Action Section - Free PDF Tools -->
-      <section class="bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-12 sm:py-16 md:py-20 relative overflow-hidden border-t border-gray-200 dark:border-gray-800">
+    <section class="bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-12 sm:py-16 md:py-20 relative overflow-hidden border-t border-gray-200 dark:border-gray-800">
         <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-5">
-          <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
-        </div>
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+      </div>
 
-        <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-3xl relative z-10 text-gray-900 dark:text-gray-100">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 animate-fade-in text-gray-900">
-            {% trans "Free PDF Tools - Convert, Edit & Organize" %}
-          </h2>
-          <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-700 animate-fade-in">
-            {% trans "Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, and more. Fast, secure, and completely free." %}
-          </p>
-          <a href="{% url 'frontend:all_tools_page' %}"
-             class="inline-block bg-emerald-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-emerald-800 transition duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base animate-fade-in">
-            {% trans "Explore All Tools" %}
-          </a>
-        </div>
-      </section>
+      <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-3xl relative z-10 text-gray-900 dark:text-gray-100">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 animate-fade-in text-gray-900">
+          {% trans "Free PDF Tools - Convert, Edit & Organize" %}
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-700 animate-fade-in">
+          {% trans "Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, and more. Fast, secure, and completely free." %}
+        </p>
+        <a href="{% url 'frontend:all_tools_page' %}"
+           class="inline-block bg-emerald-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-emerald-800 transition duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base animate-fade-in">
+          {% trans "Explore All Tools" %}
+        </a>
+      </div>
+    </section>
 
     <!-- Tools-in-action marquee: CSS-only infinite scroll (zero JS).
          Below the fold + lazy images, so LCP/CLS are untouched. -->
-      <style>
-        .tool-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-        .tool-marquee-track{display:flex;width:max-content;animation:tool-marquee 55s linear infinite}
-        .tool-marquee-half{display:flex;gap:1.5rem;padding-right:1.5rem}
-        .tool-marquee:hover .tool-marquee-track{animation-play-state:paused}
-        @keyframes tool-marquee{to{transform:translateX(-50%)}}
-        @media (prefers-reduced-motion: reduce){
-          .tool-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
-          .tool-marquee-track{animation:none}
-          .tool-marquee-half[aria-hidden]{display:none}
-        }
-      </style>
-      <section class="py-12 sm:py-16 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl mb-8 text-center">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
-            {% trans "See our tools in action" %}
-          </h2>
-        </div>
-        <div class="tool-marquee" aria-label="{% trans 'See our tools in action' %}">
-          <div class="tool-marquee-track">
-            <div class="tool-marquee-half">
-              {% include "frontend/includes/tool_marquee_cards.html" %}
-            </div>
-            <div class="tool-marquee-half" aria-hidden="true" inert>
-              {% include "frontend/includes/tool_marquee_cards.html" %}
-            </div>
+    <style>
+      .tool-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+      .tool-marquee-track{display:flex;width:max-content;animation:tool-marquee 55s linear infinite}
+      .tool-marquee-half{display:flex;gap:1.5rem;padding-right:1.5rem}
+      .tool-marquee:hover .tool-marquee-track{animation-play-state:paused}
+      @keyframes tool-marquee{to{transform:translateX(-50%)}}
+      @media (prefers-reduced-motion: reduce){
+        .tool-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+        .tool-marquee-track{animation:none}
+        .tool-marquee-half[aria-hidden]{display:none}
+      }
+    </style>
+    <section class="py-12 sm:py-16 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl mb-8 text-center">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
+          {% trans "See our tools in action" %}
+        </h2>
+      </div>
+      <div class="tool-marquee" aria-label="{% trans 'See our tools in action' %}">
+        <div class="tool-marquee-track">
+          <div class="tool-marquee-half">
+            {% include "frontend/includes/tool_marquee_cards.html" %}
+          </div>
+          <div class="tool-marquee-half" aria-hidden="true" inert>
+            {% include "frontend/includes/tool_marquee_cards.html" %}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
     <!-- FAQ Section -->
+    <section class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="text-center mb-10 sm:mb-12 animate-fade-in">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900 dark:text-gray-100">
+            {% trans "Frequently Asked Questions" %}
+          </h2>
+          <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {% trans "Quick answers to common questions. Need more? Visit the full FAQ page." %}
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+          <details class="group bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
+                {% trans "Is Convertica free to use?" %}
+              </span>
+              <span class="text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
+            </summary>
+            <div class="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {% trans "Yes. Convertica is free to use — no registration required. Premium subscriptions are optional and provide higher limits and additional features." %}
+            </div>
+          </details>
+
+          <details class="group bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
+                {% trans "How long are my files stored?" %}
+              </span>
+              <span class="text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
+            </summary>
+            <div class="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {% trans "Files are processed securely and automatically deleted after conversion. We do not store your files longer than necessary." %}
+            </div>
+          </details>
+
+          <details class="group bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
+                {% trans "Can I use Convertica on mobile?" %}
+              </span>
+              <span class="text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
+            </summary>
+            <div class="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {% trans "Yes. Convertica works on mobile and desktop browsers — you can convert and edit PDFs from your phone or tablet." %}
+            </div>
+          </details>
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="{% url 'frontend:faq_page' %}"
+             class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+            {% trans "View all FAQ" %}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Articles Section -->
+    {% if latest_articles %}
       <section class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <div class="text-center mb-10 sm:mb-12 animate-fade-in">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900 dark:text-gray-100">
-              {% trans "Frequently Asked Questions" %}
+          <div class="text-center mb-10 sm:mb-12">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
+              {% trans "Latest Guides & Tips" %}
             </h2>
-            <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {% trans "Quick answers to common questions. Need more? Visit the full FAQ page." %}
+            <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+              {% trans "Learn how to get the most out of PDF tools with our expert guides" %}
             </p>
           </div>
 
-          <div class="max-w-3xl mx-auto space-y-4">
-            <details class="group bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
-              <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-                <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
-                  {% trans "Is Convertica free to use?" %}
-                </span>
-                <span class="text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
-              </summary>
-              <div class="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                {% trans "Yes. Convertica is free to use — no registration required. Premium subscriptions are optional and provide higher limits and additional features." %}
-              </div>
-            </details>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {% for article in latest_articles %}
+              <article class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 group">
+                <div class="p-6 sm:p-8">
+                  {% if article.category %}
+                    <span class="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4">
+                      {{ article.category.get_name|default:article.category.name_en }}
+                    </span>
+                  {% endif %}
 
-            <details class="group bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
-              <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-                <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
-                  {% trans "How long are my files stored?" %}
-                </span>
-                <span class="text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
-              </summary>
-              <div class="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                {% trans "Files are processed securely and automatically deleted after conversion. We do not store your files longer than necessary." %}
-              </div>
-            </details>
+                  <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    <a href="{{ article.get_absolute_url }}" class="block">
+                      {{ article.get_title }}
+                    </a>
+                  </h3>
 
-            <details class="group bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
-              <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-                <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
-                  {% trans "Can I use Convertica on mobile?" %}
-                </span>
-                <span class="text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
-              </summary>
-              <div class="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                {% trans "Yes. Convertica works on mobile and desktop browsers — you can convert and edit PDFs from your phone or tablet." %}
-              </div>
-            </details>
+                  <p class="text-gray-700 mb-4 leading-relaxed line-clamp-3">
+                    {{ article.get_excerpt|truncatewords:25 }}
+                  </p>
+
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-500">
+                      {{ article.published_at|date:"F d, Y" }}
+                    </span>
+                    <a href="{{ article.get_absolute_url }}"
+                       class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                      {{ article.get_title|truncatewords:4 }}
+                      <svg class="w-4 h-4 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
           </div>
 
           <div class="text-center mt-10">
-            <a href="{% url 'frontend:faq_page' %}"
-               class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-              {% trans "View all FAQ" %}
+            <a href="{% url 'blog:article_list' %}"
+               class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition duration-300 transform hover:scale-105">
+              {% trans "View All Articles" %}
             </a>
           </div>
         </div>
       </section>
+    {% endif %}
 
-    <!-- Latest Articles Section -->
-      {% if latest_articles %}
-        <section class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div class="text-center mb-10 sm:mb-12">
-              <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
-                {% trans "Latest Guides & Tips" %}
-              </h2>
-              <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
-                {% trans "Learn how to get the most out of PDF tools with our expert guides" %}
-              </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {% for article in latest_articles %}
-                <article class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 group">
-                  <div class="p-6 sm:p-8">
-                    {% if article.category %}
-                      <span class="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4">
-                        {{ article.category.get_name|default:article.category.name_en }}
-                      </span>
-                    {% endif %}
-
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                      <a href="{{ article.get_absolute_url }}" class="block">
-                        {{ article.get_title }}
-                      </a>
-                    </h3>
-
-                    <p class="text-gray-700 mb-4 leading-relaxed line-clamp-3">
-                      {{ article.get_excerpt|truncatewords:25 }}
-                    </p>
-
-                    <div class="flex items-center justify-between">
-                      <span class="text-sm text-gray-500">
-                        {{ article.published_at|date:"F d, Y" }}
-                      </span>
-                      <a href="{{ article.get_absolute_url }}"
-                         class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                        {{ article.get_title|truncatewords:4 }}
-                        <svg class="w-4 h-4 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              {% endfor %}
-            </div>
-
-            <div class="text-center mt-10">
-              <a href="{% url 'blog:article_list' %}"
-                 class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition duration-300 transform hover:scale-105">
-                {% trans "View All Articles" %}
-              </a>
-            </div>
-          </div>
-        </section>
-      {% endif %}
-
-    </div>
+  </div>
 {% endblock %}

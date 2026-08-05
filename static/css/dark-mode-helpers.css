@@ -3,8 +3,12 @@
  * Additional dark mode utilities for complex gradients and backgrounds
  */
 
-/* Smooth transitions */
-* {
+/* Colour cross-fade for the theme switch itself. Scoped to the ~250ms window
+   while `theme-switching` is on <html> (set by theme-toggle.js): as an
+   unconditional `*` rule this made every element on the page carry a 200ms
+   colour transition for the entire session, so hover highlights felt sticky and
+   every hover paid for a style recalculation it never needed. */
+html.theme-switching * {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
