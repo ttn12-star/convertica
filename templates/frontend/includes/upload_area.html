@@ -109,7 +109,20 @@ JS contract (unchanged from previous design):
 
       <!-- Selected file panel: lives inside #dropZone so the chosen file
            takes the place of the prompt instead of appearing under it. -->
-    <div id="selectedFile" class="hidden p-4 text-left bg-blue-50 dark:bg-blue-900/30 rounded-lg border-2 border-blue-200 dark:border-blue-700 max-w-md mx-auto">
+    {% comment %}
+      The two batch labels live here as data attributes rather than as English
+      literals inside file-input-handler.js, where they were the last
+      untranslated strings a user could hit: picking 2+ files (premium batch)
+      showed "2 files selected" / "Total: 48 KB" on all 7 locales.
+
+      {count}/{size} and not %(count)s: Django doubles every "%" inside a trans
+      literal before looking the msgid up, so "%(count)s files selected" is
+      searched for as "%%(count)s files selected", misses the catalogue and
+      silently falls back to English — which is exactly the bug being fixed.
+    {% endcomment %}
+    <div id="selectedFile" class="hidden p-4 text-left bg-blue-50 dark:bg-blue-900/30 rounded-lg border-2 border-blue-200 dark:border-blue-700 max-w-md mx-auto"
+         data-multi-label="{% trans '{count} files selected' %}"
+         data-total-label="{% trans 'Total: {size}' %}">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-3 flex-1 min-w-0">
           <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

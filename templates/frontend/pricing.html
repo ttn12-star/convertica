@@ -19,7 +19,13 @@
 {% block content %}
   <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900">
     <!-- Hero Section -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    {% comment %}
+      Explicit dark: stops so dark-mode-helpers.css leaves this alone. Without
+      them the generic "pale gradient -> dark grey" rule flattened the one
+      branded surface on the pricing page into the same slate as everything
+      else, and the hero stopped being a hero in dark mode.
+    {% endcomment %}
+    <div class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 dark:from-purple-950 dark:via-blue-950 dark:to-indigo-950">
       {% comment %}
         These blobs were written for a light background: mix-blend-multiply
         darkens whatever is under it, so on the dark purple hero the yellow one

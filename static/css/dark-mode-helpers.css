@@ -29,7 +29,23 @@ html.theme-switching * {
    }
  }
 
-html.dark .bg-gradient-to-br:not(:is([class*="dark:from"], [class*="dark:via"], [class*="dark:to"])) {
+/* Pale surfaces (cards, help panels, section backdrops) go dark. Saturated
+   gradients must NOT: they are the 88 icon tiles, avatars and the upload icon
+   across the site, and this rule was flattening every one of them into the same
+   dark grey square — in dark mode the accent colour disappeared from the whole
+   product, which matters more now that the tool card carries its colour only in
+   the icon.
+
+   The exclusions read a substring of the class list, so they hinge on a detail
+   worth spelling out: a saturated tile is `from-blue-500 to-blue-600`, which
+   contains "-500 to-", while a pale surface is `from-blue-50 to-purple-50`,
+   which contains "-50 to-". Neither substring matches the other string (after
+   "-50" the saturated one continues with "0", not a space), so the two cases
+   separate cleanly without listing every colour. */
+html.dark .bg-gradient-to-br:not(:is(
+    [class*="dark:from"], [class*="dark:via"], [class*="dark:to"],
+    [class*="-400 to-"], [class*="-500 to-"], [class*="-600 to-"],
+    [class*="-400 via-"], [class*="-500 via-"], [class*="-600 via-"])) {
   background-image: linear-gradient(to bottom right, rgba(17, 24, 39, 1), rgba(15, 23, 42, 1)) !important;
 }
 

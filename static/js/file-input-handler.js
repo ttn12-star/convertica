@@ -235,8 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const isBatchUi = Boolean(window.BATCH_ENABLED && window.IS_PREMIUM);
         if (isBatchUi && fileList.length > 1) {
             const totalSize = fileList.reduce((sum, f) => sum + (f.size || 0), 0);
-            fileName.textContent = `${fileList.length} files selected`;
-            fileSize.textContent = `Total: ${formatFileSize(totalSize)}`;
+            // Labels come translated from upload_area.html; the English literals
+            // that used to be here were the last untranslated strings in the
+            // upload UI.
+            const multi = selectedFileDiv.dataset.multiLabel || '{count} files selected';
+            const total = selectedFileDiv.dataset.totalLabel || 'Total: {size}';
+            fileName.textContent = multi.replace('{count}', fileList.length);
+            fileSize.textContent = total.replace('{size}', formatFileSize(totalSize));
         } else {
             fileName.textContent = firstFile.name;
             fileSize.textContent = formatFileSize(firstFile.size);

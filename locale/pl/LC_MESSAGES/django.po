@@ -17287,3 +17287,9 @@ msgstr "Przenieś swoje strony na A4, US Letter lub Legal, nie obcinając ich."
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "Obsługiwane są pliki PDF do %(max_pages)s stron. Strony są przenoszone jako treść wektorowa, więc tekst i grafika liniowa pozostają ostre. Sam projekt nie jest przebudowywany: akapity nie złamią się na nowo pod nowe proporcje."
+
+msgid "{count} files selected"
+msgstr "Wybrano plików: {count}"
+
+msgid "Total: {size}"
+msgstr "Razem: {size}"

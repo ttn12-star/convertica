@@ -78,7 +78,7 @@
     <form id="converterForm"
           method="post"
           enctype="multipart/form-data"
-          class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
+          class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900 transition-opacity duration-200">
       {% csrf_token %}
 
       {% include "frontend/includes/upload_area.html" %}

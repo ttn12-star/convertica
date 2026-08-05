@@ -17134,3 +17134,9 @@ msgstr "Переложите ваши страницы на A4, US Letter или
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "Поддерживаются файлы ПДФ до %(max_pages)s страниц. Страницы переносятся как векторное содержимое, поэтому текст и линейная графика остаются резкими. Сам дизайн при этом не переверстывается: абзацы не перетекут заново под новые пропорции."
+
+msgid "{count} files selected"
+msgstr "Выбрано файлов: {count}"
+
+msgid "Total: {size}"
+msgstr "Всего: {size}"

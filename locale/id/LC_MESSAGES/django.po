@@ -17050,3 +17050,9 @@ msgstr "Pindahkan halamanmu ke A4, US Letter, atau Legal tanpa memotongnya."
 #, python-format
 msgid "PDF files with up to %(max_pages)s pages are supported. Pages are re-placed as vector content, so text and line art stay sharp. The design itself is not reflowed: paragraphs will not re-wrap for the new proportions."
 msgstr "File PDF hingga %(max_pages)s halaman didukung. Halaman dipindahkan sebagai isi vektor, jadi teks dan gambar garis tetap tajam. Desainnya sendiri tidak ditata ulang: paragraf tidak akan tersusun ulang untuk proporsi yang baru."
+
+msgid "{count} files selected"
+msgstr "{count} berkas dipilih"
+
+msgid "Total: {size}"
+msgstr "Total: {size}"
