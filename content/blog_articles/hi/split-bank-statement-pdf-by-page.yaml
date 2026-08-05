@@ -1,102 +1,102 @@
 slug: split-bank-statement-pdf-by-page
-title_hi: "Bank Statement PDF को Monthly या Per-Transaction Files में कैसे Split करें"
-meta_title_hi: "Bank Statement PDF को Month या Page से Split करें"
-meta_description_hi: "60-page annual bank statement है? Taxes, loan applications या expense categorization के लिए monthly PDFs में split करें, sharing से पहले privacy checklist के साथ।"
-meta_keywords_hi: "split bank statement pdf, pdf pages separate करें, pdf को month से divide करें, statement से pages extract करें, pdf splitter free"
-excerpt_hi: "Banks पूरे साल को एक ही giant PDF के रूप में deliver करना पसंद करते हैं। इसे monthly chunks में split करना tax season, loan paperwork और expense categorization को dramatically easier बना देता है।"
+title_hi: "बैंक स्टेटमेंट की PDF को महीने या लेन-देन के हिसाब से कैसे बाँटें"
+meta_title_hi: "बैंक स्टेटमेंट PDF को महीने से बाँटें"
+meta_description_hi: "साठ पन्नों का सालाना बैंक स्टेटमेंट है? टैक्स, लोन या ख़र्च के हिसाब के लिए उसे महीनेवार PDF में बाँटिए, भेजने से पहले प्राइवेसी की जाँच-सूची के साथ।"
+meta_keywords_hi: "बैंक स्टेटमेंट PDF बाँटें, PDF के पन्ने अलग करें, PDF को महीने से बाँटें, स्टेटमेंट से पन्ने निकालें, split pdf hindi"
+excerpt_hi: "बैंक पूरे साल का हिसाब एक ही भारी PDF में देना पसंद करते हैं। उसे महीनेवार टुकड़ों में बाँट लेना टैक्स, लोन के काग़ज़ और ख़र्च का हिसाब, तीनों बहुत आसान कर देता है।"
 content_hi: |
-  ज़्यादातर banks आपको "साल" को एक PDF के रूप में download करने देते हैं। उनके लिए convenient, पर आपके लिए तब awkward हो जाता है जब mortgage broker "बस last तीन महीने" माँगे या आपके accountant को Q1 Q2 से अलग करके चाहिए। हर बार पूरी 60-page file दोबारा upload करना ज़रूरत से ज़्यादा financial detail leak करता है, और spreadsheet में transactions categorise करना painful बना देता है - आपको उन नौ महीनों को scroll करके पार करना पड़ता है जिन्हें देखने की आपको कोई ज़रूरत ही नहीं।
+  ज़्यादातर बैंक पूरे साल का हिसाब एक PDF में उतारने देते हैं। उनके लिए सहूलियत है, पर आपके लिए मुसीबत तब बनती है जब लोन वाला बस पिछले तीन महीने माँगे या आपके मुनीम को पहली तिमाही दूसरी से अलग चाहिए। हर बार पूरी साठ पन्नों की फ़ाइल भेजना ज़रूरत से ज़्यादा आर्थिक ब्यौरा खोल देता है, और स्प्रेडशीट में ख़र्च छाँटना यातना बना देता है, क्योंकि आपको उन नौ महीनों को स्क्रॉल करके पार करना पड़ता है जिनसे कोई मतलब ही नहीं।
 
-  File को एक बार, properly named monthly PDFs में split करना दोनों problems solve करता है। यह guide cover करती है कि कब page range के बजाय specific pages extract करते हुए <a href="/hi/pdf-organize/split/">PDF online split</a> करें, privacy steps जो ज़्यादातर tutorials skip करते हैं, और एक naming convention जो result को साल बाद findable बनाती है।
+  फ़ाइल को एक बार, ठीक नामों वाली महीनेवार PDF में बाँट देना दोनों दिक्क़तें हल कर देता है। यह गाइड बताती है कि <a href="/hi/pdf-organize/split/">PDF ऑनलाइन बाँटना</a> कब सही है और चुनिंदा पन्ने निकालना कब, वे प्राइवेसी वाले कदम जो ज़्यादातर गाइड छोड़ देती हैं, और नाम रखने का वह तरीक़ा जिससे नतीजा सालों बाद भी मिल जाता है।
 
-  <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Convertica split tool जो bank statement PDF को monthly files में divide कर रहा है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Convertica का बाँटने वाला टूल बैंक स्टेटमेंट को महीनेवार फ़ाइलों में बाँटते हुए" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>Bank statement क्यों split करें</h2>
+  <h2>बैंक स्टेटमेंट क्यों बाँटें</h2>
 
-  Splitting सिर्फ़ tidy housekeeping नहीं है। Concrete moments हैं जहाँ यह time बचाती है या information protect करती है:
+  यह बाँटना बस सफ़ाई-पसंदगी नहीं है। ऐसे ठोस मौक़े हैं जहाँ यह समय बचाता है या जानकारी बचाता है:
 
   <ul>
-    <li><strong>Tax filing.</strong> HMRC, IRS और ज़्यादातर national tax authorities per quarter या per month statements expect करती हैं, especially VAT/GST और self-assessment के लिए। IRS Schedule C ख़ासकर monthly totals माँगती है; पूरा साल भेजना आपके accountant को उन्हें reconstruct करने पर मजबूर कर देता है।</li>
-    <li><strong>Mortgage और loan applications.</strong> Lenders लगभग हमेशा last three या six months माँगते हैं। पूरा साल भेजना over-disclosure है, और underwriters कभी-कभी बिना माँगी गई information का इस्तेमाल अपने objections बढ़ाने के लिए कर लेते हैं।</li>
-    <li><strong>Expense categorisation.</strong> Spreadsheet में एक बार में एक month काम करना 48 pages से sliding करने से कहीं कम error-prone है।</li>
-    <li><strong>Targeted sharing.</strong> आपके accountant को सिर्फ़ वो months चाहिए जो वो reconcile कर रहे हैं। आपके bookkeeper को December देखने की ज़रूरत नहीं अगर question February के बारे में है।</li>
-    <li><strong>Insurance claims.</strong> Specific incident के around period माँगने वाले insurer को सिर्फ़ वो window चाहिए, आपकी पूरी financial history नहीं।</li>
-    <li><strong>Separation में Co-signed accounts.</strong> अगर आप partner के साथ finances divide कर रहे हैं, full file के बजाय सिर्फ़ joint period share करना legally matter करता है।</li>
+    <li><strong>टैक्स भरना।</strong> कर विभाग तिमाही या महीने के हिसाब से स्टेटमेंट चाहते हैं, ख़ासकर GST और अपने हिसाब से भरे जाने वाले रिटर्न में। पूरे साल की फ़ाइल भेजना आपके मुनीम को महीनेवार जोड़ ख़ुद बनाने पर मजबूर करता है।</li>
+    <li><strong>होम लोन और दूसरे लोन।</strong> देने वाले लगभग हमेशा पिछले तीन या छह महीने माँगते हैं। पूरा साल भेजना ज़्यादा खोलना है, और जाँचने वाले कभी-कभी बिना माँगी जानकारी से ही अपनी आपत्तियाँ खड़ी कर लेते हैं।</li>
+    <li><strong>ख़र्च छाँटना।</strong> स्प्रेडशीट में एक बार में एक महीने पर काम करना, अड़तालीस पन्नों में फिसलते रहने से कहीं कम ग़लतियाँ कराता है।</li>
+    <li><strong>सिर्फ़ ज़रूरी हिस्सा भेजना।</strong> मुनीम को वही महीने चाहिए जिनका वह मिलान कर रहा है। सवाल फ़रवरी का हो तो उसे दिसंबर देखने की ज़रूरत नहीं।</li>
+    <li><strong>बीमे का दावा।</strong> किसी एक घटना के आसपास का हिसाब माँगने वाली कंपनी को वही अवधि चाहिए, आपका पूरा आर्थिक इतिहास नहीं।</li>
+    <li><strong>अलग होते वक़्त साझा खाते।</strong> अगर आप साथी से हिसाब अलग कर रहे हैं, तो पूरी फ़ाइल के बजाय सिर्फ़ साझा अवधि देना कानूनी तौर पर भी मायने रखता है।</li>
   </ul>
 
-  <blockquote class="callout">Bank statement आपकी ज़िंदगी के सबसे sensitive documents में से एक है। सबसे छोटा slice share करें जो question का जवाब दे।</blockquote>
+  <blockquote class="callout">बैंक स्टेटमेंट आपकी ज़िंदगी के सबसे संवेदनशील काग़ज़ों में से है। सवाल का जवाब देने वाला सबसे छोटा हिस्सा ही भेजिए।</blockquote>
 
-  <h2>तीन split strategies</h2>
+  <h2>बाँटने के तीन तरीक़े</h2>
 
-  कुछ click करने से पहले, decide करें कि कौन सा approach आपके statement से match करता है:
+  कुछ दबाने से पहले तय कीजिए कि आपके स्टेटमेंट पर कौन सा तरीक़ा बैठता है:
 
   <table>
     <thead>
-      <tr><th>Strategy</th><th>कब fit होता है</th><th>Effort</th></tr>
+      <tr><th>तरीक़ा</th><th>कब बैठता है</th><th>मेहनत</th></tr>
     </thead>
     <tbody>
-      <tr><td>Fixed page range</td><td>हर month exactly same length है (e.g. 4 pages)</td><td>Low</td></tr>
-      <tr><td>Bookmark या month boundary से</td><td>Statement में clear "March 2026" headers और uneven page counts हैं</td><td>Medium</td></tr>
-      <tr><td>Specific pages extract करें</td><td>आपको बारह में से सिर्फ़ एक या दो months चाहिए</td><td>Lowest</td></tr>
+      <tr><td>तय पन्नों के हिसाब से</td><td>हर महीना बिल्कुल उतने ही पन्नों का है (जैसे चार)</td><td>कम</td></tr>
+      <tr><td>महीने की सीमा के हिसाब से</td><td>स्टेटमेंट में साफ़ महीने के शीर्षक हैं और पन्ने घटते-बढ़ते हैं</td><td>मँझोली</td></tr>
+      <tr><td>चुनिंदा पन्ने निकालना</td><td>आपको बारह में से बस एक-दो महीने चाहिए</td><td>सबसे कम</td></tr>
     </tbody>
   </table>
 
-  ज़्यादातर retail bank statements दूसरी category में आते हैं: pages per month vary करते हैं क्योंकि कुछ months में ज़्यादा transactions होते हैं। Split rule commit करने से पहले pages 1, 5, 9, 13 देखकर pattern confirm करें। Holiday months (UK और US accounts के लिए December, European के लिए August) usually average से दो pages लंबे चलते हैं; January और February shorter चलते हैं। उसके लिए plan करें।
+  आम खाते के ज़्यादातर स्टेटमेंट दूसरी श्रेणी में आते हैं: महीने के पन्ने घटते-बढ़ते रहते हैं, क्योंकि कुछ महीनों में लेन-देन ज़्यादा होते हैं। कोई नियम तय करने से पहले पन्ना 1, 5, 9, 13 देखकर क्रम पक्का कर लीजिए। त्योहारों और छुट्टियों के महीने आम तौर पर औसत से दो पन्ने लंबे चलते हैं, और सुस्त महीने छोटे। इसका हिसाब पहले से रख लीजिए।
 
-  Business accounts अक्सर separate end-of-month summary page print करते हैं। Decide करें कि वो summary उस month के साथ belong करता है जिसे summarise करता है (इसे उस month की range के last page के रूप में split करें) या next month के साथ (जहाँ pre-date करने वाले statements उनके workflow में रहते हैं)।
+  कारोबारी खातों में अक्सर महीने के आख़िर का सारांश अलग पन्ने पर छपता है। तय कीजिए कि वह सारांश उसी महीने के साथ जाएगा जिसका हिसाब वह देता है (यानी उस महीने का आख़िरी पन्ना), या अगले महीने के साथ, अगर आपके काम में स्टेटमेंट पहले की तारीख़ के रहते हैं।
 
-  <h2>Step-by-step: page range से split करें</h2>
+  <h2>कदम-दर-कदम: पन्नों की गिनती से बाँटना</h2>
 
-  जब हर month same length का हो, यह 90-second job है:
-
-  <ol>
-    <li>अपने browser में split tool खोलें और statement upload करें।</li>
-    <li><strong>split by ranges</strong> select करें।</li>
-    <li>Months से match करने वाली ranges enter करें: <code>1-4, 5-8, 9-12, 13-16, ...</code></li>
-    <li>Split click करें। Tool per range एक PDF produce करता है और उन्हें ZIP के रूप में bundle करता है।</li>
-    <li>Download और unzip करें। हर part separate PDF है।</li>
-    <li>Parts को <code>YYYY-MM_bank_account-last4.pdf</code> में rename करें (naming पर more नीचे)।</li>
-  </ol>
-
-  Tip: अगर first या last page cover/summary है, इसे ranges से exclude करें या इसे अपने one-page PDF के रूप में split करें। कई banks end पर marketing insert include करते हैं ("introducing our new credit card!") जो pure noise है - इसे open करने से पहले ही drop कर दें।
-
-  एक small keyboard shortcut: range field में, commas से separated ranges को spaces की ज़रूरत नहीं, इसलिए <code>1-4,5-8,9-12</code> spaced version की तरह ही काम करती है। एक साथ बारह months पर काम करते समय type करना faster हो जाता है।
-
-  <h2>Step-by-step: एक month extract करें</h2>
-
-  जब आपको loan application के लिए सिर्फ़ April चाहिए, सब कुछ split न करें। बस उन pages extract करें।
+  जब हर महीना बराबर लंबाई का हो, तो यह डेढ़ मिनट का काम है:
 
   <ol>
-    <li>Statement को किसी भी PDF reader में open करें और find करने के लिए scroll करें कि April कहाँ शुरू और end होता है। Page numbers note करें (e.g. 17-22)।</li>
-    <li>हमारे editor में page extraction option use करें <a href="/hi/pdf-organize/extract-pages/">specific pages extract</a> करने के लिए।</li>
-    <li>Range enter करें, e.g. <code>17-22</code>।</li>
-    <li>Resulting PDF download करें।</li>
-    <li>Clear filename के साथ save करें: <code>2026-04_bank_account-1234.pdf</code>।</li>
+    <li>ब्राउज़र में बाँटने वाला टूल खोलिए और स्टेटमेंट अपलोड कीजिए।</li>
+    <li><strong>गिनती के हिसाब से बाँटना</strong> चुनिए।</li>
+    <li>महीनों से मेल खाती गिनती लिखिए: <code>1-4, 5-8, 9-12, 13-16, ...</code></li>
+    <li>बाँटें दबाइए। टूल हर हिस्से की एक PDF बनाता है और सबको एक ZIP में बाँध देता है।</li>
+    <li>डाउनलोड कीजिए और ZIP खोलिए। हर हिस्सा अलग PDF है।</li>
+    <li>हिस्सों के नाम <code>YYYY-MM_bank_account-last4.pdf</code> में बदल दीजिए (नाम पर आगे विस्तार से)।</li>
   </ol>
 
-  यह eleven extra files create करने से बचाता है जिनकी आप use नहीं करेंगे, और इसका मतलब है कि सिर्फ़ relevant month ही आपके computer से बाहर जाता है। अगर lender "most recent three months" माँगे, तो तीन single-month extractions करें और एक mashed-together range के बजाय उन्हें तीन named files के रूप में भेजें। Underwriters named files को ranges से faster parse करते हैं।
+  नुस्ख़ा: अगर पहला या आख़िरी पन्ना कवर या सारांश है, तो उसे गिनती से बाहर रखिए, या उसकी अपनी एक पन्ने की PDF बना लीजिए। कई बैंक आख़िर में प्रचार का पन्ना जोड़ते हैं, जो शुद्ध शोर है। उसे खोलने से पहले ही छोड़ दीजिए।
 
-  <h2>Sharing से पहले Privacy checklist</h2>
+  एक छोटी सहूलियत: गिनती वाले खाने में कॉमा के बाद खाली जगह ज़रूरी नहीं, इसलिए <code>1-4,5-8,9-12</code> भी उतना ही चलता है। बारह महीनों पर एक साथ काम करते हुए लिखना तेज़ हो जाता है।
 
-  Statement splitting automatically इसे share करने के लिए safe नहीं बनाती। एक monthly PDF अब भी आपका account number, balance, और उस period में हर transaction रखता है। किसी भी email में attach करने से पहले इस checklist के through जाएँ:
+  <h2>कदम-दर-कदम: एक महीना निकालना</h2>
 
-  <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Sensitive statements emailing से पहले Convertica password-protect tool used" width="1280" height="800" loading="lazy"></figure>
+  जब लोन के काग़ज़ के लिए सिर्फ़ अप्रैल चाहिए, तो पूरी फ़ाइल मत बाँटिए। बस वही पन्ने निकाल लीजिए।
+
+  <ol>
+    <li>स्टेटमेंट किसी भी PDF रीडर में खोलिए और स्क्रॉल करके देखिए कि अप्रैल कहाँ शुरू और कहाँ ख़त्म होता है। पन्ना संख्या लिख लीजिए (जैसे 17 से 22)।</li>
+    <li>हमारे टूल में <a href="/hi/pdf-organize/extract-pages/">चुनिंदा पन्ने निकालने</a> वाला विकल्प चुनिए।</li>
+    <li>गिनती लिखिए, जैसे <code>17-22</code>।</li>
+    <li>बनी हुई PDF डाउनलोड कीजिए।</li>
+    <li>साफ़ नाम से सहेजिए: <code>2026-04_bank_account-1234.pdf</code>।</li>
+  </ol>
+
+  इससे ग्यारह ऐसी फ़ाइलें बनने से बच जाती हैं जिन्हें आप छूएँगे भी नहीं, और आपके कंप्यूटर से बाहर सिर्फ़ काम का महीना जाता है। अगर देने वाला पिछले तीन महीने माँगे, तो तीन अलग-अलग महीने निकालिए और उन्हें तीन नामों वाली फ़ाइलों के रूप में भेजिए, एक गड्डमड्ड हिस्से के रूप में नहीं। जाँचने वाले नाम वाली फ़ाइलें ज़्यादा तेज़ पढ़ते हैं।
+
+  <h2>भेजने से पहले प्राइवेसी की जाँच-सूची</h2>
+
+  स्टेटमेंट बाँट देने से वह भेजने के लिए सुरक्षित नहीं हो जाता। महीने भर की PDF में भी आपका खाता नंबर, बचत और उस अवधि का हर लेन-देन मौजूद है। किसी ईमेल में लगाने से पहले यह सूची देख लीजिए:
+
+  <figure><img src="/static/blog/images/tool-split-options.jpg" alt="संवेदनशील स्टेटमेंट भेजने से पहले Convertica के पासवर्ड टूल का इस्तेमाल" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
-    <li><strong>Unrelated transactions redact करें.</strong> अगर lender को सिर्फ़ salary और rent देखना है, बाक़ी black out करें। Redaction को PDF flatten करना (pixels replace) चाहिए, सिर्फ़ उन्हें black box से cover नहीं करना जिसे कोई भी free PDF editor दस seconds में remove कर सकता है।</li>
-    <li><strong>Cover page पर क्या है confirm करें.</strong> कुछ banks हर monthly cover पर full account number, sort code और address repeat करते हैं। Decide करें कि उस level का detail required है या नहीं।</li>
-    <li><strong>Account number के middle digits mask करें.</strong> कई institutions verification के लिए "XXXX XXXX 1234" accept करते हैं full string के बिना।</li>
-    <li><strong>Personal context के लिए transaction descriptions check करें.</strong> "Therapy session - Dr. K" या "Reproductive Health Clinic" जैसी line item ऐसी information दे सकती है जो आप share नहीं करना चाहते थे। जब sensitive हो, तो सिर्फ़ amount नहीं, description भी redact करें।</li>
-    <li><strong>Email से पहले Password-protect करें.</strong> <a href="/hi/pdf-security/protect/">Result को password-protect</a> करें strong password के साथ और वो password अलग channel से share करें (text, Signal, phone call), कभी same email से नहीं।</li>
+    <li><strong>बेमतलब लेन-देन ढक दीजिए।</strong> अगर देने वाले को सिर्फ़ तनख़्वाह और किराया देखना है, तो बाक़ी काला कर दीजिए। यह काला करना PDF में अक्षरों को हटाना चाहिए, बस उन पर काली पट्टी नहीं खींचनी चाहिए, जिसे कोई भी मुफ़्त एडिटर दस सेकंड में हटा देता है।</li>
+    <li><strong>देख लीजिए कि कवर पन्ने पर क्या है।</strong> कुछ बैंक हर महीने के कवर पर पूरा खाता नंबर, शाखा कोड और पता दोहराते हैं। तय कीजिए कि इतना ब्यौरा वाक़ई ज़रूरी है या नहीं।</li>
+    <li><strong>खाता नंबर के बीच के अंक ढक दीजिए।</strong> कई संस्थाएँ पूरे नंबर के बिना, सिर्फ़ आख़िरी चार अंक भी मान लेती हैं।</li>
+    <li><strong>लेन-देन के ब्यौरे पढ़ लीजिए।</strong> इलाज या क्लिनिक के नाम वाली एक पंक्ति ऐसी बात बता देती है जो आप बताना नहीं चाहते थे। जहाँ मामला निजी हो, वहाँ सिर्फ़ रकम नहीं, ब्यौरा भी ढक दीजिए।</li>
+    <li><strong>ईमेल से पहले पासवर्ड लगाइए।</strong> <a href="/hi/pdf-security/protect/">नतीजे पर पासवर्ड लगाइए</a>, मज़बूत पासवर्ड के साथ, और वह पासवर्ड अलग रास्ते से भेजिए (मैसेज, Signal, फ़ोन), कभी उसी ईमेल में नहीं।</li>
   </ul>
 
-  <blockquote class="callout">Email default में encrypted नहीं है। PDF पर password "private" और "intercept होने पर public" के बीच का difference है।</blockquote>
+  <blockquote class="callout">ईमेल अपने आप एन्क्रिप्ट नहीं होता। PDF पर लगा पासवर्ड ही निजी और बीच में पकड़े जाने पर सार्वजनिक, इन दोनों के बीच का फ़र्क़ है।</blockquote>
 
-  जानने योग्य: Adobe Acrobat का "redact" tool genuinely black box के नीचे text remove कर देता है। Free Foxit reader का similar-looking tool सिर्फ़ इसके ऊपर paint करता है - underlying text अब भी simple copy operation से extractable है। कई लोगों ने यह बात शर्मनाक तरीके से सीखी जब उनकी "redacted" salary rectangle के नीचे plain text निकल आई। अगर आप sure नहीं कि आपका tool truly data remove करता है, redacted block को text editor में copy करें और check करें।
+  जानने लायक: Adobe Acrobat का ढकने वाला औज़ार काली पट्टी के नीचे के अक्षर वाक़ई हटा देता है। कुछ मुफ़्त रीडर का उसी जैसा दिखने वाला औज़ार सिर्फ़ ऊपर रंग भर देता है, और नीचे का टेक्स्ट आम कॉपी से निकल आता है। बहुत लोगों ने यह शर्मिंदगी के साथ सीखा है, जब उनकी ढकी हुई तनख़्वाह उसी चौकोर के नीचे सादे अक्षरों में मिल गई। पक्का न हो कि आपका औज़ार डेटा हटाता है, तो ढके हिस्से को कॉपी करके किसी टेक्स्ट एडिटर में चिपकाकर देख लीजिए।
 
-  <h2>Output files को Naming</h2>
+  <h2>बनी फ़ाइलों के नाम</h2>
 
-  Filename वो है जो आप अगले साल search में resurfaces देखेंगे। एक format use करें जो खुद sort हो:
+  नाम ही वह चीज़ है जो अगले साल खोज में सामने आएगी। ऐसा रूप लीजिए जो ख़ुद क्रम में लग जाए:
 
   <pre><code>YYYY-MM_bank_account-last4.pdf
 
@@ -105,34 +105,34 @@ content_hi: |
   2026-03_chase_4567.pdf
   2026-04_chase_4567.pdf</code></pre>
 
-  यह काम करने के reasons:
+  यह इसलिए चलता है:
 
   <ul>
-    <li>ISO year-month हर file manager और cloud drive में cleanly sort होता है।</li>
-    <li>Middle में Bank name help करता है जब आपके पास एक से ज़्यादा institutions में accounts हों।</li>
-    <li>Account के last four digits joint, business और personal accounts को कुछ open किए बिना अलग बताते हैं।</li>
-    <li>कोई spaces नहीं, slashes नहीं, quotes नहीं - operating systems और cloud sync tools के पार safe।</li>
+    <li>ISO में साल और महीना हर फ़ाइल मैनेजर और क्लाउड ड्राइव में साफ़ क्रम में लगते हैं।</li>
+    <li>बीच में बैंक का नाम तब काम आता है जब एक से ज़्यादा बैंकों में खाते हों।</li>
+    <li>खाते के आख़िरी चार अंक साझा, कारोबारी और निजी खाते बिना फ़ाइल खोले अलग बता देते हैं।</li>
+    <li>न खाली जगह, न तिरछी लकीरें, न उद्धरण चिह्न, इसलिए हर सिस्टम और क्लाउड सिंक पर सुरक्षित।</li>
   </ul>
 
-  अगर आपको कभी year-end submission के लिए months recombine करने की ज़रूरत हो, तो आप <a href="/hi/pdf-organize/merge/">बाद में उन्हें वापस single file में merge कर सकते हैं</a>। Output को reverse-naming (e.g. <code>2026_chase_4567_full-year.pdf</code>) इसे किसी भी folder listing में monthly slices के बगल में sorted रखता है।
+  अगर कभी साल के आख़िर में महीनों को फिर जोड़ना पड़े, तो आप <a href="/hi/pdf-organize/merge/">उन्हें बाद में एक फ़ाइल में जोड़</a> सकते हैं। उस फ़ाइल का नाम उलटे क्रम में रखिए (जैसे <code>2026_chase_4567_full-year.pdf</code>), तो वह किसी भी फ़ोल्डर में महीनेवार टुकड़ों के बगल में बैठी रहेगी।
 
-  <h2>FAQ</h2>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
 
-  <h3>क्या bank statement online splitter पर upload करना safe है?</h3>
-  <p>एक tool use करें जो files को browser session में process करे और उन्हें shortly after delete करे। Convertica short retention window के बाद uploads remove करता है और कभी share नहीं करता। अगर आप अब भी uneasy हैं, uploading से पहले sensitive fields locally redact करें, या most sensitive files के लिए desktop tool use करें।</p>
+  <h3>बैंक स्टेटमेंट ऑनलाइन टूल पर चढ़ाना सुरक्षित है?</h3>
+  <p>ऐसा टूल लीजिए जो फ़ाइल ब्राउज़र के सत्र में पढ़े और तुरंत बाद मिटा दे। Convertica थोड़ी देर बाद अपलोड हटा देता है और उन्हें कभी साझा नहीं करता। फिर भी मन न माने, तो चढ़ाने से पहले संवेदनशील हिस्से अपने कंप्यूटर पर ढक दीजिए, या सबसे निजी फ़ाइलों के लिए डेस्कटॉप टूल इस्तेमाल कीजिए।</p>
 
-  <h3>क्या मैं password-protected bank statement PDF split कर सकता हूँ?</h3>
-  <p>आपको पहले अपने password से unlock करना होगा, फिर split करना होगा, फिर optionally हर part को re-protect करना होगा। ज़्यादातर banks statements ऐसे password के साथ issue करते हैं जो आपके date of birth का part या account के last digits है; exact format usually आपके welcome pack में printed है या bank के "open your statement" help page पर available है।</p>
+  <h3>पासवर्ड वाला बैंक स्टेटमेंट बाँट सकता हूँ?</h3>
+  <p>पहले अपने पासवर्ड से खोलना पड़ेगा, फिर बाँटना, और चाहें तो हर हिस्से पर दोबारा पासवर्ड लगाना। ज़्यादातर बैंक स्टेटमेंट पर ऐसा पासवर्ड लगाते हैं जो आपकी जन्मतिथि का हिस्सा या खाते के आख़िरी अंक होता है; उसका ठीक रूप आम तौर पर बैंक के काग़ज़ों में या उसके मदद वाले पन्ने पर लिखा रहता है।</p>
 
-  <h3>अगर bookmarks नहीं हैं तो month से कैसे split करूँ?</h3>
-  <p>File को एक बार open करें और हर month जहाँ शुरू होता है वो page note करें। फिर explicit page numbers के साथ split-by-range use करें। पहली बार एक minute लेता है और same bank से हर future statement के लिए reusable है अगर layout consistent रहता है।</p>
+  <h3>अगर फ़ाइल में निशान नहीं हैं तो महीने से कैसे बाँटूँ?</h3>
+  <p>फ़ाइल एक बार खोलिए और लिख लीजिए कि हर महीना किस पन्ने से शुरू होता है। फिर वही पन्ना संख्या डालकर गिनती से बाँट दीजिए। पहली बार एक मिनट लगता है, और उसी बैंक के आगे के हर स्टेटमेंट पर वही गिनती काम आती है, बशर्ते बैंक अपना ढाँचा न बदले।</p>
 
-  <h3>क्या splitting file quality कम करेगी?</h3>
-  <p>नहीं। Splitting structural operation है: यह same page bytes को नई file में copy करता है। कोई recompression, कोई rasterisation, और source की तुलना में कोई quality loss नहीं।</p>
+  <h3>बाँटने से फ़ाइल की गुणवत्ता घटेगी?</h3>
+  <p>नहीं। बाँटना ढाँचे का काम है: वह पन्ने का डेटा जैसा है वैसा नई फ़ाइल में कॉपी करता है। कुछ दोबारा दबाया नहीं जाता, कुछ तस्वीर में नहीं बदलता, और मूल फ़ाइल के मुक़ाबले गुणवत्ता वही रहती है।</p>
 
-  <h3>क्या bank बता सकता है कि मैंने उनका statement split किया?</h3>
-  <p>Bank नहीं बता सकता, क्योंकि split entirely आपकी side पर होता है। Recipient missing pages या page numbers से notice कर सकता है अगर आप सिर्फ़ slice extract करें, यही reason है कि आपको partial statement भेजते समय explicitly कहना चाहिए "April only, pages 17-22"। Underwriters partial submission के लिए आपको fail नहीं करेंगे, लेकिन वो जो deceptive दिखे उसके लिए करेंगे।</p>
+  <h3>बैंक को पता चल सकता है कि मैंने उसका स्टेटमेंट बाँटा?</h3>
+  <p>बैंक को नहीं, क्योंकि यह पूरा काम आपकी तरफ़ होता है। पाने वाले को छूटे पन्नों या संख्या से पता चल सकता है, इसलिए अधूरा स्टेटमेंट भेजते समय साफ़ लिख दीजिए कि यह सिर्फ़ अप्रैल है, पन्ने 17 से 22। अधूरा भेजने पर कोई आपको नामंज़ूर नहीं करेगा, पर जो चीज़ छिपाने की कोशिश जैसी लगे, उस पर करेगा।</p>
 
-  <h2>अभी try करें</h2>
+  <h2>अभी आज़माइए</h2>
 
-  <p>आज की एक ten-minute session आपको 60-page file से fishing के एक year से बचाती है। अपना statement split करें, parts को properly name करें, और tax time पर आप खुद को thank करेंगे। <a href="/hi/pdf-organize/split/">Split PDF tool open करें →</a></p>
+  <p>आज के दस मिनट आपको साठ पन्नों की फ़ाइल में सालों तक ढूँढते रहने से बचा देंगे। स्टेटमेंट बाँटिए, हिस्सों के ठीक नाम रखिए, और टैक्स के वक़्त आप ख़ुद को शाबाशी देंगे। <a href="/hi/pdf-organize/split/">PDF बाँटने वाला टूल खोलें →</a></p>
