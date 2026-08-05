@@ -53,6 +53,16 @@ repos:
       # - id: no-commit-to-branch
       #   args: ['--branch', 'main']
 
+  # Workflow step size — an oversized step input makes the whole workflow
+  # unparseable, and CI cannot catch that because it never runs. See the script.
+  - repo: local
+    hooks:
+      - id: workflow-step-size
+        name: workflow step size
+        entry: python ci/check_workflow_step_size.py
+        language: system
+        files: '^\.github/workflows/.*\.ya?ml$'
+
   # Django-specific checks
   - repo: https://github.com/rtts/djhtml
     rev: 3.0.6
