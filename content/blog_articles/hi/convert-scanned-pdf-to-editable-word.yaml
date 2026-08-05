@@ -1,178 +1,178 @@
 slug: convert-scanned-pdf-to-editable-word
-title_hi: "Scanned PDF को Editable Word Document में कैसे Convert करें (OCR Tips के साथ)"
-meta_title_hi: "Scanned PDF को Editable Word में Convert करें Free | Convertica"
-meta_description_hi: "एक scanned PDF सिर्फ़ text की images है। सीखें कि OCR इसे editable Word doc में कैसे बदलता है, क्या accuracy expect करें, और कौन से cleanup steps इसे usable बनाते हैं।"
-meta_keywords_hi: "scanned pdf to word, ocr pdf to word, editable pdf, pdf image to word, scan को docx convert करें"
-excerpt_hi: "अगर आपके PDF में 'select text' सिर्फ़ blank space highlight करता है, आपके पास scanned PDF है, और आपको regular converter के बजाय OCR चाहिए। यहाँ है क्या expect करें।"
+title_hi: "स्कैन की गई PDF को एडिट होने वाले Word में कैसे बदलें (OCR के नुस्ख़ों के साथ)"
+meta_title_hi: "स्कैन PDF को एडिट होने वाले Word में बदलें | Convertica"
+meta_description_hi: "स्कैन की गई PDF दरअसल टेक्स्ट की तस्वीरें हैं। OCR उन्हें एडिट होने वाले Word में कैसे बदलता है, कितनी सटीकता मिलती है, और कौन सी सफ़ाई ज़रूरी है।"
+meta_keywords_hi: "स्कैन PDF को Word में बदलें, OCR से PDF को Word, एडिट होने वाली PDF, स्कैन को docx बनाएँ, scanned pdf to word hindi"
+excerpt_hi: "अगर आपकी PDF में टेक्स्ट चुनने पर सिर्फ़ खाली जगह चुनी जाती है, तो आपके पास स्कैन है, और आम कन्वर्टर की जगह OCR चाहिए। उससे क्या उम्मीद रखनी है, यह पूरा हिसाब है।"
 content_hi: |
-  अपने सामने वाले PDF पर यह try करें: एक paragraph पर click and drag करें जैसे आप text copy करने वाले हों। अगर आपका cursor individual words highlight करता है, PDF digital है और standard converter काम करता है। अगर यह पूरे page के around एक बड़ा rectangle highlight करता है, आपके पास scan है, मतलब हर page essentially paper की photograph है, और एक normal PDF-to-Word tool आपको pictures वाला Word document वापस देगा, text वाला नहीं।
+  सामने खुली PDF पर यह आज़माइए: किसी पैराग्राफ़ पर माउस दबाकर खींचिए, जैसे टेक्स्ट कॉपी करने वाले हों। अगर कर्सर एक-एक शब्द चुनता है, तो PDF डिजिटल है और आम कन्वर्टर काम कर देगा। अगर पूरे पन्ने के चारों तरफ़ एक बड़ा चौकोर चुना जाता है, तो आपके पास स्कैन है, यानी हर पन्ना असल में काग़ज़ की तस्वीर है, और आम PDF से Word वाला टूल आपको तस्वीरों से भरा Word दस्तावेज़ लौटाएगा, टेक्स्ट वाला नहीं।
 
-  यहाँ OCR आता है। Optical character recognition pixels read करता है और उन्हें actual letters, words, और paragraphs के रूप में reconstruct करता है। अच्छे से किया जाए तो आपको editable .docx मिलता है। बुरे से किया जाए तो garbled text मिलता है और आपको एक घंटे commas, spaces, और rn-versus-m mistakes clean up करनी पड़ती हैं। फ़र्क ज़्यादातर source file में है और कुछ चीज़ों में जिन्हें आप control कर सकते हैं।
+  यहाँ OCR की ज़रूरत पड़ती है। OCR तस्वीर के बिंदुओं को पढ़कर उन्हें असली अक्षरों, शब्दों और पैराग्राफ़ में दोबारा खड़ा करता है। ठीक से हो जाए तो एडिट होने वाली .docx मिलती है। ठीक से न हो तो गड्डमड्ड टेक्स्ट मिलता है और एक घंटा कॉमा, खाली जगहें और rn को m पढ़ लेने जैसी ग़लतियाँ सुधारने में जाता है। यह फ़र्क़ ज़्यादातर मूल फ़ाइल तय करती है, और कुछ हद तक वे चीज़ें जो आपके हाथ में हैं।
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Convertica PDF to Word converter जो OCR के लिए scanned document accept कर रहा है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Convertica का PDF से Word कन्वर्टर, OCR के लिए स्कैन किया दस्तावेज़ लेते हुए" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>कैसे बताएँ कि आपका PDF scanned है</h2>
+  <h2>कैसे पहचानें कि PDF स्कैन की हुई है</h2>
 
-  तीन quick checks:
+  चार छोटी जाँचें:
 
   <ul>
-    <li><strong>Text selection.</strong> एक single word select करने की कोशिश करें। अगर पूरा page एक selectable rectangle बन जाता है, page एक image है।</li>
-    <li><strong>File size.</strong> 10-page text PDF usually 100 to 500 KB होता है। 10-page scanned PDF अक्सर 5 to 30 MB होता है क्योंकि हर page high-resolution image है।</li>
-    <li><strong>Visual artifacts.</strong> Scans speckle, slight rotation, faded edges, और visible paper texture दिखाते हैं। Born-digital PDFs में anti-aliased edges और कोई background noise नहीं होता।</li>
-    <li><strong>Cursor shape.</strong> Text पर hover करें। Digital PDF आपके cursor को text पर I-beam में और images पर arrow में flip करता है। Scanned PDF हर जगह arrow रहता है - क्योंकि सब कुछ image है।</li>
+    <li><strong>टेक्स्ट चुनकर देखिए।</strong> कोई एक शब्द चुनने की कोशिश कीजिए। अगर पूरा पन्ना एक चुने जाने वाले चौकोर में बदल जाता है, तो पन्ना तस्वीर है।</li>
+    <li><strong>फ़ाइल का साइज़।</strong> दस पन्नों की टेक्स्ट PDF आम तौर पर 100 से 500 KB होती है। दस पन्नों की स्कैन PDF अक्सर 5 से 30 MB, क्योंकि हर पन्ना ऊँचे रेज़ोल्यूशन की तस्वीर है।</li>
+    <li><strong>देखने में मिलने वाले निशान।</strong> स्कैन में छींटे, हल्का टेढ़ापन, फीके किनारे और काग़ज़ की बुनावट दिखती है। सीधे कंप्यूटर पर बनी PDF में किनारे साफ़ होते हैं और बैकग्राउंड में कोई कचरा नहीं होता।</li>
+    <li><strong>कर्सर का रूप।</strong> टेक्स्ट पर कर्सर ले जाइए। डिजिटल PDF में वह टेक्स्ट पर खड़ी लकीर और तस्वीरों पर तीर बन जाता है। स्कैन में हर जगह तीर ही रहता है, क्योंकि वहाँ सब तस्वीर है।</li>
   </ul>
 
-  Hybrid PDFs भी exist करते हैं, जहाँ किसी ने contract scan किया और फिर born-digital signature page append किया। OCR digital page skip करता है (कोई ज़रूरत नहीं) और सिर्फ़ scanned वाले process करता है। पूरी file को एक type मानने से पहले किसी भी large file के कुछ different pages पर text-selection test run करें।
+  मिली-जुली PDF भी होती हैं, जहाँ किसी ने कॉन्ट्रैक्ट स्कैन किया और आख़िर में दस्तख़त का डिजिटल पन्ना जोड़ दिया। OCR डिजिटल पन्ना छोड़ देता है (वहाँ ज़रूरत नहीं) और सिर्फ़ स्कैन वाले पन्ने पढ़ता है। किसी बड़ी फ़ाइल को एक ही किस्म का मान लेने से पहले उसके दो-तीन अलग पन्नों पर टेक्स्ट चुनकर देख लीजिए।
 
   <h2>OCR असल में क्या करता है</h2>
 
-  OCR letterforms के लिए pattern recognition है। Engine pixels के clusters देखता है, उन्हें millions of glyph images पर trained model से compare करता है, और best-guess character के साथ confidence score emit करता है। Modern engines surrounding context भी use करते हैं: अगर यह 80% sure है कि अगला word "agreement" है और तीसरा letter "r" और "n" के बीच ambiguous है, तो "r" pick करता है क्योंकि "agreement" real word है।
+  OCR अक्षरों की शक्ल पहचानने का काम है। इंजन बिंदुओं के झुंड देखता है, उन्हें लाखों अक्षर-तस्वीरों पर सिखाए गए मॉडल से मिलाता है, और सबसे संभावित अक्षर के साथ अपने भरोसे का दर्जा भी बताता है। आजकल के इंजन आसपास के संदर्भ का भी सहारा लेते हैं: अगर उसे 80% भरोसा है कि अगला शब्द agreement है और तीसरा अक्षर r और n के बीच अटका है, तो वह r चुन लेगा, क्योंकि agreement असली शब्द है।
 
-  Accuracy को सबसे ज़्यादा drive करने वाली दो settings:
+  सटीकता पर सबसे ज़्यादा असर दो सेटिंग का पड़ता है:
 
   <ul>
-    <li><strong>Source language.</strong> French document पर English-trained model accented characters misread करता है और common words confuse करता है। Tool offer करे तो language हमेशा explicitly set करें।</li>
-    <li><strong>Source DPI.</strong> 300 DPI clean OCR के लिए practical floor है। 200 DPI scans big print के लिए काम कर सकते हैं लेकिन small footnotes के साथ struggle करते हैं। 150 के नीचे, accuracy fast collapse होती है।</li>
+    <li><strong>मूल भाषा।</strong> फ़्रेंच दस्तावेज़ पर अंग्रेज़ी के लिए सिखाया मॉडल मात्राओं वाले अक्षर ग़लत पढ़ेगा और आम शब्दों में गड़बड़ करेगा। टूल पूछे तो भाषा हमेशा ख़ुद चुनिए।</li>
+    <li><strong>स्कैन का DPI।</strong> साफ़ OCR के लिए 300 DPI सबसे नीचे की सीमा है। 200 DPI बड़े अक्षरों पर चल जाता है, पर छोटे फ़ुटनोट पर लड़खड़ाता है। 150 से नीचे सटीकता तेज़ी से गिर जाती है।</li>
   </ul>
 
-  एक तीसरा factor जिसके बारे में लोग अक्सर नहीं सोचते: contrast. OCR ink और background के बीच difference पर काम करता है। एक faded photocopy of a photocopy nominal 300 DPI resolution रख सकता है और फिर भी mush produce कर सकता है क्योंकि contrast ratio recogniser के letter edges खोजने के लिए बहुत कम है। Modern engines इसे पुराने वालों से better handle करते हैं, लेकिन पुराने Tesseract builds (version 4.0 से पहले कुछ भी, 2018 में released) अब भी low-contrast input पर struggle करते हैं।
+  एक तीसरी बात, जिस पर लोग कम सोचते हैं: कंट्रास्ट। OCR स्याही और काग़ज़ के बीच के अंतर पर चलता है। फ़ोटोकॉपी की फ़ोटोकॉपी में DPI काग़ज़ पर 300 रह सकता है और नतीजा फिर भी लुगदी आएगा, क्योंकि अंतर इतना कम है कि पहचानने वाले को अक्षरों के किनारे ही नहीं मिलते। नए इंजन इसे पुराने से बेहतर सँभालते हैं, लेकिन Tesseract के पुराने वर्शन (4.0 से पहले का कुछ भी, जो 2018 में आया) कम कंट्रास्ट पर अब भी लड़खड़ाते हैं।
 
-  <h2>Step-by-step: scanned PDF to Word</h2>
+  <h2>कदम-दर-कदम: स्कैन PDF से Word</h2>
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word-options.jpg" alt="OCR-powered PDF-to-Word conversion जो scan को editable .docx में बदल रही है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-options.jpg" alt="OCR वाली PDF से Word रूपांतरण, स्कैन को एडिट होने वाली .docx में बदलते हुए" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li><a href="/hi/pdf-to-word/">PDF को Word में convert</a> tool खोलें और अपना scan upload करें। Tool automatically detect करता है कि OCR ज़रूरी है जब text selection empty return करती है।</li>
-    <li>Source language select करें ताकि recognizer सही dictionary use करे। English, Spanish, German, French, Italian, Portuguese, Russian, और Polish सभी noticeably better behave करते हैं जब explicitly set हों।</li>
-    <li>Conversion run करें। 10-page scan image complexity के depending पर लगभग 30 to 90 seconds लेता है। 100-page archive कई minutes चल सकता है।</li>
-    <li>.docx download करें और इसे Word में open करें। बाकी पर भरोसा करने से पहले first page को original PDF के against spot-check करें।</li>
+    <li><a href="/hi/pdf-to-word/">PDF को Word में बदलने वाला टूल</a> खोलिए और अपना स्कैन अपलोड कीजिए। टेक्स्ट चुनने पर कुछ न मिले, तो टूल ख़ुद पहचान लेता है कि OCR चलाना है।</li>
+    <li>मूल भाषा चुनिए, ताकि पहचानने वाला सही शब्दकोश उठाए। अंग्रेज़ी, स्पैनिश, जर्मन, फ़्रेंच, इतालवी, पुर्तगाली, रूसी और पोलिश, सब भाषा साफ़ बता देने पर बेहतर नतीजे देती हैं।</li>
+    <li>रूपांतरण चलाइए। दस पन्नों का स्कैन तस्वीरों की जटिलता के हिसाब से करीब 30 से 90 सेकंड लेता है। सौ पन्नों का पुलिंदा कई मिनट चल सकता है।</li>
+    <li>.docx डाउनलोड कीजिए और Word में खोलिए। बाक़ी पर भरोसा करने से पहले पहला पन्ना मूल PDF से मिलाकर देख लीजिए।</li>
   </ol>
 
-  <blockquote class="callout">हमेशा original scanned PDF रखें। अगर OCR कोई page mangle करता है, आप source से compare कर सकें इसके लिए, unreadable word क्या होना चाहिए था इसका guess न करें।</blockquote>
+  <blockquote class="callout">मूल स्कैन PDF हमेशा बचा कर रखिए। OCR कोई पन्ना बिगाड़ दे, तो आपको मिलान करने के लिए असली फ़ाइल चाहिए, अंदाज़ा नहीं कि वह अटपटा शब्द क्या होना चाहिए था।</blockquote>
 
-  Output पर भरोसा करने से पहले एक बार check करने योग्य: .docx को Word में open करें और formatting marks देखें (Windows पर Ctrl+Shift+8, macOS पर Cmd+8 से toggle करें)। अगर आप हर line के end पर lots of paragraph marks देखते हैं - क्योंकि OCR ने सोचा कि हर visual line एक paragraph है - editing से पहले find-and-replace से इसे fix करें। Fix simple है: single paragraph marks को space से replace करें, फिर double paragraph marks को वापस single में। (मेरी मानें तो यह अकेली Word trick किसी भी OCR setting से ज़्यादा time बचाती है।)
+  नतीजे पर भरोसा करने से पहले एक जाँच काम की है: .docx को Word में खोलकर फ़ॉर्मैटिंग के निशान दिखा दीजिए (Windows पर Ctrl+Shift+8, macOS पर Cmd+8)। अगर हर लाइन के आख़िर में पैराग्राफ़ का निशान दिख रहा है, क्योंकि OCR ने हर दिखने वाली लाइन को अलग पैराग्राफ़ समझ लिया, तो एडिटिंग शुरू करने से पहले ढूँढो-और-बदलो से यह ठीक कर लीजिए। तरीक़ा सीधा है: पहले एक पैराग्राफ़ निशान को खाली जगह से बदलिए, फिर दो निशानों को एक से। यह अकेली आदत किसी भी OCR सेटिंग से ज़्यादा समय बचाती है।
 
-  <h2>Realistic accuracy expectations</h2>
+  <h2>सटीकता की सही उम्मीद</h2>
 
-  "99% accuracy" के marketing claims clean printed text on white paper at 300 DPI assume करते हैं। Real-world documents wildly vary करते हैं। यहाँ क्या actually expect करें:
+  99% सटीकता वाले दावे सफ़ेद काग़ज़ पर साफ़ छपे टेक्स्ट और 300 DPI को मानकर बनते हैं। असल दस्तावेज़ इससे बहुत अलग होते हैं। असल में क्या मिलता है:
 
   <table>
     <thead>
       <tr>
-        <th>Document type</th>
-        <th>Typical OCR accuracy</th>
-        <th>Cleanup needed</th>
+        <th>दस्तावेज़ की किस्म</th>
+        <th>आम OCR सटीकता</th>
+        <th>कितनी सफ़ाई करनी पड़ेगी</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Clean printed text, modern document</td>
-        <td>95-99%</td>
-        <td>Minimal, ज़्यादातर punctuation</td>
+        <td>साफ़ छपा टेक्स्ट, नया दस्तावेज़</td>
+        <td>95 से 99%</td>
+        <td>थोड़ी सी, ज़्यादातर विराम चिह्नों की</td>
       </tr>
       <tr>
-        <td>Faxed या photocopied document</td>
-        <td>80-90%</td>
-        <td>Page-by-page proofreading</td>
+        <td>फ़ैक्स या फ़ोटोकॉपी</td>
+        <td>80 से 90%</td>
+        <td>पन्ना-दर-पन्ना पढ़कर सुधारना</td>
       </tr>
       <tr>
-        <td>पुराने typewritten / pre-2000 print</td>
-        <td>75-90%</td>
-        <td>Heavy proofreading, especially "1" vs "l" के लिए</td>
+        <td>टाइपराइटर या 2000 से पहले की छपाई</td>
+        <td>75 से 90%</td>
+        <td>ठीक-ठाक मेहनत, ख़ासकर 1 और l के लिए</td>
       </tr>
       <tr>
-        <td>Handwriting</td>
-        <td>30-70%, highly variable</td>
-        <td>अक्सर retype करना faster</td>
+        <td>हाथ की लिखाई</td>
+        <td>30 से 70%, बहुत ऊपर-नीचे</td>
+        <td>अक्सर दोबारा टाइप करना तेज़ पड़ता है</td>
       </tr>
       <tr>
-        <td>Numbers वाली Tables</td>
-        <td>Layout ज़्यादातर समय fail होता है</td>
-        <td>Manual reformatting</td>
+        <td>अंकों वाली तालिकाएँ</td>
+        <td>ढाँचा ज़्यादातर बार बिगड़ता है</td>
+        <td>हाथ से फिर से बनाना</td>
       </tr>
       <tr>
-        <td>Multi-column newspaper या magazine layout</td>
-        <td>Text right, layout wrong</td>
-        <td>Manually single column में reflow</td>
+        <td>अख़बार या पत्रिका के कई कॉलम</td>
+        <td>टेक्स्ट सही, ढाँचा ग़लत</td>
+        <td>हाथ से एक कॉलम में लाना</td>
       </tr>
       <tr>
-        <td>Page की Camera photo (good lighting)</td>
-        <td>85-95%</td>
-        <td>Best results के लिए पहले Crop और deskew</td>
+        <td>पन्ने की कैमरा फ़ोटो (अच्छी रोशनी में)</td>
+        <td>85 से 95%</td>
+        <td>पहले किनारे काटिए और टेढ़ापन सीधा कीजिए</td>
       </tr>
     </tbody>
   </table>
 
-  कोई भी जो faxed document पर 99% promise करता है उसने या तो test नहीं किया है या कुछ बेच रहा है। Expectations "मुझे proofread करना होगा" पर set करें, "मैं इसे raw ship कर सकता हूँ" पर नहीं।
+  जो कोई फ़ैक्स पर 99% का वादा करता है, उसने या जाँचा नहीं है या कुछ बेच रहा है। उम्मीद यह रखिए कि पढ़कर सुधारना पड़ेगा, यह नहीं कि नतीजा सीधे आगे भेज दूँगा।
 
-  Specific gotcha: invoice numbers और reference codes वो जगह हैं जहाँ OCR errors सबसे ज़्यादा hurt करते हैं। Body text के paragraph में misread digit forgivable है; "Invoice 1023841" में misread digit payment को गलत account में post कर सकता है। OCR output में numerical IDs को हमेशा original के against cross-check करें।
+  एक ख़ास पेच: बिल नंबर और रेफ़रेंस कोड वहीं हैं जहाँ OCR की ग़लती सबसे भारी पड़ती है। पैराग्राफ़ के बीच एक अंक ग़लत पढ़ा जाना माफ़ है; Invoice 1023841 में एक अंक ग़लत हो जाए तो भुगतान दूसरे खाते में चला जाता है। OCR के नतीजे में सारे नंबर मूल फ़ाइल से मिला लीजिए।
 
-  <h2>Pre-OCR cleanup जो accuracy boost करता है</h2>
+  <h2>OCR से पहले की सफ़ाई, जो सटीकता बढ़ा देती है</h2>
 
-  पाँच minutes की prep post-OCR cleanup time को आधा कर देती है:
-
-  <ul>
-    <li><strong>Sideways pages rotate करें.</strong> OCR engines horizontal text assume करते हैं। 90-degree-off page gibberish या nothing return करता है। OCR से पहले <a href="/hi/pdf-edit/rotate/">sideways pages पहले rotate करने</a> के लिए tool use करें।</li>
-    <li><strong>Excess margins crop करें.</strong> Wide white borders layout analyzer को confuse करते हैं कि आपका single column दो हैं। Text actually जहाँ शुरू होता है वहाँ तक <a href="/hi/pdf-edit/crop/">margins crop करें</a>।</li>
-    <li><strong>Contrast बढ़ाएँ.</strong> Faded scans को PDF के रूप में re-saving से पहले scanner software या किसी image editor में contrast boost से benefit होता है। Pure white background पर pure black text gold standard है।</li>
-    <li><strong>Deskew.</strong> 2 to 3 degrees से tilt pages भी accuracy hurt करते हैं। ज़्यादातर scanner software में auto-deskew option है, और यह run करने योग्य है।</li>
-    <li><strong>Scanning से पहले colour को grayscale या black-and-white पर drop करें</strong> अगर कर सकें। Colour tints (typical yellow-tinged office photocopier output) contrast को ऐसे shift करते हैं जो recogniser को throw off करता है।</li>
-    <li><strong>Scanning से पहले staples और crinkles remove करें.</strong> Obvious लगता है, लेकिन folded pages shadowed lines produce करते हैं जिन्हें OCR underscores या table borders के रूप में misread करता है।</li>
-  </ul>
-
-  <h2>Post-OCR cleanup checklist</h2>
-
-  जब .docx आ जाए, गंभीरता से editing शुरू करने से पहले कुछ find-and-replace passes run करें। ये English documents में सबसे common OCR errors हैं:
+  पाँच मिनट की तैयारी बाद की सफ़ाई आधी कर देती है:
 
   <ul>
-    <li><code>rn</code> अक्सर <code>m</code> बन जाता है, या vice versa। "rn" और "modern" lookalikes के लिए search करें।</li>
-    <li><code>l</code> (lowercase L) <code>1</code> (one) के साथ confused। Especially invoice numbers और dates में common।</li>
-    <li><code>0</code> (zero) <code>O</code> (capital o) के साथ codes और IDs के अंदर confused।</li>
-    <li>Smart quotes straight quotes में या vice versa flipped, quotations breaking।</li>
-    <li>Em dashes दो hyphens या hyphen-space-hyphen में converted।</li>
-    <li>हर page से Headers और footers inline text के रूप में आ सकते हैं। उन्हें एक बार delete करें और real Word header lock down करें।</li>
-    <li>Bulleted lists plain paragraphs के रूप में rendered जो literal "•" या stray "o" character से prefixed हैं।</li>
-    <li>Hyphenated line-end words (consecutive lines पर mer-/chant) कभी-कभी actual hyphens के रूप में Word doc में survive करते हैं। "- " (hyphen-space) के लिए search करें और clean up करें।</li>
+    <li><strong>तिरछे पन्ने सीधे कीजिए।</strong> OCR इंजन मानकर चलते हैं कि टेक्स्ट सीधा है। 90 डिग्री घूमा पन्ना बकवास लौटाता है या कुछ भी नहीं। इसलिए पहले <a href="/hi/pdf-edit/rotate/">पन्ने घुमाकर सीधे कर लीजिए</a>।</li>
+    <li><strong>ज़्यादा हाशिया काट दीजिए।</strong> चौड़े सफ़ेद किनारे ढाँचा पढ़ने वाले को भरमाते हैं कि एक कॉलम दो हैं। जहाँ से टेक्स्ट असल में शुरू होता है, वहाँ तक <a href="/hi/pdf-edit/crop/">हाशिया काट दीजिए</a>।</li>
+    <li><strong>कंट्रास्ट बढ़ाइए।</strong> फीके स्कैन को PDF बनाने से पहले स्कैनर के सॉफ़्टवेयर या किसी इमेज एडिटर में कंट्रास्ट बढ़ा देने से फ़ायदा होता है। पूरे सफ़ेद पर पूरा काला टेक्स्ट सबसे अच्छी हालत है।</li>
+    <li><strong>टेढ़ापन सीधा कीजिए।</strong> दो-तीन डिग्री की तिरछाई भी सटीकता गिरा देती है। ज़्यादातर स्कैनर सॉफ़्टवेयर में यह अपने आप करने का विकल्प है, और वह चलाने लायक है।</li>
+    <li><strong>हो सके तो स्कैन ही स्लेटी या काले-सफ़ेद में कीजिए।</strong> रंग की परत (दफ़्तर की फ़ोटोकॉपी में आने वाली पीली झाईं) कंट्रास्ट को ऐसे खिसका देती है कि पहचानने वाला भटक जाता है।</li>
+    <li><strong>स्कैन से पहले स्टेपल और सलवटें हटा दीजिए।</strong> बात मामूली लगती है, पर मुड़े पन्ने छाया की लकीरें बनाते हैं, जिन्हें OCR रेखांकन या तालिका की लाइन समझ लेता है।</li>
   </ul>
 
-  Tables को लगभग हमेशा manual rebuilding की ज़रूरत होती है। अगर source में data है जो आप वैसे भी spreadsheet में चाहते हैं, सीधे Word skip करके numerical sections के लिए <a href="/hi/pdf-to-excel/">data को Excel में extract करना</a> faster हो सकता है।
+  <h2>OCR के बाद की जाँच-सूची</h2>
 
-  एक separate paragraph worth: signatures और stamps OCR survive नहीं करते। वे small embedded images के रूप में आते हैं, अक्सर clipped, कभी-कभी entirely lost। अगर document की legal value signature पर depend करती है, आपका OCR'd Word version working copy है, authoritative copy नहीं। Original PDF को canonical record के रूप में रखें।
-
-  <h2>कब OCR worth नहीं है</h2>
-
-  कभी-कभी सही answer OCR-and-clean के बजाय retype करना है। Break-even point document length और source quality पर depend करता है:
+  .docx आ जाए, तो गंभीरता से एडिट करने से पहले दो-तीन बार ढूँढो-और-बदलो चला लीजिए। अंग्रेज़ी दस्तावेज़ों में OCR की सबसे आम ग़लतियाँ ये हैं:
 
   <ul>
-    <li><strong>Clean print के एक page से कम:</strong> Retyping अक्सर OCR run करने, download करने, Word open करने, और proofing से faster है।</li>
-    <li><strong>Clean print के एक से दस pages:</strong> OCR जीतता है, cleanup के साथ भी।</li>
-    <li><strong>Bad fax quality के दस या ज़्यादा pages:</strong> OCR time पर जीतता है, लेकिन cleanup pass tedious हो सकता है। इसे real task की तरह plan करें, quick five-minute job नहीं।</li>
-    <li><strong>कुछ भी handwritten:</strong> Retype करें जब तक document hundreds of pages का न हो और alternative "इसे digitally बिल्कुल नहीं रखना" हो।</li>
-    <li><strong>Numerical data:</strong> Numbers retype करना OCR output के हर digit verify करने से faster है, और verification step mandatory है अगर accuracy matter करती है।</li>
+    <li><code>rn</code> बार-बार <code>m</code> बन जाता है, और उल्टा भी होता है। modern जैसे शब्द ढूँढकर देखिए।</li>
+    <li><code>l</code> (छोटा एल) और <code>1</code> (एक) की अदला-बदली। बिल नंबर और तारीख़ों में सबसे आम।</li>
+    <li><code>0</code> (शून्य) और <code>O</code> (बड़ा ओ) कोड और आईडी के अंदर उलट जाते हैं।</li>
+    <li>तिरछे उद्धरण चिह्न सीधे हो जाते हैं या उलटा, और उद्धरण टूट जाते हैं।</li>
+    <li>लंबी डैश दो हाइफ़न या हाइफ़न-खाली जगह-हाइफ़न में बदल जाती है।</li>
+    <li>हर पन्ने के ऊपर-नीचे लिखी पंक्तियाँ बीच के टेक्स्ट में घुल जाती हैं। उन्हें एक बार हटाइए और Word का असली हेडर इस्तेमाल कीजिए।</li>
+    <li>बुलेट वाली सूचियाँ सादे पैराग्राफ़ बन जाती हैं, जिनके आगे शाब्दिक • या भटका हुआ o लगा होता है।</li>
+    <li>लाइन के आख़िर में टूटे शब्द (mer- और अगली लाइन पर chant) कभी-कभी असली हाइफ़न बनकर बचे रह जाते हैं। हाइफ़न के बाद खाली जगह ढूँढकर सुधार लीजिए।</li>
   </ul>
 
-  Confidentiality के बारे में एक और जानने योग्य चीज़: एक scanned medical record या deposition transcript जिसे आप web service के through OCR करते हैं अब किसी और के server पर briefly रहा है, भले ही वह server promptly delete कर दे। HIPAA, GDPR के special-category data, या attorney-client privilege वाले documents के लिए, Tesseract या ABBYY FineReader जैसे desktop tool से locally OCR run करें। पाँच-minute setup tax peace of mind worth है।
+  तालिकाएँ लगभग हमेशा हाथ से बनानी पड़ती हैं। अगर मूल फ़ाइल में वह डेटा है जो आप आगे स्प्रेडशीट में ही चाहते हैं, तो Word से गुज़रने के बजाय <a href="/hi/pdf-to-excel/">सीधे Excel में निकाल लेना</a> तेज़ पड़ सकता है।
 
-  <h2>FAQ</h2>
+  एक बात अलग से: दस्तख़त और मुहरें OCR से पार नहीं उतरतीं। वे छोटी तस्वीरों की तरह आती हैं, अक्सर कटी हुई, कभी-कभी पूरी ग़ायब। अगर दस्तावेज़ की कानूनी कीमत दस्तख़त पर टिकी है, तो OCR वाला Word आपकी काम चलाने की कॉपी है, आधिकारिक रिकॉर्ड नहीं। असली रिकॉर्ड मूल PDF ही रहेगी।
 
-  <h3>Conversion के बाद मेरा Word doc blank क्यों आता है?</h3>
-  <p>लगभग हमेशा, आपने scanned PDF पर non-OCR converter run किया। Converter को कोई text layer नहीं मिला, इसलिए उसने page images embedded लेकिन कोई editable text के बिना Word doc produce किया। File को OCR-enabled conversion path से re-run करें।</p>
+  <h2>OCR कब फ़ायदे का नहीं है</h2>
 
-  <h3>क्या OCR handwritten notes handle कर सकता है?</h3>
-  <p>कभी-कभी, badly. Handwriting OCR neural models के साथ improve हुआ है लेकिन अब भी real-world handwriting पर 30% to 70% accuracy range करता है। Important कुछ भी के लिए, retyping आम तौर पर OCR output correct करने से faster है। Block-printed handwriting (capitals में filled form की तरह) cursive से बहुत better करता है।</p>
+  कभी-कभी सही जवाब यह होता है कि OCR चलाकर सुधारने के बजाय दोबारा टाइप कर लीजिए। यह सीमा दस्तावेज़ की लंबाई और स्कैन की हालत पर टिकी है:
 
-  <h3>OCR कौन सी languages support करता है?</h3>
-  <p>ज़्यादातर engines, including Convertica जो use करता है, सभी major European languages cover करते हैं including English, Spanish, French, German, Italian, Portuguese, Russian, Polish, और कई और। Accented या non-Latin scripts के लिए source language explicitly set करें। Mixed-language documents (English with quoted French passages) dominant language पर set होने पर best काम करते हैं।</p>
+  <ul>
+    <li><strong>साफ़ छपाई का एक पन्ने से कम:</strong> दोबारा टाइप करना अक्सर OCR चलाने, डाउनलोड करने, Word खोलने और पढ़कर सुधारने से तेज़ है।</li>
+    <li><strong>साफ़ छपाई के एक से दस पन्ने:</strong> OCR जीतता है, सफ़ाई के साथ भी।</li>
+    <li><strong>ख़राब फ़ैक्स के दस या ज़्यादा पन्ने:</strong> समय के हिसाब से OCR जीतता है, पर सफ़ाई उबाऊ होगी। इसे पूरा काम मानकर चलिए, पाँच मिनट का नहीं।</li>
+    <li><strong>हाथ से लिखा कुछ भी:</strong> दोबारा टाइप कीजिए, जब तक दस्तावेज़ सैकड़ों पन्नों का न हो और दूसरा रास्ता उसे डिजिटल रूप में रखना ही छोड़ देना हो।</li>
+    <li><strong>अंकों का डेटा:</strong> नंबर दोबारा टाइप करना, OCR के हर अंक की जाँच करने से तेज़ है, और वह जाँच छोड़ी नहीं जा सकती अगर सटीकता मायने रखती है।</li>
+  </ul>
 
-  <h3>Tables scrambled text के रूप में क्यों आ रही हैं?</h3>
-  <p>OCR left-to-right, top-to-bottom पढ़ता है, और table cell boundaries उस flow को confuse करते हैं। Row 1 column 3 के numbers row 2 column 1 के बगल में end हो सकते हैं। Tabular data के लिए, सीधे Excel में convert करना और table को वहाँ rebuild करना आम तौर पर Word में fix करने से faster है।</p>
+  गोपनीयता की एक और बात: कोई मेडिकल रिकॉर्ड या गवाही का लेखा जिसे आप वेब सेवा से OCR कराते हैं, वह थोड़ी देर के लिए किसी और के सर्वर पर रहा है, चाहे वह सर्वर उसे फ़ौरन मिटा भी दे। HIPAA, GDPR की ख़ास श्रेणी के डेटा, या वकील-क्लाइंट की गोपनीयता वाले दस्तावेज़ों पर OCR अपने ही कंप्यूटर पर चलाइए, Tesseract या ABBYY FineReader जैसे टूल से। पाँच मिनट की सेटिंग मन की शांति के लायक है।
 
-  <h3>क्या OCR conversion confidential है?</h3>
-  <p>Reputable browser-based tools file को temporary session में process करते हैं और इसे shortly after delete करते हैं। Sensitive documents upload करने से पहले किसी भी tool की privacy policy पढ़ें। Highly confidential material के लिए, web service के बजाय local OCR (Tesseract, ABBYY) consider करें।</p>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
 
-  <h3>50-page scan के लिए OCR कितना time लेता है?</h3>
-  <p>Image resolution और server load पर depending पर good service पर लगभग दो से पाँच minutes। 600 DPI पर scans 300 DPI से noticeably लंबा time लेते हैं बिना better results produce किए।</p>
+  <h3>रूपांतरण के बाद मेरा Word दस्तावेज़ ख़ाली क्यों आता है?</h3>
+  <p>लगभग हमेशा इसलिए कि आपने स्कैन PDF पर OCR के बिना चलने वाला कन्वर्टर चलाया। उसे कोई टेक्स्ट परत नहीं मिली, इसलिए उसने पन्नों की तस्वीरें रख दीं और एडिट होने वाला टेक्स्ट नहीं बना। फ़ाइल को OCR वाले रास्ते से दोबारा चलाइए।</p>
 
-  <h2>अभी try करें</h2>
+  <h3>क्या OCR हाथ से लिखे नोट पढ़ लेता है?</h3>
+  <p>कभी-कभी, और ख़राब तरीक़े से। हाथ की लिखाई पर OCR नए मॉडल से सुधरा है, लेकिन असल लिखाई पर सटीकता अब भी 30 से 70% के बीच झूलती है। किसी ज़रूरी चीज़ के लिए दोबारा टाइप करना, OCR का नतीजा सुधारने से तेज़ पड़ता है। अलग-अलग बड़े अक्षरों में लिखी लिखाई (जैसे फ़ॉर्म में भरी जाती है) घसीट से बहुत बेहतर पढ़ी जाती है।</p>
 
-  <p>Retyping बंद करें। अपना scan <a href="/hi/pdf-to-word/">PDF to Word converter</a> पर upload करें, source language set करें, और एक minute बाद आप Word में editing कर रहे होंगे। बस result ship करने से पहले quick proofreading pass plan करें।</p>
+  <h3>OCR कौन सी भाषाएँ पढ़ लेता है?</h3>
+  <p>ज़्यादातर इंजन, Convertica का इंजन भी, सभी बड़ी यूरोपीय भाषाएँ पढ़ लेते हैं: अंग्रेज़ी, स्पैनिश, फ़्रेंच, जर्मन, इतालवी, पुर्तगाली, रूसी, पोलिश और कई और। मात्राओं वाली या ग़ैर-लातीनी लिपियों के लिए मूल भाषा ख़ुद चुनिए। मिली-जुली भाषा वाले दस्तावेज़ (अंग्रेज़ी में बीच-बीच में फ़्रेंच उद्धरण) तब सबसे अच्छे आते हैं जब मुख्य भाषा चुनी गई हो।</p>
+
+  <h3>तालिकाएँ उलट-पुलट टेक्स्ट क्यों बन जाती हैं?</h3>
+  <p>OCR बाएँ से दाएँ और ऊपर से नीचे पढ़ता है, और तालिका के खाने इस बहाव को तोड़ देते हैं। पहली पंक्ति के तीसरे खाने के अंक दूसरी पंक्ति के पहले खाने के बगल में जा सकते हैं। तालिका वाले डेटा के लिए सीधे Excel में बदलकर वहाँ तालिका बनाना, Word में सुधारने से तेज़ रहता है।</p>
+
+  <h3>क्या OCR वाला रूपांतरण गोपनीय रहता है?</h3>
+  <p>भरोसेमंद ब्राउज़र टूल फ़ाइल को थोड़ी देर के सत्र में पढ़ते हैं और उसके तुरंत बाद मिटा देते हैं। संवेदनशील दस्तावेज़ अपलोड करने से पहले उस टूल की प्राइवेसी पॉलिसी पढ़ लीजिए। बहुत गोपनीय सामग्री पर वेब सेवा की जगह अपने कंप्यूटर पर OCR (Tesseract, ABBYY) चलाने पर सोचिए।</p>
+
+  <h3>पचास पन्नों के स्कैन पर OCR कितना समय लेता है?</h3>
+  <p>अच्छी सेवा पर करीब दो से पाँच मिनट, तस्वीरों के रेज़ोल्यूशन और सर्वर के बोझ के हिसाब से। 600 DPI के स्कैन 300 DPI से साफ़ तौर पर ज़्यादा समय लेते हैं और नतीजा बेहतर नहीं देते।</p>
+
+  <h2>अभी आज़माइए</h2>
+
+  <p>दोबारा टाइप करना छोड़िए। अपना स्कैन <a href="/hi/pdf-to-word/">PDF से Word कन्वर्टर</a> पर डालिए, मूल भाषा चुनिए, और एक मिनट बाद आप Word में एडिट कर रहे होंगे। बस नतीजा आगे भेजने से पहले एक बार पढ़कर देखने का समय रख लीजिए।</p>

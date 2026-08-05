@@ -1,147 +1,147 @@
 slug: watermark-pdf-confidential-draft
-title_hi: "Sharing से पहले PDF में 'CONFIDENTIAL' या 'DRAFT' Watermark कैसे Add करें"
-meta_title_hi: "PDF में Confidential या Draft Watermark Add करें Free"
-meta_description_hi: "PDF को CONFIDENTIAL, DRAFT या अपनी company के name से हर page पर diagonally stamp करें। Free browser tool, opacity और rotation के साथ जो professional दिखता है।"
-meta_keywords_hi: "pdf में watermark add करें, confidential watermark pdf, draft watermark, pdf stamp करें, pdf watermark free"
-excerpt_hi: "Contract draft या sensitive proposal भेज रहे हैं? हर page पर diagonal watermark आपको legally और visually protect करता है, लेकिन सिर्फ़ अगर आप इसे correctly setup करें।"
+title_hi: "भेजने से पहले PDF पर 'CONFIDENTIAL' या 'DRAFT' का वॉटरमार्क कैसे लगाएँ"
+meta_title_hi: "PDF पर Confidential या Draft वॉटरमार्क लगाएँ, मुफ़्त"
+meta_description_hi: "PDF के हर पन्ने पर CONFIDENTIAL, DRAFT या अपनी कंपनी का नाम तिरछा छाप दीजिए। मुफ़्त ब्राउज़र टूल, ओपैसिटी और घुमाव के साथ जो पेशेवर दिखता है।"
+meta_keywords_hi: "PDF पर वॉटरमार्क लगाएँ, confidential वॉटरमार्क PDF, draft वॉटरमार्क, PDF पर मुहर, pdf watermark free, PDF watermark hindi"
+excerpt_hi: "कॉन्ट्रैक्ट का ड्राफ़्ट या कोई संवेदनशील प्रस्ताव भेज रहे हैं? हर पन्ने पर तिरछा वॉटरमार्क आपको कानूनी और दिखने वाली, दोनों तरह की सुरक्षा देता है, बशर्ते आप उसकी सेटिंग ठीक रखें।"
 content_hi: |
-  एक watermark guard rail का soft form है। यह determined bad actor को नहीं रोकेगा, लेकिन तीन काम competently करता है: यह reader को बताता है कि document final नहीं है, यह screen-grabbing या photocopying को obviously traceable बनाता है, और यह casual "let me just forward this" reflex को discourage करता है। Draft contract, internal proposal या design proof के लिए, यह आम तौर पर exactly वो level of friction है जो आप चाहते हैं।
+  वॉटरमार्क सुरक्षा का नरम रूप है। यह ठाने हुए बदनीयत आदमी को नहीं रोकेगा, लेकिन तीन काम पक्के तौर पर करता है: पढ़ने वाले को बता देता है कि दस्तावेज़ अंतिम नहीं है, स्क्रीनशॉट या फ़ोटोकॉपी को साफ़ पहचान में लाने लायक बना देता है, और उस आम आदत पर लगाम लगाता है कि फ़ाइल आगे बढ़ा दी जाए। कॉन्ट्रैक्ट के ड्राफ़्ट, अंदरूनी प्रस्ताव या डिज़ाइन प्रूफ़ के लिए आम तौर पर इतनी ही रोक चाहिए होती है।
 
-  यह guide Convertica के <a href="/hi/pdf-edit/add-watermark/">PDF में watermark add</a> tool से PDF के हर page पर CONFIDENTIAL या DRAFT watermark add करने की पूरी process बताती है, उन settings के साथ जो practice में professional दिखती हैं। यह उस part को भी cover करती है जो ज़्यादातर articles skip करते हैं: watermark deterrent है, encryption नहीं, और इसे real lock के साथ कब combine करें।
+  यह गाइड Convertica के <a href="/hi/pdf-edit/add-watermark/">PDF पर वॉटरमार्क लगाने वाले टूल</a> से PDF के हर पन्ने पर CONFIDENTIAL या DRAFT का वॉटरमार्क लगाने का पूरा तरीक़ा बताती है, उन सेटिंग के साथ जो असल में पेशेवर दिखती हैं। साथ में वह हिस्सा भी है जिसे ज़्यादातर लेख छोड़ देते हैं: वॉटरमार्क रोकटोक है, एन्क्रिप्शन नहीं, और उसे असली ताले के साथ कब जोड़ना चाहिए।
 
-  <figure><img src="/static/blog/images/tool-watermark-hero.jpg" alt="Convertica watermark tool text, opacity, और rotation controls के साथ" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-watermark-hero.jpg" alt="Convertica का वॉटरमार्क टूल, टेक्स्ट, ओपैसिटी और घुमाव के कंट्रोल के साथ" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>कब आपको actually watermark चाहिए</h2>
+  <h2>वॉटरमार्क असल में कब चाहिए</h2>
 
-  Watermarks status signal करते हैं। उन्हें use करें जब document का status उसके meaning का part हो:
+  वॉटरमार्क दस्तावेज़ की हैसियत बताता है। इसे तब लगाइए जब वह हैसियत ही आधी बात हो:
 
   <ul>
-    <li><strong>Draft contracts.</strong> हर page पर एक <code>DRAFT</code> mark early version को signed final के रूप में mistakenly लिए जाने से रोकता है। (कई legal teams की एक story है जहाँ "DRAFT" को procurement भेज दिया गया, watermark removal step के बिना sign कर दिया गया, और operative agreement के रूप में end हुआ।)</li>
-    <li><strong>NDA-protected materials.</strong> <code>CONFIDENTIAL</code> document के legal posture को reinforce करता है और किसी भी leaked screenshot को self-incriminating बनाता है।</li>
-    <li><strong>Internal-only material.</strong> Board memos या strategy decks पर <code>INTERNAL USE ONLY</code> accidental forwarding की chance कम करता है।</li>
-    <li><strong>Photographer और designer proofs.</strong> हर preview frame पर diagonal text clients को payment से पहले deliverable use करने से discourage करता है।</li>
-    <li><strong>Pre-approval reports.</strong> <code>PENDING REVIEW</code> drafts को official के रूप में cited होने से रोकता है।</li>
-    <li><strong>Discovery-stage litigation drafts.</strong> Pleadings को <code>DRAFT - ATTORNEY WORK PRODUCT</code> mark करना उन्हें clearer status देता है अगर वे accidentally privileged channel से बाहर निकल जाएँ।</li>
+    <li><strong>कॉन्ट्रैक्ट के ड्राफ़्ट।</strong> हर पन्ने पर <code>DRAFT</code> की मुहर शुरुआती वर्शन को दस्तख़त हुए अंतिम दस्तावेज़ समझ लिए जाने से बचाती है। कई लीगल टीमों के पास वही किस्सा है, जहाँ DRAFT खरीद विभाग तक पहुँच गया, वॉटरमार्क हटाने की बात किसी को याद नहीं रही, और उसी पर दस्तख़त होकर वही असली अनुबंध बन गया।</li>
+    <li><strong>NDA के तहत दी गई सामग्री।</strong> <code>CONFIDENTIAL</code> दस्तावेज़ की कानूनी स्थिति को मज़बूत करता है और लीक हुए किसी भी स्क्रीनशॉट को लीक करने वाले के ही ख़िलाफ़ सबूत बना देता है।</li>
+    <li><strong>सिर्फ़ अंदरूनी इस्तेमाल की चीज़ें।</strong> बोर्ड मेमो या रणनीति की प्रस्तुतियों पर <code>INTERNAL USE ONLY</code> ग़लती से आगे भेज देने की गुंजाइश घटा देता है।</li>
+    <li><strong>फ़ोटोग्राफ़र और डिज़ाइनर के प्रूफ़।</strong> हर झलक पर तिरछा टेक्स्ट क्लाइंट को पैसा देने से पहले काम इस्तेमाल करने से रोकता है।</li>
+    <li><strong>मंज़ूरी से पहले की रिपोर्ट।</strong> <code>PENDING REVIEW</code> ड्राफ़्ट को आधिकारिक आँकड़े की तरह उद्धृत होने से बचाता है।</li>
+    <li><strong>मुक़दमे की तैयारी वाले ड्राफ़्ट।</strong> दलीलों पर <code>DRAFT - ATTORNEY WORK PRODUCT</code> लिख देने से, वे ग़लती से बाहर निकल जाएँ तो भी उनकी हैसियत साफ़ रहती है।</li>
   </ul>
 
-  <blockquote class="callout">अगर कोई reader आपकी file को final के रूप में mistake कर सकता है, तो इस पर watermark होना चाहिए।</blockquote>
+  <blockquote class="callout">अगर पढ़ने वाला आपकी फ़ाइल को अंतिम वर्शन समझ सकता है, तो उस पर वॉटरमार्क होना चाहिए।</blockquote>
 
-  <h2>Text vs image watermarks</h2>
+  <h2>टेक्स्ट वॉटरमार्क या इमेज वॉटरमार्क</h2>
 
-  आपके पास choose करने के लिए दो formats हैं, कभी-कभी दोनों:
+  चुनने के लिए दो रूप हैं, और कभी-कभी दोनों:
 
   <table>
     <thead>
-      <tr><th>Type</th><th>Best for</th><th>Trade-off</th></tr>
+      <tr><th>किस्म</th><th>किसके लिए सही</th><th>कीमत क्या चुकानी पड़ती है</th></tr>
     </thead>
     <tbody>
-      <tr><td>Text watermark</td><td>Status words: DRAFT, CONFIDENTIAL, INTERNAL</td><td>Plain, लेकिन unmistakable और lightweight</td></tr>
-      <tr><td>Image watermark (logo)</td><td>Branding ownership: proofs पर company logo</td><td>Polished दिखता है, file size बढ़ाता है, clean transparent PNG चाहिए</td></tr>
-      <tr><td>दोनों combined</td><td>Sensitive client work: logo plus DRAFT</td><td>ज़्यादा setup, strongest signal</td></tr>
+      <tr><td>टेक्स्ट वॉटरमार्क</td><td>हैसियत बताने वाले शब्द: DRAFT, CONFIDENTIAL, INTERNAL</td><td>सादा है, लेकिन साफ़ पढ़ा जाता है और फ़ाइल पर बोझ नहीं डालता</td></tr>
+      <tr><td>इमेज वॉटरमार्क (लोगो)</td><td>मालिकाना हक़ जताना: प्रूफ़ पर कंपनी का लोगो</td><td>देखने में जँचता है, फ़ाइल का साइज़ बढ़ाता है, साफ़ पारदर्शी PNG चाहिए</td></tr>
+      <tr><td>दोनों साथ</td><td>संवेदनशील क्लाइंट काम: लोगो के साथ DRAFT</td><td>सेटअप में ज़्यादा मेहनत, संकेत सबसे मज़बूत</td></tr>
     </tbody>
   </table>
 
-  Text काफ़ी है जब message procedural हो ("यह final version नहीं है")। Logo सही choice है जब message ownership हो ("यह artwork हमारा है जब तक आप invoice pay नहीं करते")। उन्हें combine करना everyday drafts के लिए overkill है लेकिन design और photography deliverables के लिए standard है।
+  टेक्स्ट काफ़ी है जब बात प्रक्रिया की हो (यह अंतिम वर्शन नहीं है)। लोगो तब सही है जब बात मालिकाना हक़ की हो (यह काम हमारा है, जब तक आप बिल नहीं चुकाते)। रोज़ के ड्राफ़्ट पर दोनों लगाना ज़रूरत से ज़्यादा है, लेकिन डिज़ाइन और फ़ोटोग्राफ़ी की डिलीवरी में यही चलन है।
 
-  Logo files पर specific gotcha: अगर आपका logo PNG true alpha transparency के बजाय white rectangle background के साथ exported हुआ था, watermark हर page पर visible white box के अंदर बैठेगा, जो बिल्कुल watermark न होने से worse दिखता है। PNG को किसी भी image viewer में open करें जो transparency दिखाता है (macOS पर Preview, Windows पर IrfanView "tile" view) और confirm करें कि white के बजाय logo के around checkerboard pattern है।
+  लोगो फ़ाइलों पर एक ख़ास पेच: अगर आपका लोगो PNG असली पारदर्शी परत के बजाय सफ़ेद चौकोर बैकग्राउंड के साथ बना है, तो वॉटरमार्क हर पन्ने पर एक दिखने वाले सफ़ेद डिब्बे के अंदर बैठ जाएगा, जो वॉटरमार्क न होने से भी बुरा लगता है। PNG को किसी ऐसे व्यूअर में खोलिए जो पारदर्शिता दिखाता है (macOS पर Preview, Windows पर IrfanView का tile view) और देख लीजिए कि लोगो के चारों तरफ़ सफ़ेद नहीं, शतरंज जैसे खाने दिख रहे हैं।
 
-  <h2>Step-by-step: text watermark add करें</h2>
+  <h2>कदम-दर-कदम: टेक्स्ट वॉटरमार्क लगाना</h2>
 
-  Settings जो practice में professional दिखती हैं:
+  वे सेटिंग, जो असल में पेशेवर दिखती हैं:
 
-  <figure><img src="/static/blog/images/tool-watermark-options.jpg" alt="PDF के हर page पर applied diagonal CONFIDENTIAL watermark" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-watermark-options.jpg" alt="PDF के हर पन्ने पर लगा तिरछा CONFIDENTIAL वॉटरमार्क" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li><a href="/hi/pdf-edit/add-watermark/">PDF में watermark add</a> tool खोलें और अपनी file upload करें।</li>
-    <li>Watermark type को <strong>Text</strong> पर switch करें।</li>
-    <li>Watermark text type करें। Uppercase use करें: <code>DRAFT</code>, <code>CONFIDENTIAL</code>, या अपनी company का name।</li>
-    <li>Font को sans-serif (Arial या Helvetica) पर large size पर set करें: A4 के लिए 60-80 pt।</li>
-    <li>Colour को mid-grey (around #888) पर set करें ताकि watermark light pages पर read हो बिना dark images को black-bombing किए।</li>
-    <li>Opacity को <strong>30-40%</strong> पर set करें। 25% से कम printed होने पर देखना मुश्किल हो जाता है, 50% से ऊपर underlying text के साथ interfere करता है।</li>
-    <li>Rotation को <strong>45 degrees</strong> diagonal पर set करें। यह horizontal text से ज़्यादा page area cover करता है और confidentiality marks के लिए established convention है।</li>
-    <li>सिर्फ़ first पर नहीं, <strong>सभी pages</strong> पर apply करें।</li>
-    <li>Result preview करें। अगर watermark text के पीछे बैठा है, आप done हैं। अगर critical signature line cover करता है, opacity 25% पर lower करें।</li>
-    <li>Download करें।</li>
+    <li><a href="/hi/pdf-edit/add-watermark/">वॉटरमार्क टूल</a> खोलिए और अपनी फ़ाइल अपलोड कीजिए।</li>
+    <li>वॉटरमार्क की किस्म <strong>Text</strong> पर कर दीजिए।</li>
+    <li>वॉटरमार्क का टेक्स्ट लिखिए। बड़े अक्षरों में रखिए: <code>DRAFT</code>, <code>CONFIDENTIAL</code>, या अपनी कंपनी का नाम।</li>
+    <li>फ़ॉन्ट कोई सादा सैन्स-सेरिफ़ (Arial या Helvetica) चुनिए और आकार बड़ा रखिए: A4 पर 60 से 80 pt।</li>
+    <li>रंग बीच वाला स्लेटी (करीब #888) रखिए, ताकि हल्के पन्नों पर वॉटरमार्क पढ़ा जाए और गहरी तस्वीरों पर काला धब्बा न बने।</li>
+    <li>ओपैसिटी <strong>30 से 40%</strong> रखिए। 25% से नीचे छपने पर दिखना मुश्किल हो जाता है, 50% से ऊपर नीचे के टेक्स्ट को पढ़ने में अड़चन डालता है।</li>
+    <li>घुमाव <strong>45 डिग्री</strong> यानी तिरछा रखिए। यह सीधे टेक्स्ट से ज़्यादा जगह ढकता है और गोपनीयता की मुहरों का जमा हुआ चलन भी यही है।</li>
+    <li>सिर्फ़ पहले पन्ने पर नहीं, <strong>सभी पन्नों</strong> पर लगाइए।</li>
+    <li>नतीजा देख लीजिए। अगर वॉटरमार्क टेक्स्ट के पीछे बैठा है, काम हो गया। अगर वह दस्तख़त की लाइन ढक रहा है, ओपैसिटी 25% पर ले आइए।</li>
+    <li>फ़ाइल डाउनलोड कर लीजिए।</li>
   </ol>
 
-  Download के बाद quick check worth है: file को उस viewer में open करें जो आपका recipient likely use करेगा, सिर्फ़ उसमें नहीं जिसमें आपने watermark किया। Foxit और Nitro Reader के कुछ older versions watermarks को Acrobat से थोड़ा बड़ा render करते हैं, जो diagonal text को page edge के बाहर push कर सकता है। अगर आपका recipient older PDF reader चलाने वाली corporate machine पर है, यही वो version है जो decide करता है कि watermark right दिखता है या नहीं।
+  डाउनलोड के बाद एक छोटी जाँच फ़ायदे की है: फ़ाइल उस व्यूअर में खोलिए जो आपका पाने वाला इस्तेमाल करेगा, सिर्फ़ उसमें नहीं जिसमें आपने वॉटरमार्क लगाया। Foxit और Nitro Reader के कुछ पुराने वर्शन वॉटरमार्क को Acrobat से थोड़ा बड़ा दिखाते हैं, जिससे तिरछा टेक्स्ट पन्ने के किनारे से बाहर निकल सकता है। अगर सामने वाला दफ़्तर की उस मशीन पर है जिसमें पुराना PDF रीडर चलता है, तो वही वर्शन तय करेगा कि वॉटरमार्क ठीक दिख रहा है या नहीं।
 
-  <h2>Legal weight के लिए Best practices</h2>
+  <h2>कानूनी वज़न के लिए बेहतर तरीक़े</h2>
 
-  Watermark का dispute में ज़्यादा weight तब होता है जब यह consistent और visible हो। Practical rules:
-
-  <ul>
-    <li><strong>30-40% opacity.</strong> किसी भी background के against readable, अब भी clearly overlay।</li>
-    <li><strong>Diagonal placement.</strong> Top या bottom strips से ज़्यादा page area cover करता है और screenshots cropping survive करता है।</li>
-    <li><strong>हर page पर apply करें.</strong> सिर्फ़ page 1 पर watermark partial-page screenshots invite करता है जो unmarked दिखते हैं।</li>
-    <li><strong>Unwatermarked master रखें.</strong> Original हमेशा separately save करें। जब deal close हो और document final हो, आप clean version produce करते हैं, watermark-removal job नहीं।</li>
-    <li><strong>Wording standardise करें.</strong> एक phrase pick करें ("DRAFT - NOT FOR EXECUTION" या "CONFIDENTIAL") और इसे consistently use करें। Inconsistent marks ad hoc दिखते हैं और signal weaken करते हैं।</li>
-    <li><strong>Watermark date करें.</strong> "DRAFT - 2026-04-28" obvious बनाता है कौन सा revision कोई देख रहा है और "लेकिन जो version मैंने देखा वो कुछ और कहता था" argument को discourage करता है।</li>
-    <li><strong>Capitalisation mix न करें.</strong> Same document set पर "Confidential" और "CONFIDENTIAL" ऐसे दिखते हैं जैसे एक दूसरे का draft हो।</li>
-  </ul>
-
-  Multi-section documents के लिए, आप पहले <a href="/hi/pdf-organize/merge/">multiple draft pages को एक file में merge</a> कर सकते हैं, फिर पूरे bundle पर एक बार watermark कर सकते हैं - हर section को separately watermark करने की तुलना में cleaner output।
-
-  <h2>Watermarks encryption नहीं हैं</h2>
-
-  यह वो part है जो ज़्यादातर "PDF में watermark कैसे add करें" articles skip करते हैं क्योंकि upsell के लिए awkward है। Watermark एक visible deterrent है। यह नहीं करता:
+  किसी विवाद में वॉटरमार्क का वज़न तब बढ़ता है जब वह हर जगह एक जैसा और साफ़ दिखता हो। काम के नियम:
 
   <ul>
-    <li>Recipient को PDF से text copy करने से prevent करना।</li>
-    <li>Screenshots रोकना, including watermark-and-all screenshots जो एक paragraph पर cropped हैं।</li>
-    <li>File contents encrypt करना।</li>
-    <li>Image editing software वाले determined adversary को इसे remove करने से रोकना (slowly, imperfectly)।</li>
-    <li>High-quality OCR pass survive करना जो body text को fresh document में retype करे।</li>
+    <li><strong>ओपैसिटी 30 से 40%।</strong> किसी भी बैकग्राउंड पर पढ़ा जाएगा, और ऊपर की परत जैसा ही लगेगा।</li>
+    <li><strong>तिरछी जगह।</strong> ऊपर या नीचे की पट्टी से ज़्यादा जगह ढकता है और स्क्रीनशॉट काटे जाने पर भी बचा रहता है।</li>
+    <li><strong>हर पन्ने पर लगाइए।</strong> सिर्फ़ पहले पन्ने का वॉटरमार्क आधे-अधूरे स्क्रीनशॉट को न्योता देता है, जो बिना मुहर के दिखते हैं।</li>
+    <li><strong>बिना वॉटरमार्क वाली मूल फ़ाइल बचा कर रखिए।</strong> असली फ़ाइल अलग से सहेजिए। सौदा पक्का होने पर आप साफ़ वर्शन बनाकर देते हैं, वॉटरमार्क खुरचने का काम नहीं करते।</li>
+    <li><strong>शब्द तय कर लीजिए।</strong> एक ही वाक्यांश चुनिए (DRAFT - NOT FOR EXECUTION या CONFIDENTIAL) और उसी पर टिकिए। बदलते हुए शब्द जल्दबाज़ी में गढ़े लगते हैं और संकेत कमज़ोर करते हैं।</li>
+    <li><strong>वॉटरमार्क पर तारीख़ डालिए।</strong> DRAFT - 2026-04-28 से साफ़ हो जाता है कि सामने वाला कौन सा रिवीज़न देख रहा है, और यह बहाना ख़त्म हो जाता है कि मैंने जो वर्शन देखा था उसमें कुछ और लिखा था।</li>
+    <li><strong>अक्षरों का रूप मत बदलिए।</strong> एक ही सेट में कहीं Confidential और कहीं CONFIDENTIAL हो, तो लगता है एक दूसरे का ड्राफ़्ट है।</li>
   </ul>
 
-  जो यह करता है वो social और legal context set करना है। एक leaked unwatermarked draft plausibly innocent है। हर page पर <code>CONFIDENTIAL</code> stamped के साथ leaked draft clearly NDA का breach है जो recipient ने sign किया, और वो distinction तब matter करता है जब lawyers damages weigh कर रहे हों।
+  कई हिस्सों वाले दस्तावेज़ में पहले <a href="/hi/pdf-organize/merge/">सभी ड्राफ़्ट पन्नों को एक फ़ाइल में जोड़</a> लीजिए, फिर पूरे बंडल पर एक बार वॉटरमार्क लगाइए। हर हिस्से पर अलग-अलग वॉटरमार्क लगाने से नतीजा साफ़ आता है।
 
-  Genuinely sensitive material के लिए, watermark को real protection के साथ combine करें: <a href="/hi/pdf-security/protect/">document को password-protect भी</a> करें AES-256 encryption से, और password को file से different channel से share करें। Watermark plus password defence का वो level है जो ज़्यादातर legal और finance teams board materials और unsigned commercial agreements के लिए expect करती हैं। (मेरा कहना है इस level पर भी, आप recipient पर trust कर रहे हैं। ऐसा कोई technical control नहीं जो determined insider को phone camera से screen copy करने से रोके। Watermark plus password "good faith plus deterrent" है, "tamper-proof" नहीं।)
+  <h2>वॉटरमार्क एन्क्रिप्शन नहीं है</h2>
+
+  यह वही हिस्सा है जिसे PDF पर वॉटरमार्क कैसे लगाएँ वाले ज़्यादातर लेख छोड़ देते हैं, क्योंकि यह बेचने में असुविधाजनक है। वॉटरमार्क दिखने वाली रोकटोक है। यह ये काम नहीं करता:
+
+  <ul>
+    <li>सामने वाले को PDF से टेक्स्ट कॉपी करने से रोकना।</li>
+    <li>स्क्रीनशॉट रोकना, उन कटे स्क्रीनशॉट समेत जिनमें एक पैराग्राफ़ ही बचा हो।</li>
+    <li>फ़ाइल की सामग्री एन्क्रिप्ट करना।</li>
+    <li>इमेज एडिटर वाले ठाने हुए आदमी को इसे हटाने से रोकना (धीरे और अधूरे ढंग से, पर हटा लेगा)।</li>
+    <li>अच्छे OCR से बच जाना, जो पूरा टेक्स्ट पढ़कर नई फ़ाइल में उतार दे।</li>
+  </ul>
+
+  जो यह करता है, वह सामाजिक और कानूनी ज़मीन तैयार करना है। बिना वॉटरमार्क लीक हुआ ड्राफ़्ट भोली भूल मानी जा सकती है। हर पन्ने पर <code>CONFIDENTIAL</code> लिखा वही ड्राफ़्ट लीक हो, तो यह उस NDA का साफ़ उल्लंघन है जिस पर सामने वाले ने दस्तख़त किए थे, और वकील जब हर्ज़ाना तय कर रहे हों तो यही फ़र्क़ काम आता है।
+
+  वाक़ई संवेदनशील सामग्री पर वॉटरमार्क को असली सुरक्षा से जोड़िए: <a href="/hi/pdf-security/protect/">दस्तावेज़ पर पासवर्ड भी लगाइए</a>, AES-256 एन्क्रिप्शन के साथ, और पासवर्ड फ़ाइल से अलग रास्ते से भेजिए। वॉटरमार्क और पासवर्ड, यह वही स्तर है जिसकी ज़्यादातर लीगल और फ़ाइनैंस टीमें बोर्ड की सामग्री और बिना दस्तख़त वाले व्यापारिक समझौतों पर उम्मीद करती हैं। और साफ़ कहें तो इस स्तर पर भी भरोसा सामने वाले पर ही है। ऐसी कोई तकनीक नहीं जो अंदर के आदमी को फ़ोन के कैमरे से स्क्रीन उतारने से रोक दे। वॉटरमार्क और पासवर्ड का मतलब नेकनीयती और रोकटोक है, छेड़छाड़ से पूरी सुरक्षा नहीं।
 
   <table>
     <thead>
-      <tr><th>Risk level</th><th>Recommended protection</th></tr>
+      <tr><th>ख़तरे का स्तर</th><th>सुझाई गई सुरक्षा</th></tr>
     </thead>
     <tbody>
-      <tr><td>Internal draft small team में circulating</td><td>सिर्फ़ Watermark</td></tr>
-      <tr><td>NDA के under counterparty को External draft</td><td>Watermark + password</td></tr>
-      <tr><td>Board pack, unannounced M&A, payroll data</td><td>Watermark + password + secure channel</td></tr>
-      <tr><td>Public-facing handout</td><td>Watermark की ज़रूरत नहीं</td></tr>
-      <tr><td>एक named recipient के लिए Personalised proof</td><td>उनके name के साथ Watermark + password</td></tr>
+      <tr><td>छोटी टीम के अंदर घूमता ड्राफ़्ट</td><td>सिर्फ़ वॉटरमार्क</td></tr>
+      <tr><td>NDA के तहत दूसरे पक्ष को भेजा ड्राफ़्ट</td><td>वॉटरमार्क और पासवर्ड</td></tr>
+      <tr><td>बोर्ड पैक, बिना घोषित M&amp;A, पेरोल डेटा</td><td>वॉटरमार्क, पासवर्ड और सुरक्षित रास्ता</td></tr>
+      <tr><td>सबके लिए बाँटा जाने वाला परचा</td><td>वॉटरमार्क की ज़रूरत नहीं</td></tr>
+      <tr><td>एक ही नामित व्यक्ति के लिए बना प्रूफ़</td><td>उसके नाम वाला वॉटरमार्क और पासवर्ड</td></tr>
     </tbody>
   </table>
 
-  वो last row note worth है। अगर आप generic "CONFIDENTIAL" के बजाय "Confidential - prepared for John Smith, Acme Corp" watermark करते हैं, उस copy से कोई भी leak specific recipient तक traceable है। Photographers और pre-publication news rooms ने यह technique decades से use की है। यह per recipient extra तीस seconds cost करता है और leaking की social cost dramatically बढ़ाता है।
+  आख़िरी पंक्ति पर ध्यान दीजिए। अगर आप आम CONFIDENTIAL की जगह लिखते हैं Confidential - prepared for John Smith, Acme Corp, तो उस कॉपी से हुआ कोई भी लीक सीधे उसी व्यक्ति तक पहुँचता है। फ़ोटोग्राफ़र और छपाई से पहले के न्यूज़रूम दशकों से यही करते आए हैं। हर व्यक्ति पर तीस सेकंड ज़्यादा लगते हैं, और लीक करने की सामाजिक कीमत कई गुना बढ़ जाती है।
 
-  <h2>बाद में अपना Watermark हटाना</h2>
+  <h2>बाद में वॉटरमार्क हटाना</h2>
 
-  जब deal final हो जाए, आपको clean file चाहिए। ऐसा एक ही good तरीका है: source से re-export करें।
+  सौदा पक्का होने पर आपको साफ़ फ़ाइल चाहिए। इसका एक ही सही तरीक़ा है: मूल फ़ाइल से दोबारा बनाइए।
 
   <ol>
-    <li>Watermark tool run करने से पहले unwatermarked master रखें।</li>
-    <li>जब document approved हो, master को <code>FINAL</code> mark से watermark करें या watermarking entirely remove करें, convention पर depending।</li>
-    <li>New clean version distribute करें, draft के "watermark-removed" version को नहीं।</li>
+    <li>वॉटरमार्क लगाने से पहले बिना मुहर वाली मूल फ़ाइल बचा कर रखिए।</li>
+    <li>दस्तावेज़ मंज़ूर हो जाए, तो मूल फ़ाइल पर <code>FINAL</code> की मुहर लगाइए, या चलन के हिसाब से वॉटरमार्क पूरा हटा दीजिए।</li>
+    <li>नई साफ़ फ़ाइल बाँटिए, ड्राफ़्ट का वह वर्शन नहीं जिससे वॉटरमार्क खुरचा गया हो।</li>
   </ol>
 
-  हम deliberately उन documents से watermarks remove करने का tool offer नहीं करते जो आप own नहीं करते। Third-party PDFs पर watermark removal लगभग हमेशा copyright, NDAs या original sender की terms violate करता है, और हम इसे easier नहीं बनाना चाहते।
+  जिन दस्तावेज़ों के मालिक आप नहीं हैं, उनसे वॉटरमार्क हटाने का टूल हम जान-बूझकर नहीं देते। दूसरों की PDF से वॉटरमार्क हटाना लगभग हमेशा कॉपीराइट, NDA या भेजने वाले की शर्तों का उल्लंघन होता है, और हम उस काम को आसान नहीं बनाना चाहते।
 
-  <h2>FAQ</h2>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
 
-  <h3>CONFIDENTIAL watermark के लिए कौन सी opacity use करूँ?</h3>
-  <p>30-40% sweet spot है। यह light backgrounds के पार clearly read होता है और black-and-white printing survive करता है underlying text obscure किए बिना। 25% से कम busy pages पर invisible हो जाता है; 50% से ऊपर reading के साथ interfere करता है।</p>
+  <h3>CONFIDENTIAL वॉटरमार्क पर कितनी ओपैसिटी रखूँ?</h3>
+  <p>30 से 40% सबसे सही रहती है। इतने पर वह हल्के बैकग्राउंड पर साफ़ पढ़ा जाता है और काले-सफ़ेद प्रिंट में भी बचा रहता है, नीचे का टेक्स्ट ढके बिना। 25% से नीचे भरे हुए पन्नों पर ग़ायब हो जाता है, 50% से ऊपर पढ़ने में अड़चन डालता है।</p>
 
-  <h3>क्या मैं सिर्फ़ specific pages पर watermark add कर सकता हूँ?</h3>
-  <p>हाँ, और valid reasons हैं (cover page exempt, appendices unmarked)। उस ने कहा, partial watermarking screenshots से defeat करना easier है, इसलिए हर page पर apply करें जब तक specific layout reason न हो।</p>
+  <h3>क्या मैं सिर्फ़ चुनिंदा पन्नों पर वॉटरमार्क लगा सकता हूँ?</h3>
+  <p>हाँ, और इसकी वाजिब वजहें भी होती हैं (कवर पन्ना छोड़ देना, परिशिष्ट बिना मुहर रखना)। फिर भी अधूरा वॉटरमार्क स्क्रीनशॉट से आसानी से मात खा जाता है, इसलिए लेआउट की कोई ख़ास वजह न हो तो हर पन्ने पर लगाइए।</p>
 
-  <h3>क्या Watermark printed होने पर दिखेगा?</h3>
-  <p>हाँ। Watermark page content का part है, viewer overlay नहीं, इसलिए यह exactly वैसा print होता है जैसा screen पर appear होता है। Black-and-white printing के लिए, mid-grey watermarks expected से थोड़े darker render होते हैं; अगर print करने का intent है तो opacity 5% कम कर दें। कुछ print drivers में "skip watermarks" option भी है जो certain enterprise printers पर default में enabled है - बड़े print run से पहले test करें।</p>
+  <h3>छपने पर वॉटरमार्क दिखेगा?</h3>
+  <p>हाँ। वॉटरमार्क पन्ने की सामग्री का हिस्सा है, व्यूअर की ऊपरी परत नहीं, इसलिए वह ठीक वैसा ही छपता है जैसा स्क्रीन पर दिखता है। काले-सफ़ेद प्रिंट में बीच वाला स्लेटी उम्मीद से थोड़ा गहरा आता है; छपाई का इरादा हो तो ओपैसिटी 5% घटा दीजिए। कुछ प्रिंट ड्राइवर में वॉटरमार्क छोड़ देने का विकल्प भी होता है, जो दफ़्तर के कुछ प्रिंटर पर पहले से चालू रहता है, इसलिए बड़ी छपाई से पहले एक पन्ना जाँच लीजिए।</p>
 
-  <h3>क्या Watermarking PDF copy होने से रोकता है?</h3>
-  <p>नहीं। Watermark सिर्फ़ visual deterrent है। Copying या printing restrict करने के लिए, watermark को permissions password के साथ combine करें जो उन actions को compliant viewers में disable करे।</p>
+  <h3>वॉटरमार्क लगाने से PDF कॉपी होना रुक जाता है?</h3>
+  <p>नहीं। वॉटरमार्क सिर्फ़ दिखने वाली रोकटोक है। कॉपी या छपाई रोकनी है तो वॉटरमार्क के साथ अनुमति वाला पासवर्ड लगाइए, जो नियम मानने वाले व्यूअर में उन कामों को बंद कर देता है।</p>
 
-  <h3>क्या मैं text के बजाय logo image add कर सकता हूँ?</h3>
-  <p>हाँ। Cleanest results के लिए transparent-background PNG use करें। इसे text के same coverage rationale के लिए 30-40% opacity पर diagonally place करें। Logo watermarks design और photography proofs के लिए standard practice हैं।</p>
+  <h3>टेक्स्ट की जगह लोगो लगा सकता हूँ?</h3>
+  <p>हाँ। सबसे साफ़ नतीजे के लिए पारदर्शी बैकग्राउंड वाला PNG लीजिए। उसे भी उसी वजह से 30 से 40% ओपैसिटी पर तिरछा रखिए। डिज़ाइन और फ़ोटोग्राफ़ी के प्रूफ़ पर लोगो वॉटरमार्क आम चलन है।</p>
 
-  <h2>अभी try करें</h2>
+  <h2>अभी आज़माइए</h2>
 
-  <p>अपने draft, proposal या proof को एक minute से कम में clear status mark से stamp करें और इसे second-guessing किए बिना भेजें कि recipient इसे final treat करेगा या नहीं। <a href="/hi/pdf-edit/add-watermark/">Watermark tool open करें →</a> जब आप यहाँ हैं तो बाक़ी <a href="/hi/all-tools/">all PDF editing tools</a> भी browse करें।</p>
+  <p>अपने ड्राफ़्ट, प्रस्ताव या प्रूफ़ पर एक मिनट से कम में हैसियत की साफ़ मुहर लगाइए और इस शंका के बिना भेजिए कि सामने वाला इसे अंतिम वर्शन समझ लेगा। <a href="/hi/pdf-edit/add-watermark/">वॉटरमार्क टूल खोलें →</a> और यहाँ आए हैं तो बाक़ी <a href="/hi/all-tools/">सभी PDF टूल</a> भी देख लीजिए।</p>
