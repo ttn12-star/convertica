@@ -102,11 +102,20 @@ def _strip_trailing_connector(text: str) -> str:
 
 
 @register.filter
-def seo_meta(value, max_len: int = 155) -> str:
+def seo_meta(value, max_len: int = 200) -> str:
     """Trim a meta description to max_len chars on a word boundary.
 
-    Google truncates meta description ~155-160 chars. Same string flows to og:/
-    twitter: tags so this filter is idempotent for anything ≤ max_len.
+    The cap is a sanity bound, not an SEO target. Google states there is "no
+    limit on how long a meta description can be, but the snippet is truncated
+    in Google Search results as needed, typically to fit the device width" —
+    the cut happens at display time, by pixels, so trimming the tag ourselves
+    only removes text that consumers showing more (Bing, Yandex, and the og:/
+    twitter: unfurls fed by this same string) would otherwise use.
+
+    200 is the ceiling because the twitter:description card spec caps there.
+    What actually matters for the visible snippet is front-loading: mobile cuts
+    around 120 chars, so the point belongs in the first sentence, and no length
+    setting can fix a description that buries it.
 
     Trailing punctuation/whitespace from the cut point is stripped so we don't
     leave dangling commas or em-dashes.
