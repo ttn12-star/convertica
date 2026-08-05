@@ -106,7 +106,7 @@
            class="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 min-w-0"
            aria-label="{% trans 'Convertica - Home' %}"
            itemprop="url">
-          <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition duration-300 overflow-hidden">
             <picture>
               <source srcset="{% static 'images/logo-56.webp' %} 1x, {% static 'images/logo-112.webp' %} 2x" type="image/webp">
               <source srcset="{% static 'images/logo-56.png' %} 1x, {% static 'images/logo-112.png' %} 2x" type="image/png">
@@ -120,7 +120,7 @@
             schema.org itemprop="name", while taking up no layout space. The
             logo icon carries the brand at those widths.
           {% endcomment %}
-          <span itemprop="name" class="sr-only min-[414px]:not-sr-only truncate text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-blue-700 transition-all duration-300 tracking-tight whitespace-nowrap">
+          <span itemprop="name" class="sr-only min-[414px]:not-sr-only truncate text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-blue-700 transition-colors duration-300 tracking-tight whitespace-nowrap">
             {% trans "Convertica" %}
           </span>
         </a>
@@ -132,7 +132,7 @@
           <!-- Desktop: Dropdown button (hidden on mobile) -->
           <a href="{% url 'frontend:all_tools_page' %}"
              aria-haspopup="menu"
-             class="hidden md:flex items-center space-x-0.5 sm:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg px-1.5 sm:px-2 md:px-3 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base"
+             class="hidden md:flex items-center space-x-0.5 sm:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg px-1.5 sm:px-2 md:px-3 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base"
              id="all-tools-menu-button"
              aria-controls="all-tools-menu-dropdown"
              aria-expanded="false">
@@ -158,7 +158,7 @@
                 <ul class="space-y-1.5 text-sm">
                   <li>
                     <a href="{% url 'frontend:word_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +170,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:pdf_to_word_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,7 +182,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:jpg_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,7 +194,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:pdf_to_jpg_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,7 +206,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:excel_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,7 +218,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:pdf_to_excel_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,7 +230,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:ppt_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,7 +242,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:pdf_to_ppt_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -254,7 +254,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:html_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -266,7 +266,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:text_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,7 +278,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:pdf_to_html_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -291,7 +291,7 @@
                   {% if PAYMENTS_ENABLED %}
                     <li>
                       <a href="{% url 'frontend:epub_to_pdf_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -303,7 +303,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:pdf_to_epub_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:pdf_to_markdown_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -327,7 +327,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:ocr_pdf_to_word_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -340,7 +340,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:pdf_to_text_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -360,7 +360,7 @@
                 <ul class="space-y-1.5 text-sm">
                   <li>
                     <a href="{% url 'frontend:rotate_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -372,7 +372,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:crop_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -384,7 +384,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:add_page_numbers_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,7 +396,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:add_watermark_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -408,7 +408,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:flatten_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -420,7 +420,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:resize_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-900/30 hover:text-sky-600 dark:hover:text-sky-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-900/30 hover:text-sky-600 dark:hover:text-sky-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -432,7 +432,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:add_text_pdf_page' %}"
-                       class="flex items-center justify-between p-2.5 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center justify-between p-2.5 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
@@ -446,7 +446,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:pdf_editor_page' %}"
-                       class="flex items-center justify-between p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center justify-between p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
@@ -461,7 +461,7 @@
                   {% if PAYMENTS_ENABLED %}
                     <li>
                       <a href="{% url 'frontend:sign_pdf_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="flex items-center space-x-2.5">
                           <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
@@ -483,7 +483,7 @@
                 <ul class="space-y-1.5 text-sm">
                   <li>
                     <a href="{% url 'frontend:merge_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -495,7 +495,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:split_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -507,7 +507,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:remove_pages_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -519,7 +519,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:extract_pages_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center group-hover:bg-yellow-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -531,7 +531,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:organize_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -543,7 +543,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:compress_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -556,7 +556,7 @@
                   {% if PAYMENTS_ENABLED %}
                     <li>
                       <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/30 hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/30 hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -570,7 +570,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:compare_pdf_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/30 hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/30 hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -591,7 +591,7 @@
                 <ul class="space-y-1.5 text-sm">
                   <li>
                     <a href="{% url 'frontend:optimize_image_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -603,7 +603,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:convert_image_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-fuchsia-100 rounded-lg flex items-center justify-center group-hover:bg-fuchsia-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -615,7 +615,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:image_to_text_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -627,7 +627,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:heic_to_jpg_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-900/30 hover:text-rose-600 dark:hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-900/30 hover:text-rose-600 dark:hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -639,7 +639,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:favicon_generator_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -651,7 +651,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:png_to_ico_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -663,7 +663,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:jpg_to_ico_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -676,7 +676,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:svg_to_ico_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -688,7 +688,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:webp_to_ico_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -700,7 +700,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:ico_to_png_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -712,7 +712,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:password_protect_image_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -731,7 +731,7 @@
                 <ul class="space-y-1.5 text-sm">
                   <li>
                     <a href="{% url 'frontend:protect_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -743,7 +743,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:unlock_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -762,7 +762,7 @@
                 <ul class="space-y-1.5 text-sm">
                   <li>
                     <a href="{% url 'frontend:protect_zip_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -774,7 +774,7 @@
                   </li>
                   <li>
                     <a href="{% url 'frontend:unlock_zip_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -799,7 +799,7 @@
                   <ul class="space-y-1.5 text-sm">
                     <li>
                       <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
@@ -812,7 +812,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:compare_pdf_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
@@ -825,7 +825,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:ocr_pdf_to_word_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
@@ -838,7 +838,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:batch_converter_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
@@ -851,7 +851,7 @@
                     </li>
                     <li>
                       <a href="{% if user.is_premium_active %}{% url 'frontend:premium_workflows_page' %}{% else %}{% url 'frontend:saved_workflows_page' %}{% endif %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors flex-shrink-0">
@@ -864,7 +864,7 @@
                     </li>
                     <li>
                       <a href="{% if user.is_premium_active %}{% url 'frontend:background_center_page' %}{% else %}{% url 'frontend:background_tasks_page' %}{% endif %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors flex-shrink-0">
@@ -877,7 +877,7 @@
                     </li>
                     <li>
                       <a href="{% url 'api_landing' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="flex items-center space-x-2.5 min-w-0">
                           <span class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors flex-shrink-0">
@@ -906,7 +906,7 @@
               <button id="mega-menu-button"
                       aria-haspopup="menu"
                       aria-expanded="false"
-                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="mega-menu-dropdown"
                       aria-label="{% trans 'Convert PDF tools' %}">
                 <span class="whitespace-nowrap">{% trans "Convert PDF" %}</span>
@@ -928,7 +928,7 @@
 
                   <div class="grid grid-cols-2 gap-2">
                     <a href="{% url 'frontend:pdf_to_word_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -939,7 +939,7 @@
                     </a>
 
                     <a href="{% url 'frontend:word_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -950,7 +950,7 @@
                     </a>
 
                     <a href="{% url 'frontend:pdf_to_jpg_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -961,7 +961,7 @@
                     </a>
 
                     <a href="{% url 'frontend:jpg_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -972,7 +972,7 @@
                     </a>
 
                     <a href="{% url 'frontend:pdf_to_excel_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -983,7 +983,7 @@
                     </a>
 
                     <a href="{% url 'frontend:excel_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -994,7 +994,7 @@
                     </a>
 
                     <a href="{% url 'frontend:pdf_to_ppt_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1005,7 +1005,7 @@
                     </a>
 
                     <a href="{% url 'frontend:ppt_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1016,7 +1016,7 @@
                     </a>
 
                     <a href="{% url 'frontend:pdf_to_html_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1027,7 +1027,7 @@
                     </a>
 
                     <a href="{% url 'frontend:html_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1038,7 +1038,7 @@
                     </a>
 
                     <a href="{% url 'frontend:text_to_pdf_page' %}"
-                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
                       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1050,7 +1050,7 @@
 
                     {% if PAYMENTS_ENABLED %}
                       <a href="{% url 'frontend:pdf_to_text_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300"
                          role="menuitem">
                         <div class="flex items-center space-x-2.5">
                           <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -1073,7 +1073,7 @@
               <button id="edit-pdf-menu-button"
                       aria-haspopup="menu"
                       aria-expanded="false"
-                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="edit-pdf-menu-dropdown"
                       aria-label="{% trans 'Edit PDF tools' %}"
                       aria-expanded="false">
@@ -1095,7 +1095,7 @@
                     <ul class="space-y-1.5 text-sm">
                       <li>
                         <a href="{% url 'frontend:rotate_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1107,7 +1107,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:crop_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1119,7 +1119,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:flatten_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1131,7 +1131,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:resize_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1150,7 +1150,7 @@
                     <ul class="space-y-1.5 text-sm">
                       <li>
                         <a href="{% url 'frontend:add_page_numbers_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-pink-50 hover:text-pink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-pink-50 hover:text-pink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1162,7 +1162,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:add_watermark_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-cyan-50 hover:text-cyan-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-cyan-50 hover:text-cyan-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors flex-shrink-0">
                             <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1174,7 +1174,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:add_text_pdf_page' %}"
-                           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-all duration-200 text-gray-700"
+                           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors duration-200 text-gray-700"
                            role="menuitem">
                           <div class="flex items-center space-x-2.5">
                             <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -1188,7 +1188,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:pdf_editor_page' %}"
-                           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-violet-50 hover:text-violet-700 transition-all duration-200 text-gray-700"
+                           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-violet-50 hover:text-violet-700 transition-colors duration-200 text-gray-700"
                            role="menuitem">
                           <div class="flex items-center space-x-2.5">
                             <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -1203,7 +1203,7 @@
                       {% if PAYMENTS_ENABLED %}
                         <li>
                           <a href="{% url 'frontend:sign_pdf_page' %}"
-                             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition-all duration-200 text-gray-700"
+                             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition-colors duration-200 text-gray-700"
                              role="menuitem">
                             <div class="flex items-center space-x-2.5">
                               <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -1227,7 +1227,7 @@
               <button id="organize-pdf-menu-button"
                       aria-haspopup="menu"
                       aria-expanded="false"
-                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="organize-pdf-menu-dropdown"
                       aria-label="{% trans 'Organize PDF tools' %}"
                       aria-expanded="false">
@@ -1249,7 +1249,7 @@
                     <ul class="space-y-1.5 text-sm">
                       <li>
                         <a href="{% url 'frontend:merge_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1261,7 +1261,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:split_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1273,7 +1273,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:organize_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1285,7 +1285,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:compress_pdf_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-orange-50 hover:text-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-orange-50 hover:text-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1304,7 +1304,7 @@
                     <ul class="space-y-1.5 text-sm">
                       <li>
                         <a href="{% url 'frontend:remove_pages_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1316,7 +1316,7 @@
                       </li>
                       <li>
                         <a href="{% url 'frontend:extract_pages_page' %}"
-                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-yellow-50 hover:text-yellow-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 transition-all duration-200 text-gray-700 group"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-yellow-50 hover:text-yellow-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 transition-colors duration-200 text-gray-700 group"
                            role="menuitem">
                           <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center group-hover:bg-yellow-200 transition-colors flex-shrink-0">
                             <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1337,7 +1337,7 @@
               <button id="images-menu-button"
                       aria-haspopup="menu"
                       aria-expanded="false"
-                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="images-menu-dropdown"
                       aria-label="{% trans 'Image tools' %}"
                       aria-expanded="false">
@@ -1357,7 +1357,7 @@
                   <ul class="space-y-1.5 text-sm">
                     <li>
                       <a href="{% url 'frontend:optimize_image_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 hover:text-violet-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 hover:text-violet-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1369,7 +1369,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:convert_image_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-fuchsia-50 hover:text-fuchsia-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-fuchsia-50 hover:text-fuchsia-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-fuchsia-100 rounded-lg flex items-center justify-center group-hover:bg-fuchsia-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1381,7 +1381,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:image_to_text_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1393,7 +1393,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:heic_to_jpg_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1405,7 +1405,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:favicon_generator_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1417,7 +1417,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:png_to_ico_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1429,7 +1429,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:jpg_to_ico_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1442,7 +1442,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:svg_to_ico_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-orange-50 hover:text-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-orange-50 hover:text-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1454,7 +1454,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:webp_to_ico_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-cyan-50 hover:text-cyan-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-cyan-50 hover:text-cyan-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1466,7 +1466,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:ico_to_png_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1478,7 +1478,7 @@
                     </li>
                     <li>
                       <a href="{% url 'frontend:password_protect_image_page' %}"
-                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200 text-gray-700 group"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-colors duration-200 text-gray-700 group"
                          role="menuitem">
                         <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
                           <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1498,7 +1498,7 @@
                 <button id="premium-tools-menu-button"
                         aria-haspopup="menu"
                         aria-expanded="false"
-                        class="flex items-center gap-1 text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                        class="flex items-center gap-1 text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                         aria-controls="premium-tools-menu-dropdown">
                   <span class="whitespace-nowrap">{% trans "Premium Tools" %}</span>
                   <span class="inline-flex items-center px-1.5 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
@@ -1615,7 +1615,7 @@
               <button id="more-tools-menu-button"
                       aria-haspopup="menu"
                       aria-expanded="false"
-                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="more-tools-menu-dropdown"
                       aria-label="{% trans 'More tools' %}">
                 <span class="whitespace-nowrap">{% trans "More tools" %}</span>
@@ -1637,7 +1637,7 @@
               <button id="more-menu-button"
                       aria-haspopup="menu"
                       aria-expanded="false"
-                      class="hidden md:flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      class="hidden md:flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors duration-200 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="more-menu-dropdown"
                       aria-label="{% trans 'More options' %}">
                 <span class="whitespace-nowrap">{% trans "More" %}</span>
@@ -1654,7 +1654,7 @@
                 <div class="py-1">
                   <!-- About -->
                   <a href="{% url 'frontend:about_page' %}"
-                     class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 dark:hover:text-indigo-200 transition-all duration-200 border-l-4 border-transparent hover:border-indigo-500"
+                     class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 dark:hover:text-indigo-200 transition-colors duration-200 border-l-4 border-transparent hover:border-indigo-500"
                      role="menuitem">
                     <div class="flex items-center space-x-3 w-full">
                       <div class="p-2 rounded-lg bg-gray-100 group-hover:bg-indigo-100 transition-colors duration-200">
@@ -1671,7 +1671,7 @@
 
                   <!-- Contact -->
                   <a href="{% url 'frontend:contact_page' %}"
-                     class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-emerald-700 dark:hover:text-emerald-200 transition-all duration-200 border-l-4 border-transparent hover:border-emerald-500"
+                     class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-emerald-700 dark:hover:text-emerald-200 transition-colors duration-200 border-l-4 border-transparent hover:border-emerald-500"
                      role="menuitem">
                     <div class="flex items-center space-x-3 w-full">
                       <div class="p-2 rounded-lg bg-gray-100 group-hover:bg-emerald-100 transition-colors duration-200">
@@ -1688,7 +1688,7 @@
 
                   <!-- Blog -->
                   <a href="{% url 'blog:article_list' %}"
-                     class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-700 dark:hover:text-rose-200 transition-all duration-200 border-l-4 border-transparent hover:border-rose-500"
+                     class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-700 dark:hover:text-rose-200 transition-colors duration-200 border-l-4 border-transparent hover:border-rose-500"
                      role="menuitem">
                     <div class="flex items-center space-x-3 w-full">
                       <div class="p-2 rounded-lg bg-gray-100 group-hover:bg-rose-100 transition-colors duration-200">
@@ -1711,10 +1711,10 @@
                       {% if not user.is_premium_active %}
                         <!-- Hero Page (authenticated non-premium) -->
                         <a href="{% url 'frontend:pricing' %}"
-                           class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-amber-700 dark:hover:text-amber-200 transition-all duration-200 border-l-4 border-transparent hover:border-amber-500"
+                           class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-amber-700 dark:hover:text-amber-200 transition-colors duration-200 border-l-4 border-transparent hover:border-amber-500"
                            role="menuitem">
                           <div class="flex items-center space-x-3 w-full">
-                            <div class="p-2 rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 group-hover:from-amber-200 group-hover:to-orange-200 transition-all duration-200">
+                            <div class="p-2 rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 group-hover:from-amber-200 group-hover:to-orange-200 transition-colors duration-200">
                               <svg class="w-4 h-4 text-amber-600 group-hover:text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
                               </svg>
@@ -1729,10 +1729,10 @@
 
                       <!-- Profile (authenticated) -->
                       <a href="{% url 'users:profile' %}"
-                         class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 dark:hover:text-blue-200 transition-all duration-200 border-l-4 border-transparent hover:border-blue-500"
+                         class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 dark:hover:text-blue-200 transition-colors duration-200 border-l-4 border-transparent hover:border-blue-500"
                          role="menuitem">
                         <div class="flex items-center space-x-3 w-full">
-                          <div class="p-2 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 group-hover:from-blue-200 group-hover:to-indigo-200 transition-all duration-200">
+                          <div class="p-2 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 group-hover:from-blue-200 group-hover:to-indigo-200 transition-colors duration-200">
                             <svg class="w-4 h-4 text-blue-600 group-hover:text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
@@ -1746,10 +1746,10 @@
                     {% else %}
                       <!-- Hero Page (not authenticated) -->
                       <a href="{% url 'users:login' %}?next={% url 'frontend:pricing' %}"
-                         class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-amber-700 dark:hover:text-amber-200 transition-all duration-200 border-l-4 border-transparent hover:border-amber-500"
+                         class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-amber-700 dark:hover:text-amber-200 transition-colors duration-200 border-l-4 border-transparent hover:border-amber-500"
                          role="menuitem">
                         <div class="flex items-center space-x-3 w-full">
-                          <div class="p-2 rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 group-hover:from-amber-200 group-hover:to-orange-200 transition-all duration-200">
+                          <div class="p-2 rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 group-hover:from-amber-200 group-hover:to-orange-200 transition-colors duration-200">
                             <svg class="w-4 h-4 text-amber-600 group-hover:text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
                             </svg>
@@ -1763,10 +1763,10 @@
 
                       <!-- Profile (not authenticated) -->
                       <a href="{% url 'users:login' %}?next={% url 'users:profile' %}"
-                         class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 dark:hover:text-blue-200 transition-all duration-200 border-l-4 border-transparent hover:border-blue-500"
+                         class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 dark:hover:text-blue-200 transition-colors duration-200 border-l-4 border-transparent hover:border-blue-500"
                          role="menuitem">
                         <div class="flex items-center space-x-3 w-full">
-                          <div class="p-2 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 group-hover:from-blue-200 group-hover:to-indigo-200 transition-all duration-200">
+                          <div class="p-2 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 group-hover:from-blue-200 group-hover:to-indigo-200 transition-colors duration-200">
                             <svg class="w-4 h-4 text-blue-600 group-hover:text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
@@ -1789,7 +1789,7 @@
         <!-- Theme Toggle Button (Premium Feature - Desktop only) -->
           {% if PAYMENTS_ENABLED %}
             <button id="theme-toggle-btn"
-                    class="hidden md:flex relative group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 flex-shrink-0"
+                    class="hidden md:flex relative group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 flex-shrink-0"
                     aria-label="{% trans 'Toggle theme' %}"
                     title="{% if user.is_authenticated and user.is_premium_active %}{% trans 'Toggle Dark Mode' %}{% else %}{% trans 'Dark Mode (Premium)' %}{% endif %}">
               <svg class="theme-icon w-5 h-5 text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
@@ -1811,7 +1811,7 @@
           {% if user.is_authenticated and user.is_premium_active %}
             <div class="relative ms-2 flex-shrink-0 hidden md:block">
               <button id="bgTasksIndicator"
-                      class="hidden relative group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400"
+                      class="hidden relative group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400"
                       aria-label="{% trans 'Background tasks' %}"
                       title="{% trans 'Background tasks' %}">
                 <svg class="w-5 h-5 text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
