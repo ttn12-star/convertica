@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop, wf-probe ]
+    branches: [ main, develop ]
     tags:
       - 'v*'  # Deploy on version tags (e.g., v1.0.0)
   pull_request:
@@ -893,6 +893,9 @@ jobs:
             print(f'📊 Operations: {OperationRun.objects.count()}')
             " || echo "⚠️ Final verification failed (non-critical)"
 
+            # drop the manifest + inline CSS cached before Step 4/5 rebuilt them
+            docker restart "$NEW_WEB_ID" >/dev/null 2>&1 || true
+
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
@@ -936,17 +939,10 @@ jobs:
               echo "⚠️ Failed to restart celery services, but web is healthy - continuing..."
             fi
 
-            # Step 8: Pick up new nginx.conf.
-            #
-            # Why restart instead of `nginx -s reload`:
-            # `git reset --hard` replaces ./ci/nginx.conf with a fresh inode
-            # while the running nginx container's bind-mount stays attached
-            # to the OLD (now-orphaned) inode. SIGHUP then re-reads the
-            # orphaned file = no-op. We hit exactly this on the prod box
-            # (container Up 3 months while host file kept changing). Verified
-            # via `ls -li` inside vs. outside the container — different inodes.
-            # `restart` re-binds the mount to the current inode.
-            # Downtime is ~2-3s; nginx returns 502 briefly, acceptable.
+            # Step 8: new nginx.conf. Restart, not `nginx -s reload`: git reset
+            # gives ci/nginx.conf a fresh inode while the container's bind-mount
+            # stays on the orphaned one, so SIGHUP is a no-op (hit on prod, the
+            # container was Up 3 months). Restart re-binds it. ~2-3s of 502s.
             echo "🔄 Validating nginx config..."
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -t; then
               echo "❌ nginx config invalid — leaving previous config running"

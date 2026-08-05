@@ -17,12 +17,20 @@ import sys
 
 import yaml
 
-# The ceiling is counted in BYTES, not characters — measured on this repo: a
-# script of 20765 bytes deploys, 21089 bytes does not, and these scripts are full
-# of multi-byte emoji, so a character count reads ~300 too low and lets a broken
-# workflow through. Warn early: the deploy script is already near the limit.
-HARD_LIMIT = 21000
-WARN_AT = 20000
+# The ceiling is counted in BYTES, not characters, and it is LOWER than the
+# 21000 usually quoted. Bisected on this repo by pushing candidates to a branch
+# listed in on.push.branches (a pull_request run validates the BASE branch's
+# workflow, so PRs cannot test a workflow change at all):
+#
+#   20831 bytes -> parses      20843 bytes -> parses
+#   20886 bytes -> rejected    21089 bytes -> rejected    22322 bytes -> rejected
+#
+# So the real limit sits in (20843, 20886]. Over it the whole workflow becomes
+# unparseable: runs die in 0s, the run is named after the file path instead of
+# the workflow, and neither REST, GraphQL nor actionlint will tell you why.
+# HARD_LIMIT is the largest size proven to work; above that is unproven.
+HARD_LIMIT = 20843
+WARN_AT = 20300
 
 
 def step_values(workflow):
