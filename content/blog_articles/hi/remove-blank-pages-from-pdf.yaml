@@ -1,126 +1,126 @@
 slug: remove-blank-pages-from-pdf
-title_hi: "PDF से Blank या Unwanted Pages कैसे Remove करें एक Minute से कम में"
-meta_title_hi: "PDF से Blank Pages Remove करें Free Online | Convertica"
-meta_description_hi: "Scanners blank pages insert करते हैं, contracts placeholder pages के साथ ship होते हैं। Adobe Acrobat ख़रीदे या software install किए बिना उन्हें delete करने का सबसे fast तरीका सीखें।"
-meta_keywords_hi: "remove blank pages pdf, pdf pages delete करें, pages remove free, pdf page remover, pdf clean up करें"
-excerpt_hi: "Duplex scanners blank pages insert करना पसंद करते हैं जहाँ original single-sided था। Adobe Acrobat के लिए pay किए बिना उन्हें seconds में strip out करें।"
+title_hi: "PDF से ख़ाली या बेकार पन्ने एक मिनट से कम में कैसे हटाएँ"
+meta_title_hi: "PDF से ख़ाली पन्ने हटाएँ, मुफ़्त ऑनलाइन | Convertica"
+meta_description_hi: "स्कैनर ख़ाली पन्ने जोड़ देते हैं, कॉन्ट्रैक्ट में जगह भरने वाले पन्ने आते हैं। Acrobat ख़रीदे या कुछ इंस्टॉल किए बिना उन्हें हटाने का सबसे तेज़ तरीक़ा।"
+meta_keywords_hi: "PDF से ख़ाली पन्ने हटाएँ, PDF के पन्ने मिटाएँ, PDF पन्ना हटाने वाला टूल, PDF साफ़ करें, remove blank pages pdf hindi"
+excerpt_hi: "दोनों तरफ़ स्कैन करने वाली मशीनें वहाँ भी ख़ाली पन्ने जोड़ देती हैं जहाँ मूल काग़ज़ एक तरफ़ ही छपा था। Acrobat का पैसा दिए बिना उन्हें सेकंडों में निकाल दीजिए।"
 content_hi: |
-  एक PDF open करें जो duplex scanner से निकला और आप अक्सर हर real page के बाद एक blank page पाएँगे, क्योंकि scanner ने हर single-sided original के back को dutifully capture किया है। एक contract template open करें और शायद आप दो blank pages पाएँ जो "signatures के लिए" reserved हैं। एक merged document open करें और शायद source files से leftover separator pages पाएँ। Classic culprit वो office Brother या Canon ADF model है जो default में two-sided scanning करता है चाहे आपने ask किया हो या नहीं।
+  दोनों तरफ़ स्कैन करने वाली मशीन से निकली PDF खोलिए और अक्सर हर असली पन्ने के बाद एक ख़ाली पन्ना मिलेगा, क्योंकि मशीन ने एक तरफ़ छपे हर काग़ज़ की पीठ भी ईमानदारी से उतार ली है। कॉन्ट्रैक्ट का नमूना खोलिए और दो ख़ाली पन्ने मिल सकते हैं, जो दस्तख़त के लिए छोड़े गए हैं। जोड़ी हुई फ़ाइल खोलिए और उसमें मूल फ़ाइलों से बचे अलगाव के पन्ने मिल सकते हैं। सबसे बड़ा दोषी वही दफ़्तर का Brother या Canon वाला फ़ीडर है, जो पहले से दोनों तरफ़ स्कैन करता है, चाहे आपने कहा हो या नहीं।
 
-  उन्हें remove करना browser में seconds लेता है। आपको Adobe Acrobat नहीं चाहिए। आपको print और re-scan नहीं करना। आपको कुछ retype नहीं करना। आपको बस एक tool चाहिए जो आपको unwanted pages click करने दे और जो बचे वो download करने दे।
+  इन्हें हटाना ब्राउज़र में कुछ सेकंड का काम है। Acrobat नहीं चाहिए। छापकर दोबारा स्कैन नहीं करना है। कुछ दोबारा टाइप नहीं करना है। बस एक टूल चाहिए जो आपको बेकार पन्ने चुनने दे और बाक़ी लौटा दे।
 
-  <figure><img src="/static/blog/images/tool-remove-pages-hero.jpg" alt="Convertica organize PDF tool जिसमें removal के लिए selected blank page thumbnails दिख रहे हैं" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-remove-pages-hero.jpg" alt="Convertica के व्यवस्थित करने वाले टूल में हटाने के लिए चुने गए ख़ाली पन्ने" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>Blank pages कहाँ से आते हैं</h2>
+  <h2>ख़ाली पन्ने कहाँ से आते हैं</h2>
 
-  Source जानना उन्हें faster spot करने में help करता है:
+  वजह जान लेने से उन्हें ढूँढना तेज़ हो जाता है:
 
   <ul>
-    <li><strong>Single-sided originals पर Duplex scanners.</strong> Classic. Output में हर alternate page empty है।</li>
-    <li><strong>Section breaks वाले Word docs.</strong> "Next odd page" या "next even page" पर set section breaks pagination maintain करने के लिए ज़रूरत पड़ने पर blank insert करते हैं, और वो blank PDF export survive करता है।</li>
-    <li><strong>Placeholder pages वाले Form templates.</strong> कई contract और report templates "exhibits", "appendices", या signatures के लिए reserved pages के साथ ship होते हैं जो आप शायद use करें या नहीं।</li>
-    <li><strong>Mismatched sources से Merged PDFs.</strong> ऐसी files combine करना जहाँ हर एक even-page boundary पर ख़त्म हुई blanks behind छोड़ देती है। Annual reports और pitch decks common offenders हैं।</li>
-    <li><strong>Print drivers.</strong> Certain printer settings के साथ "Print to PDF" end पर confirmation page या padding page append कर सकता है। पुराने HP universal print drivers 2018-2020 around इसके लिए notorious थे।</li>
-    <li><strong>Mobile scanner apps.</strong> CamScanner और Adobe Scan जैसे apps कभी-कभी free tier पर "scanned with [app]" promotional page insert करते हैं, जो feature से कम और ऐसे watermark से ज़्यादा लगता है जिसके ख़िलाफ़ आपको लड़ना पड़ता है।</li>
+    <li><strong>एक तरफ़ छपे काग़ज़ पर दोनों तरफ़ का स्कैन।</strong> सबसे आम वजह। नतीजे में हर दूसरा पन्ना ख़ाली रहता है।</li>
+    <li><strong>सेक्शन ब्रेक वाली Word फ़ाइलें।</strong> अगले विषम या अगले सम पन्ने पर सेट किया ब्रेक, पन्ना गिनती बनाए रखने के लिए ज़रूरत पड़ने पर ख़ाली पन्ना डाल देता है, और वह ख़ाली पन्ना PDF में भी चला आता है।</li>
+    <li><strong>जगह भरने वाले पन्नों वाले नमूने।</strong> कॉन्ट्रैक्ट और रिपोर्ट के कई नमूनों में परिशिष्ट, अनुलग्नक या दस्तख़त के लिए पन्ने पहले से छोड़े होते हैं, जिनका इस्तेमाल हो या न हो।</li>
+    <li><strong>अलग-अलग स्रोतों से जोड़ी गई PDF।</strong> ऐसी फ़ाइलें जोड़ना जिनमें हर एक सम पन्ने पर ख़त्म होती थी, बीच-बीच में ख़ाली पन्ने छोड़ जाता है। सालाना रिपोर्ट और प्रस्तुतियाँ इसमें आगे हैं।</li>
+    <li><strong>प्रिंट ड्राइवर।</strong> कुछ सेटिंग के साथ PDF में छापना आख़िर में पुष्टि का या जगह भरने का पन्ना जोड़ देता है। HP के पुराने साझा प्रिंट ड्राइवर 2018 से 2020 के बीच इसके लिए बदनाम थे।</li>
+    <li><strong>मोबाइल के स्कैनर ऐप।</strong> CamScanner और Adobe Scan जैसे ऐप मुफ़्त स्तर पर कभी-कभी अपने प्रचार का पन्ना जोड़ देते हैं, जो सुविधा से ज़्यादा ऐसा वॉटरमार्क लगता है जिससे आपको लड़ना पड़ता है।</li>
   </ul>
 
-  <h2>Step-by-step: pages को visually remove करें</h2>
+  <h2>कदम-दर-कदम: पन्ने देखकर हटाना</h2>
 
-  यह right approach है जब आप easily predict नहीं कर सकते कि कौन से pages बिना देखे blank हैं।
+  यह तरीक़ा तब सही है जब आप देखे बिना अंदाज़ा नहीं लगा सकते कि कौन से पन्ने ख़ाली हैं।
 
-  <figure><img src="/static/blog/images/tool-remove-pages-options.jpg" alt="Blank PDF pages के thumbnails एक pass में remove करने के लिए click करें" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-remove-pages-options.jpg" alt="ख़ाली PDF पन्नों की छोटी तस्वीरें, एक बार में हटाने के लिए चुनी जा रही हैं" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li><a href="/hi/pdf-organize/remove-pages/">PDF से pages remove</a> tool खोलें और अपनी file upload करें।</li>
-    <li>Thumbnail grid देखें। Blanks obvious हैं: solid white tiles बिना text या images के। Faint scanner noise वाले pages अब भी visible texture रखते हैं, इसलिए वे pure white के बजाय light gray दिखाते हैं।</li>
-    <li>उन pages पर click करें जिन्हें आप delete करना चाहते हैं। ज़्यादातर tools selection को colored border या trash icon से highlight करते हैं।</li>
-    <li>Confirm करें और cleaned-up file download करें। Verify करें कि page count expected से match करता है।</li>
+    <li><a href="/hi/pdf-organize/remove-pages/">PDF से पन्ने हटाने वाला टूल</a> खोलिए और अपनी फ़ाइल अपलोड कीजिए।</li>
+    <li>छोटी तस्वीरों का जाल देखिए। ख़ाली पन्ने साफ़ दिखते हैं: बिना टेक्स्ट और तस्वीर के पूरे सफ़ेद चौकोर। जिन पन्नों पर स्कैनर की हल्की धूल है, उनमें बुनावट दिखती रहती है, इसलिए वे पूरे सफ़ेद के बजाय हल्के स्लेटी लगते हैं।</li>
+    <li>जिन पन्नों को हटाना है, उन पर दबाइए। ज़्यादातर टूल चुने हुए पन्ने पर रंगीन किनारा या कूड़े का निशान दिखा देते हैं।</li>
+    <li>पक्का कीजिए और साफ़ हुई फ़ाइल डाउनलोड कीजिए। देख लीजिए कि पन्नों की गिनती उम्मीद के मुताबिक़ है।</li>
   </ol>
 
-  अगर आप साथ में reorder या rotate भी करना चाहते हैं, तीनों एक sitting में करना तीन separate tools run करने से faster है। Combined <a href="/hi/pdf-organize/organize/">drag and drop से PDF pages organize</a> view आपको export करने से पहले delete, drag, और rotate करने देती है एक बार में।
+  अगर साथ में क्रम भी बदलना है या पन्ने घुमाने हैं, तो तीनों काम एक बैठक में करना तीन अलग टूल चलाने से तेज़ है। <a href="/hi/pdf-organize/organize/">खींचकर पन्ने व्यवस्थित करने वाला</a> पन्ना आपको एक ही बार में हटाने, खींचने और घुमाने देता है।
 
-  <h2>Step-by-step: range से pages remove करें</h2>
+  <h2>कदम-दर-कदम: पन्नों की गिनती बताकर हटाना</h2>
 
-  जब आप already जानते हैं कि कौन से page numbers gone चाहिए, उन्हें type करना clicking से faster है।
+  जब आपको पहले से पता है कि कौन से पन्ने जाने हैं, तो नंबर लिख देना दबाने से तेज़ है।
 
   <ol>
-    <li>PDF upload करें।</li>
-    <li>Range mode पर switch करें (ज़्यादातर tools visual और range entry के बीच toggle करते हैं)।</li>
-    <li>अपनी range comma-separated list में spans के लिए hyphens के साथ type करें। <code>3, 7-9, 12</code> मतलब: page 3 delete करें, pages 7 through 9, और page 12। उस list के बाहर के pages stay करते हैं।</li>
-    <li>Apply करें और download करें।</li>
+    <li>PDF अपलोड कीजिए।</li>
+    <li>गिनती वाले तरीक़े पर जाइए (ज़्यादातर टूल में देखकर चुनने और गिनती लिखने के बीच अदला-बदली होती है)।</li>
+    <li>अपनी गिनती कॉमा से अलग करके लिखिए, और लगातार पन्नों के लिए हाइफ़न लगाइए। <code>3, 7-9, 12</code> का मतलब है: पन्ना 3 हटाइए, 7 से 9 तक, और पन्ना 12। इस सूची के बाहर के पन्ने बचे रहेंगे।</li>
+    <li>लागू कीजिए और डाउनलोड कर लीजिए।</li>
   </ol>
 
-  <blockquote class="callout">इस syntax में page numbers physical pages को refer करते हैं, document पर printed page numbers को नहीं। अगर आपका contract तीसरे physical page पर "1" से numbering शुरू करता है, आपका "page 1" physical page 3 हो सकता है।</blockquote>
+  <blockquote class="callout">इस गिनती में पन्ना नंबर असली, भौतिक पन्नों के हैं, दस्तावेज़ पर छपी संख्या के नहीं। अगर आपका कॉन्ट्रैक्ट तीसरे भौतिक पन्ने से 1 गिनना शुरू करता है, तो आपका पन्ना 1 असल में तीसरा पन्ना हो सकता है।</blockquote>
 
-  जानने योग्य: ज़्यादातर range fields <code>50-</code> जैसी open-ended ranges accept नहीं करतीं - यानी "50 से end तक सब कुछ"। आपको actual end-page type करना होगा (e.g. 78-page file के लिए <code>50-78</code>)। Start में एक बार count करना बाद में "रुको, यह काम नहीं किया" cycles बचाता है।
+  जानने लायक: ज़्यादातर जगहें <code>50-</code> जैसी अधूरी गिनती नहीं लेतीं, यानी पचास से आख़िर तक सब कुछ। आपको आख़िरी पन्ना भी लिखना पड़ेगा (जैसे 78 पन्नों की फ़ाइल में <code>50-78</code>)। शुरू में एक बार गिन लेना बाद के अरे, यह चला ही नहीं वाले चक्कर बचा देता है।
 
-  <h2>Removing vs hiding pages</h2>
+  <h2>हटाना और छिपाना, दोनों एक बात नहीं</h2>
 
-  कुछ PDF tools (और Adobe Acrobat) आपको pages "hide" करने देते हैं delete करने के बजाय। Hidden pages display नहीं होते लेकिन data अब भी file में exist करता है। कोई भी जो file किसी और viewer में open करे, या जो उन्हें unhide करे, content फिर से देख सकता है।
+  कुछ PDF टूल (और Acrobat) पन्ने मिटाने के बजाय छिपाने देते हैं। छिपे पन्ने दिखते नहीं, पर उनका डेटा फ़ाइल में पड़ा रहता है। कोई भी उसी फ़ाइल को दूसरे व्यूअर में खोले, या उन्हें फिर से दिखा दे, तो सामग्री लौट आती है।
 
-  Sensitive material के लिए यह real problem है। अगर आप HR document से salary page hide करके remove करते हैं, salary information अब भी file के साथ travel करती है। Permanent removal ही safe answer है जब:
-
-  <ul>
-    <li>Pages में confidential information है जो recipient तक नहीं पहुँचनी चाहिए।</li>
-    <li>आप file को अपनी organization के बाहर share कर रहे हैं।</li>
-    <li>File archived या forwarded हो सकती है।</li>
-    <li>Document e-discovery या freedom-of-information requests के subject हो सकता है, जहाँ hidden content अब भी discoverable हो सकता है।</li>
-  </ul>
-
-  Browser-based remove-pages tools page data delete करते हैं, सिर्फ़ hide नहीं। Result को different viewer में reopen करके verify करें; removed pages gone होने चाहिए, invisible नहीं। एक quick paranoia check: cleaned file को किसी भी text editor में open करें (हाँ, Notepad भी) और remove किए page से unique word search करें। अगर appear नहीं होता, page genuinely gone है।
-
-  <h2>Removal के बाद Re-numbering</h2>
-
-  ज़्यादातर PDFs में programmatic page numbers नहीं होते, बस text "1", "2", "3" original export के दौरान हर page में baked होते हैं। Pages remove करने से जो बचा है magically renumber नहीं होता। अगर आपके document में हर page पर "Page 5 of 12" लिखने वाला numbered footer था, removal के बाद आपके पास 12 में से 1, 2, 4, 6, 7 पढ़ने वाले pages हो सकते हैं, जो broken दिखते हैं।
-
-  दो options:
+  संवेदनशील सामग्री पर यह असली दिक्क़त है। अगर आप HR के दस्तावेज़ से तनख़्वाह वाला पन्ना हटाने के बजाय छिपा देते हैं, तो तनख़्वाह की जानकारी फ़ाइल के साथ ही घूमती रहती है। हमेशा के लिए हटाना ही सुरक्षित जवाब है, जब:
 
   <ul>
-    <li><strong>इसके साथ Live करें</strong> internal documents के लिए जहाँ printed numbers really matter नहीं करते।</li>
-    <li><strong>Re-number करें</strong> existing footer strip करके fresh ones add करके। Tools जो <a href="/hi/pdf-edit/add-page-numbers/">fresh page numbers add</a> करते हैं आपको पूरे document के header या footer area को एक pass में overwrite करने देते हैं।</li>
+    <li>पन्नों में वह जानकारी है जो सामने वाले तक नहीं पहुँचनी चाहिए।</li>
+    <li>आप फ़ाइल अपनी संस्था के बाहर भेज रहे हैं।</li>
+    <li>फ़ाइल आर्काइव हो सकती है या आगे भेजी जा सकती है।</li>
+    <li>दस्तावेज़ किसी कानूनी माँग या सूचना के अधिकार के दायरे में आ सकता है, जहाँ छिपी सामग्री भी निकाली जा सकती है।</li>
   </ul>
 
-  Same way किसी भी table of contents को update करें। "page 7" को point करने वाला TOC जब आपका new page 7 अब वो है जो page 9 था हर reader को frustrate करता है। (मेरा कहना है यह दूसरा-most-common reason है जब colleague कहता है "यह PDF broken है" - पहला है "TOC से link भी काम नहीं करती"।)
+  ब्राउज़र वाले टूल पन्ने का डेटा मिटाते हैं, बस छिपाते नहीं। नतीजा किसी दूसरे व्यूअर में खोलकर देख लीजिए; हटाए पन्ने ग़ायब होने चाहिए, अदृश्य नहीं। एक झटपट जाँच: साफ़ हुई फ़ाइल किसी भी टेक्स्ट एडिटर में खोलिए (हाँ, Notepad में भी) और हटाए पन्ने का कोई ख़ास शब्द ढूँढिए। न मिले, तो पन्ना वाक़ई गया।
 
-  <h2>Scanned archives के लिए Bulk cleanup</h2>
+  <h2>हटाने के बाद पन्ना संख्या</h2>
 
-  200-page scan को एक click at a time clean करना unpleasant है। दो tricks help करते हैं:
+  ज़्यादातर PDF में पन्ना संख्या अपने आप नहीं बनती, वह असली फ़ाइल बनाते समय हर पन्ने पर टेक्स्ट की तरह छप जाती है। पन्ने हटाने से बचे हुए पन्नों की संख्या जादू से नहीं बदलती। अगर आपके दस्तावेज़ में हर पन्ने पर बारह में से पाँचवाँ पन्ना लिखा था, तो हटाने के बाद बारह में से पहला, दूसरा, चौथा, छठा, सातवाँ पढ़ने वाले पन्ने बच सकते हैं, जो टूटा हुआ लगता है।
 
-  <h3>Scale पर blanks spot करना</h3>
+  दो रास्ते:
 
-  Tool support करे तो thumbnail size बढ़ाएँ। White rectangles instantly jump out करते हैं। Very faint scanner noise के लिए, page को ध्यान से देखें; अगर आप कोई text या shapes नहीं बता पाएँ, यह blank है।
+  <ul>
+    <li><strong>इसे रहने दीजिए</strong> अंदरूनी दस्तावेज़ों में, जहाँ छपी संख्या से कोई फ़र्क़ नहीं पड़ता।</li>
+    <li><strong>संख्या नई डाल दीजिए,</strong> पुरानी वाली पट्टी हटाकर। <a href="/hi/pdf-edit/add-page-numbers/">नई पन्ना संख्या डालने वाले टूल</a> पूरे दस्तावेज़ के ऊपर या नीचे का हिस्सा एक बार में बदल देते हैं।</li>
+  </ul>
 
-  कुछ tools bandwidth save करने के लिए very low resolution पर thumbnails render करते हैं। अगर आपके blanks dithering या compression artifacts की वजह से obviously white नहीं हैं, file scan करने से पहले larger thumbnail view (अक्सर "Large preview" या "Detailed thumbnails" labelled button) पर switch करें। Real page mistakenly delete न करने के लिए extra render time इसके लायक है।
+  उसी तरह विषय-सूची भी सुधार लीजिए। पन्ना सात पर भेजने वाली सूची, जब आपका नया पन्ना सात पहले नौ था, हर पढ़ने वाले को चिढ़ाती है। जब कोई कहता है कि यह PDF ख़राब है, तो दूसरी सबसे आम वजह यही होती है; पहली होती है कि सूची के लिंक भी नहीं चलते।
 
-  <h3>The duplex-scanner shortcut</h3>
+  <h2>स्कैन किए पुलिंदों की थोक सफ़ाई</h2>
 
-  अगर आपने duplex scanner पर single-sided originals का stack scan किया, हर back side blank है। मतलब आप PDF में हर <strong>even-numbered</strong> physical page delete करना चाहते हैं। <code>2, 4, 6, 8, 10, ...</code> जैसी range काम करती है, और ज़्यादातर tools आपको "delete every nth page" या "even pages" option से वो range generate करने देते हैं।
+  दो सौ पन्नों का स्कैन एक-एक क्लिक से साफ़ करना यातना है। दो तरीक़े मदद करते हैं:
 
-  First few results check करके confirm करें। अगर आपका scanner कभी-कभी originals flip करता है या stack back side से शुरू हुआ, pattern एक से off होगा और आप every odd page delete करना चाहेंगे। Fujitsu ScanSnap series इसके लिए particularly prone है जब auto-feeder एक साथ दो sheets grab करता है - आपका first page pair का back बन जाता है, जिससे बाक़ी document का pattern बिगड़ जाता है।
+  <h3>बहुत सारे पन्नों में ख़ाली पहचानना</h3>
 
-  Cleanup के बाद, आप पाएँ कि file को छोटे documents में breakdown करने से benefit मिलेगा। <a href="/hi/pdf-organize/split/">chapters में split</a> route अच्छा काम करता है जब आपने 200-page archive clean किया जो really five 40-page documents होने चाहिए।
+  टूल में सुविधा हो तो छोटी तस्वीरों का आकार बढ़ा दीजिए। सफ़ेद चौकोर तुरंत आँख में आ जाते हैं। बहुत हल्की धूल वाले पन्ने ध्यान से देखिए; कोई टेक्स्ट या आकार न दिखे, तो पन्ना ख़ाली है।
 
-  <h2>Ship करने से पहले Verify करना</h2>
+  कुछ टूल इंटरनेट बचाने के लिए तस्वीरें बहुत कम रेज़ोल्यूशन पर बनाते हैं। अगर आपके ख़ाली पन्ने दबाव या धुँधलेपन की वजह से साफ़ सफ़ेद नहीं दिख रहे, तो फ़ाइल देखने से पहले बड़ी झलक वाले रूप पर जाइए। असली पन्ना ग़लती से मिटाने से बचने के लिए वह अतिरिक्त इंतज़ार सही सौदा है।
 
-  किसी और को cleaned file send करने से पहले, दो checks करें। पहला, confirm करें कि page count expected है (210 pages in, every other page removed, 105 pages out)। दूसरा, result के through quickly scroll करें यह सुनिश्चित करने के लिए कि कोई real pages cleanup में caught नहीं हुए। Edge cases watch करने के लिए: very little text वाले section title pages thumbnail में almost blank दिख सकते हैं और accidentally delete हो सकते हैं। वो pages भी जो single image (chart, signature, logo) से बने हैं जब thumbnail render image को invisibility तक scale करता है।
+  <h3>दोनों तरफ़ स्कैन वाला छोटा रास्ता</h3>
 
-  <h2>FAQ</h2>
+  अगर आपने एक तरफ़ छपे काग़ज़ों का ढेर दोनों तरफ़ स्कैन करने वाली मशीन पर चढ़ाया है, तो हर पीठ ख़ाली है। यानी आपको PDF का हर <strong>सम</strong> पन्ना हटाना है। <code>2, 4, 6, 8, 10, ...</code> जैसी गिनती चल जाती है, और ज़्यादातर टूल हर nवाँ पन्ना या सम पन्ने वाले विकल्प से वह सूची ख़ुद बना देते हैं।
 
-  <h3>200-page scan से blank pages automatically कैसे remove करूँ?</h3>
-  <p>अगर blanks pattern follow करते हैं (duplex scanner से every other page), range mode use करें और even-numbered pages एक operation में delete करें। अगर वे randomly scattered हैं, visual thumbnail grid किसी भी rule से faster है क्योंकि आप quickly scroll कर सकते हैं और हर white tile click कर सकते हैं।</p>
+  शुरू के कुछ नतीजे देखकर पक्का कर लीजिए। अगर आपकी मशीन कभी काग़ज़ पलट देती है, या ढेर पीठ की तरफ़ से शुरू हुआ, तो क्रम एक से खिसक जाएगा और आपको विषम पन्ने हटाने पड़ेंगे। Fujitsu ScanSnap वाली मशीनें इसमें ख़ासकर फँसती हैं, जब फ़ीडर एक साथ दो काग़ज़ खींच लेता है, आपका पहला पन्ना जोड़े की पीठ बन जाता है और आगे का पूरा क्रम बिगड़ जाता है।
 
-  <h3>क्या pages remove करने से मेरा page numbering break होगा?</h3>
-  <p>अगर आपके document में footer में hard-coded page numbers हैं (जैसे "Page 5 of 12" text), हाँ। Remaining pages अपने original numbers रखते हैं। या तो internal use के लिए ignore करें, या cleanup के बाद पूरी file पर page numbers strip और re-add करें।</p>
+  सफ़ाई के बाद लग सकता है कि फ़ाइल को छोटे दस्तावेज़ों में बाँट देना बेहतर होगा। <a href="/hi/pdf-organize/split/">अध्यायों में बाँटने</a> वाला रास्ता तब अच्छा चलता है जब आपने दो सौ पन्नों का पुलिंदा साफ़ किया हो, जो असल में चालीस-चालीस पन्नों के पाँच दस्तावेज़ होने चाहिए थे।
 
-  <h3>क्या मैं page removal undo कर सकता हूँ?</h3>
-  <p>Tool खुद new file produce करता है, इसलिए आपका original आपके computer पर untouched है। अगर आपने pages remove करके result download किया, mistake किया हो तो बस original PDF पर वापस जाएँ। Cleaned-up version verify करने तक originals हमेशा रखें।</p>
+  <h2>भेजने से पहले जाँच</h2>
 
-  <h3>Removed pages कभी-कभी "वापस" क्यों आते हैं?</h3>
-  <p>यह तब होता है जब tool ने pages सिर्फ़ hide किए delete करने के बजाय, या जब file को editor में open किया गया जिसने saved revision से restore किया। ऐसा tool use करें जो genuinely page data strip करता है, और verify करें final file size और page count expectations match करें।</p>
+  साफ़ हुई फ़ाइल किसी को भेजने से पहले दो जाँच कीजिए। पहली, गिनती देखिए (210 पन्ने गए, हर दूसरा हटा, 105 पन्ने आए)। दूसरी, नतीजे में जल्दी से नीचे तक स्क्रॉल कीजिए, यह पक्का करने के लिए कि सफ़ाई में कोई असली पन्ना नहीं चला गया। किन पर नज़र रखिए: बहुत कम टेक्स्ट वाले अध्याय-शीर्षक पन्ने छोटी तस्वीर में लगभग ख़ाली लगते हैं और ग़लती से मिट सकते हैं। वे पन्ने भी, जिन पर एक ही तस्वीर है (कोई चार्ट, दस्तख़त, लोगो), जब छोटी तस्वीर उसे न दिखने की हद तक छोटा कर देती है।
 
-  <h3>क्या मैं password-protected PDF से pages remove कर सकता हूँ?</h3>
-  <p>आपको पहले password supply करना होगा। ज़्यादातर online page-remover tools upload पर password prompt करते हैं। Password के बिना, आप file legitimately modify नहीं कर सकते।</p>
+  <h2>अक्सर पूछे जाने वाले सवाल</h2>
 
-  <h2>अभी try करें</h2>
+  <h3>दो सौ पन्नों के स्कैन से ख़ाली पन्ने अपने आप कैसे हटाऊँ?</h3>
+  <p>अगर ख़ाली पन्ने किसी क्रम में हैं (दोनों तरफ़ स्कैन से हर दूसरा पन्ना), तो गिनती वाला तरीक़ा लीजिए और सम पन्ने एक ही बार में हटा दीजिए। अगर वे बिखरे हुए हैं, तो छोटी तस्वीरों वाला जाल किसी भी नियम से तेज़ है, क्योंकि आप तेज़ी से स्क्रॉल करते हुए हर सफ़ेद चौकोर पर दबा सकते हैं।</p>
 
-  <p>Blank pages से past scrolling बंद करें। <a href="/hi/pdf-organize/remove-pages/">PDF page remover tool</a> open करें, unwanted thumbnails click करें, और एक minute से कम में clean version download करें। Acrobat license key find करने से भी faster।</p>
+  <h3>पन्ने हटाने से पन्ना संख्या बिगड़ जाएगी?</h3>
+  <p>अगर आपके दस्तावेज़ में नीचे संख्या टेक्स्ट की तरह छपी है (जैसे बारह में से पाँचवाँ पन्ना), तो हाँ। बचे पन्ने अपनी पुरानी संख्या ही लिए रहते हैं। या इसे अंदरूनी काम के लिए रहने दीजिए, या सफ़ाई के बाद पूरी फ़ाइल पर संख्या हटाकर नई डाल दीजिए।</p>
+
+  <h3>पन्ना हटाना वापस लौटा सकता हूँ?</h3>
+  <p>टूल ख़ुद एक नई फ़ाइल बनाता है, इसलिए आपकी मूल फ़ाइल कंप्यूटर पर जैसी है वैसी रहती है। पन्ने हटाकर नतीजा डाउनलोड कर लिया और ग़लती पकड़ में आई, तो बस मूल PDF पर लौट जाइए। साफ़ हुआ रूप जाँच लेने तक मूल फ़ाइल हमेशा रखिए।</p>
+
+  <h3>हटाए पन्ने कभी-कभी लौट क्यों आते हैं?</h3>
+  <p>यह तब होता है जब टूल ने पन्ने मिटाने के बजाय छिपाए थे, या फ़ाइल किसी ऐसे एडिटर में खुली जिसने सहेजे पुराने रूप से उसे लौटा दिया। ऐसा टूल लीजिए जो पन्ने का डेटा वाक़ई मिटाता है, और फ़ाइल का साइज़ तथा पन्ना गिनती जाँच लीजिए।</p>
+
+  <h3>पासवर्ड वाली PDF से पन्ने हटा सकता हूँ?</h3>
+  <p>पहले पासवर्ड देना पड़ेगा। ऑनलाइन पन्ना हटाने वाले ज़्यादातर टूल अपलोड पर पासवर्ड माँग लेते हैं। पासवर्ड के बिना आप फ़ाइल में जायज़ तरीक़े से बदलाव नहीं कर सकते।</p>
+
+  <h2>अभी आज़माइए</h2>
+
+  <p>ख़ाली पन्नों को स्क्रॉल करके पार करना बंद कीजिए। <a href="/hi/pdf-organize/remove-pages/">PDF से पन्ने हटाने वाला टूल</a> खोलिए, बेकार तस्वीरों पर दबाइए, और एक मिनट से कम में साफ़ फ़ाइल डाउनलोड कर लीजिए। Acrobat की लाइसेंस चाबी ढूँढने से भी तेज़।</p>
