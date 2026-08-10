@@ -16500,3 +16500,6 @@ msgstr "مشتركو بريميوم الذين اختاروا الظهور هن�
 #: templates/frontend/pricing.html templates/frontend/index.html
 msgid "Be the first Premium subscriber listed here."
 msgstr "كن أول مشترك بريميوم في هذه القائمة."
+#: templates/frontend/refund.html
+msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
+msgstr "السعر المعروض في صفحة الأسعار هو سعر الاشتراك نفسه. وبحسب مكان إقامتك، قد تُضاف ضريبة القيمة المضافة أو ضريبة المبيعات أو تظهر منفصلة عند الدفع، فالقواعد تختلف من بلد إلى آخر. أما نحن فلا نضيف أي رسوم من عندنا."
