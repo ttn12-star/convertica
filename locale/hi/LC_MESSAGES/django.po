@@ -16929,3 +16929,139 @@ msgstr "{count} फ़ाइलें चुनी गईं"
 
 msgid "Total: {size}"
 msgstr "कुल: {size}"
+
+#: templates/frontend/refund.html
+msgid "Refund Policy - Convertica"
+msgstr "रिफ़ंड नीति - Convertica"
+
+#: templates/frontend/refund.html
+msgid "Refund Policy"
+msgstr "रिफ़ंड नीति"
+
+#: templates/frontend/refund.html
+msgid "Last updated: August 2026"
+msgstr "अंतिम अपडेट: अगस्त 2026"
+
+#: templates/frontend/refund.html
+msgid "This policy explains when you can get your money back for a Convertica Premium subscription, how to ask for a refund, and what happens to your account afterwards."
+msgstr "यह नीति बताती है कि Convertica Premium सदस्यता के पैसे आप कब वापस पा सकते हैं, रिफ़ंड कैसे माँगें, और उसके बाद आपके खाते का क्या होता है।"
+
+#: templates/frontend/refund.html
+msgid "The short version: if Premium is not what you expected, tell us within 14 days and we refund you in full. No forms to fill in, no questions about why."
+msgstr "छोटी बात यह है: अगर Premium वैसा नहीं निकला जैसा आपने सोचा था, तो 14 दिन के भीतर हमें बताइए और हम पूरी रकम लौटा देंगे। न कोई फ़ॉर्म भरना है, न वजह पूछी जाएगी।"
+
+#: templates/frontend/refund.html
+msgid "14-Day Money-Back Guarantee"
+msgstr "14 दिन की मनी-बैक गारंटी"
+
+#: templates/frontend/refund.html
+msgid "You can request a full refund within 14 days of any Premium payment. This covers both your first purchase and every renewal after it."
+msgstr "Premium के किसी भी भुगतान के 14 दिन के भीतर आप पूरा रिफ़ंड माँग सकते हैं। यह पहली खरीद पर भी लागू है और उसके बाद हर नवीनीकरण पर भी।"
+
+#: templates/frontend/refund.html
+msgid "You do not need to explain your reasons, and using Premium during those 14 days does not cancel your right to a refund. If you converted a hundred files and then changed your mind, the guarantee still stands."
+msgstr "आपको वजह बताने की ज़रूरत नहीं है, और उन 14 दिनों में Premium इस्तेमाल कर लेने से रिफ़ंड का हक़ ख़त्म नहीं होता। अगर आपने सौ फ़ाइलें बदल लीं और फिर मन बदल गया, तब भी गारंटी बनी रहती है।"
+
+#: templates/frontend/refund.html
+msgid "If you live in the EU or the UK, this guarantee matches your statutory right of withdrawal for digital services. Where local law gives you a longer period, that law wins."
+msgstr "अगर आप EU या UK में रहते हैं, यह गारंटी डिजिटल सेवाओं के लिए मिले आपके क़ानूनी निकासी अधिकार से मेल खाती है। जहाँ स्थानीय क़ानून इससे लंबी अवधि देता है, वहाँ क़ानून ही चलेगा।"
+
+#: templates/frontend/refund.html
+msgid "How to Request a Refund"
+msgstr "रिफ़ंड कैसे माँगें"
+
+#: templates/frontend/refund.html
+msgid "Write to us through the contact form or by email, from the address on your Convertica account. Include:"
+msgstr "संपर्क फ़ॉर्म से या ईमेल से हमें लिखिए, उसी पते से जिस पर आपका Convertica खाता बना है। इतना शामिल कीजिए:"
+
+#: templates/frontend/refund.html
+msgid "the email address you signed up with"
+msgstr "वह ईमेल पता जिससे आपने साइन अप किया था"
+
+#: templates/frontend/refund.html
+msgid "the date of the payment you want refunded"
+msgstr "उस भुगतान की तारीख़ जिसका रिफ़ंड चाहिए"
+
+#: templates/frontend/refund.html
+msgid "That is everything we need. We answer refund requests within two business days."
+msgstr "हमें बस इतना ही चाहिए। रिफ़ंड के अनुरोध का जवाब हम दो कामकाजी दिनों में दे देते हैं।"
+
+#: templates/frontend/refund.html
+msgid "Once approved, the money goes back to the card or account you paid with. Banks usually take 5 to 10 business days to show it, and that part is out of our hands."
+msgstr "मंज़ूरी के बाद पैसा उसी कार्ड या खाते में लौटता है जिससे भुगतान हुआ था। बैंक उसे दिखाने में आम तौर पर 5 से 10 कामकाजी दिन लेते हैं, और वह हिस्सा हमारे हाथ में नहीं है।"
+
+#: templates/frontend/refund.html
+msgid "Cancelling Your Subscription"
+msgstr "सदस्यता रद्द करना"
+
+#: templates/frontend/refund.html
+msgid "You can cancel at any time from your account page. Cancelling stops the next payment. It does not end your current period, so you keep Premium until the day you already paid for, and then the account moves back to the free plan."
+msgstr "आप अपने खाते के पेज से कभी भी रद्द कर सकते हैं। रद्द करने से अगला भुगतान रुक जाता है। चालू अवधि इससे नहीं टूटती, यानी जिस दिन तक आपने पैसे दिए हैं उस दिन तक Premium चलता रहेगा, उसके बाद खाता मुफ़्त प्लान पर लौट आएगा।"
+
+#: templates/frontend/refund.html
+msgid "Cancelling and refunding are two different things. If you cancel on day three and also want your money back, ask for the refund as well. We will not assume one from the other."
+msgstr "रद्द करना और रिफ़ंड लेना दो अलग बातें हैं। अगर आपने तीसरे दिन रद्द किया और पैसे भी वापस चाहिए, तो रिफ़ंड अलग से माँगिए। हम एक से दूसरा नहीं मान लेंगे।"
+
+#: templates/frontend/refund.html
+msgid "After the 14 days have passed, we do not refund the unused part of a period. You can still cancel, and you keep access until that period ends."
+msgstr "14 दिन बीत जाने के बाद अवधि का बचा हुआ हिस्सा हम वापस नहीं करते। रद्द फिर भी कर सकते हैं, और उस अवधि के ख़त्म होने तक पहुँच बनी रहती है।"
+
+#: templates/frontend/refund.html
+msgid "What Happens After a Refund"
+msgstr "रिफ़ंड के बाद क्या होता है"
+
+#: templates/frontend/refund.html
+msgid "Premium features switch off once the refund is issued, and the subscription will not renew. Your account itself stays open and you can keep using the free plan as before."
+msgstr "रिफ़ंड जारी होते ही Premium सुविधाएँ बंद हो जाती हैं और सदस्यता आगे नहीं बढ़ती। खाता ख़ुद बना रहता है और आप पहले की तरह मुफ़्त प्लान इस्तेमाल कर सकते हैं।"
+
+#: templates/frontend/refund.html
+msgid "Files you already converted are yours. A refund does not touch anything you downloaded."
+msgstr "जो फ़ाइलें आप पहले ही बदल चुके हैं वे आपकी हैं। रिफ़ंड से डाउनलोड की गई किसी चीज़ पर असर नहीं पड़ता।"
+
+#: templates/frontend/refund.html
+msgid "The Free Plan"
+msgstr "मुफ़्त प्लान"
+
+#: templates/frontend/refund.html
+msgid "Most Convertica tools are free and always have been. The free plan costs nothing, asks for no card, and there is nothing to refund. This policy only concerns paid Premium subscriptions."
+msgstr "Convertica के ज़्यादातर टूल मुफ़्त हैं और हमेशा से रहे हैं। मुफ़्त प्लान में कोई शुल्क नहीं, कार्ड नहीं माँगा जाता, और लौटाने को कुछ है ही नहीं। यह नीति सिर्फ़ पैसे वाली Premium सदस्यता पर लागू होती है।"
+
+#: templates/frontend/refund.html
+msgid "Billing and Payments"
+msgstr "बिलिंग और भुगतान"
+
+#: templates/frontend/refund.html
+msgid "Payments are handled by our authorised payment provider, which acts as the Merchant of Record for the sale. Applicable VAT and sales tax are calculated and collected at checkout, and your receipt comes from the provider rather than from us."
+msgstr "भुगतान हमारा अधिकृत पेमेंट प्रोवाइडर संभालता है, जो इस बिक्री के लिए Merchant of Record की भूमिका निभाता है। लागू VAT और सेल्स टैक्स चेकआउट पर ही जुड़कर वसूले जाते हैं, और रसीद हमारी नहीं, प्रोवाइडर की तरफ़ से आती है।"
+
+#: templates/frontend/refund.html
+msgid "For that reason, the charge on your bank statement may carry the provider's name instead of Convertica. If you see a payment you do not recognise, please contact us before disputing it with your bank. A refund is faster than a chargeback, and we would rather sort it out directly."
+msgstr "इसी वजह से आपके बैंक स्टेटमेंट में Convertica के बजाय प्रोवाइडर का नाम दिख सकता है। कोई ऐसा भुगतान दिखे जिसे आप पहचान न पाएँ, तो बैंक में विवाद दर्ज करने से पहले हमें लिखिए। रिफ़ंड चार्जबैक से तेज़ होता है, और हमें सीधे निपटा लेना ज़्यादा ठीक लगता है।"
+
+#: templates/frontend/refund.html
+msgid "Prices shown on our pricing page are the prices you pay. We do not add fees at checkout."
+msgstr "हमारे प्राइसिंग पेज पर दिखी क़ीमतें वही हैं जो आप चुकाते हैं। चेकआउट पर हम कोई अतिरिक्त शुल्क नहीं जोड़ते।"
+
+#: templates/frontend/refund.html
+msgid "If Something Does Not Work"
+msgstr "अगर कुछ काम न करे"
+
+#: templates/frontend/refund.html
+msgid "If a tool fails on your file, write to us before asking for a refund. Most problems come down to one awkward document, and we can usually fix it or tell you what went wrong within a day. If we cannot make it work for you, we refund you regardless of how many days have passed."
+msgstr "अगर कोई टूल आपकी फ़ाइल पर अटक जाए, तो रिफ़ंड माँगने से पहले हमें लिखिए। ज़्यादातर मामलों में बात एक टेढ़े दस्तावेज़ की होती है, और हम आम तौर पर एक दिन में उसे ठीक कर देते हैं या बता देते हैं कि गड़बड़ कहाँ थी। अगर हम उसे आपके लिए चला ही न पाएँ, तो कितने भी दिन बीत चुके हों, पैसे लौटा देंगे।"
+
+#: templates/frontend/refund.html
+msgid "Questions about a payment, a refund, or a cancellation all go to the same place:"
+msgstr "भुगतान, रिफ़ंड या सदस्यता रद्द करने से जुड़े सवाल एक ही जगह आते हैं:"
+
+#: templates/frontend/refund.html
+msgid "Convertica's refund policy for Premium subscriptions: 14-day money-back guarantee, how to request a refund, how to cancel, and what happens to your access afterwards."
+msgstr "Premium सदस्यता के लिए Convertica की रिफ़ंड नीति: 14 दिन की मनी-बैक गारंटी, रिफ़ंड कैसे माँगें, सदस्यता कैसे रद्द करें, और आपकी पहुँच का क्या होगा।"
+
+#: templates/frontend/refund.html
+msgid "refund policy, money back guarantee, cancel subscription, Convertica refund"
+msgstr "रिफ़ंड नीति, मनी बैक गारंटी, सदस्यता रद्द करें, Convertica रिफ़ंड"
+
+#: templates/frontend/refund.html
+msgid "Refunds"
+msgstr "रिफ़ंड"

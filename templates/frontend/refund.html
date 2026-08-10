@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% load i18n static seo_extras %}
+
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
+
+{% block structured_data %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "{% trans "Refund Policy - Convertica" %}",
+      "description": "{{ page_description }}",
+      "url": "{{ site_current_url }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Convertica",
+        "url": "{{ site_base_url }}"
+      },
+      "datePublished": "2026-08-10",
+      "dateModified": "{% now "Y-m-d" %}",
+      "inLanguage": "{{ LANGUAGE_CODE }}"
+    }
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/WebPage">
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200 dark:border-gray-800">
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+      </div>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-center">
+        <div class="animate-fade-in">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight text-gray-900" itemprop="headline">
+            {% trans "Refund Policy" %}
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+            {% trans "Last updated: August 2026" %}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12 sm:py-16 md:py-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+
+            <!-- Introduction -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+            {% trans "This policy explains when you can get your money back for a Convertica Premium subscription, how to ask for a refund, and what happens to your account afterwards." %}
+          </p>
+          <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+            {% trans "The short version: if Premium is not what you expected, tell us within 14 days and we refund you in full. No forms to fill in, no questions about why." %}
+          </p>
+        </div>
+
+            <!-- 14-Day Money-Back Guarantee -->
+        <div class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-blue-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "14-Day Money-Back Guarantee" %}</h2>
+
+          <div class="space-y-4">
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "You can request a full refund within 14 days of any Premium payment. This covers both your first purchase and every renewal after it." %}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "You do not need to explain your reasons, and using Premium during those 14 days does not cancel your right to a refund. If you converted a hundred files and then changed your mind, the guarantee still stands." %}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "If you live in the EU or the UK, this guarantee matches your statutory right of withdrawal for digital services. Where local law gives you a longer period, that law wins." %}
+            </p>
+          </div>
+        </div>
+
+            <!-- How to Request a Refund -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "How to Request a Refund" %}</h2>
+
+          <p class="text-gray-700 leading-relaxed mb-4">
+            {% trans "Write to us through the contact form or by email, from the address on your Convertica account. Include:" %}
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+            <li>{% trans "the email address you signed up with" %}</li>
+            <li>{% trans "the date of the payment you want refunded" %}</li>
+          </ul>
+          <p class="text-gray-700 leading-relaxed mt-4">
+            {% trans "That is everything we need. We answer refund requests within two business days." %}
+          </p>
+          <p class="text-gray-700 leading-relaxed mt-4">
+            {% trans "Once approved, the money goes back to the card or account you paid with. Banks usually take 5 to 10 business days to show it, and that part is out of our hands." %}
+          </p>
+        </div>
+
+            <!-- Cancelling Your Subscription -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Cancelling Your Subscription" %}</h2>
+
+          <div class="space-y-4">
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "You can cancel at any time from your account page. Cancelling stops the next payment. It does not end your current period, so you keep Premium until the day you already paid for, and then the account moves back to the free plan." %}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "Cancelling and refunding are two different things. If you cancel on day three and also want your money back, ask for the refund as well. We will not assume one from the other." %}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "After the 14 days have passed, we do not refund the unused part of a period. You can still cancel, and you keep access until that period ends." %}
+            </p>
+          </div>
+        </div>
+
+            <!-- After a Refund -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "What Happens After a Refund" %}</h2>
+
+          <p class="text-gray-700 leading-relaxed mb-4">
+            {% trans "Premium features switch off once the refund is issued, and the subscription will not renew. Your account itself stays open and you can keep using the free plan as before." %}
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            {% trans "Files you already converted are yours. A refund does not touch anything you downloaded." %}
+          </p>
+        </div>
+
+            <!-- Free Plan -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "The Free Plan" %}</h2>
+
+          <p class="text-gray-700 leading-relaxed">
+            {% trans "Most Convertica tools are free and always have been. The free plan costs nothing, asks for no card, and there is nothing to refund. This policy only concerns paid Premium subscriptions." %}
+          </p>
+        </div>
+
+            <!-- Billing -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Billing and Payments" %}</h2>
+
+          <div class="space-y-4">
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "Payments are handled by our authorised payment provider, which acts as the Merchant of Record for the sale. Applicable VAT and sales tax are calculated and collected at checkout, and your receipt comes from the provider rather than from us." %}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "For that reason, the charge on your bank statement may carry the provider's name instead of Convertica. If you see a payment you do not recognise, please contact us before disputing it with your bank. A refund is faster than a chargeback, and we would rather sort it out directly." %}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {% trans "Prices shown on our pricing page are the prices you pay. We do not add fees at checkout." %}
+            </p>
+          </div>
+        </div>
+
+            <!-- Problems With a Tool -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "If Something Does Not Work" %}</h2>
+
+          <p class="text-gray-700 leading-relaxed">
+            {% trans "If a tool fails on your file, write to us before asking for a refund. Most problems come down to one awkward document, and we can usually fix it or tell you what went wrong within a day. If we cannot make it work for you, we refund you regardless of how many days have passed." %}
+          </p>
+        </div>
+
+            <!-- Contact -->
+        <div class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 border border-blue-100">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Contact Us" %}</h2>
+
+          <p class="text-gray-700 leading-relaxed mb-6">
+            {% trans "Questions about a payment, a refund, or a cancellation all go to the same place:" %}
+          </p>
+          <a href="{% url 'frontend:contact_page' %}"
+             class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition duration-200 shadow-lg hover:shadow-xl">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            {% trans "Contact Support" %}
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </div>
+{% endblock %}

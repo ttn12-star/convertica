@@ -17056,3 +17056,139 @@ msgstr "{count} berkas dipilih"
 
 msgid "Total: {size}"
 msgstr "Total: {size}"
+
+#: templates/frontend/refund.html
+msgid "Refund Policy - Convertica"
+msgstr "Kebijakan Pengembalian Dana - Convertica"
+
+#: templates/frontend/refund.html
+msgid "Refund Policy"
+msgstr "Kebijakan Pengembalian Dana"
+
+#: templates/frontend/refund.html
+msgid "Last updated: August 2026"
+msgstr "Terakhir diperbarui: Agustus 2026"
+
+#: templates/frontend/refund.html
+msgid "This policy explains when you can get your money back for a Convertica Premium subscription, how to ask for a refund, and what happens to your account afterwards."
+msgstr "Kebijakan ini menjelaskan kapan Anda bisa meminta uang Anda kembali untuk langganan Convertica Premium, bagaimana cara mengajukannya, dan apa yang terjadi pada akun Anda setelahnya."
+
+#: templates/frontend/refund.html
+msgid "The short version: if Premium is not what you expected, tell us within 14 days and we refund you in full. No forms to fill in, no questions about why."
+msgstr "Singkatnya: kalau Premium ternyata tidak sesuai harapan, kabari kami dalam 14 hari dan kami kembalikan seluruh pembayaran. Tanpa formulir, tanpa ditanya alasannya."
+
+#: templates/frontend/refund.html
+msgid "14-Day Money-Back Guarantee"
+msgstr "Garansi Uang Kembali 14 Hari"
+
+#: templates/frontend/refund.html
+msgid "You can request a full refund within 14 days of any Premium payment. This covers both your first purchase and every renewal after it."
+msgstr "Anda bisa meminta pengembalian penuh dalam 14 hari setelah pembayaran Premium mana pun. Ini berlaku untuk pembelian pertama maupun setiap perpanjangan berikutnya."
+
+#: templates/frontend/refund.html
+msgid "You do not need to explain your reasons, and using Premium during those 14 days does not cancel your right to a refund. If you converted a hundred files and then changed your mind, the guarantee still stands."
+msgstr "Anda tidak perlu menjelaskan alasannya, dan memakai Premium selama 14 hari itu tidak menghapus hak Anda atas pengembalian dana. Kalau Anda sudah mengonversi seratus berkas lalu berubah pikiran, garansinya tetap berlaku."
+
+#: templates/frontend/refund.html
+msgid "If you live in the EU or the UK, this guarantee matches your statutory right of withdrawal for digital services. Where local law gives you a longer period, that law wins."
+msgstr "Jika Anda tinggal di Uni Eropa atau Inggris, garansi ini sejalan dengan hak pembatalan Anda menurut undang-undang untuk layanan digital. Kalau hukum setempat memberi tenggat lebih panjang, hukum itu yang berlaku."
+
+#: templates/frontend/refund.html
+msgid "How to Request a Refund"
+msgstr "Cara Mengajukan Pengembalian Dana"
+
+#: templates/frontend/refund.html
+msgid "Write to us through the contact form or by email, from the address on your Convertica account. Include:"
+msgstr "Hubungi kami lewat formulir kontak atau email, dari alamat yang terdaftar di akun Convertica Anda. Sertakan:"
+
+#: templates/frontend/refund.html
+msgid "the email address you signed up with"
+msgstr "alamat email yang Anda pakai saat mendaftar"
+
+#: templates/frontend/refund.html
+msgid "the date of the payment you want refunded"
+msgstr "tanggal pembayaran yang ingin dikembalikan"
+
+#: templates/frontend/refund.html
+msgid "That is everything we need. We answer refund requests within two business days."
+msgstr "Hanya itu yang kami butuhkan. Permintaan pengembalian dana kami jawab dalam dua hari kerja."
+
+#: templates/frontend/refund.html
+msgid "Once approved, the money goes back to the card or account you paid with. Banks usually take 5 to 10 business days to show it, and that part is out of our hands."
+msgstr "Setelah disetujui, dananya kembali ke kartu atau rekening yang Anda pakai membayar. Bank biasanya butuh 5 sampai 10 hari kerja untuk menampilkannya, dan bagian itu di luar kendali kami."
+
+#: templates/frontend/refund.html
+msgid "Cancelling Your Subscription"
+msgstr "Membatalkan Langganan"
+
+#: templates/frontend/refund.html
+msgid "You can cancel at any time from your account page. Cancelling stops the next payment. It does not end your current period, so you keep Premium until the day you already paid for, and then the account moves back to the free plan."
+msgstr "Anda bisa membatalkan kapan saja dari halaman akun. Pembatalan menghentikan tagihan berikutnya. Periode berjalan tidak ikut terputus, jadi Premium tetap aktif sampai hari yang sudah Anda bayar, lalu akun kembali ke paket gratis."
+
+#: templates/frontend/refund.html
+msgid "Cancelling and refunding are two different things. If you cancel on day three and also want your money back, ask for the refund as well. We will not assume one from the other."
+msgstr "Membatalkan dan meminta pengembalian dana adalah dua hal berbeda. Kalau Anda membatalkan di hari ketiga dan juga ingin uangnya kembali, ajukan pengembaliannya secara terpisah. Kami tidak menyimpulkan yang satu dari yang lain."
+
+#: templates/frontend/refund.html
+msgid "After the 14 days have passed, we do not refund the unused part of a period. You can still cancel, and you keep access until that period ends."
+msgstr "Setelah 14 hari lewat, sisa periode yang belum terpakai tidak kami kembalikan. Anda tetap bisa membatalkan, dan aksesnya bertahan sampai periode itu habis."
+
+#: templates/frontend/refund.html
+msgid "What Happens After a Refund"
+msgstr "Apa yang Terjadi Setelah Pengembalian Dana"
+
+#: templates/frontend/refund.html
+msgid "Premium features switch off once the refund is issued, and the subscription will not renew. Your account itself stays open and you can keep using the free plan as before."
+msgstr "Fitur Premium mati begitu pengembalian dana diproses, dan langganan tidak diperpanjang lagi. Akun Anda sendiri tetap ada dan Anda bisa terus memakai paket gratis seperti sebelumnya."
+
+#: templates/frontend/refund.html
+msgid "Files you already converted are yours. A refund does not touch anything you downloaded."
+msgstr "Berkas yang sudah Anda konversi tetap milik Anda. Pengembalian dana tidak menyentuh apa pun yang sudah diunduh."
+
+#: templates/frontend/refund.html
+msgid "The Free Plan"
+msgstr "Paket Gratis"
+
+#: templates/frontend/refund.html
+msgid "Most Convertica tools are free and always have been. The free plan costs nothing, asks for no card, and there is nothing to refund. This policy only concerns paid Premium subscriptions."
+msgstr "Sebagian besar alat Convertica gratis dan memang selalu begitu. Paket gratis tidak memungut biaya, tidak meminta kartu, dan tidak ada yang perlu dikembalikan. Kebijakan ini hanya menyangkut langganan Premium berbayar."
+
+#: templates/frontend/refund.html
+msgid "Billing and Payments"
+msgstr "Penagihan dan Pembayaran"
+
+#: templates/frontend/refund.html
+msgid "Payments are handled by our authorised payment provider, which acts as the Merchant of Record for the sale. Applicable VAT and sales tax are calculated and collected at checkout, and your receipt comes from the provider rather than from us."
+msgstr "Pembayaran ditangani penyedia pembayaran resmi kami, yang bertindak sebagai Merchant of Record atas penjualan tersebut. PPN dan pajak penjualan dihitung dan dipungut saat checkout, dan struknya datang dari penyedia itu, bukan dari kami."
+
+#: templates/frontend/refund.html
+msgid "For that reason, the charge on your bank statement may carry the provider's name instead of Convertica. If you see a payment you do not recognise, please contact us before disputing it with your bank. A refund is faster than a chargeback, and we would rather sort it out directly."
+msgstr "Karena itu, nama yang muncul di rekening koran Anda bisa jadi nama penyedia, bukan Convertica. Kalau Anda melihat tagihan yang tidak dikenali, hubungi kami dulu sebelum menyanggahnya ke bank. Pengembalian dana lebih cepat daripada chargeback, dan kami lebih suka menyelesaikannya langsung."
+
+#: templates/frontend/refund.html
+msgid "Prices shown on our pricing page are the prices you pay. We do not add fees at checkout."
+msgstr "Harga yang tertera di halaman harga adalah harga yang Anda bayar. Kami tidak menambahkan biaya apa pun saat checkout."
+
+#: templates/frontend/refund.html
+msgid "If Something Does Not Work"
+msgstr "Kalau Ada yang Tidak Berjalan"
+
+#: templates/frontend/refund.html
+msgid "If a tool fails on your file, write to us before asking for a refund. Most problems come down to one awkward document, and we can usually fix it or tell you what went wrong within a day. If we cannot make it work for you, we refund you regardless of how many days have passed."
+msgstr "Kalau sebuah alat gagal memproses berkas Anda, hubungi kami sebelum meminta pengembalian dana. Umumnya masalahnya ada pada satu dokumen yang rewel, dan biasanya kami bisa memperbaikinya atau menjelaskan penyebabnya dalam sehari. Kalau kami tetap tidak bisa membuatnya berjalan, dana Anda kami kembalikan berapa pun hari yang sudah lewat."
+
+#: templates/frontend/refund.html
+msgid "Questions about a payment, a refund, or a cancellation all go to the same place:"
+msgstr "Pertanyaan soal pembayaran, pengembalian dana, atau pembatalan semuanya masuk ke tempat yang sama:"
+
+#: templates/frontend/refund.html
+msgid "Convertica's refund policy for Premium subscriptions: 14-day money-back guarantee, how to request a refund, how to cancel, and what happens to your access afterwards."
+msgstr "Kebijakan pengembalian dana Convertica untuk langganan Premium: garansi uang kembali 14 hari, cara mengajukan, cara membatalkan, dan apa yang terjadi pada akses Anda."
+
+#: templates/frontend/refund.html
+msgid "refund policy, money back guarantee, cancel subscription, Convertica refund"
+msgstr "kebijakan pengembalian dana, garansi uang kembali, batalkan langganan, refund Convertica"
+
+#: templates/frontend/refund.html
+msgid "Refunds"
+msgstr "Pengembalian Dana"

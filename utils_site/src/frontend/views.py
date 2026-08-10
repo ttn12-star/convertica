@@ -1824,6 +1824,29 @@ def terms_page(request):
 
 
 @ensure_csrf_cookie
+@vary_on_cookie
+@cache_page(60 * 60 * 24 * 7)
+def refund_page(request):
+    """Refund Policy page."""
+    page_title = _("Refund Policy - Convertica")
+    page_description = _(
+        "Convertica's refund policy for Premium subscriptions: 14-day "
+        "money-back guarantee, how to request a refund, how to cancel, and "
+        "what happens to your access afterwards."
+    )
+    page_keywords = _(
+        "refund policy, money back guarantee, " "cancel subscription, Convertica refund"
+    )
+
+    context = {
+        "page_title": page_title,
+        "page_description": page_description,
+        "page_keywords": page_keywords,
+    }
+    return render(request, "frontend/refund.html", context)
+
+
+@ensure_csrf_cookie
 def contact_page(request):
     """Contact page with form handling."""
     from django.contrib import messages
@@ -2104,6 +2127,7 @@ def _get_sitemap_pages():
         {"url": "install/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "privacy/", "priority": "0.6", "changefreq": "yearly"},
         {"url": "terms/", "priority": "0.6", "changefreq": "yearly"},
+        {"url": "refund/", "priority": "0.6", "changefreq": "yearly"},
         {"url": "contact/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "faq/", "priority": "0.8", "changefreq": "monthly"},
         {"url": "pricing/", "priority": "0.8", "changefreq": "monthly"},
@@ -2247,7 +2271,7 @@ def sitemap_lang(request, lang: str):
     # v8: image/password-protect-image/ (v7) + /pdf-edit/page-size/ — both
     # landed as v7 on separate branches, so bump again or the cached
     # sitemap never picks up the second one.
-    cache_key = f"sitemap_{lang}_v8"
+    cache_key = f"sitemap_{lang}_v9"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
