@@ -17192,3 +17192,7 @@ msgstr "kebijakan pengembalian dana, garansi uang kembali, batalkan langganan, r
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Pengembalian Dana"
+
+#: templates/frontend/refund.html
+msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
+msgstr "Harga di halaman harga adalah harga langganannya sendiri. Tergantung tempat tinggal Anda, PPN atau pajak penjualan bisa ditambahkan atau ditampilkan terpisah saat checkout, karena aturannya berbeda-beda. Kami tidak menambahkan biaya apa pun dari pihak kami."

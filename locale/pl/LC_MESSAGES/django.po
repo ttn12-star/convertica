@@ -17429,3 +17429,7 @@ msgstr "zasady zwrotów, zwrot pieniędzy, anulowanie subskrypcji, zwrot Convert
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Zwroty"
+
+#: templates/frontend/refund.html
+msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
+msgstr "Cena na stronie cennika to cena samej subskrypcji. W zależności od kraju VAT lub podatek od sprzedaży może zostać doliczony albo pokazany osobno przy płatności, bo przepisy bywają różne. Własnych opłat nie doliczamy."

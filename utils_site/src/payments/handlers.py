@@ -174,7 +174,7 @@ def handle_subscription_created(payload: dict) -> None:
     UserSubscription.upsert_from_event(
         user=user,
         plan=plan,
-        provider="lemonsqueezy",
+        provider=_provider(payload),
         provider_subscription_id=sub_id,
         provider_customer_id=customer_id,
         status=status,
@@ -187,7 +187,7 @@ def handle_subscription_created(payload: dict) -> None:
             plan=plan,
             period_start=period_start,
             period_end=period_end,
-            provider="lemonsqueezy",
+            provider=_provider(payload),
             provider_subscription_id=sub_id,
             provider_customer_id=customer_id,
         )
@@ -206,7 +206,7 @@ def handle_subscription_updated(payload: dict) -> None:
     cancel_at_period_end = bool(attrs.get("cancelled"))
 
     sub_qs = UserSubscription.objects.filter(
-        provider="lemonsqueezy", provider_subscription_id=sub_id
+        provider=_provider(payload), provider_subscription_id=sub_id
     )
     sub = sub_qs.first()
     period_start = sub.current_period_start if sub else timezone.now()
@@ -221,7 +221,7 @@ def handle_subscription_updated(payload: dict) -> None:
     UserSubscription.upsert_from_event(
         user=user,
         plan=plan,
-        provider="lemonsqueezy",
+        provider=_provider(payload),
         provider_subscription_id=sub_id,
         provider_customer_id=customer_id,
         status=status,
@@ -235,7 +235,7 @@ def handle_subscription_updated(payload: dict) -> None:
             plan=plan,
             period_start=period_start,
             period_end=period_end,
-            provider="lemonsqueezy",
+            provider=_provider(payload),
             provider_subscription_id=sub_id,
             provider_customer_id=customer_id,
         )
@@ -257,7 +257,7 @@ def handle_subscription_cancelled(payload: dict) -> None:
     sub_id = _data_id(payload)
     period_end = _parse_dt(attrs.get("ends_at")) or _parse_dt(attrs.get("renews_at"))
     UserSubscription.objects.filter(
-        provider="lemonsqueezy", provider_subscription_id=sub_id
+        provider=_provider(payload), provider_subscription_id=sub_id
     ).update(
         status="cancelled",
         cancel_at_period_end=True,
@@ -273,7 +273,7 @@ def handle_subscription_resumed(payload: dict) -> None:
         return
     sub_id = _data_id(payload)
     UserSubscription.objects.filter(
-        provider="lemonsqueezy", provider_subscription_id=sub_id
+        provider=_provider(payload), provider_subscription_id=sub_id
     ).update(status="active", cancel_at_period_end=False)
 
 
@@ -284,7 +284,7 @@ def handle_subscription_expired(payload: dict) -> None:
         return
     sub_id = _data_id(payload)
     UserSubscription.objects.filter(
-        provider="lemonsqueezy", provider_subscription_id=sub_id
+        provider=_provider(payload), provider_subscription_id=sub_id
     ).update(status="expired")
     user.deactivate_premium(reason="expired")
 
@@ -296,7 +296,7 @@ def handle_subscription_paused(payload: dict) -> None:
         return
     sub_id = _data_id(payload)
     UserSubscription.objects.filter(
-        provider="lemonsqueezy", provider_subscription_id=sub_id
+        provider=_provider(payload), provider_subscription_id=sub_id
     ).update(status="paused")
     grace_days = int(getattr(settings, "PAYMENT_PAST_DUE_GRACE_DAYS", 0) or 0)
     if grace_days > 0:
@@ -337,7 +337,7 @@ def handle_subscription_payment_success(payload: dict) -> None:
         plan=plan,
         amount=Decimal(amount_cents) / Decimal(100),
         external_payment_id=order_id,
-        provider="lemonsqueezy",
+        provider=_provider(payload),
     )
     if is_renewal:
         _send_renewal(user, _resolve_email_lang(payload, user))
@@ -351,7 +351,7 @@ def handle_subscription_payment_failed(payload: dict) -> None:
     sub_id = str(_attrs(payload).get("subscription_id") or "")
     if sub_id:
         UserSubscription.objects.filter(
-            provider="lemonsqueezy", provider_subscription_id=sub_id
+            provider=_provider(payload), provider_subscription_id=sub_id
         ).update(status="past_due")
     grace_days = int(getattr(settings, "PAYMENT_PAST_DUE_GRACE_DAYS", 0) or 0)
     if grace_days > 0:
@@ -424,7 +424,7 @@ def handle_order_created(payload: dict) -> None:
         plan=plan,
         amount=Decimal(amount_cents) / Decimal(100),
         external_payment_id=order_id,
-        provider="lemonsqueezy",
+        provider=_provider(payload),
     )
     user.activate_premium(
         plan=plan,
@@ -434,7 +434,7 @@ def handle_order_created(payload: dict) -> None:
             if plan.is_lifetime
             else (timezone.now() + timedelta(days=plan.duration_days))
         ),
-        provider="lemonsqueezy",
+        provider=_provider(payload),
         provider_subscription_id="",
         provider_customer_id=customer_id,
     )

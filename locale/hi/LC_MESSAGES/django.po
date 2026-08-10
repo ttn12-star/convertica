@@ -17065,3 +17065,7 @@ msgstr "रिफ़ंड नीति, मनी बैक गारंटी,
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "रिफ़ंड"
+
+#: templates/frontend/refund.html
+msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
+msgstr "हमारे प्राइसिंग पेज पर दी क़ीमत सदस्यता की अपनी क़ीमत है। आप कहाँ रहते हैं, इसके हिसाब से चेकआउट पर VAT या सेल्स टैक्स जुड़ सकता है या अलग से दिख सकता है, क्योंकि हर जगह नियम अलग हैं। अपनी तरफ़ से हम कोई शुल्क नहीं जोड़ते।"
