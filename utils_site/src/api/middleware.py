@@ -686,6 +686,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://findly.tools "
             "https://launchpadly.co "
             "https://smollaunch.com "
+            "https://fazier.com "
+            "https://twelve.tools "
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
             "https://tpc.googlesyndication.com",
