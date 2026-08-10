@@ -27,9 +27,7 @@ NOINDEX_PATH_PREFIXES = (
     # and /batch-converter/ is a public indexable landing (OCR pattern).
     "/premium/",
 )
-NOINDEX_EXACT_PATHS = {
-    "/contribute/success/",
-}
+NOINDEX_EXACT_PATHS: set[str] = set()
 
 
 def get_base_url(request) -> str:

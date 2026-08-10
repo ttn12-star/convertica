@@ -87,11 +87,6 @@
               <p class="text-gray-200 mt-1">
                 {% trans "You can still use the free tools. We'll re-enable subscriptions as soon as it's available." %}
               </p>
-              <p class="text-gray-200 mt-3">
-                <a href="{% url 'frontend:contribute' %}" class="underline">
-                  {% trans "Learn more" %}
-                </a>
-              </p>
             </div>
           {% endif %}
 
@@ -379,20 +374,6 @@
         </div>
 
         <p class="text-lg text-gray-600 italic">{% trans "Your support helps us keep Convertica free for everyone and continuously improve our tools" %}</p>
-      </div>
-
-    <!-- CTA Section -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl p-8 text-center shadow-lg">
-          <h2 class="text-3xl font-bold text-gray-900 mb-3">{% trans "Want to Support Convertica?" %}</h2>
-          <p class="text-lg text-gray-800 mb-2">{% trans "If you want to support the project without Premium, you can contribute here." %}</p>
-          <p class="text-sm text-gray-800 mb-6">{% trans "Note: contributing does not unlock Premium features." %}</p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{% url 'frontend:contribute' %}" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:from-blue-800 hover:to-indigo-800 hover:shadow-xl hover:scale-105 transition duration-200 transform shadow-lg">
-              {% trans "Contribute to the Project" %}
-            </a>
-          </div>
-        </div>
       </div>
 
     <!-- Honest Message Section -->

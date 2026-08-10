@@ -872,7 +872,6 @@ LEMONSQUEEZY_API_BASE = config(
     "LEMONSQUEEZY_API_BASE", default="https://api.lemonsqueezy.com/v1"
 )
 PAYMENT_PAST_DUE_GRACE_DAYS = config("PAYMENT_PAST_DUE_GRACE_DAYS", default=0, cast=int)
-KOFI_URL = config("KOFI_URL", default="")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

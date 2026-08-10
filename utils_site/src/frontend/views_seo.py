@@ -84,8 +84,6 @@ Disallow: /*/accounts/
 # Disallow payment and post-conversion success pages
 Disallow: /payments/
 Disallow: /*/payments/
-Disallow: /contribute/success/
-Disallow: /*/contribute/success/
 
 # Disallow premium-gated feature pages that 302-redirect anonymous visitors
 # to login (kept off the public crawl to avoid noisy 302→login chains).
