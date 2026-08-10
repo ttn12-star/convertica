@@ -658,6 +658,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://app.lemonsqueezy.com "
             "https://assets.lemonsqueezy.com "
             "https://cdn.paddle.com "
+            "https://sandbox-cdn.paddle.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
@@ -671,7 +672,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             # Drive/Dropbox import: gapi loader + Dropbox Chooser SDK
             "https://apis.google.com " "https://www.dropbox.com",
             # Styles: self, inline (for Tailwind and dynamic styles)
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com "
+            "https://cdn.paddle.com https://sandbox-cdn.paddle.com",
             # Fonts: self, Google Fonts
             "font-src 'self' https://fonts.gstatic.com data:",
             # Images: self, data URIs, blob, common CDNs, YouTube thumbnails

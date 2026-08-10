@@ -104,6 +104,27 @@ def _resolve_email_lang(payload: dict, user: User) -> str:
     return settings.LANGUAGE_CODE
 
 
+def _enqueue_email(user_id: int, kind: str, lang: str) -> None:
+    """Queue a transactional email, swallowing broker failures.
+
+    on_commit callbacks run after the transaction has already been committed,
+    so an exception here does NOT undo the subscription — it only escapes to
+    the webhook view, which then returns 500 and makes the provider retry a
+    delivery that already succeeded. Worse, the welcome claim is committed too,
+    so the retry won't re-send the mail either.
+
+    A missing broker must not cost someone their premium. Log and move on.
+    """
+    try:
+        send_premium_email.delay(user_id, kind, lang)
+    except Exception:
+        logger.exception(
+            "Could not enqueue %s email — premium was granted regardless",
+            kind,
+            extra={"event": "premium_email_enqueue_failed", "user_id": user_id},
+        )
+
+
 def _maybe_send_welcome(user: User, lang: str) -> None:
     """Enqueue the onboarding email exactly once per user, ever.
 
@@ -116,14 +137,12 @@ def _maybe_send_welcome(user: User, lang: str) -> None:
         id=user.id, welcome_email_sent_at__isnull=True
     ).update(welcome_email_sent_at=timezone.now())
     if claimed:
-        transaction.on_commit(
-            lambda: send_premium_email.delay(user.id, "welcome", lang)
-        )
+        transaction.on_commit(lambda: _enqueue_email(user.id, "welcome", lang))
 
 
 def _send_renewal(user: User, lang: str) -> None:
     """Enqueue the short 'thanks for renewing' email (on commit)."""
-    transaction.on_commit(lambda: send_premium_email.delay(user.id, "renewal", lang))
+    transaction.on_commit(lambda: _enqueue_email(user.id, "renewal", lang))
 
 
 def _period_end_with_fallback(payload_period_end_iso, *, plan, period_start):
