@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.generic import RedirectView
 
 from . import views
-from .views import PricingPageView, SupportPageView
+from .views import PricingPageView
 
 app_name = "frontend"
 
@@ -138,7 +138,15 @@ urlpatterns = [
     path("archive/unlock/", views.unlock_zip_page, name="unlock_zip_page"),
     # Static pages
     path("pricing/", PricingPageView.as_view(), name="pricing"),
-    path("contribute/", SupportPageView.as_view(), name="contribute"),
+    # Ko-fi donation page, removed 2026-08-10: merchant-of-record providers
+    # classify donations as a prohibited category, and it cost us both the
+    # Lemon Squeezy account and the first Paddle application. The URL was
+    # indexed and linked from /pricing/, so it redirects rather than 404s.
+    path(
+        "contribute/",
+        RedirectView.as_view(pattern_name="frontend:pricing", permanent=True),
+        name="contribute",
+    ),
     path("about/", views.about_page, name="about_page"),
     path("install/", views.install_page, name="install_page"),
     path("privacy/", views.privacy_page, name="privacy_page"),

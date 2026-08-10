@@ -2131,7 +2131,6 @@ def _get_sitemap_pages():
         {"url": "contact/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "faq/", "priority": "0.8", "changefreq": "monthly"},
         {"url": "pricing/", "priority": "0.8", "changefreq": "monthly"},
-        {"url": "contribute/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "all-tools/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "premium-tools/", "priority": "0.7", "changefreq": "weekly"},
         {"url": "batch-converter/", "priority": "0.7", "changefreq": "monthly"},
@@ -2271,7 +2270,7 @@ def sitemap_lang(request, lang: str):
     # v8: image/password-protect-image/ (v7) + /pdf-edit/page-size/ — both
     # landed as v7 on separate branches, so bump again or the cached
     # sitemap never picks up the second one.
-    cache_key = f"sitemap_{lang}_v9"
+    cache_key = f"sitemap_{lang}_v10"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
@@ -2452,26 +2451,6 @@ class PricingPageView(TemplateView):
         context["monthly_plan"] = plans_by_slug.get("monthly-hero")
         context["yearly_plan"] = plans_by_slug.get("yearly-hero")
 
-        return context
-
-
-class SupportPageView(TemplateView):
-    template_name = "frontend/support.html"
-
-    def get_context_data(self, **kwargs):
-        from django.conf import settings
-
-        context = super().get_context_data(**kwargs)
-        context["page_title"] = _("Contribute to Convertica")
-        context["page_description"] = _(
-            "Support the Convertica project on Ko-fi — one-time or recurring "
-            "contributions go directly to development. This does not unlock "
-            "Premium features (Premium subscribers are 'Heroes')."
-        )
-        context["page_keywords"] = (
-            "convertica contribute, donate, kofi, support project"
-        )
-        context["kofi_url"] = settings.KOFI_URL
         return context
 
 
