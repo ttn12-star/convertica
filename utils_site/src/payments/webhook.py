@@ -69,6 +69,75 @@ def _build_event_id(payload: dict, request) -> str:
     return f"{event_name}:{data_type}:{data_id}:{discriminator}"
 
 
+def process_event(
+    *,
+    provider: str,
+    event_id: str,
+    event_type: str,
+    payload: dict,
+    handler,
+    livemode: bool,
+    raw_payload: dict | None = None,
+) -> HttpResponse:
+    """Run `handler(payload)` exactly once for (provider, event_id).
+
+    Shared by every provider's receiver: the de-duplication, the atomic claim
+    and the retry semantics are identical, only signature checking and payload
+    shape differ. Returns the response to hand back to the provider.
+
+    `raw_payload` is what gets stored for later inspection, defaulting to
+    `payload`. Providers whose events are normalised before dispatch pass the
+    original here — the normalised form is lossy, and a support question weeks
+    later needs what actually arrived.
+    """
+    try:
+        evt, created = WebhookEvent.objects.get_or_create(
+            provider=provider,
+            event_id=event_id,
+            defaults={
+                "event_type": event_type,
+                "livemode": livemode,
+                "processing": True,
+                "raw_payload": payload if raw_payload is None else raw_payload,
+            },
+        )
+    except IntegrityError:
+        return HttpResponse("OK")
+
+    if not created:
+        # Atomic claim: lock the row so two workers retrying the same failed
+        # event can't both flip processing False→True and run the handler.
+        with transaction.atomic():
+            evt = WebhookEvent.objects.select_for_update().get(pk=evt.pk)
+            if evt.processed_at is not None:
+                return HttpResponse("OK")
+            if (
+                evt.processing
+                and evt.updated_at > timezone.now() - STALE_PROCESSING_WINDOW
+            ):
+                # Another worker is currently processing — let the provider
+                # retry later.
+                return HttpResponse("OK")
+            # Previous attempt failed (or its worker died) — claim and retry.
+            evt.processing = True
+            evt.save(update_fields=["processing", "updated_at"])
+
+    try:
+        handler(payload)
+        evt.processing = False
+        evt.processed_at = timezone.now()
+        evt.last_error = ""
+        evt.save(update_fields=["processing", "processed_at", "last_error"])
+        return HttpResponse("OK")
+    except Exception as e:
+        logger.exception("%s webhook handler failed", provider)
+        evt.processing = False
+        evt.last_error = str(e)[:2000]
+        evt.save(update_fields=["processing", "last_error"])
+        # Return 500 so the provider retries.
+        return HttpResponse("Internal error", status=500)
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def lemonsqueezy_webhook(request):
@@ -105,49 +174,11 @@ def lemonsqueezy_webhook(request):
         )
         return HttpResponse("OK")
 
-    # Idempotency
-    try:
-        evt, created = WebhookEvent.objects.get_or_create(
-            provider="lemonsqueezy",
-            event_id=event_id,
-            defaults={
-                "event_type": event_name,
-                "livemode": not bool((payload.get("meta") or {}).get("test_mode")),
-                "processing": True,
-                "raw_payload": payload,
-            },
-        )
-    except IntegrityError:
-        return HttpResponse("OK")
-
-    if not created:
-        # Atomic claim: lock the row so two workers retrying the same failed
-        # event can't both flip processing False→True and run the handler.
-        with transaction.atomic():
-            evt = WebhookEvent.objects.select_for_update().get(pk=evt.pk)
-            if evt.processed_at is not None:
-                return HttpResponse("OK")
-            if (
-                evt.processing
-                and evt.updated_at > timezone.now() - STALE_PROCESSING_WINDOW
-            ):
-                # Another worker is currently processing — let LS retry later.
-                return HttpResponse("OK")
-            # Previous attempt failed (or its worker died) — claim and retry.
-            evt.processing = True
-            evt.save(update_fields=["processing", "updated_at"])
-
-    try:
-        handler(payload)
-        evt.processing = False
-        evt.processed_at = timezone.now()
-        evt.last_error = ""
-        evt.save(update_fields=["processing", "processed_at", "last_error"])
-        return HttpResponse("OK")
-    except Exception as e:
-        logger.exception("LS webhook handler failed")
-        evt.processing = False
-        evt.last_error = str(e)[:2000]
-        evt.save(update_fields=["processing", "last_error"])
-        # Return 500 so LS retries — but only if the error is recoverable.
-        return HttpResponse("Internal error", status=500)
+    return process_event(
+        provider="lemonsqueezy",
+        event_id=event_id,
+        event_type=event_name,
+        payload=payload,
+        handler=handler,
+        livemode=not bool((payload.get("meta") or {}).get("test_mode")),
+    )

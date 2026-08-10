@@ -12,7 +12,11 @@
 
 {% block extra_head %}
   {% if PAYMENTS_ENABLED %}
-    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer nonce="{{ csp_nonce }}"></script>
+    {% if PAYMENT_PROVIDER == "paddle" %}
+      <script src="https://cdn.paddle.com/paddle/v2/paddle.js" defer nonce="{{ csp_nonce }}"></script>
+    {% else %}
+      <script src="https://app.lemonsqueezy.com/js/lemon.js" defer nonce="{{ csp_nonce }}"></script>
+    {% endif %}
   {% endif %}
 {% endblock %}
 
@@ -821,7 +825,28 @@
               return;
             }
 
-            if (window.LemonSqueezy && data.checkout_url) {
+            if (data.provider === 'paddle') {
+              if (!window.Paddle) {
+                // paddle.js is deferred and there is no hosted-URL fallback to
+                // redirect to, so the only honest move is to ask for a retry.
+                alert('{% filter escapejs %}{% trans "Checkout is still loading. Please try again in a moment." %}{% endfilter %}');
+                return;
+              }
+              if (data.environment !== 'production') {
+                window.Paddle.Environment.set('sandbox');
+              }
+              window.Paddle.Initialize({ token: data.client_token });
+              window.Paddle.Checkout.open({
+                items: [{ priceId: data.price_id, quantity: 1 }],
+                customer: { email: data.email },
+                customData: data.custom_data,
+                settings: {
+                  displayMode: 'overlay',
+                  locale: data.locale,
+                  successUrl: data.success_url,
+                },
+              });
+            } else if (window.LemonSqueezy && data.checkout_url) {
               window.LemonSqueezy.Url.Open(data.checkout_url);
             } else if (data.checkout_url) {
               // lemon.js still loading (defer) — fall back to redirect
