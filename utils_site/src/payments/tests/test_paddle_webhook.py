@@ -277,3 +277,66 @@ class EndToEndPremiumTests(TestCase):
         # Minor units must become 7.99, not 799.
         self.assertEqual(payment.amount, Decimal("7.99"))
         self.assertEqual(payment.provider, "paddle")
+
+
+@override_settings(PADDLE_WEBHOOK_SECRET=SECRET)
+class BrokerOutageTests(TestCase):
+    """A dead Celery broker must not cost the customer their premium.
+
+    The email is queued from an on_commit hook, so by the time it fails the
+    subscription is already committed. Letting the exception escape makes the
+    webhook return 500, Paddle retry an already-successful delivery, and the
+    welcome mail never send (its claim is committed too).
+    """
+
+    def setUp(self):
+        from src.users.models import SubscriptionPlan, User
+
+        self.user = User.objects.create_user(
+            username="broker", email="broker@example.com", password="x"
+        )
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly",
+            slug="monthly-broker",
+            price="7.99",
+            currency="USD",
+            duration_days=30,
+        )
+
+    def test_premium_survives_a_dead_broker(self):
+        payload = {
+            "event_id": "evt_broker",
+            "event_type": "subscription.created",
+            "data": {
+                "id": "sub_broker",
+                "status": "active",
+                "customer_id": "ctm_broker",
+                "custom_data": {
+                    "user_id": str(self.user.id),
+                    "plan_id": str(self.plan.id),
+                    "locale": "en",
+                },
+                "started_at": "2026-08-10T09:00:00Z",
+                "current_billing_period": {
+                    "starts_at": "2026-08-10T09:00:00Z",
+                    "ends_at": "2026-09-10T09:00:00Z",
+                },
+            },
+        }
+        body = json.dumps(payload).encode()
+        with mock.patch(
+            "src.payments.handlers.send_premium_email.delay",
+            side_effect=RuntimeError("Retry limit exceeded while trying to reconnect"),
+        ):
+            r = Client().post(
+                URL,
+                data=body,
+                content_type="application/json",
+                headers={"paddle-signature": _signed(body)},
+            )
+
+        self.assertEqual(r.status_code, 200)  # not 500 — no pointless retries
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.is_premium)
+        evt = WebhookEvent.objects.get(event_id="evt_broker")
+        self.assertIsNotNone(evt.processed_at)
