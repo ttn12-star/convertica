@@ -143,6 +143,7 @@ urlpatterns = [
     path("install/", views.install_page, name="install_page"),
     path("privacy/", views.privacy_page, name="privacy_page"),
     path("terms/", views.terms_page, name="terms_page"),
+    path("refund/", views.refund_page, name="refund_page"),
     path("contact/", views.contact_page, name="contact_page"),
     path("faq/", views.faq_page, name="faq_page"),
 ]
