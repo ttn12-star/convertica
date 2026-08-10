@@ -17,6 +17,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView
 from django_ratelimit.decorators import ratelimit
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
+from src.payments.paddle import PaddleClient, PaddleError
 
 from .forms import CustomUserCreationForm, LoginForm, stale_unverified_user
 from .models import APIKey, Payment, UserSubscription
@@ -321,10 +322,15 @@ def account_status(request):
 
 @login_required
 def manage_subscription(request):
-    """Redirect to Lemon Squeezy customer portal for current subscription.
+    """Redirect to the payment provider's customer portal.
 
-    If user has no active subscription or LS portal can't be resolved,
-    redirect to /pricing/ instead.
+    The provider is taken from the subscription row, not from settings: after
+    the migration a Paddle-era subscriber and a Lemon Squeezy-era one both
+    exist, and each has to be sent to the portal that actually holds their
+    billing details.
+
+    If there is no subscription, or the portal can't be resolved, fall back
+    to /pricing/.
     """
     sub = (
         UserSubscription.objects.filter(user=request.user)
@@ -334,11 +340,18 @@ def manage_subscription(request):
     if not sub or not sub.provider_customer_id:
         return redirect("frontend:pricing")
     try:
-        customer = LemonSqueezyClient().get_customer(sub.provider_customer_id)
-        portal = (customer.get("urls") or {}).get("customer_portal", "")
+        if sub.provider == "paddle":
+            urls = PaddleClient().create_portal_session(
+                sub.provider_customer_id,
+                [sub.provider_subscription_id] if sub.provider_subscription_id else [],
+            )
+            portal = urls.get("overview", "")
+        else:
+            customer = LemonSqueezyClient().get_customer(sub.provider_customer_id)
+            portal = (customer.get("urls") or {}).get("customer_portal", "")
         if portal:
             return redirect(portal)
-    except LemonSqueezyError:
+    except (LemonSqueezyError, PaddleError):
         pass
     return redirect("frontend:pricing")
 
