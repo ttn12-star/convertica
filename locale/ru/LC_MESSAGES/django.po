@@ -17276,3 +17276,7 @@ msgstr "политика возврата, возврат денег, возвр
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Возвраты"
+
+#: templates/frontend/refund.html
+msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
+msgstr "На странице тарифов указана цена самой подписки. В зависимости от страны НДС или налог с продаж может добавляться или показываться отдельно при оплате, потому что правила везде разные. Своих комиссий мы сверху не добавляем."

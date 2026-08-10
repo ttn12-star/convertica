@@ -17430,3 +17430,7 @@ msgstr "política de reembolso, devolución de dinero, cancelar suscripción, re
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Reembolsos"
+
+#: templates/frontend/refund.html
+msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
+msgstr "El precio de nuestra página de precios es el de la suscripción en sí. Según dónde vivas, el IVA o el impuesto sobre las ventas puede añadirse o mostrarse por separado al pagar, porque las normas locales varían. Nosotros no añadimos ninguna comisión propia."

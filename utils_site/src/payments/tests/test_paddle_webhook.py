@@ -170,3 +170,110 @@ class WebhookDeliveryTests(TestCase):
     def test_unconfigured_secret_returns_503(self):
         r = self._post(_subscription_event())
         self.assertEqual(r.status_code, 503)
+
+
+@override_settings(PADDLE_WEBHOOK_SECRET=SECRET)
+class EndToEndPremiumTests(TestCase):
+    """A signed Paddle delivery must actually grant and revoke premium.
+
+    The unit tests above check normalisation and routing separately; this one
+    catches the case where both are individually right but disagree — e.g. a
+    field renamed on one side only, which would silently leave a paying
+    customer without access.
+    """
+
+    def setUp(self):
+        from src.users.models import SubscriptionPlan, User
+
+        self.user = User.objects.create_user(
+            username="payer", email="payer@example.com", password="x"
+        )
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly",
+            slug="monthly-test",
+            price="7.99",
+            currency="USD",
+            duration_days=30,
+        )
+        self.client = Client()
+
+    def _deliver(self, payload):
+        body = json.dumps(payload).encode()
+        return self.client.post(
+            URL,
+            data=body,
+            content_type="application/json",
+            headers={"paddle-signature": _signed(body)},
+        )
+
+    def _event(self, event_type, event_id, **data_overrides):
+        data = {
+            "id": "sub_e2e",
+            "status": "active",
+            "customer_id": "ctm_e2e",
+            "custom_data": {
+                "user_id": str(self.user.id),
+                "plan_id": str(self.plan.id),
+                "locale": "en",
+            },
+            "started_at": "2026-08-10T09:00:00Z",
+            "current_billing_period": {
+                "starts_at": "2026-08-10T09:00:00Z",
+                "ends_at": "2026-09-10T09:00:00Z",
+            },
+        }
+        data.update(data_overrides)
+        return {"event_id": event_id, "event_type": event_type, "data": data}
+
+    def test_subscription_created_grants_premium(self):
+        r = self._deliver(self._event("subscription.created", "evt_e2e_1"))
+        self.assertEqual(r.status_code, 200)
+
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.is_premium)
+        self.assertTrue(self.user.is_subscription_active())
+
+        sub = self.user.provider_subscription
+        self.assertEqual(sub.provider, "paddle")  # not "lemonsqueezy"
+        self.assertEqual(sub.provider_subscription_id, "sub_e2e")
+        self.assertEqual(sub.provider_customer_id, "ctm_e2e")
+
+    def test_cancellation_taking_effect_revokes_premium(self):
+        self._deliver(self._event("subscription.created", "evt_e2e_2"))
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.is_premium)
+
+        r = self._deliver(
+            self._event("subscription.canceled", "evt_e2e_3", status="canceled")
+        )
+        self.assertEqual(r.status_code, 200)
+
+        self.user.refresh_from_db()
+        self.assertFalse(self.user.is_subscription_active())
+
+    def test_completed_transaction_records_the_payment(self):
+        from decimal import Decimal
+
+        from src.users.models import Payment
+
+        self._deliver(self._event("subscription.created", "evt_e2e_4"))
+        txn = {
+            "event_id": "evt_e2e_5",
+            "event_type": "transaction.completed",
+            "data": {
+                "id": "txn_e2e",
+                "subscription_id": "sub_e2e",
+                "customer_id": "ctm_e2e",
+                "custom_data": {
+                    "user_id": str(self.user.id),
+                    "plan_id": str(self.plan.id),
+                },
+                "details": {"totals": {"grand_total": "799", "currency_code": "USD"}},
+            },
+        }
+        self.assertEqual(self._deliver(txn).status_code, 200)
+
+        payment = Payment.objects.get(user=self.user, status="completed")
+        # Minor units must become 7.99, not 799.
+        self.assertEqual(payment.amount, Decimal("7.99"))
+        self.assertEqual(payment.provider, "paddle")
