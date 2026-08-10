@@ -684,7 +684,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://img.youtube.com "
             # Backlink directory badges (footer "Featured on" row)
             "https://findly.tools "
-            "https://img.turbo0.com "
+            "https://launchpadly.co "
             "https://smollaunch.com "
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
