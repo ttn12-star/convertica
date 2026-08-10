@@ -36,6 +36,7 @@ class Command(BaseCommand):
                 "duration_days": 30,
                 "is_lifetime": False,
                 "ls_variant_id": os.environ.get("LS_VARIANT_MONTHLY", ""),
+                "paddle_price_id": os.environ.get("PADDLE_PRICE_MONTHLY", ""),
             },
             {
                 "name": _("Yearly Hero Access"),
@@ -46,6 +47,7 @@ class Command(BaseCommand):
                 "duration_days": 365,
                 "is_lifetime": False,
                 "ls_variant_id": os.environ.get("LS_VARIANT_YEARLY", ""),
+                "paddle_price_id": os.environ.get("PADDLE_PRICE_YEARLY", ""),
             },
         ]
 
@@ -56,6 +58,11 @@ class Command(BaseCommand):
             if not created:
                 for k, v in data.items():
                     if k == "slug":
+                        continue
+                    # An unset provider id in the environment must not wipe one
+                    # that is already configured — this command runs on every
+                    # deploy, and blanking it silently breaks checkout.
+                    if k.endswith("_id") and not v:
                         continue
                     setattr(plan, k, v)
                 plan.save()
