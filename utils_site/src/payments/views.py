@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
+from src.payments.paddle import PaddleClient, PaddleError
 from src.users.models import Payment, SubscriptionPlan, UserSubscription
 
 logger = logging.getLogger(__name__)
@@ -49,7 +50,11 @@ def create_checkout_session(request):
             {"error": "Payments are temporarily unavailable."}, status=503
         )
 
-    if not settings.LEMONSQUEEZY_API_KEY or not settings.LEMONSQUEEZY_STORE_ID:
+    provider = getattr(settings, "PAYMENT_PROVIDER", "lemonsqueezy")
+    if provider == "paddle":
+        if not settings.PADDLE_CLIENT_TOKEN:
+            return JsonResponse({"error": "Paddle is not configured."}, status=503)
+    elif not settings.LEMONSQUEEZY_API_KEY or not settings.LEMONSQUEEZY_STORE_ID:
         return JsonResponse({"error": "Lemon Squeezy is not configured."}, status=503)
 
     try:
@@ -66,7 +71,13 @@ def create_checkout_session(request):
     except SubscriptionPlan.DoesNotExist:
         return JsonResponse({"error": "Plan not found"}, status=404)
 
-    if not plan.ls_variant_id:
+    if provider == "paddle":
+        if not plan.paddle_price_id:
+            return JsonResponse(
+                {"error": "Plan is not configured with a Paddle price"},
+                status=503,
+            )
+    elif not plan.ls_variant_id:
         return JsonResponse(
             {"error": "Plan is not configured with Lemon Squeezy variant"},
             status=503,
@@ -91,9 +102,22 @@ def create_checkout_session(request):
         portal_url = ""
         if existing.provider_customer_id:
             try:
-                customer = _client().get_customer(existing.provider_customer_id)
-                portal_url = (customer.get("urls") or {}).get("customer_portal", "")
-            except LemonSqueezyError:
+                if existing.provider == "paddle":
+                    # Paddle portal links are short-lived, so they are minted
+                    # per visit rather than stored on the subscription.
+                    urls = PaddleClient().create_portal_session(
+                        existing.provider_customer_id,
+                        (
+                            [existing.provider_subscription_id]
+                            if existing.provider_subscription_id
+                            else []
+                        ),
+                    )
+                    portal_url = urls.get("overview", "")
+                else:
+                    customer = _client().get_customer(existing.provider_customer_id)
+                    portal_url = (customer.get("urls") or {}).get("customer_portal", "")
+            except (LemonSqueezyError, PaddleError):
                 portal_url = ""
         return JsonResponse(
             {
@@ -110,22 +134,39 @@ def create_checkout_session(request):
         )
 
     success_url = request.build_absolute_uri(reverse("payments:payment_success"))
+    locale = getattr(request, "LANGUAGE_CODE", "en") or "en"
+    # Read by the webhook to attribute the payment and localise the welcome
+    # email, which has no request to read a locale from.
+    custom_data = {
+        "user_id": str(user.id),
+        "plan_id": str(plan.id),
+        "locale": locale,
+    }
+
+    if provider == "paddle":
+        # No API round-trip: Paddle.js opens the overlay client-side from the
+        # price id, so there is no checkout object to create server-side.
+        return JsonResponse(
+            {
+                "provider": "paddle",
+                "price_id": plan.paddle_price_id,
+                "client_token": settings.PADDLE_CLIENT_TOKEN,
+                "environment": getattr(settings, "PADDLE_ENV", "sandbox"),
+                "custom_data": custom_data,
+                "email": user.email,
+                "locale": locale,
+                "success_url": success_url,
+            }
+        )
 
     try:
         result = _client().create_checkout(
             store_id=settings.LEMONSQUEEZY_STORE_ID,
             variant_id=plan.ls_variant_id,
-            custom_data={
-                "user_id": str(user.id),
-                "plan_id": str(plan.id),
-                # Language the user is browsing in right now — authoritative
-                # source for the localized welcome email sent from the webhook,
-                # which has no request/session to read the locale from.
-                "locale": getattr(request, "LANGUAGE_CODE", "en") or "en",
-            },
+            custom_data=custom_data,
             success_url=success_url,
             email=user.email,
-            locale=getattr(request, "LANGUAGE_CODE", "en") or "en",
+            locale=locale,
         )
     except LemonSqueezyError as e:
         logger.error(f"LS create_checkout failed: {e}")

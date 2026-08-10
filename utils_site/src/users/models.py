@@ -495,6 +495,10 @@ class SubscriptionPlan(models.Model):
     )
     ls_variant_id = models.CharField(max_length=64, blank=True, default="")
     ls_product_id = models.CharField(max_length=64, blank=True, default="")
+    # Paddle equivalents. Kept alongside the Lemon Squeezy ids rather than
+    # replacing them: the old ids are what historical rows were bought with.
+    paddle_price_id = models.CharField(max_length=64, blank=True, default="")
+    paddle_product_id = models.CharField(max_length=64, blank=True, default="")
     is_lifetime = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

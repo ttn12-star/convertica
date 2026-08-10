@@ -188,8 +188,12 @@ def conversion_limits(request):
 
 
 def payments_enabled(request):
-    """Add PAYMENTS_ENABLED flag to context."""
-    return {"PAYMENTS_ENABLED": getattr(settings, "PAYMENTS_ENABLED", True)}
+    """Add the payment flags the pricing page branches on."""
+    return {
+        "PAYMENTS_ENABLED": getattr(settings, "PAYMENTS_ENABLED", True),
+        # Decides which provider's checkout script is loaded.
+        "PAYMENT_PROVIDER": getattr(settings, "PAYMENT_PROVIDER", "lemonsqueezy"),
+    }
 
 
 def csp_nonce(request):

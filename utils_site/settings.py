@@ -873,6 +873,28 @@ LEMONSQUEEZY_API_BASE = config(
 )
 PAYMENT_PAST_DUE_GRACE_DAYS = config("PAYMENT_PAST_DUE_GRACE_DAYS", default=0, cast=int)
 
+# Paddle (migration off Lemon Squeezy, 2026-08). PAYMENT_PROVIDER decides which
+# integration the checkout and the manage-subscription flows use; the webhook
+# endpoints of both providers stay mounted regardless, so in-flight deliveries
+# from the old provider are still processed after the switch.
+PAYMENT_PROVIDER = config("PAYMENT_PROVIDER", default="lemonsqueezy")
+PADDLE_API_KEY = config("PADDLE_API_KEY", default="")
+# Public, shipped to the browser for Paddle.js — not a secret.
+PADDLE_CLIENT_TOKEN = config("PADDLE_CLIENT_TOKEN", default="")
+PADDLE_WEBHOOK_SECRET = config("PADDLE_WEBHOOK_SECRET", default="")
+# Sandbox uses a different host AND different product/price ids. Pointing a live
+# key at the sandbox base (or the reverse) fails in confusing ways, so both move
+# together via PADDLE_ENV.
+PADDLE_ENV = config("PADDLE_ENV", default="sandbox")
+PADDLE_API_BASE = config(
+    "PADDLE_API_BASE",
+    default=(
+        "https://api.paddle.com"
+        if PADDLE_ENV == "production"
+        else "https://sandbox-api.paddle.com"
+    ),
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

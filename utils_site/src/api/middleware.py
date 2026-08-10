@@ -657,6 +657,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
             "https://app.lemonsqueezy.com "
             "https://assets.lemonsqueezy.com "
+            "https://cdn.paddle.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
@@ -698,6 +699,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "connect-src 'self' "
             "https://api.lemonsqueezy.com "
             "https://*.lemonsqueezy.com "
+            "https://*.paddle.com "
             "https://challenges.cloudflare.com "
             "https://www.google-analytics.com "
             "https://*.google-analytics.com "
@@ -715,6 +717,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "frame-src 'self' "
             "https://app.lemonsqueezy.com "
             "https://*.lemonsqueezy.com "
+            "https://buy.paddle.com "
+            "https://sandbox-buy.paddle.com "
             "https://challenges.cloudflare.com "
             "https://accounts.google.com "
             "https://www.facebook.com "
@@ -758,7 +762,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
                 "gyroscope=(), "
                 "magnetometer=(), "
                 "microphone=(), "
-                'payment=(self "https://app.lemonsqueezy.com"), '
+                'payment=(self "https://app.lemonsqueezy.com" '
+                '"https://buy.paddle.com" "https://sandbox-buy.paddle.com"), '
                 "usb=()"
             )
 
