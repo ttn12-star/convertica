@@ -27,6 +27,17 @@ def _custom_data(payload: dict) -> dict:
     return payload.get("meta", {}).get("custom_data", {}) or {}
 
 
+def _provider(payload: dict) -> str:
+    """Which provider this event came from.
+
+    Paddle payloads are normalised into this module's shape by
+    `src.payments.paddle_webhook`, which stamps `_provider`. Lemon Squeezy
+    payloads carry no stamp, so they keep the historical default and the
+    rows written before the migration still match.
+    """
+    return payload.get("_provider") or "lemonsqueezy"
+
+
 def _safe_int(value) -> int | None:
     """Return int(value) or None if value is not coercible.
 
