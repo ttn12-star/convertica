@@ -13,6 +13,9 @@ from src.users.models import SubscriptionPlan, User, UserSubscription
     LEMONSQUEEZY_API_KEY="key",
     LEMONSQUEEZY_STORE_ID="store_1",
     PAYMENTS_ENABLED=True,
+    # Pin the provider: these cover the Lemon Squeezy branch, and the
+    # environment may well point at Paddle.
+    PAYMENT_PROVIDER="lemonsqueezy",
 )
 class CreateCheckoutSessionTests(TestCase):
     def setUp(self):
