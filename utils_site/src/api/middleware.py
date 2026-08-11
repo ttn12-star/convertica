@@ -689,6 +689,9 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://fazier.com "
             "https://twelve.tools "
             "https://nicklaunches.com "
+            "https://newtool.site "
+            "https://devglobe.app "
+            "https://shinylaunch.com "
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
             "https://tpc.googlesyndication.com",
