@@ -1,8 +1,12 @@
-"""Every directory badge in the footer must be allowed by the CSP img-src.
+"""Every directory badge must be allowed by the CSP img-src.
 
 Adding a badge and forgetting the CSP entry has bitten us twice: the badge is
 live in the template, the directory's verifier sees it via curl, and every real
 browser silently blocks the image. Parse both sides and compare.
+
+The row lived in the sitewide footer until 2026-08-14 and now sits at the bottom
+of the home page only — the directories verify by fetching the home page, so one
+page can carry the deal instead of every page linking out.
 """
 
 import re
@@ -10,12 +14,12 @@ from pathlib import Path
 
 from django.test import TestCase
 
-FOOTER = Path(__file__).resolve().parents[4] / "templates/frontend/includes/footer.html"
+BADGE_ROW = Path(__file__).resolve().parents[4] / "templates/frontend/index.html"
 MIDDLEWARE = Path(__file__).resolve().parents[2] / "api/middleware.py"
 
 
 def _footer_img_hosts():
-    html = FOOTER.read_text(encoding="utf-8")
+    html = BADGE_ROW.read_text(encoding="utf-8")
     row = html.split("Featured on (directory badges", 1)[1]
     return {m.group(1) for m in re.finditer(r'<img src="https://([a-z0-9.-]+)/', row)}
 
