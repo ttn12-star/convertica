@@ -254,53 +254,15 @@
     </div>
   </div>
 
-  <!-- Featured on (directory badges — each one is the price of a dofollow listing on findly.tools,
-       Smol Launch, Launchpadly, Fazier and Twelve Tools; they re-check that the badge is still here.
-       Turbo0's badge was dropped 2026-08-10: their listing now serves rel="nofollow" on every link to us.
-       These links have to stay dofollow: every one of these directories verifies the badge points at
-       our listing with a followable link, and drops the listing when it stops.
-       The row is at 8 on the owner's call. Eight sitewide outbound links to launch directories that link
-       back is a reciprocal pattern, so before adding a ninth, drop whichever listing measured nofollow
-       last (see backlink-outreach/tracker.md) rather than growing the row further. -->
-  <div class="border-t border-gray-800">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <p class="text-xs uppercase text-gray-500 mb-3 text-center sm:text-left">{% trans "Featured on" %}</p>
-      <div class="flex flex-wrap items-center gap-4">
-        <a href="https://findly.tools/convertica?utm_source=convertica" target="_blank" rel="noopener noreferrer">
-          <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on Findly.tools" width="175" height="55" loading="lazy" decoding="async">
-        </a>
-        <a href="https://launchpadly.co/startup/convertica?ref=badge" target="_blank" rel="noopener noreferrer">
-          <img src="https://launchpadly.co/embed/badges/startup/convertica.svg?variant=light" alt="Launchpadly Startup Directory" width="220" height="48" loading="lazy" decoding="async">
-        </a>
-        <a href="https://smollaunch.com/products/convertica?utm_source=badge&amp;utm_medium=referral&amp;utm_campaign=launching_soon&amp;utm_content=convertica" target="_blank" rel="noopener noreferrer">
-          <img src="https://smollaunch.com/badges/launching.svg" alt="Convertica — Launching soon on Smol Launch" width="250" height="60" loading="lazy" decoding="async">
-        </a>
-        {# Fazier slug is our domain, not "convertica"; the page 404s until they approve the launch. #}
-        <a href="https://fazier.com/launches/convertica.net" target="_blank" rel="noopener noreferrer">
-          <img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&amp;theme=light" alt="Fazier badge" width="120" height="40" loading="lazy" decoding="async">
-        </a>
-        <a href="https://twelve.tools" target="_blank" rel="noopener noreferrer">
-          <img src="https://twelve.tools/badge0-white.svg" alt="Featured on Twelve Tools" width="148" height="40" loading="lazy" decoding="async">
-        </a>
-        {# Nick Launches keeps free listings only while this badge stays up (their /badge/ page says so). #}
-        <a href="https://nicklaunches.com/" target="_blank" rel="noopener noreferrer">
-          <img src="https://nicklaunches.com/badges/featured.png" alt="Featured on Nick Launches" width="244" height="56" loading="lazy" decoding="async">
-        </a>
-        {# NewTool and ShinyLaunch each verify that this badge links to OUR listing, not their home page. #}
-        <a href="https://newtool.site/item/convertica" target="_blank" rel="noopener noreferrer">
-          <img src="https://newtool.site/badges/newtool-light.svg" alt="Featured on NewTool.site" style="height:54px;width:auto" loading="lazy" decoding="async">
-        </a>
-        {% comment %}
-          DevGlobe's badge was dropped 2026-08-14: their live listing serves rel="ugc nofollow" on every
-          link to us, so the badge bought a sitewide outbound link with nothing. Same rule as Turbo0.
-          {# #} only comments out a SINGLE line — a two-line one renders as text on every page.
-        {% endcomment %}
-        <a href="https://shinylaunch.com/product/convertica" target="_blank" rel="noopener noreferrer">
-          <img src="https://shinylaunch.com/assets/images/badge.png" alt="Featured on ShinyLaunch" style="height:54px;width:auto" loading="lazy" decoding="async">
-        </a>
-      </div>
-    </div>
-  </div>
+  {% comment %}
+    The "Featured on" directory-badge row used to live here, which put 8 outbound links on every
+    page of the site. It moved to the bottom of index.html on 2026-08-14: every one of these
+    directories verifies by fetching our home page (ShinyLaunch's wizard says "use the product
+    homepage only", Nick Launches asks for the badge "on your homepage", Twelve Tools / Fazier /
+    Launchpadly all verified against the domain root), so one page carries the deal and the other
+    ~800 stop advertising it. If a directory ever complains after a re-check, the fix is to give
+    that one directory its page, not to make the row sitewide again.
+  {% endcomment %}
 
   <!-- Bottom Bar -->
   <div class="bg-gray-950 border-t border-gray-800 text-gray-400 text-sm py-6">
