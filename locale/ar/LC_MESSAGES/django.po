@@ -16456,3 +16456,47 @@ msgstr "سياسة الاسترداد, ضمان استرداد المال, إل�
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "عمليات الاسترداد"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "ما يمنحه لك بريميوم"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "اشتراك واحد يغطي كل أدوات الموقع، بدون حدود يومية"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "ما الذي يتغير عند الاشتراك"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "ثلاثة أمور تحصل عليها من اليوم الأول:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "معالجة ذات أولوية"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "تعمل مهامك في طابور منفصل، والملفات الثقيلة يمكن أن تكتمل في الخلفية مع إرسال النتيجة إلى بريدك"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "أسئلة المشتركين تتقدم إلى أول الطابور ويجيب عنها من يبنون هذه الأدوات"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "بلا شروط مخفية:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "بريميوم هو الخطة المدفوعة الوحيدة هنا. لا رسوم لكل ملف، ولا عروض إضافية داخل الأدوات، ولا إعلانات للمشتركين. يمكنك الإلغاء في أي وقت وستبقى الأدوات المجانية تعمل."
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "مشتركو بريميوم الذين اختاروا الظهور هنا"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "كن أول مشترك بريميوم في هذه القائمة."
