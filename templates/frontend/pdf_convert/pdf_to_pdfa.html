@@ -1,9 +1,11 @@
 {% extends "frontend/converter_generic.html" %}
 {% load i18n %}
 
-{# Premium price ("6") is emitted by base.html's single WebApplication schema via
-   the offer_price context var (set in TOOL_CONFIGS extra) — we deliberately do
-   NOT add a second schema block here to avoid duplicate-schema warnings. #}
+{% comment %}
+  Premium price ("6") is emitted by base.html's single WebApplication schema via
+  the offer_price context var (set in TOOL_CONFIGS extra) — we deliberately do
+  NOT add a second schema block here to avoid duplicate-schema warnings.
+{% endcomment %}
 
 {% block edit_options %}
   <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
