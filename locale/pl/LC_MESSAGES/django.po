@@ -17429,3 +17429,47 @@ msgstr "zasady zwrotów, zwrot pieniędzy, anulowanie subskrypcji, zwrot Convert
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Zwroty"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "Co daje Premium"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "Jedna subskrypcja obejmuje wszystkie narzędzia na stronie, bez dziennych limitów"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "Co zmienia subskrypcja"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "Trzy rzeczy, które masz od pierwszego dnia:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "Priorytetowe przetwarzanie"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "Twoje zadania idą osobną kolejką, a ciężkie pliki mogą kończyć się w tle, z wynikiem wysłanym na e-mail"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "Pytania subskrybentów trafiają na początek kolejki, a odpowiadają na nie osoby, które tworzą te narzędzia"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "Bez drobnego druku:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "Premium to jedyny płatny plan. Nie ma opłat za plik, nie ma dosprzedaży w narzędziach ani reklam dla subskrybentów. Możesz zrezygnować w dowolnym momencie, a darmowe narzędzia będą działać dalej."
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "Subskrybenci Premium, którzy zgodzili się na wpis na tej liście"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "Bądź pierwszym subskrybentem Premium na tej liście."
