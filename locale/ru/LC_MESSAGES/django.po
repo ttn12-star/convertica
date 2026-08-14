@@ -17276,3 +17276,47 @@ msgstr "политика возврата, возврат денег, возвр
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Возвраты"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "Что даёт Premium"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "Одна подписка на все инструменты сайта, без дневных лимитов"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "Что меняется с подпиской"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "Три вещи, которые вы получаете с первого дня:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "Приоритетная обработка"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "Ваши задачи идут в отдельной очереди, а тяжёлые файлы могут обрабатываться в фоне: результат придёт на почту"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "Вопросы подписчиков разбираются первыми, и отвечают на них те, кто делает сами инструменты"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "Без мелкого шрифта:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "Premium это единственный платный тариф. Нет оплаты за файл, нет допродаж внутри инструментов и нет рекламы для подписчиков. Отменить можно в любой момент, бесплатные инструменты продолжат работать."
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "Подписчики Premium, которые согласились попасть в этот список"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "Станьте первым подписчиком Premium в этом списке."

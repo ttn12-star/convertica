@@ -17430,3 +17430,47 @@ msgstr "política de reembolso, devolución de dinero, cancelar suscripción, re
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Reembolsos"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "Qué te da Premium"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "Una suscripción cubre todas las herramientas del sitio, sin límites diarios"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "Qué cambia al suscribirte"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "Tres cosas que tienes desde el primer día:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "Procesamiento prioritario"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "Tus tareas van por una cola aparte, y los archivos pesados pueden terminar en segundo plano con el resultado enviado a tu correo"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "Las preguntas de los suscriptores pasan al principio de la cola y las responde quien desarrolla las herramientas"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "Sin letra pequeña:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "Premium es el único plan de pago. No hay cargos por archivo, ni ventas adicionales dentro de las herramientas, ni anuncios para suscriptores. Puedes cancelar cuando quieras y las herramientas gratuitas seguirán funcionando."
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "Suscriptores Premium que eligieron aparecer aquí"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "Sé el primer suscriptor Premium de esta lista."
