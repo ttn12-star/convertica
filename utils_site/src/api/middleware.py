@@ -690,7 +690,6 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://twelve.tools "
             "https://nicklaunches.com "
             "https://newtool.site "
-            "https://devglobe.app "
             "https://shinylaunch.com "
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
