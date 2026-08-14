@@ -17065,3 +17065,47 @@ msgstr "रिफ़ंड नीति, मनी बैक गारंटी,
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "रिफ़ंड"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "प्रीमियम से क्या मिलता है"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "एक सब्सक्रिप्शन में साइट के सभी टूल, कोई दैनिक सीमा नहीं"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "सब्सक्राइब करने पर क्या बदलता है"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "पहले दिन से मिलने वाली तीन चीज़ें:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "प्राथमिकता वाली प्रोसेसिंग"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "आपके काम अलग कतार में चलते हैं, और भारी फ़ाइलें बैकग्राउंड में पूरी हो सकती हैं, नतीजा ईमेल पर आ जाएगा"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "सब्सक्राइबर के सवाल कतार में सबसे आगे जाते हैं, और जवाब वही देते हैं जो ये टूल बनाते हैं"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "कोई छिपी शर्तें नहीं:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "प्रीमियम यहाँ का एकमात्र पेड प्लान है। प्रति फ़ाइल कोई शुल्क नहीं, टूल के अंदर कोई अपसेल नहीं, और सब्सक्राइबर्स के लिए कोई विज्ञापन नहीं। आप कभी भी रद्द कर सकते हैं, मुफ़्त टूल चलते रहेंगे।"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "प्रीमियम सब्सक्राइबर जिन्होंने यहाँ दिखना चुना"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "इस सूची में पहले प्रीमियम सब्सक्राइबर बनें।"

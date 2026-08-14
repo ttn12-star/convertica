@@ -337,8 +337,8 @@
     <!-- Testimonials Section -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{% trans "Support Our Project" %}</h2>
-        <p class="text-xl text-gray-700 mb-8">{% trans "Become a Convertica hero and help us make the service better" %}</p>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">{% trans "What Premium gives you" %}</h2>
+        <p class="text-xl text-gray-700 mb-8">{% trans "One subscription covers every tool on the site, with no daily limits" %}</p>
 
         <!-- Why Support Section -->
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -388,11 +388,11 @@
               </div>
             </div>
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-4">
-              {% trans "Why Your Support Matters" %}
+              {% trans "What changes when you subscribe" %}
             </h2>
             <div class="space-y-4 text-gray-700 dark:text-gray-200">
               <p class="text-center">
-                {% trans "This project exists because of heroes like you. We're completely transparent:" %}
+                {% trans "Three things you get from the first day:" %}
               </p>
               <div class="grid md:grid-cols-3 gap-8 mt-10">
                 <div class="text-center group">
@@ -411,8 +411,8 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                   </div>
-                  <h3 class="font-bold text-gray-900 dark:text-white mb-3 text-lg">{% trans "Servers & Development" %}</h3>
-                  <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{% trans "Your support powers our infrastructure and improvements" %}</p>
+                  <h3 class="font-bold text-gray-900 dark:text-white mb-3 text-lg">{% trans "Priority processing" %}</h3>
+                  <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{% trans "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you" %}</p>
                 </div>
                 <div class="text-center group">
                   <div class="w-20 h-20 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-200/50 transition duration-300">
@@ -420,13 +420,13 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                   </div>
-                  <h3 class="font-bold text-gray-900 dark:text-white mb-3 text-lg">{% trans "Community Driven" %}</h3>
-                  <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{% trans "You're not just a user - you're a project partner" %}</p>
+                  <h3 class="font-bold text-gray-900 dark:text-white mb-3 text-lg">{% trans "Priority support" %}</h3>
+                  <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{% trans "Subscriber questions go to the front of the queue and are answered by the people who build the tools" %}</p>
                 </div>
               </div>
               <div class="mt-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800/50">
                 <p class="text-center text-sm text-gray-700 dark:text-gray-200">
-                  <strong>{% trans "The Truth:" %}</strong> {% trans "We don't have venture capital or investors. This project survives solely through the support of users like you. Every subscription directly funds servers, security, and development." %}
+                  <strong>{% trans "No small print:" %}</strong> {% trans "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working." %}
                 </p>
               </div>
             </div>
@@ -441,7 +441,7 @@
             <h2 class="text-3xl font-bold text-white mb-4">{% trans "Heroes Hall of Fame" %}</h2>
             <p class="text-yellow-300">
               {% if PAYMENTS_ENABLED %}
-                {% trans "Our amazing premium subscribers supporting the project" %}
+                {% trans "Premium subscribers who chose to be listed here" %}
               {% else %}
                 {% trans "This section will showcase Premium Heroes once subscriptions reopen." %}
               {% endif %}
@@ -588,7 +588,7 @@
               </h3>
               <p class="text-yellow-300">
                 {% if PAYMENTS_ENABLED %}
-                  {% trans "Be the first Premium Hero and support the project." %}
+                  {% trans "Be the first Premium subscriber listed here." %}
                 {% else %}
                   {% trans "This area will fill up with Premium Heroes once subscriptions are available." %}
                 {% endif %}

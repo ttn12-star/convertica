@@ -15660,3 +15660,47 @@ msgstr "{count} files selected"
 
 msgid "Total: {size}"
 msgstr "Total: {size}"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "What Premium gives you"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "One subscription covers every tool on the site, with no daily limits"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "What changes when you subscribe"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "Three things you get from the first day:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "Priority processing"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "No small print:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "Premium subscribers who chose to be listed here"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "Be the first Premium subscriber listed here."

@@ -17192,3 +17192,47 @@ msgstr "kebijakan pengembalian dana, garansi uang kembali, batalkan langganan, r
 #: templates/frontend/refund.html
 msgid "Refunds"
 msgstr "Pengembalian Dana"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What Premium gives you"
+msgstr "Apa yang Anda dapat dari Premium"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "One subscription covers every tool on the site, with no daily limits"
+msgstr "Satu langganan mencakup semua alat di situs ini, tanpa batas harian"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "What changes when you subscribe"
+msgstr "Apa yang berubah setelah berlangganan"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Three things you get from the first day:"
+msgstr "Tiga hal yang Anda dapat sejak hari pertama:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Priority processing"
+msgstr "Pemrosesan prioritas"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Your jobs run on a separate queue, and heavy files can finish in the background with the result emailed to you"
+msgstr "Tugas Anda berjalan di antrean terpisah, dan berkas berat bisa selesai di latar belakang dengan hasil dikirim ke email Anda"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Subscriber questions go to the front of the queue and are answered by the people who build the tools"
+msgstr "Pertanyaan pelanggan masuk ke depan antrean dan dijawab oleh orang yang membangun alat ini"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "No small print:"
+msgstr "Tanpa syarat tersembunyi:"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium is the only paid tier here. There are no per-file charges, no upsells inside the tools, and no ads for subscribers. You can cancel at any time and the free tools keep working."
+msgstr "Premium adalah satu-satunya paket berbayar di sini. Tidak ada biaya per berkas, tidak ada penawaran tambahan di dalam alat, dan tidak ada iklan bagi pelanggan. Anda bisa berhenti kapan saja dan alat gratis tetap berfungsi."
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Premium subscribers who chose to be listed here"
+msgstr "Pelanggan Premium yang memilih untuk ditampilkan di sini"
+
+#: templates/frontend/pricing.html templates/frontend/index.html
+msgid "Be the first Premium subscriber listed here."
+msgstr "Jadilah pelanggan Premium pertama dalam daftar ini."
