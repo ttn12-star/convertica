@@ -290,8 +290,11 @@
         <a href="https://newtool.site/item/convertica" target="_blank" rel="noopener noreferrer">
           <img src="https://newtool.site/badges/newtool-light.svg" alt="Featured on NewTool.site" style="height:54px;width:auto" loading="lazy" decoding="async">
         </a>
-        {# DevGlobe's badge was dropped 2026-08-14: their live listing serves rel="ugc nofollow" on every
-           link to us, so the badge bought a sitewide outbound link with nothing. Same rule as Turbo0. #}
+        {% comment %}
+          DevGlobe's badge was dropped 2026-08-14: their live listing serves rel="ugc nofollow" on every
+          link to us, so the badge bought a sitewide outbound link with nothing. Same rule as Turbo0.
+          {# #} only comments out a SINGLE line — a two-line one renders as text on every page.
+        {% endcomment %}
         <a href="https://shinylaunch.com/product/convertica" target="_blank" rel="noopener noreferrer">
           <img src="https://shinylaunch.com/assets/images/badge.png" alt="Featured on ShinyLaunch" style="height:54px;width:auto" loading="lazy" decoding="async">
         </a>
