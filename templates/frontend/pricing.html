@@ -14,7 +14,13 @@
   {% if PAYMENTS_ENABLED %}
     {% if PAYMENT_PROVIDER == "paddle" %}
       <script src="https://cdn.paddle.com/paddle/v2/paddle.js" defer nonce="{{ csp_nonce }}"></script>
-    {% else %}
+    {% elif PAYMENT_PROVIDER == "lemonsqueezy" %}
+      {% comment %}
+        Only for Lemon Squeezy. The checkout handler below routes to
+        LemonSqueezy.Url.Open() whenever window.LemonSqueezy exists, so loading
+        lemon.js under any other provider would feed a foreign checkout URL into
+        the LS overlay instead of redirecting to it. Polar needs no SDK at all.
+      {% endcomment %}
       <script src="https://app.lemonsqueezy.com/js/lemon.js" defer nonce="{{ csp_nonce }}"></script>
     {% endif %}
   {% endif %}
