@@ -895,6 +895,23 @@ PADDLE_API_BASE = config(
     ),
 )
 
+# Polar (migration off Lemon Squeezy after Paddle declined, 2026-08). Polar mints
+# a hosted checkout server-side, so unlike Paddle there is no browser SDK and no
+# public client token: the front-end just follows `checkout_url`.
+POLAR_ACCESS_TOKEN = config("POLAR_ACCESS_TOKEN", default="")
+POLAR_WEBHOOK_SECRET = config("POLAR_WEBHOOK_SECRET", default="")
+# Sandbox is a separate account with its own product ids; a live token is
+# rejected against the sandbox host and vice versa, so both move together.
+POLAR_ENV = config("POLAR_ENV", default="sandbox")
+POLAR_API_BASE = config(
+    "POLAR_API_BASE",
+    default=(
+        "https://api.polar.sh"
+        if POLAR_ENV == "production"
+        else "https://sandbox-api.polar.sh"
+    ),
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

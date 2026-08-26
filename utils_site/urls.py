@@ -13,6 +13,7 @@ from src.frontend.views import api_landing, index_page, sitemap_index, sitemap_l
 from src.frontend.views_indexnow import indexnow_key_file
 from src.frontend.views_seo import favicon_view, robots_txt_view
 from src.payments.paddle_webhook import paddle_webhook
+from src.payments.polar_webhook import polar_webhook
 from src.payments.webhook import lemonsqueezy_webhook
 
 from utils_site.swagger import schema_view
@@ -74,6 +75,7 @@ urlpatterns = [
     path("i18n/setlang/", set_language, name="set_language"),
     path("payments/webhook/lemonsqueezy/", lemonsqueezy_webhook, name="ls_webhook"),
     path("payments/webhook/paddle/", paddle_webhook, name="paddle_webhook"),
+    path("payments/webhook/polar/", polar_webhook, name="polar_webhook"),
     path(
         "offline.html", lambda request: render(request, "offline.html"), name="offline"
     ),

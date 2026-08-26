@@ -37,6 +37,7 @@ class Command(BaseCommand):
                 "is_lifetime": False,
                 "ls_variant_id": os.environ.get("LS_VARIANT_MONTHLY", ""),
                 "paddle_price_id": os.environ.get("PADDLE_PRICE_MONTHLY", ""),
+                "polar_product_id": os.environ.get("POLAR_PRODUCT_MONTHLY", ""),
             },
             {
                 "name": _("Yearly Hero Access"),
@@ -48,6 +49,7 @@ class Command(BaseCommand):
                 "is_lifetime": False,
                 "ls_variant_id": os.environ.get("LS_VARIANT_YEARLY", ""),
                 "paddle_price_id": os.environ.get("PADDLE_PRICE_YEARLY", ""),
+                "polar_product_id": os.environ.get("POLAR_PRODUCT_YEARLY", ""),
             },
         ]
 

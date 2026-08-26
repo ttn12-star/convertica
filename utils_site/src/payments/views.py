@@ -14,6 +14,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
 from src.payments.paddle import PaddleClient, PaddleError
+from src.payments.polar import PolarClient, PolarError
 from src.users.models import Payment, SubscriptionPlan, UserSubscription
 
 logger = logging.getLogger(__name__)
@@ -54,6 +55,9 @@ def create_checkout_session(request):
     if provider == "paddle":
         if not settings.PADDLE_CLIENT_TOKEN:
             return JsonResponse({"error": "Paddle is not configured."}, status=503)
+    elif provider == "polar":
+        if not settings.POLAR_ACCESS_TOKEN:
+            return JsonResponse({"error": "Polar is not configured."}, status=503)
     elif not settings.LEMONSQUEEZY_API_KEY or not settings.LEMONSQUEEZY_STORE_ID:
         return JsonResponse({"error": "Lemon Squeezy is not configured."}, status=503)
 
@@ -75,6 +79,12 @@ def create_checkout_session(request):
         if not plan.paddle_price_id:
             return JsonResponse(
                 {"error": "Plan is not configured with a Paddle price"},
+                status=503,
+            )
+    elif provider == "polar":
+        if not plan.polar_product_id:
+            return JsonResponse(
+                {"error": "Plan is not configured with a Polar product"},
                 status=503,
             )
     elif not plan.ls_variant_id:
@@ -114,10 +124,16 @@ def create_checkout_session(request):
                         ),
                     )
                     portal_url = urls.get("overview", "")
+                elif existing.provider == "polar":
+                    # Polar portal sessions are short-lived too, so they are
+                    # minted per visit rather than stored.
+                    portal_url = PolarClient().create_portal_url(
+                        existing.provider_customer_id
+                    )
                 else:
                     customer = _client().get_customer(existing.provider_customer_id)
                     portal_url = (customer.get("urls") or {}).get("customer_portal", "")
-            except (LemonSqueezyError, PaddleError):
+            except (LemonSqueezyError, PaddleError, PolarError):
                 portal_url = ""
         return JsonResponse(
             {
@@ -156,6 +172,26 @@ def create_checkout_session(request):
                 "email": user.email,
                 "locale": locale,
                 "success_url": success_url,
+            }
+        )
+
+    if provider == "polar":
+        try:
+            result = PolarClient().create_checkout(
+                product_id=plan.polar_product_id,
+                success_url=success_url,
+                email=user.email,
+                metadata=custom_data,
+                external_customer_id=str(user.id),
+                customer_metadata={"user_id": str(user.id), "locale": locale},
+            )
+        except PolarError as e:
+            logger.error(f"Polar create_checkout failed: {e}")
+            return JsonResponse({"error": "Checkout creation failed"}, status=502)
+        return JsonResponse(
+            {
+                "checkout_id": result.get("id", ""),
+                "checkout_url": result.get("url", ""),
             }
         )
 

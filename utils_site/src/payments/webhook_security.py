@@ -1,5 +1,6 @@
 """HMAC signature verification for webhooks."""
 
+import base64
 import hashlib
 import hmac
 import time
@@ -82,3 +83,81 @@ def verify_paddle_signature(
     except Exception:
         return False
     return hmac.compare_digest(expected, h1)
+
+
+# Polar signs with the Standard Webhooks scheme, which mandates the same
+# five-minute replay window Paddle uses.
+POLAR_MAX_SIGNATURE_AGE = 5 * 60
+
+
+def _polar_key(secret: str) -> bytes:
+    """Derive the HMAC key from a Polar webhook secret.
+
+    Standard Webhooks treats the secret as base64: an optional `whsec_` prefix
+    is stripped and the rest is base64-decoded. The reference implementation
+    appends padding and decodes leniently, so characters outside the standard
+    alphabet are silently dropped -- which is why our own secrets are generated
+    on the standard alphabet, so no entropy is lost on either side.
+    """
+    if secret.startswith("whsec_"):
+        secret = secret[len("whsec_") :]
+    return base64.b64decode(secret + "==")
+
+
+def verify_polar_signature(
+    body: bytes,
+    headers,
+    secret: str,
+    *,
+    max_age: int = POLAR_MAX_SIGNATURE_AGE,
+    now: float | None = None,
+) -> bool:
+    """Verify Standard Webhooks headers as sent by Polar.
+
+    Polar sends `webhook-id`, `webhook-timestamp` (unix seconds) and
+    `webhook-signature` (a space-separated list of `v1,<base64>` entries, so a
+    secret can be rotated without dropping deliveries). The signed string is
+    `<id>.<timestamp>.<raw body>`, meaning neither the id nor the timestamp can
+    be tampered with independently.
+
+    Rejects anything malformed, mis-signed, or outside the replay window.
+    """
+    if not body or not secret:
+        return False
+
+    msg_id = headers.get("webhook-id") or ""
+    msg_ts = headers.get("webhook-timestamp") or ""
+    msg_sig = headers.get("webhook-signature") or ""
+    if not msg_id or not msg_ts or not msg_sig:
+        return False
+
+    try:
+        ts_float = float(msg_ts)
+    except (TypeError, ValueError):
+        return False
+
+    current = time.time() if now is None else now
+    age = current - ts_float
+    if age > max_age or age < -max_age:
+        return False
+
+    try:
+        key = _polar_key(secret)
+        if not key:
+            return False
+        to_sign = f"{msg_id}.{msg_ts}.".encode() + body
+        expected = hmac.new(key, to_sign, hashlib.sha256).digest()
+    except Exception:
+        return False
+
+    for entry in msg_sig.split(" "):
+        version, _, candidate = entry.partition(",")
+        if version != "v1" or not candidate:
+            continue
+        try:
+            given = base64.b64decode(candidate)
+        except Exception:
+            continue
+        if hmac.compare_digest(expected, given):
+            return True
+    return False
