@@ -440,3 +440,26 @@ class EndToEndPremiumTests(TestCase):
         self.assertIsNotNone(
             WebhookEvent.objects.get(event_id="msg_broker").processed_at
         )
+
+
+class PricingPageProviderScriptTests(TestCase):
+    """The pricing page must not load a foreign provider's checkout SDK.
+
+    The page's checkout handler routes to `LemonSqueezy.Url.Open()` whenever
+    `window.LemonSqueezy` exists, so loading lemon.js while running on Polar
+    would push a polar.sh checkout URL into the Lemon Squeezy overlay instead
+    of redirecting the customer to it — a dead button on the paid plan.
+    """
+
+    def _html(self):
+        return self.client.get("/en/pricing/").content.decode()
+
+    @override_settings(PAYMENT_PROVIDER="polar", PAYMENTS_ENABLED=True)
+    def test_polar_loads_no_sdk_at_all(self):
+        html = self._html()
+        self.assertNotIn("lemonsqueezy.com/js/lemon.js", html)
+        self.assertNotIn("cdn.paddle.com", html)
+
+    @override_settings(PAYMENT_PROVIDER="lemonsqueezy", PAYMENTS_ENABLED=True)
+    def test_lemonsqueezy_still_loads_lemon_js(self):
+        self.assertIn("lemonsqueezy.com/js/lemon.js", self._html())
