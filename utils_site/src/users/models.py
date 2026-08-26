@@ -499,6 +499,9 @@ class SubscriptionPlan(models.Model):
     # replacing them: the old ids are what historical rows were bought with.
     paddle_price_id = models.CharField(max_length=64, blank=True, default="")
     paddle_product_id = models.CharField(max_length=64, blank=True, default="")
+    # Polar product ids. Polar has no separate price object for a fixed price:
+    # the product IS the sellable unit, so one id per plan is enough.
+    polar_product_id = models.CharField(max_length=64, blank=True, default="")
     is_lifetime = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

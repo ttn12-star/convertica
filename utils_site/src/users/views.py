@@ -18,6 +18,7 @@ from django.views.generic import UpdateView
 from django_ratelimit.decorators import ratelimit
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
 from src.payments.paddle import PaddleClient, PaddleError
+from src.payments.polar import PolarClient, PolarError
 
 from .forms import CustomUserCreationForm, LoginForm, stale_unverified_user
 from .models import APIKey, Payment, UserSubscription
@@ -325,7 +326,7 @@ def manage_subscription(request):
     """Redirect to the payment provider's customer portal.
 
     The provider is taken from the subscription row, not from settings: after
-    the migration a Paddle-era subscriber and a Lemon Squeezy-era one both
+    the migration a Polar-era subscriber and a Lemon Squeezy-era one both
     exist, and each has to be sent to the portal that actually holds their
     billing details.
 
@@ -346,12 +347,14 @@ def manage_subscription(request):
                 [sub.provider_subscription_id] if sub.provider_subscription_id else [],
             )
             portal = urls.get("overview", "")
+        elif sub.provider == "polar":
+            portal = PolarClient().create_portal_url(sub.provider_customer_id)
         else:
             customer = LemonSqueezyClient().get_customer(sub.provider_customer_id)
             portal = (customer.get("urls") or {}).get("customer_portal", "")
         if portal:
             return redirect(portal)
-    except (LemonSqueezyError, PaddleError):
+    except (LemonSqueezyError, PaddleError, PolarError):
         pass
     return redirect("frontend:pricing")
 
