@@ -151,6 +151,17 @@ if [ "$migration_success" = false ]; then
   exit 1
 fi
 
+# Step 2.4: Sync subscription plans with the provider ids in the environment.
+# The provider product/price ids live in .env, but nothing on the server read
+# them: the seed command was only ever run by hand. A freshly configured
+# provider therefore left SubscriptionPlan.<provider>_product_id empty and every
+# checkout answered 503 with "Plan is not configured", on a deploy that looked
+# completely green. The command is idempotent and refuses to blank an id that is
+# already set, so running it every deploy is safe and stops env and DB drifting.
+echo "💳 Syncing subscription plans with provider ids..."
+docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web \
+  python manage.py create_subscription_plans || echo "⚠️ Plan sync failed (non-critical)"
+
 # Step 2.5: Verify data AFTER migrations (detect data loss)
 echo "🔍 Verifying data after migrations..."
 OPERATIONS_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import OperationRun; print(OperationRun.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
