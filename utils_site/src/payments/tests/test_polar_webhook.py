@@ -14,16 +14,16 @@ from src.payments.polar_webhook import EVENT_DISPATCH, _normalise
 from src.payments.webhook_security import verify_polar_signature
 from src.users.models import Payment, SubscriptionPlan, User, WebhookEvent
 
-# Standard Webhooks treats the secret as base64, so the test secret has to be
-# valid base64 or both sides would silently derive different keys.
-SECRET = base64.b64encode(b"polar-test-secret-key-32-bytes!!").decode()
+# Polar's key is the raw UTF-8 bytes of the secret string (it base64-encodes the
+# secret before handing it to standardwebhooks, which decodes it straight back).
+SECRET = "polar-test-secret-key-32-bytes!!"
 URL = "/payments/webhook/polar/"
 
 
 def _headers(body: bytes, secret: str = SECRET, msg_id="msg_1", ts=None) -> dict:
     """Sign `body` the way Polar does: HMAC over `<id>.<ts>.<body>`."""
     ts = int(time.time()) if ts is None else ts
-    key = base64.b64decode(secret + "==")
+    key = secret.encode("utf-8")
     sig = hmac.new(key, f"{msg_id}.{ts}.".encode() + body, hashlib.sha256).digest()
     return {
         "webhook-id": msg_id,
@@ -84,13 +84,29 @@ class SignatureTests(TestCase):
         ahead = int(time.time()) + 6 * 60
         self.assertFalse(verify_polar_signature(body, _headers(body, ts=ahead), SECRET))
 
-    def test_whsec_prefix_is_stripped_before_decoding(self):
-        body = b"{}"
-        # Polar-generated secrets carry the prefix; ours do not. Both must work,
-        # and both must derive the SAME key or a rotation would break delivery.
-        self.assertTrue(
-            verify_polar_signature(body, _headers(body, SECRET), "whsec_" + SECRET)
-        )
+    def test_key_is_the_raw_secret_the_way_polar_derives_it(self):
+        """Pin the exact key derivation Polar uses, end to end.
+
+        This reproduces polar-js `validateEvent`: base64-encode the secret,
+        hand it to Standard Webhooks, which base64-decodes it again. Getting
+        this wrong is invisible in unit tests that sign with the same helper as
+        they verify -- it only shows up as a 400 on every live delivery, which
+        is exactly what happened in production on 2026-08-28.
+        """
+        body = b'{"type":"checkout.created"}'
+        msg_id, ts = "msg_polar", str(int(time.time()))
+        polar_key = base64.b64decode(base64.b64encode(SECRET.encode()) + b"==")
+        sig = base64.b64encode(
+            hmac.new(
+                polar_key, f"{msg_id}.{ts}.".encode() + body, hashlib.sha256
+            ).digest()
+        ).decode()
+        headers = {
+            "webhook-id": msg_id,
+            "webhook-timestamp": ts,
+            "webhook-signature": "v1," + sig,
+        }
+        self.assertTrue(verify_polar_signature(body, headers, SECRET))
 
     def test_missing_headers_are_rejected(self):
         self.assertFalse(verify_polar_signature(b"{}", {}, SECRET))

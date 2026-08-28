@@ -91,17 +91,21 @@ POLAR_MAX_SIGNATURE_AGE = 5 * 60
 
 
 def _polar_key(secret: str) -> bytes:
-    """Derive the HMAC key from a Polar webhook secret.
+    """Derive the HMAC key from a Polar webhook secret: it is the raw bytes.
 
-    Standard Webhooks treats the secret as base64: an optional `whsec_` prefix
-    is stripped and the rest is base64-decoded. The reference implementation
-    appends padding and decodes leniently, so characters outside the standard
-    alphabet are silently dropped -- which is why our own secrets are generated
-    on the standard alphabet, so no entropy is lost on either side.
+    Standard Webhooks on its own treats the secret as base64 and decodes it,
+    but Polar base64-ENCODES the secret before handing it to that library:
+
+        const base64Secret = Buffer.from(secret, "utf-8").toString("base64");
+        const webhook = new Webhook(base64Secret);
+            -- polarsource/polar-js, src/webhooks.ts
+
+    The two transforms cancel, so the key is simply the secret's UTF-8 bytes,
+    and there is no `whsec_` prefix to strip. Decoding the secret as base64
+    here instead produced a different key and rejected every real delivery
+    with a 400 -- verified against live production deliveries on 2026-08-28.
     """
-    if secret.startswith("whsec_"):
-        secret = secret[len("whsec_") :]
-    return base64.b64decode(secret + "==")
+    return secret.encode("utf-8")
 
 
 def verify_polar_signature(
