@@ -1,5 +1,6 @@
 """Admin protection middleware and decorators."""
 
+import ipaddress
 import logging
 from collections.abc import Callable
 from functools import wraps
@@ -8,6 +9,41 @@ from django.conf import settings
 from django.http import HttpRequest, HttpResponseForbidden
 
 logger = logging.getLogger(__name__)
+
+
+def ip_in_whitelist(client_ip: str, whitelist) -> bool:
+    """Whether `client_ip` matches any exact address or CIDR range listed.
+
+    Exact addresses alone are not enough for IPv6. Residential IPv6 uses
+    privacy extensions, so the host part of the address rotates every few days
+    while the /64 prefix stays with the subscriber — pinning a full address
+    locks the owner out of admin on a schedule, which is exactly what happened
+    on 2026-08-28. Listing `2a02:a310:c18a:3880::/64` survives the rotation.
+
+    Unparseable entries are skipped rather than raising: a typo in the
+    environment must not turn into a 500 on every admin request.
+    """
+    try:
+        ip = ipaddress.ip_address(client_ip)
+    except ValueError:
+        return False
+
+    for raw in whitelist:
+        entry = str(raw).strip()
+        if not entry:
+            continue
+        try:
+            if "/" in entry:
+                if ip in ipaddress.ip_network(entry, strict=False):
+                    return True
+            elif ip == ipaddress.ip_address(entry):
+                return True
+        except ValueError:
+            logger.warning(
+                "Unparseable ADMIN_IP_WHITELIST entry ignored",
+                extra={"event": "admin_whitelist_bad_entry", "entry": entry[:60]},
+            )
+    return False
 
 
 def get_client_ip(request: HttpRequest) -> str:
@@ -55,17 +91,19 @@ class AdminIPWhitelistMiddleware:
 
             # Get client IP
             client_ip = get_client_ip(request)
+            allowed = ip_in_whitelist(client_ip, whitelist)
 
-            # Log access attempt
+            # Log the attempt, but not the whitelist itself: it was printed on
+            # every admin request, which spills the whole allow-list into any
+            # log aggregator that ever sees these lines.
             logger.info(
                 f"Admin access attempt - IP: {client_ip}, "
                 f"Path: {request.path}, "
-                f"Whitelist: {whitelist}, "
-                f"Allowed: {client_ip in whitelist}"
+                f"Allowed: {allowed}"
             )
 
             # Check if IP is whitelisted
-            if client_ip not in whitelist:
+            if not allowed:
                 logger.warning(
                     f"Admin access denied - IP {client_ip} not in whitelist. "
                     f"REMOTE_ADDR: {request.META.get('REMOTE_ADDR', 'N/A')}, "
