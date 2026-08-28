@@ -114,17 +114,22 @@ class User(AbstractUser):
         # Skip auto-calculation if explicitly disabled (e.g., during cancellation)
         skip_days_calculation = getattr(self, "_skip_days_calculation", False)
 
-        if not skip_days_calculation:
-            # Auto-calculate subscription days when dates are set
-            self._calculate_subscription_days()
-
-        # Clear cache when subscription data changes (must happen BEFORE is_subscription_active())
+        # Clear cache BEFORE recalculating. _calculate_subscription_days()
+        # derives is_premium, and it used to read a status that had been cached
+        # for five minutes: a customer who browsed the site (caching "not
+        # premium") and then paid had activate_premium() overwritten by that
+        # stale value, so the webhook succeeded, the subscription row was
+        # correct, and they still got no premium.
         if getattr(self, "_subscription_changed", False):
             cache.delete(f"user_subscription_status_{self.id}")
             # Also invalidate the premium-active cache used by api.premium_utils
             # so a subscription flip propagates within the next request, not
             # 60s later.
             cache.delete(f"user_premium_active:{self.id}")
+
+        if not skip_days_calculation:
+            # Auto-calculate subscription days when dates are set
+            self._calculate_subscription_days()
 
         super().save(*args, **kwargs)
 
@@ -166,7 +171,11 @@ class User(AbstractUser):
         # Only auto-update is_premium if subscription_end_date is set
         # Allow manual override when editing via admin
         if self.subscription_end_date and not hasattr(self, "_admin_manual_edit"):
-            self.is_premium = self.is_subscription_active()
+            # Compare the date directly rather than calling
+            # is_subscription_active(): a persisted field must never be derived
+            # from a cached read. That coupling is what let a five-minute-old
+            # "not premium" answer overwrite a payment that had just landed.
+            self.is_premium = timezone.now() <= self.subscription_end_date
 
     def is_subscription_active(self):
         """Check if user's subscription is currently active with Redis caching."""
