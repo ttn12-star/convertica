@@ -68,6 +68,15 @@ html_to_pdf:
   upload_date: "2026-07-25T14:00:21+00:00"
   duration: PT1M8S
 
+text_to_pdf:
+  video_id: r37HZwd7fNE
+  upload_date: "2026-08-12T12:00:06-07:00"
+  duration: PT1M22S
+pdf_to_pdfa:
+  video_id: 5aACkEBmIgs
+  upload_date: "2026-08-13T12:00:36-07:00"
+  duration: PT1M21S
+
 # --- pdf_organize ---
 merge_pdf:
   video_id: xypy-5Tkvko
@@ -119,6 +128,19 @@ sign_pdf:
   video_id: IQWUavA9atE
   upload_date: "2026-07-26T14:00:16+00:00"
   duration: PT1M2S
+
+add_text_pdf:
+  video_id: G6MbFZY_ZSA
+  upload_date: "2026-08-14T12:00:37-07:00"
+  duration: PT1M15S
+pdf_editor:
+  video_id: gqiOfO1c7eM
+  upload_date: "2026-08-15T12:00:22-07:00"
+  duration: PT1M19S
+resize_pdf:
+  video_id: oUDxRwPVgOU
+  upload_date: "2026-08-21T12:00:15-07:00"
+  duration: PT1M13S
 
 # --- pdf_security ---
 protect_pdf:
@@ -213,11 +235,3 @@ batch_converter:
   video_id: oisuNoweXD4
   upload_date: "2026-07-29T14:00:20+00:00"
   duration: PT1M5S
-
-# Scheduled on YouTube, still private — add here on/after each publish date,
-# a private id renders an "unavailable" player:
-#   resize_pdf    oUDxRwPVgOU  2026-08-21T19:00Z  PT1M13S
-#   text_to_pdf   r37HZwd7fNE  2026-08-12T19:00Z  PT1M22S
-#   pdf_to_pdfa   5aACkEBmIgs  2026-08-13T19:00Z  PT1M21S
-#   add_text_pdf  G6MbFZY_ZSA  2026-08-14T19:00Z  PT1M15S
-#   pdf_editor    gqiOfO1c7eM  2026-08-15T19:00Z  PT1M19S
