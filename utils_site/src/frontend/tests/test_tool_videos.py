@@ -6,6 +6,7 @@ from unittest import mock
 
 from django.core.cache import cache
 from django.test import Client, TestCase
+from src.frontend.tool_configs import TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS, _load
 
 
@@ -32,6 +33,18 @@ class ToolVideoLoaderTests(TestCase):
     def test_tool_without_video_is_absent(self):
         # Gating: a tool with no YAML entry must not resolve to a video.
         self.assertIsNone(TOOL_VIDEOS.get("no_such_tool"))
+
+    def test_every_tool_has_a_video(self):
+        # The YAML is hand-maintained next to, but separately from, TOOL_CONFIGS,
+        # so a new tool ships with no video and nothing fails. This diffs the two.
+        missing = sorted(set(TOOL_CONFIGS) - set(TOOL_VIDEOS))
+        self.assertEqual(
+            missing,
+            [],
+            f"Tool(s) with no tutorial video: {missing}. Add them to "
+            "content/tool_videos.yaml once the video is public (a private id "
+            "renders an 'unavailable' player).",
+        )
 
     def test_malformed_entries_are_dropped(self):
         # One bad edit must not 500 every page: entries missing video_id / not a
@@ -88,6 +101,9 @@ class ToolVideoRenderTests(TestCase):
             ("/compare-pdf/", "T9kDvMXAtT8"),
             ("/scanned-pdf-to-word/", "bgJiUX4Miwg"),
             ("/batch-converter/", "oisuNoweXD4"),
+            ("/text-to-pdf/", "r37HZwd7fNE"),
+            ("/pdf-edit/add-text/", "G6MbFZY_ZSA"),
+            ("/pdf-editor/", "gqiOfO1c7eM"),
         ):
             resp = self.client.get(path, follow=True)
             self.assertEqual(resp.status_code, 200, path)
