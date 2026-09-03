@@ -53,6 +53,11 @@ try:
         ),
         # Broker connection retry on startup (for Celery 6.0+ compatibility)
         broker_connection_retry_on_startup=True,
+        # Celery pipes task stdout/stderr into the logger, at WARNING by
+        # default. The blog importer's progress output alone was ~30% of a
+        # day's Sentry logs, all of it filed as warnings. It is stdout, so
+        # log it as INFO and leave the warning level to actual warnings.
+        worker_redirect_stdouts_level="INFO",
         # Task settings
         task_serializer="json",
         accept_content=["json"],
