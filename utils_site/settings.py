@@ -62,6 +62,7 @@ if SENTRY_DSN and not config("DEBUG", default=False, cast=bool):
                 is_celery_hard_timeout_cascade,
                 is_pdf2docx_page_skip_noise,
             )
+            from src.exceptions import EncryptedPDFError, InvalidPDFError
 
             # Drop pdf2docx "Ignore page N due to making/parsing page error"
             # logs. The library recovers internally (skips the page and
@@ -85,8 +86,16 @@ if SENTRY_DSN and not config("DEBUG", default=False, cast=bool):
                 (base_message or "") + " " + " ".join(str(p) for p in logentry_params)
             )
 
-            # Don't send InvalidPDFError as exception - it's handled gracefully
-            if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
+            # A bad or password-locked upload is handled gracefully and is the
+            # user's to fix, not a bug. Keep it in Sentry to track patterns, but
+            # downgrade so it doesn't alert. Matching on the base classes covers
+            # the archive subclasses (Invalid/EncryptedArchiveError) too -- the
+            # old exact-name check on "InvalidPDFError" alone let the same
+            # password-protected PDF page as level=error from half the tools.
+            exc_type = hint["exc_info"][0] if "exc_info" in hint else None
+            if isinstance(exc_type, type) and issubclass(
+                exc_type, EncryptedPDFError | InvalidPDFError
+            ):
                 event["level"] = "info"
                 event["tags"] = event.get("tags", {})
                 event["tags"]["error_type"] = "handled"

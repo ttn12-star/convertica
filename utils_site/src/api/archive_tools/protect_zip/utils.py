@@ -61,10 +61,12 @@ def read_member_capped(zin, zi, max_member, max_remaining, context: dict) -> byt
     """
     cap = min(max_member, max_remaining)
     out = bytearray()
-    # Open by name (not the ZipInfo object): callers may pass a ZipInfo from a
-    # different ZipFile used only for inspection (e.g. unlock_zip checks the
-    # archive with a plain zipfile, then reads members from a pyzipper handle).
-    with zin.open(zi.filename) as src:
+    # Open by ZipInfo, never by name: `zi` must come from `zin`'s own parse.
+    # Looking the member up by name breaks whenever two parses of the same
+    # archive decode a filename differently (pyzipper ignores the Info-ZIP
+    # Unicode Path extra field that stdlib zipfile honours), and the ZipInfo
+    # also carries the WinZip AES extra pyzipper needs to decrypt.
+    with zin.open(zi) as src:
         while True:
             chunk = src.read(1024 * 1024)
             if not chunk:

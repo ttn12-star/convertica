@@ -1,5 +1,7 @@
 import io
+import struct
 import zipfile
+import zlib
 
 import pyzipper
 from django.core.cache import cache
@@ -33,6 +35,47 @@ def _aes_zip_upload(files, password, name="enc.zip"):
         for n, data in files.items():
             z.writestr(n, data)
     return SimpleUploadedFile(name, buf.getvalue(), content_type="application/zip")
+
+
+def _aes_zip_with_unicode_path_extra(password, stored_name, unicode_name, data):
+    """AES zip whose two parsers disagree on the member name (CONVERTICA-5Y).
+
+    Chinese Windows tools store the legacy-codepage name in the header and the
+    real UTF-8 one in an Info-ZIP Unicode Path extra field (0x7075). Python
+    3.12's zipfile applies that field; pyzipper, forked from an older zipfile,
+    does not. Injecting the field into the central directory reproduces the
+    split without needing such an archive on disk.
+    """
+    buf = io.BytesIO()
+    with pyzipper.AESZipFile(
+        buf, "w", compression=pyzipper.ZIP_DEFLATED, encryption=pyzipper.WZ_AES
+    ) as z:
+        z.setpassword(password)
+        z.setencryption(pyzipper.WZ_AES, nbits=256)
+        z.writestr(stored_name, data)
+
+    raw = bytearray(buf.getvalue())
+    uni = unicode_name.encode("utf-8")
+    field = (
+        struct.pack(
+            "<HHBI",
+            0x7075,
+            5 + len(uni),
+            1,
+            zlib.crc32(stored_name.encode("ascii")) & 0xFFFFFFFF,
+        )
+        + uni
+    )
+
+    cd = raw.index(b"PK\x01\x02")
+    name_len, extra_len = struct.unpack_from("<HH", raw, cd + 28)
+    struct.pack_into("<H", raw, cd + 30, extra_len + len(field))
+    raw[cd + 46 + name_len + extra_len : cd + 46 + name_len + extra_len] = field
+
+    eocd = raw.index(b"PK\x05\x06")
+    (cd_size,) = struct.unpack_from("<I", raw, eocd + 12)
+    struct.pack_into("<I", raw, eocd + 12, cd_size + len(field))
+    return SimpleUploadedFile("cjk.zip", bytes(raw), content_type="application/zip")
 
 
 class ArchiveExceptionsTests(TestCase):
@@ -121,6 +164,22 @@ class UnlockZipUtilTests(TestCase):
         up = _plain_zip_upload({"a.txt": b"hi"})
         with self.assertRaises(InvalidArchiveError):
             unlock_zip(up, password="whatever")
+
+    def test_unlocks_member_named_only_in_unicode_path_extra(self):
+        """CONVERTICA-5Y: reading members by name across two parses crashed."""
+        from src.api.archive_tools.unlock_zip.utils import unlock_zip
+
+        name = "视频号/8月31日.mp4"
+        up = _aes_zip_with_unicode_path_extra(
+            b"s3cret!", "member.mp4", name, b"payload"
+        )
+        with zipfile.ZipFile(io.BytesIO(up.read())) as probe:
+            self.assertEqual(probe.infolist()[0].filename, name)
+        up.seek(0)
+
+        _, out_path = unlock_zip(up, password="s3cret!")
+        with zipfile.ZipFile(out_path) as z:
+            self.assertEqual(z.read(name), b"payload")
 
 
 @override_settings(

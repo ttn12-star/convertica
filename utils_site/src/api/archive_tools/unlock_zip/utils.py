@@ -66,6 +66,18 @@ def unlock_zip(
         try:
             with pyzipper.AESZipFile(input_path) as zin:
                 zin.setpassword(password.encode("utf-8"))
+                # Two parses of the same archive, and they disagree on names:
+                # stdlib zipfile honours the Info-ZIP Unicode Path extra field
+                # (0x7075) while pyzipper, a fork of an older zipfile, keeps the
+                # legacy cp437 name. Pair them by position -- both walk the same
+                # central directory in order -- and use each for what only it
+                # can do: pyzipper's ZipInfo to decrypt, stdlib's name to write.
+                members = zin.infolist()
+                if len(members) != len(infos):
+                    raise InvalidArchiveError(
+                        _("The uploaded file is not a valid ZIP archive."),
+                        context=context,
+                    )
                 with zipfile.ZipFile(
                     output_path, "w", compression=zipfile.ZIP_DEFLATED
                 ) as zout:
@@ -75,12 +87,12 @@ def unlock_zip(
                     remaining = getattr(
                         settings, "ARCHIVE_MAX_TOTAL_UNCOMPRESSED", 500 * 1024 * 1024
                     )
-                    for zi in infos:
+                    for zi, member in zip(infos, members, strict=True):
                         if zi.is_dir():
                             zout.writestr(zi.filename, b"")
                             continue
                         data = read_member_capped(
-                            zin, zi, max_member, remaining, context
+                            zin, member, max_member, remaining, context
                         )
                         remaining -= len(data)
                         zout.writestr(zi.filename, data)
