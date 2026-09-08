@@ -16503,3 +16503,351 @@ msgstr "كن أول مشترك بريميوم في هذه القائمة."
 #: templates/frontend/refund.html
 msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
 msgstr "السعر المعروض في صفحة الأسعار هو سعر الاشتراك نفسه. وبحسب مكان إقامتك، قد تُضاف ضريبة القيمة المضافة أو ضريبة المبيعات أو تظهر منفصلة عند الدفع، فالقواعد تختلف من بلد إلى آخر. أما نحن فلا نضيف أي رسوم من عندنا."
+
+msgid "%(count)s tiles added"
+msgstr "تمت إضافة %(count)s مربعًا"
+
+msgid ""
+"A board is a set of converter tiles with the settings already applied. Drop "
+"a file on a tile, get the file back. That is the whole workflow."
+msgstr ""
+"اللوحة هي مجموعة من مربعات التحويل مع الإعدادات المطبقة بالفعل. أسقط ملفًا "
+"على مربع، واستعد الملف. هذه هي سير العمل بالكامل."
+
+msgid ""
+"Add a converter as a tile. Then just drop files on it — the settings are "
+"already there."
+msgstr "أضف محولًا كمربع. ثم فقط أسقط الملفات عليه — الإعدادات موجودة بالفعل."
+
+msgid "Add widget"
+msgstr "إضافة أداة"
+
+msgid "Another tile is still converting. Please wait."
+msgstr "لا يزال مربع آخر يحول الملفات. يرجى الانتظار."
+
+msgid ""
+"Anyone can build a board with three tiles in the browser. Sign in for six, "
+"go Premium for up to five boards of twenty."
+msgstr ""
+"يمكن لأي شخص بناء لوحة بثلاثة مربعات في المتصفح. سجّل الدخول للحصول على ستة،"
+" واشترك في Premium للحصول على ما يصل إلى خمس لوحات من عشرين."
+
+msgid "Archives"
+msgstr "الأرشيفات"
+
+msgid "Are my files stored?"
+msgstr "هل يتم تخزين ملفاتي؟"
+
+msgid "Board created"
+msgstr "تم إنشاء اللوحة"
+
+msgid "Board deleted"
+msgstr "تم حذف اللوحة"
+
+msgid "Board limit reached for your plan."
+msgstr "تم الوصول إلى حد اللوحات لخطتك."
+
+msgid "Board menu"
+msgstr "قائمة اللوحة"
+
+msgid "Board name"
+msgstr "اسم اللوحة"
+
+msgid "Boards"
+msgstr "اللوحات"
+
+msgid ""
+"Build a board of converter tiles with your settings saved. Drop a file on a "
+"tile and the result is ready, no menus, no re-configuring. Free to start, "
+"Premium syncs boards across devices."
+msgstr ""
+"ابنِ لوحة من مربعات التحويل مع حفظ إعداداتك. أسقط ملفًا على مربع وستكون "
+"النتيجة جاهزة، بدون قوائم أو إعادة تكوين. ابدأ مجانًا، ومزامنة Premium "
+"للوحات عبر الأجهزة."
+
+msgid "Build your first board"
+msgstr "ابنِ أول لوحة لك"
+
+msgid "Configure on tool page"
+msgstr "التكوين في صفحة الأداة"
+
+msgid "Convert"
+msgstr "تحويل"
+
+msgid "Converters"
+msgstr "المحولات"
+
+msgid "Converting…"
+msgstr "جارٍ التحويل…"
+
+msgid "Create board"
+msgstr "إنشاء لوحة"
+
+msgid "Default"
+msgstr "افتراضي"
+
+msgid "Delete board"
+msgstr "حذف اللوحة"
+
+msgid "Delete this board and its %(count)s tiles?"
+msgstr "حذف هذه اللوحة و%(count)s من البلاطات؟"
+
+msgid "Done"
+msgstr "تم"
+
+msgid ""
+"Drag a file onto the tile. It converts with your settings and the download "
+"appears right under the tile, the last three results stay in view."
+msgstr ""
+"اسحب ملفًا إلى البلاطة. يتم تحويله وفقًا لإعداداتك ويظهر التنزيل مباشرة أسفل"
+" البلاطة، وتبقى النتائج الثلاثة الأخيرة في العرض."
+
+msgid "Drag tiles to reorder, click a title to rename"
+msgstr "اسحب البلاطات لإعادة الترتيب، وانقر على العنوان لإعادة التسمية"
+
+msgid "Drag to reorder"
+msgstr "اسحب لإعادة الترتيب"
+
+msgid "Drop and go"
+msgstr "أسقط وانطلق"
+
+msgid "Drop files here or click to choose"
+msgstr "أسقط الملفات هنا أو انقر للاختيار"
+
+msgid "Duplicate"
+msgstr "تكرار"
+
+msgid "E-books"
+msgstr "الكتب الإلكترونية"
+
+msgid ""
+"Every converter that takes a file and returns a file, currently more than "
+"twenty. Editors that need on-screen interaction, such as signing or adding "
+"text, open as regular tool pages."
+msgstr ""
+"كل محول يأخذ ملفًا ويعيد ملفًا، حاليًا أكثر من عشرين. المحررات التي تحتاج "
+"إلى تفاعل على الشاشة، مثل التوقيع أو إضافة نص، تُفتح كصفحات أدوات عادية."
+
+msgid "Everywhere you sign in"
+msgstr "في كل مكان تسجل فيه الدخول"
+
+msgid "Free to start"
+msgstr "مجاني للبدء"
+
+msgid "Free to try"
+msgstr "مجاني للتجربة"
+
+msgid "Get text out of scans and photos."
+msgstr "استخرج النص من الماسحات الضوئية والصور."
+
+msgid "HEIC to JPG, lighter images, PDF pages as pictures."
+msgstr "HEIC إلى JPG، صور أخف، صفحات PDF كصور."
+
+msgid "How do I change a tile's settings?"
+msgstr "كيف يمكنني تغيير إعدادات البلاطة؟"
+
+msgid "How the Workbench works"
+msgstr "كيف يعمل Workbench"
+
+msgid ""
+"Invoices to PDF/A, scans to Word, HEIC to JPG, each is a tile you never have"
+" to set up again."
+msgstr ""
+"تحويل الفواتير إلى PDF/A، والمسح الضوئي إلى Word، وHEIC إلى JPG، كل واحدة "
+"منها بلاطة لا تحتاج إلى إعدادها مرة أخرى."
+
+msgid "Is the Workbench free?"
+msgstr "هل Workbench مجاني؟"
+
+msgid ""
+"Keep work and personal tasks apart, or one board per client. Switch in a "
+"click."
+msgstr ""
+"افصل بين مهام العمل والمهام الشخصية، أو لوحة واحدة لكل عميل. بدّل بنقرة "
+"واحدة."
+
+msgid "Move left"
+msgstr "تحريك لليسار"
+
+msgid "Move right"
+msgstr "تحريك لليمين"
+
+msgid "My board"
+msgstr "لوحتي"
+
+msgid "My presets"
+msgstr "إعداداتي المسبقة"
+
+msgid "NEW"
+msgstr "جديد"
+
+msgid ""
+"Need OCR, a page size or an output format? Configure the tool on its page "
+"and save it as a workflow. The tile keeps those settings."
+msgstr ""
+"هل تحتاج إلى OCR أو حجم صفحة أو تنسيق إخراج؟ قم بتكوين الأداة على صفحتها "
+"واحفظها كسير عمل. تحتفظ البلاطة بهذه الإعدادات."
+
+msgid "New board"
+msgstr "لوحة جديدة"
+
+msgid "New board…"
+msgstr "لوحة جديدة…"
+
+msgid ""
+"No. Instant conversions are returned straight to you and background jobs are"
+" deleted after about an hour, exactly like the tool pages. Boards store only"
+" tool names and settings, never files."
+msgstr ""
+"لا. يتم إرجاع التحويلات الفورية إليك مباشرة، ويتم حذف المهام الخلفية بعد "
+"حوالي ساعة، تمامًا مثل صفحات الأدوات. تخزن اللوحات أسماء الأدوات والإعدادات "
+"فقط، ولا تخزن الملفات أبدًا."
+
+msgid "Office"
+msgstr "مكتب"
+
+msgid "One drop per job"
+msgstr "إسقاط واحد لكل مهمة"
+
+msgid "Open"
+msgstr "فتح"
+
+msgid "Open my Workbench"
+msgstr "فتح Workbench الخاص بي"
+
+msgid ""
+"Open the Add widget list, search for a converter and add it as a tile. Start"
+" from a ready-made Office, Scans or Images board if you like."
+msgstr ""
+"افتح قائمة إضافة الأدوات، وابحث عن محول وأضفه كبلاطة. ابدأ من لوحة مكتب أو "
+"مسح ضوئي أو صور جاهزة إذا أردت."
+
+msgid ""
+"Open the tile menu and choose Configure on tool page. Adjust the options "
+"there and save the workflow; the tile picks up the new settings."
+msgstr ""
+"افتح قائمة البلاطة واختر تكوين على صفحة الأداة. اضبط الخيارات هناك واحفظ سير"
+" العمل؛ ستلتقط البلاطة الإعدادات الجديدة."
+
+msgid "Organize"
+msgstr "تنظيم"
+
+msgid "PRO"
+msgstr "PRO"
+
+msgid "Pick your tools"
+msgstr "اختر أدواتك"
+
+msgid ""
+"Premium boards sync to your account, so the same tiles are waiting on every "
+"device."
+msgstr ""
+"اللوحات المميزة تتم مزامنتها مع حسابك، لذا تنتظرك نفس المربعات على كل جهاز."
+
+msgid "Remove tile"
+msgstr "إزالة المربع"
+
+msgid "Rename"
+msgstr "إعادة التسمية"
+
+msgid "Scans"
+msgstr "الفحوصات"
+
+msgid "Search tools…"
+msgstr "البحث عن الأدوات…"
+
+msgid "Security"
+msgstr "الأمان"
+
+msgid "See Premium plans"
+msgstr "اطّلع على خطط Premium"
+
+msgid "Set as default"
+msgstr "تعيين كافتراضي"
+
+msgid "Set them once"
+msgstr "اضبطها مرة واحدة"
+
+msgid "Set up on tool page"
+msgstr "الإعداد في صفحة الأداة"
+
+msgid "Several boards"
+msgstr "عدة لوحات"
+
+msgid "Start empty"
+msgstr "ابدأ فارغًا"
+
+msgid ""
+"Start with a ready-made Office, Scans or Images board or build your own. "
+"Premium accounts keep boards in sync on every device they sign in on."
+msgstr ""
+"ابدأ بلوحة Office أو فحوصات أو صور جاهزة أو أنشئ لوحتك الخاصة. حسابات "
+"Premium تحافظ على مزامنة اللوحات على كل جهاز تسجل الدخول إليه."
+
+msgid ""
+"The tile sends the file to the same converter the tool page uses, with the "
+"settings you saved, and shows the download when it is ready. Large files run"
+" in the background, you can leave the page."
+msgstr ""
+"يرسل المربع الملف إلى نفس المحول الذي تستخدمه صفحة الأداة، مع الإعدادات التي"
+" حفظتها، ويعرض التنزيل عندما يكون جاهزًا. الملفات الكبيرة تعمل في الخلفية، "
+"ويمكنك مغادرة الصفحة."
+
+msgid "This tile accepts: %(accept)s"
+msgstr "يقبل هذا المربع: %(accept)s"
+
+msgid "Tile limit reached for your plan."
+msgstr "تم الوصول إلى حد المربعات لخطتك."
+
+msgid "Tile menu"
+msgstr "قائمة المربع"
+
+msgid "Tile title"
+msgstr "عنوان المربع"
+
+msgid "Upgrade"
+msgstr "ترقية"
+
+msgid "What happens when I drop a file?"
+msgstr "ماذا يحدث عندما أسقط ملفًا؟"
+
+msgid "Which tools can be tiles?"
+msgstr "أي الأدوات يمكن أن تكون بلاطات؟"
+
+msgid "Word, Excel and PowerPoint to PDF and back."
+msgstr "Word وExcel وPowerPoint إلى PDF والعكس."
+
+msgid "Workbench"
+msgstr "Workbench"
+
+msgid "Workbench - Convertica"
+msgstr "Workbench - Convertica"
+
+msgid "Workbench - Your Board of One-Drop PDF Tools"
+msgstr "Workbench - لوحتك لأدوات PDF بالإسقاط الواحد"
+
+msgid ""
+"Yes. Without an account you get one board with three tiles, stored in your "
+"browser. A free account allows six tiles. Premium unlocks five boards with "
+"twenty tiles each and syncs them across devices."
+msgstr ""
+"نعم. بدون حساب تحصل على لوحة واحدة بثلاث بلاطات، مخزنة في متصفحك. الحساب "
+"المجاني يسمح بست بلاطات. النسخة المميزة تفتح خمس لوحات بعشرين بلاطة لكل منها"
+" وتزامنها عبر الأجهزة."
+
+msgid "You need at least one board."
+msgstr "تحتاج إلى لوحة واحدة على الأقل."
+
+msgid "Your board of one-drop converter tiles"
+msgstr "لوحتك لبلاطات التحويل بالإسقاط الواحد"
+
+msgid ""
+"Your own board of converter tiles: drop a file, get the result with the "
+"settings already applied. Premium syncs boards across devices."
+msgstr ""
+"لوحتك الخاصة ببلاطات التحويل: أسقط ملفًا، واحصل على النتيجة مع الإعدادات "
+"المطبقة بالفعل. النسخة المميزة تزامن اللوحات عبر الأجهزة."
+
+msgid ""
+"Your personal board of PDF tools: drop a file on a tile, get the result."
+msgstr "لوحتك الشخصية لأدوات PDF: أسقط ملفًا على بلاطة، واحصل على النتيجة."

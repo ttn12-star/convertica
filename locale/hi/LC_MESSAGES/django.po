@@ -17112,3 +17112,362 @@ msgstr "इस सूची में पहले प्रीमियम स�
 #: templates/frontend/refund.html
 msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
 msgstr "हमारे प्राइसिंग पेज पर दी क़ीमत सदस्यता की अपनी क़ीमत है। आप कहाँ रहते हैं, इसके हिसाब से चेकआउट पर VAT या सेल्स टैक्स जुड़ सकता है या अलग से दिख सकता है, क्योंकि हर जगह नियम अलग हैं। अपनी तरफ़ से हम कोई शुल्क नहीं जोड़ते।"
+
+msgid "%(count)s tiles added"
+msgstr "%(count)s टाइलें जोड़ी गईं"
+
+msgid ""
+"A board is a set of converter tiles with the settings already applied. Drop "
+"a file on a tile, get the file back. That is the whole workflow."
+msgstr ""
+"बोर्ड कन्वर्टर टाइलों का एक सेट है जिसमें सेटिंग्स पहले से लागू होती हैं। "
+"किसी टाइल पर फ़ाइल ड्रॉप करें, फ़ाइल वापस पाएं। यही पूरी प्रक्रिया है।"
+
+msgid ""
+"Add a converter as a tile. Then just drop files on it — the settings are "
+"already there."
+msgstr ""
+"कन्वर्टर को टाइल के रूप में जोड़ें। फिर बस उस पर फ़ाइलें ड्रॉप करें — "
+"सेटिंग्स पहले से मौजूद हैं।"
+
+msgid "Add widget"
+msgstr "विजेट जोड़ें"
+
+msgid "Another tile is still converting. Please wait."
+msgstr "एक और टाइल अभी भी कन्वर्ट हो रही है। कृपया प्रतीक्षा करें।"
+
+msgid ""
+"Anyone can build a board with three tiles in the browser. Sign in for six, "
+"go Premium for up to five boards of twenty."
+msgstr ""
+"कोई भी ब्राउज़र में तीन टाइलों वाला बोर्ड बना सकता है। छह के लिए साइन इन "
+"करें, बीस की पाँच बोर्ड तक के लिए प्रीमियम लें।"
+
+msgid "Archives"
+msgstr "आर्काइव"
+
+msgid "Are my files stored?"
+msgstr "क्या मेरी फ़ाइलें संग्रहीत होती हैं?"
+
+msgid "Board created"
+msgstr "बोर्ड बनाया गया"
+
+msgid "Board deleted"
+msgstr "बोर्ड हटाया गया"
+
+msgid "Board limit reached for your plan."
+msgstr "आपके प्लान के लिए बोर्ड सीमा पूरी हो गई है।"
+
+msgid "Board menu"
+msgstr "बोर्ड मेनू"
+
+msgid "Board name"
+msgstr "बोर्ड का नाम"
+
+msgid "Boards"
+msgstr "बोर्ड"
+
+msgid ""
+"Build a board of converter tiles with your settings saved. Drop a file on a "
+"tile and the result is ready, no menus, no re-configuring. Free to start, "
+"Premium syncs boards across devices."
+msgstr ""
+"अपनी सहेजी गई सेटिंग्स के साथ कन्वर्टर टाइलों का बोर्ड बनाएं। किसी टाइल पर "
+"फ़ाइल ड्रॉप करें और परिणाम तैयार है, कोई मेनू नहीं, कोई पुनः कॉन्फ़िगरेशन "
+"नहीं। मुफ्त में शुरू करें, प्रीमियम बोर्ड को डिवाइसों में सिंक करता है।"
+
+msgid "Build your first board"
+msgstr "अपना पहला बोर्ड बनाएं"
+
+msgid "Configure on tool page"
+msgstr "टूल पेज पर कॉन्फ़िगर करें"
+
+msgid "Convert"
+msgstr "कन्वर्ट करें"
+
+msgid "Converters"
+msgstr "कन्वर्टर"
+
+msgid "Converting…"
+msgstr "कन्वर्ट हो रहा है…"
+
+msgid "Create board"
+msgstr "बोर्ड बनाएं"
+
+msgid "Default"
+msgstr "डिफ़ॉल्ट"
+
+msgid "Delete board"
+msgstr "बोर्ड हटाएं"
+
+msgid "Delete this board and its %(count)s tiles?"
+msgstr "इस बोर्ड और इसके %(count)s टाइल्स को हटाएं?"
+
+msgid "Done"
+msgstr "पूर्ण"
+
+msgid ""
+"Drag a file onto the tile. It converts with your settings and the download "
+"appears right under the tile, the last three results stay in view."
+msgstr ""
+"फ़ाइल को टाइल पर खींचें। यह आपकी सेटिंग्स के साथ कन्वर्ट होती है और डाउनलोड "
+"टाइल के ठीक नीचे दिखाई देता है, अंतिम तीन परिणाम दृश्य में रहते हैं।"
+
+msgid "Drag tiles to reorder, click a title to rename"
+msgstr ""
+"पुनः क्रमबद्ध करने के लिए टाइल्स खींचें, नाम बदलने के लिए शीर्षक पर क्लिक "
+"करें"
+
+msgid "Drag to reorder"
+msgstr "पुनः क्रमबद्ध करने के लिए खींचें"
+
+msgid "Drop and go"
+msgstr "छोड़ें और जाएं"
+
+msgid "Drop files here or click to choose"
+msgstr "फ़ाइलें यहां छोड़ें या चुनने के लिए क्लिक करें"
+
+msgid "Duplicate"
+msgstr "डुप्लिकेट"
+
+msgid "E-books"
+msgstr "ई-पुस्तकें"
+
+msgid ""
+"Every converter that takes a file and returns a file, currently more than "
+"twenty. Editors that need on-screen interaction, such as signing or adding "
+"text, open as regular tool pages."
+msgstr ""
+"हर कन्वर्टर जो एक फ़ाइल लेता है और एक फ़ाइल लौटाता है, वर्तमान में बीस से "
+"अधिक। संपादक जिन्हें ऑन-स्क्रीन इंटरैक्शन की आवश्यकता होती है, जैसे "
+"हस्ताक्षर करना या टेक्स्ट जोड़ना, नियमित टूल पेज के रूप में खुलते हैं।"
+
+msgid "Everywhere you sign in"
+msgstr "जहां भी आप साइन इन करते हैं"
+
+msgid "Free to start"
+msgstr "शुरू करने के लिए मुफ्त"
+
+msgid "Free to try"
+msgstr "आज़माने के लिए मुफ्त"
+
+msgid "Get text out of scans and photos."
+msgstr "स्कैन और फ़ोटो से टेक्स्ट निकालें।"
+
+msgid "HEIC to JPG, lighter images, PDF pages as pictures."
+msgstr "HEIC से JPG, हल्की छवियां, PDF पृष्ठ चित्रों के रूप में।"
+
+msgid "How do I change a tile's settings?"
+msgstr "मैं टाइल की सेटिंग्स कैसे बदलूं?"
+
+msgid "How the Workbench works"
+msgstr "Workbench कैसे काम करता है"
+
+msgid ""
+"Invoices to PDF/A, scans to Word, HEIC to JPG, each is a tile you never have"
+" to set up again."
+msgstr ""
+"इनवॉइस से PDF/A, स्कैन से Word, HEIC से JPG, हर एक एक टाइल है जिसे आपको फिर "
+"कभी सेट अप नहीं करना पड़ता।"
+
+msgid "Is the Workbench free?"
+msgstr "क्या Workbench मुफ्त है?"
+
+msgid ""
+"Keep work and personal tasks apart, or one board per client. Switch in a "
+"click."
+msgstr ""
+"काम और निजी कार्यों को अलग रखें, या प्रति क्लाइंट एक बोर्ड। एक क्लिक में "
+"बदलें।"
+
+msgid "Move left"
+msgstr "बाएँ ले जाएँ"
+
+msgid "Move right"
+msgstr "दाएँ ले जाएँ"
+
+msgid "My board"
+msgstr "मेरा बोर्ड"
+
+msgid "My presets"
+msgstr "मेरे प्रीसेट"
+
+msgid "NEW"
+msgstr "नया"
+
+msgid ""
+"Need OCR, a page size or an output format? Configure the tool on its page "
+"and save it as a workflow. The tile keeps those settings."
+msgstr ""
+"OCR, पेज साइज़ या आउटपुट फॉर्मेट चाहिए? टूल को उसके पेज पर कॉन्फ़िगर करें और"
+" उसे वर्कफ़्लो के रूप में सहेजें। टाइल उन सेटिंग्स को बनाए रखती है।"
+
+msgid "New board"
+msgstr "नया बोर्ड"
+
+msgid "New board…"
+msgstr "नया बोर्ड…"
+
+msgid ""
+"No. Instant conversions are returned straight to you and background jobs are"
+" deleted after about an hour, exactly like the tool pages. Boards store only"
+" tool names and settings, never files."
+msgstr ""
+"नहीं। तुरंत कन्वर्ज़न सीधे आपको लौटाए जाते हैं और बैकग्राउंड जॉब लगभग एक "
+"घंटे बाद हटा दिए जाते हैं, बिल्कुल टूल पेजों की तरह। बोर्ड केवल टूल नाम और "
+"सेटिंग्स संग्रहीत करते हैं, फ़ाइलें कभी नहीं।"
+
+msgid "Office"
+msgstr "Office"
+
+msgid "One drop per job"
+msgstr "प्रति कार्य एक ड्रॉप"
+
+msgid "Open"
+msgstr "खोलें"
+
+msgid "Open my Workbench"
+msgstr "मेरा Workbench खोलें"
+
+msgid ""
+"Open the Add widget list, search for a converter and add it as a tile. Start"
+" from a ready-made Office, Scans or Images board if you like."
+msgstr ""
+"Add widget सूची खोलें, कन्वर्टर खोजें और उसे टाइल के रूप में जोड़ें। चाहें "
+"तो तैयार Office, Scans या Images बोर्ड से शुरू करें।"
+
+msgid ""
+"Open the tile menu and choose Configure on tool page. Adjust the options "
+"there and save the workflow; the tile picks up the new settings."
+msgstr ""
+"टाइल मेनू खोलें और टूल पेज पर Configure चुनें। वहाँ विकल्प समायोजित करें और "
+"वर्कफ़्लो सहेजें; टाइल नई सेटिंग्स अपना लेती है।"
+
+msgid "Organize"
+msgstr "व्यवस्थित करें"
+
+msgid "PRO"
+msgstr "PRO"
+
+msgid "Pick your tools"
+msgstr "अपने टूल चुनें"
+
+msgid ""
+"Premium boards sync to your account, so the same tiles are waiting on every "
+"device."
+msgstr ""
+"प्रीमियम बोर्ड आपके खाते से सिंक होते हैं, इसलिए हर डिवाइस पर समान टाइलें "
+"मौजूद रहती हैं।"
+
+msgid "Remove tile"
+msgstr "टाइल हटाएं"
+
+msgid "Rename"
+msgstr "नाम बदलें"
+
+msgid "Scans"
+msgstr "स्कैन"
+
+msgid "Search tools…"
+msgstr "टूल खोजें…"
+
+msgid "Security"
+msgstr "सुरक्षा"
+
+msgid "See Premium plans"
+msgstr "प्रीमियम प्लान देखें"
+
+msgid "Set as default"
+msgstr "डिफ़ॉल्ट के रूप में सेट करें"
+
+msgid "Set them once"
+msgstr "उन्हें एक बार सेट करें"
+
+msgid "Set up on tool page"
+msgstr "टूल पेज पर सेट करें"
+
+msgid "Several boards"
+msgstr "कई बोर्ड"
+
+msgid "Start empty"
+msgstr "खाली शुरू करें"
+
+msgid ""
+"Start with a ready-made Office, Scans or Images board or build your own. "
+"Premium accounts keep boards in sync on every device they sign in on."
+msgstr ""
+"तैयार Office, स्कैन या इमेजेस बोर्ड से शुरू करें या अपना खुद का बनाएं। "
+"प्रीमियम खाते बोर्ड को हर डिवाइस पर सिंक रखते हैं जिस पर वे साइन इन करते "
+"हैं।"
+
+msgid ""
+"The tile sends the file to the same converter the tool page uses, with the "
+"settings you saved, and shows the download when it is ready. Large files run"
+" in the background, you can leave the page."
+msgstr ""
+"टाइल फ़ाइल को उसी कनवर्टर पर भेजती है जिसका उपयोग टूल पेज करता है, आपके "
+"सहेजे गए सेटिंग्स के साथ, और तैयार होने पर डाउनलोड दिखाती है। बड़ी फ़ाइलें "
+"पृष्ठभूमि में चलती हैं, आप पेज छोड़ सकते हैं।"
+
+msgid "This tile accepts: %(accept)s"
+msgstr "यह टाइल स्वीकार करती है: %(accept)s"
+
+msgid "Tile limit reached for your plan."
+msgstr "आपके प्लान के लिए टाइल सीमा पूरी हो गई है।"
+
+msgid "Tile menu"
+msgstr "टाइल मेनू"
+
+msgid "Tile title"
+msgstr "टाइल शीर्षक"
+
+msgid "Upgrade"
+msgstr "अपग्रेड करें"
+
+msgid "What happens when I drop a file?"
+msgstr "जब मैं फ़ाइल छोड़ता हूँ तो क्या होता है?"
+
+msgid "Which tools can be tiles?"
+msgstr "कौन से उपकरण टाइल हो सकते हैं?"
+
+msgid "Word, Excel and PowerPoint to PDF and back."
+msgstr "Word, Excel और PowerPoint को PDF और वापस।"
+
+msgid "Workbench"
+msgstr "Workbench"
+
+msgid "Workbench - Convertica"
+msgstr "Workbench - कन्वर्टिका"
+
+msgid "Workbench - Your Board of One-Drop PDF Tools"
+msgstr "Workbench - वन-ड्रॉप PDF टूल्स का आपका बोर्ड"
+
+msgid ""
+"Yes. Without an account you get one board with three tiles, stored in your "
+"browser. A free account allows six tiles. Premium unlocks five boards with "
+"twenty tiles each and syncs them across devices."
+msgstr ""
+"हाँ। खाते के बिना आपको तीन टाइलों वाला एक बोर्ड मिलता है, जो आपके ब्राउज़र "
+"में संग्रहीत होता है। मुफ़्त खाता छह टाइलों की अनुमति देता है। प्रीमियम पाँच"
+" बोर्ड अनलॉक करता है जिनमें प्रत्येक में बीस टाइलें होती हैं और उन्हें "
+"डिवाइसों में सिंक करता है।"
+
+msgid "You need at least one board."
+msgstr "आपको कम से कम एक बोर्ड चाहिए।"
+
+msgid "Your board of one-drop converter tiles"
+msgstr "वन-ड्रॉप कन्वर्टर टाइलों का आपका बोर्ड"
+
+msgid ""
+"Your own board of converter tiles: drop a file, get the result with the "
+"settings already applied. Premium syncs boards across devices."
+msgstr ""
+"कन्वर्टर टाइलों का आपका अपना बोर्ड: एक फ़ाइल छोड़ें, सेटिंग्स पहले से लागू "
+"होने के साथ परिणाम प्राप्त करें। प्रीमियम बोर्डों को डिवाइसों में सिंक करता "
+"है।"
+
+msgid ""
+"Your personal board of PDF tools: drop a file on a tile, get the result."
+msgstr ""
+"PDF टूल्स का आपका व्यक्तिगत बोर्ड: एक टाइल पर फ़ाइल छोड़ें, परिणाम प्राप्त "
+"करें।"

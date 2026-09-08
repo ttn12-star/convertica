@@ -17476,3 +17476,364 @@ msgstr "Bądź pierwszym subskrybentem Premium na tej liście."
 #: templates/frontend/refund.html
 msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
 msgstr "Cena na stronie cennika to cena samej subskrypcji. W zależności od kraju VAT lub podatek od sprzedaży może zostać doliczony albo pokazany osobno przy płatności, bo przepisy bywają różne. Własnych opłat nie doliczamy."
+
+msgid "%(count)s tiles added"
+msgstr "%(count)s kafelków dodano"
+
+msgid ""
+"A board is a set of converter tiles with the settings already applied. Drop "
+"a file on a tile, get the file back. That is the whole workflow."
+msgstr ""
+"Plansza to zestaw kafelków konwertera z już zastosowanymi ustawieniami. "
+"Upuść plik na kafelek, otrzymaj plik z powrotem. To cały przepływ pracy."
+
+msgid ""
+"Add a converter as a tile. Then just drop files on it — the settings are "
+"already there."
+msgstr ""
+"Dodaj konwerter jako kafelek. Potem po prostu upuszczaj na niego pliki — "
+"ustawienia są już tam."
+
+msgid "Add widget"
+msgstr "Dodaj widżet"
+
+msgid "Another tile is still converting. Please wait."
+msgstr "Inny kafelek wciąż konwertuje. Proszę czekać."
+
+msgid ""
+"Anyone can build a board with three tiles in the browser. Sign in for six, "
+"go Premium for up to five boards of twenty."
+msgstr ""
+"Każdy może zbudować planszę z trzema kafelkami w przeglądarce. Zaloguj się, "
+"aby mieć sześć, przejdź na Premium, aby mieć do pięciu plansz po "
+"dwadzieścia."
+
+msgid "Archives"
+msgstr "Archiwa"
+
+msgid "Are my files stored?"
+msgstr "Czy moje pliki są przechowywane?"
+
+msgid "Board created"
+msgstr "Plansza utworzona"
+
+msgid "Board deleted"
+msgstr "Plansza usunięta"
+
+msgid "Board limit reached for your plan."
+msgstr "Osiągnięto limit plansz dla Twojego planu."
+
+msgid "Board menu"
+msgstr "Menu planszy"
+
+msgid "Board name"
+msgstr "Nazwa planszy"
+
+msgid "Boards"
+msgstr "Plansze"
+
+msgid ""
+"Build a board of converter tiles with your settings saved. Drop a file on a "
+"tile and the result is ready, no menus, no re-configuring. Free to start, "
+"Premium syncs boards across devices."
+msgstr ""
+"Zbuduj planszę z kafelków konwertera z zapisanymi ustawieniami. Upuść plik "
+"na kafelek, a wynik będzie gotowy — bez menu, bez ponownej konfiguracji. "
+"Zacznij za darmo, Premium synchronizuje plansze między urządzeniami."
+
+msgid "Build your first board"
+msgstr "Zbuduj swoją pierwszą planszę"
+
+msgid "Configure on tool page"
+msgstr "Skonfiguruj na stronie narzędzia"
+
+msgid "Convert"
+msgstr "Konwertuj"
+
+msgid "Converters"
+msgstr "Konwertery"
+
+msgid "Converting…"
+msgstr "Konwertowanie…"
+
+msgid "Create board"
+msgstr "Utwórz tablicę"
+
+msgid "Default"
+msgstr "Domyślne"
+
+msgid "Delete board"
+msgstr "Usuń tablicę"
+
+msgid "Delete this board and its %(count)s tiles?"
+msgstr "Usunąć tę tablicę i jej %(count)s kafelki?"
+
+msgid "Done"
+msgstr "Gotowe"
+
+msgid ""
+"Drag a file onto the tile. It converts with your settings and the download "
+"appears right under the tile, the last three results stay in view."
+msgstr ""
+"Przeciągnij plik na kafelek. Zostanie przekonwertowany zgodnie z Twoimi "
+"ustawieniami, a pobieranie pojawi się bezpośrednio pod kafelkiem – ostatnie "
+"trzy wyniki pozostają widoczne."
+
+msgid "Drag tiles to reorder, click a title to rename"
+msgstr ""
+"Przeciągnij kafelki, aby zmienić kolejność, kliknij tytuł, aby zmienić nazwę"
+
+msgid "Drag to reorder"
+msgstr "Przeciągnij, aby zmienić kolejność"
+
+msgid "Drop and go"
+msgstr "Upuść i gotowe"
+
+msgid "Drop files here or click to choose"
+msgstr "Upuść pliki tutaj lub kliknij, aby wybrać"
+
+msgid "Duplicate"
+msgstr "Duplikuj"
+
+msgid "E-books"
+msgstr "E-booki"
+
+msgid ""
+"Every converter that takes a file and returns a file, currently more than "
+"twenty. Editors that need on-screen interaction, such as signing or adding "
+"text, open as regular tool pages."
+msgstr ""
+"Każdy konwerter, który przyjmuje plik i zwraca plik – obecnie ponad "
+"dwadzieścia. Edytory wymagające interakcji na ekranie, takie jak "
+"podpisywanie lub dodawanie tekstu, otwierają się jako zwykłe strony "
+"narzędzi."
+
+msgid "Everywhere you sign in"
+msgstr "Wszędzie, gdzie się logujesz"
+
+msgid "Free to start"
+msgstr "Darmowy start"
+
+msgid "Free to try"
+msgstr "Darmowe wypróbowanie"
+
+msgid "Get text out of scans and photos."
+msgstr "Wyciągnij tekst ze skanów i zdjęć."
+
+msgid "HEIC to JPG, lighter images, PDF pages as pictures."
+msgstr "HEIC na JPG, lżejsze obrazy, strony PDF jako zdjęcia."
+
+msgid "How do I change a tile's settings?"
+msgstr "Jak zmienić ustawienia kafelka?"
+
+msgid "How the Workbench works"
+msgstr "Jak działa Workbench"
+
+msgid ""
+"Invoices to PDF/A, scans to Word, HEIC to JPG, each is a tile you never have"
+" to set up again."
+msgstr ""
+"Faktury do PDF/A, skany do Word, HEIC do JPG — każdy to kafelek, którego nie"
+" musisz nigdy konfigurować ponownie."
+
+msgid "Is the Workbench free?"
+msgstr "Czy Workbench jest darmowy?"
+
+msgid ""
+"Keep work and personal tasks apart, or one board per client. Switch in a "
+"click."
+msgstr ""
+"Oddziel pracę od spraw osobistych albo utwórz jedną tablicę na klienta. "
+"Przełączanie w jednym kliknięciu."
+
+msgid "Move left"
+msgstr "Przesuń w lewo"
+
+msgid "Move right"
+msgstr "Przesuń w prawo"
+
+msgid "My board"
+msgstr "Moja tablica"
+
+msgid "My presets"
+msgstr "Moje ustawienia"
+
+msgid "NEW"
+msgstr "NOWOŚĆ"
+
+msgid ""
+"Need OCR, a page size or an output format? Configure the tool on its page "
+"and save it as a workflow. The tile keeps those settings."
+msgstr ""
+"Potrzebujesz OCR, rozmiaru strony lub formatu wyjściowego? Skonfiguruj "
+"narzędzie na jego stronie i zapisz jako przepływ pracy. Kafelek zachowa te "
+"ustawienia."
+
+msgid "New board"
+msgstr "Nowa tablica"
+
+msgid "New board…"
+msgstr "Nowa tablica…"
+
+msgid ""
+"No. Instant conversions are returned straight to you and background jobs are"
+" deleted after about an hour, exactly like the tool pages. Boards store only"
+" tool names and settings, never files."
+msgstr ""
+"Nie. Konwersje natychmiastowe są zwracane bezpośrednio, a zadania w tle są "
+"usuwane po około godzinie, dokładnie tak jak na stronach narzędzi. Tablice "
+"przechowują tylko nazwy narzędzi i ustawienia, nigdy pliki."
+
+msgid "Office"
+msgstr "Office"
+
+msgid "One drop per job"
+msgstr "Jedno zadanie na upuszczenie"
+
+msgid "Open"
+msgstr "Otwórz"
+
+msgid "Open my Workbench"
+msgstr "Otwórz mój Workbench"
+
+msgid ""
+"Open the Add widget list, search for a converter and add it as a tile. Start"
+" from a ready-made Office, Scans or Images board if you like."
+msgstr ""
+"Otwórz listę widżetów Dodaj, wyszukaj konwerter i dodaj go jako kafelek. "
+"Możesz zacząć od gotowej tablicy Office, Skanów lub Obrazów."
+
+msgid ""
+"Open the tile menu and choose Configure on tool page. Adjust the options "
+"there and save the workflow; the tile picks up the new settings."
+msgstr ""
+"Otwórz menu kafelka i wybierz Konfiguruj na stronie narzędzia. Dostosuj "
+"opcje i zapisz przepływ pracy; kafelek pobierze nowe ustawienia."
+
+msgid "Organize"
+msgstr "Organizuj"
+
+msgid "PRO"
+msgstr "PRO"
+
+msgid "Pick your tools"
+msgstr "Wybierz narzędzia"
+
+msgid ""
+"Premium boards sync to your account, so the same tiles are waiting on every "
+"device."
+msgstr ""
+"Plansze Premium synchronizują się z Twoim kontem, więc te same kafelki "
+"czekają na każdym urządzeniu."
+
+msgid "Remove tile"
+msgstr "Usuń kafelek"
+
+msgid "Rename"
+msgstr "Zmień nazwę"
+
+msgid "Scans"
+msgstr "Skanowanie"
+
+msgid "Search tools…"
+msgstr "Szukaj narzędzi…"
+
+msgid "Security"
+msgstr "Bezpieczeństwo"
+
+msgid "See Premium plans"
+msgstr "Zobacz plany Premium"
+
+msgid "Set as default"
+msgstr "Ustaw jako domyślne"
+
+msgid "Set them once"
+msgstr "Ustaw je raz"
+
+msgid "Set up on tool page"
+msgstr "Skonfiguruj na stronie narzędzia"
+
+msgid "Several boards"
+msgstr "Kilka plansz"
+
+msgid "Start empty"
+msgstr "Zacznij od pustej"
+
+msgid ""
+"Start with a ready-made Office, Scans or Images board or build your own. "
+"Premium accounts keep boards in sync on every device they sign in on."
+msgstr ""
+"Zacznij od gotowej planszy Office, Skanów lub Obrazów albo stwórz własną. "
+"Konta Premium synchronizują plansze na każdym urządzeniu, na którym są "
+"zalogowane."
+
+msgid ""
+"The tile sends the file to the same converter the tool page uses, with the "
+"settings you saved, and shows the download when it is ready. Large files run"
+" in the background, you can leave the page."
+msgstr ""
+"Kafelek wysyła plik do tego samego konwertera, którego używa strona "
+"narzędzia, z zapisanymi ustawieniami, i pokazuje pobieranie, gdy jest "
+"gotowe. Duże pliki działają w tle – możesz opuścić stronę."
+
+msgid "This tile accepts: %(accept)s"
+msgstr "Ten kafelek akceptuje: %(accept)s"
+
+msgid "Tile limit reached for your plan."
+msgstr "Osiągnięto limit kafelków dla Twojego planu."
+
+msgid "Tile menu"
+msgstr "Menu kafelka"
+
+msgid "Tile title"
+msgstr "Tytuł kafelka"
+
+msgid "Upgrade"
+msgstr "Ulepsz"
+
+msgid "What happens when I drop a file?"
+msgstr "Co się stanie, gdy upuszczę plik?"
+
+msgid "Which tools can be tiles?"
+msgstr "Które narzędzia mogą być kafelkami?"
+
+msgid "Word, Excel and PowerPoint to PDF and back."
+msgstr "Word, Excel i PowerPoint do PDF i z powrotem."
+
+msgid "Workbench"
+msgstr "Workbench"
+
+msgid "Workbench - Convertica"
+msgstr "Workbench - Convertica"
+
+msgid "Workbench - Your Board of One-Drop PDF Tools"
+msgstr "Workbench - Twoja tablica narzędzi PDF typu one-drop"
+
+msgid ""
+"Yes. Without an account you get one board with three tiles, stored in your "
+"browser. A free account allows six tiles. Premium unlocks five boards with "
+"twenty tiles each and syncs them across devices."
+msgstr ""
+"Tak. Bez konta otrzymujesz jedną tablicę z trzema kafelkami, przechowywaną w"
+" przeglądarce. Darmowe konto umożliwia sześć kafelków. Premium odblokowuje "
+"pięć tablic z dwudziestoma kafelkami każda i synchronizuje je między "
+"urządzeniami."
+
+msgid "You need at least one board."
+msgstr "Potrzebujesz co najmniej jednej tablicy."
+
+msgid "Your board of one-drop converter tiles"
+msgstr "Twoja tablica kafelków konwertera typu one-drop"
+
+msgid ""
+"Your own board of converter tiles: drop a file, get the result with the "
+"settings already applied. Premium syncs boards across devices."
+msgstr ""
+"Twoja własna tablica kafelków konwertera: upuść plik, otrzymaj wynik z już "
+"zastosowanymi ustawieniami. Premium synchronizuje tablice między "
+"urządzeniami."
+
+msgid ""
+"Your personal board of PDF tools: drop a file on a tile, get the result."
+msgstr ""
+"Twoja osobista tablica narzędzi PDF: upuść plik na kafelek, otrzymaj wynik."

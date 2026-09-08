@@ -17323,3 +17323,365 @@ msgstr "Станьте первым подписчиком Premium в этом �
 #: templates/frontend/refund.html
 msgid "The price on our pricing page is the price of the subscription itself. Depending on where you live, VAT or sales tax may be added or shown separately at checkout, because local rules differ. We add no fees of our own on top."
 msgstr "На странице тарифов указана цена самой подписки. В зависимости от страны НДС или налог с продаж может добавляться или показываться отдельно при оплате, потому что правила везде разные. Своих комиссий мы сверху не добавляем."
+
+msgid "%(count)s tiles added"
+msgstr "%(count)s плиток добавлено"
+
+msgid ""
+"A board is a set of converter tiles with the settings already applied. Drop "
+"a file on a tile, get the file back. That is the whole workflow."
+msgstr ""
+"Плата — это набор плиток конвертера с уже применёнными настройками. "
+"Перетащите файл на плитку — получите файл обратно. Вот и весь процесс."
+
+msgid ""
+"Add a converter as a tile. Then just drop files on it — the settings are "
+"already there."
+msgstr ""
+"Добавьте конвертер как плитку. Затем просто перетаскивайте файлы на неё — "
+"настройки уже там."
+
+msgid "Add widget"
+msgstr "Добавить виджет"
+
+msgid "Another tile is still converting. Please wait."
+msgstr "Другая плитка всё ещё конвертирует. Подождите."
+
+msgid ""
+"Anyone can build a board with three tiles in the browser. Sign in for six, "
+"go Premium for up to five boards of twenty."
+msgstr ""
+"Любой может собрать плату из трёх плиток в браузере. Войдите для шести, "
+"перейдите на Premium для до пяти плат по двадцать."
+
+msgid "Archives"
+msgstr "Архивы"
+
+msgid "Are my files stored?"
+msgstr "Хранятся ли мои файлы?"
+
+msgid "Board created"
+msgstr "Плата создана"
+
+msgid "Board deleted"
+msgstr "Плата удалена"
+
+msgid "Board limit reached for your plan."
+msgstr "Достигнут лимит плат для вашего тарифа."
+
+msgid "Board menu"
+msgstr "Меню платы"
+
+msgid "Board name"
+msgstr "Название платы"
+
+msgid "Boards"
+msgstr "Платы"
+
+msgid ""
+"Build a board of converter tiles with your settings saved. Drop a file on a "
+"tile and the result is ready, no menus, no re-configuring. Free to start, "
+"Premium syncs boards across devices."
+msgstr ""
+"Соберите плату из плиток конвертера с сохранёнными настройками. Перетащите "
+"файл на плитку — результат готов, без меню и повторной настройки. Бесплатно "
+"для начала, Premium синхронизирует платы между устройствами."
+
+msgid "Build your first board"
+msgstr "Создайте свою первую плату"
+
+msgid "Configure on tool page"
+msgstr "Настроить на странице инструмента"
+
+msgid "Convert"
+msgstr "Конвертировать"
+
+msgid "Converters"
+msgstr "Конвертеры"
+
+msgid "Converting…"
+msgstr "Конвертация…"
+
+msgid "Create board"
+msgstr "Создать доску"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Delete board"
+msgstr "Удалить доску"
+
+msgid "Delete this board and its %(count)s tiles?"
+msgstr "Удалить эту доску и её %(count)s плиток?"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid ""
+"Drag a file onto the tile. It converts with your settings and the download "
+"appears right under the tile, the last three results stay in view."
+msgstr ""
+"Перетащите файл на плитку. Он конвертируется с вашими настройками, и "
+"загрузка появится прямо под плиткой, последние три результата остаются на "
+"виду."
+
+msgid "Drag tiles to reorder, click a title to rename"
+msgstr ""
+"Перетаскивайте плитки для изменения порядка, нажмите на заголовок, чтобы "
+"переименовать"
+
+msgid "Drag to reorder"
+msgstr "Перетащить для изменения порядка"
+
+msgid "Drop and go"
+msgstr "Перетащите и готово"
+
+msgid "Drop files here or click to choose"
+msgstr "Перетащите файлы сюда или нажмите, чтобы выбрать"
+
+msgid "Duplicate"
+msgstr "Дублировать"
+
+msgid "E-books"
+msgstr "Электронные книги"
+
+msgid ""
+"Every converter that takes a file and returns a file, currently more than "
+"twenty. Editors that need on-screen interaction, such as signing or adding "
+"text, open as regular tool pages."
+msgstr ""
+"Каждый конвертер, который принимает файл и возвращает файл, сейчас их более "
+"двадцати. Редакторы, требующие взаимодействия на экране, такие как подпись "
+"или добавление текста, открываются как обычные страницы инструментов."
+
+msgid "Everywhere you sign in"
+msgstr "Везде, где вы входите"
+
+msgid "Free to start"
+msgstr "Бесплатно для начала"
+
+msgid "Free to try"
+msgstr "Бесплатная пробная версия"
+
+msgid "Get text out of scans and photos."
+msgstr "Извлекайте текст из сканов и фотографий."
+
+msgid "HEIC to JPG, lighter images, PDF pages as pictures."
+msgstr "HEIC в JPG, более легкие изображения, страницы PDF как картинки."
+
+msgid "How do I change a tile's settings?"
+msgstr "Как изменить настройки плитки?"
+
+msgid "How the Workbench works"
+msgstr "Как работает Workbench"
+
+msgid ""
+"Invoices to PDF/A, scans to Word, HEIC to JPG, each is a tile you never have"
+" to set up again."
+msgstr ""
+"Счета в PDF/A, сканы в Word, HEIC в JPG — каждая плитка настраивается один "
+"раз и больше не требует внимания."
+
+msgid "Is the Workbench free?"
+msgstr "Работа в Workbench бесплатна?"
+
+msgid ""
+"Keep work and personal tasks apart, or one board per client. Switch in a "
+"click."
+msgstr ""
+"Разделяйте рабочие и личные задачи или создавайте отдельную доску для "
+"каждого клиента. Переключение в один клик."
+
+msgid "Move left"
+msgstr "Переместить влево"
+
+msgid "Move right"
+msgstr "Переместить вправо"
+
+msgid "My board"
+msgstr "Моя доска"
+
+msgid "My presets"
+msgstr "Мои пресеты"
+
+msgid "NEW"
+msgstr "НОВОЕ"
+
+msgid ""
+"Need OCR, a page size or an output format? Configure the tool on its page "
+"and save it as a workflow. The tile keeps those settings."
+msgstr ""
+"Нужен OCR, размер страницы или формат вывода? Настройте инструмент на его "
+"странице и сохраните как рабочий процесс. Плитка сохранит эти настройки."
+
+msgid "New board"
+msgstr "Новая доска"
+
+msgid "New board…"
+msgstr "Новая доска…"
+
+msgid ""
+"No. Instant conversions are returned straight to you and background jobs are"
+" deleted after about an hour, exactly like the tool pages. Boards store only"
+" tool names and settings, never files."
+msgstr ""
+"Нет. Мгновенные конвертации возвращаются вам напрямую, а фоновые задания "
+"удаляются примерно через час, как и на страницах инструментов. Доски хранят "
+"только названия инструментов и настройки, но никогда — файлы."
+
+msgid "Office"
+msgstr "Офис"
+
+msgid "One drop per job"
+msgstr "Одна задача за раз"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Open my Workbench"
+msgstr "Открыть мой Workbench"
+
+msgid ""
+"Open the Add widget list, search for a converter and add it as a tile. Start"
+" from a ready-made Office, Scans or Images board if you like."
+msgstr ""
+"Откройте список виджетов «Добавить», найдите конвертер и добавьте его как "
+"плитку. При желании начните с готовой доски «Офис», «Сканы» или "
+"«Изображения»."
+
+msgid ""
+"Open the tile menu and choose Configure on tool page. Adjust the options "
+"there and save the workflow; the tile picks up the new settings."
+msgstr ""
+"Откройте меню плитки и выберите «Настроить на странице инструмента». "
+"Измените параметры там и сохраните рабочий процесс; плитка подхватит новые "
+"настройки."
+
+msgid "Organize"
+msgstr "Организация"
+
+msgid "PRO"
+msgstr "PRO"
+
+msgid "Pick your tools"
+msgstr "Выберите инструменты"
+
+msgid ""
+"Premium boards sync to your account, so the same tiles are waiting on every "
+"device."
+msgstr ""
+"Премиум-доски синхронизируются с вашим аккаунтом, поэтому одни и те же "
+"плитки ожидают вас на каждом устройстве."
+
+msgid "Remove tile"
+msgstr "Удалить плитку"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Scans"
+msgstr "Сканы"
+
+msgid "Search tools…"
+msgstr "Поиск инструментов…"
+
+msgid "Security"
+msgstr "Безопасность"
+
+msgid "See Premium plans"
+msgstr "Смотреть премиум-планы"
+
+msgid "Set as default"
+msgstr "Установить по умолчанию"
+
+msgid "Set them once"
+msgstr "Настройте один раз"
+
+msgid "Set up on tool page"
+msgstr "Настроить на странице инструмента"
+
+msgid "Several boards"
+msgstr "Несколько досок"
+
+msgid "Start empty"
+msgstr "Начать с пустой"
+
+msgid ""
+"Start with a ready-made Office, Scans or Images board or build your own. "
+"Premium accounts keep boards in sync on every device they sign in on."
+msgstr ""
+"Начните с готовой доски Office, Scans или Images или создайте свою. Премиум-"
+"аккаунты синхронизируют доски на всех устройствах, где выполнен вход."
+
+msgid ""
+"The tile sends the file to the same converter the tool page uses, with the "
+"settings you saved, and shows the download when it is ready. Large files run"
+" in the background, you can leave the page."
+msgstr ""
+"Плитка отправляет файл в тот же конвертер, который используется на странице "
+"инструмента, с сохраненными вами настройками, и показывает загрузку, когда "
+"она готова. Большие файлы обрабатываются в фоновом режиме, вы можете "
+"покинуть страницу."
+
+msgid "This tile accepts: %(accept)s"
+msgstr "Эта плитка принимает: %(accept)s"
+
+msgid "Tile limit reached for your plan."
+msgstr "Достигнут лимит плиток для вашего тарифа."
+
+msgid "Tile menu"
+msgstr "Меню плитки"
+
+msgid "Tile title"
+msgstr "Название плитки"
+
+msgid "Upgrade"
+msgstr "Обновить"
+
+msgid "What happens when I drop a file?"
+msgstr "Что произойдет, если я перетащу файл?"
+
+msgid "Which tools can be tiles?"
+msgstr "Какие инструменты могут быть плитками?"
+
+msgid "Word, Excel and PowerPoint to PDF and back."
+msgstr "Word, Excel и PowerPoint в PDF и обратно."
+
+msgid "Workbench"
+msgstr "Workbench"
+
+msgid "Workbench - Convertica"
+msgstr "Workbench - Convertica"
+
+msgid "Workbench - Your Board of One-Drop PDF Tools"
+msgstr "Workbench - Ваша панель инструментов PDF с одним перетаскиванием"
+
+msgid ""
+"Yes. Without an account you get one board with three tiles, stored in your "
+"browser. A free account allows six tiles. Premium unlocks five boards with "
+"twenty tiles each and syncs them across devices."
+msgstr ""
+"Да. Без аккаунта вы получаете одну панель с тремя плитками, сохраненную в "
+"вашем браузере. Бесплатный аккаунт позволяет использовать шесть плиток. "
+"Премиум открывает пять панелей по двадцать плиток в каждой и синхронизирует "
+"их между устройствами."
+
+msgid "You need at least one board."
+msgstr "Вам нужна как минимум одна панель."
+
+msgid "Your board of one-drop converter tiles"
+msgstr "Ваша панель плиток конвертера с одним перетаскиванием"
+
+msgid ""
+"Your own board of converter tiles: drop a file, get the result with the "
+"settings already applied. Premium syncs boards across devices."
+msgstr ""
+"Ваша собственная панель плиток конвертера: перетащите файл, получите "
+"результат с уже примененными настройками. Премиум синхронизирует панели "
+"между устройствами."
+
+msgid ""
+"Your personal board of PDF tools: drop a file on a tile, get the result."
+msgstr ""
+"Ваша личная панель инструментов PDF: перетащите файл на плитку, получите "
+"результат."
