@@ -1761,6 +1761,7 @@ def workbench_page(request):
             "myPresets": _("My presets"),
             "converters": _("Converters"),
             "boardName": _("My board"),
+            "pro": _("PRO"),
         },
     }
     return render(request, "frontend/premium/workbench.html", context)
