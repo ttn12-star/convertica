@@ -82,7 +82,7 @@ def _clean_tile(raw, preset_ids: set[str]) -> dict | None:
         return None
     if kind == "preset":
         preset_id = str(raw.get("presetId") or "")[:40]
-        if preset_id not in preset_ids:
+        if not preset_id or preset_id not in preset_ids:
             return None
         tile["presetId"] = preset_id
     return tile
