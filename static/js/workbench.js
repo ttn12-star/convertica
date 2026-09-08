@@ -85,6 +85,77 @@
         board.tiles = board.tiles.filter(t => t.id !== tileId);
     }
 
+    // ─── Board ops ──────────────────────────────────────────────────────
+    const MAX_BOARD_NAME = 60;
+
+    function canAddBoard(state, limits) {
+        return state.boards.length < (limits.boards || 1);
+    }
+
+    function createBoard(state, name, limits) {
+        if (!canAddBoard(state, limits)) return null;
+        const clean = String(name || '').trim().slice(0, MAX_BOARD_NAME);
+        if (!clean) return null;
+        const board = { id: uid('b'), name: clean, isDefault: state.boards.length === 0, tiles: [], createdAt: Date.now() };
+        state.boards.push(board);
+        state.activeBoardId = board.id;
+        return board;
+    }
+
+    function renameBoard(state, id, name) {
+        const board = state.boards.find(b => b.id === id);
+        const clean = String(name || '').trim().slice(0, MAX_BOARD_NAME);
+        if (!board || !clean) return false;
+        board.name = clean;
+        return true;
+    }
+
+    function deleteBoard(state, id) {
+        if (state.boards.length <= 1) return false;
+        const index = state.boards.findIndex(b => b.id === id);
+        if (index === -1) return false;
+        const [removed] = state.boards.splice(index, 1);
+        if (removed.isDefault) state.boards[0].isDefault = true;
+        if (state.activeBoardId === id) state.activeBoardId = (state.boards.find(b => b.isDefault) || state.boards[0]).id;
+        return true;
+    }
+
+    function setDefaultBoard(state, id) {
+        if (!state.boards.some(b => b.id === id)) return false;
+        state.boards.forEach(b => { b.isDefault = b.id === id; });
+        return true;
+    }
+
+    function duplicateBoard(state, id, limits) {
+        const source = state.boards.find(b => b.id === id);
+        if (!source || !canAddBoard(state, limits)) return null;
+        const copy = {
+            id: uid('b'),
+            name: (source.name + ' (2)').slice(0, MAX_BOARD_NAME),
+            isDefault: false,
+            tiles: source.tiles.map(t => ({ ...t, id: uid('t') })),
+            createdAt: Date.now(),
+        };
+        state.boards.push(copy);
+        state.activeBoardId = copy.id;
+        return copy;
+    }
+
+    /** Fills `board` from a template; returns the (possibly extended) presets list and how many tiles were added. */
+    function applyTemplate(state, board, template, catalog, presets, limits) {
+        let list = presets.slice();
+        let added = 0;
+        (template.tools || []).forEach(key => {
+            const tool = catalog[key];
+            if (!tool || !tool.droppable || tool.requiresConfig) return;
+            let preset = list.find(p => p.toolKey === key && (!p.params || !Object.keys(p.params).length));
+            if (!preset) { preset = presetFromTool(key, tool); list = list.concat([preset]); }
+            if (board.tiles.some(t => t.presetId === preset.id)) return;
+            if (addTile(board, { kind: 'preset', presetId: preset.id, size: 'm' }, limits)) added++;
+        });
+        return { presets: list, added };
+    }
+
     /** Pure: returns a new array with item `from` moved to index `to`. */
     function reorder(list, from, to) {
         const next = list.slice();
@@ -574,6 +645,26 @@
         assert(resolveToolKey({ toolKey: 'pdf_to_word' }, catalog) === 'pdf_to_word', 'resolveToolKey by key');
         assert(resolveToolKey({ toolUrl: '/de/x/' }, catalog) === 'pdf_to_word', 'resolveToolKey by localized url');
         assert(resolveToolKey({ toolKey: 'gone', toolUrl: '/nope/' }, catalog) === '', 'resolveToolKey gives up');
+        const bl = { boards: 2, tiles: 3 };
+        const st = { boards: [], activeBoardId: null };
+        const b1 = createBoard(st, '  Accounting  ', bl);
+        assert(b1 && b1.isDefault && b1.name === 'Accounting' && st.activeBoardId === b1.id, 'createBoard trims, defaults, activates');
+        assert(createBoard(st, '', bl) === null, 'createBoard rejects empty name');
+        const b2 = createBoard(st, 'Clients', bl);
+        assert(b2 && !b2.isDefault && st.boards.length === 2, 'second board not default');
+        assert(createBoard(st, 'Third', bl) === null, 'board cap enforced');
+        assert(renameBoard(st, b2.id, 'x'.repeat(80)) && b2.name.length === 60, 'rename caps at 60');
+        assert(setDefaultBoard(st, b2.id) && b2.isDefault && !b1.isDefault, 'setDefault moves the star');
+        addTile(b2, { kind: 'preset', presetId: 'p9', size: 's' }, bl);
+        assert(duplicateBoard(st, b2.id, bl) === null, 'duplicate respects board cap');
+        assert(deleteBoard(st, b2.id) && st.boards.length === 1 && b1.isDefault && st.activeBoardId === b1.id, 'delete reassigns default + active');
+        assert(!deleteBoard(st, b1.id), 'cannot delete last board');
+        const dup = duplicateBoard(st, b1.id, bl);
+        assert(dup && dup.name === 'Accounting (2)' && st.activeBoardId === dup.id, 'duplicate copies and activates');
+        const cat2 = { word_to_pdf: { droppable: true, requiresConfig: false, label: 'W', pageUrl: '/w/' }, convert_image: { droppable: true, requiresConfig: true, label: 'C', pageUrl: '/c/' }, sign_pdf: { droppable: false } };
+        const tb = createBoard({ boards: [], activeBoardId: null }, 'T', { boards: 1, tiles: 3 });
+        const applied = applyTemplate(null, tb, { tools: ['word_to_pdf', 'convert_image', 'sign_pdf', 'word_to_pdf'] }, cat2, [], { tiles: 3 });
+        assert(applied.added === 1 && applied.presets.length === 1 && tb.tiles.length === 1, 'applyTemplate skips requiresConfig/non-droppable/duplicates');
         console.info('workbench selftest: OK');
     }
 
@@ -581,6 +672,7 @@
         uid, readJson, loadState, saveState, loadPresets, savePresets, ensureBoard, activeBoard,
         canAddTile, addTile, removeTile, reorder, resolveTiles, presetFromTool, encodeParams, acceptsFile,
         resolveToolKey, selfTest,
+        canAddBoard, createBoard, renameBoard, deleteBoard, setDefaultBoard, duplicateBoard, applyTemplate,
         render, openPicker, closePicker,
     };
 

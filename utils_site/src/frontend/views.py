@@ -17,7 +17,7 @@ from src.api.conversion_limits import get_file_size_limits
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS
 from src.frontend.workbench import TOOL_URL_NAME_OVERRIDES as _TOOL_URL_NAME_OVERRIDES
-from src.frontend.workbench import build_catalog, limits_for
+from src.frontend.workbench import build_catalog, build_templates, limits_for
 
 
 def anonymous_cache_page(timeout):
@@ -1736,12 +1736,14 @@ def workbench_page(request):
     limits — therefore never wrapped in anonymous_cache_page)."""
     if not getattr(settings, "WORKBENCH_ENABLED", True):
         raise Http404
+    catalog = build_catalog()
     context = {
         "page_title": _("Workbench - Convertica"),
         "page_description": _(
             "Your personal board of PDF tools: drop a file on a tile, get the result."
         ),
-        "workbench_catalog": build_catalog(),
+        "workbench_catalog": catalog,
+        "workbench_templates": build_templates(catalog),
         "workbench_limits": limits_for(request),
         "workbench_i18n": {
             "dropHere": _("Drop files here or click to choose"),
