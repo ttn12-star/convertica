@@ -124,6 +124,23 @@
         } catch (_) { return ''; }
     }
 
+    /** `/en/pdf-to-word/` → `/pdf-to-word/`; a path without a locale is unchanged. */
+    function stripLocale(path) {
+        return String(path || '').replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/)/i, '');
+    }
+
+    /**
+     * Which catalog tool a preset points at. Presets saved on a tool page carry
+     * `toolKey` since v2.2; older ones only have `toolUrl` (possibly in another
+     * locale), so fall back to matching page paths. '' when nothing matches.
+     */
+    function resolveToolKey(preset, catalog) {
+        if (preset.toolKey && catalog[preset.toolKey]) return preset.toolKey;
+        const want = stripLocale(preset.toolUrl);
+        if (!want) return '';
+        return Object.keys(catalog).find(key => stripLocale(catalog[key].pageUrl) === want) || '';
+    }
+
     /** `accept` is the <input accept> string from the tool config (".pdf,application/pdf"). */
     function acceptsFile(file, accept) {
         if (!accept) return true;
@@ -138,7 +155,12 @@
 
     // ─── Run flow ───────────────────────────────────────────────────────
     const MAX_RESULT_ROWS = 3;
-    const busy = new Set();
+    // ponytail: one conversion at a time for the whole board. utils.js's
+    // showLoading/updateProgress write to hard-coded #progressBar /
+    // #progressPercentage ids and a global window._currentTaskId, so two
+    // running tiles corrupt each other's progress and cancel button. Ceiling:
+    // per-tile concurrency needs utils.js to take container-scoped ids.
+    let runningTileId = null;
     const results = new Map(); // tileId -> [{url, filename, size}], newest first, max MAX_RESULT_ROWS
 
     function tileError(tileId, message) {
@@ -151,7 +173,7 @@
         if (!list) return;
         const entries = results.get(tileId) || [];
         list.replaceChildren(...entries.map(entry => {
-            const li = el('li', 'flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-sm');
+            const li = el('li', 'flex items-center gap-2 rounded-lg bg-emerald-100 border border-emerald-200 px-3 py-1.5 text-sm');
             li.appendChild(el('span', 'text-emerald-700', '✓'));
             const name = el('span', 'min-w-0 flex-1 truncate', entry.filename);
             name.title = entry.filename;
@@ -187,7 +209,16 @@
         results.delete(tileId);
     }
 
-    function submitOne(tileId, apiUrl, formData, originalFileName) {
+    /** Highlights the tile that currently owns the board's single conversion slot. */
+    function markRunning(tileId, on) {
+        const node = $('wb-grid') && $('wb-grid').querySelector('[data-tile-id="' + tileId + '"]');
+        if (!node) return;
+        node.classList.toggle('wb-tile-running', on);
+        node.classList.toggle('ring-2', on);
+        node.classList.toggle('ring-amber-400', on);
+    }
+
+    function submitOne(tileId, apiUrl, formData, originalFileName, useAsync) {
         // ponytail: submitAsyncConversion's promise settles before polling
         // finishes for async (>5MB) files (pollTaskStatus recurses via
         // setTimeout, not awaited) — resolve ourselves from its callbacks so
@@ -196,7 +227,7 @@
         // onSuccess/onError/onBackground leaves the tile busy until reload;
         // widen if that's ever observed.
         return new Promise(resolve => {
-            window.submitAsyncConversion({
+            const options = {
                 apiUrl,
                 formData,
                 csrfToken: window.CSRF_TOKEN || (document.querySelector('meta[name="csrf-token"]') || {}).content || '',
@@ -207,12 +238,19 @@
                 onSuccess: (blob, filename) => { addResultRow(tileId, blob, filename); resolve(); },
                 onError: () => resolve(), // utils.js already rendered the error into wb-error-<id>
                 onBackground: () => resolve(),
-            }).catch(() => resolve());
+            };
+            // Only force async mode on the /async/ endpoints; the sync twins
+            // answer 200-with-body and would never produce a task_id.
+            if (useAsync) options.useAsync = true;
+            window.submitAsyncConversion(options).catch(() => resolve());
         });
     }
 
     async function runTile(tileId, fileList) {
-        if (busy.has(tileId)) return;
+        if (runningTileId) {
+            tileError(tileId, I18N.busy || 'Another tile is still converting. Please wait.');
+            return;
+        }
         if (typeof window.hideError === 'function') window.hideError('wb-error-' + tileId);
         const board = activeBoard(state);
         const { resolved } = resolveTiles(board, presets, CATALOG);
@@ -229,23 +267,28 @@
         const params = Object.entries(preset.params || {});
         const appendParams = fd => params.forEach(([k, v]) => fd.append(k, v === true ? 'true' : String(v)));
 
-        busy.add(tileId);
+        runningTileId = tileId;
+        markRunning(tileId, true);
         try {
+            // Heavy tools and every batch go to the /async/ twin, like
+            // converter.js does — the sync route races Cloudflare's 100s edge
+            // timeout and pins a gunicorn worker for the whole conversion.
             if (accepted.length > 1 && tool.batchApiUrl && LIMITS.tier === 'premium') {
                 const fd = new FormData();
                 accepted.forEach(f => fd.append(tool.batchFieldName, f));
                 appendParams(fd);
-                await submitOne(tileId, tool.batchApiUrl, fd, accepted[0].name);
+                await submitOne(tileId, tool.batchAsyncApiUrl || tool.batchApiUrl, fd, accepted[0].name, !!tool.batchAsyncApiUrl);
             } else {
                 for (const file of accepted) {
                     const fd = new FormData();
                     fd.append(tool.fileInputName, file);
                     appendParams(fd);
-                    await submitOne(tileId, tool.apiUrl, fd, file.name);
+                    await submitOne(tileId, tool.asyncApiUrl || tool.apiUrl, fd, file.name, !!tool.asyncApiUrl);
                 }
             }
         } finally {
-            busy.delete(tileId);
+            markRunning(tileId, false);
+            runningTileId = null;
         }
     }
 
@@ -256,6 +299,22 @@
     const state = ensureBoard(loadState(), I18N.boardName || 'My board');
     let presets = loadPresets();
     let onTileFiles = runTile;
+
+    /**
+     * Presets saved before workflow-presets.js wrote `toolKey` only have a
+     * `toolUrl` — resolve it once and persist, so they show up on the board.
+     */
+    function backfillToolKeys() {
+        let changed = false;
+        presets.forEach(preset => {
+            if (preset.toolKey && CATALOG[preset.toolKey]) return;
+            const key = resolveToolKey(preset, CATALOG);
+            if (key && key !== preset.toolKey) { preset.toolKey = key; changed = true; }
+        });
+        if (changed) savePresets(presets);
+    }
+
+    backfillToolKeys();
 
     const $ = id => document.getElementById(id);
     const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
@@ -274,19 +333,42 @@
         const { resolved, dropped } = resolveTiles(board, presets, CATALOG);
         if (dropped.length) { board.tiles = board.tiles.filter(t => !dropped.includes(t)); persist(); }
 
-        grid.replaceChildren();
+        // Reuse tile nodes: a re-render (resize, reorder, add) must not wipe the
+        // loader/result slots of a tile that is mid-conversion.
+        const stale = new Map();
+        Array.from(grid.children).forEach(node => stale.set(node.dataset.tileId, node));
+        const nodes = resolved.map((item, index) => {
+            const node = stale.get(item.tile.id);
+            if (!node) return renderTile(item, index, resolved.length);
+            stale.delete(item.tile.id);
+            updateTile(node, item, index, resolved.length);
+            return node;
+        });
+        stale.forEach((node, tileId) => { clearResults(tileId); node.remove(); });
+        nodes.forEach(node => grid.appendChild(node)); // appending an attached node moves it
         empty.hidden = resolved.length > 0;
-        resolved.forEach((item, index) => grid.appendChild(renderTile(item, index, resolved.length)));
         renderPickerList();
     }
 
-    function renderTile({ tile, preset, tool }, index, count) {
-        const node = $('wb-tile-template').content.firstElementChild.cloneNode(true);
-        node.dataset.tileId = tile.id;
-        node.className += ' ' + (SIZE_CLASS[tile.size] || '');
+    /** Everything on a tile node that can change between renders. */
+    function updateTile(node, { tile, preset, tool }, index, count) {
+        node.classList.remove('md:col-span-2', 'md:row-span-2');
+        const sizeClass = SIZE_CLASS[tile.size] || '';
+        if (sizeClass) node.classList.add(...sizeClass.split(' '));
         node.querySelector('.wb-tile-icon').textContent = GROUP_ICON[tool.group] || 'CV';
         node.querySelector('.wb-tile-title').textContent = preset.name;
-        node.querySelector('.wb-tile-subtitle').textContent = tool.label;
+        // A quick-added preset is named after the tool — repeating the label as
+        // the subtitle is noise, show the tool's group instead.
+        const groups = I18N.groups || {};
+        node.querySelector('.wb-tile-subtitle').textContent =
+            preset.name === tool.label ? (groups[tool.group] || tool.group) : tool.label;
+        buildMenu(node, tile, preset, tool, index, count);
+    }
+
+    function renderTile(item, index, count) {
+        const { tile, tool } = item;
+        const node = $('wb-tile-template').content.firstElementChild.cloneNode(true);
+        node.dataset.tileId = tile.id;
         node.querySelector('.wb-drop-text').textContent = I18N.dropHere || 'Drop files here';
         node.querySelector('.wb-loading').id = 'wb-loading-' + tile.id;
         node.querySelector('.wb-error').id = 'wb-error-' + tile.id;
@@ -300,12 +382,14 @@
         input.addEventListener('change', () => { if (input.files.length) onTileFiles(tile.id, input.files); input.value = ''; });
 
         const drop = node.querySelector('.wb-drop');
+        const unhighlight = () => drop.classList.remove('border-amber-500', 'bg-amber-50');
         ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('border-amber-500', 'bg-amber-50'); }));
-        ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, () => drop.classList.remove('border-amber-500', 'bg-amber-50')));
-        drop.addEventListener('drop', e => { e.preventDefault(); if (e.dataTransfer.files.length) onTileFiles(tile.id, e.dataTransfer.files); });
+        // Moving over a child fires dragleave on the drop zone — only a real exit counts.
+        drop.addEventListener('dragleave', e => { if (!drop.contains(e.relatedTarget)) unhighlight(); });
+        drop.addEventListener('drop', e => { e.preventDefault(); unhighlight(); if (e.dataTransfer.files.length) onTileFiles(tile.id, e.dataTransfer.files); });
         node.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target === node) input.click(); });
 
-        buildMenu(node, tile, preset, tool, index, count);
+        updateTile(node, item, index, count);
         return node;
     }
 
@@ -328,14 +412,15 @@
             sizeRow.appendChild(b);
         });
         menu.replaceChildren(
-            item(I18N.configure || 'Configure', () => { location.href = tool.pageUrl + '#wfp=' + encodeParams(preset.params); }),
+            item(I18N.configure || 'Configure', () => { location.href = tool.pageUrl + '#wfp=' + encodeParams(preset.params) + '&wfid=' + encodeURIComponent(preset.id); }),
             sizeRow,
             item(I18N.moveLeft || 'Move left', () => { board.tiles = reorder(board.tiles, index, index - 1); persist(); render(); }, index === 0),
             item(I18N.moveRight || 'Move right', () => { board.tiles = reorder(board.tiles, index, index + 1); persist(); render(); }, index === count - 1),
             item(I18N.remove || 'Remove', () => { clearResults(tile.id); removeTile(board, tile.id); persist(); render(); }),
         );
         menu.lastElementChild.classList.add('text-red-600');
-        btn.addEventListener('click', e => {
+        // Assigned, not addEventListener'd: buildMenu re-runs on every render.
+        btn.onclick = e => {
             e.stopPropagation();
             document.querySelectorAll('.wb-tile-menu').forEach(m => {
                 if (m !== menu) { m.classList.add('hidden'); const b = m.previousElementSibling; if (b) b.setAttribute('aria-expanded', 'false'); }
@@ -343,7 +428,7 @@
             const open = menu.classList.toggle('hidden') === false;
             btn.setAttribute('aria-expanded', String(open));
             if (open) closePicker();
-        });
+        };
     }
 
     // ─── Picker (dui SelectWidgets: search + toggle rows) ───────────────
@@ -359,7 +444,13 @@
             .sort((a, b) => a[1].label.localeCompare(b[1].label))
             .forEach(([key, t]) => {
                 const existing = presets.find(p => p.toolKey === key && (!p.params || !Object.keys(p.params).length));
-                rows.push({ group: I18N.converters || 'Converters', label: t.label, sub: t.group, checked: !!existing && onBoard.has(existing.id), toolKey: key, presetId: existing && existing.id, locked: t.premiumOnly && LIMITS.tier !== 'premium' });
+                const checked = !!existing && onBoard.has(existing.id);
+                // A blind quick-add would 400 on the first drop — send the user to
+                // the tool page to configure it, unless they already have a
+                // configured preset for it (that one gets its own row above).
+                const needsSetup = !checked && t.requiresConfig
+                    && !presets.some(p => p.toolKey === key && p.params && Object.keys(p.params).length);
+                rows.push({ group: I18N.converters || 'Converters', label: t.label, sub: needsSetup ? (I18N.needsSetup || 'Set up on tool page') : t.group, checked, toolKey: key, presetId: existing && existing.id, pageUrl: t.pageUrl, needsSetup, locked: t.premiumOnly && LIMITS.tier !== 'premium' });
             });
         return rows;
     }
@@ -385,7 +476,9 @@
             const b = el('button', 'w-full flex items-center gap-3 px-3 py-2 text-sm text-start hover:bg-gray-50 disabled:opacity-40');
             b.type = 'button'; b.role = 'option'; b.setAttribute('aria-selected', String(row.checked));
             b.disabled = row.locked || (!row.checked && full);
-            const box = el('span', 'w-4 h-4 rounded border flex items-center justify-center text-[10px] ' + (row.checked ? 'bg-amber-600 border-amber-600 text-white' : 'border-gray-300'), row.checked ? '✓' : '');
+            const box = row.needsSetup
+                ? el('span', 'w-4 h-4 flex items-center justify-center text-gray-400', '↗')
+                : el('span', 'w-4 h-4 rounded border flex items-center justify-center text-[10px] ' + (row.checked ? 'bg-amber-600 border-amber-600 text-white' : 'border-gray-300'), row.checked ? '✓' : '');
             const text = el('span', 'min-w-0 flex-1');
             text.appendChild(el('span', 'block truncate font-medium', row.label));
             text.appendChild(el('span', 'block truncate text-xs text-gray-500', row.sub));
@@ -398,8 +491,10 @@
     }
 
     function togglePickerRow(row) {
+        if (row.needsSetup) { location.href = row.pageUrl + '#wfsetup=1'; return; }
         const board = activeBoard(state);
         if (row.checked) {
+            board.tiles.forEach(t => { if (t.presetId === row.presetId) clearResults(t.id); });
             board.tiles = board.tiles.filter(t => t.presetId !== row.presetId);
         } else {
             let presetId = row.presetId;
@@ -437,7 +532,7 @@
             document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden'));
         });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePicker(); document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden')); } });
-        window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); render(); });
+        window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); backfillToolKeys(); render(); });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -469,12 +564,16 @@
         assert(acceptsFile({ name: 'a.bin', type: 'image/png' }, 'image/*'), 'accept by mime wildcard');
         assert(!acceptsFile({ name: 'a.docx', type: '' }, '.pdf'), 'reject wrong extension');
         assert(encodeParams({ a: 1 }) === btoa('{"a":1}'), 'encodeParams matches workflow-presets');
+        assert(resolveToolKey({ toolKey: 'pdf_to_word' }, catalog) === 'pdf_to_word', 'resolveToolKey by key');
+        assert(resolveToolKey({ toolUrl: '/de/x/' }, catalog) === 'pdf_to_word', 'resolveToolKey by localized url');
+        assert(resolveToolKey({ toolKey: 'gone', toolUrl: '/nope/' }, catalog) === '', 'resolveToolKey gives up');
         console.info('workbench selftest: OK');
     }
 
     window.Workbench = {
         uid, readJson, loadState, saveState, loadPresets, savePresets, ensureBoard, activeBoard,
-        canAddTile, addTile, removeTile, reorder, resolveTiles, presetFromTool, encodeParams, acceptsFile, selfTest,
+        canAddTile, addTile, removeTile, reorder, resolveTiles, presetFromTool, encodeParams, acceptsFile,
+        resolveToolKey, selfTest,
         render, openPicker, closePicker,
     };
 
