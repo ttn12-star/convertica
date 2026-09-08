@@ -437,13 +437,13 @@
         node.draggable = false;
         handle.ondragstart = e => { dragFromIndex = index; node.classList.add('wb-dragging'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', tile.id); };
         handle.ondragend = () => { dragFromIndex = null; node.classList.remove('wb-dragging'); document.querySelectorAll('.wb-drag-over').forEach(n => n.classList.remove('wb-drag-over')); };
-        node.ondragover = e => { if (!editing || dragFromIndex === null) return; e.preventDefault(); e.dataTransfer.dropEffect = 'move'; node.classList.add('wb-drag-over'); };
+        node.ondragover = e => { if (!editing) return; e.preventDefault(); if (dragFromIndex !== null) { e.dataTransfer.dropEffect = 'move'; node.classList.add('wb-drag-over'); } };
         node.ondragleave = e => { if (!node.contains(e.relatedTarget)) node.classList.remove('wb-drag-over'); };
         node.ondrop = e => {
-            if (!editing || dragFromIndex === null) return;
+            if (!editing) return;
             e.preventDefault(); e.stopPropagation();
             node.classList.remove('wb-drag-over');
-            if (dragFromIndex !== index) { board.tiles = reorder(board.tiles, dragFromIndex, index); persist(); render(); }
+            if (dragFromIndex !== null && dragFromIndex !== index) { board.tiles = reorder(board.tiles, dragFromIndex, index); persist(); render(); }
             dragFromIndex = null;
         };
     }
@@ -832,6 +832,10 @@
         $('wb-board-menu').addEventListener('click', e => e.stopPropagation());
         $('wb-edit-btn').addEventListener('click', () => setEditing(!editing));
         $('wb-edit-hint').textContent = I18N.dragHint || 'Drag tiles to reorder, click a title to rename';
+        // Safety net: a file dropped on the gap between tiles (or anywhere else)
+        // while editing must never let the browser navigate to it.
+        document.addEventListener('dragover', e => { if (editing) e.preventDefault(); });
+        document.addEventListener('drop', e => { if (editing) e.preventDefault(); });
         $('wb-new-sheet').addEventListener('click', e => { if (e.target === e.currentTarget) closeNewSheet(); });
         $('wb-new-sheet').querySelector('form').addEventListener('submit', submitNewSheet);
         $('wb-new-cancel').addEventListener('click', closeNewSheet);
