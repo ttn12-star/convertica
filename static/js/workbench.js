@@ -377,6 +377,8 @@
     const state = ensureBoard(loadState(), I18N.boardName || 'My board');
     let presets = loadPresets();
     let onTileFiles = runTile;
+    let editing = false;
+    let dragFromIndex = null;
 
     /**
      * Presets saved before workflow-presets.js wrote `toolKey` only have a
@@ -400,6 +402,51 @@
     const GROUP_ICON = { convert: 'CV', edit: 'ED', organize: 'OR', security: 'SE', epub: 'EP', image: 'IM', archive: 'ZP' };
 
     function persist() { saveState(state); }
+
+    function setEditing(on) {
+        editing = on;
+        $('wb-root').classList.toggle('wb-editing', on);
+        const btn = $('wb-edit-btn');
+        btn.setAttribute('aria-pressed', String(on));
+        btn.querySelector('.wb-edit-label').textContent = on ? (I18N.done || 'Done') : (I18N.edit || 'Edit');
+        $('wb-edit-hint').classList.toggle('hidden', !on);
+        if (on) closeAllOverlays();
+        render();
+    }
+
+    function bindEditControls(node, tile, preset, index) {
+        const board = activeBoard(state);
+        const handle = node.querySelector('.wb-tile-handle');
+        const remove = node.querySelector('.wb-tile-remove');
+        const input = node.querySelector('.wb-tile-title-input');
+
+        remove.onclick = () => { clearResults(tile.id); removeTile(board, tile.id); persist(); render(); };
+
+        input.value = preset.name;
+        input.onchange = () => {
+            const name = input.value.trim().slice(0, 80);
+            if (!name || name === preset.name) { input.value = preset.name; return; }
+            preset.name = name;
+            savePresets(presets);
+            render();
+        };
+        input.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } if (e.key === 'Escape') { input.value = preset.name; input.blur(); } };
+
+        // Native HTML5 DnD: the handle starts the drag, any tile accepts the drop.
+        handle.draggable = editing;
+        node.draggable = false;
+        handle.ondragstart = e => { dragFromIndex = index; node.classList.add('wb-dragging'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', tile.id); };
+        handle.ondragend = () => { dragFromIndex = null; node.classList.remove('wb-dragging'); document.querySelectorAll('.wb-drag-over').forEach(n => n.classList.remove('wb-drag-over')); };
+        node.ondragover = e => { if (!editing || dragFromIndex === null) return; e.preventDefault(); e.dataTransfer.dropEffect = 'move'; node.classList.add('wb-drag-over'); };
+        node.ondragleave = e => { if (!node.contains(e.relatedTarget)) node.classList.remove('wb-drag-over'); };
+        node.ondrop = e => {
+            if (!editing || dragFromIndex === null) return;
+            e.preventDefault(); e.stopPropagation();
+            node.classList.remove('wb-drag-over');
+            if (dragFromIndex !== index) { board.tiles = reorder(board.tiles, dragFromIndex, index); persist(); render(); }
+            dragFromIndex = null;
+        };
+    }
 
     function render() {
         const grid = $('wb-grid');
@@ -441,6 +488,7 @@
         node.querySelector('.wb-tile-subtitle').textContent =
             preset.name === tool.label ? (groups[tool.group] || tool.group) : tool.label;
         buildMenu(node, tile, preset, tool, index, count);
+        bindEditControls(node, tile, preset, index);
     }
 
     function renderTile(item, index, count) {
@@ -457,14 +505,14 @@
         const input = node.querySelector('.wb-file');
         input.accept = tool.fileAccept || '';
         input.multiple = true;
-        input.addEventListener('change', () => { if (input.files.length) onTileFiles(tile.id, input.files); input.value = ''; });
+        input.addEventListener('change', () => { if (editing) return; if (input.files.length) onTileFiles(tile.id, input.files); input.value = ''; });
 
         const drop = node.querySelector('.wb-drop');
         const unhighlight = () => drop.classList.remove('border-amber-500', 'bg-amber-50');
         ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('border-amber-500', 'bg-amber-50'); }));
         // Moving over a child fires dragleave on the drop zone — only a real exit counts.
         drop.addEventListener('dragleave', e => { if (!drop.contains(e.relatedTarget)) unhighlight(); });
-        drop.addEventListener('drop', e => { e.preventDefault(); unhighlight(); if (e.dataTransfer.files.length) onTileFiles(tile.id, e.dataTransfer.files); });
+        drop.addEventListener('drop', e => { e.preventDefault(); unhighlight(); if (editing) return; if (e.dataTransfer.files.length) onTileFiles(tile.id, e.dataTransfer.files); });
         node.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target === node) input.click(); });
 
         updateTile(node, item, index, count);
@@ -782,11 +830,13 @@
             if (!wasOpen) { m.classList.remove('hidden'); e.currentTarget.setAttribute('aria-expanded', 'true'); }
         });
         $('wb-board-menu').addEventListener('click', e => e.stopPropagation());
+        $('wb-edit-btn').addEventListener('click', () => setEditing(!editing));
+        $('wb-edit-hint').textContent = I18N.dragHint || 'Drag tiles to reorder, click a title to rename';
         $('wb-new-sheet').addEventListener('click', e => { if (e.target === e.currentTarget) closeNewSheet(); });
         $('wb-new-sheet').querySelector('form').addEventListener('submit', submitNewSheet);
         $('wb-new-cancel').addEventListener('click', closeNewSheet);
         document.addEventListener('click', closeAllOverlays);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAllOverlays(); closeNewSheet(); } });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAllOverlays(); closeNewSheet(); if (editing) setEditing(false); } });
         window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); backfillToolKeys(); render(); });
     }
 
