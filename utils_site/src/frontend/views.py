@@ -1783,6 +1783,10 @@ def workbench_page(request):
             "boardCreated": _("Board created"),
             "boardDeleted": _("Board deleted"),
             "templateApplied": _("%(count)s tiles added"),
+            "edit": _("Edit"),
+            "done": _("Done"),
+            "dragHint": _("Drag tiles to reorder, click a title to rename"),
+            "removeTile": _("Remove tile"),
             "groups": {
                 "convert": _("Convert"),
                 "edit": _("Edit"),
