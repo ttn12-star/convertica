@@ -59,8 +59,14 @@
     }
 
     let pushTimer = null;
+    // True from the moment a push is scheduled until its fetch settles —
+    // covers both the 400ms debounce window and the request in flight.
+    // A sync GET that resolves during this window is racing a local edit
+    // that hasn't reached the server yet, so it must not clobber it.
+    let pushPending = false;
 
     function pushPresets() {
+        pushPending = true;
         clearTimeout(pushTimer);
         pushTimer = setTimeout(function () {
             const body = { presets: getPresets() };
@@ -73,7 +79,8 @@
                     'X-CSRFToken': getCsrfToken(),
                 },
                 body: JSON.stringify(body),
-            }).catch(function () { /* offline/expired session — cache still works */ });
+            }).catch(function () { /* offline/expired session — cache still works */ })
+                .finally(function () { pushPending = false; });
         }, 400);
     }
 
@@ -86,19 +93,30 @@
                 return response.json();
             })
             .then(function (data) {
+                // A push is scheduled/in-flight: this GET was issued before
+                // that edit reached the server, so `data` is stale. Applying
+                // it now would overwrite the fresh local copy with the old
+                // one, and the pending PUT would then re-push that staleness
+                // right back — so skip both overwrites and the event; the
+                // imminent push is the real sync. SYNC_FLAG still gets set,
+                // same as any other completed sync attempt.
+                const stale = pushPending;
+
                 const server = Array.isArray(data.presets) ? data.presets : [];
                 // Once this browser has synced, the account copy is
                 // authoritative — including an empty one (Clear All on
                 // another device must not resurrect here).
-                if (server.length || localStorage.getItem(SYNC_FLAG)) {
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(server.slice(0, MAX_PRESETS)));
-                } else if (getPresets().length) {
-                    // First device with local presets seeds the account copy.
-                    pushPresets();
+                if (!stale) {
+                    if (server.length || localStorage.getItem(SYNC_FLAG)) {
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(server.slice(0, MAX_PRESETS)));
+                    } else if (getPresets().length) {
+                        // First device with local presets seeds the account copy.
+                        pushPresets();
+                    }
                 }
                 localStorage.setItem(SYNC_FLAG, '1');
 
-                if (Array.isArray(data.boards) && data.boards.length) {
+                if (!stale && Array.isArray(data.boards) && data.boards.length) {
                     try {
                         const local = JSON.parse(localStorage.getItem(WB_STATE_KEY) || 'null') || { boards: [], activeBoardId: null };
                         const keep = data.boards.some(function (b) { return b.id === local.activeBoardId; });
@@ -107,9 +125,11 @@
                     } catch (_) { /* ignore */ }
                 }
 
-                // Fires once for both branches so a listener never misses a
-                // boards-only (or presets-only) update.
-                window.dispatchEvent(new CustomEvent('convertica:workflows-synced'));
+                if (!stale) {
+                    // Fires once for both branches so a listener never misses
+                    // a boards-only (or presets-only) update.
+                    window.dispatchEvent(new CustomEvent('convertica:workflows-synced'));
+                }
             })
             .catch(function () { /* non-premium/offline — local-only mode */ });
     }
