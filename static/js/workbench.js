@@ -222,8 +222,12 @@
         menu.lastElementChild.classList.add('text-red-600');
         btn.addEventListener('click', e => {
             e.stopPropagation();
+            document.querySelectorAll('.wb-tile-menu').forEach(m => {
+                if (m !== menu) { m.classList.add('hidden'); const b = m.previousElementSibling; if (b) b.setAttribute('aria-expanded', 'false'); }
+            });
             const open = menu.classList.toggle('hidden') === false;
             btn.setAttribute('aria-expanded', String(open));
+            if (open) closePicker();
         });
     }
 
@@ -234,8 +238,8 @@
         const q = (query || '').trim().toLowerCase();
         const match = s => !q || s.toLowerCase().includes(q);
         const rows = [];
-        presets.filter(p => CATALOG[p.toolKey] && CATALOG[p.toolKey].droppable && (match(p.name) || match(CATALOG[p.toolKey].label)))
-            .forEach(p => rows.push({ group: I18N.myPresets || 'My presets', label: p.name, sub: CATALOG[p.toolKey].label, checked: onBoard.has(p.id), presetId: p.id }));
+        presets.filter(p => p.params && Object.keys(p.params).length && CATALOG[p.toolKey] && CATALOG[p.toolKey].droppable && (match(p.name) || match(CATALOG[p.toolKey].label)))
+            .forEach(p => rows.push({ group: I18N.myPresets || 'My presets', label: p.name, sub: CATALOG[p.toolKey].label, checked: onBoard.has(p.id), presetId: p.id, locked: CATALOG[p.toolKey].premiumOnly && LIMITS.tier !== 'premium' }));
         Object.entries(CATALOG).filter(([, t]) => t.droppable && match(t.label))
             .sort((a, b) => a[1].label.localeCompare(b[1].label))
             .forEach(([key, t]) => {
@@ -271,7 +275,7 @@
             text.appendChild(el('span', 'block truncate font-medium', row.label));
             text.appendChild(el('span', 'block truncate text-xs text-gray-500', row.sub));
             b.append(box, text);
-            if (row.locked) b.appendChild(el('span', 'text-xs text-amber-700 font-bold', 'PRO'));
+            if (row.locked) b.appendChild(el('span', 'text-xs text-amber-700 font-bold', I18N.pro || 'PRO'));
             b.addEventListener('click', () => togglePickerRow(row));
             li.appendChild(b);
             list.appendChild(li);
