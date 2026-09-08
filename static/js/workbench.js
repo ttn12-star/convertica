@@ -53,7 +53,7 @@
 
     function savePresets(list) {
         try { localStorage.setItem(PRESETS_KEY, JSON.stringify(list.slice(0, MAX_PRESETS))); } catch (_) { /* ignore */ }
-        if (typeof window.pushWorkflowPresets === 'function') window.pushWorkflowPresets();
+        if (LIMITS.sync && typeof window.pushWorkflowPresets === 'function') window.pushWorkflowPresets();
     }
 
     // ─── Board ops (pure where possible) ────────────────────────────────
