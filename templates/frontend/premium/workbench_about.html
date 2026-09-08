@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load i18n seo_extras %}
+
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title|seo_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
+
+{% block structured_data %}
+  {{ block.super }}
+  {% if page_faq %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+  {% if video %}{% include "frontend/includes/video_jsonld.html" %}{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 text-gray-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      {% include "frontend/includes/breadcrumbs.html" %}
+
+      <section class="mt-4 bg-white rounded-2xl shadow-xl border border-amber-200 p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Workbench" %}</h1>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
+            {% trans "Free to start" %}
+          </span>
+        </div>
+
+        <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+          {% trans "A board is a set of converter tiles with the settings already applied. Drop a file on a tile, get the file back. That is the whole workflow." %}
+        </p>
+
+        <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-6">
+          {% trans "Start with a ready-made Office, Scans or Images board or build your own. Premium accounts keep boards in sync on every device they sign in on." %}
+        </p>
+
+        {% if video %}
+          {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+        {% endif %}
+
+        <h2 class="text-lg font-bold mb-3 mt-6">{% trans "How it works" %}</h2>
+        <ol class="mb-6 space-y-2">
+          {% for step in how_it_works %}
+            <li class="flex items-start gap-3 text-sm sm:text-base text-gray-700">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 text-white text-xs font-bold flex items-center justify-center mt-0.5">{{ forloop.counter }}</span>
+              <span>
+                <strong class="font-bold">{{ step.title }}.</strong>
+                {{ step.text }}
+              </span>
+            </li>
+          {% endfor %}
+        </ol>
+
+        <h2 class="text-lg font-bold mb-3">{% trans "Why it's worth it" %}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {% for benefit in benefits %}
+            <div class="rounded-xl border border-amber-200 bg-amber-50/30 p-4">
+              <h3 class="text-base font-bold text-gray-900">{{ benefit.title }}</h3>
+              <p class="text-sm text-gray-600 mt-1">{{ benefit.text }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="{% url 'frontend:workbench_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+            {% trans "Open my Workbench" %}
+          </a>
+          {% if PAYMENTS_ENABLED %}
+            <a href="{% url 'frontend:pricing' %}"
+               class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors">
+              {% trans "See Premium plans" %}
+            </a>
+          {% endif %}
+          <a href="{% url 'frontend:saved_workflows_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors">
+            {% trans "Saved Workflows" %}
+          </a>
+          <a href="{% url 'frontend:premium_tools_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors">
+            {% trans "Premium Tools" %}
+          </a>
+        </div>
+
+        {% include "frontend/includes/seo_faq.html" with faq=page_faq %}
+      </section>
+    </div>
+  </div>
+{% endblock %}

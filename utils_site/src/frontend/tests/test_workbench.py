@@ -1,7 +1,10 @@
 # utils_site/src/frontend/tests/test_workbench.py
 """Workbench: catalog built from TOOL_CONFIGS, tier limits, page view."""
 
+from unittest.mock import patch
+
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.test import RequestFactory, TestCase, override_settings
 from django.urls import reverse
 from django.utils import translation
@@ -151,9 +154,11 @@ class WorkbenchPageTests(TestCase):
         self.assertFalse(hasattr(views.workbench_page, "__wrapped__"))
 
     @override_settings(WORKBENCH_ENABLED=False)
-    def test_kill_switch_returns_404(self):
-        self.assertEqual(
-            self.client.get(reverse("frontend:workbench_page")).status_code, 404
+    def test_kill_switch_redirects_to_about(self):
+        response = self.client.get(reverse("frontend:workbench_page"))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(
+            response["Location"].endswith(reverse("frontend:workbench_about_page"))
         )
 
 
@@ -206,3 +211,51 @@ class WorkbenchIntegrationTests(TestCase):
         self.client.force_login(user)
         html = self.client.get(reverse("users:profile")).content.decode()
         self.assertIn(reverse("frontend:workbench_page"), html)
+
+
+class WorkbenchAboutTests(TestCase):
+    def setUp(self):
+        # anonymous_cache_page caches by path; clear so tests in this class
+        # (and the video-hook patch below) don't see a stale cached render.
+        cache.clear()
+
+    def test_about_page_renders_faq_and_cta(self):
+        response = self.client.get(reverse("frontend:workbench_about_page"))
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode()
+        self.assertIn('"@type": "FAQPage"', html)
+        self.assertIn(reverse("frontend:workbench_page"), html)
+        self.assertNotIn("noindex", html)
+
+    def test_about_page_in_sitemap(self):
+        from src.frontend.views import _get_sitemap_pages
+
+        self.assertIn("workbench/about/", {p["url"] for p in _get_sitemap_pages()})
+
+    @override_settings(WORKBENCH_ENABLED=False)
+    def test_kill_switch_redirects_to_about(self):
+        response = self.client.get(reverse("frontend:workbench_page"))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(
+            response["Location"].endswith(reverse("frontend:workbench_about_page"))
+        )
+
+    def test_about_page_video_hook(self):
+        video = {
+            "video_id": "abcdefghijk",
+            "upload_date": "2026-09-10T10:00:00+00:00",
+            "duration": "PT1M30S",
+        }
+        with patch.dict("src.frontend.views.TOOL_VIDEOS", {"workbench": video}):
+            cache.clear()
+            html = self.client.get(
+                reverse("frontend:workbench_about_page")
+            ).content.decode()
+        self.assertIn("abcdefghijk", html)
+        self.assertIn('"@type": "VideoObject"', html)
+
+    def test_about_page_without_video_hook(self):
+        html = self.client.get(
+            reverse("frontend:workbench_about_page")
+        ).content.decode()
+        self.assertNotIn("VideoObject", html)
