@@ -92,3 +92,79 @@ class WorkflowSyncTests(APITestCase):
         response = self.client.put(self.ENDPOINT, {"presets": presets}, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertFalse(UserWorkflowSet.objects.filter(user=user).exists())
+
+    def _premium_client(self, tag):
+        user = self._user(premium=True, tag=tag)
+        self.client.force_authenticate(user=user)
+        return user
+
+    def test_boards_roundtrip_and_unknown_preset_tile_dropped(self):
+        self._premium_client("bd")
+        presets = [
+            {
+                "id": "p1",
+                "name": "Invoices",
+                "toolUrl": "/en/pdf-to-pdfa/",
+                "toolKey": "pdf_to_pdfa",
+            },
+        ]
+        boards = [
+            {
+                "id": "b1",
+                "name": "Accounting",
+                "isDefault": True,
+                "createdAt": 1725800000000,
+                "tiles": [
+                    {"id": "t1", "kind": "preset", "presetId": "p1", "size": "m"},
+                    {"id": "t2", "kind": "preset", "presetId": "ghost", "size": "s"},
+                    {"id": "t3", "kind": "tasks", "size": "xl"},
+                ],
+            }
+        ]
+        response = self.client.put(
+            self.ENDPOINT, {"presets": presets, "boards": boards}, format="json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        board = response.data["boards"][0]
+        self.assertEqual(board["name"], "Accounting")
+        self.assertTrue(board["isDefault"])
+        tile_ids = [t["id"] for t in board["tiles"]]
+        self.assertEqual(tile_ids, ["t1", "t3"])  # ghost preset dropped
+        self.assertEqual(board["tiles"][1]["size"], "m")  # bad size → default
+        self.assertEqual(response.data["presets"][0]["toolKey"], "pdf_to_pdfa")
+
+        stored = self.client.get(self.ENDPOINT).data
+        self.assertEqual(stored["boards"], response.data["boards"])
+
+    def test_unknown_tool_key_is_blanked(self):
+        self._premium_client("tk")
+        presets = [
+            {"id": "p1", "name": "X", "toolUrl": "/en/x/", "toolKey": "not_a_tool"}
+        ]
+        response = self.client.put(self.ENDPOINT, {"presets": presets}, format="json")
+        self.assertEqual(response.data["presets"][0]["toolKey"], "")
+
+    def test_too_many_boards_rejected(self):
+        self._premium_client("mb")
+        boards = [{"id": f"b{i}", "name": f"B{i}", "tiles": []} for i in range(6)]
+        response = self.client.put(
+            self.ENDPOINT, {"presets": [], "boards": boards}, format="json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_tiles_capped_at_twenty(self):
+        self._premium_client("tc")
+        tiles = [{"id": f"t{i}", "kind": "tasks", "size": "s"} for i in range(25)]
+        boards = [{"id": "b1", "name": "Big", "tiles": tiles}]
+        response = self.client.put(
+            self.ENDPOINT, {"presets": [], "boards": boards}, format="json"
+        )
+        self.assertEqual(len(response.data["boards"][0]["tiles"]), 20)
+
+    def test_put_without_boards_keeps_stored_boards(self):
+        user = self._premium_client("kb")
+        UserWorkflowSet.objects.create(
+            user=user, presets=[], boards=[{"id": "b1", "name": "Keep", "tiles": []}]
+        )
+        response = self.client.put(self.ENDPOINT, {"presets": []}, format="json")
+        self.assertEqual(response.data["boards"][0]["name"], "Keep")

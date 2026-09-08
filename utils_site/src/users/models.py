@@ -1070,6 +1070,9 @@ class UserWorkflowSet(models.Model):
         User, on_delete=models.CASCADE, related_name="workflow_set"
     )
     presets = models.JSONField(default=list, blank=True)
+    # Workbench boards: [{id, name, isDefault, tiles: [{id, kind, presetId?, size}]}].
+    # Same wholesale-replace contract as presets; validated in api/workflow_sync.py.
+    boards = models.JSONField(default=list, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
