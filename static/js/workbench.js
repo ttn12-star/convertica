@@ -401,7 +401,23 @@
     const SIZE_CLASS = { s: '', m: 'md:col-span-2', l: 'md:col-span-2 md:row-span-2' };
     const GROUP_ICON = { convert: 'CV', edit: 'ED', organize: 'OR', security: 'SE', epub: 'EP', image: 'IM', archive: 'ZP' };
 
-    function persist() { saveState(state); }
+    function persist() {
+        saveState(state);
+        if (LIMITS.sync && typeof window.pushWorkflowPresets === 'function') window.pushWorkflowPresets();
+    }
+
+    /**
+     * Pure: reconciles boards pulled from the server into local state.
+     * Server list wins outright; activeBoardId is kept if still present,
+     * else falls back to the server's default board, else its first. An
+     * empty server list means "nothing to merge yet" — local is unchanged.
+     */
+    function mergeServerBoards(local, serverBoards) {
+        if (!Array.isArray(serverBoards) || !serverBoards.length) return local;
+        const keep = serverBoards.some(b => b.id === local.activeBoardId);
+        const def = serverBoards.find(b => b.isDefault) || serverBoards[0];
+        return { boards: serverBoards, activeBoardId: keep ? local.activeBoardId : def.id };
+    }
 
     function setEditing(on) {
         editing = on;
@@ -841,7 +857,12 @@
         $('wb-new-cancel').addEventListener('click', closeNewSheet);
         document.addEventListener('click', closeAllOverlays);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAllOverlays(); closeNewSheet(); if (editing) setEditing(false); } });
-        window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); backfillToolKeys(); render(); });
+        window.addEventListener('convertica:workflows-synced', () => {
+            Object.assign(state, mergeServerBoards(state, loadState().boards));
+            presets = loadPresets();
+            backfillToolKeys();
+            render();
+        });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -896,6 +917,18 @@
         const tb = createBoard({ boards: [], activeBoardId: null }, 'T', { boards: 1, tiles: 3 });
         const applied = applyTemplate(null, tb, { tools: ['word_to_pdf', 'convert_image', 'sign_pdf', 'word_to_pdf'] }, cat2, [], { tiles: 3 });
         assert(applied.added === 1 && applied.presets.length === 1 && tb.tiles.length === 1, 'applyTemplate skips requiresConfig/non-droppable/duplicates');
+
+        const serverBoards = [{ id: 's1', name: 'S1', isDefault: true, tiles: [] }, { id: 's2', name: 'S2', tiles: [] }];
+        const mergedReplace = mergeServerBoards({ boards: [{ id: 'local1' }], activeBoardId: 'local1' }, serverBoards);
+        assert(mergedReplace.boards === serverBoards && mergedReplace.activeBoardId === 's1', 'mergeServerBoards: server replaces local, falls back to default when active is gone');
+        const mergedKeep = mergeServerBoards({ boards: [], activeBoardId: 's2' }, serverBoards);
+        assert(mergedKeep.activeBoardId === 's2', 'mergeServerBoards: keeps activeBoardId when still present in server list');
+        const noDefault = [{ id: 'c1', tiles: [] }, { id: 'c2', tiles: [] }];
+        const mergedFirst = mergeServerBoards({ boards: [], activeBoardId: 'gone' }, noDefault);
+        assert(mergedFirst.activeBoardId === 'c1', 'mergeServerBoards: falls back to first board when no default and active is gone');
+        const localUnchanged = { boards: [{ id: 'local1' }], activeBoardId: 'local1' };
+        assert(mergeServerBoards(localUnchanged, []) === localUnchanged, 'mergeServerBoards: empty server list returns local unchanged');
+
         console.info('workbench selftest: OK');
     }
 
@@ -903,7 +936,7 @@
         uid, readJson, loadState, saveState, loadPresets, savePresets, ensureBoard, activeBoard,
         canAddTile, addTile, removeTile, reorder, resolveTiles, presetFromTool, encodeParams, acceptsFile,
         resolveToolKey, selfTest,
-        canAddBoard, createBoard, renameBoard, deleteBoard, setDefaultBoard, duplicateBoard, applyTemplate,
+        canAddBoard, createBoard, renameBoard, deleteBoard, setDefaultBoard, duplicateBoard, applyTemplate, mergeServerBoards,
         render, openPicker, closePicker,
     };
 
