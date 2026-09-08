@@ -219,6 +219,12 @@
     }
 
     function submitOne(tileId, apiUrl, formData, originalFileName, useAsync) {
+        // showLoading builds markup with hard-coded ids (#progressBar,
+        // #cancelOperationBtn, …) and hideLoading only hides it, so a second run
+        // — on this tile or any other — would leave utils.js wiring the new run
+        // to the stale hidden nodes. Wipe every tile's loader slot first: at most
+        // one #progressBar exists on the page, and it is always the live one.
+        document.querySelectorAll('.wb-loading').forEach(node => node.replaceChildren());
         // ponytail: submitAsyncConversion's promise settles before polling
         // finishes for async (>5MB) files (pollTaskStatus recurses via
         // setTimeout, not awaited) — resolve ourselves from its callbacks so
@@ -239,8 +245,9 @@
                 onError: () => resolve(), // utils.js already rendered the error into wb-error-<id>
                 onBackground: () => resolve(),
             };
-            // Only force async mode on the /async/ endpoints; the sync twins
-            // answer 200-with-body and would never produce a task_id.
+            // Posting to the /async/ twin is what makes the run async — utils.js
+            // never reads asyncMode after computing it, the path is chosen by the
+            // endpoint answering 202. Passed for clarity only.
             if (useAsync) options.useAsync = true;
             window.submitAsyncConversion(options).catch(() => resolve());
         });
