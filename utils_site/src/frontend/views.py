@@ -4,7 +4,7 @@ from datetime import datetime
 from functools import wraps
 
 from django.conf import settings
-from django.http import Http404, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -1742,7 +1742,7 @@ def workbench_page(request):
     """Workbench: personal drop-board of converter tiles (all tiers, per-user
     limits — therefore never wrapped in anonymous_cache_page)."""
     if not getattr(settings, "WORKBENCH_ENABLED", True):
-        raise Http404
+        return redirect("frontend:workbench_about_page")
     catalog = build_catalog()
     context = {
         "page_title": _("Workbench - Convertica"),
@@ -1806,6 +1806,103 @@ def workbench_page(request):
         },
     }
     return render(request, "frontend/premium/workbench.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def workbench_about_page(request):
+    """Public, crawlable explainer for the Workbench drop-board."""
+    context = {
+        "page_title": _("Workbench - Your Board of One-Drop PDF Tools"),
+        "page_description": _(
+            "Build a board of converter tiles with your settings saved. Drop a file on a tile "
+            "and the result is ready, no menus, no re-configuring. Free to start, Premium syncs boards across devices."
+        ),
+        "page_keywords": (
+            "pdf workbench, pdf dashboard, drag and drop pdf converter, saved converter settings, "
+            "batch pdf board, pdf tools dashboard, one click pdf conversion"
+        ),
+        "is_premium_active": _is_premium_active_user(request),
+        "video": TOOL_VIDEOS.get("workbench"),
+        "how_it_works": [
+            {
+                "title": _("Pick your tools"),
+                "text": _(
+                    "Open the Add widget list, search for a converter and add it as a tile. Start from a ready-made Office, Scans or Images board if you like."
+                ),
+            },
+            {
+                "title": _("Set them once"),
+                "text": _(
+                    "Need OCR, a page size or an output format? Configure the tool on its page and save it as a workflow. The tile keeps those settings."
+                ),
+            },
+            {
+                "title": _("Drop and go"),
+                "text": _(
+                    "Drag a file onto the tile. It converts with your settings and the download appears right under the tile, the last three results stay in view."
+                ),
+            },
+        ],
+        "benefits": [
+            {
+                "title": _("One drop per job"),
+                "text": _(
+                    "Invoices to PDF/A, scans to Word, HEIC to JPG, each is a tile you never have to set up again."
+                ),
+            },
+            {
+                "title": _("Several boards"),
+                "text": _(
+                    "Keep work and personal tasks apart, or one board per client. Switch in a click."
+                ),
+            },
+            {
+                "title": _("Everywhere you sign in"),
+                "text": _(
+                    "Premium boards sync to your account, so the same tiles are waiting on every device."
+                ),
+            },
+            {
+                "title": _("Free to try"),
+                "text": _(
+                    "Anyone can build a board with three tiles in the browser. Sign in for six, go Premium for up to five boards of twenty."
+                ),
+            },
+        ],
+        "page_faq": [
+            {
+                "question": _("Is the Workbench free?"),
+                "answer": _(
+                    "Yes. Without an account you get one board with three tiles, stored in your browser. A free account allows six tiles. Premium unlocks five boards with twenty tiles each and syncs them across devices."
+                ),
+            },
+            {
+                "question": _("What happens when I drop a file?"),
+                "answer": _(
+                    "The tile sends the file to the same converter the tool page uses, with the settings you saved, and shows the download when it is ready. Large files run in the background, you can leave the page."
+                ),
+            },
+            {
+                "question": _("How do I change a tile's settings?"),
+                "answer": _(
+                    "Open the tile menu and choose Configure on tool page. Adjust the options there and save the workflow; the tile picks up the new settings."
+                ),
+            },
+            {
+                "question": _("Which tools can be tiles?"),
+                "answer": _(
+                    "Every converter that takes a file and returns a file, currently more than twenty. Editors that need on-screen interaction, such as signing or adding text, open as regular tool pages."
+                ),
+            },
+            {
+                "question": _("Are my files stored?"),
+                "answer": _(
+                    "No. Instant conversions are returned straight to you and background jobs are deleted after about an hour, exactly like the tool pages. Boards store only tool names and settings, never files."
+                ),
+            },
+        ],
+    }
+    return render(request, "frontend/premium/workbench_about.html", context)
 
 
 @anonymous_cache_page(60 * 60)
@@ -2280,6 +2377,7 @@ def _get_sitemap_pages():
         # Public explainer landings for premium features (batch/OCR pattern).
         {"url": "background-tasks/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "saved-workflows/", "priority": "0.6", "changefreq": "monthly"},
+        {"url": "workbench/about/", "priority": "0.6", "changefreq": "monthly"},
         # NOTE: premium/workflows and premium/background-center are still
         # premium-gated dashboards that 302-redirect anonymous crawlers,
         # so they stay out of the sitemap; their public explainers above

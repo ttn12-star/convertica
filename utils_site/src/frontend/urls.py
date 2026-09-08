@@ -79,6 +79,11 @@ urlpatterns = [
     ),
     path("workbench/", views.workbench_page, name="workbench_page"),
     path(
+        "workbench/about/",
+        views.workbench_about_page,
+        name="workbench_about_page",
+    ),
+    path(
         "premium/background-center/",
         views.background_center_page,
         name="background_center_page",

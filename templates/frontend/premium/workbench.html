@@ -80,6 +80,7 @@
         </div>
         <h2 class="text-xl sm:text-2xl font-extrabold mb-2">{% trans "Build your first board" %}</h2>
         <p class="text-gray-600 max-w-md mx-auto mb-6">{% trans "Add a converter as a tile. Then just drop files on it — the settings are already there." %}</p>
+        <a href="{% url 'frontend:workbench_about_page' %}" class="block mb-4 text-sm font-semibold text-amber-700 underline">{% trans "How the Workbench works" %}</a>
         <div id="wb-hero-templates" class="flex flex-wrap justify-center gap-2 mb-4"></div>
         <button type="button" data-wb-open-picker class="inline-flex items-center px-5 py-2.5 rounded-xl bg-amber-600 text-white font-semibold hover:bg-amber-700">{% trans "Add widget" %}</button>
       </section>
