@@ -26,15 +26,15 @@
             {% trans "Add widget" %}
           </button>
           <div id="wb-picker" hidden
-               class="absolute end-0 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-2xl bg-white border border-gray-200 shadow-2xl z-30 overflow-hidden"
+               class="absolute end-0 mt-2 w-80 max-w-[calc(100vw-2rem)] flex flex-col max-h-[calc(100vh-14rem)] rounded-2xl bg-white border border-gray-200 shadow-2xl z-30 overflow-hidden"
                role="dialog" aria-label="{% trans 'Add widget' %}">
-            <div class="p-3 border-b border-gray-100">
+            <div class="shrink-0 p-3 border-b border-gray-100">
               <input id="wb-picker-search" type="search" autocomplete="off"
                      placeholder="{% trans 'Search tools…' %}"
                      class="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
             </div>
-            <ul id="wb-picker-list" role="listbox" class="max-h-96 overflow-y-auto py-1"></ul>
-            <div id="wb-picker-limit" hidden class="p-3 border-t border-gray-100 bg-amber-50 text-xs text-amber-800"></div>
+            <ul id="wb-picker-list" role="listbox" class="flex-1 min-h-0 overflow-y-auto overscroll-contain py-1"></ul>
+            <div id="wb-picker-limit" hidden class="shrink-0 p-3 border-t border-gray-100 bg-amber-50 text-xs text-amber-800"></div>
           </div>
         </div>
       </header>
@@ -83,6 +83,22 @@
     </article>
   </template>
 
+  {% comment %}
+    B4: utils.js showLoading() renders a full-page block (p-8/p-12, 80px
+    spinner, text-2xl heading). Scale it down inside a tile — the buttons
+    ("Cancel", "Continue in background") stay visible.
+  {% endcomment %}
+  <style nonce="{{ csp_nonce }}">
+    .wb-loading > div { padding: .75rem; border-width: 1px; border-radius: .75rem; }
+    .wb-loading .space-y-6 > * + * { margin-top: .5rem; }
+    .wb-loading .animate-spin { width: 2.25rem; height: 2.25rem; border-width: 4px; }
+    .wb-loading .animate-spin + div svg { width: 1.25rem; height: 1.25rem; }
+    .wb-loading h3 { font-size: .875rem; line-height: 1.25rem; margin-bottom: .125rem; }
+    .wb-loading p { font-size: .75rem; line-height: 1rem; margin-bottom: 0; }
+    .wb-loading #patienceMessage { display: none; }
+    .wb-loading .gap-4 { gap: .75rem; }
+  </style>
+
   {{ workbench_catalog|json_script:"workbench-catalog" }}
   {{ workbench_limits|json_script:"workbench-limits" }}
   {{ workbench_i18n|json_script:"workbench-i18n" }}
@@ -96,5 +112,6 @@
   </script>
   <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
   <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/workflow-presets.js' %}" nonce="{{ csp_nonce }}"></script>
   <script src="{% minified_static 'js/workbench.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
