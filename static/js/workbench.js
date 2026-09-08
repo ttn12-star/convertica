@@ -136,6 +136,197 @@
         });
     }
 
+    // ─── Render ─────────────────────────────────────────────────────────
+    const CATALOG = readJson('workbench-catalog', {});
+    const LIMITS = readJson('workbench-limits', { tier: 'anonymous', boards: 1, tiles: 3 });
+    const I18N = readJson('workbench-i18n', {});
+    const state = ensureBoard(loadState(), I18N.boardName || 'My board');
+    let presets = loadPresets();
+    let onTileFiles = function () {}; // Task 6 assigns the run flow
+
+    const $ = id => document.getElementById(id);
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const SIZE_CLASS = { s: '', m: 'md:col-span-2', l: 'md:col-span-2 md:row-span-2' };
+    const GROUP_ICON = { convert: 'CV', edit: 'ED', organize: 'OR', security: 'SE', epub: 'EP', image: 'IM', archive: 'ZP' };
+
+    function persist() { saveState(state); }
+
+    function render() {
+        const grid = $('wb-grid');
+        const empty = $('wb-empty');
+        const board = activeBoard(state);
+        if (!grid || !board) return;
+        $('wb-board-name').textContent = board.name;
+
+        const { resolved, dropped } = resolveTiles(board, presets, CATALOG);
+        if (dropped.length) { board.tiles = board.tiles.filter(t => !dropped.includes(t)); persist(); }
+
+        grid.replaceChildren();
+        empty.hidden = resolved.length > 0;
+        resolved.forEach((item, index) => grid.appendChild(renderTile(item, index, resolved.length)));
+        renderPickerList();
+    }
+
+    function renderTile({ tile, preset, tool }, index, count) {
+        const node = $('wb-tile-template').content.firstElementChild.cloneNode(true);
+        node.dataset.tileId = tile.id;
+        node.className += ' ' + (SIZE_CLASS[tile.size] || '');
+        node.querySelector('.wb-tile-icon').textContent = GROUP_ICON[tool.group] || 'CV';
+        node.querySelector('.wb-tile-title').textContent = preset.name;
+        node.querySelector('.wb-tile-subtitle').textContent = tool.label;
+        node.querySelector('.wb-drop-text').textContent = I18N.dropHere || 'Drop files here';
+        node.querySelector('.wb-loading').id = 'wb-loading-' + tile.id;
+        node.querySelector('.wb-error').id = 'wb-error-' + tile.id;
+        node.querySelector('.wb-results').id = 'wb-result-' + tile.id;
+
+        const input = node.querySelector('.wb-file');
+        input.accept = tool.fileAccept || '';
+        input.multiple = true;
+        input.addEventListener('change', () => { if (input.files.length) onTileFiles(tile.id, input.files); input.value = ''; });
+
+        const drop = node.querySelector('.wb-drop');
+        ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('border-amber-500', 'bg-amber-50'); }));
+        ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, () => drop.classList.remove('border-amber-500', 'bg-amber-50')));
+        drop.addEventListener('drop', e => { e.preventDefault(); if (e.dataTransfer.files.length) onTileFiles(tile.id, e.dataTransfer.files); });
+        node.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target === node) input.click(); });
+
+        buildMenu(node, tile, preset, tool, index, count);
+        return node;
+    }
+
+    function buildMenu(node, tile, preset, tool, index, count) {
+        const btn = node.querySelector('.wb-tile-menu-btn');
+        const menu = node.querySelector('.wb-tile-menu');
+        const item = (label, onClick, disabled) => {
+            const b = el('button', 'w-full text-start px-3 py-2 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed', label);
+            b.type = 'button'; b.role = 'menuitem'; b.disabled = !!disabled;
+            b.addEventListener('click', () => { menu.classList.add('hidden'); onClick(); });
+            return b;
+        };
+        const board = activeBoard(state);
+        const sizeRow = el('div', 'flex items-center gap-1 px-3 py-2 text-xs text-gray-500');
+        sizeRow.appendChild(el('span', 'me-auto', I18N.size || 'Size'));
+        SIZES.forEach(s => {
+            const b = el('button', 'px-2 py-0.5 rounded border ' + (tile.size === s ? 'border-amber-500 text-amber-700 font-bold' : 'border-gray-200'), s.toUpperCase());
+            b.type = 'button';
+            b.addEventListener('click', () => { tile.size = s; persist(); render(); });
+            sizeRow.appendChild(b);
+        });
+        menu.replaceChildren(
+            item(I18N.configure || 'Configure', () => { location.href = tool.pageUrl + '#wfp=' + encodeParams(preset.params); }),
+            sizeRow,
+            item(I18N.moveLeft || 'Move left', () => { board.tiles = reorder(board.tiles, index, index - 1); persist(); render(); }, index === 0),
+            item(I18N.moveRight || 'Move right', () => { board.tiles = reorder(board.tiles, index, index + 1); persist(); render(); }, index === count - 1),
+            item(I18N.remove || 'Remove', () => { removeTile(board, tile.id); persist(); render(); }),
+        );
+        menu.lastElementChild.classList.add('text-red-600');
+        btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const open = menu.classList.toggle('hidden') === false;
+            btn.setAttribute('aria-expanded', String(open));
+        });
+    }
+
+    // ─── Picker (dui SelectWidgets: search + toggle rows) ───────────────
+    function pickerRows(query) {
+        const board = activeBoard(state);
+        const onBoard = new Set(board.tiles.map(t => t.presetId));
+        const q = (query || '').trim().toLowerCase();
+        const match = s => !q || s.toLowerCase().includes(q);
+        const rows = [];
+        presets.filter(p => CATALOG[p.toolKey] && CATALOG[p.toolKey].droppable && (match(p.name) || match(CATALOG[p.toolKey].label)))
+            .forEach(p => rows.push({ group: I18N.myPresets || 'My presets', label: p.name, sub: CATALOG[p.toolKey].label, checked: onBoard.has(p.id), presetId: p.id }));
+        Object.entries(CATALOG).filter(([, t]) => t.droppable && match(t.label))
+            .sort((a, b) => a[1].label.localeCompare(b[1].label))
+            .forEach(([key, t]) => {
+                const existing = presets.find(p => p.toolKey === key && (!p.params || !Object.keys(p.params).length));
+                rows.push({ group: I18N.converters || 'Converters', label: t.label, sub: t.group, checked: !!existing && onBoard.has(existing.id), toolKey: key, presetId: existing && existing.id, locked: t.premiumOnly && LIMITS.tier !== 'premium' });
+            });
+        return rows;
+    }
+
+    function renderPickerList() {
+        const list = $('wb-picker-list');
+        if (!list) return;
+        const board = activeBoard(state);
+        const full = !canAddTile(board, LIMITS);
+        const limitBox = $('wb-picker-limit');
+        limitBox.hidden = !full;
+        if (full) {
+            limitBox.replaceChildren(el('span', '', (I18N.limitReached || 'Tile limit reached.') + ' '));
+            const a = el('a', 'font-semibold underline', LIMITS.tier === 'anonymous' ? (I18N.signIn || 'Sign in') : (I18N.upgrade || 'Upgrade'));
+            a.href = $('wb-root').dataset.upgradeUrl;
+            limitBox.appendChild(a);
+        }
+        list.replaceChildren();
+        let lastGroup = null;
+        pickerRows($('wb-picker-search').value).forEach(row => {
+            if (row.group !== lastGroup) { list.appendChild(el('li', 'px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-wide text-gray-400', row.group)); lastGroup = row.group; }
+            const li = el('li');
+            const b = el('button', 'w-full flex items-center gap-3 px-3 py-2 text-sm text-start hover:bg-gray-50 disabled:opacity-40');
+            b.type = 'button'; b.role = 'option'; b.setAttribute('aria-selected', String(row.checked));
+            b.disabled = row.locked || (!row.checked && full);
+            const box = el('span', 'w-4 h-4 rounded border flex items-center justify-center text-[10px] ' + (row.checked ? 'bg-amber-600 border-amber-600 text-white' : 'border-gray-300'), row.checked ? '✓' : '');
+            const text = el('span', 'min-w-0 flex-1');
+            text.appendChild(el('span', 'block truncate font-medium', row.label));
+            text.appendChild(el('span', 'block truncate text-xs text-gray-500', row.sub));
+            b.append(box, text);
+            if (row.locked) b.appendChild(el('span', 'text-xs text-amber-700 font-bold', 'PRO'));
+            b.addEventListener('click', () => togglePickerRow(row));
+            li.appendChild(b);
+            list.appendChild(li);
+        });
+    }
+
+    function togglePickerRow(row) {
+        const board = activeBoard(state);
+        if (row.checked) {
+            board.tiles = board.tiles.filter(t => t.presetId !== row.presetId);
+        } else {
+            let presetId = row.presetId;
+            if (!presetId) {
+                const preset = presetFromTool(row.toolKey, CATALOG[row.toolKey]);
+                presets = presets.concat([preset]);
+                savePresets(presets);
+                presetId = preset.id;
+            }
+            addTile(board, { kind: 'preset', presetId, size: 'm' }, LIMITS);
+        }
+        persist();
+        render();
+    }
+
+    function openPicker() {
+        $('wb-picker').hidden = false;
+        $('wb-add-btn').setAttribute('aria-expanded', 'true');
+        renderPickerList();
+        $('wb-picker-search').focus();
+    }
+
+    function closePicker() {
+        $('wb-picker').hidden = true;
+        $('wb-add-btn').setAttribute('aria-expanded', 'false');
+    }
+
+    function bindChrome() {
+        $('wb-add-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-picker').hidden ? openPicker() : closePicker(); });
+        document.querySelectorAll('[data-wb-open-picker]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openPicker(); }));
+        $('wb-picker').addEventListener('click', e => e.stopPropagation());
+        $('wb-picker-search').addEventListener('input', renderPickerList);
+        document.addEventListener('click', () => {
+            closePicker();
+            document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden'));
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePicker(); document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden')); } });
+        window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); render(); });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!$('wb-grid')) return;
+        bindChrome();
+        render();
+    });
+
     // ─── Self-test (?selftest=1) ────────────────────────────────────────
     function selfTest() {
         const assert = (cond, msg) => { if (!cond) throw new Error('workbench selftest: ' + msg); };
@@ -165,6 +356,7 @@
     window.Workbench = {
         uid, readJson, loadState, saveState, loadPresets, savePresets, ensureBoard, activeBoard,
         canAddTile, addTile, removeTile, reorder, resolveTiles, presetFromTool, encodeParams, acceptsFile, selfTest,
+        render, openPicker, closePicker,
     };
 
     if (new URLSearchParams(location.search).get('selftest') === '1') selfTest();
