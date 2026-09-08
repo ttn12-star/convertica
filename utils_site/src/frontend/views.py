@@ -945,6 +945,13 @@ def premium_tools_page(request):
         "is_premium_active": _is_premium_active_user(request),
         "premium_tool_entities": [
             {
+                "name": _("Workbench"),
+                "url": reverse("frontend:workbench_page"),
+                "description": _(
+                    "Your own board of converter tiles: drop a file, get the result with the settings already applied. Premium syncs boards across devices."
+                ),
+            },
+            {
                 "name": _("PDF to PDF/A"),
                 "url": reverse("frontend:pdf_to_pdfa_page"),
                 "description": _(

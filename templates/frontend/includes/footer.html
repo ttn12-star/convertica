@@ -235,6 +235,12 @@
                 </a>
               </li>
               <li>
+                <a href="{% url 'frontend:workbench_page' %}"
+                   class="text-gray-400 hover:text-green-400 transition-colors">
+                  {% trans "Workbench" %}
+                </a>
+              </li>
+              <li>
                 <a href="{% url 'frontend:saved_workflows_page' %}"
                    class="text-gray-400 hover:text-green-400 transition-colors">
                   {% trans "Saved Workflows" %}
