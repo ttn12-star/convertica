@@ -589,14 +589,14 @@
     }
 
     function openPicker() {
-        $('wb-picker').hidden = false;
+        $('wb-picker').classList.remove('hidden');
         $('wb-add-btn').setAttribute('aria-expanded', 'true');
         renderPickerList();
         $('wb-picker-search').focus();
     }
 
     function closePicker() {
-        $('wb-picker').hidden = true;
+        $('wb-picker').classList.add('hidden');
         $('wb-add-btn').setAttribute('aria-expanded', 'false');
     }
 
@@ -754,7 +754,7 @@
     function closeSwitcher() { $('wb-switcher').hidden = true; $('wb-switcher-btn').setAttribute('aria-expanded', 'false'); }
 
     function bindChrome() {
-        $('wb-add-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-picker').hidden ? openPicker() : closePicker(); });
+        $('wb-add-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-picker').classList.contains('hidden') ? openPicker() : closePicker(); });
         document.querySelectorAll('[data-wb-open-picker]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openPicker(); }));
         $('wb-picker').addEventListener('click', e => e.stopPropagation());
         $('wb-picker-search').addEventListener('input', renderPickerList);
