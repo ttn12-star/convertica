@@ -399,7 +399,32 @@
     const $ = id => document.getElementById(id);
     const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
     const SIZE_CLASS = { s: '', m: 'md:col-span-2', l: 'md:col-span-2 md:row-span-2' };
-    const GROUP_ICON = { convert: 'CV', edit: 'ED', organize: 'OR', security: 'SE', epub: 'EP', image: 'IM', archive: 'ZP' };
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const GROUP_ICON_PATH = {
+        convert: 'M7 7h10M13 3l4 4-4 4M17 17H7M11 13l-4 4 4 4',
+        edit: 'M4 20h4l10-10-4-4L4 16v4zM13 7l4 4',
+        organize: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+        security: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z',
+        epub: 'M4 5a2 2 0 012-2h12v16H6a2 2 0 00-2 2V5zM6 17h12',
+        image: 'M4 5h16v14H4zM4 15l5-5 4 4 3-3 4 4',
+        archive: 'M3 7h18v4H3zM5 11v9h14v-9M10 15h4',
+    };
+
+    /** Builds a group icon <svg> from scratch — never innerHTML. */
+    function groupIcon(group) {
+        const svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        svg.setAttribute('stroke-width', '2');
+        svg.setAttribute('stroke-linecap', 'round');
+        svg.setAttribute('stroke-linejoin', 'round');
+        svg.classList.add('w-5', 'h-5');
+        const path = document.createElementNS(SVG_NS, 'path');
+        path.setAttribute('d', GROUP_ICON_PATH[group] || GROUP_ICON_PATH.convert);
+        svg.appendChild(path);
+        return svg;
+    }
 
     function persist() {
         saveState(state);
@@ -496,7 +521,7 @@
         node.classList.remove('md:col-span-2', 'md:row-span-2');
         const sizeClass = SIZE_CLASS[tile.size] || '';
         if (sizeClass) node.classList.add(...sizeClass.split(' '));
-        node.querySelector('.wb-tile-icon').textContent = GROUP_ICON[tool.group] || 'CV';
+        node.querySelector('.wb-tile-icon').replaceChildren(groupIcon(tool.group));
         node.querySelector('.wb-tile-title').textContent = preset.name;
         // A quick-added preset is named after the tool — repeating the label as
         // the subtitle is noise, show the tool's group instead.
@@ -541,7 +566,7 @@
         const item = (label, onClick, disabled) => {
             const b = el('button', 'w-full text-start px-3 py-2 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed', label);
             b.type = 'button'; b.role = 'menuitem'; b.disabled = !!disabled;
-            b.addEventListener('click', () => { menu.classList.add('hidden'); onClick(); });
+            b.addEventListener('click', () => { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); onClick(); });
             return b;
         };
         const board = activeBoard(state);
@@ -550,6 +575,7 @@
         SIZES.forEach(s => {
             const b = el('button', 'px-2 py-0.5 rounded border ' + (tile.size === s ? 'border-amber-500 text-amber-700 font-bold' : 'border-gray-200'), s.toUpperCase());
             b.type = 'button';
+            b.setAttribute('aria-pressed', String(tile.size === s));
             b.addEventListener('click', () => { tile.size = s; persist(); render(); });
             sizeRow.appendChild(b);
         });
@@ -610,8 +636,14 @@
         list.replaceChildren();
         let lastGroup = null;
         pickerRows($('wb-picker-search').value).forEach(row => {
-            if (row.group !== lastGroup) { list.appendChild(el('li', 'px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-wide text-gray-400', row.group)); lastGroup = row.group; }
+            if (row.group !== lastGroup) {
+                const heading = el('li', 'px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-wide text-gray-400', row.group);
+                heading.role = 'presentation';
+                list.appendChild(heading);
+                lastGroup = row.group;
+            }
             const li = el('li');
+            li.role = 'presentation';
             const b = el('button', 'w-full flex items-center gap-3 px-3 py-2 text-sm text-start hover:bg-gray-50 disabled:opacity-40');
             b.type = 'button'; b.role = 'option'; b.setAttribute('aria-selected', String(row.checked));
             b.disabled = row.locked || (!row.checked && full);
@@ -627,6 +659,11 @@
             li.appendChild(b);
             list.appendChild(li);
         });
+    }
+
+    /** Enabled option rows in DOM order, for arrow-key navigation. */
+    function pickerOptions() {
+        return Array.from($('wb-picker-list').querySelectorAll('[role="option"]:not(:disabled)'));
     }
 
     function togglePickerRow(row) {
@@ -834,6 +871,22 @@
         document.querySelectorAll('[data-wb-open-picker]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openPicker(); }));
         $('wb-picker').addEventListener('click', e => e.stopPropagation());
         $('wb-picker-search').addEventListener('input', renderPickerList);
+        $('wb-picker-search').addEventListener('keydown', e => {
+            if (e.key !== 'ArrowDown') return;
+            const opts = pickerOptions();
+            if (opts.length) { e.preventDefault(); opts[0].focus(); }
+        });
+        $('wb-picker-list').addEventListener('keydown', e => {
+            if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+            const opts = pickerOptions();
+            if (!opts.length) return;
+            const idx = opts.indexOf(document.activeElement);
+            if (e.key === 'ArrowUp' && idx <= 0) { e.preventDefault(); $('wb-picker-search').focus(); return; }
+            e.preventDefault();
+            const dir = e.key === 'ArrowDown' ? 1 : -1;
+            let next = (idx === -1 ? 0 : idx + dir + opts.length) % opts.length;
+            opts[next].focus();
+        });
         $('wb-switcher-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-switcher').classList.contains('hidden') ? openSwitcher() : closeSwitcher(); });
         $('wb-switcher').addEventListener('click', e => e.stopPropagation());
         $('wb-switcher-new').addEventListener('click', openNewSheet);
