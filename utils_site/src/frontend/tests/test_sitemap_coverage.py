@@ -19,6 +19,8 @@ SITEMAP_EXEMPT = {
     # explainer landings (background-tasks/, saved-workflows/) are indexed.
     "premium/workflows/",
     "premium/background-center/",
+    # Workbench app page: noindex by spec (per-user board, no crawlable content).
+    "workbench/",
 }
 
 
