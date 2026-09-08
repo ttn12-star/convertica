@@ -16,6 +16,7 @@ from django.views.generic import TemplateView
 from src.api.conversion_limits import get_file_size_limits
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS
+from src.frontend.workbench import TOOL_URL_NAME_OVERRIDES as _TOOL_URL_NAME_OVERRIDES
 
 
 def anonymous_cache_page(timeout):
@@ -581,10 +582,6 @@ def _get_converter_context(
 #: None when the files don't exist. Filled lazily; keyed by tool_key only
 #: because the slug (URL path sans language prefix) is locale-independent.
 _TOOL_SCREENSHOT_CACHE: dict[str, tuple[str, str] | None] = {}
-
-
-#: tool_keys whose URL pattern name doesn't follow the "<tool_key>_page" rule
-_TOOL_URL_NAME_OVERRIDES = {"generate_favicon": "favicon_generator_page"}
 
 
 def _tool_screenshot_paths(tool_key: str) -> tuple[str, str] | None:
