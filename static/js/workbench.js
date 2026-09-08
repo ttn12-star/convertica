@@ -500,12 +500,9 @@
         // Assigned, not addEventListener'd: buildMenu re-runs on every render.
         btn.onclick = e => {
             e.stopPropagation();
-            document.querySelectorAll('.wb-tile-menu').forEach(m => {
-                if (m !== menu) { m.classList.add('hidden'); const b = m.previousElementSibling; if (b) b.setAttribute('aria-expanded', 'false'); }
-            });
-            const open = menu.classList.toggle('hidden') === false;
-            btn.setAttribute('aria-expanded', String(open));
-            if (open) closePicker();
+            const wasOpen = !menu.classList.contains('hidden');
+            closeAllOverlays();
+            if (!wasOpen) { menu.classList.remove('hidden'); btn.setAttribute('aria-expanded', 'true'); }
         };
     }
 
@@ -589,6 +586,7 @@
     }
 
     function openPicker() {
+        closeAllOverlays();
         $('wb-picker').classList.remove('hidden');
         $('wb-add-btn').setAttribute('aria-expanded', 'true');
         renderPickerList();
@@ -609,9 +607,9 @@
         const box = $('wb-toast');
         if (!box) return;
         box.textContent = text;
-        box.hidden = false;
+        box.classList.remove('hidden');
         clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => { box.hidden = true; }, 2400);
+        toastTimer = setTimeout(() => { box.classList.add('hidden'); }, 2400);
     }
 
     function fmt(template, count) { return String(template).replace('%(count)s', String(count)); }
@@ -715,6 +713,7 @@
 
     function openNewSheet() {
         if (!canAddBoard(state, LIMITS)) { toast(I18N.boardLimit || 'Board limit reached for your plan.'); return; }
+        closeAllOverlays();
         selectedTemplateKey = null;
         const sheet = $('wb-new-sheet');
         const tplBox = $('wb-new-templates');
@@ -730,11 +729,11 @@
         };
         chips();
         $('wb-new-name').value = '';
-        sheet.hidden = false;
+        sheet.classList.remove('hidden');
         $('wb-new-name').focus();
     }
 
-    function closeNewSheet() { $('wb-new-sheet').hidden = true; }
+    function closeNewSheet() { $('wb-new-sheet').classList.add('hidden'); }
 
     function submitNewSheet(e) {
         e.preventDefault();
@@ -750,40 +749,44 @@
         persist(); closeNewSheet(); render(); toast(I18N.boardCreated || 'Board created');
     }
 
-    function openSwitcher() { $('wb-switcher').hidden = false; $('wb-switcher-btn').setAttribute('aria-expanded', 'true'); }
-    function closeSwitcher() { $('wb-switcher').hidden = true; $('wb-switcher-btn').setAttribute('aria-expanded', 'false'); }
+    function openSwitcher() { closeAllOverlays(); $('wb-switcher').classList.remove('hidden'); $('wb-switcher-btn').setAttribute('aria-expanded', 'true'); }
+    function closeSwitcher() { $('wb-switcher').classList.add('hidden'); $('wb-switcher-btn').setAttribute('aria-expanded', 'false'); }
+
+    /** Closes every non-modal overlay (picker, switcher, board menu, tile menus) so at most one is ever open. The new-board sheet is modal and not included here — callers that open it call this first instead. */
+    function closeAllOverlays() {
+        closePicker();
+        closeSwitcher();
+        $('wb-board-menu').classList.add('hidden');
+        $('wb-board-menu-btn').setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.wb-tile-menu').forEach(m => {
+            m.classList.add('hidden');
+            const b = m.previousElementSibling;
+            if (b) b.setAttribute('aria-expanded', 'false');
+        });
+    }
 
     function bindChrome() {
         $('wb-add-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-picker').classList.contains('hidden') ? openPicker() : closePicker(); });
         document.querySelectorAll('[data-wb-open-picker]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openPicker(); }));
         $('wb-picker').addEventListener('click', e => e.stopPropagation());
         $('wb-picker-search').addEventListener('input', renderPickerList);
-        $('wb-switcher-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-switcher').hidden ? openSwitcher() : closeSwitcher(); });
+        $('wb-switcher-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-switcher').classList.contains('hidden') ? openSwitcher() : closeSwitcher(); });
         $('wb-switcher').addEventListener('click', e => e.stopPropagation());
-        $('wb-switcher-new').addEventListener('click', () => { closeSwitcher(); openNewSheet(); });
+        $('wb-switcher-new').addEventListener('click', openNewSheet);
         $('wb-switcher-select').addEventListener('change', e => { if (e.target.value === '__new__') { renderChrome(); openNewSheet(); } else switchBoard(e.target.value); });
-        $('wb-board-menu-btn').addEventListener('click', e => { e.stopPropagation(); const m = $('wb-board-menu'); const open = m.classList.toggle('hidden') === false; e.currentTarget.setAttribute('aria-expanded', String(open)); });
+        $('wb-board-menu-btn').addEventListener('click', e => {
+            e.stopPropagation();
+            const m = $('wb-board-menu');
+            const wasOpen = !m.classList.contains('hidden');
+            closeAllOverlays();
+            if (!wasOpen) { m.classList.remove('hidden'); e.currentTarget.setAttribute('aria-expanded', 'true'); }
+        });
         $('wb-board-menu').addEventListener('click', e => e.stopPropagation());
         $('wb-new-sheet').addEventListener('click', e => { if (e.target === e.currentTarget) closeNewSheet(); });
         $('wb-new-sheet').querySelector('form').addEventListener('submit', submitNewSheet);
         $('wb-new-cancel').addEventListener('click', closeNewSheet);
-        document.addEventListener('click', () => {
-            closePicker();
-            closeSwitcher();
-            $('wb-board-menu').classList.add('hidden');
-            $('wb-board-menu-btn').setAttribute('aria-expanded', 'false');
-            document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden'));
-        });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                closePicker();
-                closeSwitcher();
-                closeNewSheet();
-                $('wb-board-menu').classList.add('hidden');
-                $('wb-board-menu-btn').setAttribute('aria-expanded', 'false');
-                document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden'));
-            }
-        });
+        document.addEventListener('click', closeAllOverlays);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAllOverlays(); closeNewSheet(); } });
         window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); backfillToolKeys(); render(); });
     }
 
