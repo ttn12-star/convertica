@@ -14,27 +14,60 @@
 
     {# ── Top bar ─────────────────────────────────────────────────────── #}
       <header class="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <div class="flex items-center gap-3">
-          <h1 id="wb-board-name" class="text-2xl sm:text-3xl font-extrabold tracking-tight">{% trans "My board" %}</h1>
-          <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wide">{% trans "Workbench" %}</span>
-        </div>
-        <div class="relative">
-          <button id="wb-add-btn" type="button"
-                  class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white text-sm font-semibold shadow-sm hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-                  aria-haspopup="listbox" aria-expanded="false" aria-controls="wb-picker">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14m-7-7h14"/></svg>
-            {% trans "Add widget" %}
-          </button>
-          <div id="wb-picker" hidden
-               class="absolute end-0 mt-2 w-80 max-w-[calc(100vw-2rem)] flex flex-col max-h-[calc(100vh-14rem)] rounded-2xl bg-white border border-gray-200 shadow-2xl z-30 overflow-hidden"
-               role="dialog" aria-label="{% trans 'Add widget' %}">
-            <div class="shrink-0 p-3 border-b border-gray-100">
-              <input id="wb-picker-search" type="search" autocomplete="off"
-                     placeholder="{% trans 'Search tools…' %}"
-                     class="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+        <div class="flex items-center gap-2 min-w-0">
+          {# Board switcher (md+): dui SelectDashboard #}
+          <div class="relative hidden md:block">
+            <button id="wb-switcher-btn" type="button"
+                    class="inline-flex items-center gap-2 max-w-[22rem] px-3 py-2 rounded-xl hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                    aria-haspopup="listbox" aria-expanded="false" aria-controls="wb-switcher">
+              <span id="wb-board-star" class="text-amber-500" aria-hidden="true">★</span>
+              <h1 id="wb-board-name" class="text-2xl sm:text-3xl font-extrabold tracking-tight truncate">{% trans "My board" %}</h1>
+              <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div id="wb-switcher" hidden
+                 class="absolute start-0 mt-2 w-80 max-w-[calc(100vw-2rem)] flex flex-col max-h-[calc(100vh-14rem)] rounded-2xl bg-white border border-gray-200 shadow-2xl z-30 overflow-hidden"
+                 role="dialog" aria-label="{% trans 'Boards' %}">
+              <ul id="wb-switcher-list" role="listbox" class="flex-1 min-h-0 overflow-y-auto overscroll-contain py-1"></ul>
+              <button id="wb-switcher-new" type="button" class="shrink-0 w-full text-start px-4 py-3 border-t border-gray-100 text-sm font-semibold hover:bg-gray-50 disabled:opacity-50">{% trans "New board…" %}</button>
             </div>
-            <ul id="wb-picker-list" role="listbox" class="flex-1 min-h-0 overflow-y-auto overscroll-contain py-1"></ul>
-            <div id="wb-picker-limit" hidden class="shrink-0 p-3 border-t border-gray-100 bg-amber-50 text-xs text-amber-800"></div>
+          </div>
+          {# Mobile: native select #}
+          <label class="md:hidden flex items-center gap-2 min-w-0">
+            <span class="sr-only">{% trans "Boards" %}</span>
+            <select id="wb-switcher-select" class="max-w-[60vw] rounded-xl border border-gray-200 bg-white px-3 py-2 text-base font-bold"></select>
+          </label>
+          <span class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wide">{% trans "Workbench" %}</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="relative">
+            <button id="wb-add-btn" type="button"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white text-sm font-semibold shadow-sm hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                    aria-haspopup="listbox" aria-expanded="false" aria-controls="wb-picker">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14m-7-7h14"/></svg>
+              {% trans "Add widget" %}
+            </button>
+            <div id="wb-picker" hidden
+                 class="absolute end-0 mt-2 w-80 max-w-[calc(100vw-2rem)] flex flex-col max-h-[calc(100vh-14rem)] rounded-2xl bg-white border border-gray-200 shadow-2xl z-30 overflow-hidden"
+                 role="dialog" aria-label="{% trans 'Add widget' %}">
+              <div class="shrink-0 p-3 border-b border-gray-100">
+                <input id="wb-picker-search" type="search" autocomplete="off"
+                       placeholder="{% trans 'Search tools…' %}"
+                       class="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+              </div>
+              <ul id="wb-picker-list" role="listbox" class="flex-1 min-h-0 overflow-y-auto overscroll-contain py-1"></ul>
+              <div id="wb-picker-limit" hidden class="shrink-0 p-3 border-t border-gray-100 bg-amber-50 text-xs text-amber-800"></div>
+            </div>
+          </div>
+          <button id="wb-edit-btn" type="button" aria-pressed="false"
+                  class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-300 bg-white text-sm font-semibold hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">
+            <span class="wb-edit-label">{% trans "Edit" %}</span>
+          </button>
+          <div class="relative">
+            <button id="wb-board-menu-btn" type="button" class="p-2 rounded-xl border border-gray-300 bg-white hover:bg-gray-50" aria-haspopup="menu" aria-expanded="false" aria-label="{% trans 'Board menu' %}">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+            </button>
+            <div id="wb-board-menu" class="hidden absolute end-0 mt-1 w-56 rounded-xl bg-white border border-gray-200 shadow-xl z-30 py-1 text-sm" role="menu"></div>
           </div>
         </div>
       </header>
@@ -46,6 +79,7 @@
         </div>
         <h2 class="text-xl sm:text-2xl font-extrabold mb-2">{% trans "Build your first board" %}</h2>
         <p class="text-gray-600 max-w-md mx-auto mb-6">{% trans "Add a converter as a tile. Then just drop files on it — the settings are already there." %}</p>
+        <div id="wb-hero-templates" class="flex flex-wrap justify-center gap-2 mb-4"></div>
         <button type="button" data-wb-open-picker class="inline-flex items-center px-5 py-2.5 rounded-xl bg-amber-600 text-white font-semibold hover:bg-amber-700">{% trans "Add widget" %}</button>
       </section>
 
@@ -55,6 +89,21 @@
       <div id="turnstile-container" class="flex justify-center mt-6"></div>
     </div>
   </div>
+
+  <div id="wb-new-sheet" hidden class="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-gray-900/40 p-4" role="dialog" aria-modal="true" aria-labelledby="wb-new-title">
+    <form class="w-full max-w-lg rounded-2xl bg-white shadow-2xl p-6 space-y-4">
+      <h2 id="wb-new-title" class="text-xl font-extrabold">{% trans "New board" %}</h2>
+      <input id="wb-new-name" type="text" maxlength="60" autocomplete="off" required
+             placeholder="{% trans 'Board name' %}"
+             class="w-full rounded-xl border border-gray-300 px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-amber-500">
+      <div id="wb-new-templates" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button id="wb-new-cancel" type="button" class="px-4 py-2 rounded-xl border border-gray-300 text-sm font-semibold hover:bg-gray-50">{% trans "Cancel" %}</button>
+        <button id="wb-new-create" type="submit" class="px-4 py-2 rounded-xl bg-amber-600 text-white text-sm font-semibold hover:bg-amber-700 disabled:opacity-50">{% trans "Create board" %}</button>
+      </div>
+    </form>
+  </div>
+  <div id="wb-toast" hidden role="status" class="fixed bottom-6 inset-x-0 mx-auto w-max max-w-[90vw] px-4 py-2 rounded-xl bg-gray-900 text-white text-sm shadow-xl z-50"></div>
 
 {# ── Tile template ───────────────────────────────────────────────────── #}
   <template id="wb-tile-template">
@@ -88,7 +137,15 @@
     spinner, text-2xl heading). Scale it down inside a tile — the buttons
     ("Cancel", "Continue in background") stay visible.
   {% endcomment %}
+  {% comment %}
+    Tailwind's [hidden]:where(...) preflight rule and .flex/.flex-col share
+    specificity (0,1,0); the utilities layer loads after preflight, so .flex
+    wins the cascade and a "hidden" flex panel still renders. These
+    ID+attribute selectors (specificity 1,1,0) restore [hidden] regardless of
+    class order — same fix as #signatureModal:not(.hidden) elsewhere.
+  {% endcomment %}
   <style nonce="{{ csp_nonce }}">
+    #wb-switcher[hidden], #wb-new-sheet[hidden] { display: none; }
     .wb-loading > div { padding: .75rem; border-width: 1px; border-radius: .75rem; }
     .wb-loading .space-y-6 > * + * { margin-top: .5rem; }
     .wb-loading .animate-spin { width: 2.25rem; height: 2.25rem; border-width: 4px; }

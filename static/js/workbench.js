@@ -406,7 +406,6 @@
         const empty = $('wb-empty');
         const board = activeBoard(state);
         if (!grid || !board) return;
-        $('wb-board-name').textContent = board.name;
 
         const { resolved, dropped } = resolveTiles(board, presets, CATALOG);
         if (dropped.length) { board.tiles = board.tiles.filter(t => !dropped.includes(t)); persist(); }
@@ -425,6 +424,7 @@
         stale.forEach((node, tileId) => { clearResults(tileId); node.remove(); });
         nodes.forEach(node => grid.appendChild(node)); // appending an attached node moves it
         empty.hidden = resolved.length > 0;
+        renderChrome();
         renderPickerList();
     }
 
@@ -600,16 +600,190 @@
         $('wb-add-btn').setAttribute('aria-expanded', 'false');
     }
 
+    // ─── Board chrome: switcher, board menu, new-board sheet, hero ──────
+    const TEMPLATES = readJson('workbench-templates', []);
+    let selectedTemplateKey = null;
+    let toastTimer = null;
+
+    function toast(text) {
+        const box = $('wb-toast');
+        if (!box) return;
+        box.textContent = text;
+        box.hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => { box.hidden = true; }, 2400);
+    }
+
+    function fmt(template, count) { return String(template).replace('%(count)s', String(count)); }
+
+    function switchBoard(id) {
+        if (!state.boards.some(b => b.id === id)) return;
+        state.activeBoardId = id;
+        persist();
+        render();
+    }
+
+    function renderChrome() {
+        const board = activeBoard(state);
+        if (!board) return;
+        $('wb-board-name').textContent = board.name;
+        $('wb-board-star').hidden = !board.isDefault;
+
+        // desktop list
+        const list = $('wb-switcher-list');
+        list.replaceChildren();
+        state.boards.forEach(b => {
+            const li = el('li');
+            li.role = 'presentation';
+            const row = el('button', 'w-full flex items-center gap-2 px-4 py-2 text-sm text-start hover:bg-gray-50 ' + (b.id === board.id ? 'font-bold bg-amber-50' : ''));
+            row.type = 'button'; row.role = 'option'; row.setAttribute('aria-selected', String(b.id === board.id));
+            row.appendChild(el('span', 'w-4 text-amber-500', b.isDefault ? '★' : ''));
+            row.appendChild(el('span', 'min-w-0 flex-1 truncate', b.name));
+            row.appendChild(el('span', 'text-xs text-gray-400', String(b.tiles.length)));
+            row.addEventListener('click', () => { switchBoard(b.id); closeSwitcher(); });
+            li.appendChild(row);
+            list.appendChild(li);
+        });
+        const newBtn = $('wb-switcher-new');
+        const canAdd = canAddBoard(state, LIMITS);
+        newBtn.disabled = !canAdd;
+        newBtn.textContent = canAdd ? (I18N.newBoard || 'New board…') : (I18N.boardLimit || 'Board limit reached for your plan.');
+
+        // mobile select
+        const select = $('wb-switcher-select');
+        select.replaceChildren();
+        state.boards.forEach(b => {
+            const opt = el('option', '', (b.isDefault ? '★ ' : '') + b.name);
+            opt.value = b.id; opt.selected = b.id === board.id;
+            select.appendChild(opt);
+        });
+        if (canAdd) { const opt = el('option', '', '+ ' + (I18N.newBoard || 'New board…')); opt.value = '__new__'; select.appendChild(opt); }
+
+        buildBoardMenu(board);
+        renderHeroTemplates();
+    }
+
+    function buildBoardMenu(board) {
+        const menu = $('wb-board-menu');
+        const item = (label, onClick, disabled, danger) => {
+            const b = el('button', 'w-full text-start px-3 py-2 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed' + (danger ? ' text-red-600' : ''), label);
+            b.type = 'button'; b.role = 'menuitem'; b.disabled = !!disabled;
+            b.addEventListener('click', () => { menu.classList.add('hidden'); $('wb-board-menu-btn').setAttribute('aria-expanded', 'false'); onClick(); });
+            return b;
+        };
+        menu.replaceChildren(
+            item(I18N.rename || 'Rename', () => {
+                const name = window.prompt(I18N.boardNamePlaceholder || 'Board name', board.name);
+                if (name !== null && renameBoard(state, board.id, name)) { persist(); render(); }
+            }),
+            item(I18N.setDefault || 'Set as default', () => { setDefaultBoard(state, board.id); persist(); render(); }, board.isDefault),
+            item(I18N.duplicate || 'Duplicate', () => { if (duplicateBoard(state, board.id, LIMITS)) { persist(); render(); toast(I18N.boardCreated || 'Board created'); } }, !canAddBoard(state, LIMITS)),
+            item(I18N.deleteBoard || 'Delete board', () => {
+                if (state.boards.length <= 1) { toast(I18N.lastBoard || 'You need at least one board.'); return; }
+                if (!window.confirm(fmt(I18N.deleteConfirm || 'Delete this board and its %(count)s tiles?', board.tiles.length))) return;
+                board.tiles.forEach(t => clearResults(t.id));
+                deleteBoard(state, board.id); persist(); render(); toast(I18N.boardDeleted || 'Board deleted');
+            }, state.boards.length <= 1, true),
+        );
+    }
+
+    function templateChip(t, onClick, active) {
+        const b = el('button', 'group text-start rounded-xl border px-3 py-2 hover:border-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ' + (active ? 'border-amber-500 bg-amber-50' : 'border-gray-200 bg-white'));
+        b.type = 'button'; b.dataset.templateKey = t.key;
+        b.appendChild(el('span', 'block text-sm font-bold', t.name));
+        b.appendChild(el('span', 'block text-xs text-gray-500', t.description));
+        b.addEventListener('click', () => onClick(t));
+        return b;
+    }
+
+    function renderHeroTemplates() {
+        const box = $('wb-hero-templates');
+        if (!box) return;
+        box.replaceChildren();
+        TEMPLATES.forEach(t => box.appendChild(templateChip(t, tpl => applyTemplateToActive(tpl.key), false)));
+    }
+
+    function applyTemplateToActive(templateKey) {
+        const board = activeBoard(state);
+        const template = TEMPLATES.find(t => t.key === templateKey);
+        if (!board || !template) return;
+        const { presets: next, added } = applyTemplate(state, board, template, CATALOG, presets, LIMITS);
+        if (next !== presets) { presets = next; savePresets(presets); }
+        persist(); render();
+        toast(fmt(I18N.templateApplied || '%(count)s tiles added', added));
+    }
+
+    function openNewSheet() {
+        if (!canAddBoard(state, LIMITS)) { toast(I18N.boardLimit || 'Board limit reached for your plan.'); return; }
+        selectedTemplateKey = null;
+        const sheet = $('wb-new-sheet');
+        const tplBox = $('wb-new-templates');
+        tplBox.replaceChildren();
+        const chips = () => {
+            tplBox.replaceChildren();
+            TEMPLATES.forEach(t => tplBox.appendChild(templateChip(t, tpl => { selectedTemplateKey = selectedTemplateKey === tpl.key ? null : tpl.key; chips(); }, selectedTemplateKey === t.key)));
+            const empty = el('button', 'text-start rounded-xl border px-3 py-2 ' + (selectedTemplateKey === null ? 'border-amber-500 bg-amber-50' : 'border-gray-200 bg-white'));
+            empty.type = 'button';
+            empty.appendChild(el('span', 'block text-sm font-bold', I18N.startEmpty || 'Start empty'));
+            empty.addEventListener('click', () => { selectedTemplateKey = null; chips(); });
+            tplBox.appendChild(empty);
+        };
+        chips();
+        $('wb-new-name').value = '';
+        sheet.hidden = false;
+        $('wb-new-name').focus();
+    }
+
+    function closeNewSheet() { $('wb-new-sheet').hidden = true; }
+
+    function submitNewSheet(e) {
+        e.preventDefault();
+        const board = createBoard(state, $('wb-new-name').value, LIMITS);
+        if (!board) return;
+        if (selectedTemplateKey) {
+            const template = TEMPLATES.find(t => t.key === selectedTemplateKey);
+            if (template) {
+                const { presets: next } = applyTemplate(state, board, template, CATALOG, presets, LIMITS);
+                if (next !== presets) { presets = next; savePresets(presets); }
+            }
+        }
+        persist(); closeNewSheet(); render(); toast(I18N.boardCreated || 'Board created');
+    }
+
+    function openSwitcher() { $('wb-switcher').hidden = false; $('wb-switcher-btn').setAttribute('aria-expanded', 'true'); }
+    function closeSwitcher() { $('wb-switcher').hidden = true; $('wb-switcher-btn').setAttribute('aria-expanded', 'false'); }
+
     function bindChrome() {
         $('wb-add-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-picker').hidden ? openPicker() : closePicker(); });
         document.querySelectorAll('[data-wb-open-picker]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openPicker(); }));
         $('wb-picker').addEventListener('click', e => e.stopPropagation());
         $('wb-picker-search').addEventListener('input', renderPickerList);
+        $('wb-switcher-btn').addEventListener('click', e => { e.stopPropagation(); $('wb-switcher').hidden ? openSwitcher() : closeSwitcher(); });
+        $('wb-switcher').addEventListener('click', e => e.stopPropagation());
+        $('wb-switcher-new').addEventListener('click', () => { closeSwitcher(); openNewSheet(); });
+        $('wb-switcher-select').addEventListener('change', e => { if (e.target.value === '__new__') { renderChrome(); openNewSheet(); } else switchBoard(e.target.value); });
+        $('wb-board-menu-btn').addEventListener('click', e => { e.stopPropagation(); const m = $('wb-board-menu'); const open = m.classList.toggle('hidden') === false; e.currentTarget.setAttribute('aria-expanded', String(open)); });
+        $('wb-board-menu').addEventListener('click', e => e.stopPropagation());
+        $('wb-new-sheet').addEventListener('click', e => { if (e.target === e.currentTarget) closeNewSheet(); });
+        $('wb-new-sheet').querySelector('form').addEventListener('submit', submitNewSheet);
+        $('wb-new-cancel').addEventListener('click', closeNewSheet);
         document.addEventListener('click', () => {
             closePicker();
+            closeSwitcher();
+            $('wb-board-menu').classList.add('hidden');
+            $('wb-board-menu-btn').setAttribute('aria-expanded', 'false');
             document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden'));
         });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePicker(); document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden')); } });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closePicker();
+                closeSwitcher();
+                closeNewSheet();
+                $('wb-board-menu').classList.add('hidden');
+                $('wb-board-menu-btn').setAttribute('aria-expanded', 'false');
+                document.querySelectorAll('.wb-tile-menu').forEach(m => m.classList.add('hidden'));
+            }
+        });
         window.addEventListener('convertica:workflows-synced', () => { presets = loadPresets(); backfillToolKeys(); render(); });
     }
 
