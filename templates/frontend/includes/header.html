@@ -850,6 +850,19 @@
                       </a>
                     </li>
                     <li>
+                      <a href="{% url 'frontend:workbench_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
+                         role="menuitem">
+                        <span class="flex items-center space-x-2.5 min-w-0">
+                          <span class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h7v7H4zM13 5h7v4h-7zM13 12h7v7h-7zM4 15h7v4H4z"></path></svg>
+                          </span>
+                          <span class="font-medium truncate">{% trans "Workbench" %}</span>
+                        </span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 text-[10px] font-bold flex-shrink-0">{% trans "NEW" %}</span>
+                      </a>
+                    </li>
+                    <li>
                       <a href="{% if user.is_premium_active %}{% url 'frontend:premium_workflows_page' %}{% else %}{% url 'frontend:saved_workflows_page' %}{% endif %}"
                          class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-colors duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
@@ -1569,6 +1582,17 @@
                         </span>
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
                       </a>
+                      <a href="{% url 'frontend:workbench_page' %}"
+                         class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
+                         role="menuitem">
+                        <span class="flex items-center space-x-2.5 min-w-0">
+                          <span class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h7v7H4zM13 5h7v4h-7zM13 12h7v7h-7zM4 15h7v4H4z"></path></svg>
+                          </span>
+                          <span class="font-medium truncate">{% trans "Workbench" %}</span>
+                        </span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 text-[10px] font-bold flex-shrink-0">{% trans "NEW" %}</span>
+                      </a>
                       <a href="{% if user.is_premium_active %}{% url 'frontend:premium_workflows_page' %}{% else %}{% url 'frontend:saved_workflows_page' %}{% endif %}"
                          class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
                          role="menuitem">
@@ -1998,6 +2022,14 @@
             <span class="truncate">{% trans "Batch Converter Hub" %}</span>
           </span>
           <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
+        </a>
+        <a href="{% url 'frontend:workbench_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
+          <span class="flex items-center min-w-0">
+            <svg class="w-4 h-4 text-amber-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h7v7H4zM13 5h7v4h-7zM13 12h7v7h-7zM4 15h7v4H4z"></path></svg>
+            <span class="truncate">{% trans "Workbench" %}</span>
+          </span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 text-[10px] font-bold flex-shrink-0">{% trans "NEW" %}</span>
         </a>
         <a href="{% if user.is_premium_active %}{% url 'frontend:premium_workflows_page' %}{% else %}{% url 'frontend:saved_workflows_page' %}{% endif %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">

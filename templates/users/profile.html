@@ -267,6 +267,27 @@
           <div class="flex-shrink-0">
             <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
               <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h7v7H4zM13 5h7v4h-7zM13 12h7v7h-7zM4 15h7v4H4z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-900">{% trans "Workbench" %}</h3>
+            <p class="text-sm text-gray-500">{% trans "Your board of one-drop converter tiles" %}</p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <a href="{% url 'frontend:workbench_page' %}" class="text-sm font-medium text-amber-600 hover:text-amber-500">
+            {% trans "Open" %} →
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white shadow rounded-lg p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
