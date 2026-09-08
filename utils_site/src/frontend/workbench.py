@@ -13,6 +13,7 @@ from functools import lru_cache
 from django.template.loader import get_template
 from django.urls import NoReverseMatch, Resolver404, resolve, reverse
 from django.utils import translation
+from django.utils.translation import gettext_lazy as _
 from src.api.premium_utils import is_premium_active
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_configs.archive_tools import ARCHIVE_TOOLS_CONFIGS
@@ -143,3 +144,51 @@ def tier_for(request) -> str:
 def limits_for(request) -> dict:
     tier = tier_for(request)
     return {"tier": tier, **TIER_LIMITS[tier]}
+
+
+#: First-run template boards. Tool keys that are not droppable (or need
+#: configuration) are filtered out by build_templates(), so the spec's
+#: "Compress PDF"/"Rotate" (edit_pdf_generic, not droppable yet) are absent.
+BOARD_TEMPLATES = [
+    {
+        "key": "office",
+        "name": _("Office"),
+        "description": _("Word, Excel and PowerPoint to PDF and back."),
+        "tools": ["word_to_pdf", "pdf_to_word", "excel_to_pdf", "ppt_to_pdf"],
+    },
+    {
+        "key": "scans",
+        "name": _("Scans"),
+        "description": _("Get text out of scans and photos."),
+        "tools": ["image_to_text", "pdf_to_text", "pdf_to_word"],
+    },
+    {
+        "key": "images",
+        "name": _("Images"),
+        "description": _("HEIC to JPG, lighter images, PDF pages as pictures."),
+        "tools": ["heic_to_jpg", "optimize_image", "pdf_to_jpg"],
+    },
+]
+
+
+def build_templates(catalog: dict[str, dict]) -> list[dict]:
+    out = []
+    for template in BOARD_TEMPLATES:
+        tools = [
+            key
+            for key in template["tools"]
+            if key in catalog
+            and catalog[key]["droppable"]
+            and not catalog[key]["requiresConfig"]
+        ]
+        if len(tools) < 2:
+            continue
+        out.append(
+            {
+                "key": template["key"],
+                "name": str(template["name"]),
+                "description": str(template["description"]),
+                "tools": tools,
+            }
+        )
+    return out

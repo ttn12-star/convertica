@@ -155,3 +155,30 @@ class WorkbenchPageTests(TestCase):
         self.assertEqual(
             self.client.get(reverse("frontend:workbench_page")).status_code, 404
         )
+
+
+class WorkbenchTemplatesTests(TestCase):
+    def test_templates_resolve_to_droppable_tools(self):
+        from django.utils import translation
+        from src.frontend.workbench import (
+            BOARD_TEMPLATES,
+            build_catalog,
+            build_templates,
+        )
+
+        translation.activate("en")
+        catalog = build_catalog()
+        templates = build_templates(catalog)
+        self.assertEqual([t["key"] for t in templates], ["office", "scans", "images"])
+        for template in templates:
+            self.assertIs(type(template["name"]), str)
+            self.assertGreaterEqual(len(template["tools"]), 2)
+            for key in template["tools"]:
+                self.assertTrue(catalog[key]["droppable"], key)
+                self.assertFalse(catalog[key]["requiresConfig"], key)
+        self.assertEqual(len(BOARD_TEMPLATES), 3)
+
+    def test_page_inlines_templates(self):
+        html = self.client.get(reverse("frontend:workbench_page")).content.decode()
+        self.assertIn('id="workbench-templates"', html)
+        self.assertIn('"office"', html)
