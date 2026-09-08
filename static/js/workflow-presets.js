@@ -16,6 +16,10 @@
 (function () {
     'use strict';
 
+    // workbench.html loads this before workbench.js for every tier; base.html
+    // also loads it for premium users. Second execution is a no-op.
+    if (window.pushWorkflowPresets) return;
+
     const STORAGE_KEY = 'convertica_premium_workflows_v1';
     const MAX_PRESETS = 40;
     const SKIP_NAMES = new Set(['csrfmiddlewaretoken', 'website']);
@@ -137,6 +141,15 @@
 
     // ─── Save button ────────────────────────────────────────────────────
 
+    // #wfp=<params>&wfid=<presetId> — set by the Workbench "Configure on tool
+    // page" menu item. Saving then updates that preset instead of adding one.
+    let editingPresetId = '';
+
+    function readEditingPresetId() {
+        const match = window.location.hash.match(/[&#]wfid=([A-Za-z0-9_-]+)/);
+        editingPresetId = match ? match[1] : '';
+    }
+
     function initSaveButton() {
         const btn = document.getElementById('saveWorkflowBtn');
         const form = document.getElementById('converterForm');
@@ -149,15 +162,27 @@
             if (!name || !name.trim()) return;
 
             const presets = getPresets();
-            presets.unshift({
-                id: String(Date.now()),
-                name: name.trim().slice(0, 80),
-                toolUrl: window.location.pathname,
-                toolLabel: defaultName.trim().slice(0, 80),
-                notes: '',
-                params: collectParams(form),
-                createdAt: Date.now(),
-            });
+            const editing = editingPresetId
+                ? presets.find(function (p) { return String(p.id) === editingPresetId; })
+                : null;
+            if (editing) {
+                // Keep its identity (name/id/toolKey) — only the settings changed.
+                editing.params = collectParams(form);
+                editing.updatedAt = Date.now();
+            } else {
+                presets.unshift({
+                    id: String(Date.now()),
+                    // Workbench resolves tiles by toolKey; without it a preset
+                    // saved here never shows up under "My presets".
+                    toolKey: window.CONVERSION_TYPE || '',
+                    name: name.trim().slice(0, 80),
+                    toolUrl: window.location.pathname,
+                    toolLabel: defaultName.trim().slice(0, 80),
+                    notes: '',
+                    params: collectParams(form),
+                    createdAt: Date.now(),
+                });
+            }
             savePresets(presets);
 
             const savedText = btn.dataset.savedText || 'Saved';
@@ -204,11 +229,26 @@
         }
     };
 
+    /** True on /workbench/ when the server says this tier syncs (premium). */
+    function premiumWorkbench() {
+        const limits = document.getElementById('workbench-limits');
+        if (!document.getElementById('wb-grid') || !limits) return false;
+        try {
+            return JSON.parse(limits.textContent).sync === true;
+        } catch (_) {
+            return false;
+        }
+    }
+
     function boot() {
+        readEditingPresetId(); // before applyFromHash() strips the hash
         initSaveButton();
         applyFromHash();
-        // Pull the account copy only where presets are shown/managed.
-        if (document.getElementById('workflowsList')) {
+        // Pull the account copy only where presets are shown/managed. The
+        // workflows dashboard is premium-only already; the Workbench is open to
+        // every tier, so gate it on the tier blob the page ships (an anonymous
+        // visitor would just collect a 401).
+        if (document.getElementById('workflowsList') || premiumWorkbench()) {
             syncFromServer();
         }
     }

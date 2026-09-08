@@ -1762,6 +1762,17 @@ def workbench_page(request):
             "converters": _("Converters"),
             "boardName": _("My board"),
             "pro": _("PRO"),
+            "needsSetup": _("Set up on tool page"),
+            "busy": _("Another tile is still converting. Please wait."),
+            "groups": {
+                "convert": _("Convert"),
+                "edit": _("Edit"),
+                "organize": _("Organize"),
+                "security": _("Security"),
+                "epub": _("E-books"),
+                "image": _("Images"),
+                "archive": _("Archives"),
+            },
         },
     }
     return render(request, "frontend/premium/workbench.html", context)
