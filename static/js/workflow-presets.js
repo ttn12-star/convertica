@@ -21,6 +21,7 @@
     if (window.pushWorkflowPresets) return;
 
     const STORAGE_KEY = 'convertica_premium_workflows_v1';
+    const WB_STATE_KEY = 'convertica_workbench_v1';
     const MAX_PRESETS = 40;
     const SKIP_NAMES = new Set(['csrfmiddlewaretoken', 'website']);
 
@@ -31,6 +32,14 @@
         } catch (_) {
             return [];
         }
+    }
+
+    /** Workbench's own boards, read straight from its localStorage key. */
+    function getBoards() {
+        try {
+            const state = JSON.parse(localStorage.getItem(WB_STATE_KEY) || 'null');
+            return state && Array.isArray(state.boards) ? state.boards : null;
+        } catch (_) { return null; }
     }
 
     // ─── Server sync (premium) ──────────────────────────────────────────
@@ -54,13 +63,16 @@
     function pushPresets() {
         clearTimeout(pushTimer);
         pushTimer = setTimeout(function () {
+            const body = { presets: getPresets() };
+            const boards = getBoards();
+            if (boards) body.boards = boards;
             fetch('/api/workflows/', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': getCsrfToken(),
                 },
-                body: JSON.stringify({ presets: getPresets() }),
+                body: JSON.stringify(body),
             }).catch(function () { /* offline/expired session — cache still works */ });
         }, 400);
     }
@@ -80,12 +92,24 @@
                 // another device must not resurrect here).
                 if (server.length || localStorage.getItem(SYNC_FLAG)) {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(server.slice(0, MAX_PRESETS)));
-                    window.dispatchEvent(new CustomEvent('convertica:workflows-synced'));
                 } else if (getPresets().length) {
                     // First device with local presets seeds the account copy.
                     pushPresets();
                 }
                 localStorage.setItem(SYNC_FLAG, '1');
+
+                if (Array.isArray(data.boards) && data.boards.length) {
+                    try {
+                        const local = JSON.parse(localStorage.getItem(WB_STATE_KEY) || 'null') || { boards: [], activeBoardId: null };
+                        const keep = data.boards.some(function (b) { return b.id === local.activeBoardId; });
+                        const def = data.boards.find(function (b) { return b.isDefault; }) || data.boards[0];
+                        localStorage.setItem(WB_STATE_KEY, JSON.stringify({ boards: data.boards, activeBoardId: keep ? local.activeBoardId : def.id }));
+                    } catch (_) { /* ignore */ }
+                }
+
+                // Fires once for both branches so a listener never misses a
+                // boards-only (or presets-only) update.
+                window.dispatchEvent(new CustomEvent('convertica:workflows-synced'));
             })
             .catch(function () { /* non-premium/offline — local-only mode */ });
     }
