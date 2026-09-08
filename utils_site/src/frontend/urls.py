@@ -77,6 +77,7 @@ urlpatterns = [
         views.premium_workflows_page,
         name="premium_workflows_page",
     ),
+    path("workbench/", views.workbench_page, name="workbench_page"),
     path(
         "premium/background-center/",
         views.background_center_page,

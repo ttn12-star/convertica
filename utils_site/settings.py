@@ -874,6 +874,10 @@ ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 # Payment Settings
 PAYMENTS_ENABLED = config("PAYMENTS_ENABLED", default="True", cast=bool)
 
+# Workbench (drop-board of converter tiles). Kill switch; a RuntimeSetting row
+# with key WORKBENCH_ENABLED overrides it without a deploy.
+WORKBENCH_ENABLED = config("WORKBENCH_ENABLED", default="True", cast=bool)
+
 LEMONSQUEEZY_API_KEY = config("LEMONSQUEEZY_API_KEY", default="")
 LEMONSQUEEZY_STORE_ID = config("LEMONSQUEEZY_STORE_ID", default="")
 LEMONSQUEEZY_WEBHOOK_SECRET = config("LEMONSQUEEZY_WEBHOOK_SECRET", default="")

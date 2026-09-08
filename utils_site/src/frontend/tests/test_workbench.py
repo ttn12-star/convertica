@@ -110,3 +110,27 @@ class WorkbenchLimitsTests(TestCase):
             limits,
             {"tier": "premium", "boards": 5, "tiles": 20, "sync": True, "system": True},
         )
+
+
+class WorkbenchPageTests(TestCase):
+    def test_page_renders_with_catalog_and_limits(self):
+        response = self.client.get(reverse("frontend:workbench_page"))
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode()
+        self.assertIn('id="workbench-catalog"', html)
+        self.assertIn('id="workbench-limits"', html)
+        self.assertIn('"tier": "anonymous"', html)
+        self.assertIn("noindex", html)
+        self.assertIn('id="wb-tile-template"', html)
+
+    def test_page_is_not_cached_across_users(self):
+        # anonymous_cache_page must NOT wrap this view: limits differ per tier.
+        from src.frontend import views
+
+        self.assertFalse(hasattr(views.workbench_page, "__wrapped__"))
+
+    @override_settings(WORKBENCH_ENABLED=False)
+    def test_kill_switch_returns_404(self):
+        self.assertEqual(
+            self.client.get(reverse("frontend:workbench_page")).status_code, 404
+        )
