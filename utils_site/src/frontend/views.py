@@ -4,7 +4,7 @@ from datetime import datetime
 from functools import wraps
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -17,6 +17,7 @@ from src.api.conversion_limits import get_file_size_limits
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS
 from src.frontend.workbench import TOOL_URL_NAME_OVERRIDES as _TOOL_URL_NAME_OVERRIDES
+from src.frontend.workbench import build_catalog, limits_for
 
 
 def anonymous_cache_page(timeout):
@@ -1728,6 +1729,41 @@ def premium_workflows_page(request):
         ),
     }
     return render(request, "frontend/premium/workflows.html", context)
+
+
+def workbench_page(request):
+    """Workbench: personal drop-board of converter tiles (all tiers, per-user
+    limits — therefore never wrapped in anonymous_cache_page)."""
+    if not getattr(settings, "WORKBENCH_ENABLED", True):
+        raise Http404
+    context = {
+        "page_title": _("Workbench - Convertica"),
+        "page_description": _(
+            "Your personal board of PDF tools: drop a file on a tile, get the result."
+        ),
+        "workbench_catalog": build_catalog(),
+        "workbench_limits": limits_for(request),
+        "workbench_i18n": {
+            "dropHere": _("Drop files here or click to choose"),
+            "wrongType": _("This tile accepts: %(accept)s"),
+            "running": _("Converting…"),
+            "download": _("Download"),
+            "remove": _("Remove"),
+            "size": _("Size"),
+            "moveLeft": _("Move left"),
+            "moveRight": _("Move right"),
+            "configure": _("Configure on tool page"),
+            "addWidget": _("Add widget"),
+            "search": _("Search tools…"),
+            "limitReached": _("Tile limit reached for your plan."),
+            "upgrade": _("Upgrade"),
+            "signIn": _("Sign in"),
+            "myPresets": _("My presets"),
+            "converters": _("Converters"),
+            "boardName": _("My board"),
+        },
+    }
+    return render(request, "frontend/premium/workbench.html", context)
 
 
 @anonymous_cache_page(60 * 60)
