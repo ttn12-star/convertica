@@ -46,6 +46,27 @@ class WorkbenchCatalogTests(TestCase):
         self.assertEqual(entry["batchFieldName"], "pdf_files")
         self.assertIsNone(self.catalog["pdf_to_pdfa"]["batchApiUrl"])
 
+    def test_async_twin_is_exposed(self):
+        entry = self.catalog["pdf_to_word"]
+        self.assertEqual(entry["asyncApiUrl"], reverse("pdf_to_word_async_api"))
+        # Generic ^(?P<batch_route>.+/batch)/async/$ twin.
+        self.assertEqual(entry["batchAsyncApiUrl"], entry["batchApiUrl"] + "async/")
+        # convert_image has no /async/ route; batch does have the generic twin.
+        self.assertIsNone(self.catalog["convert_image"]["asyncApiUrl"])
+        self.assertIsNotNone(self.catalog["convert_image"]["batchAsyncApiUrl"])
+        # No batch route → no batch async twin.
+        self.assertIsNone(self.catalog["pdf_to_pdfa"]["batchAsyncApiUrl"])
+
+    def test_requires_config_keys_are_droppable_catalog_entries(self):
+        from src.frontend.workbench import REQUIRES_CONFIG_KEYS
+
+        self.assertTrue(REQUIRES_CONFIG_KEYS)
+        for key in REQUIRES_CONFIG_KEYS:
+            self.assertIn(key, self.catalog, key)
+            self.assertTrue(self.catalog[key]["droppable"], key)
+            self.assertTrue(self.catalog[key]["requiresConfig"], key)
+        self.assertFalse(self.catalog["pdf_to_word"]["requiresConfig"])
+
     def test_premium_only_keys_exist_in_catalog(self):
         from src.frontend.workbench import PREMIUM_ONLY_KEYS
 
