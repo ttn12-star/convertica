@@ -136,13 +136,98 @@
         });
     }
 
+    // ─── Run flow ───────────────────────────────────────────────────────
+    const MAX_RESULT_ROWS = 3;
+    const busy = new Set();
+
+    function tileError(tileId, message) {
+        if (typeof window.showError === 'function') window.showError(message, 'wb-error-' + tileId);
+    }
+
+    function addResultRow(tileId, blob, filename) {
+        const list = $('wb-result-' + tileId);
+        if (!list) return;
+        const url = URL.createObjectURL(blob);
+        const li = el('li', 'flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-sm');
+        li.appendChild(el('span', 'text-emerald-700', '✓'));
+        const name = el('span', 'min-w-0 flex-1 truncate', filename);
+        name.title = filename;
+        li.appendChild(name);
+        li.appendChild(el('span', 'text-xs text-gray-500', typeof window.formatFileSize === 'function' ? window.formatFileSize(blob.size) : ''));
+        const a = el('a', 'font-semibold text-emerald-800 underline', I18N.download || 'Download');
+        a.href = url; a.download = filename;
+        li.appendChild(a);
+        const x = el('button', 'text-gray-400 hover:text-gray-700 px-1', '×');
+        x.type = 'button'; x.setAttribute('aria-label', I18N.remove || 'Remove');
+        x.addEventListener('click', () => { URL.revokeObjectURL(url); li.remove(); });
+        li.appendChild(x);
+        list.prepend(li);
+        while (list.children.length > MAX_RESULT_ROWS) {
+            const last = list.lastElementChild;
+            const link = last.querySelector('a');
+            if (link) URL.revokeObjectURL(link.href);
+            last.remove();
+        }
+    }
+
+    function submitOne(tileId, apiUrl, formData, originalFileName) {
+        return window.submitAsyncConversion({
+            apiUrl,
+            formData,
+            csrfToken: window.CSRF_TOKEN || (document.querySelector('meta[name="csrf-token"]') || {}).content || '',
+            originalFileName,
+            loadingContainerId: 'wb-loading-' + tileId,
+            downloadContainerId: 'wb-result-' + tileId,
+            errorContainerId: 'wb-error-' + tileId,
+            onSuccess: (blob, filename) => addResultRow(tileId, blob, filename),
+            onError: () => { /* utils.js already rendered the error into wb-error-<id> */ },
+        });
+    }
+
+    async function runTile(tileId, fileList) {
+        if (busy.has(tileId)) return;
+        const board = activeBoard(state);
+        const { resolved } = resolveTiles(board, presets, CATALOG);
+        const item = resolved.find(r => r.tile.id === tileId);
+        if (!item || typeof window.submitAsyncConversion !== 'function') return;
+        const { preset, tool } = item;
+
+        const files = Array.from(fileList);
+        const accepted = files.filter(f => acceptsFile(f, tool.fileAccept));
+        if (!accepted.length) {
+            tileError(tileId, (I18N.wrongType || 'This tile accepts: %(accept)s').replace('%(accept)s', tool.fileAccept));
+            return;
+        }
+        const params = Object.entries(preset.params || {});
+        const appendParams = fd => params.forEach(([k, v]) => fd.append(k, v === true ? 'true' : String(v)));
+
+        busy.add(tileId);
+        try {
+            if (accepted.length > 1 && tool.batchApiUrl && LIMITS.tier === 'premium') {
+                const fd = new FormData();
+                accepted.forEach(f => fd.append(tool.batchFieldName, f));
+                appendParams(fd);
+                await submitOne(tileId, tool.batchApiUrl, fd, accepted[0].name);
+            } else {
+                for (const file of accepted) {
+                    const fd = new FormData();
+                    fd.append(tool.fileInputName, file);
+                    appendParams(fd);
+                    await submitOne(tileId, tool.apiUrl, fd, file.name);
+                }
+            }
+        } finally {
+            busy.delete(tileId);
+        }
+    }
+
     // ─── Render ─────────────────────────────────────────────────────────
     const CATALOG = readJson('workbench-catalog', {});
     const LIMITS = readJson('workbench-limits', { tier: 'anonymous', boards: 1, tiles: 3 });
     const I18N = readJson('workbench-i18n', {});
     const state = ensureBoard(loadState(), I18N.boardName || 'My board');
     let presets = loadPresets();
-    let onTileFiles = function () {}; // Task 6 assigns the run flow
+    let onTileFiles = runTile;
 
     const $ = id => document.getElementById(id);
     const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
