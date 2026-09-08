@@ -139,53 +139,81 @@
     // ─── Run flow ───────────────────────────────────────────────────────
     const MAX_RESULT_ROWS = 3;
     const busy = new Set();
+    const results = new Map(); // tileId -> [{url, filename, size}], newest first, max MAX_RESULT_ROWS
 
     function tileError(tileId, message) {
         if (typeof window.showError === 'function') window.showError(message, 'wb-error-' + tileId);
     }
 
-    function addResultRow(tileId, blob, filename) {
-        const list = $('wb-result-' + tileId);
+    /** Rebuilds a tile's result list from `results` — survives `render()` rebuilding the tile DOM. */
+    function renderResults(tileId, container) {
+        const list = container || $('wb-result-' + tileId);
         if (!list) return;
-        const url = URL.createObjectURL(blob);
-        const li = el('li', 'flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-sm');
-        li.appendChild(el('span', 'text-emerald-700', '✓'));
-        const name = el('span', 'min-w-0 flex-1 truncate', filename);
-        name.title = filename;
-        li.appendChild(name);
-        li.appendChild(el('span', 'text-xs text-gray-500', typeof window.formatFileSize === 'function' ? window.formatFileSize(blob.size) : ''));
-        const a = el('a', 'font-semibold text-emerald-800 underline', I18N.download || 'Download');
-        a.href = url; a.download = filename;
-        li.appendChild(a);
-        const x = el('button', 'text-gray-400 hover:text-gray-700 px-1', '×');
-        x.type = 'button'; x.setAttribute('aria-label', I18N.remove || 'Remove');
-        x.addEventListener('click', () => { URL.revokeObjectURL(url); li.remove(); });
-        li.appendChild(x);
-        list.prepend(li);
-        while (list.children.length > MAX_RESULT_ROWS) {
-            const last = list.lastElementChild;
-            const link = last.querySelector('a');
-            if (link) URL.revokeObjectURL(link.href);
-            last.remove();
-        }
+        const entries = results.get(tileId) || [];
+        list.replaceChildren(...entries.map(entry => {
+            const li = el('li', 'flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-sm');
+            li.appendChild(el('span', 'text-emerald-700', '✓'));
+            const name = el('span', 'min-w-0 flex-1 truncate', entry.filename);
+            name.title = entry.filename;
+            li.appendChild(name);
+            li.appendChild(el('span', 'text-xs text-gray-500', typeof window.formatFileSize === 'function' ? window.formatFileSize(entry.size) : ''));
+            const a = el('a', 'font-semibold text-emerald-800 underline', I18N.download || 'Download');
+            a.href = entry.url; a.download = entry.filename;
+            li.appendChild(a);
+            const x = el('button', 'text-gray-400 hover:text-gray-700 px-1', '×');
+            x.type = 'button'; x.setAttribute('aria-label', I18N.remove || 'Remove');
+            x.addEventListener('click', () => {
+                const current = results.get(tileId) || [];
+                const i = current.indexOf(entry);
+                if (i !== -1) { URL.revokeObjectURL(entry.url); current.splice(i, 1); }
+                renderResults(tileId);
+            });
+            li.appendChild(x);
+            return li;
+        }));
+    }
+
+    function addResultRow(tileId, blob, filename) {
+        const list = results.get(tileId) || [];
+        list.unshift({ url: URL.createObjectURL(blob), filename, size: blob.size });
+        while (list.length > MAX_RESULT_ROWS) URL.revokeObjectURL(list.pop().url);
+        results.set(tileId, list);
+        renderResults(tileId);
+    }
+
+    /** Revokes every result URL for a tile before it's removed from the board. */
+    function clearResults(tileId) {
+        (results.get(tileId) || []).forEach(entry => URL.revokeObjectURL(entry.url));
+        results.delete(tileId);
     }
 
     function submitOne(tileId, apiUrl, formData, originalFileName) {
-        return window.submitAsyncConversion({
-            apiUrl,
-            formData,
-            csrfToken: window.CSRF_TOKEN || (document.querySelector('meta[name="csrf-token"]') || {}).content || '',
-            originalFileName,
-            loadingContainerId: 'wb-loading-' + tileId,
-            downloadContainerId: 'wb-result-' + tileId,
-            errorContainerId: 'wb-error-' + tileId,
-            onSuccess: (blob, filename) => addResultRow(tileId, blob, filename),
-            onError: () => { /* utils.js already rendered the error into wb-error-<id> */ },
+        // ponytail: submitAsyncConversion's promise settles before polling
+        // finishes for async (>5MB) files (pollTaskStatus recurses via
+        // setTimeout, not awaited) — resolve ourselves from its callbacks so
+        // the sequential loop in runTile actually waits and releases `busy`
+        // at the right time. Ceiling: a code path that fires none of
+        // onSuccess/onError/onBackground leaves the tile busy until reload;
+        // widen if that's ever observed.
+        return new Promise(resolve => {
+            window.submitAsyncConversion({
+                apiUrl,
+                formData,
+                csrfToken: window.CSRF_TOKEN || (document.querySelector('meta[name="csrf-token"]') || {}).content || '',
+                originalFileName,
+                loadingContainerId: 'wb-loading-' + tileId,
+                downloadContainerId: 'wb-result-' + tileId,
+                errorContainerId: 'wb-error-' + tileId,
+                onSuccess: (blob, filename) => { addResultRow(tileId, blob, filename); resolve(); },
+                onError: () => resolve(), // utils.js already rendered the error into wb-error-<id>
+                onBackground: () => resolve(),
+            }).catch(() => resolve());
         });
     }
 
     async function runTile(tileId, fileList) {
         if (busy.has(tileId)) return;
+        if (typeof window.hideError === 'function') window.hideError('wb-error-' + tileId);
         const board = activeBoard(state);
         const { resolved } = resolveTiles(board, presets, CATALOG);
         const item = resolved.find(r => r.tile.id === tileId);
@@ -262,7 +290,9 @@
         node.querySelector('.wb-drop-text').textContent = I18N.dropHere || 'Drop files here';
         node.querySelector('.wb-loading').id = 'wb-loading-' + tile.id;
         node.querySelector('.wb-error').id = 'wb-error-' + tile.id;
-        node.querySelector('.wb-results').id = 'wb-result-' + tile.id;
+        const resultsEl = node.querySelector('.wb-results');
+        resultsEl.id = 'wb-result-' + tile.id;
+        renderResults(tile.id, resultsEl); // node isn't attached yet, pass it directly
 
         const input = node.querySelector('.wb-file');
         input.accept = tool.fileAccept || '';
@@ -302,7 +332,7 @@
             sizeRow,
             item(I18N.moveLeft || 'Move left', () => { board.tiles = reorder(board.tiles, index, index - 1); persist(); render(); }, index === 0),
             item(I18N.moveRight || 'Move right', () => { board.tiles = reorder(board.tiles, index, index + 1); persist(); render(); }, index === count - 1),
-            item(I18N.remove || 'Remove', () => { removeTile(board, tile.id); persist(); render(); }),
+            item(I18N.remove || 'Remove', () => { clearResults(tile.id); removeTile(board, tile.id); persist(); render(); }),
         );
         menu.lastElementChild.classList.add('text-red-600');
         btn.addEventListener('click', e => {
