@@ -168,3 +168,18 @@ class WorkflowSyncTests(APITestCase):
         )
         response = self.client.put(self.ENDPOINT, {"presets": []}, format="json")
         self.assertEqual(response.data["boards"][0]["name"], "Keep")
+
+    def test_preset_tile_with_empty_preset_id_dropped(self):
+        self._premium_client("ei")
+        presets = [{"name": "No ID", "toolUrl": "/en/x/"}]  # id defaults to ""
+        boards = [
+            {
+                "id": "b1",
+                "name": "Board",
+                "tiles": [{"id": "t1", "kind": "preset", "size": "s"}],  # no presetId
+            }
+        ]
+        response = self.client.put(
+            self.ENDPOINT, {"presets": presets, "boards": boards}, format="json"
+        )
+        self.assertEqual(response.data["boards"][0]["tiles"], [])
