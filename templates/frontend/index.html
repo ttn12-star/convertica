@@ -739,15 +739,16 @@
     {% endif %}
 
     <!-- Featured on (directory badges — each one is the price of a dofollow listing on findly.tools,
-         Smol Launch, Launchpadly, Fazier, Twelve Tools, Nick Launches, NewTool and ShinyLaunch; they
+         Smol Launch, Launchpadly, Fazier, Twelve Tools, Nick Launches, NewTool, ShinyLaunch and LaunchNest; they
          re-check that the badge is still here, and every one of them checks the HOME PAGE, which is
          why this row lives on index.html and not in the sitewide footer (moved 2026-08-14).
          Turbo0 was dropped 2026-08-10 and DevGlobe on 2026-08-14: both listings serve rel="nofollow"
          on every link to us, so their badges bought nothing.
          These links have to stay followable: the directories verify the badge points at our listing
          with a followable link, and drop the listing when it stops.
-         The row is at 8 on the owner's call. Before adding a ninth, drop whichever listing measured
-         nofollow last (see backlink-outreach/tracker.md) rather than growing the row further.
+         The row is at 9 on the owner's call (LaunchNest added 2026-09-09 after all 8 measured dofollow).
+         Before adding another, drop whichever listing measured nofollow last
+         (see backlink-outreach/tracker.md) rather than growing the row further.
          Kept on a dark band because the badge art is built for dark backgrounds (twelve.tools ships
          a white SVG) and because it reads as one piece with the footer right below it. -->
     <section class="bg-gray-900 text-gray-300">
@@ -780,6 +781,11 @@
           </a>
           <a href="https://shinylaunch.com/product/convertica" target="_blank" rel="noopener noreferrer">
             <img src="https://shinylaunch.com/assets/images/badge.png" alt="Featured on ShinyLaunch" style="height:54px;width:auto" loading="lazy" decoding="async">
+          </a>
+          {# LaunchNest: free listing goes live on their next open slot (2026-10-07); /p/convertica is 404 until then,
+             but their verifier requires the badge to link to the listing, so the URL stays as is. #}
+          <a href="https://launchnest.io/p/convertica" target="_blank" rel="noopener noreferrer">
+            <img src="https://launchnest.io/badge/convertica.svg?variant=listed" alt="Convertica on LaunchNest" width="220" height="56" loading="lazy" decoding="async">
           </a>
         </div>
       </div>
