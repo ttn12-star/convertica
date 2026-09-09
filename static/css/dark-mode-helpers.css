@@ -232,3 +232,27 @@ html.dark .bg-orange-50:not([class*="dark:bg"]) { background-color: rgba(124, 45
 html.dark .bg-pink-50:not([class*="dark:bg"]) { background-color: rgba(131, 24, 67, 0.25) !important; }
 html.dark .bg-rose-50:not([class*="dark:bg"]) { background-color: rgba(136, 19, 55, 0.25) !important; }
 html.dark .bg-cyan-50:not([class*="dark:bg"]) { background-color: rgba(22, 78, 99, 0.25) !important; }
+
+/* ── Workbench board ──────────────────────────────────────────────────────
+   Only the gaps: amber tints and the fractional `bg-white/70` have no rule
+   above, so in dark mode the switcher's active row and the first-run hero
+   stayed cream-on-cream (contrast ~1.0:1). Everything else the board uses
+   (bg-white, bg-gray-*, text-gray-*, border-gray-*, bg-emerald-100) is already
+   covered by the generic rules, and `#wb-root`'s pale gradient by the
+   `.bg-gradient-to-br` rule — deliberately not repeated here.
+   `#wb-new-sheet` is the one panel that lives outside `#wb-root`. */
+html.dark #wb-root .bg-white\/70 { background-color: rgba(17, 24, 39, 0.7) !important; }
+html.dark #wb-root .hover\:bg-white\/70:hover { background-color: rgba(31, 41, 55, 0.7) !important; }
+html.dark #wb-root .bg-amber-50,
+html.dark #wb-new-sheet .bg-amber-50 { background-color: rgba(245, 158, 11, 0.16) !important; }
+html.dark #wb-root .bg-amber-100,
+html.dark #wb-new-sheet .bg-amber-100 { background-color: rgba(245, 158, 11, 0.24) !important; }
+html.dark #wb-root .text-amber-700,
+html.dark #wb-root .text-amber-800 { color: #fcd34d !important; }
+html.dark #wb-root .border-amber-200,
+html.dark #wb-root .border-amber-300,
+html.dark #wb-root .border-emerald-200,
+html.dark #wb-new-sheet .border-gray-200 { border-color: #374151 !important; }
+html.dark #wb-root .text-emerald-700,
+html.dark #wb-root .text-emerald-800 { color: #6ee7b7 !important; }
+html.dark #wb-new-sheet form { background-color: #111827 !important; color: #e5e7eb !important; }
