@@ -127,6 +127,14 @@ class BlogViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "/en/pdf-to-word/")
 
+    def test_workbench_is_a_known_relevant_tool(self):
+        """The Workbench article names it, and an unmapped key silently drops
+        the CTA instead of failing loudly."""
+        self.published_article.relevant_tool = "workbench"
+        self.assertEqual(
+            self.published_article.get_relevant_tool_url(), "/en/workbench/"
+        )
+
     def test_article_detail_404_for_draft(self):
         """Test that draft articles return 404."""
         response = self.client.get(
