@@ -178,6 +178,25 @@ button {
     text-overflow: clip;
 }
 
+/* …but wrapping alone is not enough: the column leaves the label ~40px, so a
+   label still overflows its box and the PRO/NEW badge — a later sibling — is
+   painted straight over the tail of it ("Workbe[NEW]", "Saved Workflo[PRO]").
+   Let the badge drop to its own line instead; the label then gets the full row
+   width and nothing is covered. Scoped by `.truncate`, which only the premium
+   column uses inside this dropdown. */
+#all-tools-menu-dropdown a:has(.truncate) {
+    flex-wrap: wrap;
+}
+
+#all-tools-menu-dropdown a:has(.truncate) > span:first-child {
+    flex: 1 1 100%;
+}
+
+#all-tools-menu-dropdown a:has(.truncate) > span:last-child {
+    margin-inline-start: auto;
+    margin-top: 2px;
+}
+
 /* Mobile-specific utility classes */
 @media (max-width: 768px) {
     /* Hide on mobile */
