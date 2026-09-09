@@ -17478,15 +17478,11 @@ msgid "The price on our pricing page is the price of the subscription itself. De
 msgstr "Cena na stronie cennika to cena samej subskrypcji. W zależności od kraju VAT lub podatek od sprzedaży może zostać doliczony albo pokazany osobno przy płatności, bo przepisy bywają różne. Własnych opłat nie doliczamy."
 
 msgid "%(count)s tiles added"
-msgstr "%(count)s kafelków dodano"
-
+msgstr "Dodano kafelki: %(count)s"
 msgid ""
 "A board is a set of converter tiles with the settings already applied. Drop "
 "a file on a tile, get the file back. That is the whole workflow."
-msgstr ""
-"Plansza to zestaw kafelków konwertera z już zastosowanymi ustawieniami. "
-"Upuść plik na kafelek, otrzymaj plik z powrotem. To cały przepływ pracy."
-
+msgstr "Tablica to zestaw kafelków konwertera z już zastosowanymi ustawieniami. Upuść plik na kafelek, odbierz plik z powrotem. To cały przepływ pracy."
 msgid ""
 "Add a converter as a tile. Then just drop files on it — the settings are "
 "already there."
@@ -17503,11 +17499,7 @@ msgstr "Inny kafelek wciąż konwertuje. Proszę czekać."
 msgid ""
 "Anyone can build a board with three tiles in the browser. Sign in for six, "
 "go Premium for up to five boards of twenty."
-msgstr ""
-"Każdy może zbudować planszę z trzema kafelkami w przeglądarce. Zaloguj się, "
-"aby mieć sześć, przejdź na Premium, aby mieć do pięciu plansz po "
-"dwadzieścia."
-
+msgstr "Każdy może zbudować tablicę z trzema kafelkami prosto w przeglądarce. Zaloguj się, a będzie ich sześć; Premium daje do pięciu tablic po dwadzieścia."
 msgid "Archives"
 msgstr "Archiwa"
 
@@ -17515,35 +17507,24 @@ msgid "Are my files stored?"
 msgstr "Czy moje pliki są przechowywane?"
 
 msgid "Board created"
-msgstr "Plansza utworzona"
-
+msgstr "Tablica utworzona"
 msgid "Board deleted"
-msgstr "Plansza usunięta"
-
+msgstr "Tablica usunięta"
 msgid "Board limit reached for your plan."
-msgstr "Osiągnięto limit plansz dla Twojego planu."
-
+msgstr "Osiągnięto limit tablic dla Twojego planu."
 msgid "Board menu"
-msgstr "Menu planszy"
-
+msgstr "Menu tablicy"
 msgid "Board name"
-msgstr "Nazwa planszy"
-
+msgstr "Nazwa tablicy"
 msgid "Boards"
-msgstr "Plansze"
-
+msgstr "Tablice"
 msgid ""
 "Build a board of converter tiles with your settings saved. Drop a file on a "
 "tile and the result is ready, no menus, no re-configuring. Free to start, "
 "Premium syncs boards across devices."
-msgstr ""
-"Zbuduj planszę z kafelków konwertera z zapisanymi ustawieniami. Upuść plik "
-"na kafelek, a wynik będzie gotowy — bez menu, bez ponownej konfiguracji. "
-"Zacznij za darmo, Premium synchronizuje plansze między urządzeniami."
-
+msgstr "Zbuduj tablicę z kafelków konwertera z zapisanymi ustawieniami. Upuść plik na kafelek, a wynik będzie gotowy – bez menu, bez ponownej konfiguracji. Zacznij za darmo, Premium synchronizuje tablice między urządzeniami."
 msgid "Build your first board"
-msgstr "Zbuduj swoją pierwszą planszę"
-
+msgstr "Zbuduj swoją pierwszą tablicę"
 msgid "Configure on tool page"
 msgstr "Skonfiguruj na stronie narzędzia"
 
@@ -17566,8 +17547,7 @@ msgid "Delete board"
 msgstr "Usuń tablicę"
 
 msgid "Delete this board and its %(count)s tiles?"
-msgstr "Usunąć tę tablicę i jej %(count)s kafelki?"
-
+msgstr "Usunąć tę tablicę wraz z kafelkami (%(count)s)?"
 msgid "Done"
 msgstr "Gotowe"
 
@@ -17615,8 +17595,7 @@ msgid "Free to start"
 msgstr "Darmowy start"
 
 msgid "Free to try"
-msgstr "Darmowe wypróbowanie"
-
+msgstr "Wypróbuj za darmo"
 msgid "Get text out of scans and photos."
 msgstr "Wyciągnij tekst ze skanów i zdjęć."
 
@@ -17688,8 +17667,7 @@ msgid "Office"
 msgstr "Office"
 
 msgid "One drop per job"
-msgstr "Jedno zadanie na upuszczenie"
-
+msgstr "Jedno upuszczenie na zadanie"
 msgid "Open"
 msgstr "Otwórz"
 
@@ -17699,17 +17677,11 @@ msgstr "Otwórz mój Workbench"
 msgid ""
 "Open the Add widget list, search for a converter and add it as a tile. Start"
 " from a ready-made Office, Scans or Images board if you like."
-msgstr ""
-"Otwórz listę widżetów Dodaj, wyszukaj konwerter i dodaj go jako kafelek. "
-"Możesz zacząć od gotowej tablicy Office, Skanów lub Obrazów."
-
+msgstr "Otwórz listę „Dodaj widżet”, wyszukaj konwerter i dodaj go jako kafelek. Możesz zacząć od gotowej tablicy Office, Skany lub Obrazy."
 msgid ""
 "Open the tile menu and choose Configure on tool page. Adjust the options "
 "there and save the workflow; the tile picks up the new settings."
-msgstr ""
-"Otwórz menu kafelka i wybierz Konfiguruj na stronie narzędzia. Dostosuj "
-"opcje i zapisz przepływ pracy; kafelek pobierze nowe ustawienia."
-
+msgstr "Otwórz menu kafelka i wybierz „Skonfiguruj na stronie narzędzia”. Dostosuj opcje i zapisz przepływ pracy; kafelek pobierze nowe ustawienia."
 msgid "Organize"
 msgstr "Organizuj"
 
@@ -17722,10 +17694,7 @@ msgstr "Wybierz narzędzia"
 msgid ""
 "Premium boards sync to your account, so the same tiles are waiting on every "
 "device."
-msgstr ""
-"Plansze Premium synchronizują się z Twoim kontem, więc te same kafelki "
-"czekają na każdym urządzeniu."
-
+msgstr "Tablice Premium synchronizują się z Twoim kontem, więc te same kafelki czekają na każdym urządzeniu."
 msgid "Remove tile"
 msgstr "Usuń kafelek"
 
@@ -17733,8 +17702,7 @@ msgid "Rename"
 msgstr "Zmień nazwę"
 
 msgid "Scans"
-msgstr "Skanowanie"
-
+msgstr "Skany"
 msgid "Search tools…"
 msgstr "Szukaj narzędzi…"
 
@@ -17754,19 +17722,13 @@ msgid "Set up on tool page"
 msgstr "Skonfiguruj na stronie narzędzia"
 
 msgid "Several boards"
-msgstr "Kilka plansz"
-
+msgstr "Kilka tablic"
 msgid "Start empty"
-msgstr "Zacznij od pustej"
-
+msgstr "Pusta tablica"
 msgid ""
 "Start with a ready-made Office, Scans or Images board or build your own. "
 "Premium accounts keep boards in sync on every device they sign in on."
-msgstr ""
-"Zacznij od gotowej planszy Office, Skanów lub Obrazów albo stwórz własną. "
-"Konta Premium synchronizują plansze na każdym urządzeniu, na którym są "
-"zalogowane."
-
+msgstr "Zacznij od gotowej tablicy Office, Skany lub Obrazy albo stwórz własną. Konta Premium synchronizują tablice na każdym urządzeniu, na którym się zalogujesz."
 msgid ""
 "The tile sends the file to the same converter the tool page uses, with the "
 "settings you saved, and shows the download when it is ready. Large files run"
@@ -17789,8 +17751,7 @@ msgid "Tile title"
 msgstr "Tytuł kafelka"
 
 msgid "Upgrade"
-msgstr "Ulepsz"
-
+msgstr "Przejdź na Premium"
 msgid "What happens when I drop a file?"
 msgstr "Co się stanie, gdy upuszczę plik?"
 

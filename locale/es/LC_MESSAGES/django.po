@@ -17479,23 +17479,15 @@ msgid "The price on our pricing page is the price of the subscription itself. De
 msgstr "El precio de nuestra página de precios es el de la suscripción en sí. Según dónde vivas, el IVA o el impuesto sobre las ventas puede añadirse o mostrarse por separado al pagar, porque las normas locales varían. Nosotros no añadimos ninguna comisión propia."
 
 msgid "%(count)s tiles added"
-msgstr "Se agregaron %(count)s mosaicos"
-
+msgstr "Mosaicos agregados: %(count)s"
 msgid ""
 "A board is a set of converter tiles with the settings already applied. Drop "
 "a file on a tile, get the file back. That is the whole workflow."
-msgstr ""
-"Un tablero es un conjunto de mosaicos convertidores con los ajustes ya "
-"aplicados. Suelte un archivo en un mosaico y obtenga el archivo de vuelta. "
-"Ese es todo el flujo de trabajo."
-
+msgstr "Un tablero es un conjunto de mosaicos convertidores con los ajustes ya aplicados. Suelta un archivo en un mosaico y recibe el archivo de vuelta. Ese es todo el flujo de trabajo."
 msgid ""
 "Add a converter as a tile. Then just drop files on it — the settings are "
 "already there."
-msgstr ""
-"Agregue un convertidor como mosaico. Luego simplemente suelte archivos sobre"
-" él: los ajustes ya están ahí."
-
+msgstr "Agrega un convertidor como mosaico. Luego solo suelta archivos sobre él: los ajustes ya están ahí."
 msgid "Add widget"
 msgstr "Agregar widget"
 
@@ -17505,13 +17497,9 @@ msgstr "Otro mosaico todavía se está convirtiendo. Espere por favor."
 msgid ""
 "Anyone can build a board with three tiles in the browser. Sign in for six, "
 "go Premium for up to five boards of twenty."
-msgstr ""
-"Cualquiera puede crear un tablero con tres mosaicos en el navegador. Inicie "
-"sesión para seis, vaya a Premium para hasta cinco tableros de veinte."
-
+msgstr "Cualquiera puede crear un tablero con tres mosaicos en el navegador. Inicia sesión y tendrás seis; con Premium, hasta cinco tableros de veinte."
 msgid "Archives"
-msgstr "Archivos"
-
+msgstr "Comprimidos"
 msgid "Are my files stored?"
 msgstr "¿Se almacenan mis archivos?"
 
@@ -17522,8 +17510,7 @@ msgid "Board deleted"
 msgstr "Tablero eliminado"
 
 msgid "Board limit reached for your plan."
-msgstr "Límite de tableros alcanzado para su plan."
-
+msgstr "Límite de tableros alcanzado para tu plan."
 msgid "Board menu"
 msgstr "Menú del tablero"
 
@@ -17537,18 +17524,11 @@ msgid ""
 "Build a board of converter tiles with your settings saved. Drop a file on a "
 "tile and the result is ready, no menus, no re-configuring. Free to start, "
 "Premium syncs boards across devices."
-msgstr ""
-"Cree un tablero de mosaicos convertidores con sus ajustes guardados. Suelte "
-"un archivo en un mosaico y el resultado estará listo, sin menús, sin "
-"reconfigurar. Gratis para comenzar, Premium sincroniza tableros entre "
-"dispositivos."
-
+msgstr "Crea un tablero de mosaicos convertidores con tus ajustes guardados. Suelta un archivo en un mosaico y el resultado está listo, sin menús ni reconfiguraciones. Empieza gratis; Premium sincroniza tus tableros entre dispositivos."
 msgid "Build your first board"
-msgstr "Cree su primer tablero"
-
+msgstr "Crea tu primer tablero"
 msgid "Configure on tool page"
-msgstr "Configurar en la página de herramientas"
-
+msgstr "Configurar en la página de la herramienta"
 msgid "Convert"
 msgstr "Convertir"
 
@@ -17691,8 +17671,7 @@ msgid "Office"
 msgstr "Office"
 
 msgid "One drop per job"
-msgstr "Un archivo por trabajo"
-
+msgstr "Un arrastre por tarea"
 msgid "Open"
 msgstr "Abrir"
 
@@ -17702,11 +17681,7 @@ msgstr "Abrir mi Workbench"
 msgid ""
 "Open the Add widget list, search for a converter and add it as a tile. Start"
 " from a ready-made Office, Scans or Images board if you like."
-msgstr ""
-"Abre la lista de widgets Añadir, busca un conversor y agrégalo como mosaico."
-" Empieza desde un tablero prefabricado de Office, Escaneos o Imágenes si lo "
-"deseas."
-
+msgstr "Abre la lista «Agregar widget», busca un convertidor y agrégalo como mosaico. Si quieres, empieza desde un tablero listo de Office, Escaneos o Imágenes."
 msgid ""
 "Open the tile menu and choose Configure on tool page. Adjust the options "
 "there and save the workflow; the tile picks up the new settings."
@@ -17767,11 +17742,7 @@ msgstr "Comenzar vacío"
 msgid ""
 "Start with a ready-made Office, Scans or Images board or build your own. "
 "Premium accounts keep boards in sync on every device they sign in on."
-msgstr ""
-"Comienza con un tablero de Office, Escaneos o Imágenes ya preparado, o crea "
-"el tuyo propio. Las cuentas Premium mantienen los tableros sincronizados en "
-"cada dispositivo donde inicien sesión."
-
+msgstr "Empieza con un tablero listo de Office, Escaneos o Imágenes, o crea el tuyo. Las cuentas Premium mantienen los tableros sincronizados en cada dispositivo donde inicies sesión."
 msgid ""
 "The tile sends the file to the same converter the tool page uses, with the "
 "settings you saved, and shows the download when it is ready. Large files run"
@@ -17795,8 +17766,7 @@ msgid "Tile title"
 msgstr "Título del mosaico"
 
 msgid "Upgrade"
-msgstr "Mejorar"
-
+msgstr "Actualizar plan"
 msgid "What happens when I drop a file?"
 msgstr "¿Qué sucede cuando suelto un archivo?"
 
@@ -17813,8 +17783,7 @@ msgid "Workbench - Convertica"
 msgstr "Workbench - Convertica"
 
 msgid "Workbench - Your Board of One-Drop PDF Tools"
-msgstr "Workbench - Tu tablero de herramientas PDF de un solo clic"
-
+msgstr "Workbench - Tu tablero de herramientas PDF de un solo arrastre"
 msgid ""
 "Yes. Without an account you get one board with three tiles, stored in your "
 "browser. A free account allows six tiles. Premium unlocks five boards with "
@@ -17829,8 +17798,7 @@ msgid "You need at least one board."
 msgstr "Necesitas al menos un tablero."
 
 msgid "Your board of one-drop converter tiles"
-msgstr "Tu tablero de mosaicos convertidores de un solo clic"
-
+msgstr "Tu tablero de mosaicos convertidores de un solo arrastre"
 msgid ""
 "Your own board of converter tiles: drop a file, get the result with the "
 "settings already applied. Premium syncs boards across devices."
