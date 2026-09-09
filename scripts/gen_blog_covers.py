@@ -51,6 +51,7 @@ ICONS = {
     "rocket": f'<path {P} d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2a3 3 0 0 0-3-3Z"/><path {P} d="M9 11a16 16 0 0 1 8-8c2 0 3 1 3 3a16 16 0 0 1-8 8l-3-3Z"/><circle {P} cx="14.5" cy="9.5" r="1.3"/>',
     "star": f'<path {P} d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3Z"/>',
     "favicon": f'<rect {P} x="3" y="5" width="18" height="14" rx="2"/><path {P} d="M3 9h18"/><rect {P} x="5.4" y="6.3" width="2.4" height="2.4" rx=".5"/><path {P} d="M8 13h8M8 16h5"/>',
+    "grid": f'<rect {P} x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect {P} x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect {P} x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect {P} x="13.5" y="13.5" width="7" height="7" rx="1.6"/>',
     # The Markdown mark: rounded frame, the M, and the down arrow.
     "markdown": f'<rect {P} x="2.5" y="6" width="19" height="12" rx="2"/><path {P} d="M5.5 15V9l2.6 3.2L10.7 9v6"/><path {P} d="M14.4 9v4.2M14.4 15l-1.7-1.8h3.4L14.4 15Z"/><path {P} d="M18.4 9v6"/>',
 }
@@ -381,6 +382,13 @@ COVERS = {
         ("#065f46", "#0ea5e9"),
         "#a7f3d0",
         "zip",
+    ),
+    "convertica-workbench-one-drop-pdf-board": (
+        "Workbench:\nOne-Drop PDF Tools",
+        "NEW · WORKBENCH",
+        ("#d97706", "#f59e0b"),
+        "#fde68a",
+        "grid",
     ),
 }
 

@@ -298,6 +298,7 @@ class Article(models.Model):
             "unlock_zip": "unlock_zip_page",
             "password_protect_image": "password_protect_image_page",
             "pdf_to_pdfa": "pdf_to_pdfa_page",
+            "workbench": "workbench_page",
             "all_tools": "all_tools_page",
         }
 
@@ -336,6 +337,7 @@ class Article(models.Model):
             "unlock_zip": "Unlock ZIP",
             "password_protect_image": "Password Protect Image",
             "pdf_to_pdfa": "PDF to PDF/A",
+            "workbench": "Workbench",
             "all_tools": "All Tools",
         }
 

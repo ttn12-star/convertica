@@ -1,0 +1,133 @@
+slug: convertica-workbench-one-drop-pdf-board
+cover_image: blog/images/cover-convertica-workbench-one-drop-pdf-board.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: workbench
+title_en: "Convertica Workbench: One Drop and the Conversion Is Done"
+meta_title_en: "PDF Workbench: One-Drop Converter Board | Convertica"
+meta_description_en: "Build a board of PDF tools that already know your settings. Drop a file on a tile and the conversion runs. Free to try, no account needed."
+meta_keywords_en: "pdf workbench, pdf dashboard, drag and drop pdf converter, saved converter settings, pdf tool board, batch pdf routine, one click pdf conversion, saved workflows, convertica workbench, pdf tiles"
+excerpt_en: "Some conversions come back every week, and every week you click through the same five screens. Workbench turns each of those routines into a single tile on a board: drop a file, get the result with the settings you already chose. Here is how to build your first board in two minutes."
+ai_metadata:
+  topics:
+    - PDF workbench board
+    - saved converter settings
+    - drag and drop file conversion
+    - repeating document routines
+    - Convertica premium tiers
+  entities:
+    - Convertica
+    - Workbench
+    - saved workflows
+    - PDF to Word
+    - Word to PDF
+    - PDF to Excel
+    - PDF/A
+    - HEIC to JPG
+  summary: "Explains Convertica Workbench: a personal board of converter tiles where each tile is one tool plus the settings saved for it, so a repeating conversion becomes a single file drop. Covers what a board and a tile are, how to add tiles from the searchable widget list of My presets and Converters, how to change a tile's settings through Save as workflow on the tool page, the Office, Scans and Images board templates, multiple boards and Edit mode for reordering and renaming, three worked examples (accounting, assistant, teaching), the exact limits for anonymous, free-account and Premium users including account sync, and what happens to the files after a conversion."
+  related_terms:
+    - pdf tool dashboard
+    - drop file to convert
+    - reusable conversion settings
+    - converter tiles
+    - pdf routine automation
+    - workbench board templates
+    - premium pdf sync
+  reading_time_minutes: 6
+  target_audience: "People who run the same document conversions on a schedule: accountants and bookkeepers, executive assistants, teachers and course creators, freelancers and small teams who want their converter settings remembered instead of re-picked every time."
+content_en: |
+  Some conversions come back every week. The same supplier invoices that have to end up as archival PDFs. The same bank statements that have to end up in a spreadsheet. The same batch of phone photos that nobody in the office can open.
+
+  Each one is only a few clicks. Open the tool page, wait for it to load, upload, tick the one setting you always tick, download. Do that eight times on a Monday morning and you have spent twenty minutes clicking through screens you already know by heart.
+
+  The PDF workbench takes that part out of your morning. You set the tools up once on a board, and from then on a conversion is one drop.
+
+  <h2>The PDF workbench in one idea: a tile</h2>
+
+  <p>A board is a grid. Each square on it is a tile, and a tile is one converter plus the settings you saved for it. Drop a file on the tile, or click it and pick a file, and the conversion runs with those settings. No form to fill in, no options to re-choose, no second page. The result appears under the tile as a row with a Download button, and the last three results stay visible while you keep working, so you can grab a file again without running it twice.</p>
+
+  <p>One conversion runs at a time on a board. That is deliberate: drop three files on three tiles and they come back in the order you sent them, instead of racing each other.</p>
+
+  <figure><img src="/static/images/blog/workbench-board.jpg" alt="A Convertica Workbench board named Accounting with PDF to Word, Word to PDF and PDF to Excel tiles, one showing a finished conversion with a Download button" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Build your first board in two minutes</h2>
+
+  <ol>
+    <li><strong>Open the board.</strong> Go to <a href="/en/workbench/">Workbench</a>. Nothing to install, and no account needed to try it. It is also linked from All Tools, the account menu and the footer.</li>
+    <li><strong>Click Add widget.</strong> A searchable list opens with two groups. <em>My presets</em> holds the workflows you have already saved on tool pages, with your own settings attached. <em>Converters</em> holds every file-in, file-out tool on the site, 23 of them today: <a href="/en/pdf-to-word/">PDF to Word</a> and <a href="/en/word-to-pdf/">Word to PDF</a>, Excel and PowerPoint to PDF, PDF out to HTML, text, Markdown, EPUB and JPG, PDF/A, HEIC to JPG, the image optimizer and the ICO tools. Type a few letters and tick what you want.</li>
+    <li><strong>Drop a file.</strong> The tile takes it, runs the conversion and shows the result row underneath. Large files take the background route on their own, and while one is running you can choose "Continue in background" and carry on.</li>
+    <li><strong>Download.</strong> The row keeps its Download button until you replace it, and the previous two stay under it.</li>
+    <li><strong>Teach the tile your settings.</strong> Open the tile menu, choose "Configure on tool page", and the tool page opens with that tile's settings loaded. Change what you need, click <strong>Save as workflow</strong>, and the tile keeps the new version. That is how OCR gets switched on for PDF to Word, or a page size stops being a decision every time. The <a href="/en/saved-workflows/">saved workflows</a> page covers that side.</li>
+  </ol>
+
+  <figure><img src="/static/images/blog/workbench-picker.jpg" alt="The Add widget list on a Workbench board, filtered by the word 'word', showing a saved OCR preset under My presets and the PDF to Word and Word to PDF converters below" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Two things are not tiles, on purpose. Tools where the work happens on screen (sign, add text, crop, organize, compare) need your hands and a preview, so they stay on their own pages. And a tool with a choice it cannot guess, like Convert Image asking for an output format, shows "Set up on tool page" and sends you there once.</p>
+
+  <h2>Templates: Office, Scans, Images</h2>
+
+  <p>An empty board offers three starting points, and so does the New board sheet:</p>
+
+  <ul>
+    <li><strong>Office</strong>: Word to PDF, PDF to Word, Excel to PDF, PowerPoint to PDF.</li>
+    <li><strong>Scans</strong>: Image to text, PDF to text, PDF to Word.</li>
+    <li><strong>Images</strong>: HEIC to JPG, Optimize image, PDF to JPG.</li>
+  </ul>
+
+  <p>Pick one, or choose Start empty. A template is only a head start: every tile it creates can be reconfigured or removed.</p>
+
+  <h2>Several boards, and Edit mode</h2>
+
+  <p>One board covers a lot, but work splits into different shapes. The switcher at the top left moves between boards (on a phone it is the native picker), and the board menu beside it can rename, set as default, duplicate or delete. Duplicating is the quick way to make a variant: copy the board you trust, then change the two tiles that differ.</p>
+
+  <p>Rearranging happens in Edit mode. Click <strong>Edit</strong> in the top bar and each tile grows a drag handle, its title turns into an input, and an × appears to remove it. Drag tiles into the order you actually work in, rename "PDF to Word" to "Scanned invoices" so you recognize it at a glance, then click Done. Outside Edit mode the tile menu still offers Size S, M or L, Move left, Move right and Remove.</p>
+
+  <figure><img src="/static/images/blog/workbench-edit.jpg" alt="Workbench in Edit mode: each tile shows a drag handle, an editable title field and a red remove button, with a Done button in the top bar" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Three ways people use it</h2>
+
+  <p><strong>The bookkeeper.</strong> A board called Month end, three tiles. Supplier invoices land on a <a href="/en/pdf-to-pdfa/">PDF to PDF/A</a> tile, because the archive will not accept anything else. Bank statements land on <a href="/en/pdf-to-excel/">PDF to Excel</a> so the numbers get reconciled instead of retyped. A third tile pulls text out of the scanned receipts. Twenty files, twenty drops, no settings touched.</p>
+
+  <p><strong>The assistant.</strong> Everything that leaves the office as an attachment goes through one board first. Word drafts and slide decks become PDFs so the recipient sees the same layout the author did, and photos the sales team sends from their phones go through <a href="/en/image/heic-to-jpg/">HEIC to JPG</a> before they reach anyone on a Windows laptop. It used to be a browser tab per format. Now it is one tab, open all day.</p>
+
+  <p><strong>The teacher.</strong> Handouts arrive as photos of a textbook page and have to become text that can be edited. An <a href="/en/image/to-text/">image to text</a> tile does the reading, a PDF to Word tile handles the older scanned worksheets, and a Word to PDF tile sends the finished version back out in a format that prints the same on every school printer.</p>
+
+  <h2>Free, account, Premium</h2>
+
+  <table>
+    <thead>
+      <tr><th>Plan</th><th>Boards</th><th>Tiles per board</th><th>Stored</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>No account</td><td>1</td><td>3</td><td>In your browser</td></tr>
+      <tr><td>Free account</td><td>1</td><td>6</td><td>In your browser</td></tr>
+      <tr><td>Premium</td><td>5</td><td>20</td><td>Synced to your account</td></tr>
+    </tbody>
+  </table>
+
+  <p>Three tiles without an account is enough to see whether the idea fits how you work. What Premium really adds is sync: boards and presets live on your account, so the board you built at your desk is already there on your laptop and your phone, same tiles, same settings. PDF to PDF/A is the one converter that stays Premium today, with a PRO badge for everyone else. Prices are on the <a href="/en/pricing/">pricing page</a>.</p>
+
+  <h2>What happens to your files</h2>
+
+  <p>The board never stores your documents. It stores tool names, tile order and settings, a few kilobytes of text. Quick conversions are handed straight back to your browser and nothing is kept. Bigger files run in the background and are deleted after about an hour, exactly as on the tool pages. Close the tab and the invoices are gone; the board that converted them is still there next time.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Is Workbench free?</h3>
+  <p>Yes, and you can use it without signing in: one board, three tiles, kept in your browser. A free account raises that to six tiles, and Premium gives you five boards of twenty tiles each, synced to your account. The <a href="/en/workbench/about/">Workbench overview</a> lists what each tier includes.</p>
+
+  <h3>Which tools can become tiles?</h3>
+  <p>Anything that takes a file in and hands a file back, 23 converters today. Editors that need your input on screen (sign, add text, crop, organize, compare) are not tiles, because a drop alone cannot tell them where to put the signature.</p>
+
+  <h3>How do I change a tile's settings?</h3>
+  <p>Open the tile menu, choose "Configure on tool page". The tool page opens with the tile's current settings, you change what you want and click Save as workflow. The tile picks up the new settings for every drop after that.</p>
+
+  <h3>Does it work on a phone?</h3>
+  <p>Yes. The grid stacks into one column, the board switcher becomes your phone's native picker, and tapping a tile opens the file chooser, usually your camera roll or a cloud drive. Dragging with a mouse is nicer, but nothing here is desktop-only.</p>
+
+  <h3>Do you keep my files?</h3>
+  <p>No. Instant conversions come straight back to your browser and are not stored, and files that need the background queue are deleted after about an hour. The board itself only remembers which tools you chose and how you configured them.</p>
+
+  <h2>Open your board</h2>
+
+  <p>The fastest way to understand it is to build one. Open <a href="/en/workbench/">Workbench</a>, add the two or three converters you already use most, and drop a file on the first one. If you would rather watch someone do it first, there is a <a href="https://youtu.be/Dcj_bE15UWQ" target="_blank" rel="noopener">two-minute walkthrough on YouTube</a>, and the <a href="/en/workbench/about/">Workbench page</a> answers the rest.</p>
