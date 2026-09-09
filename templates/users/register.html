@@ -71,6 +71,7 @@
 
         <form class="space-y-4" method="POST">
           {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.GET.next|default:'' }}">
 
           {{ form.email.label_tag }}
           {{ form.email }}

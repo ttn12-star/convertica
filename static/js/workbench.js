@@ -473,7 +473,14 @@
             savePresets(presets);
             render();
         };
-        input.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } if (e.key === 'Escape') { input.value = preset.name; input.blur(); } };
+        input.onkeydown = e => {
+            if (e.key !== 'Enter' && e.key !== 'Escape') return;
+            // Renaming owns both keys: without this the document handler would
+            // read Escape as "leave edit mode" and undo the rename mid-typing.
+            e.stopPropagation();
+            if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+            else { input.value = preset.name; input.blur(); }
+        };
 
         // Native HTML5 DnD: the handle starts the drag, any tile accepts the drop.
         handle.draggable = editing;
@@ -858,7 +865,12 @@
     function submitNewSheet(e) {
         e.preventDefault();
         const board = createBoard(state, $('wb-new-name').value, LIMITS);
-        if (!board) return;
+        if (!board) {
+            // createBoard refuses an empty name or a full plan — say which.
+            if ($('wb-new-name').value.trim()) { toast(I18N.boardLimit || 'Board limit reached for your plan.'); }
+            else { toast(I18N.boardNamePlaceholder || 'Board name'); $('wb-new-name').focus(); }
+            return;
+        }
         let capped = null;
         if (selectedTemplateKey) {
             const template = TEMPLATES.find(t => t.key === selectedTemplateKey);
@@ -922,15 +934,24 @@
         $('wb-board-menu').addEventListener('click', e => e.stopPropagation());
         $('wb-edit-btn').addEventListener('click', () => setEditing(!editing));
         $('wb-edit-hint').textContent = I18N.dragHint || 'Drag tiles to reorder, click a title to rename';
-        // Safety net: a file dropped on the gap between tiles (or anywhere else)
-        // while editing must never let the browser navigate to it.
-        document.addEventListener('dragover', e => { if (editing) e.preventDefault(); });
-        document.addEventListener('drop', e => { if (editing) e.preventDefault(); });
+        // Safety net: a file dropped anywhere but a tile's own drop zone (the
+        // tile header, the grid gap, the margin) must never let the browser
+        // navigate away from the board — in edit mode or not. The .wb-drop
+        // handlers run first and do their own preventDefault.
+        document.addEventListener('dragover', e => e.preventDefault());
+        document.addEventListener('drop', e => e.preventDefault());
         $('wb-new-sheet').addEventListener('click', e => { if (e.target === e.currentTarget) closeNewSheet(); });
         $('wb-new-sheet').querySelector('form').addEventListener('submit', submitNewSheet);
         $('wb-new-cancel').addEventListener('click', closeNewSheet);
         document.addEventListener('click', closeAllOverlays);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAllOverlays(); closeNewSheet(); if (editing) setEditing(false); } });
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Escape') return;
+            // The new-board sheet is modal: one Escape dismisses it and nothing
+            // else, or the user loses edit mode they never asked to leave.
+            if (!$('wb-new-sheet').classList.contains('hidden')) { closeNewSheet(); return; }
+            closeAllOverlays();
+            if (editing) setEditing(false);
+        });
         window.addEventListener('convertica:workflows-synced', () => {
             Object.assign(state, mergeServerBoards(state, loadState().boards));
             presets = loadPresets();

@@ -84,10 +84,12 @@
         </div>
 
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="{% url 'frontend:workbench_page' %}"
-             class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
-            {% trans "Open my Workbench" %}
-          </a>
+          {% if workbench_enabled %}
+            <a href="{% url 'frontend:workbench_page' %}"
+               class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+              {% trans "Open my Workbench" %}
+            </a>
+          {% endif %}
           {% if PAYMENTS_ENABLED %}
             <a href="{% url 'frontend:pricing' %}"
                class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors">
