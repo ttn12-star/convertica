@@ -24,7 +24,7 @@ ai_metadata:
     - PDF to Excel
     - PDF/A
     - HEIC to JPG
-  summary: "Explains Convertica Workbench: a personal board of converter tiles where each tile is one tool plus the settings saved for it, so a repeating conversion becomes a single file drop. Covers what a board and a tile are, how to add tiles from the searchable widget list of My presets and Converters, how to change a tile's settings through Save as workflow on the tool page, the Office, Scans and Images board templates, multiple boards and Edit mode for reordering and renaming, three worked examples (accounting, assistant, teaching), the exact limits for anonymous, free-account and Premium users including account sync, and what happens to the files after a conversion."
+  summary: "Explains Convertica Workbench: a personal board of converter tiles where each tile is one tool plus the settings saved for it, so a repeating conversion becomes a single file drop. Covers what a board and a tile are, how to add tiles from the searchable widget list of My presets and Converters, how to change a tile's settings through Save Workflow on the tool page, the Office, Scans and Images board templates, multiple boards and Edit mode for reordering and renaming, three worked examples (accounting, assistant, teaching), the exact limits for anonymous, free-account and Premium users including account sync, and what happens to the files after a conversion."
   related_terms:
     - pdf tool dashboard
     - drop file to convert
@@ -57,7 +57,7 @@ content_en: |
     <li><strong>Click Add widget.</strong> A searchable list opens with two groups. <em>My presets</em> holds the workflows you have already saved on tool pages, with your own settings attached. <em>Converters</em> holds every file-in, file-out tool on the site, 23 of them today: <a href="/en/pdf-to-word/">PDF to Word</a> and <a href="/en/word-to-pdf/">Word to PDF</a>, Excel and PowerPoint to PDF, PDF out to HTML, text, Markdown, EPUB and JPG, PDF/A, HEIC to JPG, the image optimizer and the ICO tools. Type a few letters and tick what you want.</li>
     <li><strong>Drop a file.</strong> The tile takes it, runs the conversion and shows the result row underneath. Large files take the background route on their own, and while one is running you can choose "Continue in background" and carry on.</li>
     <li><strong>Download.</strong> The row keeps its Download button until you replace it, and the previous two stay under it.</li>
-    <li><strong>Teach the tile your settings.</strong> Open the tile menu, choose "Configure on tool page", and the tool page opens with that tile's settings loaded. Change what you need, click <strong>Save as workflow</strong>, and the tile keeps the new version. That is how OCR gets switched on for PDF to Word, or a page size stops being a decision every time. The <a href="/en/saved-workflows/">saved workflows</a> page covers that side.</li>
+    <li><strong>Teach the tile your settings.</strong> Open the tile menu, choose "Configure on tool page", and the tool page opens with that tile's settings loaded. Change what you need, click <strong>Save Workflow</strong>, and the tile keeps the new version. That is how OCR gets switched on for PDF to Word, or a page size stops being a decision every time. The <a href="/en/saved-workflows/">saved workflows</a> page covers that side.</li>
   </ol>
 
   <figure><img src="/static/images/blog/workbench-picker.jpg" alt="The Add widget list on a Workbench board, filtered by the word 'word', showing a saved OCR preset under My presets and the PDF to Word and Word to PDF converters below" width="1280" height="800" loading="lazy"></figure>
@@ -120,7 +120,7 @@ content_en: |
   <p>Anything that takes a file in and hands a file back, 23 converters today. Editors that need your input on screen (sign, add text, crop, organize, compare) are not tiles, because a drop alone cannot tell them where to put the signature.</p>
 
   <h3>How do I change a tile's settings?</h3>
-  <p>Open the tile menu, choose "Configure on tool page". The tool page opens with the tile's current settings, you change what you want and click Save as workflow. The tile picks up the new settings for every drop after that.</p>
+  <p>Open the tile menu, choose "Configure on tool page". The tool page opens with the tile's current settings, you change what you want and click Save Workflow. The tile picks up the new settings for every drop after that.</p>
 
   <h3>Does it work on a phone?</h3>
   <p>Yes. The grid stacks into one column, the board switcher becomes your phone's native picker, and tapping a tile opens the file chooser, usually your camera roll or a cloud drive. Dragging with a mouse is nicer, but nothing here is desktop-only.</p>
