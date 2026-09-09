@@ -17376,7 +17376,7 @@ msgid "Configure on tool page"
 msgstr "Настроить на странице инструмента"
 
 msgid "Convert"
-msgstr "Конвертировать"
+msgstr "Конвертация"
 
 msgid "Converters"
 msgstr "Конвертеры"
@@ -17638,3 +17638,9 @@ msgstr "Ваша собственная доска плиток-конверте
 msgid ""
 "Your personal board of PDF tools: drop a file on a tile, get the result."
 msgstr "Ваша личная доска PDF-инструментов: перетащите файл на плитку — получите результат."
+
+msgid "This board is full (%(count)s tiles). Start a new board for more."
+msgstr "Эта доска заполнена (%(count)s плиток). Создайте новую доску."
+
+msgid "%(added)s of %(total)s tiles added (plan limit)"
+msgstr "Добавлено %(added)s из %(total)s плиток (лимит тарифа)"

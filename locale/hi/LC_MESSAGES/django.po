@@ -17458,3 +17458,9 @@ msgid ""
 msgstr ""
 "PDF टूल्स का आपका व्यक्तिगत बोर्ड: एक टाइल पर फ़ाइल छोड़ें, परिणाम प्राप्त "
 "करें।"
+
+msgid "This board is full (%(count)s tiles). Start a new board for more."
+msgstr "यह बोर्ड भर गया है (%(count)s टाइल)। और के लिए नया बोर्ड बनाएँ।"
+
+msgid "%(added)s of %(total)s tiles added (plan limit)"
+msgstr "%(total)s में से %(added)s टाइल जोड़ी गईं (प्लान सीमा)"
