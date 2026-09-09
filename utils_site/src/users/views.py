@@ -10,8 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView
@@ -24,12 +25,28 @@ from .forms import CustomUserCreationForm, LoginForm, stale_unverified_user
 from .models import APIKey, Payment, UserSubscription
 
 
+def _login_redirect_target(request):
+    """Where to send the user after login.
+
+    Honours ``?next=`` (the Workbench CTA relies on it) but only for URLs that
+    stay on this host: an unchecked ``next`` is an open redirect.
+    """
+    next_url = request.POST.get("next") or request.GET.get("next")
+    if next_url and url_has_allowed_host_and_scheme(
+        next_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return next_url
+    return reverse("users:profile")
+
+
 @ratelimit(key="ip", rate="10/m", method="POST", block=True)
 @ratelimit(key="ip", rate="50/h", method="POST", block=True)
 def user_login(request):
     """Handle user login."""
     if request.user.is_authenticated:
-        return redirect("users:profile")
+        return redirect(_login_redirect_target(request))
 
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -59,8 +76,9 @@ def user_login(request):
                                 ),
                             },
                         )
+                    target = _login_redirect_target(request)
                     auth_login(request, user)
-                    response = redirect("users:profile")
+                    response = redirect(target)
                     # Restore the user's saved site language on this device so
                     # a fresh browser opens in their language, not the one the
                     # Accept-Language header happens to guess.
