@@ -8,11 +8,11 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from django.utils.http import url_has_allowed_host_and_scheme
+from django.utils.http import url_has_allowed_host_and_scheme, urlencode
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView
@@ -25,20 +25,34 @@ from .forms import CustomUserCreationForm, LoginForm, stale_unverified_user
 from .models import APIKey, Payment, UserSubscription
 
 
+def _safe_next(request):
+    """The posted/GET ``next``, or None if it is not a local absolute path.
+
+    ``url_has_allowed_host_and_scheme`` alone still lets through things like
+    ``profile``, which ``redirect()`` would try to ``reverse()`` (500), and
+    ``//evil.example/x``. Requiring a leading ``/`` closes both.
+    """
+    next_url = request.POST.get("next") or request.GET.get("next")
+    if (
+        next_url
+        and next_url.startswith("/")
+        and url_has_allowed_host_and_scheme(
+            next_url,
+            allowed_hosts={request.get_host()},
+            require_https=request.is_secure(),
+        )
+    ):
+        return next_url
+    return None
+
+
 def _login_redirect_target(request):
     """Where to send the user after login.
 
     Honours ``?next=`` (the Workbench CTA relies on it) but only for URLs that
     stay on this host: an unchecked ``next`` is an open redirect.
     """
-    next_url = request.POST.get("next") or request.GET.get("next")
-    if next_url and url_has_allowed_host_and_scheme(
-        next_url,
-        allowed_hosts={request.get_host()},
-        require_https=request.is_secure(),
-    ):
-        return next_url
-    return reverse("users:profile")
+    return _safe_next(request) or reverse("users:profile")
 
 
 @ratelimit(key="ip", rate="10/m", method="POST", block=True)
@@ -46,7 +60,7 @@ def _login_redirect_target(request):
 def user_login(request):
     """Handle user login."""
     if request.user.is_authenticated:
-        return redirect(_login_redirect_target(request))
+        return HttpResponseRedirect(_login_redirect_target(request))
 
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -78,7 +92,7 @@ def user_login(request):
                         )
                     target = _login_redirect_target(request)
                     auth_login(request, user)
-                    response = redirect(target)
+                    response = HttpResponseRedirect(target)
                     # Restore the user's saved site language on this device so
                     # a fresh browser opens in their language, not the one the
                     # Accept-Language header happens to guess.
@@ -182,7 +196,13 @@ def user_register(request):
                         "Registration successful! Please check your email to verify your account before logging in."
                     ),
                 )
-                return redirect("users:login")
+                # Keep the ?next= the signup came from (the Workbench CTA):
+                # the login page re-posts it, so verification lands them there.
+                login_url = reverse("users:login")
+                next_url = _safe_next(request)
+                if next_url:
+                    login_url += "?" + urlencode({"next": next_url})
+                return HttpResponseRedirect(login_url)
 
     return render(
         request, "users/register.html", {"form": form, "needs_turnstile": True}

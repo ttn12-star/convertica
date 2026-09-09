@@ -1905,6 +1905,8 @@ def workbench_about_page(request):
                 ),
             },
         ],
+        # With the app switched off the CTA would only bounce back here.
+        "workbench_enabled": bool(getattr(settings, "WORKBENCH_ENABLED", True)),
     }
     return render(request, "frontend/premium/workbench_about.html", context)
 

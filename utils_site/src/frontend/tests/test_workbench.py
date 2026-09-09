@@ -153,14 +153,6 @@ class WorkbenchPageTests(TestCase):
 
         self.assertFalse(hasattr(views.workbench_page, "__wrapped__"))
 
-    @override_settings(WORKBENCH_ENABLED=False)
-    def test_kill_switch_redirects_to_about(self):
-        response = self.client.get(reverse("frontend:workbench_page"))
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(
-            response["Location"].endswith(reverse("frontend:workbench_about_page"))
-        )
-
 
 class WorkbenchTemplatesTests(TestCase):
     def test_templates_resolve_to_droppable_tools(self):
@@ -203,9 +195,16 @@ class WorkbenchIntegrationTests(TestCase):
 
     def test_footer_and_header_link_workbench(self):
         html = self.client.get(reverse("frontend:index_page_lang")).content.decode()
-        # 2 header menus (desktop + mobile) + footer; account dropdown only
-        # renders for logged-in users, so don't count on it anonymously.
-        self.assertGreaterEqual(html.count(reverse("frontend:workbench_page")), 3)
+        # Quoted: /en/workbench/ is a prefix of /en/workbench/about/, so a bare
+        # substring count credits the footer's about link to the app URL.
+        app = f'"{reverse("frontend:workbench_page")}"'
+        # 2 header menus (desktop + mobile); the account dropdown only renders
+        # for logged-in users, so don't count on it anonymously.
+        self.assertGreaterEqual(html.count(app), 2)
+        # The footer sends anonymous visitors to the crawlable explainer.
+        self.assertGreaterEqual(
+            html.count(f'"{reverse("frontend:workbench_about_page")}"'), 1
+        )
 
     def test_account_dropdown_links_workbench(self):
         user = get_user_model().objects.create_user(
@@ -213,8 +212,10 @@ class WorkbenchIntegrationTests(TestCase):
         )
         self.client.force_login(user)
         html = self.client.get(reverse("frontend:index_page_lang")).content.decode()
-        # The 3 anonymous places plus the account dropdown row.
-        self.assertGreaterEqual(html.count(reverse("frontend:workbench_page")), 4)
+        # The 2 anonymous places plus the account dropdown row.
+        self.assertGreaterEqual(
+            html.count(f'"{reverse("frontend:workbench_page")}"'), 3
+        )
 
     def test_profile_card_links_workbench(self):
         user = get_user_model().objects.create_user(
@@ -251,6 +252,15 @@ class WorkbenchAboutTests(TestCase):
         self.assertTrue(
             response["Location"].endswith(reverse("frontend:workbench_about_page"))
         )
+
+    @override_settings(WORKBENCH_ENABLED=False)
+    def test_kill_switch_hides_the_cta(self):
+        cache.clear()
+        response = self.client.get(reverse("frontend:workbench_about_page"))
+        self.assertEqual(response.status_code, 200)
+        # The URL still shows up in JSON-LD; it's the button that must go,
+        # or the only CTA on the page bounces straight back here.
+        self.assertNotIn("Open my Workbench", response.content.decode())
 
     def test_about_page_video_hook(self):
         video = {
