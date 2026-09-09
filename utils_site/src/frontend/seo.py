@@ -30,6 +30,16 @@ NOINDEX_PATH_PREFIXES = (
 NOINDEX_EXACT_PATHS: set[str] = set()
 
 
+def noindex_languages() -> set[str]:
+    return set(getattr(settings, "SEO_NOINDEX_LANGUAGES", ()))
+
+
+def indexable_languages() -> list[tuple[str, str]]:
+    """settings.LANGUAGES minus the locales deliberately kept out of the index."""
+    excluded = noindex_languages()
+    return [(code, name) for code, name in settings.LANGUAGES if code not in excluded]
+
+
 def get_base_url(request) -> str:
     """Build the canonical site base URL for the current request."""
     scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
@@ -67,19 +77,10 @@ def get_request_seo_context(request) -> dict:
         robots_meta = NOINDEX_NOFOLLOW_ROBOTS
         hreflangs_enabled = False
     else:
-        # Bare "/" is a language-detection landing page. It serves the same
-        # content as /<default-lang>/, so canonicalize there to avoid the
-        # duplicate-content "indexable page not in sitemap" warning Ahrefs
-        # raises (the language-prefixed URL is the one we list in sitemaps).
-        # Suppress hreflangs in that case: Lighthouse fails the SEO audit
-        # ("rel=canonical points to another hreflang location") when the
-        # canonical target is also one of the page's own hreflang alternates,
-        # and the proper hreflang block already lives on /<lang>/ pages.
-        if request.path == "/":
-            canonical_url = f"{base_url}/{default_language}/"
+        canonical_url = f"{base_url}{canonical_path}"
+        if request.path.split("/", 2)[1] in noindex_languages():
+            robots_meta = NOINDEX_FOLLOW_ROBOTS
             hreflangs_enabled = False
-        else:
-            canonical_url = f"{base_url}{canonical_path}"
         canonical_query, robots_override = _get_canonical_query_and_robots(
             request=request,
             view_name=view_name,
@@ -96,7 +97,7 @@ def get_request_seo_context(request) -> dict:
         view_name=view_name,
         url_kwargs=url_kwargs,
         base_url=base_url,
-        languages=languages,
+        languages=indexable_languages(),
         default_language=default_language,
         homepage_paths=homepage_paths,
         hreflangs_enabled=hreflangs_enabled,

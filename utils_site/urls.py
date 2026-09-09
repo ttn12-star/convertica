@@ -9,7 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.generic import RedirectView
 from src.frontend.i18n_views import set_language
-from src.frontend.views import api_landing, index_page, sitemap_index, sitemap_lang
+from src.frontend.views import api_landing, root_redirect, sitemap_index, sitemap_lang
 from src.frontend.views_indexnow import indexnow_key_file
 from src.frontend.views_seo import favicon_view, robots_txt_view
 from src.payments.paddle_webhook import paddle_webhook
@@ -98,8 +98,8 @@ urlpatterns = [
     # Admin panel - should be accessible without language prefix
     # Read ADMIN_URL_PATH dynamically from settings
     path(f"{getattr(settings, 'ADMIN_URL_PATH', 'admin')}/", admin.site.urls),
-    # Homepage - accessible without language prefix for SEO
-    path("", index_page, name="index_page"),
+    # Bare / redirects to /<lang>/ so only one homepage URL is indexable.
+    path("", root_redirect, name="index_page"),
 ]
 
 # Marketing-style aliases — match competitor URL patterns and recover
