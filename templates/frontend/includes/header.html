@@ -1768,6 +1768,23 @@
                         </div>
                       </div>
                     </a>
+
+                      <!-- Workbench (authenticated) -->
+                    <a href="{% url 'frontend:workbench_page' %}"
+                       class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 dark:hover:text-amber-200 transition-colors duration-200 border-l-4 border-transparent hover:border-amber-500"
+                       role="menuitem">
+                      <div class="flex items-center space-x-3 w-full">
+                        <div class="p-2 rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 group-hover:from-amber-200 group-hover:to-orange-200 transition-colors duration-200">
+                          <svg class="w-4 h-4 text-amber-600 group-hover:text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h7v7H4zM13 5h7v4h-7zM13 12h7v7h-7zM4 15h7v4H4z"></path>
+                          </svg>
+                        </div>
+                        <div class="flex-1 text-start">
+                          <div class="font-semibold text-gray-900 group-hover:text-amber-700 dark:group-hover:text-amber-200">{% trans "Workbench" %}</div>
+                          <div class="text-xs text-gray-500 group-hover:text-amber-600 dark:group-hover:text-amber-300">{% trans "Your board of one-drop converter tiles" %}</div>
+                        </div>
+                      </div>
+                    </a>
                   {% else %}
                     {% if PAYMENTS_ENABLED %}
                       <!-- Hero Page (not authenticated) -->
