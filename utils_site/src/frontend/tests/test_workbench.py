@@ -197,12 +197,24 @@ class WorkbenchIntegrationTests(TestCase):
             html.index(reverse("frontend:workbench_page")),
             html.index(reverse("frontend:pdf_to_pdfa_page")),
         )
+        # Once in the visible card grid, once in the ItemList JSON-LD: the
+        # JSON-LD alone left the hub page not actually advertising the board.
+        self.assertGreaterEqual(html.count(reverse("frontend:workbench_page")), 2)
 
     def test_footer_and_header_link_workbench(self):
         html = self.client.get(reverse("frontend:index_page_lang")).content.decode()
         # 2 header menus (desktop + mobile) + footer; account dropdown only
         # renders for logged-in users, so don't count on it anonymously.
         self.assertGreaterEqual(html.count(reverse("frontend:workbench_page")), 3)
+
+    def test_account_dropdown_links_workbench(self):
+        user = get_user_model().objects.create_user(
+            username="wbmenu", email="wbmenu@example.com", password="x"
+        )
+        self.client.force_login(user)
+        html = self.client.get(reverse("frontend:index_page_lang")).content.decode()
+        # The 3 anonymous places plus the account dropdown row.
+        self.assertGreaterEqual(html.count(reverse("frontend:workbench_page")), 4)
 
     def test_profile_card_links_workbench(self):
         user = get_user_model().objects.create_user(
