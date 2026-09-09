@@ -141,19 +141,21 @@
         return copy;
     }
 
-    /** Fills `board` from a template; returns the (possibly extended) presets list and how many tiles were added. */
+    /** Fills `board` from a template; returns the (possibly extended) presets list, how many tiles were added and how many it tried to add (`added < total` means the plan limit cut some off). */
     function applyTemplate(state, board, template, catalog, presets, limits) {
         let list = presets.slice();
         let added = 0;
+        let total = 0;
         (template.tools || []).forEach(key => {
             const tool = catalog[key];
             if (!tool || !tool.droppable || tool.requiresConfig) return;
             let preset = list.find(p => p.toolKey === key && (!p.params || !Object.keys(p.params).length));
             if (!preset) { preset = presetFromTool(key, tool); list = list.concat([preset]); }
             if (board.tiles.some(t => t.presetId === preset.id)) return;
+            total++;
             if (addTile(board, { kind: 'preset', presetId: preset.id, size: 'm' }, limits)) added++;
         });
-        return { presets: list, added };
+        return { presets: list, added, total };
     }
 
     /** Pure: returns a new array with item `from` moved to index `to`. */
@@ -627,7 +629,15 @@
         const full = !canAddTile(board, LIMITS);
         const limitBox = $('wb-picker-limit');
         limitBox.hidden = !full;
-        if (full) {
+        if (full && LIMITS.tier === 'premium') {
+            // A premium user is already at the top plan: pointing them at
+            // /pricing/ sells them what they bought. Offer a new board instead.
+            limitBox.replaceChildren(el('span', '', fmt(I18N.tileCapPremium || 'This board is full (%(count)s tiles). Start a new board for more.', LIMITS.tiles) + ' '));
+            const b = el('button', 'font-semibold underline', I18N.newBoard || 'New board…');
+            b.type = 'button';
+            b.addEventListener('click', openNewSheet);
+            limitBox.appendChild(b);
+        } else if (full) {
             limitBox.replaceChildren(el('span', '', (I18N.limitReached || 'Tile limit reached.') + ' '));
             const a = el('a', 'font-semibold underline', LIMITS.tier === 'anonymous' ? (I18N.signIn || 'Sign in') : (I18N.upgrade || 'Upgrade'));
             a.href = $('wb-root').dataset.upgradeUrl;
@@ -714,6 +724,15 @@
     }
 
     function fmt(template, count) { return String(template).replace('%(count)s', String(count)); }
+
+    /** Toast for a template: names the plan limit when it cut the template short. */
+    function templateToast(added, total) {
+        if (added < total) {
+            return String(I18N.templateCapped || '%(added)s of %(total)s tiles added (plan limit)')
+                .replace('%(added)s', String(added)).replace('%(total)s', String(total));
+        }
+        return fmt(I18N.templateApplied || '%(count)s tiles added', added);
+    }
 
     function switchBoard(id) {
         if (!state.boards.some(b => b.id === id)) return;
@@ -806,10 +825,10 @@
         const board = activeBoard(state);
         const template = TEMPLATES.find(t => t.key === templateKey);
         if (!board || !template) return;
-        const { presets: next, added } = applyTemplate(state, board, template, CATALOG, presets, LIMITS);
+        const { presets: next, added, total } = applyTemplate(state, board, template, CATALOG, presets, LIMITS);
         if (next !== presets) { presets = next; savePresets(presets); }
         persist(); render();
-        toast(fmt(I18N.templateApplied || '%(count)s tiles added', added));
+        toast(templateToast(added, total));
     }
 
     function openNewSheet() {
@@ -840,14 +859,16 @@
         e.preventDefault();
         const board = createBoard(state, $('wb-new-name').value, LIMITS);
         if (!board) return;
+        let capped = null;
         if (selectedTemplateKey) {
             const template = TEMPLATES.find(t => t.key === selectedTemplateKey);
             if (template) {
-                const { presets: next } = applyTemplate(state, board, template, CATALOG, presets, LIMITS);
+                const { presets: next, added, total } = applyTemplate(state, board, template, CATALOG, presets, LIMITS);
                 if (next !== presets) { presets = next; savePresets(presets); }
+                if (added < total) capped = templateToast(added, total);
             }
         }
-        persist(); closeNewSheet(); render(); toast(I18N.boardCreated || 'Board created');
+        persist(); closeNewSheet(); render(); toast(capped || I18N.boardCreated || 'Board created');
     }
 
     function openSwitcher() { closeAllOverlays(); $('wb-switcher').classList.remove('hidden'); $('wb-switcher-btn').setAttribute('aria-expanded', 'true'); }
@@ -970,6 +991,13 @@
         const tb = createBoard({ boards: [], activeBoardId: null }, 'T', { boards: 1, tiles: 3 });
         const applied = applyTemplate(null, tb, { tools: ['word_to_pdf', 'convert_image', 'sign_pdf', 'word_to_pdf'] }, cat2, [], { tiles: 3 });
         assert(applied.added === 1 && applied.presets.length === 1 && tb.tiles.length === 1, 'applyTemplate skips requiresConfig/non-droppable/duplicates');
+        assert(applied.total === 1, 'applyTemplate counts only the tiles it actually tried to add');
+        const capCat = { a: { droppable: true, label: 'A', pageUrl: '/a/' }, b: { droppable: true, label: 'B', pageUrl: '/b/' }, c: { droppable: true, label: 'C', pageUrl: '/c/' } };
+        const cb = createBoard({ boards: [], activeBoardId: null }, 'C', { boards: 1, tiles: 2 });
+        const capped = applyTemplate(null, cb, { tools: ['a', 'b', 'c'] }, capCat, [], { tiles: 2 });
+        assert(capped.added === 2 && capped.total === 3, 'applyTemplate reports what the plan limit cut off');
+        assert(templateToast(capped.added, capped.total).indexOf('2 of 3') === 0, 'capped toast names both numbers');
+        assert(templateToast(2, 2).indexOf('2 tiles') === 0, 'uncapped toast stays the plain count');
 
         const serverBoards = [{ id: 's1', name: 'S1', isDefault: true, tiles: [] }, { id: 's2', name: 'S2', tiles: [] }];
         const mergedReplace = mergeServerBoards({ boards: [{ id: 'local1' }], activeBoardId: 'local1' }, serverBoards);

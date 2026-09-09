@@ -17812,3 +17812,9 @@ msgid ""
 msgstr ""
 "Tu tablero personal de herramientas PDF: suelta un archivo en un mosaico, "
 "obtén el resultado."
+
+msgid "This board is full (%(count)s tiles). Start a new board for more."
+msgstr "Este tablero está lleno (%(count)s mosaicos). Crea un tablero nuevo."
+
+msgid "%(added)s of %(total)s tiles added (plan limit)"
+msgstr "Se agregaron %(added)s de %(total)s mosaicos (límite del plan)"

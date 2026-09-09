@@ -1790,6 +1790,10 @@ def workbench_page(request):
             "boardCreated": _("Board created"),
             "boardDeleted": _("Board deleted"),
             "templateApplied": _("%(count)s tiles added"),
+            "templateCapped": _("%(added)s of %(total)s tiles added (plan limit)"),
+            "tileCapPremium": _(
+                "This board is full (%(count)s tiles). Start a new board for more."
+            ),
             "edit": _("Edit"),
             "done": _("Done"),
             "dragHint": _("Drag tiles to reorder, click a title to rename"),
