@@ -277,7 +277,12 @@ class WorkbenchAboutTests(TestCase):
         self.assertIn('"@type": "VideoObject"', html)
 
     def test_about_page_without_video_hook(self):
-        html = self.client.get(
-            reverse("frontend:workbench_about_page")
-        ).content.decode()
+        # No YAML entry — the state before the video was published — renders no
+        # player and no JSON-LD. Patched, because content/tool_videos.yaml now
+        # has a real `workbench:` entry.
+        with patch.dict("src.frontend.views.TOOL_VIDEOS", {"workbench": None}):
+            cache.clear()
+            html = self.client.get(
+                reverse("frontend:workbench_about_page")
+            ).content.decode()
         self.assertNotIn("VideoObject", html)
