@@ -694,6 +694,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://nicklaunches.com "
             "https://newtool.site "
             "https://shinylaunch.com "
+            "https://launchnest.io "
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
             "https://tpc.googlesyndication.com",
