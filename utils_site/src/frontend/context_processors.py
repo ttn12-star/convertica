@@ -293,6 +293,11 @@ def breadcrumbs(request):
             "frontend:pdf_to_epub_page": _("PDF to EPUB"),
             "frontend:ocr_pdf_to_word_page": _("Scanned PDF to Word"),
             "frontend:batch_converter_page": _("Batch Converter Hub"),
+            "frontend:workbench_page": _("Workbench"),
+            # Without this the fallback crumbs the last path segment and the
+            # explainer shows up as "About" — untranslated, and a second
+            # "About" competing with the real /about/ page in BreadcrumbList.
+            "frontend:workbench_about_page": _("Workbench"),
             "frontend:premium_workflows_page": _("Saved Workflows"),
             "frontend:background_center_page": _("Background Queue Center"),
             "frontend:saved_workflows_page": _("Saved Workflows"),

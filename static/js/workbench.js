@@ -615,7 +615,7 @@
                 // configured preset for it (that one gets its own row above).
                 const needsSetup = !checked && t.requiresConfig
                     && !presets.some(p => p.toolKey === key && p.params && Object.keys(p.params).length);
-                rows.push({ group: I18N.converters || 'Converters', label: t.label, sub: needsSetup ? (I18N.needsSetup || 'Set up on tool page') : t.group, checked, toolKey: key, presetId: existing && existing.id, pageUrl: t.pageUrl, needsSetup, locked: t.premiumOnly && LIMITS.tier !== 'premium' });
+                rows.push({ group: I18N.converters || 'Converters', label: t.label, sub: needsSetup ? (I18N.needsSetup || 'Set up on tool page') : ((I18N.groups || {})[t.group] || t.group), checked, toolKey: key, presetId: existing && existing.id, pageUrl: t.pageUrl, needsSetup, locked: t.premiumOnly && LIMITS.tier !== 'premium' });
             });
         return rows;
     }
