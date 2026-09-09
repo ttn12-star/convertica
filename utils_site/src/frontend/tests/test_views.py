@@ -272,6 +272,23 @@ class FrontendViewsTestCase(TestCase):
         )
         self.assertNotIn("X-Robots-Tag", response)
 
+    def test_noindex_locales_leave_no_index_signals(self):
+        """SEO_NOINDEX_LANGUAGES: noindex page, no hreflang, no sitemap; / redirects."""
+        self.assertRedirects(
+            self.client.get("/"), "/en/", fetch_redirect_response=False
+        )
+        with self.settings(SEO_NOINDEX_LANGUAGES=["hi"]):
+            hi = self.client.get("/hi/pdf-to-word/")
+            self.assertEqual(self._extract_robots(hi), "noindex, follow")
+            self.assertNotContains(hi, 'rel="alternate" hreflang=')
+            en = self.client.get("/en/pdf-to-word/")
+            self.assertContains(en, 'hreflang="ru"')
+            self.assertNotContains(en, 'hreflang="hi"')
+            self.assertNotContains(self.client.get("/sitemap.xml"), "sitemap-hi.xml")
+            self.assertNotContains(self.client.get("/sitemap-hi.xml"), "<loc>")
+            self.assertContains(self.client.get("/sitemap-en.xml"), 'hreflang="ru"')
+            self.assertNotContains(self.client.get("/sitemap-en.xml"), 'hreflang="hi"')
+
     def test_blog_search_is_noindex_and_canonicalizes_to_listing(self):
         """Internal search should not be indexed."""
         response = self.client.get(f"{self._get_url_with_lang('blog/')}?q=pdf")

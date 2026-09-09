@@ -640,6 +640,13 @@ LANGUAGES = [
     ("ar", "العربية"),
 ]
 
+# Locales Google has crawled and rejected wholesale since 2026-06 (GSC
+# "crawled, currently not indexed" is almost entirely /hi/ and /id/, and it
+# keeps re-crawling them instead of discovering new /en/ pages). They stay
+# reachable for users but are noindex'd and dropped from sitemaps + hreflang so
+# crawl budget goes to locales that do get indexed. Empty the list to re-enable.
+SEO_NOINDEX_LANGUAGES = ["hi", "id"]
+
 # Language detection settings
 # LocaleMiddleware will automatically detect language from:
 # 1. Session (if user selected language)

@@ -8,12 +8,14 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
 from src.api.conversion_limits import get_file_size_limits
+from src.frontend.seo import indexable_languages, noindex_languages
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS
 from src.frontend.workbench import TOOL_URL_NAME_OVERRIDES as _TOOL_URL_NAME_OVERRIDES
@@ -426,6 +428,22 @@ TOOL_MARQUEE_ITEMS = [
         _("Add Page Numbers"),
     ),
 ]
+
+
+def root_redirect(request):
+    """Bare / → /<detected lang>/.
+
+    Serving the homepage on / as well (with only a rel=canonical hint to /en/)
+    made Google pick / as the canonical and file /en/ as a duplicate — every
+    backlink points at /. One homepage URL per language, nothing on /.
+
+    nginx stamps `public, max-age=300` on this too, so Cloudflare caches the
+    302 for anonymous visitors (the Cache Rule already cached the / HTML, and
+    a RU visitor was getting the EN page from that cache). Nothing gets worse;
+    users with a session/cookie bypass the edge cache and get their language.
+    """
+    qs = request.META.get("QUERY_STRING")
+    return redirect(f"/{get_language()}/" + (f"?{qs}" if qs else ""))
 
 
 @anonymous_cache_page(60 * 60)
@@ -2407,14 +2425,14 @@ def sitemap_index(request):
 
     from django.core.cache import cache
 
-    cache_key = "sitemap_index_v2"
+    cache_key = "sitemap_index_v3"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
 
     base_url = _get_sitemap_base_url(request)
     static_lastmod = _sitemap_static_lastmod()
-    languages = getattr(settings, "LANGUAGES", [("en", "English")])
+    languages = indexable_languages()
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -2438,18 +2456,24 @@ def sitemap_lang(request, lang: str):
     from django.utils.translation import activate, get_language
     from src.blog.models import Article
 
-    languages = getattr(settings, "LANGUAGES", [("en", "English")])
-    lang_codes = [code for code, _ in languages]
+    languages = indexable_languages()
 
-    if lang not in lang_codes:
+    if lang not in [code for code, _ in settings.LANGUAGES]:
         from django.http import Http404
 
         raise Http404("Invalid language")
+    if lang in noindex_languages():
+        # Still 200 (GSC has the child sitemap submitted), just empty.
+        return HttpResponse(
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>',
+            content_type="application/xml; charset=utf-8",
+        )
 
     # v8: image/password-protect-image/ (v7) + /pdf-edit/page-size/ — both
     # landed as v7 on separate branches, so bump again or the cached
     # sitemap never picks up the second one.
-    cache_key = f"sitemap_{lang}_v10"
+    cache_key = f"sitemap_{lang}_v11"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
