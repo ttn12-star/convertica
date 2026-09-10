@@ -258,18 +258,31 @@ class PowerPointToPDFConverter:
                 )
 
             except subprocess.CalledProcessError as e:
+                # subprocess.run(text=True) already decodes stderr: calling
+                # .decode() on it raised AttributeError and turned every failed
+                # conversion into a 500 instead of a clean error.
+                detail = (e.stderr or "").strip()
                 logger.error(
-                    f"LibreOffice conversion failed with exit code {e.returncode}: {e.stderr}",
+                    f"LibreOffice conversion failed with exit code {e.returncode}: {detail}",
                     extra={
                         **context,
                         "event": "libreoffice_error",
                         "return_code": e.returncode,
                     },
                 )
-                raise ConversionError(
-                    f"LibreOffice conversion failed: {e.stderr.decode() if e.stderr else 'Unknown error'}",
+                oom = e.returncode == 137
+                if oom:
+                    # SIGKILL = the OOM killer took soffice out. stderr then holds
+                    # only the javaldx warning, which tells the user nothing.
+                    detail = "the file is too large or complex to convert"
+                error = ConversionError(
+                    f"LibreOffice conversion failed: {detail or f'exit code {e.returncode}'}",
                     context=context,
                 )
+                # A retry re-runs the same allocation, so it only buys two more
+                # OOM kills in a cgroup shared with the other workers.
+                error.retryable = not oom
+                raise error
 
             except Exception as e:
                 logger.error(
@@ -300,10 +313,12 @@ class PowerPointToPDFConverter:
                 await loop.run_in_executor(None, _convert_with_libreoffice)
                 break  # Success, exit retry loop
 
-            except ConversionError:
-                if attempt == self.max_retries:
+            except ConversionError as e:
+                # `retryable is False` marks a failure a retry cannot fix (an OOM
+                # kill), so we stop instead of provoking two more OOM kills.
+                if attempt == self.max_retries or not getattr(e, "retryable", True):
                     logger.error(
-                        f"LibreOffice conversion failed after {self.max_retries + 1} attempts",
+                        f"LibreOffice conversion failed after {attempt + 1} attempts",
                         extra={**context, "event": "libreoffice_max_retries"},
                     )
                     raise
