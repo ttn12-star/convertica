@@ -5,10 +5,12 @@ import hashlib
 import hmac
 import json
 import time
+from datetime import timedelta
 from decimal import Decimal
 from unittest import mock
 
 from django.test import Client, TestCase, override_settings
+from django.utils import timezone
 from src.payments import handlers as h
 from src.payments.polar_webhook import EVENT_DISPATCH, _normalise
 from src.payments.webhook_security import verify_polar_signature
@@ -18,6 +20,12 @@ from src.users.models import Payment, SubscriptionPlan, User, WebhookEvent
 # secret before handing it to standardwebhooks, which decodes it straight back).
 SECRET = "polar-test-secret-key-32-bytes!!"
 URL = "/payments/webhook/polar/"
+
+# Same trap as in the Paddle tests: an absolute billing period from a recorded
+# payload expires and takes the `is_premium` assertions down with it on a day
+# nobody touched payments. Keep the period relative to now.
+_PERIOD_START = (timezone.now() - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+_PERIOD_END = (timezone.now() + timedelta(days=29)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def _headers(body: bytes, secret: str = SECRET, msg_id="msg_1", ts=None) -> dict:
@@ -38,9 +46,9 @@ def _subscription(**overrides) -> dict:
         "status": "active",
         "customer_id": "cus_polar_1",
         "product_id": "prod_polar_1",
-        "started_at": "2026-08-26T09:00:00Z",
-        "current_period_start": "2026-08-26T09:00:00Z",
-        "current_period_end": "2026-09-26T09:00:00Z",
+        "started_at": _PERIOD_START,
+        "current_period_start": _PERIOD_START,
+        "current_period_end": _PERIOD_END,
         "cancel_at_period_end": False,
         "ends_at": None,
         "metadata": {"user_id": "7", "plan_id": "2", "locale": "pl"},
@@ -51,7 +59,7 @@ def _subscription(**overrides) -> dict:
 
 
 def _event(event_type: str, data: dict) -> dict:
-    return {"type": event_type, "timestamp": "2026-08-26T09:00:00Z", "data": data}
+    return {"type": event_type, "timestamp": _PERIOD_START, "data": data}
 
 
 class SignatureTests(TestCase):
@@ -128,8 +136,8 @@ class NormaliseTests(TestCase):
         self.assertEqual(out["data"]["id"], "sub_polar_1")
         attrs = out["data"]["attributes"]
         self.assertEqual(attrs["customer_id"], "cus_polar_1")
-        self.assertEqual(attrs["created_at"], "2026-08-26T09:00:00Z")
-        self.assertEqual(attrs["renews_at"], "2026-09-26T09:00:00Z")
+        self.assertEqual(attrs["created_at"], _PERIOD_START)
+        self.assertEqual(attrs["renews_at"], _PERIOD_END)
 
     def test_subscription_id_is_present_on_subscription_events(self):
         # handle_subscription_payment_failed reads attrs["subscription_id"],
@@ -161,12 +169,12 @@ class NormaliseTests(TestCase):
         self.assertEqual(attrs["status"], "unpaid")
 
     def test_scheduled_cancellation_sets_the_period_end_flag(self):
-        data = _subscription(cancel_at_period_end=True, ends_at="2026-09-26T09:00:00Z")
+        data = _subscription(cancel_at_period_end=True, ends_at=_PERIOD_END)
         attrs = _normalise("subscription.canceled", _event("x", data))["data"][
             "attributes"
         ]
         self.assertTrue(attrs["cancelled"])
-        self.assertEqual(attrs["ends_at"], "2026-09-26T09:00:00Z")
+        self.assertEqual(attrs["ends_at"], _PERIOD_END)
 
     def test_not_cancelled_leaves_the_flag_off(self):
         attrs = _normalise("subscription.updated", _event("x", _subscription()))[
@@ -388,7 +396,7 @@ class EndToEndPremiumTests(TestCase):
                 "subscription.canceled",
                 status="canceled",
                 cancel_at_period_end=True,
-                ends_at="2026-09-26T09:00:00Z",
+                ends_at=_PERIOD_END,
             ),
             "msg_e2e_3",
         )
