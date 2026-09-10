@@ -4,15 +4,24 @@ import hashlib
 import hmac
 import json
 import time
+from datetime import timedelta
 from unittest import mock
 
 from django.test import Client, TestCase, override_settings
+from django.utils import timezone
 from src.payments import handlers as h
 from src.payments.paddle_webhook import EVENT_DISPATCH, _normalise
 from src.users.models import WebhookEvent
 
 SECRET = "pdl_ntfset_test_secret"
 URL = "/payments/webhook/paddle/"
+
+# The recorded payload carried the absolute billing period of the 10.08.2026
+# sandbox test. Once its end fell into the past, every `is_premium` assertion
+# below started failing on commits that had passed CI the day before, blocking
+# the deploy. Anchor the period to now so it is always the current one.
+_PERIOD_START = (timezone.now() - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+_PERIOD_END = (timezone.now() + timedelta(days=29)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def _signed(body: bytes, secret: str = SECRET) -> str:
@@ -29,10 +38,10 @@ def _subscription_event(event_type="subscription.created", **overrides):
         "status": "active",
         "customer_id": "ctm_01hv",
         "custom_data": {"user_id": "7", "plan_id": "2", "locale": "pl"},
-        "started_at": "2026-08-10T09:00:00Z",
+        "started_at": _PERIOD_START,
         "current_billing_period": {
-            "starts_at": "2026-08-10T09:00:00Z",
-            "ends_at": "2026-09-10T09:00:00Z",
+            "starts_at": _PERIOD_START,
+            "ends_at": _PERIOD_END,
         },
     }
     data.update(overrides)
@@ -48,7 +57,7 @@ class NormaliseTests(TestCase):
         self.assertEqual(out["data"]["id"], "sub_01hv")
         attrs = out["data"]["attributes"]
         self.assertEqual(attrs["customer_id"], "ctm_01hv")
-        self.assertEqual(attrs["renews_at"], "2026-09-10T09:00:00Z")
+        self.assertEqual(attrs["renews_at"], _PERIOD_END)
 
     def test_trialing_maps_to_the_vocabulary_handlers_speak(self):
         # handlers.py grants premium for "active"/"on_trial"; the raw Paddle
@@ -66,12 +75,12 @@ class NormaliseTests(TestCase):
             "subscription.updated",
             scheduled_change={
                 "action": "cancel",
-                "effective_at": "2026-09-10T09:00:00Z",
+                "effective_at": _PERIOD_END,
             },
         )
         attrs = _normalise("subscription.updated", event)["data"]["attributes"]
         self.assertTrue(attrs["cancelled"])
-        self.assertEqual(attrs["ends_at"], "2026-09-10T09:00:00Z")
+        self.assertEqual(attrs["ends_at"], _PERIOD_END)
 
     def test_no_scheduled_change_means_not_cancelled(self):
         attrs = _normalise("subscription.updated", _subscription_event())["data"][
@@ -216,10 +225,10 @@ class EndToEndPremiumTests(TestCase):
                 "plan_id": str(self.plan.id),
                 "locale": "en",
             },
-            "started_at": "2026-08-10T09:00:00Z",
+            "started_at": _PERIOD_START,
             "current_billing_period": {
-                "starts_at": "2026-08-10T09:00:00Z",
-                "ends_at": "2026-09-10T09:00:00Z",
+                "starts_at": _PERIOD_START,
+                "ends_at": _PERIOD_END,
             },
         }
         data.update(data_overrides)
@@ -316,10 +325,10 @@ class BrokerOutageTests(TestCase):
                     "plan_id": str(self.plan.id),
                     "locale": "en",
                 },
-                "started_at": "2026-08-10T09:00:00Z",
+                "started_at": _PERIOD_START,
                 "current_billing_period": {
-                    "starts_at": "2026-08-10T09:00:00Z",
-                    "ends_at": "2026-09-10T09:00:00Z",
+                    "starts_at": _PERIOD_START,
+                    "ends_at": _PERIOD_END,
                 },
             },
         }
