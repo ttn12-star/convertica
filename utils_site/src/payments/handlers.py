@@ -71,6 +71,53 @@ def _resolve_user_and_plan(
     return user, plan
 
 
+def _user_from_records(payload: dict) -> User | None:
+    """Fallback attribution when the provider event carries no custom_data.
+
+    Revocation events (expired/cancelled/refunded) must never be silently
+    acked: look the user up through the subscription or payment row we wrote
+    when the purchase happened.
+    """
+    provider = _provider(payload)
+    attrs = _attrs(payload)
+    sub_ids = {str(_data_id(payload) or ""), str(attrs.get("subscription_id") or "")}
+    sub_ids.discard("")
+    if sub_ids:
+        row = (
+            UserSubscription.objects.filter(
+                provider=provider, provider_subscription_id__in=sub_ids
+            )
+            .select_related("user")
+            .order_by("-updated_at")
+            .first()
+        )
+        if row:
+            return row.user
+    order_id = str(attrs.get("order_id") or _data_id(payload) or "")
+    if order_id:
+        q = Payment.objects.filter(payment_id=order_id)
+
+        row = q.select_related("user").first()
+        if row:
+            return row.user
+    return None
+
+
+def _resolve_user_for_revocation(payload: dict, event: str) -> User | None:
+    user, _plan = _resolve_user_and_plan(payload)
+    user = user or _user_from_records(payload)
+    if not user:
+        logger.error(
+            "Webhook revocation event could not be attributed to a user",
+            extra={
+                "event": event,
+                "provider": _provider(payload),
+                "data_id": _data_id(payload),
+            },
+        )
+    return user
+
+
 def _parse_dt(value: str | None):
     if not value:
         return None
@@ -269,7 +316,7 @@ def handle_subscription_cancelled(payload: dict) -> None:
     Tolerates missing plan — cancellation only updates status/period fields
     on the existing UserSubscription row.
     """
-    user, _plan = _resolve_user_and_plan(payload)
+    user = _resolve_user_for_revocation(payload, "subscription_cancelled")
     if not user:
         return
     attrs = _attrs(payload)
@@ -298,9 +345,9 @@ def handle_subscription_resumed(payload: dict) -> None:
 
 @transaction.atomic
 def handle_subscription_expired(payload: dict) -> None:
-    user, _plan = _resolve_user_and_plan(payload)
+    user = _resolve_user_for_revocation(payload, "subscription_expired")
     if not user:
-        return
+        raise LookupError("subscription_expired: user not found")
     sub_id = _data_id(payload)
     UserSubscription.objects.filter(
         provider=_provider(payload), provider_subscription_id=sub_id
@@ -364,7 +411,7 @@ def handle_subscription_payment_success(payload: dict) -> None:
 
 @transaction.atomic
 def handle_subscription_payment_failed(payload: dict) -> None:
-    user, _plan = _resolve_user_and_plan(payload)
+    user = _resolve_user_for_revocation(payload, "subscription_payment_failed")
     if not user:
         return
     sub_id = str(_attrs(payload).get("subscription_id") or "")
@@ -384,9 +431,9 @@ def handle_subscription_payment_failed(payload: dict) -> None:
 
 @transaction.atomic
 def handle_subscription_payment_refunded(payload: dict) -> None:
-    user, _plan = _resolve_user_and_plan(payload)
+    user = _resolve_user_for_revocation(payload, "subscription_payment_refunded")
     if not user:
-        return
+        raise LookupError("subscription_payment_refunded: user not found")
     attrs = _attrs(payload)
     order_id = str(attrs.get("order_id") or _data_id(payload))
     updated = Payment.objects.filter(payment_id=order_id).update(
@@ -463,9 +510,9 @@ def handle_order_created(payload: dict) -> None:
 
 @transaction.atomic
 def handle_order_refunded(payload: dict) -> None:
-    user, _plan = _resolve_user_and_plan(payload)
+    user = _resolve_user_for_revocation(payload, "order_refunded")
     if not user:
-        return
+        raise LookupError("order_refunded: user not found")
     order_id = _data_id(payload)
     updated = Payment.objects.filter(payment_id=order_id).update(
         status="refunded", processed_at=timezone.now()

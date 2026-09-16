@@ -95,8 +95,10 @@ def _custom_data(data: dict) -> dict:
         or str(customer.get("external_id") or "")
         or str(customer_metadata.get("user_id") or "")
     )
-    plan_id = str(metadata.get("plan_id") or "") or _plan_id_for_product(
-        str(data.get("product_id") or "")
+    # The product on the object reflects upgrades/downgrades; metadata is
+    # frozen at the original checkout.
+    plan_id = _plan_id_for_product(str(data.get("product_id") or "")) or str(
+        metadata.get("plan_id") or ""
     )
     locale = str(metadata.get("locale") or "") or str(
         customer_metadata.get("locale") or ""

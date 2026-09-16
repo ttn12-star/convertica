@@ -115,9 +115,10 @@ def process_event(
                 evt.processing
                 and evt.updated_at > timezone.now() - STALE_PROCESSING_WINDOW
             ):
-                # Another worker is currently processing — let the provider
-                # retry later.
-                return HttpResponse("OK")
+                # Another worker is currently processing. A 2xx would tell the
+                # provider the delivery is done and stop retries — if that
+                # worker dies the event is lost. Non-2xx keeps the retry alive.
+                return HttpResponse("Processing", status=409)
             # Previous attempt failed (or its worker died) — claim and retry.
             evt.processing = True
             evt.save(update_fields=["processing", "updated_at"])

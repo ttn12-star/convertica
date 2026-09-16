@@ -58,10 +58,34 @@ def _minor_units_to_int(value) -> int:
         return 0
 
 
+def _plan_id_for_items(items: list) -> str:
+    """Map the purchased Paddle price back to our plan row."""
+    from src.users.models import SubscriptionPlan
+
+    for item in items or []:
+        price_id = str(((item or {}).get("price") or {}).get("id") or "")
+        if not price_id:
+            continue
+        plan_id = (
+            SubscriptionPlan.objects.filter(paddle_price_id=price_id)
+            .values_list("id", flat=True)
+            .first()
+        )
+        if plan_id:
+            return str(plan_id)
+    return ""
+
+
 def _normalise(event_type: str, payload: dict) -> dict:
     """Convert a Paddle event into the payload shape handlers.py expects."""
     data = payload.get("data", {}) or {}
-    custom_data = data.get("custom_data") or {}
+    custom_data = dict(data.get("custom_data") or {})
+    # custom_data is set by Paddle.js in the browser, i.e. client-controlled.
+    # The plan is resolved from the price that was actually paid; custom_data
+    # only supplies it when the price is unknown to us.
+    paid_plan_id = _plan_id_for_items(data.get("items") or [])
+    if paid_plan_id:
+        custom_data["plan_id"] = paid_plan_id
 
     attrs: dict = {
         "status": _STATUS_MAP.get(data.get("status"), data.get("status") or "active"),
