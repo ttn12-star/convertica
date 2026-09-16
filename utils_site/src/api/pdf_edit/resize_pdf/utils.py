@@ -182,6 +182,7 @@ def resize_pdf(
 
         target = PAGE_SIZES[target_size]
 
+        source = out = None
         try:
             source = fitz.open(input_path)
             out = fitz.open()
@@ -212,8 +213,6 @@ def resize_pdf(
                 )
 
             out.save(output_path, garbage=4, clean=True, deflate=True)
-            out.close()
-            source.close()
         except Exception as e:
             error_context = {
                 **context,
@@ -228,6 +227,13 @@ def resize_pdf(
             raise ConversionError(
                 f"Failed to change PDF page size: {e}", context=error_context
             ) from e
+        finally:
+            for d in (source, out):
+                if d is not None:
+                    try:
+                        d.close()
+                    except Exception:
+                        pass
 
         is_output_valid, output_error = validate_output_file(
             output_path,

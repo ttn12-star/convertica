@@ -43,7 +43,11 @@ def _clean_preset(raw) -> dict | None:
         if not isinstance(value, str):
             value = str(value) if value is not None else ""
         preset[field] = value[:max_len]
-    if not preset["name"] or not preset["toolUrl"].startswith("/"):
+    if (
+        not preset["name"]
+        or not preset["toolUrl"].startswith("/")
+        or preset["toolUrl"].startswith("//")  # protocol-relative = external
+    ):
         return None
     from src.frontend.tool_configs import TOOL_CONFIGS
 

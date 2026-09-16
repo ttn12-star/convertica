@@ -14,6 +14,7 @@ from collections.abc import Callable
 from typing import Any
 
 from django.conf import settings
+from django.core.exceptions import SuspiciousFileOperation
 from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
 from django.urls import reverse
@@ -338,6 +339,14 @@ class BaseConversionAPIView(APIView, ABC):
         self, error: Exception, context: dict[str, Any], start_time: float | None
     ) -> Response:
         """Handle conversion errors with appropriate logging and response."""
+        if isinstance(error, SuspiciousFileOperation):
+            # get_valid_filename() raises for names that reduce to ""/"."/".."
+            # (emoji-only, punctuation-only): a user-fixable input problem.
+            return Response(
+                {"error": "Invalid filename. Please rename the file and try again."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         if isinstance(error, EncryptedPDFError):
             log_conversion_error(
                 logger,
@@ -646,7 +655,11 @@ class BaseConversionAPIView(APIView, ABC):
                 )
 
             # Validate output
-            validate_output_file(output_path, context=context)
+            output_ok, output_err = validate_output_file(output_path, context=context)
+            if not output_ok:
+                raise ConversionError(
+                    output_err or "Conversion produced no output", context=context
+                )
 
             # Transfer temp-dir ownership to response.close() so it is removed
             # after the body streams. Without this the async single-file path
@@ -723,8 +736,12 @@ class BaseConversionAPIView(APIView, ABC):
         finally:
             # Only fires on the error path — success path transfers ownership to
             # response.close() so the body finishes streaming before cleanup.
-            if tmp_dir and os.path.exists(tmp_dir):
-                shutil.rmtree(tmp_dir, ignore_errors=True)
+            # Converters register their working dir in context["tmp_dir"]
+            # (BasePDFProcessor) before they can fail; without this fallback a
+            # converter that raised leaked its input copy until the reaper.
+            for d in {tmp_dir, context.get("tmp_dir")}:
+                if is_removable_tmp_dir(d):
+                    shutil.rmtree(d, ignore_errors=True)
 
     def post(self, request: HttpRequest):
         """Handle POST request for file conversion.
@@ -1075,6 +1092,9 @@ class BaseConversionAPIView(APIView, ABC):
 
         finally:
             self.cleanup_temp_files(tmp_dir, context)
+            leaked = context.get("tmp_dir")
+            if leaked and leaked != tmp_dir and is_removable_tmp_dir(leaked):
+                shutil.rmtree(leaked, ignore_errors=True)
             if validation_tmp_dir:
                 shutil.rmtree(validation_tmp_dir, ignore_errors=True)
 

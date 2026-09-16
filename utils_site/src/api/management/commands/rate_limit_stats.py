@@ -37,19 +37,19 @@ class Command(BaseCommand):
 
         for grp, data in stats.items():
             self.stdout.write(self.style.WARNING(f"\n{grp.upper()}:"))
-            self.stdout.write(f'  Total requests: {data["total"]}')
+            self.stdout.write(f"  Total requests: {data['total']}")
             self.stdout.write(
-                f'  Premium users: {data["premium"]} ({self._percentage(data["premium"], data["total"])}%)'
+                f"  Premium users: {data['premium']} ({self._percentage(data['premium'], data['total'])}%)"
             )
             self.stdout.write(
-                f'  Authenticated: {data["authenticated"]} ({self._percentage(data["authenticated"], data["total"])}%)'
+                f"  Authenticated: {data['authenticated']} ({self._percentage(data['authenticated'], data['total'])}%)"
             )
             self.stdout.write(
-                f'  Anonymous: {data["anonymous"]} ({self._percentage(data["anonymous"], data["total"])}%)'
+                f"  Anonymous: {data['anonymous']} ({self._percentage(data['anonymous'], data['total'])}%)"
             )
-            self.stdout.write(self.style.ERROR(f'  Blocked (IP): {data["blocked_ip"]}'))
+            self.stdout.write(self.style.ERROR(f"  Blocked (IP): {data['blocked_ip']}"))
             self.stdout.write(
-                self.style.ERROR(f'  Blocked (User): {data["blocked_user"]}')
+                self.style.ERROR(f"  Blocked (User): {data['blocked_user']}")
             )
 
         self.stdout.write(self.style.SUCCESS("\n✅ Done!\n"))

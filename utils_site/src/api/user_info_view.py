@@ -19,7 +19,9 @@ class UserInfoAPIView(APIView):
 
         if request.user.is_authenticated:
             is_authenticated = True
-            is_premium = getattr(request.user, "is_premium", False)
+            from .premium_utils import is_premium_active
+
+            is_premium = is_premium_active(request.user)
 
         return Response(
             {

@@ -6,6 +6,7 @@ operation is one placed object: a text box, a whiteout rectangle, or a
 highlight rectangle. Symbols (checkmarks etc.) arrive as ordinary text
 operations carrying the symbol character.
 """
+
 import base64
 import json
 import re
@@ -27,6 +28,9 @@ OPERATION_TYPES = (
 SHAPE_KINDS = ("rect", "ellipse", "line", "arrow")
 IMAGE_MIME_WHITELIST = ("png", "jpeg", "webp")
 MAX_IMAGE_BYTES = 3 * 1024 * 1024
+# Across all operations of one request (base64 length ~ 1.33 x bytes): 100 ops
+# x 3 MB used to be bounded only by DATA_UPLOAD_MAX_MEMORY_SIZE (50 MB).
+MAX_TOTAL_IMAGE_B64_CHARS = 11 * 1024 * 1024
 MAX_INK_POINTS = 2000
 _DATA_URI_RE = re.compile(r"^data:image/(png|jpeg|webp);base64,", re.IGNORECASE)
 
@@ -147,6 +151,12 @@ class OperationItemSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         t = attrs["type"]
+        if "color" not in (self.initial_data or {}):
+            # The field-level default (#111111) is right for text but painted
+            # whiteouts black and highlights dark grey when a client omitted it.
+            attrs["color"] = {"whiteout": "#ffffff", "highlight": "#ffee00"}.get(
+                t, "#111111"
+            )
         if t == "text" and not (attrs.get("text") or "").strip():
             raise serializers.ValidationError(
                 {"text": "Text operations need non-empty text."}
@@ -201,6 +211,16 @@ class AddTextPDFSerializer(serializers.Serializer):
         if len(items) > self.MAX_OPERATIONS:
             raise serializers.ValidationError(
                 f"At most {self.MAX_OPERATIONS} operations per document.",
+            )
+
+        total_b64 = sum(
+            len((op or {}).get("image_data_uri") or "")
+            for op in items
+            if isinstance(op, dict)
+        )
+        if total_b64 > MAX_TOTAL_IMAGE_B64_CHARS:
+            raise serializers.ValidationError(
+                "Embedded images exceed 8 MB in total; reduce or compress them."
             )
 
         validated: list[dict] = []

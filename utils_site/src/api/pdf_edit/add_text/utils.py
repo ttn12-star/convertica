@@ -12,6 +12,7 @@ exactly like in the browser preview.
 Whiteout is a visual cover-up, NOT redaction: the original content stays
 in the file underneath. The landing-page FAQ says so explicitly.
 """
+
 import html
 import math
 import os

@@ -6,7 +6,6 @@ from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
-from src.tasks.pdf_conversion import convert_pdf_to_word_task
 
 from ...base_views import BaseConversionAPIView
 from .decorators import pdf_to_word_docs
@@ -33,10 +32,6 @@ class PDFToWordAPIView(BaseConversionAPIView):
 
     def get_docs_decorator(self):
         return pdf_to_word_docs
-
-    def get_celery_task(self):
-        """Get the Celery task function to execute."""
-        return convert_pdf_to_word_task
 
     @pdf_to_word_docs()
     def post(self, request: HttpRequest):

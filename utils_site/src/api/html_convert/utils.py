@@ -308,6 +308,7 @@ class HTMLToPDFConverter:
                 async with async_playwright() as p:
                     browser = await p.chromium.launch(headless=True)
                     page = await browser.new_page()
+                    page.set_default_timeout(self.timeout_seconds * 1000)
                     # Block SSRF / file:// reads on every request & sub-resource.
                     await page.route("**/*", self._route_guard)
 
@@ -400,6 +401,7 @@ class HTMLToPDFConverter:
                 async with async_playwright() as p:
                     browser = await p.chromium.launch(headless=True, args=_launch_args)
                     page = await browser.new_page()
+                    page.set_default_timeout(self.timeout_seconds * 1000)
                     # Re-validate every request, redirect and sub-resource so a
                     # redirect or embedded resource can't reach internal hosts.
                     await page.route("**/*", self._route_guard)

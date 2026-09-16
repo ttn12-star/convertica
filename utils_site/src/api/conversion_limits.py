@@ -303,7 +303,7 @@ def get_max_pages_for_user(user, operation: str = None) -> int:
 
 
 def validate_pdf_pages(
-    pdf_path: str, max_pages: int = MAX_PDF_PAGES, user=None, operation: str = None
+    pdf_path: str, max_pages: int | None = None, user=None, operation: str = None
 ) -> tuple[bool, str | None, int]:
     """Validate PDF doesn't exceed page limit.
 
@@ -330,7 +330,9 @@ def validate_pdf_pages(
         if user is not None:
             actual_max_pages = get_max_pages_for_user(user, operation)
         else:
-            actual_max_pages = max_pages
+            # Read the module global at call time so RuntimeSetting overrides
+            # (reload_from_settings) apply; a default arg binds at import.
+            actual_max_pages = max_pages if max_pages is not None else MAX_PDF_PAGES
 
         if page_count > actual_max_pages:
             # Check if payments are enabled
@@ -504,7 +506,12 @@ def run_with_timeout(
     if kwargs is None:
         kwargs = {}
 
-    executor = _get_global_executor()
+    # One executor per call: a thread cannot be killed on timeout, and with the
+    # old shared 4-slot pool four overrunning conversions blocked every later
+    # sync conversion in the worker until they finished on their own.
+    # shutdown(wait=False) lets the orphaned thread finish in the background
+    # without holding anything the next request needs.
+    executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="timeout_pool")
     future = executor.submit(func, *args, **kwargs)
     try:
         return future.result(timeout=timeout)
@@ -518,6 +525,8 @@ def run_with_timeout(
             f"Operation timed out after {timeout} seconds. "
             f"The file may be too complex or corrupted. Please try with a smaller file."
         ) from exc
+    finally:
+        executor.shutdown(wait=False)
 
 
 # ============================================================================

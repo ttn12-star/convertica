@@ -451,7 +451,10 @@ class OptimizedPDFToWordConverter:
         """
         import fitz
 
-        tmp_dir = tempfile.mkdtemp(prefix="ocr_pdf_")
+        # Inside the caller's working dir so it is removed together with it;
+        # a separate mkdtemp here was never cleaned up.
+        tmp_dir = os.path.join(os.path.dirname(docx_path), "ocr_pdf")
+        os.makedirs(tmp_dir, exist_ok=True)
         ocr_pdf_path = os.path.join(tmp_dir, f"ocr_{os.path.basename(docx_path)}.pdf")
 
         # Split text into pages and process in batches
