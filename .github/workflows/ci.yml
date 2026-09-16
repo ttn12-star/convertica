@@ -604,7 +604,9 @@ jobs:
             # Pull latest code from repository
             echo "📥 Pulling latest code..."
             git fetch origin
-            git reset --hard origin/main
+            # Deploy exactly the tagged commit: origin/main may already carry
+            # commits that the tag, SENTRY_RELEASE and the tests above do not.
+            git reset --hard "refs/tags/${CURRENT_TAG}"
 
             # Note: Tailwind CSS will be built INSIDE the container after it starts
             # This ensures CSS is built with the correct code version and copied to staticfiles

@@ -107,9 +107,16 @@ sleep 10
 echo "💾 Creating database backup before migrations..."
 mkdir -p /opt/convertica/backups
 BACKUP_FILE="/opt/convertica/backups/pre_deploy_$(date +%Y%m%d_%H%M%S).sql.gz"
-docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db pg_dump -U convertica convertica | gzip > "$BACKUP_FILE" || echo "⚠️ Backup failed (non-critical)"
-if [ -f "$BACKUP_FILE" ]; then
-  echo "✅ Backup created: $BACKUP_FILE ($(du -h $BACKUP_FILE | cut -f1))"
+# No pipefail in this script: piping straight into gzip hid a failed pg_dump
+# behind a valid (empty) archive and a "backup created" line.
+if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db pg_dump -U convertica convertica > "${BACKUP_FILE%.gz}" \
+   && [ "$(stat -c %s "${BACKUP_FILE%.gz}")" -gt 1024 ] \
+   && gzip -f "${BACKUP_FILE%.gz}"; then
+  echo "✅ Backup created: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))"
+else
+  echo "❌ Database backup failed or is empty — aborting before migrations"
+  rm -f "${BACKUP_FILE%.gz}" "$BACKUP_FILE"
+  exit 1
 fi
 
 # Count data BEFORE migrations
