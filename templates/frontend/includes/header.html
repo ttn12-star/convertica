@@ -1,4 +1,4 @@
-{% load i18n static i18n_utils %}
+{% load i18n static i18n_utils minified_static %}
 
 {% comment %}
   Priority+ overflow styling: how a category menu renders once JS moves it into
@@ -102,7 +102,7 @@
           and slid under the mobile "All Tools" pill — 78px of overlap at 320px,
           38px at 360px, 8px at 390px.
         {% endcomment %}
-        <a href="{% if LANGUAGE_CODE == default_language_code %}{% url 'frontend:index_page_lang' %}{% else %}{% url 'frontend:index_page_lang' %}{% endif %}"
+        <a href="{% url 'frontend:index_page_lang' %}"
            class="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 min-w-0"
            aria-label="{% trans 'Convertica - Home' %}"
            itemprop="url">
@@ -2623,4 +2623,4 @@
   </nav>
 </div>
 
-<script src="{% static 'js/header-navigation.js' %}" defer nonce="{{ csp_nonce }}"></script>
+<script src="{% minified_static 'js/header-navigation.js' %}" defer nonce="{{ csp_nonce }}"></script>

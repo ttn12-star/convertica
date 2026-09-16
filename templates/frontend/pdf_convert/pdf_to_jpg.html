@@ -1,5 +1,5 @@
 {% extends "frontend/converter_generic.html" %}
-{% load i18n static %}
+{% load i18n static minified_static %}
 
 {% block edit_options %}
   <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200 mb-6">
@@ -103,7 +103,7 @@
 
 {% block extra_js %}
   {{ block.super }}
-  <script src="{% static 'js/pages-selector.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/pages-selector.js' %}" nonce="{{ csp_nonce }}"></script>
   <script nonce="{{ csp_nonce }}">
     // Override pages selector prefix for PDF to JPG
     document.addEventListener('DOMContentLoaded', () => {

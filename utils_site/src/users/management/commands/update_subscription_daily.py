@@ -55,8 +55,9 @@ class Command(BaseCommand):
 
         users_to_update_expired = []
         for user in expired_users:
-            if user.consecutive_subscription_days > 0 or user.is_premium:
-                user.consecutive_subscription_days = 0
+            if user.is_premium:
+                # Natural expiry keeps the streak (the user paid for the whole
+                # period) — same rule as User.deactivate_premium(reason="expired").
                 user.is_premium = False
                 users_to_update_expired.append(user)
 
@@ -64,8 +65,16 @@ class Command(BaseCommand):
         if users_to_update_expired:
             User.objects.bulk_update(
                 users_to_update_expired,
-                ["consecutive_subscription_days", "is_premium"],
+                ["is_premium"],
                 batch_size=500,
+            )
+            # bulk_update bypasses save(), so the premium caches are not
+            # invalidated by the model; do it here.
+            from django.core.cache import cache
+
+            cache.delete_many(
+                [f"user_premium_active:{u.id}" for u in users_to_update_expired]
+                + [f"user_subscription_status_{u.id}" for u in users_to_update_expired]
             )
 
         # =====================================================================

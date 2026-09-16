@@ -3,7 +3,7 @@ import secrets
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.cache import cache
 from django.core.exceptions import ValidationError
-from django.db import models
+from django.db import models, transaction
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -83,6 +83,8 @@ class User(AbstractUser):
         default="",
         choices=[
             ("lemonsqueezy", "Lemon Squeezy"),
+            ("paddle", "Paddle"),
+            ("polar", "Polar"),
         ],
         editable=False,
     )
@@ -121,11 +123,14 @@ class User(AbstractUser):
         # stale value, so the webhook succeeded, the subscription row was
         # correct, and they still got no premium.
         if getattr(self, "_subscription_changed", False):
-            cache.delete(f"user_subscription_status_{self.id}")
-            # Also invalidate the premium-active cache used by api.premium_utils
-            # so a subscription flip propagates within the next request, not
-            # 60s later.
-            cache.delete(f"user_premium_active:{self.id}")
+            keys = (
+                f"user_subscription_status_{self.id}",
+                f"user_premium_active:{self.id}",
+            )
+            cache.delete_many(keys)
+            # A concurrent request can re-cache the stale value between this
+            # delete and the row actually committing; delete again on commit.
+            transaction.on_commit(lambda: cache.delete_many(keys))
 
         if not skip_days_calculation:
             # Auto-calculate subscription days when dates are set

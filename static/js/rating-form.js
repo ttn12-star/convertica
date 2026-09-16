@@ -108,7 +108,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'X-CSRFToken': window.CSRF_TOKEN || '' },
                 body: JSON.stringify({ feedback_token: token, rating: selected, comment: comment.value.trim() }),
-            }).then(function () {
+            }).then(function (r) {
+                if (!r || !r.ok) { throw new Error('rating rejected'); }
                 markRated(token);
                 wrap.querySelector('#ratingStars').classList.add('hidden');
                 commentWrap.classList.add('hidden');

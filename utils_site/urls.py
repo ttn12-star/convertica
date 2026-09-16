@@ -5,7 +5,6 @@ from django.contrib.staticfiles.finders import find
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import include, path
-from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.generic import RedirectView
 from src.frontend.i18n_views import set_language
@@ -183,10 +182,8 @@ if settings.DEBUG:
     ]
 
 
-# Custom error handlers with aggressive caching
-# Cache error pages for 1 hour (3600 seconds) to reduce server load
-# Error pages are static and don't change often
-@cache_page(3600, key_prefix="error_400")
+# Custom error handlers. (No @cache_page: Django's cache middleware only stores
+# status 200/304, so it never cached these and only cost a lookup per error.)
 def handler400(request, exception):  # noqa: ARG001
     """Custom 400 error handler with caching."""
     response = render(request, "400.html", status=400)
@@ -197,7 +194,6 @@ def handler400(request, exception):  # noqa: ARG001
     return response
 
 
-@cache_page(3600, key_prefix="error_403")
 def handler403(request, exception):  # noqa: ARG001
     """Custom 403 error handler with caching."""
     response = render(request, "403.html", status=403)
@@ -206,7 +202,6 @@ def handler403(request, exception):  # noqa: ARG001
     return response
 
 
-@cache_page(3600, key_prefix="error_404")
 def handler404(request, exception):  # noqa: ARG001
     """Custom 404 error handler with caching."""
     response = render(request, "404.html", status=404)
@@ -215,7 +210,6 @@ def handler404(request, exception):  # noqa: ARG001
     return response
 
 
-@cache_page(3600, key_prefix="error_500")
 def handler500(request):  # noqa: ARG001
     """Custom 500 error handler with caching."""
     response = render(request, "500.html", status=500)
@@ -224,7 +218,6 @@ def handler500(request):  # noqa: ARG001
     return response
 
 
-@cache_page(3600, key_prefix="error_502")
 def handler502(request):  # noqa: ARG001
     """Custom 502 error handler with caching."""
     response = render(request, "502.html", status=502)

@@ -427,7 +427,7 @@
         });
     }
 
-    function toggleHeroDisplay(isChecked) {
+    function toggleHeroDisplay(isChecked, checkbox) {
       fetch('/users/toggle-hero-display/', {
         method: 'POST',
         headers: {
@@ -445,13 +445,13 @@
           } else {
             console.error('Failed to update hero display:', data.error);
           // Revert checkbox on error
-            event.target.checked = !isChecked;
+            if (checkbox) checkbox.checked = !isChecked;
           }
         })
         .catch(error => {
           console.error('Error:', error);
         // Revert checkbox on error
-          event.target.checked = !isChecked;
+          if (checkbox) checkbox.checked = !isChecked;
         });
     }
 
@@ -468,13 +468,21 @@
           'Content-Type': 'application/json',
         },
       })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok && response.headers.get('content-type')?.indexOf('json') === -1) {
+            throw new Error('HTTP ' + response.status);
+          }
+          return response.json();
+        })
         .then(data => {
           if (data.success) {
             window.location.href = '/';
           } else {
-            alert(data.error || 'Failed to delete account');
+            alert(data.error || '{% filter escapejs %}{% trans "Account deletion failed. Please try again." %}{% endfilter %}');
           }
+        })
+        .catch(() => {
+          alert('{% filter escapejs %}{% trans "Account deletion failed. Please try again." %}{% endfilter %}');
         });
     }
 

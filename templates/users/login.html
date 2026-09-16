@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n minified_static %}
 
 {% block robots %}noindex, nofollow{% endblock %}
 
 {% block title %}{% trans "Sign In" %} - Convertica{% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'js/social-auth.js' %}" defer nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/social-auth.js' %}" defer nonce="{{ csp_nonce }}"></script>
 {% endblock %}
 
 {% block content %}

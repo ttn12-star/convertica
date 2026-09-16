@@ -8,10 +8,13 @@
  * @returns {Object} Consent status object
  */
 function getCookieConsent() {
-    const consent = localStorage.getItem('cookie_consent');
-    const analytics = localStorage.getItem('cookie_analytics') === 'true';
-    const marketing = localStorage.getItem('cookie_marketing') === 'true';
-    const consentDate = localStorage.getItem('cookie_consent_date');
+    // localStorage throws when site data is blocked (Safari "Block All
+    // Cookies", privacy extensions) — treat that as "no consent given".
+    const read = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+    const consent = read('cookie_consent');
+    const analytics = read('cookie_analytics') === 'true';
+    const marketing = read('cookie_marketing') === 'true';
+    const consentDate = read('cookie_consent_date');
 
     return {
         consent: consent, // 'accepted', 'rejected', 'custom', or null

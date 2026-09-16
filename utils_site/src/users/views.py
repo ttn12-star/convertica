@@ -1,5 +1,6 @@
 # pylint: skip-file
 import json
+import logging
 
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -23,6 +24,8 @@ from src.payments.polar import PolarClient, PolarError
 
 from .forms import CustomUserCreationForm, LoginForm, stale_unverified_user
 from .models import APIKey, Payment, UserSubscription
+
+logger = logging.getLogger(__name__)
 
 
 def _safe_next(request):
@@ -219,8 +222,22 @@ def user_register(request):
     )
 
 
+def _cross_site_navigation(request) -> bool:
+    """True for a top-level GET initiated by another site (CSRF via <img>/<a>).
+
+    Sec-Fetch-Site is sent by every current browser; when absent we allow the
+    request (old clients), which is no worse than before.
+    """
+    return request.headers.get("Sec-Fetch-Site", "").lower() == "cross-site"
+
+
 def user_logout(request):
     """Handle user logout with complete session cleanup."""
+    if request.method == "GET" and _cross_site_navigation(request):
+        # <img src="https://convertica.net/users/logout/"> on a third-party
+        # page must not log the visitor out.
+        return redirect("/")
+
     # Clear all session data
     request.session.flush()
 
@@ -414,6 +431,17 @@ def delete_account(request):
     user = request.user
 
     try:
+        # Rows that survive the delete (SET_NULL) must not keep the person's
+        # IP / user agent / comments attached to a now-anonymous row.
+        from src.feedback.models import ToolRating
+
+        from .models import OperationRun
+
+        OperationRun.objects.filter(user=user).update(
+            remote_addr="", user_agent="", path=""
+        )
+        ToolRating.objects.filter(user=user).update(ip_address=None, session_key="")
+
         # Log out user first
         auth_logout(request)
 
@@ -424,8 +452,15 @@ def delete_account(request):
             {"success": True, "message": _("Account deleted successfully")}
         )
 
-    except Exception as e:
-        return JsonResponse({"success": False, "error": str(e)})
+    except Exception:
+        logger.exception("Account deletion failed for user %s", user.pk)
+        return JsonResponse(
+            {
+                "success": False,
+                "error": _("Account deletion failed. Please try again."),
+            },
+            status=500,
+        )
 
 
 @login_required
@@ -458,9 +493,11 @@ def toggle_hero_display(request):
 
     except json.JSONDecodeError:
         return JsonResponse({"success": False, "error": _("Invalid JSON")}, status=400)
-
-    except Exception as e:
-        return JsonResponse({"success": False, "error": str(e)})
+    except Exception:
+        logger.exception("toggle_hero_display failed for user %s", request.user.pk)
+        return JsonResponse(
+            {"success": False, "error": _("Could not update the setting.")}, status=500
+        )
 
 
 @login_required

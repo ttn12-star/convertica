@@ -200,7 +200,7 @@
       }
 
       function toolLabelByUrl(url) {
-        const option = toolInput.querySelector(`option[value="${url}"]`);
+        const option = toolInput.querySelector(`option[value="${CSS.escape(String(url))}"]`);
         return option ? option.textContent.trim() : url;
       }
 

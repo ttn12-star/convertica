@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getDownloadFilename(response, fallback) {
         const disposition = response.headers.get('content-disposition') || '';
-        const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+        const match = disposition.match(/filename="?([^";\n]+)"?/);
         if (match && match[1]) {
             return match[1].replace(/['"]/g, '');
         }

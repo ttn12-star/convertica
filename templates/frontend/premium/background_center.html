@@ -225,7 +225,7 @@
         const disposition = response.headers.get('content-disposition') || '';
         let filename = task.outputFilename || task.originalFilename || 'convertica_file';
 
-        const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+        const match = disposition.match(/filename="?([^";\n]+)"?/);
         if (match && match[1]) {
           filename = match[1].replace(/["']/g, '');
         }

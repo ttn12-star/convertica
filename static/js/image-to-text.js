@@ -81,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        // Revoking synchronously aborts the download in iOS Safari/Firefox.
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
     }
 
     function resetAll() {

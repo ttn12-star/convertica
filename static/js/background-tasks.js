@@ -199,7 +199,21 @@
         }
     }
 
+    let pollInFlight = false;
+
     async function pollAll() {
+        // 5 s interval + awaited fetches: overlapping runs and a stale
+        // read-modify-write of localStorage dropped tasks added mid-poll.
+        if (pollInFlight) return;
+        pollInFlight = true;
+        try {
+            await pollAllInner();
+        } finally {
+            pollInFlight = false;
+        }
+    }
+
+    async function pollAllInner() {
         let tasks = getTasks();
         let changed = false;
 
@@ -269,7 +283,13 @@
             }
         }
 
-        if (changed) saveTasks(tasks);
+        if (changed) {
+            // Merge into the current stored list: an add/remove that happened
+            // while the status requests were in flight must survive.
+            const byId = new Map(tasks.map((t) => [t.taskId, t]));
+            const merged = getTasks().map((t) => (byId.has(t.taskId) ? Object.assign({}, t, byId.get(t.taskId)) : t));
+            saveTasks(merged);
+        }
         renderIndicator();
     }
 
@@ -368,7 +388,7 @@
     function escapeForHtml(str) {
         const div = document.createElement('div');
         div.textContent = str || '';
-        return div.innerHTML;
+        return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     // ─── Header Indicator + Dropdown ────────────────────────────────────
@@ -497,7 +517,7 @@
             const contentDisposition = resp.headers.get('content-disposition');
             let filename = 'convertica_file';
             if (contentDisposition) {
-                const match = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                const match = contentDisposition.match(/filename="?([^";\n]+)"?/);
                 if (match && match[1]) filename = match[1].replace(/['"]/g, '');
             }
 

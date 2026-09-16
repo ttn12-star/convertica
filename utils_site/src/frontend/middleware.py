@@ -292,6 +292,7 @@ class CaptchaRequirementMiddleware:
 # the "real users" number would be dominated by robots.
 _BOT_UA_RE = re.compile(
     r"bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|ahrefs|semrush|"
+    r"convertica-cache-warmer|"
     r"mj12|dotbot|petalbot|facebookexternalhit|embedly|preview|monitor|pingdom|"
     r"uptime|headless|phantom|python-requests|curl|wget|scrapy|httpx|okhttp|"
     # AI/data-scraper agents whose UA carries no bot/crawl/spider token, plus

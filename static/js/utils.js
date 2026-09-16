@@ -76,8 +76,9 @@ function formatFileSize(bytes) {
  */
 function escapeHtml(text) {
     const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    div.textContent = text == null ? '' : String(text);
+    // innerHTML escapes & < > but not quotes; callers interpolate into title="..."
+    return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 /**
@@ -980,7 +981,7 @@ async function submitAsyncConversion(options) {
             let filename = originalFileName;
 
             if (contentDisposition) {
-                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                const filenameMatch = contentDisposition.match(/filename="?([^";\n]+)"?/);
                 if (filenameMatch && filenameMatch[1]) {
                     filename = filenameMatch[1].replace(/['"]/g, '');
                 }

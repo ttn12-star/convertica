@@ -15,6 +15,18 @@ logger = logging.getLogger(__name__)
 def notify_indexnow_on_article_save(
     sender, instance, created, **kwargs
 ):  # noqa: ARG001
+    """Defer the IndexNow ping until the row is committed.
+
+    import_blog_articles --dry-run rolls its transaction back and used to
+    announce URLs that never existed; live imports held the transaction open
+    across up to 7 x 10 s of HTTP.
+    """
+    from django.db import transaction
+
+    transaction.on_commit(lambda: _notify_indexnow(sender, instance, created))
+
+
+def _notify_indexnow(sender, instance, created):  # noqa: ARG001
     """
     Automatically submit article URL to IndexNow when article is published or updated.
 

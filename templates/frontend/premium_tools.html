@@ -17,14 +17,14 @@
       {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "{{ page_title }}",
-        "description": "{{ page_description }}",
+        "name": "{{ page_title|escapejs }}",
+        "description": "{{ page_description|escapejs }}",
         "itemListElement": [
           {% for tool in premium_tool_entities %}
             {
               "@type": "ListItem",
               "position": {{ forloop.counter }},
-              "url": "{{ site_base_url }}{{ tool.url }}",
+              "url": "{{ site_base_url }}{{ tool.url|escapejs }}",
               "name": "{{ tool.name|escapejs }}"
             }{% if not forloop.last %},{% endif %}
           {% endfor %}

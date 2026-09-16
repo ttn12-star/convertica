@@ -124,6 +124,10 @@ def set_language(request):
             user is not None
             and getattr(user, "is_authenticated", False)
             and user.preferred_language != lang_code
+            # The switcher is a same-site GET form (anonymous pages have no
+            # CSRF cookie); a third-party <img src=...setlang?language=ar>
+            # must not persist a choice on the account.
+            and request.headers.get("Sec-Fetch-Site", "").lower() != "cross-site"
         ):
             user.preferred_language = lang_code
             user.save(update_fields=["preferred_language"])

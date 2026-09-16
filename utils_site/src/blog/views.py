@@ -37,7 +37,7 @@ def article_list(request):
         category = None
 
     # Search - search in English fields and translations JSON
-    # Cache search results for 5 minutes to reduce database load
+    # Cache search results for 1 hour to reduce database load
     search_query = request.GET.get("q", "").strip()
     if search_query:
         # Create cache key for search results
@@ -124,7 +124,7 @@ def article_list(request):
             else:
                 articles = articles.filter(base_query)
 
-            # Cache search results for 5 minutes
+            # Cache search results for 1 hour
             cache.set(search_cache_key, articles, 3600)  # Cache for 1 hour
 
     # Pagination - 9 articles per page (3 columns x 3 rows)
