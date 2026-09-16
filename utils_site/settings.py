@@ -20,7 +20,9 @@ from pathlib import Path
 from celery.schedules import crontab
 from decouple import Csv, config
 
-TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
+# True under `manage.py test` AND under pytest (tests/e2e): the pytest path used
+# to see TESTING=False and hit the real Redis DB from .env.
+TESTING = (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules
 
 # Silence known-noisy third-party warnings.warn() calls so they don't reach
 # Sentry's Logs dataset as actionable-looking WARN entries. Each entry is
@@ -732,7 +734,6 @@ ADMIN_URL_PATH = config("ADMIN_URL_PATH", default="admin")
 
 # Conversion API settings
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB
-CONVERSION_TIMEOUT = 600  # 10 minutes (in seconds)
 TEMP_DIR_PREFIX = "convertica_"
 
 # ============================================================================
@@ -1176,7 +1177,22 @@ try:
             # from previous deployments on long-lived cache entries.
             "KEY_PREFIX": cache_key_prefix,
             "TIMEOUT": 3600,  # Default timeout: 1 hour (cache cleared on deploy)
-        }
+        },
+        # Counters that must NOT reset on deploy (daily free quota, rate-limit
+        # buckets): same Redis, fixed prefix. With the release-keyed prefix
+        # above every deploy handed all free users a fresh daily allowance.
+        "quota": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": config("REDIS_URL", default="redis://127.0.0.1:6379/1"),
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "SOCKET_CONNECT_TIMEOUT": 5,
+                "SOCKET_TIMEOUT": 5,
+                "IGNORE_EXCEPTIONS": True,
+            },
+            "KEY_PREFIX": "convertica:quota",
+            "TIMEOUT": 3600,
+        },
     }
 except ImportError:
     # Fallback to file-based cache if django-redis is not installed
@@ -1187,7 +1203,11 @@ except ImportError:
         "default": {
             "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
             "LOCATION": os.path.join(BASE_DIR, "cache"),
-        }
+        },
+        "quota": {
+            "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+            "LOCATION": os.path.join(BASE_DIR, "cache", "quota"),
+        },
     }
 
 if TESTING:
@@ -1200,7 +1220,13 @@ if TESTING:
         "default": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
             "LOCATION": "convertica-test-cache",
-        }
+        },
+        # Same LOCATION as default: LocMem shares one store per location, so a
+        # test's cache.clear() also resets the daily-quota counters.
+        "quota": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "convertica-test-cache",
+        },
     }
     # django-ratelimit rejects LocMemCache as "not shared" (E003). Under the
     # single-process test runner that multi-worker concern doesn't apply, and
@@ -1392,7 +1418,7 @@ GOOGLE_PICKER_APP_ID = config("GOOGLE_APP_ID", default="")
 DROPBOX_APP_KEY = config("DROPBOX_APP_KEY", default="")
 
 # Telegram Bot Configuration
-CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
+CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default=True, cast=bool)
 
 # Subscription Pricing Configuration
 SUBSCRIPTION_PRICING = {
@@ -1476,9 +1502,8 @@ except ImportError:
 INDEXNOW_ENABLED = config("INDEXNOW_ENABLED", default=False, cast=bool)
 INDEXNOW_KEY = config("INDEXNOW_KEY", default="")
 
-# Site base URL for IndexNow (fallback if not set elsewhere)
-if not hasattr(locals(), "SITE_BASE_URL"):
-    SITE_BASE_URL = "https://convertica.net"
+# Site base URL for IndexNow / absolute links.
+SITE_BASE_URL = config("SITE_BASE_URL", default="https://convertica.net")
 
 # ============================================
 # Advertising / Monetization Configuration

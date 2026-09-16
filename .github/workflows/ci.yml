@@ -453,11 +453,13 @@ jobs:
     # This ensures deployment happens only after creating a release tag
     if: |
       startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
-    # Cancel in-progress deployments when a new tag is pushed
-    # This prevents wasting resources on outdated deployments
+    # Never cancel a running deploy: deploy.sh is a linear, non-idempotent
+    # sequence (migrate -> collectstatic -> restart workers); cutting it in the
+    # middle leaves prod half-deployed. A newer tag simply queues behind, and
+    # the stale-tag check inside the script cancels the older one cleanly.
     concurrency:
       group: deploy-production
-      cancel-in-progress: true
+      cancel-in-progress: false
     environment:
       name: production
       url: https://convertica.net
