@@ -163,6 +163,10 @@ class User(AbstractUser):
                 # End date is before start date
                 self.total_subscription_days = 0
                 self.consecutive_subscription_days = 0
+        elif self.subscription_start_date and self.subscription_end_date is None:
+            # Lifetime plan: no end date. Keep the counters accrued so far —
+            # zeroing them here demoted long-time subscribers on upgrade.
+            pass
         else:
             # Missing dates
             self.total_subscription_days = 0

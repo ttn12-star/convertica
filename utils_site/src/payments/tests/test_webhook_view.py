@@ -124,7 +124,11 @@ class WebhookViewTests(TestCase):
         self.assertTrue(UserSubscription.objects.filter(user=self.user).exists())
 
     def test_fresh_processing_event_is_not_double_processed(self):
-        """While another worker is actively on the event, skip — LS retries."""
+        """While another worker is actively on the event, answer non-2xx.
+
+        A 200 would tell the provider the delivery is done; if that worker dies
+        the event is lost for good. 409 keeps the provider's retry alive.
+        """
         payload = subscription_created_payload(
             user_id=self.user.id,
             plan_id=self.plan.id,
@@ -133,7 +137,7 @@ class WebhookViewTests(TestCase):
 
         r = signed_post(self.client, self.url, payload)
 
-        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.status_code, 409)
         evt.refresh_from_db()
         self.assertIsNone(evt.processed_at)
         self.assertFalse(UserSubscription.objects.filter(user=self.user).exists())
