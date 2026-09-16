@@ -12,7 +12,6 @@ signature at arbitrary (x, y) per page. Batch keeps the old enum because
 per-coordinate placement is meaningless when every file has different
 dimensions.
 """
-
 from collections.abc import Callable
 
 from drf_yasg import openapi
