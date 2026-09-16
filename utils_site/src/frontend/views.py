@@ -2671,11 +2671,6 @@ def sitemap_lang(request, lang: str):
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
-def sitemap_xml(request):
-    """Legacy sitemap.xml - redirects to sitemap index."""
-    return sitemap_index(request)
-
-
 @method_decorator(ensure_csrf_cookie, name="dispatch")
 class PricingPageView(TemplateView):
     """Pricing page for Convertica Premium with all plans and Heroes Hall.

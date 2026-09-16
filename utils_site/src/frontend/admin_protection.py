@@ -117,31 +117,3 @@ class AdminIPWhitelistMiddleware:
             logger.debug(f"Admin access allowed for IP: {client_ip}")
 
         return self.get_response(request)
-
-
-def admin_ip_required(view_func: Callable) -> Callable:
-    """
-    Decorator to restrict admin views to whitelisted IPs.
-
-    Usage:
-        @admin_ip_required
-        def admin_view(request):
-            ...
-    """
-
-    @wraps(view_func)
-    def wrapper(request: HttpRequest, *args, **kwargs):
-        whitelist = getattr(settings, "ADMIN_IP_WHITELIST", [])
-
-        if whitelist:
-            client_ip = get_client_ip(request)
-            if client_ip not in whitelist:
-                logger.warning(f"Admin view denied - IP {client_ip} not in whitelist")
-                return HttpResponseForbidden(
-                    "<h1>404 Not Found</h1>",
-                    content_type="text/html",
-                )
-
-        return view_func(request, *args, **kwargs)
-
-    return wrapper

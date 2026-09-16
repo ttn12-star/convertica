@@ -5,7 +5,7 @@
   {{ block.super }}
   {# converter_generic already loads utils, task-cancellation, file-input-handler and converter. #}
   {# base.html defines only 'extra_js' (no 'scripts' block), so add the OCR options script here. #}
-  <script src="{% static 'js/pdf-to-word.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/pdf-to-word.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
 
 {% block edit_options %}

@@ -16,7 +16,7 @@
         </div>
         <ul class="space-y-2.5 text-sm">
           <li>
-            <a href="{% if LANGUAGE_CODE == default_language_code %}{% url 'frontend:index_page_lang' %}{% else %}{% url 'frontend:index_page_lang' %}{% endif %}"
+            <a href="{% url 'frontend:index_page_lang' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-white hover:translate-x-1 transition duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

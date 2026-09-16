@@ -483,7 +483,14 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
         "ls_variant_id",
     )
     list_filter = ("is_active", "is_lifetime", "currency")
-    search_fields = ("name", "slug", "ls_variant_id", "ls_product_id")
+    search_fields = (
+        "name",
+        "slug",
+        "ls_variant_id",
+        "ls_product_id",
+        "paddle_price_id",
+        "polar_product_id",
+    )
     ordering = ("price",)
 
     fieldsets = (
@@ -492,7 +499,14 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
         (
             "Provider Integration",
             {
-                "fields": ("ls_variant_id", "ls_product_id", "is_lifetime"),
+                "fields": (
+                    "is_lifetime",
+                    "paddle_price_id",
+                    "paddle_product_id",
+                    "polar_product_id",
+                    "ls_variant_id",
+                    "ls_product_id",
+                ),
                 "classes": ("collapse",),
             },
         ),

@@ -24,10 +24,15 @@ class IndexNowSignalTests(TestCase):
     def _save_and_capture(self, **article_kwargs) -> list[str]:
         # The signal skips test runs at the indexnow.py layer, so patch the
         # submit function itself and assert on the URLs it was handed.
-        with mock.patch(
-            "src.frontend.indexnow.submit_url_to_indexnow", return_value=True
-        ) as submit, mock.patch("src.blog.signals.os.environ", {}), mock.patch(
-            "src.blog.signals.sys.argv", ["manage.py"]
+        with (
+            mock.patch(
+                "src.frontend.indexnow.submit_url_to_indexnow", return_value=True
+            ) as submit,
+            mock.patch("src.blog.signals.os.environ", {}),
+            mock.patch("src.blog.signals.sys.argv", ["manage.py"]),
+            # The ping is deferred to transaction.on_commit (dry-run imports
+            # roll back); TestCase never commits, so execute the callbacks here.
+            self.captureOnCommitCallbacks(execute=True),
         ):
             Article.objects.create(
                 slug="indexnow-demo",
@@ -66,12 +71,11 @@ class IndexNowSignalTests(TestCase):
     def test_single_url_submit_uses_get_not_batch_post(self):
         from src.frontend.indexnow import submit_url_to_indexnow
 
-        with mock.patch("src.frontend.indexnow.requests.get") as get, mock.patch(
-            "src.frontend.indexnow.requests.post"
-        ) as post, mock.patch(
-            "src.frontend.indexnow.sys.argv", ["manage.py"]
-        ), mock.patch(
-            "src.frontend.indexnow.os.environ", {}
+        with (
+            mock.patch("src.frontend.indexnow.requests.get") as get,
+            mock.patch("src.frontend.indexnow.requests.post") as post,
+            mock.patch("src.frontend.indexnow.sys.argv", ["manage.py"]),
+            mock.patch("src.frontend.indexnow.os.environ", {}),
         ):
             get.return_value = mock.Mock(status_code=200)
             ok = submit_url_to_indexnow("https://convertica.net/en/blog/x/")

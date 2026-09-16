@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const contentDisposition = response.headers.get('content-disposition');
             let downloadName = isBatchMode ? 'convertica.zip' : selectedFile.name;
             if (contentDisposition) {
-                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                const filenameMatch = contentDisposition.match(/filename="?([^";\n]+)"?/);
                 if (filenameMatch && filenameMatch[1]) {
                     downloadName = filenameMatch[1].replace(/['"]/g, '');
                 }

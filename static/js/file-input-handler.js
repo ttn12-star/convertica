@@ -180,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Escape HTML helper
         function escapeHtml(text) {
             const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+            div.textContent = text == null ? '' : String(text);
+            return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
         if (window.PAGE_LIMIT_ERROR) {
@@ -553,7 +553,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (!near) return;
                 e.preventDefault();
-                e.stopPropagation();
+                // Both document listeners are capture-phase on the same node;
+                // stopPropagation does not stop siblings, so a drop used to
+                // run handleDrop 2-3 times (re-parsing the PDF each time).
+                e.stopImmediatePropagation();
                 if (eventName === 'dragover') {
                     isHoveringDropZone = true;
                     dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');

@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const escapeHtml = window.escapeHtml || function(text) {
         const div = document.createElement('div');
         div.textContent = text;
-        return div.innerHTML;
+        return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     };
 
     // Update convert button state

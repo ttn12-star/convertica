@@ -28,7 +28,6 @@
         return document.querySelector('meta[name="csrf-token"]')?.content
             || document.querySelector('[name=csrfmiddlewaretoken]')?.value
             || null;
-        return cookieValue;
     }
 
     /**

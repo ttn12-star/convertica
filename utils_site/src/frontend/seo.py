@@ -65,7 +65,6 @@ def get_request_seo_context(request) -> dict:
     base_url = get_base_url(request)
     view_name, url_kwargs = _resolve_view(request)
     normalized_path = remove_all_language_prefixes(request.path)
-    is_homepage = request.path == "/" or request.path in homepage_paths
     canonical_path = request.path
 
     robots_meta = INDEX_ROBOTS
@@ -187,6 +186,23 @@ def _build_hreflang_links(
 
     if not view_name:
         return []
+
+    if view_name == "blog:article_detail":
+        # Match the sitemap rule: alternates only for locales the article is
+        # actually translated into. Advertising /ru/blog/<slug>/ for an
+        # English-only article points hreflang at a duplicate English body.
+        try:
+            from src.blog.models import Article
+
+            translations = (
+                Article.objects.filter(slug=url_kwargs.get("slug"))
+                .values_list("translations", flat=True)
+                .first()
+            ) or {}
+            allowed = {default_language, *translations.keys()}
+            languages = [(c, n) for c, n in languages if c in allowed]
+        except Exception:  # pragma: no cover - never break the page over hreflang
+            pass
 
     old_lang = get_language()
     hreflangs = []

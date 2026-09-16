@@ -1218,7 +1218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const escapeHtml = window.escapeHtml || function(text) {
         const div = document.createElement('div');
         div.textContent = text;
-        return div.innerHTML;
+        return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     };
 
     // Form submission
@@ -1375,7 +1375,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const contentDisposition = response.headers.get('content-disposition');
             let downloadName = isBatchMode ? 'convertica.zip' : selectedFile.name;
             if (contentDisposition) {
-                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                const filenameMatch = contentDisposition.match(/filename="?([^";\n]+)"?/);
                 if (filenameMatch && filenameMatch[1]) {
                     downloadName = filenameMatch[1].replace(/['"]/g, '');
                 }

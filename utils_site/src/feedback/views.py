@@ -13,10 +13,10 @@ from .tokens import resolve_feedback_token
 
 
 def _client_ip(request):
-    xff = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    if xff:
-        return xff.split(",")[0].strip() or None
-    return request.META.get("REMOTE_ADDR") or None
+    from src.api.client_ip import get_client_ip
+
+    # Leftmost X-Forwarded-For is client-controlled; use the trusted resolver.
+    return get_client_ip(request) or None
 
 
 def _ok():
