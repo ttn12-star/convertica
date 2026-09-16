@@ -134,7 +134,11 @@ def _signup_spam_error(request):
     """
     from django.conf import settings
     from src.api.client_ip import get_client_ip
-    from src.api.spam_protection import check_honeypot, verify_turnstile
+    from src.api.spam_protection import (
+        _check_fallback_rate_limit,
+        check_honeypot,
+        verify_turnstile,
+    )
 
     if not check_honeypot(request):
         return _("Registration could not be completed. Please try again.")
@@ -147,7 +151,13 @@ def _signup_spam_error(request):
     token = request.POST.get("cf-turnstile-response", "") or request.POST.get(
         "turnstile_token", ""
     )
-    if not verify_turnstile(token, get_client_ip(request)):
+    ts_result = verify_turnstile(token, get_client_ip(request))
+    if ts_result == "fallback":
+        # Turnstile API unreachable: fail open but throttled, like web_token_view.
+        allowed, _err = _check_fallback_rate_limit(request, get_client_ip(request))
+        if not allowed:
+            return _("Too many attempts, please try again later.")
+    elif not ts_result:
         return _("Please complete the CAPTCHA verification.")
 
     return None
@@ -536,7 +546,7 @@ def download_data(request):
         payment_data = {
             "payment_id": payment.payment_id,
             "plan": payment.plan.name,
-            "plan_type": payment.plan.plan_type,
+            "plan_type": "lifetime" if payment.plan.is_lifetime else "subscription",
             "amount": str(payment.amount),
             "currency": getattr(payment, "currency", "USD"),
             "status": payment.status,

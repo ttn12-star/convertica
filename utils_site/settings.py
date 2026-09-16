@@ -1319,6 +1319,9 @@ CELERY_BEAT_SCHEDULE = {
 # Rate Limiting Configuration
 RATELIMIT_ENABLE = config("RATELIMIT_ENABLE", default=True, cast=bool)
 RATELIMIT_USE_CACHE = "default"  # Use Redis cache for rate limiting
+# Behind nginx REMOTE_ADDR is the proxy container, i.e. one bucket for every
+# client. Resolve the same trusted IP the rest of the app uses.
+RATELIMIT_IP_META_KEY = "src.api.client_ip.get_client_ip"
 
 # API Rate Limits (requests per minute)
 API_RATE_LIMIT = {

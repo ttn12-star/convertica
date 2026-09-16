@@ -12,6 +12,7 @@ import time
 
 import jwt
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 
@@ -72,6 +73,8 @@ class WebTokenAuthentication(BaseAuthentication):
         if payload.get("iph") != _ip_hash(caller_ip):
             raise AuthenticationFailed("Web token bound to different IP")
 
-        # Web tokens are anonymous; user=None, but we expose the parsed
-        # payload as request.auth for permission classes to read.
-        return (None, payload)
+        # Web tokens are anonymous. Return AnonymousUser rather than None so
+        # every `request.user.is_authenticated` downstream (size/page limits,
+        # OCR gate) behaves like a plain anonymous request instead of raising.
+        # The parsed payload is exposed as request.auth for permission classes.
+        return (AnonymousUser(), payload)
