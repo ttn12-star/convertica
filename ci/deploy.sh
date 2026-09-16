@@ -368,9 +368,10 @@ docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
 # Step 9: Clean up old stopped containers (only if new ones are healthy)
 echo "🧹 Cleaning up old stopped containers..."
 # Remove old stopped containers (docker compose may have left them)
-docker container prune -f --filter "name=convertica_web" --filter "status=exited" 2>/dev/null || true
-docker container prune -f --filter "name=convertica_celery" --filter "status=exited" 2>/dev/null || true
-docker container prune -f --filter "name=convertica_celery_beat" --filter "status=exited" 2>/dev/null || true
+# `docker container prune` only understands `until`/`label` filters; the old
+# name/status filters were silently rejected and nothing was ever removed.
+docker container ls -aq --filter "name=convertica_" --filter "status=exited" \
+  | xargs -r docker rm 2>/dev/null || true
 
 echo "✅ Deployment completed!"
 

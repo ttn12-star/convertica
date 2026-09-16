@@ -249,7 +249,9 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME || exit 0"]
+      # `|| exit 0` made this unfailable, so autoheal never restarted a wedged
+      # worker. retries=10 x 60s still tolerates slow starts.
+      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 20"]
       interval: 60s
       timeout: 30s
       retries: 10
@@ -297,7 +299,9 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME || exit 0"]
+      # `|| exit 0` made this unfailable, so autoheal never restarted a wedged
+      # worker. retries=10 x 60s still tolerates slow starts.
+      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 20"]
       interval: 60s
       timeout: 30s
       retries: 10

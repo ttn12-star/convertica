@@ -125,7 +125,9 @@ services:
     # Allow celery to use swap for heavy PDF operations (memory + swap = 1.5G)
     memswap_limit: 1.5G
     healthcheck:
-      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME || exit 0"]
+      # `|| exit 0` made this unfailable, so autoheal never restarted a wedged
+      # worker. retries=10 x 60s still tolerates slow starts.
+      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 20"]
       interval: 60s
       timeout: 30s
       retries: 10
@@ -186,7 +188,7 @@ services:
       resources:
         limits:
           cpus: '${DB_CPU_LIMIT:-0.3}'
-          memory: ${DB_MEMORY_LIMIT:-256M}
+          memory: ${DB_MEMORY_LIMIT:-512M}  # 256M was below shared_buffers + work_mem x backends
         reservations:
           cpus: '${DB_CPU_RESERVATION:-0.1}'
           memory: ${DB_MEMORY_RESERVATION:-128M}
