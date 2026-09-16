@@ -221,7 +221,7 @@ services:
       context: .
       dockerfile: ci/Dockerfile
     container_name: convertica_celery
-    command: celery -A utils_site worker --loglevel=info --concurrency=2 --pool=prefork -Q fast,regular,maintenance,default
+    command: celery -A utils_site worker --loglevel=info --concurrency=2 --pool=prefork -Q fast,regular,premium,maintenance,default
     deploy:
       resources:
         limits:

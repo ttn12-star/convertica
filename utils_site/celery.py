@@ -117,6 +117,9 @@ try:
         # Dev workers: solo (concurrency=1)
         # Task execution settings
         task_acks_late=True,  # Acknowledge tasks after completion (allows task requeue on failure)
+        # Redis redelivers unacked messages after this; must exceed the longest
+        # task (batch time_limit=1800) or a finished-but-unacked job runs twice.
+        broker_transport_options={"visibility_timeout": 7200},
         # Do NOT requeue a task whose worker died abruptly (SIGKILL/OOM).
         # reject_on_worker_lost=True re-delivers such a task to the broker, so
         # an OOM-inducing conversion gets retried forever — each attempt

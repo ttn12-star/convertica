@@ -19,6 +19,7 @@ from celery import shared_task
 from celery.exceptions import Ignore, SoftTimeLimitExceeded
 from django.core.files.base import File
 from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
+from src.api.file_validation import is_removable_tmp_dir
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -276,9 +277,10 @@ def _success_notifications(
 @shared_task(
     bind=True,
     name="pdf_conversion.generic_conversion",
-    queue=lambda self, task_id, input_path, original_filename, conversion_type, **kwargs: (
-        "premium" if kwargs.get("is_premium", False) else "regular"
-    ),
+    # No queue= here: async_views picks fast/regular/premium per request. A
+    # callable queue= used to sit here and made every self.retry() fail to
+    # publish (the lambda leaked into the message options), leaving the task
+    # PENDING forever.
     soft_time_limit=420,  # 7 minutes soft limit (reduced for 4GB server)
     time_limit=480,  # 8 minutes hard limit (reduced for 4GB server)
     acks_late=True,  # Acknowledge after completion (allows task revocation)
@@ -977,7 +979,7 @@ def generic_conversion_task(
         try:
             if output_path:
                 conv_dir = os.path.dirname(output_path)
-                if conv_dir and conv_dir != task_dir and os.path.isdir(conv_dir):
+                if conv_dir != task_dir and is_removable_tmp_dir(conv_dir):
                     shutil.rmtree(conv_dir, ignore_errors=True)
         except Exception as tmp_exc:
             logger.debug("Converter temp-dir cleanup skipped: %s", tmp_exc)
