@@ -157,6 +157,7 @@ _CONVERTER_TMP_PREFIXES = (
     "url2pdf_",
     "jpg2pdf_",  # also jpg2pdf_multi_
     "epub_to_pdf_",
+    "pdf_to_pdfa_",
     # ocr
     "ocr_",  # also ocr_pdf_
     "searchable_pdf_",
@@ -221,7 +222,9 @@ def cleanup_system_tmp(max_age_seconds: int = 3600):
     freed = 0
     try:
         for name in os.listdir(tmp_root):
-            if not name.startswith(_CONVERTER_TMP_PREFIXES):
+            # "<tool>_batch_" dirs come from every batch view; match them by
+            # infix instead of listing each one.
+            if not (name.startswith(_CONVERTER_TMP_PREFIXES) or "_batch_" in name):
                 continue
             path = os.path.join(tmp_root, name)
             try:

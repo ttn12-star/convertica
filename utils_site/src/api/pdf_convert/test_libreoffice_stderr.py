@@ -32,14 +32,19 @@ def _run(converter, returncode, stderr):
             "src.api.unoserver_client.convert_with_unoserver", return_value=False
         ),
         mock.patch("shutil.which", return_value="/usr/bin/libreoffice"),
-        mock.patch("subprocess.run", side_effect=err) as run,
+        mock.patch(
+            "src.api.pdf_convert.excel_to_pdf.utils._run_libreoffice", side_effect=err
+        ) as run,
+        mock.patch(
+            "src.api.pdf_convert.ppt_to_pdf.utils._run_libreoffice", side_effect=err
+        ) as run_ppt,
     ):
         try:
             asyncio.new_event_loop().run_until_complete(
                 converter._convert_with_libreoffice_async("/tmp/x.in", "/tmp/x.pdf", {})
             )
         finally:
-            _run.calls = run.call_count
+            _run.calls = run.call_count + run_ppt.call_count
 
 
 def test_str_stderr_raises_conversion_error_not_attribute_error():

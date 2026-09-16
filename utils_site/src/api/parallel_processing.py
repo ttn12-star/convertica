@@ -79,13 +79,16 @@ class MemorySafeBatchProcessor:
                     max_workers=perf_config.get_thread_workers("batch_processing")
                 ) as executor:
                     future_to_item = {
-                        executor.submit(processor_func, item): item for item in batch
+                        executor.submit(processor_func, item): (idx, item)
+                        for idx, item in enumerate(batch)
                     }
 
+                    indexed_results = []
                     for future in as_completed(future_to_item):
+                        idx, _item = future_to_item[future]
                         try:
                             result = future.result(timeout=30)  # 30s timeout per item
-                            batch_results.append(result)
+                            indexed_results.append((idx, result))
                         except Exception as e:
                             logger.error(
                                 f"Failed to process item in batch {batch_num}",
@@ -99,6 +102,8 @@ class MemorySafeBatchProcessor:
                             # Continue with other items in batch
                             continue
 
+                # as_completed yields in finish order; restore input order
+                batch_results = [r for _idx, r in sorted(indexed_results)]
                 results.extend(batch_results)
 
                 # Force garbage collection for memory

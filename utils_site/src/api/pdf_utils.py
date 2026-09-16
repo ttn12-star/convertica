@@ -45,7 +45,15 @@ def parse_pages(pages_str: str, total_pages: int) -> list[int]:
             except ValueError:
                 logger.warning("Invalid page number: %s", part)
 
-    return sorted(set(page_indices))  # Remove duplicates and sort
+    result = sorted(set(page_indices))  # Remove duplicates and sort
+    if not result:
+        # "5-2", "0", "abc" used to yield [] and the tool returned the input
+        # unchanged with HTTP 200 — a silent no-op the user cannot notice.
+        raise InvalidPDFError(
+            f"No valid pages in '{pages_str}'. Use 'all', a page number, or a "
+            f"range like 2-5 (this document has {total_pages} pages)."
+        )
+    return result
 
 
 def repair_pdf(input_path: str, output_path: str | None = None) -> str:

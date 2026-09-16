@@ -115,10 +115,12 @@ class URLToPDFAPIView(BaseConversionAPIView):
             },
         }
 
-        url, output_path = convert_url_to_pdf(
+        _url, output_path = convert_url_to_pdf(
             url, filename=filename, suffix="_convertica", **options
         )
-        return url, output_path
+        # The base view derives the cleanup dir from dirname(input_path); a URL
+        # there meant the url2pdf_* dir leaked until the hourly reaper.
+        return output_path, output_path
 
     def validate_file(self, _uploaded_file, _request) -> tuple[bool, str | None]:
         """Not applicable for URL conversion."""

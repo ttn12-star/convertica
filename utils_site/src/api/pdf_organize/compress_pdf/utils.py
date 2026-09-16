@@ -242,6 +242,19 @@ def compress_pdf(
 
                     try:
                         doc.update_stream(xref, new_bytes)
+                        # update_stream swaps bytes only; a resized image
+                        # needs its declared dimensions updated too or
+                        # viewers render garbage.
+                        doc.xref_set_key(xref, "Width", str(im.width))
+                        doc.xref_set_key(xref, "Height", str(im.height))
+                        doc.xref_set_key(xref, "Filter", "/DCTDecode")
+                        doc.xref_set_key(xref, "DecodeParms", "null")
+                        doc.xref_set_key(
+                            xref,
+                            "ColorSpace",
+                            "/DeviceGray" if im.mode == "L" else "/DeviceRGB",
+                        )
+                        doc.xref_set_key(xref, "BitsPerComponent", "8")
                     except Exception as e:
                         logger.debug(
                             "compress_pdf: skip image xref=%d — update_stream failed: %s",
