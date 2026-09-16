@@ -45,6 +45,7 @@ from .conversion_limits import (
 from .file_validation import (
     encode_filename_for_header,
     is_removable_tmp_dir,
+    scrub_internal_paths,
     validate_output_file,
 )
 from .logging_utils import (
@@ -405,9 +406,7 @@ class BaseConversionAPIView(APIView, ABC):
                 level="exception",
             )
             return Response(
-                {
-                    "error": "Conversion failed. Please try again or use a different file."
-                },
+                {"error": f"Conversion failed: {scrub_internal_paths(str(error))}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
@@ -672,6 +671,11 @@ class BaseConversionAPIView(APIView, ABC):
             output_filename = os.path.basename(output_path)
             output_size = os.path.getsize(output_path)
             cleanup_dirs = [tmp_dir] if tmp_dir else []
+            # The converter's own working dir (BasePDFProcessor) holds the
+            # output being streamed: it goes with the response, not the finally.
+            conv_dir = context.pop("tmp_dir", None)
+            if conv_dir and conv_dir not in cleanup_dirs:
+                cleanup_dirs.append(conv_dir)
             response = self._make_streaming_response(
                 output_path, cleanup_dirs=tuple(cleanup_dirs)
             )
@@ -1054,6 +1058,9 @@ class BaseConversionAPIView(APIView, ABC):
                 cleanup_dirs.append(tmp_dir)
             if validation_tmp_dir:
                 cleanup_dirs.append(validation_tmp_dir)
+            conv_dir = context.pop("tmp_dir", None)
+            if conv_dir and conv_dir not in cleanup_dirs:
+                cleanup_dirs.append(conv_dir)
             response = self._make_streaming_response(
                 output_path, cleanup_dirs=tuple(cleanup_dirs)
             )

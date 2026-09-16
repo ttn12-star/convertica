@@ -53,6 +53,21 @@ def get_base_url(request) -> str:
     return f"{scheme}://{site_domain or request.get_host()}"
 
 
+def _article_languages(slug, default_language: str) -> set[str]:
+    """Locales a blog article exists in (default language + translations)."""
+    try:
+        from src.blog.models import Article
+
+        translations = (
+            Article.objects.filter(slug=slug)
+            .values_list("translations", flat=True)
+            .first()
+        ) or {}
+        return {default_language, *translations.keys()}
+    except Exception:  # pragma: no cover - never break the page over hreflang
+        return {default_language, *(c for c, _ in getattr(settings, "LANGUAGES", []))}
+
+
 def get_request_seo_context(request) -> dict:
     """Compute and cache SEO metadata for the current request."""
     cached = getattr(request, "_seo_context", None)
@@ -84,6 +99,13 @@ def get_request_seo_context(request) -> dict:
             request=request,
             view_name=view_name,
         )
+        if view_name == "blog:article_detail" and get_language() not in (
+            _article_languages(url_kwargs.get("slug"), default_language)
+        ):
+            # /pl/blog/<slug>/ for an English-only article serves the English
+            # body: a duplicate. Indexing it with a self-canonical and a
+            # hreflang set that lacks its own locale is worse than noindex.
+            robots_override = NOINDEX_FOLLOW_ROBOTS
         if robots_override is not None:
             robots_meta = robots_override
             hreflangs_enabled = False
@@ -191,18 +213,8 @@ def _build_hreflang_links(
         # Match the sitemap rule: alternates only for locales the article is
         # actually translated into. Advertising /ru/blog/<slug>/ for an
         # English-only article points hreflang at a duplicate English body.
-        try:
-            from src.blog.models import Article
-
-            translations = (
-                Article.objects.filter(slug=url_kwargs.get("slug"))
-                .values_list("translations", flat=True)
-                .first()
-            ) or {}
-            allowed = {default_language, *translations.keys()}
-            languages = [(c, n) for c, n in languages if c in allowed]
-        except Exception:  # pragma: no cover - never break the page over hreflang
-            pass
+        allowed = _article_languages(url_kwargs.get("slug"), default_language)
+        languages = [(c, n) for c, n in languages if c in allowed]
 
     old_lang = get_language()
     hreflangs = []

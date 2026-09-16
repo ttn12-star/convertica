@@ -104,6 +104,12 @@ def _user_from_records(payload: dict) -> User | None:
 
 
 def _resolve_user_for_revocation(payload: dict, event: str) -> User | None:
+    """custom_data first, then our own subscription/payment rows.
+
+    Still None means there is nothing to revoke here (deleted account — the
+    rows cascade — or a provider test event): log at error level so it is
+    visible, but do not fail the delivery, or the provider retries forever.
+    """
     user, _plan = _resolve_user_and_plan(payload)
     user = user or _user_from_records(payload)
     if not user:
@@ -347,7 +353,7 @@ def handle_subscription_resumed(payload: dict) -> None:
 def handle_subscription_expired(payload: dict) -> None:
     user = _resolve_user_for_revocation(payload, "subscription_expired")
     if not user:
-        raise LookupError("subscription_expired: user not found")
+        return  # logged at error level by _resolve_user_for_revocation
     sub_id = _data_id(payload)
     UserSubscription.objects.filter(
         provider=_provider(payload), provider_subscription_id=sub_id
@@ -433,7 +439,7 @@ def handle_subscription_payment_failed(payload: dict) -> None:
 def handle_subscription_payment_refunded(payload: dict) -> None:
     user = _resolve_user_for_revocation(payload, "subscription_payment_refunded")
     if not user:
-        raise LookupError("subscription_payment_refunded: user not found")
+        return  # logged at error level by _resolve_user_for_revocation
     attrs = _attrs(payload)
     order_id = str(attrs.get("order_id") or _data_id(payload))
     updated = Payment.objects.filter(payment_id=order_id).update(
@@ -512,7 +518,7 @@ def handle_order_created(payload: dict) -> None:
 def handle_order_refunded(payload: dict) -> None:
     user = _resolve_user_for_revocation(payload, "order_refunded")
     if not user:
-        raise LookupError("order_refunded: user not found")
+        return  # logged at error level by _resolve_user_for_revocation
     order_id = _data_id(payload)
     updated = Payment.objects.filter(payment_id=order_id).update(
         status="refunded", processed_at=timezone.now()

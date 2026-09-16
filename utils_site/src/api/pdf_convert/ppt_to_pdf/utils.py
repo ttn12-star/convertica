@@ -281,7 +281,7 @@ class PowerPointToPDFConverter:
                         "return_code": e.returncode,
                     },
                 )
-                oom = e.returncode == 137
+                oom = e.returncode in (137, -9)  # 137 via shell, -9 via Popen
                 if oom:
                     # SIGKILL = the OOM killer took soffice out. stderr then holds
                     # only the javaldx warning, which tells the user nothing.

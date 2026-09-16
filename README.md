@@ -363,7 +363,7 @@ http://127.0.0.1:8000/swagger/
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB
 
 # Таймаут конвертации
-CONVERSION_TIMEOUT = 600  # 10 минут
+CONVERSION_TIMEOUT = 180  # секунд, src/api/conversion_limits.py (HEAVY_OPERATION_TIMEOUT = 300)
 
 # Настройки DPI для PDF → JPG
 DEFAULT_DPI = 300

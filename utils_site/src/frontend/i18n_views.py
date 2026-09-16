@@ -107,6 +107,14 @@ def set_language(request):
     This prevents URLs like /en/pl/... from being created.
     """
     next_url = _resolve_next_url(request)
+    if (
+        request.headers.get("Sec-Fetch-Site", "").lower() == "cross-site"
+        and request.headers.get("Sec-Fetch-Dest", "document").lower() != "document"
+    ):
+        # An embedded cross-site fetch (<img src=...setlang?language=ar>) must
+        # not flip the session, cookie or account language. A user following
+        # a link is a document navigation and is allowed.
+        return HttpResponseRedirect(next_url)
     lang_code = request.POST.get("language") or request.GET.get("language")
     supported_languages = dict(getattr(settings, "LANGUAGES", []))
 
@@ -124,10 +132,6 @@ def set_language(request):
             user is not None
             and getattr(user, "is_authenticated", False)
             and user.preferred_language != lang_code
-            # The switcher is a same-site GET form (anonymous pages have no
-            # CSRF cookie); a third-party <img src=...setlang?language=ar>
-            # must not persist a choice on the account.
-            and request.headers.get("Sec-Fetch-Site", "").lower() != "cross-site"
         ):
             user.preferred_language = lang_code
             user.save(update_fields=["preferred_language"])

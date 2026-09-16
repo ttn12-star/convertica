@@ -72,9 +72,10 @@ class PdfToJpgEmptyRenderTests(SimpleTestCase):
         )
 
         # Simulate poppler rendering zero pages while pypdf reports one page.
-        with patch("pdf2image.convert_from_path", return_value=[]), self.assertRaises(
-            InvalidPDFError
-        ) as ctx:
+        with (
+            patch("pdf2image.convert_from_path", return_value=[]),
+            self.assertRaises(InvalidPDFError) as ctx,
+        ):
             convert_pdf_to_jpg_sequential(
                 uploaded, pages="all", dpi=400, tmp_dir=self.tmp_dir
             )
@@ -91,8 +92,9 @@ class PdfToJpgEmptyRenderTests(SimpleTestCase):
         uploaded = SimpleUploadedFile(
             "foto1.pdf", _MINIMAL_PDF, content_type="application/pdf"
         )
-        with patch("pdf2image.convert_from_path", return_value=[]), self.assertRaises(
-            InvalidPDFError
+        with (
+            patch("pdf2image.convert_from_path", return_value=[]),
+            self.assertRaises(InvalidPDFError),
         ):
             convert_pdf_to_jpg_sequential(
                 uploaded, pages="all", dpi=400, tmp_dir=self.tmp_dir

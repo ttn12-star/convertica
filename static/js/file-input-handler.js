@@ -197,7 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 // Translated messages don't contain the English phrase; still
                 // give non-English users a way to the pricing page.
-                return `${escapeHtml(message)} <a href="${safeUrl}" class="${cls}">Premium →</a>`;
+                const linkLabel = escapeHtml(window.PREMIUM_LINK_TEXT || 'Premium');
+                return `${escapeHtml(message)} <a href="${safeUrl}" class="${cls}">${linkLabel} →</a>`;
             }
             return escapeHtml(message);
         } else {

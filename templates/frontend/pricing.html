@@ -869,7 +869,7 @@
         }
 
         window.addEventListener('message', function (ev) {
-          if (!/^https:\/\/([a-z0-9-]+\.)*paddle\.com$/.test(ev.origin || '')) return;
+          if (!/^https:\/\/([a-z0-9-]+\.)*(paddle|lemonsqueezy)\.com$/.test(ev.origin || '')) return;
           const evt = ev && ev.data && ev.data.event;
           if (evt === 'Checkout.Success') {
             window.location = '{% url "payments:payment_success" %}';

@@ -228,7 +228,13 @@ def _cross_site_navigation(request) -> bool:
     Sec-Fetch-Site is sent by every current browser; when absent we allow the
     request (old clients), which is no worse than before.
     """
-    return request.headers.get("Sec-Fetch-Site", "").lower() == "cross-site"
+    headers = request.headers
+    return (
+        headers.get("Sec-Fetch-Site", "").lower() == "cross-site"
+        # A user clicking a link from webmail is a real navigation; only
+        # embedded fetches (<img>, <script>, fetch) are the CSRF vector.
+        and headers.get("Sec-Fetch-Dest", "document").lower() != "document"
+    )
 
 
 def user_logout(request):

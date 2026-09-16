@@ -109,9 +109,10 @@ class APIKeyAuthentication(BaseAuthentication):
         if quota == 0:
             raise AuthenticationFailed("Plan has no API quota")
         used_this_month = (
-            APIKey.objects.filter(user=user, revoked_at__isnull=True).aggregate(
-                total=Sum("usage_this_month")
-            )["total"]
+            # Revoked keys included: revoke-and-recreate must not reset the month.
+            APIKey.objects.filter(user=user).aggregate(total=Sum("usage_this_month"))[
+                "total"
+            ]
             or 0
         )
         if used_this_month >= quota:

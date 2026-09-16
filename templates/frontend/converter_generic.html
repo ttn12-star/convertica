@@ -292,6 +292,7 @@
        failed", POST to .../undefined -> 404).
     {% endcomment %}
     window.TURNSTILE_SITE_KEY = "{{ turnstile_site_key|default:''|escapejs }}";
+    window.PREMIUM_LINK_TEXT = "{% filter escapejs %}{% trans "Premium" %}{% endfilter %}";
   </script>
   {% comment %}
     pdf.js (320 KB) and pdf.worker (1 MB) used to load eagerly on every tool

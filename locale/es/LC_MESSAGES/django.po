@@ -17874,8 +17874,8 @@ msgstr "La exportación a Word falló. Inténtalo de nuevo."
 
 
 #, python-format
-msgid "%(words)s words, %(chars)s characters"
-msgstr "%(words)s palabras, %(chars)s caracteres"
+msgid "%%(words)s words, %%(chars)s characters"
+msgstr "%%(words)s palabras, %%(chars)s caracteres"
 
 
 msgid "Rejected"
@@ -17952,3 +17952,14 @@ msgstr ""
 "almacenamiento electrónico es %(pct)s seguro. Si bien nos esforzamos por "
 "usar medios comercialmente aceptables para proteger tu información, no "
 "podemos garantizar una seguridad absoluta."
+
+msgid "Password-protect a ZIP archive"
+msgstr "Protege un archivo ZIP con contraseña"
+
+
+msgid "Remove the password from a ZIP archive"
+msgstr "Quita la contraseña de un archivo ZIP"
+
+
+msgid "Wrap images in a password-protected PDF"
+msgstr "Empaqueta imágenes en un PDF protegido con contraseña"

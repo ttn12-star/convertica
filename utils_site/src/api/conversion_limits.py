@@ -31,6 +31,8 @@ except ImportError:
         return text
 
 
+from src.exceptions import ConversionError
+
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -190,6 +192,10 @@ HEAVY_OPERATIONS = {
 
 _global_executor: ThreadPoolExecutor | None = None
 _executor_lock = Lock()
+
+
+_live_conversions = [0]
+_MAX_LIVE_CONVERSIONS = 8  # 4 gunicorn workers + a few orphans past their timeout
 
 
 def _get_global_executor() -> ThreadPoolExecutor:
@@ -511,8 +517,34 @@ def run_with_timeout(
     # sync conversion in the worker until they finished on their own.
     # shutdown(wait=False) lets the orphaned thread finish in the background
     # without holding anything the next request needs.
+    # ponytail: naive global counter of live conversion threads (including
+    # orphans still finishing after a timeout); swap for a semaphore if the
+    # rejection below ever fires in practice.
+    with _executor_lock:
+        if _live_conversions[0] >= _MAX_LIVE_CONVERSIONS:
+            raise ConversionError(
+                "The server is busy with other files right now. "
+                "Please try again in a minute."
+            )
+        _live_conversions[0] += 1
+
+    def _run():
+        try:
+            return func(*args, **kwargs)
+        finally:
+            # A fresh thread per call: release its DB connection instead of
+            # leaking one Postgres connection per conversion.
+            try:
+                from django.db import connection
+
+                connection.close()
+            except Exception:
+                pass
+            with _executor_lock:
+                _live_conversions[0] -= 1
+
     executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="timeout_pool")
-    future = executor.submit(func, *args, **kwargs)
+    future = executor.submit(_run)
     try:
         return future.result(timeout=timeout)
     except FuturesTimeoutError as exc:

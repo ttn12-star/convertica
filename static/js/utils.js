@@ -482,7 +482,14 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
     }
 
     // Create blob URL
+    // One live blob per page: revoke the previous result instead of a timer
+    // (a timer broke the Download button for anyone who came back later;
+    // never revoking pinned every converted file in memory).
+    if (window._lastResultBlobUrl) {
+        try { URL.revokeObjectURL(window._lastResultBlobUrl); } catch (e) { /* ignore */ }
+    }
     const blobUrl = URL.createObjectURL(blob);
+    window._lastResultBlobUrl = blobUrl;
 
     const successTitle = options.successTitle || window.SUCCESS_TITLE || 'Conversion Complete!';
     const successMessage = options.successMessage || window.SUCCESS_MESSAGE || 'Your file is ready to download';
@@ -1081,8 +1088,10 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
             const response = await fetch(`/api/tasks/${taskId}/status/`, {
                 headers: statusHeaders,
             });
-            if (response.status === 403 || response.status === 404 || response.status === 410) {
-                // Task unknown/expired/not ours: polling 300 more times will not help.
+            const ctype = response.headers.get('content-type') || '';
+            if (response.status === 403 && ctype.includes('json')) {
+                // Our own 403 (expired/foreign task): polling 300 more times will not help.
+                // A non-JSON 403 is a Cloudflare challenge page -> fall through and retry.
                 onError('Task not found or expired. Please try again.');
                 return;
             }

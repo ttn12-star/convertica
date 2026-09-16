@@ -212,7 +212,52 @@ class LogoutCrossSiteTests(TestCase):
 
         user = User.objects.create_user(email="lo@t.test", password="x")
         self.client.force_login(user)
-        self.client.get(reverse("users:logout"), HTTP_SEC_FETCH_SITE="cross-site")
+        self.client.get(
+            reverse("users:logout"),
+            HTTP_SEC_FETCH_SITE="cross-site",
+            HTTP_SEC_FETCH_DEST="image",
+        )
         self.assertIn("_auth_user_id", self.client.session)
         self.client.get(reverse("users:logout"), HTTP_SEC_FETCH_SITE="same-origin")
         self.assertNotIn("_auth_user_id", self.client.session)
+
+
+class CompressPdfResizedImageTests(TestCase):
+    def test_downscaled_image_keeps_a_consistent_xobject(self):
+        """A resized JPEG must come back with matching /Width, /Filter and decodable data."""
+        import io
+        import random
+        import shutil
+
+        import fitz
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        from PIL import Image
+        from src.api.pdf_organize.compress_pdf.utils import compress_pdf
+
+        w = h = 3200
+        raw = bytes(random.getrandbits(8) for _ in range(w * h // 64))
+        img = Image.frombytes("L", (w // 8, h // 8), raw).resize((w, h))
+        buf = io.BytesIO()
+        img.convert("RGB").save(buf, "JPEG", quality=95)
+        doc = fitz.open()
+        page = doc.new_page(width=600, height=800)
+        page.insert_image(page.rect, stream=buf.getvalue())
+        pdf_bytes = doc.tobytes()
+        doc.close()
+
+        upload = SimpleUploadedFile("big.pdf", pdf_bytes, "application/pdf")
+        input_path, output_path = compress_pdf(upload, compression_level="high")
+        try:
+            out = fitz.open(output_path)
+            try:
+                xref = out[0].get_images(full=True)[0][0]
+                width = int(out.xref_get_key(xref, "Width")[1])
+                filt = out.xref_get_key(xref, "Filter")[1]
+                pix = fitz.Pixmap(out, xref)  # raises if dict and stream disagree
+                self.assertEqual(pix.width, width)
+                self.assertLess(width, w)
+                self.assertIn("DCTDecode", filt)
+            finally:
+                out.close()
+        finally:
+            shutil.rmtree(os.path.dirname(output_path), ignore_errors=True)

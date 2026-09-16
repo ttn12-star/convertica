@@ -6,6 +6,7 @@ cleaning up temporary files, updating statistics, etc.
 """
 
 import gc
+import re
 import shutil
 import time
 from pathlib import Path
@@ -224,7 +225,10 @@ def cleanup_system_tmp(max_age_seconds: int = 3600):
         for name in os.listdir(tmp_root):
             # "<tool>_batch_" dirs come from every batch view; match them by
             # infix instead of listing each one.
-            if not (name.startswith(_CONVERTER_TMP_PREFIXES) or "_batch_" in name):
+            if not (
+                name.startswith(_CONVERTER_TMP_PREFIXES)
+                or re.match(r"^[a-z0-9]+_batch_", name)
+            ):
                 continue
             path = os.path.join(tmp_root, name)
             try:

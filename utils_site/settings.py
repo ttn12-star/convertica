@@ -20,9 +20,7 @@ from pathlib import Path
 from celery.schedules import crontab
 from decouple import Csv, config
 
-# True under `manage.py test` AND under pytest (tests/e2e): the pytest path used
-# to see TESTING=False and hit the real Redis DB from .env.
-TESTING = (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules
+TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
 
 # Silence known-noisy third-party warnings.warn() calls so they don't reach
 # Sentry's Logs dataset as actionable-looking WARN entries. Each entry is
@@ -1178,9 +1176,10 @@ try:
             "KEY_PREFIX": cache_key_prefix,
             "TIMEOUT": 3600,  # Default timeout: 1 hour (cache cleared on deploy)
         },
-        # Counters that must NOT reset on deploy (daily free quota, rate-limit
-        # buckets): same Redis, fixed prefix. With the release-keyed prefix
-        # above every deploy handed all free users a fresh daily allowance.
+        # Counters that must NOT reset on deploy (the daily free quota): same
+        # Redis, fixed prefix, and skipped by clear_cache_preserve_uniques.
+        # With the release-keyed prefix above every deploy handed all free
+        # users a fresh daily allowance.
         "quota": {
             "BACKEND": "django_redis.cache.RedisCache",
             "LOCATION": config("REDIS_URL", default="redis://127.0.0.1:6379/1"),
@@ -1418,7 +1417,11 @@ GOOGLE_PICKER_APP_ID = config("GOOGLE_APP_ID", default="")
 DROPBOX_APP_KEY = config("DROPBOX_APP_KEY", default="")
 
 # Telegram Bot Configuration
-CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default=True, cast=bool)
+# Tolerant parse: the string "False" used to be truthy, and decouple's bool cast
+# would raise at import (every container down) on any unexpected value.
+CONTACT_TELEGRAM_ENABLED = str(
+    config("CONTACT_TELEGRAM_ENABLED", default="True")
+).strip().lower() in ("1", "true", "yes", "on", "y", "t")
 
 # Subscription Pricing Configuration
 SUBSCRIPTION_PRICING = {

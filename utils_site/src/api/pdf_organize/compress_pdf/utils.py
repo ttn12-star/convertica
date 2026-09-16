@@ -241,7 +241,10 @@ def compress_pdf(
                         continue
 
                     try:
-                        doc.update_stream(xref, new_bytes)
+                        # compress=False: the default would deflate a JPEG that
+                        # happens to shrink and set /FlateDecode, which the
+                        # /DCTDecode below would then contradict.
+                        doc.update_stream(xref, new_bytes, compress=False)
                         # update_stream swaps bytes only; a resized image
                         # needs its declared dimensions updated too or
                         # viewers render garbage.

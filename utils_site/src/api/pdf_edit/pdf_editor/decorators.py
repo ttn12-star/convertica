@@ -1,5 +1,6 @@
 # decorators.py
 """Swagger docs for the PDF Editor endpoint (superset of Add Text)."""
+
 from collections.abc import Callable
 
 from ..add_text.decorators import add_text_pdf_docs

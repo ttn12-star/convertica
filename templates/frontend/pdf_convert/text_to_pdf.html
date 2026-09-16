@@ -20,7 +20,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "{{ header_text|default:page_title }}",
+      "name": "{{ header_text|default:page_title|escapejs }}",
       "description": "{{ page_description|escapejs }}",
       "url": "{{ site_current_url }}",
       "applicationCategory": "UtilityApplication",
