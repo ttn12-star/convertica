@@ -80,13 +80,11 @@ class Command(BaseCommand):
             if success:
                 ok_batches += 1
                 self.stdout.write(
-                    self.style.SUCCESS(f"  ✓ batch {i // batch + 1}: {len(chunk)} URLs")
+                    self.style.SUCCESS(f"  ✓ batch {i//batch + 1}: {len(chunk)} URLs")
                 )
             else:
                 fail_batches += 1
-                self.stdout.write(
-                    self.style.ERROR(f"  ✗ batch {i // batch + 1}: failed")
-                )
+                self.stdout.write(self.style.ERROR(f"  ✗ batch {i//batch + 1}: failed"))
             # Be polite — Bing rate-limit recommendation
             time.sleep(2)
 

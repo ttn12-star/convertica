@@ -1,6 +1,5 @@
 # decorators.py
 """Swagger documentation for the Add Text to PDF endpoint."""
-
 from collections.abc import Callable
 
 from drf_yasg import openapi

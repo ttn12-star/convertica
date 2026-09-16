@@ -132,10 +132,9 @@ def compare_pdf_files(
                 compare_error or "Second PDF is invalid", context=context
             )
 
-        with (
-            fitz.open(base_path) as base_document,
-            fitz.open(compare_path) as compare_document,
-        ):
+        with fitz.open(base_path) as base_document, fitz.open(
+            compare_path
+        ) as compare_document:
             max_pages = max(len(base_document), len(compare_document))
             assets_dir = os.path.join(tmp_dir, "comparison_assets")
             os.makedirs(assets_dir, exist_ok=True)

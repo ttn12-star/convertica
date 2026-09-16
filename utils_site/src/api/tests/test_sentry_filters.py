@@ -33,7 +33,8 @@ class Pdf2docxNoiseFilterTests(SimpleTestCase):
             "logger": "root",
             "logentry": {
                 "message": (
-                    "Ignore page 26 due to making page error: list index out of range"
+                    "Ignore page 26 due to making page error: "
+                    "list index out of range"
                 ),
             },
         }
@@ -55,7 +56,8 @@ class Pdf2docxNoiseFilterTests(SimpleTestCase):
             "logger": "src.api.pdf_convert",
             "logentry": {
                 "message": (
-                    "Ignore page 26 due to making page error: list index out of range"
+                    "Ignore page 26 due to making page error: "
+                    "list index out of range"
                 ),
             },
         }
@@ -107,7 +109,8 @@ class CeleryHardTimeoutCascadeFilterTests(SimpleTestCase):
             "logger": "multiprocessing",
             "logentry": {
                 "message": (
-                    "Process 'ForkPoolWorker-2' pid:21 exited with 'signal 9 (SIGKILL)'"
+                    "Process 'ForkPoolWorker-2' pid:21 exited with "
+                    "'signal 9 (SIGKILL)'"
                 ),
             },
         }
