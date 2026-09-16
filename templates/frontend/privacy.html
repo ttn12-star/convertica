@@ -127,7 +127,7 @@
               <li>{% trans "Access controls and monitoring systems" %}</li>
             </ul>
             <p class="text-gray-700 leading-relaxed mt-4">
-              {% trans "However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security." %}
+              {% blocktrans with pct="100%" %}However, no method of transmission over the Internet or electronic storage is {{ pct }} secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security.{% endblocktrans %}
             </p>
           </div>
         </div>

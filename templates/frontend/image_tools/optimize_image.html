@@ -29,7 +29,7 @@
         <span>100% &mdash; {% trans "Best quality" %}</span>
       </div>
       <p class="text-xs text-gray-500 mt-1">
-        {% trans "85% is recommended for most images. Lower values reduce file size more aggressively." %}
+        {% blocktrans with pct="85%" %}{{ pct }} is recommended for most images. Lower values reduce file size more aggressively.{% endblocktrans %}
       </p>
     </div>
 
@@ -101,7 +101,7 @@
     </h2>
     <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li>{% trans "Select your image file using the button above or drag and drop it into the zone" %}</li>
-      <li>{% trans "Set the quality level (85% is recommended for most images)" %}</li>
+      <li>{% blocktrans with pct="85%" %}Set the quality level ({{ pct }} is recommended for most images){% endblocktrans %}</li>
       <li>{% trans "Optionally choose an output format or set maximum dimensions" %}</li>
       <li>{% trans "Click the Optimize Image button to compress your image" %}</li>
       <li>{% trans "Download your optimized image file" %}</li>
