@@ -224,6 +224,11 @@ class OptimizedJPGToPDFConverter:
                 c.save()
                 successful_images = len(optimized_paths)
 
+        if successful_images == 0:
+            raise ConversionError(
+                "None of the images could be added to the PDF", context=context
+            )
+
         # Verify PDF was created
         if not os.path.exists(output_path) or os.path.getsize(output_path) == 0:
             raise ConversionError("PDF creation failed", context=context)
@@ -391,22 +396,18 @@ async def convert_jpg_to_pdf_optimized(
             context={**context, "conversion_type": "jpg_to_pdf_optimized"},
         )
 
-        # Copy result to persistent temp file before temp_dir is deleted
+        # Copy result and input into a dedicated persistent dir before
+        # temp_dir is deleted. Callers clean up with
+        # shutil.rmtree(os.path.dirname(input_path)) — bare files in the
+        # system temp dir would make that wipe /tmp for the whole container.
         import shutil
 
-        persistent_output = tempfile.NamedTemporaryFile(
-            delete=False, suffix=".pdf", prefix="jpg2pdf_"
+        persist_dir = tempfile.mkdtemp(prefix="jpg2pdf_")
+        persistent_output = os.path.join(persist_dir, output_filename)
+        shutil.copy2(result_path, persistent_output)
+        persistent_input = os.path.join(
+            persist_dir, "input" + os.path.splitext(input_filename)[1]
         )
-        persistent_output.close()
-        shutil.copy2(result_path, persistent_output.name)
+        shutil.copy2(input_path, persistent_input)
 
-        # Copy input to persistent temp file as well
-        persistent_input = tempfile.NamedTemporaryFile(
-            delete=False,
-            suffix=os.path.splitext(input_filename)[1],
-            prefix="jpg2pdf_input_",
-        )
-        persistent_input.close()
-        shutil.copy2(input_path, persistent_input.name)
-
-        return persistent_input.name, persistent_output.name
+        return persistent_input, persistent_output

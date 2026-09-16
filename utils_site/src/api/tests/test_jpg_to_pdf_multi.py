@@ -40,6 +40,14 @@ def _noisy_jpeg_upload(name="big.jpg", size=(256, 256)):
 class JpgToPdfMultiFileTests(TestCase):
     URL = "/api/jpg-to-pdf/"
 
+    def setUp(self):
+        # The multi-file branch now runs validate_spam_protection like every
+        # other converter; its per-IP interval counter lives in the cache.
+        from django.core.cache import cache
+
+        cache.clear()
+        self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
+
     def test_merged_pdf_is_streamed_and_valid(self):
         response = self.client.post(
             self.URL,

@@ -77,10 +77,10 @@ def protect_pdf(
     try:
         # Validate passwords
         if not password or not password.strip():
-            raise ConversionError("Password cannot be empty", context=context)
+            raise InvalidPDFError("Password cannot be empty", context=context)
 
         if len(password.strip()) < 1:
-            raise ConversionError(
+            raise InvalidPDFError(
                 "Password must be at least 1 character long", context=context
             )
 
@@ -119,11 +119,11 @@ def protect_pdf(
 
         # Validate optional passwords if provided
         if user_password and len(user_password.strip()) < 1:
-            raise ConversionError(
+            raise InvalidPDFError(
                 "User password must be at least 1 character long", context=context
             )
         if owner_password and len(owner_password.strip()) < 1:
-            raise ConversionError(
+            raise InvalidPDFError(
                 "Owner password must be at least 1 character long", context=context
             )
 

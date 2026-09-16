@@ -17,6 +17,7 @@ from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
 from ...logging_utils import build_request_context
+from ...spam_protection import validate_spam_protection
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
 from .utils import convert_jpg_to_pdf
@@ -76,6 +77,12 @@ class JPGToPDFAPIView(BaseConversionAPIView):
         if len(uploaded_files) == 1:
             return async_to_sync(self.post_async)(request)
 
+        # The multi-file branch bypasses post_async: apply the same spam
+        # protection (CAPTCHA/IP limits) the single-file path gets.
+        spam_check = validate_spam_protection(request)
+        if spam_check is not None:
+            return spam_check
+
         if len(uploaded_files) > self.MAX_MULTI_IMAGE_FILES:
             return Response(
                 {
@@ -124,8 +131,8 @@ class JPGToPDFAPIView(BaseConversionAPIView):
 
                 # For high quality (>= 90), use original image directly if possible
                 try:
-                    img_check = Image.open(image_path)
-                    img_check.verify()
+                    with Image.open(image_path) as img_check:
+                        img_check.verify()
                 except (UnidentifiedImageError, OSError):
                     return Response(
                         {

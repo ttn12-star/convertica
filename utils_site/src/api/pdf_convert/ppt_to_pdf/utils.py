@@ -15,7 +15,10 @@ from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
-from src.api.pdf_convert.word_to_pdf_optimized import _validate_output_pdf
+from src.api.pdf_convert.word_to_pdf_optimized import (
+    _run_libreoffice,
+    _validate_output_pdf,
+)
 from src.exceptions import ConversionError, StorageError
 
 logger = get_logger(__name__)
@@ -110,6 +113,10 @@ class PowerPointToPDFConverter:
             libreoffice_output = os.path.join(tmp_dir, f"{base_name}.pdf")
             if libreoffice_output != pdf_path and os.path.exists(libreoffice_output):
                 os.rename(libreoffice_output, pdf_path)
+            if not os.path.exists(pdf_path):
+                raise ConversionError(
+                    "Output PDF file was not created by LibreOffice", context=context
+                )
 
             # Validate output. LibreOffice/unoserver can report success yet
             # leave a 0-byte or truncated PDF on disk; an exists-only check
@@ -229,14 +236,10 @@ class PowerPointToPDFConverter:
             )
 
             try:
-                result = subprocess.run(
-                    cmd,
-                    timeout=self.timeout_seconds,
-                    capture_output=True,
-                    text=True,
-                    env=env,
-                    check=True,
-                )
+                # subprocess.run(timeout=) kills only the direct child;
+                # soffice.bin survives holding the profile lock and wedges
+                # every later conversion. _run_libreoffice kills the group.
+                result = _run_libreoffice(cmd, env, self.timeout_seconds)
 
                 logger.info(
                     "LibreOffice conversion completed",
@@ -244,7 +247,11 @@ class PowerPointToPDFConverter:
                         **context,
                         "event": "libreoffice_complete",
                         "return_code": result.returncode,
-                        "stdout": result.stdout[:500] if result.stdout else "",
+                        "stdout": (
+                            result.stdout.decode(errors="replace")
+                            if isinstance(result.stdout, bytes)
+                            else result.stdout or ""
+                        )[:500],
                     },
                 )
 
@@ -261,7 +268,11 @@ class PowerPointToPDFConverter:
                 # subprocess.run(text=True) already decodes stderr: calling
                 # .decode() on it raised AttributeError and turned every failed
                 # conversion into a 500 instead of a clean error.
-                detail = (e.stderr or "").strip()
+                detail = (
+                    e.stderr.decode(errors="replace")
+                    if isinstance(e.stderr, bytes)
+                    else e.stderr or ""
+                ).strip()
                 logger.error(
                     f"LibreOffice conversion failed with exit code {e.returncode}: {detail}",
                     extra={

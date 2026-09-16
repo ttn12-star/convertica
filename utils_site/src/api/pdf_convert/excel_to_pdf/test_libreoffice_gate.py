@@ -46,7 +46,10 @@ def test_present_binary_passes_gate_without_spawning_version_check():
     # assert the failure is NOT the availability error: the gate was passed.
     with (
         mock.patch("shutil.which", return_value="/usr/bin/libreoffice"),
-        mock.patch("subprocess.run", side_effect=OSError("no real soffice")),
+        mock.patch(
+            "src.api.pdf_convert.excel_to_pdf.utils._run_libreoffice",
+            side_effect=OSError("no real soffice"),
+        ),
     ):
         try:
             _run_gate()

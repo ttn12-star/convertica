@@ -40,6 +40,7 @@ from .conversion_limits import (
     get_max_file_size_for_user,
     validate_pdf_pages,
 )
+from .file_validation import is_removable_tmp_dir
 from .logging_utils import build_request_context, get_logger, log_conversion_start
 from .premium_utils import (
     can_use_batch_processing,
@@ -342,7 +343,7 @@ class BaseBatchAPIView(APIView):
                     original_close()
                 finally:
                     for d in _targets:
-                        if d and os.path.isdir(d):
+                        if is_removable_tmp_dir(d):
                             shutil.rmtree(d, ignore_errors=True)
 
             response.close = _close_and_cleanup  # type: ignore[method-assign]

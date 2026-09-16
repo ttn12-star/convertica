@@ -348,47 +348,20 @@ async def _convert_pdf_to_docx_sequential(
                 conversion_pdf_path = repair_pdf(pdf_path, repaired_pdf_path)
                 perform_conversion(conversion_pdf_path, docx_path)
             except Exception as second_exc:
-                # If repair also fails, try OCR-based conversion as last resort
-                logger.warning(
-                    "Repair failed, attempting OCR-based conversion as fallback",
+                logger.error(
+                    "PDF to Word failed after repair attempt",
                     extra={
                         **context,
-                        "event": "ocr_fallback",
+                        "event": "all_methods_failed",
                         "error": str(second_exc)[:200],
                     },
                 )
-                ocr_fallback_used = True
-                # Force OCR conversion for severely corrupted PDFs
-                from ...ocr_utils import convert_pdf_to_images_and_ocr
-
-                try:
-                    # Convert PDF to images and OCR back to text
-                    ocr_text = convert_pdf_to_images_and_ocr(pdf_path)
-
-                    # Create DOCX from OCR text
-                    from docx import Document
-
-                    doc = Document()
-                    doc.add_paragraph(ocr_text)
-                    doc.save(docx_path)
-
-                    logger.info(
-                        "OCR fallback successful for corrupted PDF",
-                        extra={**context, "event": "ocr_fallback_success"},
-                    )
-                except Exception as ocr_exc:
-                    logger.error(
-                        "All conversion methods failed",
-                        extra={
-                            **context,
-                            "event": "all_methods_failed",
-                            "ocr_error": str(ocr_exc)[:200],
-                        },
-                    )
-                    raise ConversionError(
-                        f"PDF is too corrupted to convert. Tried: standard conversion, repair, and OCR. Last error: {ocr_exc}",
-                        context=context,
-                    )
+                raise InvalidPDFError(
+                    "This PDF appears to be corrupted or unsupported and could not "
+                    "be converted, even after repair. Try re-saving it from the "
+                    "original application or use OCR (Image to Text) for scans.",
+                    context=context,
+                ) from second_exc
 
         # Validate output DOCX
         valid, val_err = validate_output_file(docx_path, min_size=1000, context=context)
