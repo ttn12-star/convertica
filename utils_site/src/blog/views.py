@@ -1,17 +1,20 @@
 """Views for blog application."""
 
 from django.core.cache import cache
-from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.utils.translation import get_language, get_language_info
 from django.utils.translation import gettext as _
-from django.views.decorators.cache import cache_page
+from src.frontend.views import anonymous_cache_page
 
 from .models import Article, ArticleCategory
 
 
-@cache_page(60 * 30)  # 30 min — list pages rebuild after publishing
+# anonymous_cache_page: a plain cache_page here served whichever auth variant
+# rendered first (premium nav/no ads vs anonymous) to everyone for 30-60 min.
+@anonymous_cache_page(60 * 30)  # 30 min — list pages rebuild after publishing
 def article_list(request):
     """Display list of published articles."""
     language_code = get_language()
@@ -38,7 +41,7 @@ def article_list(request):
     search_query = request.GET.get("q", "").strip()
     if search_query:
         # Create cache key for search results
-        search_cache_key = f'article_search:{language_code}:{category_slug or "all"}:{search_query[:50]}'
+        search_cache_key = f"article_search:{language_code}:{category_slug or 'all'}:{search_query[:50]}"
         cached_results = cache.get(search_cache_key)
         if cached_results is not None:
             articles = cached_results
@@ -128,7 +131,14 @@ def article_list(request):
     # Paginator works with both QuerySet and list
     paginator = Paginator(articles, 9)
     page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    try:
+        page_obj = paginator.page(page_number or 1)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # get_page() clamped ?page=9999 to the last page and served it with a
+        # self-referencing canonical: unbounded indexable duplicates.
+        raise Http404("Page out of range")
 
     # Get categories for sidebar (cached)
     categories_cache_key = f"article_categories:{language_code}"
@@ -170,7 +180,7 @@ def article_list(request):
     return render(request, "blog/article_list.html", context)
 
 
-@cache_page(60 * 60)  # 1 hour — anonymous content rarely changes
+@anonymous_cache_page(60 * 60)  # 1 hour — anonymous content rarely changes
 def article_detail(request, slug):
     """Display single article."""
     language_code = get_language()

@@ -271,7 +271,7 @@
           </ul>
 
           {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
+            <button type="button" onclick="selectPlan('monthly', this)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
               {% trans "Become Monthly Hero" %}
             </button>
           {% else %}
@@ -332,7 +332,7 @@
           </ul>
 
           {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
+            <button type="button" onclick="selectPlan('yearly', this)" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-[transform,background-color,box-shadow] duration-150 active:scale-[0.98] mt-auto">
               {% trans "Become Yearly Hero" %}
             </button>
           {% else %}
@@ -759,8 +759,9 @@
 
     {% if PAYMENTS_ENABLED %}
       <script nonce="{{ csp_nonce }}">
-        async function selectPlan(planType) {
-          const button = document.activeElement;
+        async function selectPlan(planType, button) {
+          // Passed explicitly: document.activeElement is <body> in Safari,
+          // which would have replaced the whole page text with "Processing...".
           const originalText = button ? button.textContent : '';
           if (button) {
             button.disabled = true;
@@ -868,6 +869,7 @@
         }
 
         window.addEventListener('message', function (ev) {
+          if (!/^https:\/\/([a-z0-9-]+\.)*paddle\.com$/.test(ev.origin || '')) return;
           const evt = ev && ev.data && ev.data.event;
           if (evt === 'Checkout.Success') {
             window.location = '{% url "payments:payment_success" %}';

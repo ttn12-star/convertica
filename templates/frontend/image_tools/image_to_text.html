@@ -94,6 +94,7 @@
   <script nonce="{{ csp_nonce }}">
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.TURNSTILE_SITE_KEY = "{{ turnstile_site_key|default:''|escapejs }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
     window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
     window.BATCH_ENABLED = false;

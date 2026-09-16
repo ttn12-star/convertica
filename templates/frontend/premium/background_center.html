@@ -266,12 +266,19 @@
         failedCountEl.textContent = String(failed);
       }
 
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+
       function buildTaskCard(task) {
         const card = document.createElement('div');
         card.className = 'rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50/60 dark:bg-gray-950/40 p-4';
 
-        const name = task.outputFilename || task.originalFilename || '{% trans "Unnamed file" %}';
-        const errorText = task.error || '{% trans "Task failed without details." %}';
+        // Filenames and server error strings are untrusted; the card is built via innerHTML.
+        const name = esc(task.outputFilename || task.originalFilename || '{% filter escapejs %}{% trans "Unnamed file" %}{% endfilter %}');
+        const errorText = esc(task.error || '{% filter escapejs %}{% trans "Task failed without details." %}{% endfilter %}');
 
         const minutesLeft = task.startedAt
           ? Math.max(1, Math.round((maxAgeMs - (Date.now() - task.startedAt)) / 60000))
@@ -282,9 +289,9 @@
 
         const details = `
           <div class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex flex-wrap gap-x-4 gap-y-1">
-            <span><strong>{% trans "Task ID" %}:</strong> ${task.taskId}</span>
+            <span><strong>{% trans "Task ID" %}:</strong> ${esc(task.taskId)}</span>
             <span><strong>{% trans "Started" %}:</strong> ${formatDate(task.startedAt)}</span>
-            <span><strong>{% trans "Type" %}:</strong> ${task.conversionType || '-'}</span>
+            <span><strong>{% trans "Type" %}:</strong> ${esc(task.conversionType || '-')}</span>
             ${expiresText}
           </div>
         `;

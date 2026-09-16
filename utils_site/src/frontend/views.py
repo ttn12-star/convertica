@@ -84,6 +84,14 @@ def _redirect_for_premium_access(request):
     return redirect(f"{login_url}?next={request.path}")
 
 
+# Generic document glyph for related-tool cards that have no bespoke icon.
+_DOC_ICON = (
+    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" '
+    'd="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293'
+    'l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>'
+)
+
+
 def _get_related_tools(current_tool):
     """Get related tools for internal linking."""
     all_tools = {
@@ -327,6 +335,50 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>',
             "gradient": "from-amber-500 to-orange-600",
         },
+        # Referenced by `relations` below but previously missing here, so the
+        # links were silently dropped (4 tool pages rendered no related block).
+        "crop_pdf": {
+            "name": _("Crop PDF"),
+            "url": "frontend:crop_pdf_page",
+            "description": _("Trim margins or cut a region out of PDF pages"),
+            "icon": _DOC_ICON,
+            "gradient": "from-teal-500 to-cyan-600",
+        },
+        "add_watermark": {
+            "name": _("Add Watermark"),
+            "url": "frontend:add_watermark_page",
+            "description": _("Stamp text or an image watermark on every page"),
+            "icon": _DOC_ICON,
+            "gradient": "from-sky-500 to-blue-600",
+        },
+        "extract_pages": {
+            "name": _("Extract Pages"),
+            "url": "frontend:extract_pages_page",
+            "description": _("Pull selected pages into a new PDF"),
+            "icon": _DOC_ICON,
+            "gradient": "from-lime-500 to-green-600",
+        },
+        "remove_pages": {
+            "name": _("Remove Pages"),
+            "url": "frontend:remove_pages_page",
+            "description": _("Delete unwanted pages from a PDF"),
+            "icon": _DOC_ICON,
+            "gradient": "from-rose-500 to-red-600",
+        },
+        "html_to_pdf": {
+            "name": _("HTML to PDF"),
+            "url": "frontend:html_to_pdf_page",
+            "description": _("Convert an HTML file or web page to PDF"),
+            "icon": _DOC_ICON,
+            "gradient": "from-orange-500 to-amber-600",
+        },
+        "pdf_to_html": {
+            "name": _("PDF to HTML"),
+            "url": "frontend:pdf_to_html_page",
+            "description": _("Convert PDF pages to an HTML document"),
+            "icon": _DOC_ICON,
+            "gradient": "from-indigo-500 to-violet-600",
+        },
     }
 
     # Define related tools for each tool. Each tool gets 3 outgoing links;
@@ -396,6 +448,10 @@ def _get_related_tools(current_tool):
         "svg_to_ico": ["generate_favicon", "png_to_ico", "convert_image"],
         "webp_to_ico": ["generate_favicon", "png_to_ico", "convert_image"],
         "ico_to_png": ["generate_favicon", "convert_image", "optimize_image"],
+        "image_to_text": ["pdf_to_text", "pdf_to_word", "convert_image"],
+        "password_protect_image": ["protect_pdf", "protect_zip", "convert_image"],
+        "protect_zip": ["unlock_zip", "protect_pdf", "password_protect_image"],
+        "unlock_zip": ["protect_zip", "unlock_pdf", "compress_pdf"],
     }
 
     related_keys = relations.get(current_tool, [])
@@ -1949,9 +2005,7 @@ def background_center_page(request):
     return render(request, "frontend/premium/background_center.html", context)
 
 
-@ensure_csrf_cookie
-@vary_on_cookie
-@cache_page(60 * 60 * 24 * 7)
+@anonymous_cache_page(60 * 60 * 24 * 7)
 def about_page(request):
     """About Us page."""
     page_title = _("About Us - Convertica")
@@ -1973,9 +2027,7 @@ def about_page(request):
     return render(request, "frontend/about.html", context)
 
 
-@ensure_csrf_cookie
-@vary_on_cookie
-@cache_page(60 * 60 * 24 * 7)
+@anonymous_cache_page(60 * 60 * 24 * 7)
 def privacy_page(request):
     """Privacy Policy page."""
     page_title = _("Privacy Policy - Convertica")
@@ -1985,7 +2037,7 @@ def privacy_page(request):
         "Your privacy is our priority."
     )
     page_keywords = _(
-        "privacy policy, data protection, file security, " "privacy, Convertica privacy"
+        "privacy policy, data protection, file security, privacy, Convertica privacy"
     )
 
     context = {
@@ -1996,9 +2048,7 @@ def privacy_page(request):
     return render(request, "frontend/privacy.html", context)
 
 
-@ensure_csrf_cookie
-@vary_on_cookie
-@cache_page(60 * 60 * 24 * 7)
+@anonymous_cache_page(60 * 60 * 24 * 7)
 def terms_page(request):
     """Terms of Service page."""
     page_title = _("Terms of Service - Convertica")
@@ -2008,7 +2058,7 @@ def terms_page(request):
         "editing, merging, splitting, compression, and security features."
     )
     page_keywords = _(
-        "terms of service, terms and conditions, " "user agreement, Convertica terms"
+        "terms of service, terms and conditions, user agreement, Convertica terms"
     )
 
     context = {
@@ -2019,9 +2069,7 @@ def terms_page(request):
     return render(request, "frontend/terms.html", context)
 
 
-@ensure_csrf_cookie
-@vary_on_cookie
-@cache_page(60 * 60 * 24 * 7)
+@anonymous_cache_page(60 * 60 * 24 * 7)
 def refund_page(request):
     """Refund Policy page."""
     page_title = _("Refund Policy - Convertica")
@@ -2031,7 +2079,7 @@ def refund_page(request):
         "what happens to your access afterwards."
     )
     page_keywords = _(
-        "refund policy, money back guarantee, " "cancel subscription, Convertica refund"
+        "refund policy, money back guarantee, cancel subscription, Convertica refund"
     )
 
     context = {
@@ -2110,7 +2158,11 @@ def contact_page(request):
             subject = form.cleaned_data["subject"]
             message = form.cleaned_data["message"]
 
-            user_ip = request.META.get("REMOTE_ADDR", "Unknown")
+            from html import escape as _esc
+
+            from src.api.client_ip import get_client_ip
+
+            user_ip = get_client_ip(request) or "Unknown"
 
             telegram_enabled = getattr(settings, "CONTACT_TELEGRAM_ENABLED", False)
 
@@ -2123,12 +2175,12 @@ def contact_page(request):
                 telegram_message = f"""
 <b>📩 New contact form submission</b>
 
-<b>Name:</b> {name}
-<b>Email:</b> {email}
-<b>Subject:</b> {subject}
+<b>Name:</b> {_esc(name)}
+<b>Email:</b> {_esc(email)}
+<b>Subject:</b> {_esc(subject)}
 
 <b>Message:</b>
-{message}
+{_esc(message)}
 
 <b>IP:</b> {user_ip}
 """
@@ -2159,9 +2211,9 @@ Message:
 {message}
 
 ---
-This message was sent from the contact form on {request.build_absolute_uri('/contact/')}
+This message was sent from the contact form on {request.build_absolute_uri("/contact/")}
 IP Address: {user_ip}
-User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
+User Agent: {request.META.get("HTTP_USER_AGENT", "Unknown")}
 """
 
             send_contact_form_email.delay(
@@ -2202,9 +2254,7 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
     return render(request, "frontend/contact.html", context)
 
 
-@ensure_csrf_cookie
-@vary_on_cookie
-@cache_page(60 * 60 * 24)
+@anonymous_cache_page(60 * 60 * 24)
 def faq_page(request):
     """FAQ page with proper CSRF handling."""
     page_title = _("Frequently Asked Questions (FAQ) - Convertica")
@@ -2501,8 +2551,8 @@ def sitemap_lang(request, lang: str):
         xml += "  <url>\n"
         xml += f"    <loc>{url}</loc>\n"
         xml += f"    <lastmod>{static_lastmod}</lastmod>\n"
-        xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
-        xml += f'    <priority>{page["priority"]}</priority>\n'
+        xml += f"    <changefreq>{page['changefreq']}</changefreq>\n"
+        xml += f"    <priority>{page['priority']}</priority>\n"
         image_loc = _sitemap_page_image(page_url, base_url)
         if image_loc:
             xml += (
