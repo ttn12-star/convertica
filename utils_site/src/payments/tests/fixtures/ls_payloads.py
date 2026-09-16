@@ -29,7 +29,7 @@ def subscription_created_payload(
     sub_id="sub_1",
     customer_id="cust_1",
     variant_id="var_1",
-    ends_at=None
+    ends_at=None,
 ):
     return {
         "meta": {
@@ -67,7 +67,7 @@ def subscription_updated_payload(
     customer_id="cust_1",
     variant_id="var_1",
     renews_at="2026-07-01T00:00:00.000000Z",
-    ends_at=None
+    ends_at=None,
 ):
     return {
         "meta": {
@@ -110,7 +110,7 @@ def subscription_payment_success_payload(
     sub_id="sub_1",
     customer_id="cust_1",
     order_id="ord_42",
-    amount_cents=799
+    amount_cents=799,
 ):
     return {
         "meta": {
@@ -154,7 +154,7 @@ def order_created_payload(
     order_id="ord_lifetime_1",
     customer_id="cust_2",
     variant_id="var_lifetime",
-    amount_cents=12900
+    amount_cents=12900,
 ):
     return {
         "meta": {
