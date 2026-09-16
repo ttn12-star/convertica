@@ -17805,39 +17805,8 @@ msgstr "Ta tablica jest pełna (%(count)s kafelków). Utwórz nową tablicę."
 msgid "%(added)s of %(total)s tiles added (plan limit)"
 msgstr "Dodano %(added)s z %(total)s kafelków (limit planu)"
 
-#. single-% twin of the %%-doubled makemessages entry; templates call
-#. gettext() with a single %
-msgid "100% Free"
-msgstr "100% Darmowe"
 
 
-#. single-% twin of the %%-doubled makemessages entry; templates call
-#. gettext() with a single %
-msgid ""
-"85% is recommended for most images. Lower values reduce file size more "
-"aggressively."
-msgstr ""
-"85% jest zalecane dla większości obrazów. Niższe wartości bardziej "
-"agresywnie zmniejszają rozmiar pliku."
-
-
-#. single-% twin of the %%-doubled makemessages entry; templates call
-#. gettext() with a single %
-msgid "Set the quality level (85% is recommended for most images)"
-msgstr "Ustaw poziom jakości (85% jest zalecane dla większości obrazów)"
-
-
-#. single-% twin of the %%-doubled makemessages entry; templates call
-#. gettext() with a single %
-msgid ""
-"However, no method of transmission over the Internet or electronic storage "
-"is 100% secure. While we strive to use commercially acceptable means to "
-"protect your information, we cannot guarantee absolute security."
-msgstr ""
-"Jednak żadna metoda transmisji przez Internet lub przechowywania "
-"elektronicznego nie jest w 100% bezpieczna. Chociaż staramy się używać "
-"komercyjnie akceptowalnych środków do ochrony Twoich informacji, nie możemy "
-"zagwarantować absolutnego bezpieczeństwa."
 
 
 msgid "We've sent you an email with instructions to reset your password."
@@ -17936,3 +17905,33 @@ msgstr "Nie udało się usunąć konta. Spróbuj ponownie."
 
 msgid "Could not update the setting."
 msgstr "Nie udało się zapisać ustawienia."
+
+#, python-format
+msgid "%(pct)s Free"
+msgstr "%(pct)s Darmowe"
+
+
+#, python-format
+msgid ""
+"%(pct)s is recommended for most images. Lower values reduce file size more "
+"aggressively."
+msgstr ""
+"%(pct)s jest zalecane dla większości obrazów. Niższe wartości bardziej "
+"agresywnie zmniejszają rozmiar pliku."
+
+
+#, python-format
+msgid "Set the quality level (%(pct)s is recommended for most images)"
+msgstr "Ustaw poziom jakości (%(pct)s jest zalecane dla większości obrazów)"
+
+
+#, python-format
+msgid ""
+"However, no method of transmission over the Internet or electronic storage "
+"is %(pct)s secure. While we strive to use commercially acceptable means to "
+"protect your information, we cannot guarantee absolute security."
+msgstr ""
+"Jednak żadna metoda transmisji przez Internet lub przechowywania "
+"elektronicznego nie jest w %(pct)s bezpieczna. Chociaż staramy się używać "
+"komercyjnie akceptowalnych środków do ochrony Twoich informacji, nie możemy "
+"zagwarantować absolutnego bezpieczeństwa."
