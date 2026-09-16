@@ -12,6 +12,7 @@ Two entry points:
   or all pages. Batch keeps this contract because all files in a batch
   share the same placement.
 """
+
 import base64
 import os
 
@@ -150,7 +151,13 @@ def sign_pdf(
             context["total_pages"] = total_pages
 
             for idx, sig in enumerate(signatures):
-                page_idx = max(0, min(int(sig["page"]), total_pages - 1))
+                page_idx = int(sig["page"])
+                if not 0 <= page_idx < total_pages:
+                    raise InvalidPDFError(
+                        f"Signature {idx + 1} targets page {page_idx + 1}, but the "
+                        f"document has {total_pages} pages.",
+                        context=context,
+                    )
                 page = doc[page_idx]
 
                 x = float(sig["x"])

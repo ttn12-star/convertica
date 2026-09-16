@@ -70,6 +70,7 @@ def flatten_pdf(
 
         try:
             doc = fitz.open(input_path)
+            # (closed in the finally below, also when bake()/save() raise)
             # bake() flattens interactive form fields (widgets) and annotations
             # into the static page content while PRESERVING their visual
             # appearance — filled-in form values and annotation marks stay
@@ -79,15 +80,16 @@ def flatten_pdf(
             # The previous approach (delete_widget / delete_annot) stripped the
             # interactive layer together with its appearance, silently dropping
             # any value the user had typed into the form.
-            doc.bake()
-
-            doc.save(
-                output_path,
-                garbage=4,
-                clean=True,
-                deflate=True,
-            )
-            doc.close()
+            try:
+                doc.bake()
+                doc.save(
+                    output_path,
+                    garbage=4,
+                    clean=True,
+                    deflate=True,
+                )
+            finally:
+                doc.close()
         except Exception as e:
             error_context = {
                 **context,

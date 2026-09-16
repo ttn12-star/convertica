@@ -11,6 +11,7 @@ import hashlib
 import inspect
 import json
 import os
+import re
 import shutil
 import threading
 import time
@@ -471,10 +472,16 @@ def generic_conversion_task(
                 out_ext = cached_output.get("ext") or _cached_output_ext(
                     conversion_type
                 )
-                cached_output = cached_output.get("data") or b""
+                cached_output = cached_output.get("data")
             else:
                 out_ext = _cached_output_ext(conversion_type)
 
+        if not cached_output:
+            # A malformed/empty cache entry must fall through to a real
+            # conversion, not be served as a 0-byte "success".
+            cached_output = None
+
+        if cached_output is not None:
             base_name = os.path.splitext(original_filename)[0]
             output_filename = f"{base_name}_convertica{out_ext}"
             final_output_path = os.path.join(task_dir, output_filename)
@@ -800,6 +807,9 @@ def generic_conversion_task(
             )
         except Exception as db_exc:
             logger.warning("OperationRun 'cancelled' update failed: %s", db_exc)
+        # Ignore() writes nothing to the result backend; without this the
+        # status endpoint keeps reporting the last PROGRESS for an hour.
+        self.update_state(state="REVOKED", meta={"error": "Task was cancelled"})
         raise Ignore()
 
     except SoftTimeLimitExceeded:
@@ -838,6 +848,7 @@ def generic_conversion_task(
                 logger.warning(
                     "OperationRun 'cancelled' (soft limit) update failed: %s", db_exc
                 )
+            self.update_state(state="REVOKED", meta={"error": "Task was cancelled"})
             raise Ignore()
 
         # Record timeout as error (best-effort)
@@ -923,7 +934,9 @@ def generic_conversion_task(
         if _is_user_input_error(exc):
             return {
                 "status": "error",
-                "error": error_message,
+                # Converter messages are user-facing, but some embed the
+                # internal working path; strip anything that looks like one.
+                "error": re.sub(r"(?:/[\w.\-]+){2,}", "<file>", error_message),
                 "conversion_type": conversion_type,
             }
 
@@ -983,54 +996,3 @@ def generic_conversion_task(
                     shutil.rmtree(conv_dir, ignore_errors=True)
         except Exception as tmp_exc:
             logger.debug("Converter temp-dir cleanup skipped: %s", tmp_exc)
-
-
-# Legacy tasks for backwards compatibility - updated to use new queues
-@shared_task(bind=True, name="pdf_conversion.convert_pdf_to_word", queue="regular")
-def convert_pdf_to_word_task(
-    self, file_path: str, output_filename: str, **kwargs
-) -> dict:
-    """Legacy task - redirects to generic_conversion_task."""
-    return generic_conversion_task(
-        self,
-        task_id=self.request.id,
-        input_path=file_path,
-        original_filename=output_filename,
-        conversion_type="pdf_to_word",
-        **kwargs,
-    )
-
-
-@shared_task(bind=True, name="pdf_conversion.convert_word_to_pdf", queue="regular")
-def convert_word_to_pdf_task(
-    self, file_path: str, output_filename: str, **kwargs
-) -> dict:
-    """Legacy task - redirects to generic_conversion_task."""
-    return generic_conversion_task(
-        self,
-        task_id=self.request.id,
-        input_path=file_path,
-        original_filename=output_filename,
-        conversion_type="word_to_pdf",
-        **kwargs,
-    )
-
-
-@shared_task(bind=True, name="pdf_conversion.compress_pdf", queue="regular")
-def compress_pdf_task(
-    self,
-    file_path: str,
-    output_filename: str,
-    compression_level: str = "medium",
-    **kwargs,
-) -> dict:
-    """Legacy task - redirects to generic_conversion_task."""
-    return generic_conversion_task(
-        self,
-        task_id=self.request.id,
-        input_path=file_path,
-        original_filename=output_filename,
-        conversion_type="compress_pdf",
-        compression_level=compression_level,
-        **kwargs,
-    )

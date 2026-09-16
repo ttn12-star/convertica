@@ -138,8 +138,15 @@ def crop_pdf(
 
             # Create new PDF with cropped pages
             # Determine initial page size based on whether first page is cropped
-            images = convert_from_path(pdf_path, dpi=150)
-            first_page_img = images[0] if images else None
+            # Render one page at a time: the whole document at 150 DPI held
+            # ~1.3 GB of bitmaps for a 200-page file (worker cgroup is 1.5 GB).
+            def _render(n: int):
+                pages = convert_from_path(
+                    pdf_path, dpi=150, first_page=n + 1, last_page=n + 1, timeout=120
+                )
+                return pages[0] if pages else None
+
+            first_page_img = _render(0) if total_pages else None
             if first_page_img and 0 in pages_to_crop:
                 initial_page_size = (crop_width, crop_height)
             elif first_page_img:
@@ -155,10 +162,10 @@ def crop_pdf(
             dpi_ratio = 150 / 72
 
             for page_num in range(total_pages):
-                if page_num >= len(images):
+                img = first_page_img if page_num == 0 else _render(page_num)
+                if img is None:
                     continue
 
-                img = images[page_num]
                 img_width_px = img.width
                 img_height_px = img.height
 

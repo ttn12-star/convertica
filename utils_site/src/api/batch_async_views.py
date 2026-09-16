@@ -26,6 +26,7 @@ from .base_batch_views import BaseBatchAPIView
 from .logging_utils import build_request_context, get_logger
 from .operation_run_middleware_utils import ensure_request_id, normalize_conversion_type
 from .premium_utils import can_use_batch_processing, is_premium_active
+from .rate_limit_utils import combined_rate_limit
 from .spam_protection import validate_spam_protection
 from .task_tokens import create_task_token
 
@@ -50,6 +51,11 @@ class BatchAsyncSubmitAPIView(APIView):
     """POST <slug>/batch/async/ → 202 {task_id, task_token}."""
 
     parser_classes = [MultiPartParser, FormParser]
+
+    @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
+    def dispatch(self, request: HttpRequest, *args, **kwargs):
+        # Parity with the sync batch views (anonymous api_batch rate is 0/h).
+        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request: HttpRequest, batch_route: str):
         from src.tasks.batch_conversion import batch_conversion_task
@@ -160,8 +166,9 @@ class BatchAsyncSubmitAPIView(APIView):
         batch_conversion_task.apply_async(
             kwargs=task_kwargs,
             task_id=task_id,
-            # Batch is a premium-only feature; route to the premium queue.
-            queue="premium",
+            # Paying users get the premium queue; a free single-file batch
+            # must not jump ahead of their work.
+            queue="premium" if is_premium_active(request.user) else "regular",
         )
 
         user_id = request.user.id if request.user.is_authenticated else None

@@ -164,3 +164,55 @@ class APIKeyQuotaAggregateTests(TestCase):
             # 60 + 50 >= 100: the second key must not extend the plan.
             with self.assertRaises(AuthenticationFailed):
                 APIKeyAuthentication().authenticate(request)
+
+
+class SpamCounterAtomicityTests(TestCase):
+    def test_ip_rate_limit_blocks_the_call_over_the_limit(self):
+        from django.core.cache import cache
+        from src.api.spam_protection import check_rate_limit_by_ip
+
+        cache.clear()
+        request = RequestFactory().post("/api/x/", REMOTE_ADDR="198.51.100.7")
+        results = [
+            check_rate_limit_by_ip(request, limit=3, window=60)[0] for _ in range(4)
+        ]
+        self.assertEqual(results, [True, True, True, False])
+
+
+class AddTextColourDefaultTests(TestCase):
+    def test_whiteout_without_color_is_white_not_black(self):
+        from src.api.pdf_edit.add_text.serializers import OperationItemSerializer
+
+        base = {"page": 0, "x": 10, "y": 10, "width": 50, "height": 20}
+        white = OperationItemSerializer(data={**base, "type": "whiteout"})
+        self.assertTrue(white.is_valid(), white.errors)
+        self.assertEqual(white.validated_data["color"], "#ffffff")
+        text = OperationItemSerializer(data={**base, "type": "text", "text": "hi"})
+        self.assertTrue(text.is_valid(), text.errors)
+        self.assertEqual(text.validated_data["color"], "#111111")
+
+
+class DailyQuotaCacheAliasTests(TestCase):
+    def test_quota_counters_live_in_the_release_independent_alias(self):
+        from django.conf import settings
+        from src.api import daily_quota
+
+        self.assertIn("quota", settings.CACHES)
+        key = daily_quota._cache_key("ip:203.0.113.5")
+        daily_quota.consume_quota_unit(key)
+        from django.core.cache import caches
+
+        self.assertEqual(int(caches["quota"].get(key)), 1)
+
+
+class LogoutCrossSiteTests(TestCase):
+    def test_cross_site_get_does_not_log_out(self):
+        from django.urls import reverse
+        from src.users.models import User
+
+        user = User.objects.create_user(email="lo@t.test", password="x")
+        self.client.force_login(user)
+        self.client.get(reverse("users:logout"), HTTP_SEC_FETCH_SITE="cross-site")
+        self.assertIn("_auth_user_id", self.client.session)
+        self.client.get(reverse("users:logout"), HTTP_SEC_FETCH_SITE="same-origin")
+        self.assertNotIn("_auth_user_id", self.client.session)

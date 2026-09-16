@@ -181,7 +181,10 @@ def check_rate_limit_by_ip(
     cache_key = f"{key_prefix}:{ip}"
 
     try:
-        current_count = cache.get(cache_key, 0)
+        # add+incr is atomic; get/set let N parallel requests all read the
+        # same count and all pass.
+        cache.add(cache_key, 0, window)
+        current_count = cache.incr(cache_key) - 1
 
         if current_count >= limit:
             logger.warning(
@@ -197,8 +200,6 @@ def check_rate_limit_by_ip(
                 "Too many requests. Please try again in %(seconds)d seconds."
             ) % {"seconds": window}
 
-        # Increment counter
-        cache.set(cache_key, current_count + 1, window)
         return True, None
     except Exception as e:
         logger.error(f"Rate limit check error: {str(e)}", exc_info=True)
@@ -228,26 +229,21 @@ def check_minimum_time_between_requests(
     current_time = time.time()
 
     try:
-        last_request_time = cache.get(cache_key)
-
-        if last_request_time:
-            time_since_last = current_time - last_request_time
-            if time_since_last < min_seconds:
-                logger.warning(
-                    f"Request too soon after previous request for IP {ip}",
-                    extra={
-                        **build_request_context(request),
-                        "ip": ip,
-                        "time_since_last": time_since_last,
-                        "min_seconds": min_seconds,
-                    },
-                )
-                return False, _("Please wait %(seconds)d seconds between requests.") % {
-                    "seconds": min_seconds
-                }
-
-        # Update last request time
-        cache.set(cache_key, current_time, min_seconds * 2)
+        # cache.add is atomic: it fails while the previous request's marker
+        # (TTL = min_seconds) is still alive, so parallel requests can't all
+        # slip through the get/set gap.
+        if not cache.add(cache_key, current_time, min_seconds):
+            logger.warning(
+                f"Request too soon after previous request for IP {ip}",
+                extra={
+                    **build_request_context(request),
+                    "ip": ip,
+                    "min_seconds": min_seconds,
+                },
+            )
+            return False, _("Please wait %(seconds)d seconds between requests.") % {
+                "seconds": min_seconds
+            }
         return True, None
     except Exception as e:
         logger.error(f"Timing check error: {str(e)}", exc_info=True)

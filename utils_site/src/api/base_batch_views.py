@@ -315,8 +315,17 @@ class BaseBatchAPIView(APIView):
 
             zip_path = os.path.join(tmp_dir, self.OUTPUT_ZIP_FILENAME)
             with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+                used_names: set[str] = set()
                 for original_name, output_path in output_files:
                     zip_name = self.get_zip_entry_name(original_name, output_path)
+                    # Two uploads called invoice.pdf produced two entries with
+                    # one name; extractors keep the last -> silent data loss.
+                    stem, ext = os.path.splitext(zip_name)
+                    n = 2
+                    while zip_name in used_names:
+                        zip_name = f"{stem}_{n}{ext}"
+                        n += 1
+                    used_names.add(zip_name)
                     zipf.write(output_path, zip_name)
                 if failed_files:
                     # Name the dropped files inside the archive itself — the

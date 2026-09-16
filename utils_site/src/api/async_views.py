@@ -42,6 +42,7 @@ from .conversion_limits import (
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
 from .operation_run_middleware_utils import ensure_request_id, normalize_conversion_type
 from .premium_utils import is_premium_active, ocr_premium_gate_message
+from .rate_limit_utils import combined_rate_limit
 from .spam_protection import validate_spam_protection
 from .task_tokens import create_task_token, verify_task_token
 
@@ -133,6 +134,13 @@ class AsyncConversionAPIView(APIView, ABC):
     ALLOWED_CONTENT_TYPES: set = set()
     ALLOWED_EXTENSIONS: set = set()
     CONVERSION_TYPE = ""
+
+    @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
+    def dispatch(self, request: HttpRequest, *args, **kwargs):
+        # Same per-IP / per-user limits as BaseConversionAPIView; the async
+        # routes carry the heavy conversions and had no limit at all.
+        return super().dispatch(request, *args, **kwargs)
+
     FILE_FIELD_NAME = "file"
 
     # PDF page limit (override in subclasses if needed)
@@ -317,6 +325,7 @@ class AsyncConversionAPIView(APIView, ABC):
         # Spam protection
         spam_check = validate_spam_protection(request)
         if spam_check:
+            spam_check["X-Abuse-Signal"] = "1"  # parity with the sync path
             return spam_check
 
         # Validate with serializer

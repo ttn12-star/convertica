@@ -142,14 +142,11 @@ try:
         # Task time limits - reduced for memory stability
         task_time_limit=480,  # Hard time limit: 8 minutes (reduced from 10)
         task_soft_time_limit=420,  # Soft time limit: 7 minutes (reduced from 9)
-        # Retry settings — exponential backoff with jitter avoids the thundering
-        # herd that fixed 60s delays would cause if unoserver/SMTP is
-        # briefly unhealthy and many tasks retry at the same instant.
+        # Retry settings. (retry_backoff/retry_jitter are per-task attributes
+        # that only apply with autoretry_for; app-level keys of that name are
+        # silently ignored by Celery.)
         task_default_retry_delay=60,
         task_max_retries=1,
-        task_retry_backoff=True,
-        task_retry_backoff_max=600,  # cap at 10 min
-        task_retry_jitter=True,
         # Monitoring
         worker_send_task_events=True,
         task_send_sent_event=True,

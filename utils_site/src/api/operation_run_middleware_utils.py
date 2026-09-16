@@ -26,10 +26,10 @@ def _safe_is_premium(request) -> bool:
 
 def _get_remote_addr(request) -> str:
     try:
-        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-        if x_forwarded_for:
-            return x_forwarded_for.split(",")[0].strip()
-        return request.META.get("REMOTE_ADDR", "")
+        from .client_ip import get_client_ip
+
+        # Leftmost X-Forwarded-For is client-controlled; use the trusted resolver.
+        return get_client_ip(request)
     except Exception:
         return ""
 

@@ -439,7 +439,7 @@ def extract_text_from_pdf(
 
         # Get the page count without rasterizing anything yet.
         try:
-            total_pages = pdfinfo_from_path(pdf_path)["Pages"]
+            total_pages = pdfinfo_from_path(pdf_path, timeout=60)["Pages"]
             context["total_pages"] = total_pages
         except Exception as e:
             raise ConversionError(
@@ -455,7 +455,7 @@ def extract_text_from_pdf(
         for i in range(total_pages):
             try:
                 page_images = convert_from_path(
-                    pdf_path, dpi=dpi, first_page=i + 1, last_page=i + 1
+                    pdf_path, dpi=dpi, first_page=i + 1, last_page=i + 1, timeout=120
                 )
                 page_text = extract_text_from_image(
                     page_images[0],
@@ -466,7 +466,7 @@ def extract_text_from_pdf(
                 context[f"page_{i}_text_length"] = len(page_text)
             except Exception as e:
                 logger.warning(
-                    f"OCR failed for page {i+1}",
+                    f"OCR failed for page {i + 1}",
                     extra={**context, "page": i + 1, "error": str(e)[:200]},
                 )
                 extracted_texts.append("")  # keep page alignment
@@ -539,6 +539,7 @@ def create_searchable_pdf(
         output_path = os.path.join(tmp_dir, output_name)
         context.update({"pdf_path": pdf_path, "output_path": output_path})
 
+        doc = None
         try:
             doc = fitz.open(pdf_path)
 
@@ -555,12 +556,14 @@ def create_searchable_pdf(
                 )  # Invisible text
 
             doc.save(output_path)
-            doc.close()
 
         except Exception as e:
             raise ConversionError(
                 f"Failed to create searchable PDF: {e}", context=context
             ) from e
+        finally:
+            if doc is not None:
+                doc.close()
 
         logger.info(
             "Searchable PDF created successfully",

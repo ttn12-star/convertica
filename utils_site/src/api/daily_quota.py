@@ -18,11 +18,25 @@ cookie+IP dual bucket only if NAT collisions show up in support.
 """
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import caches
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from .client_ip import get_client_ip
+
+
+def _cache():
+    """Release-independent alias (settings.CACHES["quota"]).
+
+    The default cache is prefixed by SENTRY_RELEASE, so every deploy used to
+    reset all daily counters. Falls back to default when a test overrides
+    CACHES without the alias.
+    """
+    try:
+        return caches["quota"]
+    except Exception:
+        return caches["default"]
+
 
 # A day plus slack so a bucket created at 00:01 UTC comfortably outlives its day.
 _TTL_SECONDS = 25 * 60 * 60
@@ -50,7 +64,7 @@ def get_quota_state(request) -> tuple[str, int, int]:
     identity, limit = _identity_and_limit(request)
     key = _cache_key(identity)
     try:
-        used = int(cache.get(key) or 0)
+        used = int(_cache().get(key) or 0)
     except Exception:
         used = 0  # cache down -> fail open
     return key, limit, used
@@ -59,8 +73,8 @@ def get_quota_state(request) -> tuple[str, int, int]:
 def consume_quota_unit(key: str) -> int:
     """Count one successful conversion; return the new used total (best effort)."""
     try:
-        cache.add(key, 0, _TTL_SECONDS)
-        return cache.incr(key)
+        _cache().add(key, 0, _TTL_SECONDS)
+        return _cache().incr(key)
     except Exception:
         return 0  # never fail a successful conversion over quota bookkeeping
 

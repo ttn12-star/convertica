@@ -503,6 +503,23 @@ def cleanup_stuck_operations(
 
         cutoff_time = timezone.now() - timedelta(minutes=max_age_minutes)
 
+        # Revoke messages that are still sitting in the broker: once the row is
+        # "abandoned" the temp-file reaper deletes its input, and a worker that
+        # picked the message up later would fail on a missing file.
+        stale_task_ids = list(
+            OperationRun.objects.filter(status="queued", created_at__lt=cutoff_time)
+            .exclude(task_id__isnull=True)
+            .exclude(task_id="")
+            .values_list("task_id", flat=True)[:500]
+        )
+        if stale_task_ids:
+            try:
+                from utils_site.celery import app as celery_app
+
+                celery_app.control.revoke(stale_task_ids)
+            except Exception as revoke_exc:
+                logger.warning("Revoking stale queued tasks failed: %s", revoke_exc)
+
         abandoned_count = OperationRun.objects.filter(
             status__in=["queued", "running", "started"], created_at__lt=cutoff_time
         ).update(

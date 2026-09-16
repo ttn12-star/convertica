@@ -94,7 +94,12 @@ class RateLimitMiddleware(MiddlewareMixin):
         # NAT throttle each other. Mirror DailyQuotaMiddleware's cvk_live_
         # exemption. A forged cvk_live_ still 401s at DRF auth, so nothing runs.
         if request.META.get("HTTP_AUTHORIZATION", "").startswith("Bearer cvk_live_"):
-            return None
+            from .auth.api_key_auth import resolve_api_key_user
+
+            # Only a key that resolves to a real subscriber is exempt; a
+            # forged prefix used to remove the per-IP cap from every /api/ path.
+            if resolve_api_key_user(request) is not None:
+                return None
 
         # Get client IP — prefer CF-Connecting-IP (set by Cloudflare, not spoofable)
         # before falling back to X-Forwarded-For where the leftmost entry is user-controlled.
