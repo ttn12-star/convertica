@@ -11,6 +11,7 @@
 {% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
 
 {% block structured_data %}
+  {{ block.super }}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",

@@ -17644,3 +17644,42 @@ msgstr "Эта доска заполнена (%(count)s плиток). Созд�
 
 msgid "%(added)s of %(total)s tiles added (plan limit)"
 msgstr "Добавлено %(added)s из %(total)s плиток (лимит тарифа)"
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid "100% Free"
+msgstr "100% Бесплатно"
+
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid ""
+"85% is recommended for most images. Lower values reduce file size more "
+"aggressively."
+msgstr ""
+"85% рекомендуется для большинства изображений. Меньшие значения сильнее "
+"сокращают размер файла."
+
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid "Set the quality level (85% is recommended for most images)"
+msgstr ""
+"Установите уровень качества (85% рекомендуется для большинства изображений)"
+
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid ""
+"However, no method of transmission over the Internet or electronic storage "
+"is 100% secure. While we strive to use commercially acceptable means to "
+"protect your information, we cannot guarantee absolute security."
+msgstr ""
+"Однако ни один метод передачи через Интернет или электронного хранения не "
+"является на 100% безопасным. Хотя мы стремимся использовать коммерчески "
+"приемлемые средства для защиты вашей информации, мы не можем гарантировать "
+"абсолютную безопасность."
+
+
+msgid "We've sent you an email with instructions to reset your password."
+msgstr "Мы отправили вам письмо с инструкциями по сбросу пароля."

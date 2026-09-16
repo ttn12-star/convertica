@@ -57,7 +57,7 @@
             }
         }
 
-        applyTheme(theme, animate = true) {
+        applyTheme(theme, animate = true, persist = false) {
             const html = document.documentElement;
             const body = document.body;
 
@@ -90,7 +90,9 @@
             }
 
             this.currentTheme = theme;
-            this.setStoredTheme(theme);
+            if (persist) {
+                this.setStoredTheme(theme);
+            }
             this.updateToggleButton();
 
             // Dispatch event for other components
@@ -107,7 +109,7 @@
             }
 
             const newTheme = this.currentTheme === THEME_DARK ? THEME_LIGHT : THEME_DARK;
-            this.applyTheme(newTheme);
+            this.applyTheme(newTheme, true, true);
         }
 
         setupToggleButton() {

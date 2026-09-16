@@ -604,10 +604,9 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
     }
     window._lastFeedbackToken = null;
 
-    // Cleanup blob URL after 10 minutes
-    setTimeout(() => {
-        URL.revokeObjectURL(blobUrl);
-    }, 600000);
+    // The blob URL stays valid while the page is open: the Download button
+    // keeps pointing at it, and revoking after a timer made that click a
+    // silent no-op for anyone who came back later.
 }
 
 /**
@@ -1081,13 +1080,25 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
             const response = await fetch(`/api/tasks/${taskId}/status/`, {
                 headers: statusHeaders,
             });
+            if (response.status === 403 || response.status === 404 || response.status === 410) {
+                // Task unknown/expired/not ours: polling 300 more times will not help.
+                onError('Task not found or expired. Please try again.');
+                return;
+            }
+            if (!response.ok) {
+                throw new Error(`Status request failed (${response.status})`);
+            }
             const data = await response.json();
 
             switch (data.status) {
                 case 'SUCCESS':
                     // Don't show 100% yet - let onSuccess handle it after file is downloaded
                     onProgress(90, 'Preparing download...');
-                    onSuccess(data);
+                    // onSuccess is async (downloads the result); an unhandled
+                    // rejection here left the spinner up forever.
+                    Promise.resolve()
+                        .then(() => onSuccess(data))
+                        .catch((err) => onError((err && err.message) || 'Failed to download result'));
                     break;
 
                 case 'FAILURE':

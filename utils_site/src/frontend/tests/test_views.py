@@ -257,6 +257,21 @@ class FrontendViewsTestCase(TestCase):
 
     def test_blog_pagination_keeps_indexable_self_canonical(self):
         """Page 2 of the blog should not collapse into page 1 canonical."""
+        from src.blog.models import Article, ArticleCategory
+
+        category = ArticleCategory.objects.create(
+            slug="pagination-canonical-test", name_en="Pagination"
+        )
+        for i in range(10):  # 9 per page -> a real page 2
+            Article.objects.create(
+                title_en=f"Paginated {i}",
+                slug=f"paginated-{i}",
+                excerpt_en="x",
+                content_en="x",
+                status="published",
+                category=category,
+                published_at=timezone.now(),
+            )
         response = self.client.get(f"{self._get_url_with_lang('blog/')}?page=2")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
@@ -271,6 +286,12 @@ class FrontendViewsTestCase(TestCase):
             status_code=200,
         )
         self.assertNotIn("X-Robots-Tag", response)
+        # Out-of-range pages used to be clamped to the last page and served
+        # with a self-canonical -> unbounded indexable duplicates.
+        self.assertEqual(
+            self.client.get(f"{self._get_url_with_lang('blog/')}?page=999").status_code,
+            404,
+        )
 
     def test_noindex_locales_leave_no_index_signals(self):
         """SEO_NOINDEX_LANGUAGES: noindex page, no hreflang, no sitemap; / redirects."""

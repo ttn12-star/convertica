@@ -188,11 +188,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
             const linkText = "upgrade to Premium";
 
-            if (window.PREMIUM_LINK && message.includes(linkText)) {
+            if (window.PREMIUM_LINK) {
                 const safeUrl = escapeHtml(window.PREMIUM_LINK);
-                const safeLinkText = escapeHtml(linkText);
-                const link = `<a href="${safeUrl}" class="text-amber-600 hover:text-amber-700 font-medium underline">${safeLinkText}</a>`;
-                return escapeHtml(message).replace(escapeHtml(linkText), link);
+                const cls = 'text-amber-600 hover:text-amber-700 font-medium underline';
+                if (message.includes(linkText)) {
+                    const link = `<a href="${safeUrl}" class="${cls}">${escapeHtml(linkText)}</a>`;
+                    return escapeHtml(message).replace(escapeHtml(linkText), link);
+                }
+                // Translated messages don't contain the English phrase; still
+                // give non-English users a way to the pricing page.
+                return `${escapeHtml(message)} <a href="${safeUrl}" class="${cls}">Premium →</a>`;
             }
             return escapeHtml(message);
         } else {

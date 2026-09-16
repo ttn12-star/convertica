@@ -17464,3 +17464,40 @@ msgstr "यह बोर्ड भर गया है (%(count)s टाइल)�
 
 msgid "%(added)s of %(total)s tiles added (plan limit)"
 msgstr "%(total)s में से %(added)s टाइल जोड़ी गईं (प्लान सीमा)"
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid "100% Free"
+msgstr "100% मुफ्त"
+
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid ""
+"85% is recommended for most images. Lower values reduce file size more "
+"aggressively."
+msgstr ""
+"अधिकांश छवियों के लिए 85% अनुशंसित है। कम मान फ़ाइल आकार को अधिक घटाते हैं।"
+
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid "Set the quality level (85% is recommended for most images)"
+msgstr "गुणवत्ता स्तर सेट करें (अधिकांश छवियों के लिए 85% अनुशंसित)"
+
+
+#. single-% twin of the %%-doubled makemessages entry; templates call
+#. gettext() with a single %
+msgid ""
+"However, no method of transmission over the Internet or electronic storage "
+"is 100% secure. While we strive to use commercially acceptable means to "
+"protect your information, we cannot guarantee absolute security."
+msgstr ""
+"हालाँकि, इंटरनेट पर ट्रांसमिशन या इलेक्ट्रॉनिक भंडारण की कोई भी विधि 100% "
+"सुरक्षित नहीं है। जबकि हम आपकी जानकारी की सुरक्षा के लिए व्यावसायिक रूप से "
+"स्वीकार्य साधनों का उपयोग करने का प्रयास करते हैं, हम पूर्ण सुरक्षा की "
+"गारंटी नहीं दे सकते।"
+
+
+msgid "We've sent you an email with instructions to reset your password."
+msgstr "हमने आपको पासवर्ड रीसेट करने के निर्देशों के साथ एक ईमेल भेजा है।"

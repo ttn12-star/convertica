@@ -225,7 +225,7 @@
                   "@type": "ListItem",
                   "position": {{ forloop.counter }},
                   "name": "{{ breadcrumb.name|escapejs }}",
-                  "item": "{{ site_base_url }}{{ breadcrumb.url }}"
+                  "item": "{{ site_base_url }}{{ breadcrumb.url|escapejs }}"
                 }{% if not forloop.last %},{% endif %}
               {% endfor %}
             ]
