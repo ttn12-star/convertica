@@ -251,9 +251,9 @@ services:
     healthcheck:
       # `|| exit 0` made this unfailable, so autoheal never restarted a wedged
       # worker. retries=10 x 60s still tolerates slow starts.
-      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 20"]
+      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 30"]
       interval: 60s
-      timeout: 30s
+      timeout: 45s  # the check itself imports Django; --timeout bounds only the reply wait
       retries: 10
       start_period: 30s
     labels:
@@ -301,9 +301,9 @@ services:
     healthcheck:
       # `|| exit 0` made this unfailable, so autoheal never restarted a wedged
       # worker. retries=10 x 60s still tolerates slow starts.
-      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 20"]
+      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME --timeout 30"]
       interval: 60s
-      timeout: 30s
+      timeout: 45s  # the check itself imports Django; --timeout bounds only the reply wait
       retries: 10
       start_period: 30s
     networks:

@@ -58,11 +58,11 @@ class RevocationFallbackTests(TestCase):
         user.refresh_from_db()
         self.assertFalse(user.is_premium)
 
-    def test_unattributable_revocation_raises_so_provider_retries(self):
-        with self.assertRaises(LookupError):
-            h.handle_subscription_expired(
-                {"meta": {}, "data": {"id": "sub_unknown", "attributes": {}}}
-            )
+    def test_unattributable_revocation_is_acked_without_crashing(self):
+        # Deleted account / provider test event: nothing to revoke, no 500 loop.
+        h.handle_subscription_expired(
+            {"meta": {}, "data": {"id": "sub_unknown", "attributes": {}}}
+        )
 
 
 class LifetimeCountersTests(TestCase):

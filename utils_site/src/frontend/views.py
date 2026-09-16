@@ -372,6 +372,27 @@ def _get_related_tools(current_tool):
             "icon": _DOC_ICON,
             "gradient": "from-orange-500 to-amber-600",
         },
+        "protect_zip": {
+            "name": _("Protect ZIP"),
+            "url": "frontend:protect_zip_page",
+            "description": _("Password-protect a ZIP archive"),
+            "icon": _DOC_ICON,
+            "gradient": "from-emerald-500 to-green-600",
+        },
+        "unlock_zip": {
+            "name": _("Unlock ZIP"),
+            "url": "frontend:unlock_zip_page",
+            "description": _("Remove the password from a ZIP archive"),
+            "icon": _DOC_ICON,
+            "gradient": "from-yellow-500 to-amber-600",
+        },
+        "password_protect_image": {
+            "name": _("Password Protect Image"),
+            "url": "frontend:password_protect_image_page",
+            "description": _("Wrap images in a password-protected PDF"),
+            "icon": _DOC_ICON,
+            "gradient": "from-fuchsia-500 to-pink-600",
+        },
         "pdf_to_html": {
             "name": _("PDF to HTML"),
             "url": "frontend:pdf_to_html_page",

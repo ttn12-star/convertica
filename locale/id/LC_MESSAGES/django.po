@@ -17639,8 +17639,8 @@ msgstr "Ekspor ke Word gagal. Silakan coba lagi."
 
 
 #, python-format
-msgid "%(words)s words, %(chars)s characters"
-msgstr "%(words)s kata, %(chars)s karakter"
+msgid "%%(words)s words, %%(chars)s characters"
+msgstr "%%(words)s kata, %%(chars)s karakter"
 
 
 msgid "Rejected"
@@ -17716,3 +17716,14 @@ msgstr ""
 "elektronik yang %(pct)s aman. Meskipun kami berusaha menggunakan cara yang "
 "dapat diterima secara komersial untuk melindungi informasi Anda, kami tidak "
 "dapat menjamin keamanan absolut."
+
+msgid "Password-protect a ZIP archive"
+msgstr "Lindungi arsip ZIP dengan kata sandi"
+
+
+msgid "Remove the password from a ZIP archive"
+msgstr "Hapus kata sandi dari arsip ZIP"
+
+
+msgid "Wrap images in a password-protected PDF"
+msgstr "Bungkus gambar dalam PDF yang dilindungi kata sandi"

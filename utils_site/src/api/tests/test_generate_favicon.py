@@ -54,9 +54,10 @@ class GenerateFaviconTests(TestCase):
         from src.api.image_tools.generate_favicon.utils import generate_favicon
 
         _, output_path = generate_favicon(_png_upload())
-        with zipfile.ZipFile(output_path) as zf, Image.open(
-            io.BytesIO(zf.read("apple-touch-icon.png"))
-        ) as img:
+        with (
+            zipfile.ZipFile(output_path) as zf,
+            Image.open(io.BytesIO(zf.read("apple-touch-icon.png"))) as img,
+        ):
             self.assertEqual(img.size, (180, 180))
 
     def test_non_square_source_produces_square_icons(self):

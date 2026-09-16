@@ -3,6 +3,7 @@ File validation utilities for conversion APIs.
 """
 
 import os
+import re
 import shutil
 import tempfile
 
@@ -16,6 +17,18 @@ from .cache_utils import (
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+
+_INTERNAL_PATH_RE = re.compile(r"(?:/(?:tmp|app|home|var|opt|media))(?:/[\w.\-]+)+")
+
+
+def scrub_internal_paths(message: str) -> str:
+    """Replace absolute server paths in a user-facing message with <file>.
+
+    Anchored to the roots we actually write under, so URLs and dates
+    (https://x/a/b, 2024/03/15) are left alone.
+    """
+    return _INTERNAL_PATH_RE.sub("<file>", message or "")
 
 
 def is_removable_tmp_dir(path: str | None) -> bool:

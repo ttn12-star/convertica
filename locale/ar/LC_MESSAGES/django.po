@@ -16873,8 +16873,8 @@ msgstr "فشل التصدير إلى Word. يرجى المحاولة مرة أخ
 
 
 #, python-format
-msgid "%(words)s words, %(chars)s characters"
-msgstr "%(words)s كلمة، %(chars)s حرفًا"
+msgid "%%(words)s words, %%(chars)s characters"
+msgstr "%%(words)s كلمة، %%(chars)s حرفًا"
 
 
 msgid "Rejected"
@@ -16946,3 +16946,14 @@ msgstr ""
 "ومع ذلك، لا توجد طريقة نقل عبر الإنترنت أو تخزين إلكتروني آمنة بنسبة "
 "%(pct)s. بينما نسعى جاهدين لاستخدام وسائل مقبولة تجارياً لحماية معلوماتك، لا"
 " يمكننا ضمان الأمان المطلق."
+
+msgid "Password-protect a ZIP archive"
+msgstr "احمِ أرشيف ZIP بكلمة مرور"
+
+
+msgid "Remove the password from a ZIP archive"
+msgstr "أزِل كلمة المرور من أرشيف ZIP"
+
+
+msgid "Wrap images in a password-protected PDF"
+msgstr "ضع الصور في ملف PDF محمي بكلمة مرور"

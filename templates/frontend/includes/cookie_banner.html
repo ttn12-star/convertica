@@ -143,10 +143,10 @@
 
     // Accept all cookies
     cookieAccept.addEventListener('click', function() {
-      localStorage.setItem('cookie_consent', 'accepted');
-      localStorage.setItem('cookie_analytics', 'true');
-      localStorage.setItem('cookie_marketing', 'true');
-      localStorage.setItem('cookie_consent_date', new Date().toISOString());
+      try { localStorage.setItem('cookie_consent', 'accepted'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_analytics', 'true'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_marketing', 'true'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_consent_date', new Date().toISOString()); } catch (e) { /* storage blocked */ }
       cookieBanner.classList.add('hidden');
 
         // Trigger custom event for analytics (if needed)
@@ -157,10 +157,10 @@
 
     // Reject all non-essential cookies (GDPR requirement)
     cookieReject.addEventListener('click', function() {
-      localStorage.setItem('cookie_consent', 'rejected');
-      localStorage.setItem('cookie_analytics', 'false');
-      localStorage.setItem('cookie_marketing', 'false');
-      localStorage.setItem('cookie_consent_date', new Date().toISOString());
+      try { localStorage.setItem('cookie_consent', 'rejected'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_analytics', 'false'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_marketing', 'false'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_consent_date', new Date().toISOString()); } catch (e) { /* storage blocked */ }
       cookieBanner.classList.add('hidden');
 
         // Trigger custom event
@@ -210,10 +210,10 @@
       const analytics = cookieAnalytics ? cookieAnalytics.checked : false;
       const marketing = cookieMarketing ? cookieMarketing.checked : false;
 
-      localStorage.setItem('cookie_consent', 'custom');
-      localStorage.setItem('cookie_analytics', analytics ? 'true' : 'false');
-      localStorage.setItem('cookie_marketing', marketing ? 'true' : 'false');
-      localStorage.setItem('cookie_consent_date', new Date().toISOString());
+      try { localStorage.setItem('cookie_consent', 'custom'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_analytics', analytics ? 'true' : 'false'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_marketing', marketing ? 'true' : 'false'); } catch (e) { /* storage blocked */ }
+      try { localStorage.setItem('cookie_consent_date', new Date().toISOString()); } catch (e) { /* storage blocked */ }
 
       cookieBanner.classList.add('hidden');
 

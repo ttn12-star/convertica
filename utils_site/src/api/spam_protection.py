@@ -232,7 +232,10 @@ def check_minimum_time_between_requests(
         # cache.add is atomic: it fails while the previous request's marker
         # (TTL = min_seconds) is still alive, so parallel requests can't all
         # slip through the get/set gap.
-        if not cache.add(cache_key, current_time, min_seconds):
+        # django-redis returns None (not False) when Redis is unreachable
+        # (IGNORE_EXCEPTIONS): that must stay fail-open, only an existing key
+        # (False) means "too soon".
+        if cache.add(cache_key, current_time, min_seconds) is False:
             logger.warning(
                 f"Request too soon after previous request for IP {ip}",
                 extra={

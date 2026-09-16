@@ -511,6 +511,8 @@ def add_watermark(
 
             processor.validate_output_pdf(output_path, min_size=1000)
 
+        except InvalidPDFError:
+            raise  # user-facing 400 (e.g. page range "5-2"), not a 500
         except Exception as e:
             error_context = {
                 **context,

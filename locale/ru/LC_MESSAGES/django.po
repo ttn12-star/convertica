@@ -17699,8 +17699,8 @@ msgstr "Не удалось экспортировать в Word. Попробу
 
 
 #, python-format
-msgid "%(words)s words, %(chars)s characters"
-msgstr "%(words)s слов, %(chars)s символов"
+msgid "%%(words)s words, %%(chars)s characters"
+msgstr "%%(words)s слов, %%(chars)s символов"
 
 
 msgid "Rejected"
@@ -17720,7 +17720,7 @@ msgstr "Наложите текстовый или графический вод
 
 
 msgid "Pull selected pages into a new PDF"
-msgstr "Соберите выбранные страницы в новый PDF"
+msgstr "Извлеките нужные страницы в новый PDF"
 
 
 msgid "Delete unwanted pages from a PDF"
@@ -17777,3 +17777,14 @@ msgstr ""
 "является на %(pct)s безопасным. Хотя мы стремимся использовать коммерчески "
 "приемлемые средства для защиты вашей информации, мы не можем гарантировать "
 "абсолютную безопасность."
+
+msgid "Password-protect a ZIP archive"
+msgstr "Поставьте пароль на ZIP-архив"
+
+
+msgid "Remove the password from a ZIP archive"
+msgstr "Снимите пароль с ZIP-архива"
+
+
+msgid "Wrap images in a password-protected PDF"
+msgstr "Упакуйте изображения в PDF с паролем"

@@ -53,6 +53,27 @@ if [ -z "$OLD_CELERY_BEAT_ID" ]; then
 fi
 echo "📋 Saved old container IDs for rollback: web=$OLD_WEB_ID, celery=$OLD_CELERY_ID, beat=$OLD_CELERY_BEAT_ID"
 
+# Step 0: Backup the database BEFORE anything is stopped or started, so an
+# abort here leaves prod exactly as it was (old image, old schema). Running
+# it after step 1 meant a failed dump aborted with the NEW image already
+# serving traffic and no migrations/collectstatic applied.
+echo "💾 Creating database backup before the rollout..."
+mkdir -p /opt/convertica/backups
+# Nothing else rotates these; keep two weeks.
+find /opt/convertica/backups -name 'pre_deploy_*.sql.gz' -mtime +14 -delete 2>/dev/null || true
+BACKUP_FILE="/opt/convertica/backups/pre_deploy_$(date +%Y%m%d_%H%M%S).sql.gz"
+# No pipefail in this script: piping straight into gzip hid a failed pg_dump
+# behind a valid (empty) archive and a "backup created" line.
+if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db pg_dump -U convertica convertica > "${BACKUP_FILE%.gz}" \
+   && [ "$(stat -c %s "${BACKUP_FILE%.gz}")" -gt 1024 ] \
+   && gzip -f "${BACKUP_FILE%.gz}"; then
+  echo "✅ Backup created: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))"
+else
+  echo "❌ Database backup failed or is empty — aborting before the rollout (nothing changed)"
+  rm -f "${BACKUP_FILE%.gz}" "$BACKUP_FILE"
+  exit 1
+fi
+
 # Step 1: Start new web container and wait for healthcheck
 # docker compose up -d will stop old and start new (sequential, not parallel)
 echo "📦 Starting new web container (waiting for healthcheck)..."
@@ -103,19 +124,12 @@ fi
 echo "⏳ Additional wait to ensure Django is fully ready..."
 sleep 10
 
-# Step 1.5: Backup database and verify data BEFORE migrations
-echo "💾 Creating database backup before migrations..."
-mkdir -p /opt/convertica/backups
-BACKUP_FILE="/opt/convertica/backups/pre_deploy_$(date +%Y%m%d_%H%M%S).sql.gz"
-# No pipefail in this script: piping straight into gzip hid a failed pg_dump
-# behind a valid (empty) archive and a "backup created" line.
-if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db pg_dump -U convertica convertica > "${BACKUP_FILE%.gz}" \
-   && [ "$(stat -c %s "${BACKUP_FILE%.gz}")" -gt 1024 ] \
-   && gzip -f "${BACKUP_FILE%.gz}"; then
-  echo "✅ Backup created: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))"
-else
-  echo "❌ Database backup failed or is empty — aborting before migrations"
-  rm -f "${BACKUP_FILE%.gz}" "$BACKUP_FILE"
+# Step 1.5: the pre-rollout backup was taken in Step 0 (before any container
+# was touched); just confirm it is still there before migrating.
+if [ ! -s "$BACKUP_FILE" ]; then
+  echo "❌ Pre-rollout backup $BACKUP_FILE is missing — rolling back web and aborting"
+  docker stop "$NEW_WEB_ID" 2>/dev/null || true
+  [ -n "$OLD_WEB_ID" ] && docker start "$OLD_WEB_ID" 2>/dev/null || true
   exit 1
 fi
 
@@ -383,8 +397,10 @@ echo "🧹 Installing async_temp reaper cron (backstop for celery-beat)..."
 echo '*/30 * * * * root find /opt/convertica/media/async_temp -mindepth 1 -maxdepth 1 -mmin +180 -exec rm -rf {} + 2>/dev/null' > /etc/cron.d/convertica-async-temp-reaper
 chmod 644 /etc/cron.d/convertica-async-temp-reaper
 
-# Clean up old Docker images
+# Clean up old Docker images. Keep the last two days: with the exited
+# containers removed above, the previous release's image is dangling, and an
+# unfiltered prune would delete the only quick rollback target.
 echo "🧹 Cleaning up old Docker images..."
-docker image prune -f || true
+docker image prune -f --filter "until=48h" || true
 
 echo "✅ Deployment completed!"

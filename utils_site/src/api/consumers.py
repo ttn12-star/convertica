@@ -50,8 +50,7 @@ class ConversionConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
         logger.info(
-            f"WebSocket connected: task_id={self.task_id}, "
-            f"channel={self.channel_name}"
+            f"WebSocket connected: task_id={self.task_id}, channel={self.channel_name}"
         )
 
         # Send initial connection message
@@ -71,7 +70,7 @@ class ConversionConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
         logger.info(
-            f"WebSocket disconnected: task_id={self.task_id}, " f"code={close_code}"
+            f"WebSocket disconnected: task_id={self.task_id}, code={close_code}"
         )
 
     async def receive(self, text_data):
@@ -221,7 +220,7 @@ class BatchConversionConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
         logger.info(
-            f"WebSocket disconnected: batch_id={self.batch_id}, " f"code={close_code}"
+            f"WebSocket disconnected: batch_id={self.batch_id}, code={close_code}"
         )
 
     async def receive(self, text_data):

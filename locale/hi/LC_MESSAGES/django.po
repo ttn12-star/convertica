@@ -17496,7 +17496,7 @@ msgstr ""
 
 
 msgid "Featured on"
-msgstr "यहाँ प्रदर्शित"
+msgstr "हमें यहाँ देखें"
 
 
 msgid "Download as Word"
@@ -17516,12 +17516,12 @@ msgstr "किसी अन्य इमेज से निकालें"
 
 
 msgid "Word export failed. Please try again."
-msgstr "Word में निर्यात विफल रहा। कृपया पुनः प्रयास करें।"
+msgstr "Word फ़ाइल बनाना विफल रहा। कृपया पुनः प्रयास करें।"
 
 
 #, python-format
-msgid "%(words)s words, %(chars)s characters"
-msgstr "%(words)s शब्द, %(chars)s वर्ण"
+msgid "%%(words)s words, %%(chars)s characters"
+msgstr "%%(words)s शब्द, %%(chars)s वर्ण"
 
 
 msgid "Rejected"
@@ -17596,3 +17596,14 @@ msgstr ""
 " सुरक्षित नहीं है। जबकि हम आपकी जानकारी की सुरक्षा के लिए व्यावसायिक रूप से "
 "स्वीकार्य साधनों का उपयोग करने का प्रयास करते हैं, हम पूर्ण सुरक्षा की "
 "गारंटी नहीं दे सकते।"
+
+msgid "Password-protect a ZIP archive"
+msgstr "ZIP आर्काइव पर पासवर्ड लगाएँ"
+
+
+msgid "Remove the password from a ZIP archive"
+msgstr "ZIP आर्काइव से पासवर्ड हटाएँ"
+
+
+msgid "Wrap images in a password-protected PDF"
+msgstr "इमेज को पासवर्ड-सुरक्षित PDF में रखें"

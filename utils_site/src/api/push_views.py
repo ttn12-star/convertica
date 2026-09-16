@@ -61,17 +61,9 @@ class PushSubscribeAPIView(APIView):
 
         from src.users.models import PushSubscription
 
-        # endpoint is globally unique. Knowing another account's endpoint URL
-        # must not be enough to hijack (silence) its notifications.
-        if (
-            PushSubscription.objects.filter(endpoint=endpoint)
-            .exclude(user=request.user)
-            .exists()
-        ):
-            return Response(
-                {"error": "This browser is registered to another account."},
-                status=status.HTTP_409_CONFLICT,
-            )
+        # endpoint is globally unique — a re-subscribe in another account's
+        # browser session simply reassigns the row (shared machines, two
+        # accounts in one browser).
         PushSubscription.objects.update_or_create(
             endpoint=endpoint,
             defaults={"user": request.user, "p256dh": p256dh, "auth": auth},

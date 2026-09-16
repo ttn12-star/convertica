@@ -287,7 +287,10 @@
             // Merge into the current stored list: an add/remove that happened
             // while the status requests were in flight must survive.
             const byId = new Map(tasks.map((t) => [t.taskId, t]));
-            const merged = getTasks().map((t) => (byId.has(t.taskId) ? Object.assign({}, t, byId.get(t.taskId)) : t));
+            const merged = getTasks()
+                // keep the 50-minute purge: entries this poll dropped as expired must not come back
+                .filter((t) => byId.has(t.taskId) || now - t.startedAt < MAX_AGE_MS)
+                .map((t) => (byId.has(t.taskId) ? Object.assign({}, t, byId.get(t.taskId)) : t));
             saveTasks(merged);
         }
         renderIndicator();

@@ -210,7 +210,7 @@ RUN rm -f /app/utils_site/src/src && ln -s /app/utils_site/src /app/src
 
 # Compile .po → .mo for all locales so Django serves translations.
 # Uses msgfmt directly (gettext) — independent of Django settings at build time.
-RUN find /app/locale -name 'django.po' -execdir msgfmt django.po -o django.mo \;
+RUN set -e; for f in /app/locale/*/LC_MESSAGES/django.po; do msgfmt -c "$f" -o "${f%.po}.mo"; done
 
 # Switch to non-root user
 USER appuser

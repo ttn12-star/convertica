@@ -34,6 +34,5 @@ class RejectOnWorkerLostConfigTests(TestCase):
 
         self.assertFalse(
             generic_conversion_task.reject_on_worker_lost,
-            "generic_conversion_task must not requeue on worker loss "
-            "(CONVERTICA-59).",
+            "generic_conversion_task must not requeue on worker loss (CONVERTICA-59).",
         )

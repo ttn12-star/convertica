@@ -13,6 +13,10 @@ from django.core.management.base import BaseCommand
 # uv:* keys are written via a raw Redis connection with no django-redis key
 # prefix, so this bytes-prefix test cleanly separates them from cache entries.
 _UNIQUE_KEY_PREFIX = b"uv:"
+# The CACHES["quota"] alias (daily free-conversion counters) shares this Redis
+# DB with a fixed prefix; wiping it on deploy hands every free user a fresh
+# daily allowance. django-redis stores it as "<db>:convertica:quota:<key>".
+_QUOTA_KEY_MARKER = b":convertica:quota:"
 
 
 class Command(BaseCommand):
@@ -30,7 +34,7 @@ class Command(BaseCommand):
         deleted = 0
         batch = []
         for key in conn.scan_iter(match="*", count=500):
-            if key.startswith(_UNIQUE_KEY_PREFIX):
+            if key.startswith(_UNIQUE_KEY_PREFIX) or _QUOTA_KEY_MARKER in key:
                 continue
             batch.append(key)
             if len(batch) >= 500:

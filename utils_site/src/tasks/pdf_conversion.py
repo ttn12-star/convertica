@@ -20,7 +20,7 @@ from celery import shared_task
 from celery.exceptions import Ignore, SoftTimeLimitExceeded
 from django.core.files.base import File
 from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
-from src.api.file_validation import is_removable_tmp_dir
+from src.api.file_validation import is_removable_tmp_dir, scrub_internal_paths
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -936,7 +936,7 @@ def generic_conversion_task(
                 "status": "error",
                 # Converter messages are user-facing, but some embed the
                 # internal working path; strip anything that looks like one.
-                "error": re.sub(r"(?:/[\w.\-]+){2,}", "<file>", error_message),
+                "error": scrub_internal_paths(error_message),
                 "conversion_type": conversion_type,
             }
 

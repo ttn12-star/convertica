@@ -140,11 +140,22 @@ def crop_pdf(
             # Determine initial page size based on whether first page is cropped
             # Render one page at a time: the whole document at 150 DPI held
             # ~1.3 GB of bitmaps for a 200-page file (worker cgroup is 1.5 GB).
+            _window: dict = {"start": -1, "pages": []}
+
             def _render(n: int):
-                pages = convert_from_path(
-                    pdf_path, dpi=150, first_page=n + 1, last_page=n + 1, timeout=120
-                )
-                return pages[0] if pages else None
+                # Windows of 10 pages: one pdftoppm spawn per window instead of
+                # per page, still far below the whole-document footprint.
+                if not (_window["start"] <= n < _window["start"] + 10):
+                    _window["start"] = n - (n % 10)
+                    _window["pages"] = convert_from_path(
+                        pdf_path,
+                        dpi=150,
+                        first_page=_window["start"] + 1,
+                        last_page=min(_window["start"] + 10, total_pages),
+                        timeout=180,
+                    )
+                idx = n - _window["start"]
+                return _window["pages"][idx] if idx < len(_window["pages"]) else None
 
             first_page_img = _render(0) if total_pages else None
             if first_page_img and 0 in pages_to_crop:
@@ -252,6 +263,8 @@ def crop_pdf(
 
             can.save()
 
+        except InvalidPDFError:
+            raise  # user-facing 400 (e.g. page range "5-2"), not a 500
         except Exception as e:
             from pypdf.errors import PyPdfError
 

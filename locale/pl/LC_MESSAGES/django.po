@@ -17835,7 +17835,7 @@ msgstr ""
 
 
 msgid "Featured on"
-msgstr "Polecają nas"
+msgstr "Znajdziesz nas w"
 
 
 msgid "Download as Word"
@@ -17855,12 +17855,12 @@ msgstr "Wyodrębnij z innego obrazu"
 
 
 msgid "Word export failed. Please try again."
-msgstr "Eksport do Word nie powiódł się. Spróbuj ponownie."
+msgstr "Eksport do Worda nie powiódł się. Spróbuj ponownie."
 
 
 #, python-format
-msgid "%(words)s words, %(chars)s characters"
-msgstr "%(words)s słów, %(chars)s znaków"
+msgid "%%(words)s words, %%(chars)s characters"
+msgstr "%%(words)s słów, %%(chars)s znaków"
 
 
 msgid "Rejected"
@@ -17935,3 +17935,14 @@ msgstr ""
 "elektronicznego nie jest w %(pct)s bezpieczna. Chociaż staramy się używać "
 "komercyjnie akceptowalnych środków do ochrony Twoich informacji, nie możemy "
 "zagwarantować absolutnego bezpieczeństwa."
+
+msgid "Password-protect a ZIP archive"
+msgstr "Zabezpiecz archiwum ZIP hasłem"
+
+
+msgid "Remove the password from a ZIP archive"
+msgstr "Usuń hasło z archiwum ZIP"
+
+
+msgid "Wrap images in a password-protected PDF"
+msgstr "Zapakuj obrazy do PDF chronionego hasłem"
