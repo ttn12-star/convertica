@@ -77,6 +77,7 @@ def deliver(*, webhook_url: str, payload: dict, user) -> bool:
                 "User-Agent": "convertica-webhook/1.0",
             },
             timeout=10,
+            allow_redirects=False,
         )
         ok = 200 <= r.status_code < 300
         if not ok:

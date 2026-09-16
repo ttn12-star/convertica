@@ -203,11 +203,7 @@ def mark_operation_abandoned(request):
                     {"status": "ok", "skipped": "background"}, status=200
                 )
 
-            if (
-                task_id
-                and task_token
-                and not _authorize_task_request(request, task_id, task_token)
-            ):
+            if task_id and not _authorize_task_request(request, task_id, task_token):
                 return JsonResponse({"error": "Unauthorized task access"}, status=403)
 
             from src.users.models import OperationRun

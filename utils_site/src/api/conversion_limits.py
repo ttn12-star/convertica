@@ -339,13 +339,9 @@ def validate_pdf_pages(
             payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
 
             # Check if user is premium for custom message
-            is_premium = (
-                user.is_authenticated
-                and hasattr(user, "is_premium")
-                and user.is_premium
-                and hasattr(user, "is_subscription_active")
-                and user.is_subscription_active()
-            )
+            from .premium_utils import is_premium_active
+
+            is_premium = is_premium_active(user)
 
             if not is_premium and page_count > MAX_PDF_PAGES:
                 # Free user exceeding limit

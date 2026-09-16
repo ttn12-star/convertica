@@ -20,7 +20,10 @@ class WebTokenTest(TestCase):
             REMOTE_ADDR="1.2.3.4",
         )
         user, auth_obj = self.auth.authenticate(request)
-        self.assertIsNone(user)  # web tokens are anonymous
+        # Web tokens are anonymous: an AnonymousUser, never None (downstream
+        # code reads request.user.is_authenticated).
+        self.assertIsNotNone(user)
+        self.assertFalse(user.is_authenticated)
         self.assertEqual(auth_obj["scope"], ["pdf-to-word"])
 
     def test_expired_token_rejected(self):

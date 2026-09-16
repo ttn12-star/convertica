@@ -41,7 +41,11 @@ from .conversion_limits import (
     run_with_timeout,
     validate_pdf_pages,
 )
-from .file_validation import encode_filename_for_header, validate_output_file
+from .file_validation import (
+    encode_filename_for_header,
+    is_removable_tmp_dir,
+    validate_output_file,
+)
 from .logging_utils import (
     build_request_context,
     get_logger,
@@ -378,7 +382,7 @@ class BaseConversionAPIView(APIView, ABC):
                 level="exception",
             )
             return Response(
-                {"error": f"Internal storage error: {str(error)}"},
+                {"error": "Internal storage error. Please try again later."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
@@ -392,7 +396,9 @@ class BaseConversionAPIView(APIView, ABC):
                 level="exception",
             )
             return Response(
-                {"error": f"Conversion failed: {str(error)}"},
+                {
+                    "error": "Conversion failed. Please try again or use a different file."
+                },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
@@ -478,7 +484,7 @@ class BaseConversionAPIView(APIView, ABC):
                     original_close()
                 finally:
                     for d in cleanup_dirs:
-                        if d and os.path.isdir(d):
+                        if is_removable_tmp_dir(d):
                             shutil.rmtree(d, ignore_errors=True)
 
             response.close = _close_and_cleanup  # type: ignore[method-assign]

@@ -4,6 +4,7 @@ File validation utilities for conversion APIs.
 
 import os
 import shutil
+import tempfile
 
 from django.conf import settings
 
@@ -15,6 +16,20 @@ from .cache_utils import (
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+
+def is_removable_tmp_dir(path: str | None) -> bool:
+    """True only for a per-request temp dir we may rmtree.
+
+    Guards the callers that derive a cleanup dir from ``os.path.dirname()`` of
+    a converter's output: a bare file in the system temp dir would otherwise
+    turn cleanup into ``rmtree("/tmp")`` for the whole container.
+    """
+    if not path:
+        return False
+    real = os.path.realpath(path)
+    forbidden = {os.path.realpath(tempfile.gettempdir()), os.path.sep}
+    return real not in forbidden and os.path.isdir(real)
 
 
 # Magic numbers for file type detection

@@ -14,7 +14,7 @@ Lookup flow:
 import hashlib
 import hmac
 
-from django.db.models import F
+from django.db.models import F, Sum
 from django.utils import timezone
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
@@ -108,9 +108,15 @@ class APIKeyAuthentication(BaseAuthentication):
         quota = user.api_quota_per_month
         if quota == 0:
             raise AuthenticationFailed("Plan has no API quota")
-        if key.usage_this_month >= quota:
+        used_this_month = (
+            APIKey.objects.filter(user=user, revoked_at__isnull=True).aggregate(
+                total=Sum("usage_this_month")
+            )["total"]
+            or 0
+        )
+        if used_this_month >= quota:
             raise AuthenticationFailed(
-                f"API quota exhausted ({key.usage_this_month}/{quota} this month)"
+                f"API quota exhausted ({used_this_month}/{quota} this month)"
             )
 
         # CORS preflight carries no real work — never meter it.
