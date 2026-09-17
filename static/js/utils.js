@@ -689,6 +689,31 @@ function updateProgress(targetProgress, message = null) {
     window._progressAnimationId = requestAnimationFrame(animateProgress);
 }
 
+// Set by ensureTurnstileWidget(retry); consumed once by _onTurnstileSolved.
+let _turnstileRetry = null;
+// Hard stop on automatic replays per page load. Without it a request that keeps
+// coming back as captcha_required (for some reason other than the token) would
+// bounce solve -> replay -> solve forever behind the visitor's back.
+let _turnstileReplaysLeft = 2;
+
+/**
+ * Turnstile solved — hand the token to the page, then replay the request that
+ * was rejected for want of a CAPTCHA, so the visitor never has to notice the
+ * widget or press the button a second time. The retry is consumed here (at most
+ * one replay per solve), so a request that is rejected again cannot loop.
+ */
+function _onTurnstileSolved(token) {
+    if (typeof window.onTurnstileSuccess === 'function') {
+        window.onTurnstileSuccess(token);
+    }
+    const retry = _turnstileRetry;
+    _turnstileRetry = null;
+    if (typeof retry === 'function' && _turnstileReplaysLeft > 0) {
+        _turnstileReplaysLeft -= 1;
+        retry(token);
+    }
+}
+
 /**
  * Render a Cloudflare Turnstile widget on demand.
  *
@@ -702,14 +727,23 @@ function updateProgress(targetProgress, message = null) {
  * @returns {boolean} true if a widget exists or is being rendered, false if it
  *   cannot be rendered (no site key / no container).
  */
-function ensureTurnstileWidget() {
+function ensureTurnstileWidget(retry) {
+    if (typeof retry === 'function') _turnstileRetry = retry;
     const siteKey = window.TURNSTILE_SITE_KEY || '';
     const container = document.getElementById('turnstile-container');
     if (!siteKey || !container) return false;
 
-    // Already rendered (server-side or a previous on-demand render) — just
-    // bring it into view so the user notices it.
+    // Already rendered (server-side or a previous on-demand render). Its token
+    // is single-use, so the one sitting in the form is spent — ask Turnstile for
+    // a fresh solve, which fires the callback again and runs the pending replay.
     if (container.querySelector('iframe, .cf-turnstile')) {
+        if (_turnstileRetry && _turnstileReplaysLeft > 0 && window.turnstile
+            && typeof window.turnstile.reset === 'function') {
+            try {
+                window.turnstile.reset(container);
+                return true;
+            } catch (e) { /* fall through to just showing the widget */ }
+        }
         container.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return true;
     }
@@ -724,9 +758,17 @@ function ensureTurnstileWidget() {
                 sitekey: siteKey,
                 theme: 'light',
                 size: 'normal',
-                callback: window.onTurnstileSuccess || undefined,
+                // Solve in the background. Turnstile paints a widget only when it
+                // genuinely needs a human, so in the normal case there is nothing
+                // to see and nothing to click.
+                appearance: 'interaction-only',
+                // Only scroll when the challenge actually turns interactive —
+                // scrolling to an invisible container would just jump the page.
+                'before-interactive-callback': () => {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                },
+                callback: _onTurnstileSolved,
             });
-            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch (e) {
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Turnstile render failed:', e);
@@ -1177,8 +1219,70 @@ function trackOperationAbandon(taskId) {
     }
 }
 
+/**
+ * Wait for Turnstile to hand us a token, rendering the widget if needed.
+ * Resolves with null when there is no widget to render, the challenge needs a
+ * human who never answers, or the per-page replay budget is spent.
+ */
+function _solveTurnstile(timeoutMs = 25000) {
+    return new Promise((resolve) => {
+        let settled = false;
+        const finish = (token) => {
+            if (settled) return;
+            settled = true;
+            resolve(token || null);
+        };
+        if (!ensureTurnstileWidget(finish)) {
+            finish(null);
+            return;
+        }
+        setTimeout(() => finish(null), timeoutMs);
+    });
+}
+
+/**
+ * Solve the CAPTCHA gate for every tool on the page, once, in one place.
+ *
+ * Each tool runs its own fetch(), so fetch is the only thing every conversion
+ * response passes through. When the backend rejects an upload with
+ * `captcha_required`, solve the challenge in the background and resend the same
+ * request with the token attached: the tool only ever sees the final response,
+ * so the visitor is never asked to notice a widget and press the button again.
+ *
+ * Deliberately narrow — a 400, a FormData body (i.e. an upload, not analytics)
+ * and `captcha_required` in the JSON body. Everything else is passed straight
+ * through untouched.
+ */
+function _installCaptchaAutoRetry() {
+    if (window._captchaAutoRetryInstalled || typeof window.fetch !== 'function') return;
+    window._captchaAutoRetryInstalled = true;
+    const nativeFetch = window.fetch.bind(window);
+
+    window.fetch = async function (input, init) {
+        const response = await nativeFetch(input, init);
+        const body = init && init.body;
+        if (response.status !== 400 || typeof FormData === 'undefined'
+            || !(body instanceof FormData)) {
+            return response;
+        }
+        let payload = null;
+        try {
+            payload = await response.clone().json();
+        } catch (e) {
+            return response;  // not JSON — nothing to act on
+        }
+        if (!payload || payload.captcha_required !== true) return response;
+
+        const token = await _solveTurnstile();
+        if (!token) return response;  // let the tool show the original message
+        body.set('turnstile_token', token);
+        return nativeFetch(input, init);
+    };
+}
+
 // Export functions to global scope
 if (typeof window !== 'undefined') {
+    _installCaptchaAutoRetry();
     window.formatFileSize = formatFileSize;
     window.escapeHtml = escapeHtml;
     window.showError = showError;
@@ -1190,6 +1294,9 @@ if (typeof window !== 'undefined') {
     window.updateProgress = updateProgress;
     window.submitAsyncConversion = submitAsyncConversion;
     window.ensureTurnstileWidget = ensureTurnstileWidget;
+    // Solve handler for the server-rendered widget too (see converter_generic.html),
+    // so a page that loads with a CAPTCHA replays through the same path.
+    window.onTurnstileSolved = _onTurnstileSolved;
     window.pollTaskStatus = pollTaskStatus;
     window.trackOperationAbandon = trackOperationAbandon;
     window.cancelCurrentOperation = cancelCurrentOperation;

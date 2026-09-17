@@ -7,13 +7,17 @@
   on-demand renderer find the key without loading the Turnstile script on every
   page. No data-callback: every tool's JS reads the cf-turnstile-response hidden
   input that Turnstile injects, so a page-specific callback isn't required.
+  interaction-only: the challenge solves in the background and only paints a
+  widget if it actually needs a human, so the token is already in the form by
+  the time the visitor presses the button.
 {% endcomment %}
 <div class="flex justify-center" id="turnstile-container">
   {% if turnstile_site_key and captcha_required %}
     <div class="cf-turnstile my-6"
          data-sitekey="{{ turnstile_site_key }}"
          data-theme="light"
-         data-size="normal"></div>
+         data-size="normal"
+         data-appearance="interaction-only"></div>
   {% endif %}
 </div>
 {% if turnstile_site_key %}
