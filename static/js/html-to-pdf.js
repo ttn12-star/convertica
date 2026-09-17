@@ -183,7 +183,9 @@ class HTMLToPDFConverter {
             if (!response.ok) {
                 // Handle error response (JSON)
                 const result = await response.json().catch(() => ({}));
-                if (result.captcha_required === true) this.ensureTurnstileWidget();
+                if (result.captcha_required === true) {
+                    this.ensureTurnstileWidget(() => this.htmlContentForm.requestSubmit());
+                }
                 throw new Error(firstDetailMessage(result) || t('failed', 'Conversion failed'));
             }
 
@@ -246,7 +248,9 @@ class HTMLToPDFConverter {
             if (!response.ok) {
                 // Handle error response (JSON)
                 const result = await response.json().catch(() => ({}));
-                if (result.captcha_required === true) this.ensureTurnstileWidget();
+                if (result.captcha_required === true) {
+                    this.ensureTurnstileWidget(() => this.urlForm.requestSubmit());
+                }
                 throw new Error(firstDetailMessage(result) || t('failed', 'Conversion failed'));
             }
 
@@ -389,7 +393,8 @@ class HTMLToPDFConverter {
         if (token) formData.set('cf-turnstile-response', token);
     }
 
-    ensureTurnstileWidget() {
+    ensureTurnstileWidget(retry) {
+        if (typeof retry === 'function') this._captchaRetry = retry;
         const siteKey = window.TURNSTILE_SITE_KEY || '';
         const container = document.getElementById('turnstile-container');
         if (!siteKey || !container) return;
@@ -397,12 +402,25 @@ class HTMLToPDFConverter {
             container.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
+        // Consumed once per solve so a second rejection cannot loop.
+        const onSolved = (token) => {
+            const again = this._captchaRetry;
+            this._captchaRetry = null;
+            if (typeof again === 'function') again(token);
+        };
         const doRender = () => {
             if (!window.turnstile || typeof window.turnstile.render !== 'function') return;
             try {
                 container.classList.add('my-6');
-                window.turnstile.render(container, { sitekey: siteKey, theme: 'light', size: 'normal' });
-                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                window.turnstile.render(container, {
+                    sitekey: siteKey, theme: 'light', size: 'normal',
+                    // Invisible unless Turnstile decides it needs a human.
+                    appearance: 'interaction-only',
+                    'before-interactive-callback': () => {
+                        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    },
+                    callback: onSolved,
+                });
             } catch (e) {
                 if (typeof console !== 'undefined' && console.error) console.error('Turnstile render failed:', e);
             }

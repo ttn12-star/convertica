@@ -224,7 +224,7 @@ class TextToPDFConverter {
                 // actionable instead of a dead end (the whole reason this tool used
                 // to trap users). The token then rides along on the next submit.
                 if (result.captcha_required === true) {
-                    this.ensureTurnstileWidget();
+                    this.ensureTurnstileWidget(() => this.form.requestSubmit());
                 }
                 // Prefer the specific field error (e.g. "Text exceeds the maximum
                 // length…") over the generic top-level string so the user learns
@@ -287,7 +287,8 @@ class TextToPDFConverter {
     // ensureTurnstileWidget. Turnstile injects a cf-turnstile-response hidden
     // input into #turnstile-container, which lives inside the form, so the token
     // is submitted automatically on the next attempt.
-    ensureTurnstileWidget() {
+    ensureTurnstileWidget(retry) {
+        if (typeof retry === 'function') this._captchaRetry = retry;
         const siteKey = window.TURNSTILE_SITE_KEY || '';
         const container = document.getElementById('turnstile-container');
         if (!siteKey || !container) return;
@@ -298,6 +299,12 @@ class TextToPDFConverter {
             return;
         }
 
+        // Consumed once per solve so a second rejection cannot loop.
+        const onSolved = (token) => {
+            const again = this._captchaRetry;
+            this._captchaRetry = null;
+            if (typeof again === 'function') again(token);
+        };
         const doRender = () => {
             if (!window.turnstile || typeof window.turnstile.render !== 'function') return;
             try {
@@ -306,8 +313,13 @@ class TextToPDFConverter {
                     sitekey: siteKey,
                     theme: 'light',
                     size: 'normal',
+                    // Invisible unless Turnstile decides it needs a human.
+                    appearance: 'interaction-only',
+                    'before-interactive-callback': () => {
+                        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    },
+                    callback: onSolved,
                 });
-                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } catch (e) {
                 if (typeof console !== 'undefined' && console.error) {
                     console.error('Turnstile render failed:', e);
