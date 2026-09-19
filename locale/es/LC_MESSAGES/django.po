@@ -17963,3 +17963,7 @@ msgstr "Quita la contraseña de un archivo ZIP"
 
 msgid "Wrap images in a password-protected PDF"
 msgstr "Empaqueta imágenes en un PDF protegido con contraseña"
+
+#: templates/users/account_status.html
+msgid "From day 1"
+msgstr "Desde el primer día"

@@ -16063,3 +16063,7 @@ msgstr "This board is full (%(count)s tiles). Start a new board for more."
 
 msgid "%(added)s of %(total)s tiles added (plan limit)"
 msgstr "%(added)s of %(total)s tiles added (plan limit)"
+
+#: templates/users/account_status.html
+msgid "From day 1"
+msgstr "From day 1"

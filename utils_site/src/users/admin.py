@@ -29,6 +29,13 @@ from .models import (
 
 User = get_user_model()
 
+RANK_COLORS = {
+    "Platinum": "#9775fa",
+    "Gold": "#ffd43b",
+    "Silver": "#868e96",
+    "Bronze": "#ff922b",
+}
+
 
 def analytics_window_start(request, default_months: int = 12):
     """Start of the analytics window for the OperationRun admin reports.
@@ -201,13 +208,7 @@ class UserAdmin(BaseUserAdmin):
         """Display subscription rank with color."""
         rank = obj.get_subscription_rank()
         if rank:
-            colors = {
-                "Platinum": "#9775fa",
-                "Gold": "#ffd43b",
-                "Silver": "#868e96",
-                "Bronze": "#ff922b",
-            }
-            color = colors.get(rank["name"], "#868e96")
+            color = RANK_COLORS.get(rank["name"], "#868e96")
             return mark_safe(
                 f'<span style="color: {color}; font-weight: bold;">{rank["name"]}</span>'
             )
@@ -219,22 +220,10 @@ class UserAdmin(BaseUserAdmin):
         """Display consecutive subscription days."""
         days = obj.consecutive_subscription_days
         if days > 0:
-            if days >= 365:
-                return mark_safe(
-                    f'<span style="color: #9775fa; font-weight: bold;">{days}</span>'
-                )
-            elif days >= 180:
-                return mark_safe(
-                    f'<span style="color: #ffd43b; font-weight: bold;">{days}</span>'
-                )
-            elif days >= 90:
-                return mark_safe(
-                    f'<span style="color: #868e96; font-weight: bold;">{days}</span>'
-                )
-            elif days >= 30:
-                return mark_safe(
-                    f'<span style="color: #ff922b; font-weight: bold;">{days}</span>'
-                )
+            color = RANK_COLORS.get(obj.get_subscription_rank()["name"], "#868e96")
+            return mark_safe(
+                f'<span style="color: {color}; font-weight: bold;">{days}</span>'
+            )
         return mark_safe(f'<span style="color: #868e96;">{days}</span>')
 
     consecutive_days.short_description = "Days"
