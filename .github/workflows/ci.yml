@@ -8,6 +8,8 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+# Runners are pinned to ubuntu-24.04 on purpose: `ubuntu-latest` rolls over to
+# Ubuntu 26 on 2026-10-19 and would move the whole pipeline under us.
 env:
   PYTHON_VERSION: '3.12'
   NODE_VERSION: '18'
@@ -17,7 +19,7 @@ jobs:
   # Lint and Code Quality
   lint:
     name: Code Quality Checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -56,7 +58,7 @@ jobs:
   # Localization Quality
   l10n:
     name: Localization Quality Checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -93,7 +95,7 @@ jobs:
   # Auto-translate locale files on demand (commit flag based)
   auto-translate:
     name: Auto Translate Locale Files
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: |
       github.event_name == 'push' &&
       !startsWith(github.ref, 'refs/tags/') &&
@@ -255,7 +257,7 @@ jobs:
   # Security Scanning
   security:
     name: Security Scan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -280,7 +282,7 @@ jobs:
   # Tests
   test:
     name: Run Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     # Centralized database configuration to ensure consistency
     env:
@@ -365,7 +367,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: always()
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           files: ./coverage.xml
           flags: unittests
@@ -375,7 +377,7 @@ jobs:
   # Build Docker Image
   build:
     name: Build Docker Image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [lint, test]
     if: github.event_name == 'push'
     # Cancel in-progress builds when a new push/tag arrives
@@ -447,7 +449,7 @@ jobs:
   # Deploy to Production Server
   deploy:
     name: Deploy to Production
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [build]
     # Deploy ONLY on version tags (v*), NOT on push to main
     # This ensures deployment happens only after creating a release tag
