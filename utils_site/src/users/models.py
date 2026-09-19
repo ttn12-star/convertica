@@ -260,7 +260,14 @@ class User(AbstractUser):
         return "active"
 
     def get_subscription_rank(self):
-        """Get user's subscription rank based on consecutive days."""
+        """Get user's subscription rank based on consecutive days.
+
+        Ranks belong to the subscription, not the account: without an active
+        one there is no rank at all.
+        """
+        if not self.is_premium_active:
+            return None
+
         days = self.consecutive_subscription_days
 
         if days >= 180:
@@ -294,7 +301,7 @@ class User(AbstractUser):
                 "gradient": "from-gray-500/70 to-gray-600/70",
             }
         else:
-            # Bronze from day one: every premium user starts with a rank.
+            # Bronze from day one of the subscription.
             return {
                 "name": "Bronze",
                 "color": "orange",

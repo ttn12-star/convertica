@@ -207,9 +207,21 @@ class GetHeroesTests(TestCase):
 
 
 class SubscriptionRankTests(TestCase):
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(email="rank@t.test", password="x")
+
+    def _rank(self, days):
+        self.user.consecutive_subscription_days = days
+        cache.clear()
+        rank = self.user.get_subscription_rank()
+        return rank and rank["name"]
+
     def test_rank_thresholds(self):
+        self.user.is_premium = True
+        self.user.subscription_end_date = timezone.now() + timedelta(days=1)
         cases = [
-            (0, "Bronze"),
+            (1, "Bronze"),
             (29, "Bronze"),
             (30, "Silver"),
             (89, "Silver"),
@@ -218,5 +230,13 @@ class SubscriptionRankTests(TestCase):
             (180, "Platinum"),
         ]
         for days, name in cases:
-            user = User(consecutive_subscription_days=days)
-            self.assertEqual(user.get_subscription_rank()["name"], name, days)
+            self.assertEqual(self._rank(days), name, days)
+
+    def test_no_rank_without_subscription(self):
+        self.assertIsNone(self._rank(0))
+        self.assertIsNone(self._rank(400))
+
+    def test_no_rank_after_expiry(self):
+        self.user.is_premium = True
+        self.user.subscription_end_date = timezone.now() - timedelta(days=1)
+        self.assertIsNone(self._rank(120))

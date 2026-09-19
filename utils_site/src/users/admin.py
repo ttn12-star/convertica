@@ -220,7 +220,8 @@ class UserAdmin(BaseUserAdmin):
         """Display consecutive subscription days."""
         days = obj.consecutive_subscription_days
         if days > 0:
-            color = RANK_COLORS.get(obj.get_subscription_rank()["name"], "#868e96")
+            rank = obj.get_subscription_rank()
+            color = RANK_COLORS.get(rank["name"], "#868e96") if rank else "#868e96"
             return mark_safe(
                 f'<span style="color: {color}; font-weight: bold;">{days}</span>'
             )
