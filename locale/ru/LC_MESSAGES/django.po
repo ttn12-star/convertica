@@ -17788,3 +17788,7 @@ msgstr "Снимите пароль с ZIP-архива"
 
 msgid "Wrap images in a password-protected PDF"
 msgstr "Упакуйте изображения в PDF с паролем"
+
+#: templates/users/account_status.html
+msgid "From day 1"
+msgstr "С первого дня"

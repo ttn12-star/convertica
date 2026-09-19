@@ -17946,3 +17946,7 @@ msgstr "Usuń hasło z archiwum ZIP"
 
 msgid "Wrap images in a password-protected PDF"
 msgstr "Zapakuj obrazy do PDF chronionego hasłem"
+
+#: templates/users/account_status.html
+msgid "From day 1"
+msgstr "Od pierwszego dnia"

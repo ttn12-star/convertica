@@ -263,7 +263,7 @@ class User(AbstractUser):
         """Get user's subscription rank based on consecutive days."""
         days = self.consecutive_subscription_days
 
-        if days >= 365:
+        if days >= 180:
             return {
                 "name": "Platinum",
                 "color": "purple",
@@ -273,7 +273,7 @@ class User(AbstractUser):
                 "border_color": "border-fuchsia-500",
                 "gradient": "from-fuchsia-600/70 to-indigo-600/70",
             }
-        elif days >= 180:
+        elif days >= 90:
             return {
                 "name": "Gold",
                 "color": "yellow",
@@ -283,7 +283,7 @@ class User(AbstractUser):
                 "border_color": "border-yellow-500",
                 "gradient": "from-yellow-600/70 to-orange-600/70",
             }
-        elif days >= 90:
+        elif days >= 30:
             return {
                 "name": "Silver",
                 "color": "gray",
@@ -293,7 +293,8 @@ class User(AbstractUser):
                 "border_color": "border-gray-400",
                 "gradient": "from-gray-500/70 to-gray-600/70",
             }
-        elif days >= 30:
+        else:
+            # Bronze from day one: every premium user starts with a rank.
             return {
                 "name": "Bronze",
                 "color": "orange",
@@ -302,17 +303,6 @@ class User(AbstractUser):
                 "text_color": "text-white",
                 "border_color": "border-orange-500",
                 "gradient": "from-orange-600/70 to-amber-600/70",
-            }
-        else:
-            # Default rank for all premium users (< 30 days)
-            return {
-                "name": "Hero",
-                "color": "blue",
-                "icon": "shield",
-                "badge_color": "bg-blue-600",
-                "text_color": "text-white",
-                "border_color": "border-blue-500",
-                "gradient": "from-blue-600/70 to-cyan-600/70",
             }
 
     def activate_subscription(self, plan, extend_if_active=True):

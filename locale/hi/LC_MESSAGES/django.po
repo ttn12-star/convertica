@@ -17607,3 +17607,7 @@ msgstr "ZIP आर्काइव से पासवर्ड हटाएँ"
 
 msgid "Wrap images in a password-protected PDF"
 msgstr "इमेज को पासवर्ड-सुरक्षित PDF में रखें"
+
+#: templates/users/account_status.html
+msgid "From day 1"
+msgstr "पहले दिन से"

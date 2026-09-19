@@ -204,3 +204,19 @@ class GetHeroesTests(TestCase):
     def test_expired_hidden(self):
         self._hero("exp@t.test", self.monthly, timezone.now() - timedelta(days=1))
         self.assertNotIn("exp@t.test", self._hero_emails())
+
+
+class SubscriptionRankTests(TestCase):
+    def test_rank_thresholds(self):
+        cases = [
+            (0, "Bronze"),
+            (29, "Bronze"),
+            (30, "Silver"),
+            (89, "Silver"),
+            (90, "Gold"),
+            (179, "Gold"),
+            (180, "Platinum"),
+        ]
+        for days, name in cases:
+            user = User(consecutive_subscription_days=days)
+            self.assertEqual(user.get_subscription_rank()["name"], name, days)
