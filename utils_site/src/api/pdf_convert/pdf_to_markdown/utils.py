@@ -190,8 +190,9 @@ def convert_pdf_to_markdown(
                     table_bboxes: list[tuple[float, float, float, float]] = []
 
                     if preserve_tables:
+                        plumber_page = plumber_doc.pages[page_index]
                         try:
-                            for table in plumber_doc.pages[page_index].find_tables():
+                            for table in plumber_page.find_tables():
                                 markdown_table = _render_markdown_table(table.extract())
                                 if markdown_table:
                                     x0, y0, x1, y1 = tuple(float(v) for v in table.bbox)
@@ -213,6 +214,13 @@ def convert_pdf_to_markdown(
                                     "error": str(table_error),
                                 },
                             )
+                        finally:
+                            # pdfplumber keeps every parsed char/edge of a page
+                            # alive until the document closes; on a 200-page file
+                            # that is ~1 GB, enough to OOM a celery worker and
+                            # take its neighbour down with it.
+                            plumber_page.flush_cache()
+                            plumber_page.close()
 
                     blocks = page.get_text("dict").get("blocks", [])
                     for block in blocks:
