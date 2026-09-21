@@ -482,6 +482,38 @@ class PageCountLimitTests(TestCase):
             500,
         )
 
+    def test_premium_heavy_op_without_override_gets_full_premium_pages(self):
+        """A heavy tool missing from PREMIUM_PAGE_LIMITS must not be halved.
+
+        pdf_to_markdown is heavy but has no per-op entry, so it falls back to
+        the heavy premium cap. That cap used to be 100 while we sold 200, and a
+        paying user's 120-page file was rejected. Regression guard for it and
+        for every future tool added to HEAVY_OPERATIONS but not to the dict.
+        """
+        from django.conf import settings
+        from src.api.conversion_limits import (
+            HEAVY_OPERATIONS,
+            MAX_PDF_PAGES_PREMIUM,
+            get_max_pages_for_user,
+        )
+
+        self.assertIn("pdf_to_markdown", HEAVY_OPERATIONS)
+        self.assertNotIn("pdf_to_markdown", settings.PREMIUM_PAGE_LIMITS)
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_heavy_pages",
+            provider_customer_id="cust_heavy_pages",
+        )
+        self.assertGreaterEqual(
+            get_max_pages_for_user(self.user, operation="pdf_to_markdown"),
+            MAX_PDF_PAGES_PREMIUM,
+        )
+
 
 # ---------------------------------------------------------------------------
 # A3. OCR gate

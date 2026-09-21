@@ -56,6 +56,8 @@ class FileSizeLimitMessageTests(TestCase):
         self.assertEqual(response.status_code, 413)
         error = response.data["error"]
         self.assertIn("16.9 MB", error)
-        self.assertIn("max 15 MB", error)
-        self.assertIn("100 MB", error)
-        self.assertNotIn("25 MB", error)
+        # Quote the heavy tier, not the light one — read from the constants so
+        # retuning a limit doesn't need a test edit.
+        self.assertIn(f"max {MAX_FILE_SIZE_HEAVY // MB} MB", error)
+        self.assertIn(f"{MAX_FILE_SIZE_HEAVY_PREMIUM // MB} MB", error)
+        self.assertNotIn(f"{MAX_FILE_SIZE // MB} MB", error)

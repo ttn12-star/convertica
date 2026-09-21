@@ -41,12 +41,15 @@ class PdfToPdfaPremiumGateTest(TestCase):
 
 
 class PdfToPdfaHeavyTierTest(TestCase):
-    """PDF/A must be in the heavy tier so premium caps are 100 pages / 100 MB
-    (not the light 200/200) and it gets the 300s timeout — gs is slow on scans."""
+    """PDF/A must be in the heavy tier — that's what gets it the 300s timeout
+    and the stricter *free* caps; gs is slow on scans. Premium gets the full
+    advertised caps here, same as the light tier."""
 
     def test_classified_heavy(self):
         from src.api.conversion_limits import (
             HEAVY_OPERATIONS,
+            MAX_FILE_SIZE_HEAVY_PREMIUM,
+            MAX_PDF_PAGES_HEAVY_PREMIUM,
             get_max_file_size_for_user,
             get_max_pages_for_user,
         )
@@ -60,10 +63,13 @@ class PdfToPdfaHeavyTierTest(TestCase):
         premium._skip_days_calculation = True
         premium.save()
 
-        # Heavy premium caps, not the 200/200 light tier.
-        self.assertEqual(get_max_pages_for_user(premium, "pdf_to_pdfa"), 100)
+        # Premium resolves through the heavy-tier constants.
         self.assertEqual(
-            get_max_file_size_for_user(premium, "pdf_to_pdfa"), 100 * 1024 * 1024
+            get_max_pages_for_user(premium, "pdf_to_pdfa"), MAX_PDF_PAGES_HEAVY_PREMIUM
+        )
+        self.assertEqual(
+            get_max_file_size_for_user(premium, "pdf_to_pdfa"),
+            MAX_FILE_SIZE_HEAVY_PREMIUM,
         )
 
 
