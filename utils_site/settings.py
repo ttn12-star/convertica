@@ -771,8 +771,12 @@ CAPTCHA_AFTER_FAILED_ATTEMPTS = config(
 MAX_PDF_PAGES_FREE = config("MAX_PDF_PAGES_FREE", default=30, cast=int)
 MAX_PDF_PAGES_PREMIUM = config("MAX_PDF_PAGES_PREMIUM", default=200, cast=int)
 MAX_PDF_PAGES_HEAVY_FREE = config("MAX_PDF_PAGES_HEAVY_FREE", default=30, cast=int)
+# Premium gets the advertised 200 pages on heavy tools too. The lower heavy
+# cap silently halved what a paying user was promised on any tool missing from
+# PREMIUM_PAGE_LIMITS (pdf_to_markdown, compare_pdf, pdf_to_pdfa). Lower it
+# back via .env if worker memory complains.
 MAX_PDF_PAGES_HEAVY_PREMIUM = config(
-    "MAX_PDF_PAGES_HEAVY_PREMIUM", default=100, cast=int
+    "MAX_PDF_PAGES_HEAVY_PREMIUM", default=200, cast=int
 )
 
 # File size limits (in bytes)
@@ -786,8 +790,8 @@ MAX_FILE_SIZE_HEAVY_FREE = config(
     "MAX_FILE_SIZE_HEAVY_FREE", default=15 * 1024 * 1024, cast=int
 )  # 15 MB
 MAX_FILE_SIZE_HEAVY_PREMIUM = config(
-    "MAX_FILE_SIZE_HEAVY_PREMIUM", default=100 * 1024 * 1024, cast=int
-)  # 100 MB
+    "MAX_FILE_SIZE_HEAVY_PREMIUM", default=200 * 1024 * 1024, cast=int
+)  # 200 MB
 
 # Image to Text (OCR) free-tier limit. Free users get a small per-image cap
 # (almost every photo/screenshot/scan fits); premium lifts it and unlocks

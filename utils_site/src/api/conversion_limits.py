@@ -66,11 +66,11 @@ def _is_encrypted_pdf_error(exc: Exception) -> bool:
 DEFAULT_MAX_PDF_PAGES = 30
 DEFAULT_MAX_PDF_PAGES_HEAVY = 30
 DEFAULT_MAX_PDF_PAGES_PREMIUM = 200
-DEFAULT_MAX_PDF_PAGES_HEAVY_PREMIUM = 100
+DEFAULT_MAX_PDF_PAGES_HEAVY_PREMIUM = 200
 DEFAULT_MAX_FILE_SIZE = 25 * 1024 * 1024
 DEFAULT_MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024
 DEFAULT_MAX_FILE_SIZE_PREMIUM = 200 * 1024 * 1024
-DEFAULT_MAX_FILE_SIZE_HEAVY_PREMIUM = 100 * 1024 * 1024
+DEFAULT_MAX_FILE_SIZE_HEAVY_PREMIUM = 200 * 1024 * 1024
 
 # Runtime values (can be reloaded from settings/admin overrides).
 MAX_PDF_PAGES = DEFAULT_MAX_PDF_PAGES
@@ -176,8 +176,8 @@ HEAVY_OPERATIONS = {
     "pdf_to_markdown",
     "compare_pdf",
     # Ghostscript PDF/A is CPU/RAM-heavy and slow on large scans — it belongs in
-    # the heavy tier so premium caps stay at 100 pages / 100 MB (not 200/200) and
-    # it gets the 300s timeout, keeping sync conversions under the proxy ceiling.
+    # the heavy tier for the stricter free caps and the 300s timeout, which keeps
+    # sync conversions under the proxy ceiling.
     "pdf_to_pdfa",
 }
 
