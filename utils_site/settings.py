@@ -1247,11 +1247,16 @@ except ImportError:
     SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 # Enhanced session security
-SESSION_COOKIE_AGE = 86400  # 24 hours session timeout
+# 24h + no sliding window meant EVERY user, premium included, was logged out
+# exactly one day after signing in, however actively they were using the site —
+# and since the tools work anonymously too, they just kept converting as an
+# anonymous visitor without noticing they'd lost their paid limits.
+SESSION_COOKIE_AGE = config("SESSION_COOKIE_AGE", default=30 * 86400, cast=int)
 SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access
-SESSION_SAVE_EVERY_REQUEST = (
-    False  # Only save session when modified (prevents memory leak)
-)
+# Re-stamp the expiry on each request, so the 30 days count from last use, not
+# from login. Only sessions that exist are written, so anonymous traffic (which
+# never creates one) is unaffected.
+SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keep session after browser close
 
 # Celery Configuration
