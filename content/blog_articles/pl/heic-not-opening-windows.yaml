@@ -1,0 +1,130 @@
+slug: heic-not-opening-windows
+cover_image: blog/images/cover-heic-not-opening-windows.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: heic_to_jpg
+title_pl: "Pliki HEIC się nie otwierają? Znajdź objaw i napraw"
+meta_title_pl: "HEIC nie otwiera się w Windows, Androidzie, Mac | Convertica"
+meta_description_pl: "Windows chce płatnego kodeka, Android zależy od wersji, starsze Maki potykają się o pliki 10-bitowe. Dopasuj objaw do przyczyny i wybierz właściwe rozwiązanie."
+meta_keywords_pl: "heic nie otwiera się windows 11, pliki heic nie otwierają się windows 10, windows nie obsługuje heic, android nie otwiera heic, nie mogę otworzyć heic na mac, heic nie otwiera się w zdjęciach"
+excerpt_pl: "Ten sam plik otwiera się bez problemu na iPhonie i odmawia współpracy wszędzie indziej, a każdy system zawodzi z własnego powodu. Windows chce kodeka, za którego Microsoft bierze pieniądze, Android zależy od wersji, a starsze Maki potykają się o pliki 10-bitowe. Znajdź objaw pasujący do twojego."
+ai_metadata:
+  topics:
+    - otwieranie HEIC w Windows
+    - kodek HEIF Image Extensions
+    - HEIC na Androidzie i ograniczenia wersji
+    - HEIC na starszych macOS
+    - konwersja zamiast instalowania kodeków
+  entities:
+    - HEIC
+    - HEIF
+    - Windows 10
+    - Windows 11
+    - HEVC Video Extensions
+    - Android
+    - macOS
+    - Zdjęcia Google
+    - Convertica
+  summary: "Przewodnik po objawach dla plików HEIC, które się nie otwierają, ułożony według platform, bo każda zawodzi inaczej. Windows: wbudowana aplikacja Zdjęcia potrzebuje darmowych HEIF Image Extensions oraz płatnych HEVC Video Extensions, a brak kodeka objawia się szarym prostokątem albo ogólnym błędem. Android: obsługa pojawiła się w wersji 10, a starsze telefony i wiele galerii nadal nie dekodują formatu. macOS: obsługa istnieje od High Sierra, ale 10-bitowe pliki HEIC z nowszych iPhone'ów wciąż potrafią zawieść na starszym sprzęcie. Wyjaśnia też, dlaczego plik wysłany komunikatorem raz przychodzi jako JPEG, a raz jako HEIC, i kiedy konwersja jest po prostu szybsza niż naprawianie systemu."
+  related_terms:
+    - zainstalować heif image extensions
+    - hevc video extensions cena
+    - miniatura heic jest a zdjęcia nie ma
+    - otworzyć zdjęcie z iphone na pc
+    - szary prostokąt w windows
+  reading_time_minutes: 7
+  target_audience: "Każdy, kto dostał zdjęcia z iPhone'a i nie może ich otworzyć u siebie: użytkownicy Windowsa, posiadacze Androida, osoby ze starszymi Makami i ci, którym potrzebny jest sam obraz bez instalowania czegokolwiek."
+content_pl: |
+  Plik HEIC, który na iPhonie otwiera się natychmiast, gdzie indziej potrafi być kompletnie martwy, a powód zależy od systemu. Zamiast więc jednej listy napraw, zacznij od dopasowania objawu.
+
+  <h2>Windows: kodek, za który Microsoft bierze pieniądze</h2>
+
+  <p>To przypadek najczęstszy i najbardziej irytujący, bo rozwiązanie dzieli się na dwie części, a tylko jedna jest darmowa.</p>
+
+  <p>Windows 10 i 11 potrafią wyświetlić HEIC, ale wyłącznie z dwoma zainstalowanymi składnikami:</p>
+
+  <ul>
+    <li><strong>HEIF Image Extensions.</strong> Darmowe w Microsoft Store. Odpowiadają za kontener.</li>
+    <li><strong>HEVC Video Extensions.</strong> Płatne, Microsoft liczy za nie drobną kwotę. Odpowiadają za samo dekodowanie obrazu, bo zdjęcia w HEIC kodowane są przez HEVC.</li>
+  </ul>
+
+  <p>Zainstaluj tylko pierwsze, a dostaniesz ten frustrujący stan połowiczny, który wszyscy opisują: miniatury bywają widoczne, ale otwarcie pliku kończy się błędem albo pustym szarym prostokątem. Kontener jest zrozumiany, obraz w środku nie.</p>
+
+  <p>Warto znać pewien haczyk. Część komputerów ma rozszerzenie HEVC już licencjonowane przez producenta, i dlatego jeden współpracownik otwiera plik bez trudu, a drugi nie, przy pozornie tej samej wersji Windowsa.</p>
+
+  <h3>Objawy i ich znaczenie w Windows</h3>
+
+  <ul>
+    <li><strong>Szary prostokąt albo «nie można wyświetlić».</strong> HEIF jest, HEVC brakuje.</li>
+    <li><strong>Pusta ikona pliku, Zdjęcia w ogóle go nie otwierają.</strong> Nie zainstalowano żadnego rozszerzenia.</li>
+    <li><strong>Miniatury w Eksploratorze, w przeglądarce nic.</strong> To samo co w pierwszym przypadku: miniatura pochodzi z osadzonego podglądu, nie z pełnego dekodowania.</li>
+    <li><strong>Zdjęcia otwierają plik, ale edycja zawodzi.</strong> Dekodowanie działa, ścieżka edycji formatu nie obsługuje. Przekonwertuj przed edycją.</li>
+  </ul>
+
+  <p>Jeśli potrzebujesz tylko obrazu, konwersja jest szybsza niż kupowanie i instalowanie kodeka. <a href="/pl/image/heic-to-jpg/">Konwerter HEIC na JPG</a> działa w przeglądarce i oddaje plik, który Windows rozumie od lat dziewięćdziesiątych.</p>
+
+  <h2>Android: zależy od wersji</h2>
+
+  <p>Systemowa obsługa HEIF pojawiła się w Androidzie 10. Wcześniej nic w systemie tego nie dekoduje i plik jest po prostu nieczytelny bez aplikacji z własnym dekoderem.</p>
+
+  <p>Nawet w Androidzie 10 i nowszym obsługa nie jest jednolita. System potrafi zdekodować format, ale poszczególne galerie i menedżery plików same decydują, czy z tego skorzystać. Dlatego zdarza się, że Zdjęcia Google pokazują obraz, a firmowa galeria tego samego telefonu nie.</p>
+
+  <p>Sprawdzaj w takiej kolejności:</p>
+
+  <ul>
+    <li>Otwórz plik w Zdjęciach Google albo innej aplikacji znanej z obsługi HEIF, zanim orzekniesz, że telefon nie daje rady.</li>
+    <li>Sprawdź wersję Androida. Poniżej 10 żadna aplikacja korzystająca z systemowego dekodera nie zadziała, potrzebna jest taka z własnym.</li>
+    <li>Jeśli plik przyszedł komunikatorem, spójrz na rozszerzenie. Część aplikacji konwertuje przy odbiorze, część nie, i stąd sytuacja, w której jedno zdjęcie od tego samego nadawcy się otwiera, a drugie nie.</li>
+  </ul>
+
+  <h2>macOS: zwykle dobrze, z jednym wyjątkiem</h2>
+
+  <p>Maki radzą sobie z HEIC od czasów High Sierra, więc plik nieotwierający się na w miarę współczesnym Macu to rzadkość. Gdy się zdarzy, przyczyną bywa zwykle jedna z tych:</p>
+
+  <ul>
+    <li><strong>Stary macOS.</strong> Wszystko przed High Sierra nie ma obsługi w ogóle.</li>
+    <li><strong>10-bitowy HEIC.</strong> Nowsze iPhone'y potrafią zapisywać pliki 10-bitowe, a starsze maszyny radzące sobie ze zwykłym HEIC na tych się potykają. Na telefonie się otwiera, na Macu nie, a komunikat błędu o tym nie wspomina.</li>
+    <li><strong>Aplikacja zewnętrzna zamiast systemowej.</strong> Podgląd i Zdjęcia korzystają z dekodera systemowego. Starszy program graficzny może nie korzystać.</li>
+  </ul>
+
+  <h2>Dlaczego jedno zdjęcie się otwiera, a następne nie</h2>
+
+  <p>To sprawia, że ludzie uznają plik za uszkodzony, choć wcale taki nie jest. Dwa zwyczajne wyjaśnienia:</p>
+
+  <p><strong>Aplikacja wysyłająca przekonwertowała część plików, a część nie.</strong> Kilka komunikatorów zamienia HEIC na JPEG przy wysyłce «jako zdjęcie», a przepuszcza oryginał przy wysyłce «jako plik». Ten sam nadawca, ten sam telefon, inny wynik, i wszystko zależy od tego, który przycisk wcisnął.</p>
+
+  <p><strong>Zdjęcie pochodzi z innego trybu.</strong> Live Photos, ujęcia portretowe i serie zapisują się inaczej, a przeglądarka radząca sobie ze zwykłym HEIC potrafi odmówić jednemu z nich.</p>
+
+  <p>Zanim uznasz plik za zepsuty, sprawdź rozszerzenie i rozmiar. Plik ważący kilka kilobajtów faktycznie jest zepsuty. Plik dwumegabajtowy jest w porządku, a nie w porządku jest twoja przeglądarka.</p>
+
+  <h2>Jak uciąć problem u źródła</h2>
+
+  <p>Jeśli to ty robisz zdjęcia i trafiasz na to regularnie, ustawienie w iPhonie znajdziesz w Aparat, Formaty. «Wysoka wydajność» zapisuje HEIC, «Najbardziej zgodne» zapisuje JPEG.</p>
+
+  <p>Zanim przełączysz, rozważ: pliki JPEG są mniej więcej 1,8 raza większe przy tej samej widocznej jakości, co zmierzyliśmy szczegółowo w <a href="/pl/blog/heic-vs-jpeg-quality-and-size/">porównaniu HEIC i JPEG</a>. Zmiana ustawienia aparatu kosztuje cię miejsce przy każdym zdjęciu na zawsze, byle uniknąć okazjonalnej konwersji. Dla większości to zły interes.</p>
+
+  <p>Jest też opcja pośrednia, o której się zapomina. Fotografuj dalej w HEIC, a «Przesyłanie do Maca lub PC» ustaw na «Automatycznie» zamiast «Zachowaj oryginały». Telefon konwertuje wtedy przy wysyłce, a zdjęcia docierają jako JPEG bez zmiany sposobu ich przechowywania.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Dlaczego Windows bierze pieniądze za HEVC Video Extensions?</h3>
+  <p>HEVC to opatentowany kodek z opłatami licencyjnymi, które Microsoft przerzuca na użytkownika. Rozszerzenia HEIF Image Extensions obsługujące kontener są darmowe, ale same w sobie nie wystarczą, by pokazać obraz.</p>
+
+  <h3>Zainstalowałem rozszerzenie i nadal się nie otwiera.</h3>
+  <p>Najprawdopodobniej zainstalowałeś HEIF Image Extensions, ale nie HEVC Video Extensions. Ta kombinacja daje dokładnie taki efekt: plik jest rozpoznany, ale nie da się go zdekodować.</p>
+
+  <h3>Czy mogę otworzyć HEIC bez instalowania czegokolwiek?</h3>
+  <p>Tak. Przekonwertuj go w przeglądarce i otwórz JPEG, który każdy system już obsługuje. Zwykle wychodzi szybciej niż instalowanie kodeka i jest to jedyna opcja na komputerze, na którym nie możesz instalować oprogramowania.</p>
+
+  <h3>Mój Android pokazuje zdjęcie w Zdjęciach Google, ale nie w galerii.</h3>
+  <p>Poszczególne aplikacje decydują, czy korzystać z systemowego dekodera HEIF. Zdjęcia Google korzystają, część galerii producentów nie. Z plikiem wszystko w porządku.</p>
+
+  <h3>Miniatury HEIC są widoczne, a zdjęcia się nie otwierają?</h3>
+  <p>Miniatury pochodzą często z małego podglądu osadzonego w pliku, który nie wymaga dekodowania HEVC. Widoczna miniatura mówi, że plik jest cały, a nie że twój system potrafi go zdekodować.</p>
+
+  <h3>Czy konwersja do JPEG zepsuje jakość?</h3>
+  <p>Nie. Zmierzyliśmy to: PSNR od 42 do 52 dB i SSIM powyżej 0,995, czyli daleko poza punktem, w którym różnicę widać. Płacisz rozmiarem pliku, nie jakością obrazu.</p>
+
+  <h2>Kiedy potrzebny jest po prostu obraz</h2>
+
+  <p>Instalowanie kodeków ma sens, jeśli pracujesz z takimi plikami codziennie. Dla kilkunastu zdjęć od kogoś z rodziny konwersja trwa sekundy: wrzuć je do <a href="/pl/image/heic-to-jpg/">konwertera HEIC na JPG</a>, a dostaniesz pliki otwierające się wszędzie. To samo narzędzie zapisuje PNG, gdy potrzebna jest przezroczystość, i PDF, gdy odbiorca chce dokumentu zamiast obrazu. Jeśli przekonwertowane pliki nadal są za ciężkie dla formularza, <a href="/pl/image/optimize/">optymalizator obrazów</a> je zmniejszy.</p>

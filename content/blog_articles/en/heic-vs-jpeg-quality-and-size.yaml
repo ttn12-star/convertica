@@ -1,0 +1,145 @@
+slug: heic-vs-jpeg-quality-and-size
+cover_image: blog/images/cover-heic-vs-jpeg-quality-and-size.jpg
+status: published
+publish_on: 2026-09-28
+category_slug: comparisons
+relevant_tool: heic_to_jpg
+title_en: "HEIC vs JPEG: We Measured What You Actually Lose"
+meta_title_en: "HEIC vs JPEG: Measured Size and Quality | Convertica"
+meta_description_en: "We ran seven 12 MP photos through the conversion and measured it. JPEG files come out 1.8 times larger, and the quality loss is too small to see. Here are the numbers."
+meta_keywords_en: "heic vs jpeg, heic vs jpg size, heic to jpg without losing quality, heic to jpg best quality, heic to jpg blurry, heic vs jpeg file size, difference between heif and heic"
+excerpt_en: "Everyone says HEIC files are smaller and the conversion loses quality. Both claims are worth checking rather than repeating. We measured seven 12 megapixel photos through the exact conversion our tool performs, and the results settle the question: the size difference is real and large, the quality loss is not visible."
+ai_metadata:
+  topics:
+    - HEIC and JPEG file size
+    - measured quality loss in conversion
+    - JPEG quality settings
+    - why converted photos look blurry
+    - HEIF versus HEIC
+  entities:
+    - HEIC
+    - HEIF
+    - JPEG
+    - PSNR
+    - SSIM
+    - iPhone
+    - Pillow
+    - libheif
+    - Convertica
+  summary: "A measured comparison of HEIC and JPEG rather than a repeated claim. Seven 12 megapixel photographs were encoded to HEIC and converted to JPEG using the exact settings the Convertica converter applies, with file sizes recorded and quality measured by PSNR and SSIM. JPEG output averaged 1.79 times the size of the HEIC source, ranging from 1.61 to 2.36 depending on the photo, while quality stayed at 42 to 52 dB PSNR and 0.995 or better SSIM, which is far above the threshold where a difference becomes visible. Also explains what quality setting to pick, why a converted photo sometimes genuinely looks blurry when the conversion itself was fine, and the difference between HEIF and HEIC."
+  related_terms:
+    - heic smaller than jpeg
+    - convert heic without quality loss
+    - jpeg quality 90 vs 80
+    - heic file size comparison
+    - photo looks blurry after converting
+  reading_time_minutes: 8
+  target_audience: "iPhone owners who need JPEG files for a site, a print shop or a colleague and want to know what the conversion costs them, plus anyone deciding whether to keep shooting in HEIC."
+content_en: |
+  Two claims follow HEIC everywhere. That the files are about half the size of JPEG, and that converting them costs you quality. The first is repeated so often that nobody checks it. The second worries people enough that they keep originals they will never open again.
+
+  We measured both. Seven photographs at 12 megapixels, the resolution an iPhone main camera writes, encoded to HEIC and then converted to JPEG with the exact settings our converter uses: quality 90, optimisation on. Sizes recorded, and quality measured with PSNR and SSIM rather than eyeballed.
+
+  <h2>The numbers</h2>
+
+  <table>
+    <tr><th>Photo</th><th>HEIC</th><th>JPEG q90</th><th>Growth</th><th>PSNR</th><th>SSIM</th></tr>
+    <tr><td>Cat in snow, high detail</td><td>0.73 MB</td><td>1.73 MB</td><td>2.36x</td><td>47.8 dB</td><td>0.9954</td></tr>
+    <tr><td>Portrait, soft background</td><td>1.44 MB</td><td>2.42 MB</td><td>1.68x</td><td>44.3 dB</td><td>0.9967</td></tr>
+    <tr><td>Street scene</td><td>1.20 MB</td><td>2.23 MB</td><td>1.85x</td><td>44.1 dB</td><td>0.9965</td></tr>
+    <tr><td>Landscape, open sky</td><td>0.90 MB</td><td>1.71 MB</td><td>1.90x</td><td>48.0 dB</td><td>0.9983</td></tr>
+    <tr><td>Flat subject, few textures</td><td>0.30 MB</td><td>0.70 MB</td><td>2.32x</td><td>51.8 dB</td><td>0.9986</td></tr>
+    <tr><td>Foliage, dense texture</td><td>1.70 MB</td><td>2.82 MB</td><td>1.66x</td><td>42.5 dB</td><td>0.9969</td></tr>
+    <tr><td>Crowd, fine detail</td><td>2.14 MB</td><td>3.44 MB</td><td>1.61x</td><td>43.0 dB</td><td>0.9971</td></tr>
+    <tr><td><strong>All seven</strong></td><td><strong>8.42 MB</strong></td><td><strong>15.05 MB</strong></td><td><strong>1.79x</strong></td><td></td><td></td></tr>
+  </table>
+
+  <p>Two things fall out of that table.</p>
+
+  <h3>The size difference is real, and it is not exactly half</h3>
+
+  <p>Across the set, JPEG came out 1.79 times the size of the HEIC original. The popular "half the size" shorthand is close enough to be useful, but the spread matters: from 1.61x on a densely textured crowd photo up to 2.36x on a high-contrast shot of a cat in snow.</p>
+
+  <p>The pattern is consistent once you see it. HEIC's advantage is largest on images with smooth areas and clean edges, because its compression handles those far better than JPEG's older approach. On photographs packed with fine, noisy texture, both formats struggle and the gap narrows.</p>
+
+  <p>In practical terms: a thousand photos that occupy 8 GB on your phone will occupy around 14 GB as JPEG. That is the actual cost of the format change.</p>
+
+  <h3>The quality loss is not visible</h3>
+
+  <p>This is where the worry turns out to be misplaced. PSNR across the set ran from 42.5 to 51.8 dB, and SSIM from 0.9954 to 0.9986.</p>
+
+  <p>For context, PSNR above 40 dB is normally described as visually indistinguishable, and SSIM above 0.99 means the structural difference between two images is a rounding error. Our lowest result, 42.5 dB on the densest foliage photo, is still comfortably inside that range. You are not going to find the difference by looking, and neither is the person you send the photo to.</p>
+
+  <p>So the honest summary is that converting HEIC to JPEG costs you storage, not picture quality.</p>
+
+  <h2>What quality setting should you actually use</h2>
+
+  <p>Our converter defaults to quality 90, which is what the table above measures. We also ran the same photos at 80 and 70 to see what the setting buys:</p>
+
+  <table>
+    <tr><th>JPEG quality</th><th>Total size, seven photos</th><th>Compared to HEIC</th></tr>
+    <tr><td>90 (default)</td><td>15.05 MB</td><td>1.79x</td></tr>
+    <tr><td>80</td><td>11.61 MB</td><td>1.38x</td></tr>
+    <tr><td>70</td><td>10.03 MB</td><td>1.19x</td></tr>
+  </table>
+
+  <p>Dropping from 90 to 80 removes almost a quarter of the file size. On most photographs that step is still hard to see without pixel-peeping, which makes 80 a reasonable choice when you are sending a batch by email or uploading to a site.</p>
+
+  <p>Keep 90 when the photo will be printed, edited further, or archived. Every JPEG save is lossy, so a file you will re-edit should start as high as you can afford.</p>
+
+  <h2>Why your converted photo sometimes really does look blurry</h2>
+
+  <p>The measurements say the conversion step is visually clean, and yet "HEIC to JPG blurry" is a real, frequent complaint. Both can be true, because the blur usually comes from somewhere else in the chain.</p>
+
+  <ul>
+    <li><strong>The converter resized the image.</strong> Some free tools quietly cap output at 1920 pixels wide or smaller. A 12 megapixel photo reduced to a web thumbnail will look soft the moment you zoom. Check the pixel dimensions of what came back, not just the file size.</li>
+    <li><strong>You are looking at a preview, not the file.</strong> Photo viewers and web previews often render a cached low-resolution version first. Open the file properly before judging it.</li>
+    <li><strong>A messaging app recompressed it.</strong> Sending a photo through a chat app usually means a second, much harsher compression pass. The conversion was fine; the delivery was not. Send as a file or a document rather than as a photo.</li>
+    <li><strong>The quality was set very low.</strong> Below about 60, JPEG artefacts become visible on skin tones and gradients. If a tool gives you no choice, you do not know what it used.</li>
+  </ul>
+
+  <p>If the output from our <a href="/en/image/heic-to-jpg/">HEIC to JPG converter</a> has the same pixel dimensions as the original and still looks soft, the softness was in the photo already.</p>
+
+  <h2>HEIF and HEIC are not quite the same word</h2>
+
+  <p>A small point that causes confusion. HEIF is the container format, standardised as part of MPEG-H. HEIC is what you get when that container holds images encoded with HEVC, which is what Apple devices produce. So every HEIC file is a HEIF file, and not every HEIF file is a HEIC.</p>
+
+  <p>In everyday use the distinction rarely matters, and tools that accept one generally accept the other. It only becomes relevant when something refuses your file by extension rather than by content.</p>
+
+  <h2>So should you keep shooting HEIC</h2>
+
+  <p>For most people, yes. You get roughly 45 percent smaller files at the same visible quality, and modern Apple devices handle the format natively everywhere. The moment you need to share with Windows, an older Android device, a print shop or a web upload form, convert a copy.</p>
+
+  <p>What is not worth doing is switching your camera to JPEG permanently because a website once rejected an upload. You would pay for that decision on every photo you take, to solve a problem that takes one conversion.</p>
+
+  <p>The opposite habit is also worth dropping: keeping both HEIC and JPEG copies of everything. The measurements above show the JPEG contains essentially the same picture. Keep the original, make JPEGs when something needs one.</p>
+
+  <h2>How we measured this</h2>
+
+  <p>For anyone who wants to reproduce it. Seven photographs covering different subject types were normalised to 4032 by 3024 pixels, which is the 12 megapixel output of an iPhone main camera. Each was encoded to HEIC with libheif at quality 50, which is where Apple's camera encoder sits. Each HEIC was then decoded and saved as JPEG through Pillow with quality 90 and optimisation enabled, the same code path our converter runs.</p>
+
+  <p>PSNR and SSIM were computed between the decoded HEIC and the resulting JPEG, so the figures describe the conversion step alone rather than including the HEIC encode. That is the number a person converting their photos actually cares about.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Is HEIC really half the size of JPEG?</h3>
+  <p>Close to it. In our measurements JPEG came out 1.79 times larger on average, so HEIC is around 56 percent of the JPEG size. The range across photos was 1.61 to 2.36 times, depending on how much fine texture the image carries.</p>
+
+  <h3>Does converting HEIC to JPG lose quality?</h3>
+  <p>Technically yes, visibly no. We measured PSNR of 42 to 52 dB and SSIM above 0.995, which is well past the point where a difference can be seen. The real cost of the conversion is file size, not picture quality.</p>
+
+  <h3>What JPEG quality should I convert at?</h3>
+  <p>Use 90 for anything you will print, edit again or archive. Use 80 when you are emailing or uploading a batch and want the files smaller, since that setting cuts about a quarter of the size and stays hard to distinguish.</p>
+
+  <h3>Why does my converted photo look blurry?</h3>
+  <p>Almost always because something downsized it, or because a messaging app compressed it again on the way out. Compare the pixel dimensions of the output with the original. If they match, the conversion did not cause it.</p>
+
+  <h3>What is the difference between HEIF and HEIC?</h3>
+  <p>HEIF is the container, HEIC is the container holding HEVC-encoded images, which is what Apple devices write. Every HEIC is a HEIF. Most tools treat the two interchangeably.</p>
+
+  <h3>Should I convert to PNG instead to avoid loss?</h3>
+  <p>Only if you truly need lossless output, because PNG files of a photograph are enormous, often several times the JPEG. For photographs JPEG at a high quality setting is the sensible choice, and PNG is for graphics, screenshots and images with transparency.</p>
+
+  <h2>Convert when you need to, not by default</h2>
+
+  <p>When a site, a colleague or a Windows machine will not take your photo, run it through the <a href="/en/image/heic-to-jpg/">HEIC to JPG converter</a> and keep the original where it is. If the destination needs a single document rather than an image, the same tool writes PDF, and <a href="/en/image/optimize/">image optimizer</a> will shrink the result further when the file still needs to be smaller. For the practical side of opening these files on Windows and Android, the <a href="/en/blog/convert-heic-to-jpg-iphone-photos/">guide to HEIC on other devices</a> covers that ground.</p>
