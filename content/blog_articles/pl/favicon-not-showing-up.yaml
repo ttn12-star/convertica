@@ -1,0 +1,173 @@
+slug: favicon-not-showing-up
+cover_image: blog/images/cover-favicon-not-showing-up.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: generate_favicon
+title_pl: "Favicon się nie wyświetla? Sprawdź przyczyny po kolei"
+meta_title_pl: "Favicon się nie wyświetla: sprawdź po kolei | Convertica"
+meta_description_pl: "Ikona jest wgrana, a karta nadal pokazuje pustą kartkę. Oto prawdziwe przyczyny, od najczęstszej do najrzadszej, każda ze sprawdzeniem na kilka sekund."
+meta_keywords_pl: "favicon się nie wyświetla, favicon nie działa, favicon się nie aktualizuje, favicon.ico nie znaleziono, ikona strony nie widoczna, favicon nie widać w google, pamięć podręczna favicon"
+excerpt_pl: "Ikona zrobiona, wgrana na serwer, znacznik dodany, a karta przeglądarki dalej pokazuje pustą kartkę. Prawie zawsze chodzi o jedną z siedmiu rzeczy, a każdą wykluczysz w niecałą minutę. Oto one w kolejności, w jakiej warto je sprawdzać."
+ai_metadata:
+  topics:
+    - diagnostyka favicona
+    - pamięć podręczna ikon w przeglądarce
+    - znacznik link i ścieżki
+    - favicon w wynikach Google
+    - poprawność pliku ICO
+  entities:
+    - favicon
+    - favicon.ico
+    - apple-touch-icon
+    - Chrome DevTools
+    - Cloudflare
+    - Googlebot
+    - WordPress
+    - ICO
+    - PNG
+    - Convertica
+  summary: "Przewodnik diagnostyczny dla faviconów, które się nie pojawiają, ułożony według rzeczywistej częstotliwości przyczyn: pamięć podręczna przeglądarki i CDN, względna ścieżka w znaczniku link, PNG przemianowany na .ico zamiast przekonwertowany, ikona poza katalogiem głównym domeny, serwer zwracający HTML ze statusem 200, platforma wstrzykująca własny znacznik oraz osobna i znacznie wolniejsza pamięć podręczna faviconów w wynikach Google. Przy każdej przyczynie szybkie sprawdzenie, na końcu lista kontrolna i najczęstsze pytania."
+  related_terms:
+    - favicon nie aktualizuje się chrome
+    - favicon 404
+    - wyczyścić cache favicona
+    - ikona nie widoczna w wyszukiwarce
+    - uszkodzony plik ico
+  reading_time_minutes: 7
+  target_audience: "Każdy, kto dodał favicon do strony i nie może go zobaczyć: programiści, projektanci, właściciele stron na WordPressie i Shopify oraz osoby prowadzące małą witrynę, które wolą nie zgadywać."
+content_pl: |
+  Ikona zrobiona, wgrana na serwer, znacznik w nagłówku dodany, a karta przeglądarki dalej pokazuje pustą kartkę. To jeden z tych problemów, gdzie wszystko wygląda poprawnie i nic nie działa, i właśnie dlatego ludzie wgrywają ten sam plik po sześć razy.
+
+  Dobra wiadomość jest taka, że lista prawdziwych przyczyn jest krótka. Przejdź ją po kolei, bo kolejność odpowiada temu, jak często każda z nich faktycznie okazuje się winna. Większość ludzi zatrzymuje się na drugim punkcie.
+
+  <h2>Krok zerowy: sprawdź, czy plik naprawdę tam jest</h2>
+
+  <p>Zanim ruszysz cokolwiek innego, otwórz ikonę pod jej własnym adresem. Wpisz go wprost w pasek:</p>
+
+  <p><code>https://twojastrona.pl/favicon.ico</code></p>
+
+  <p>Powinieneś zobaczyć samą grafikę na białym tle. Zamiast tego mogą wydarzyć się trzy rzeczy i każda wskazuje gdzie indziej:</p>
+
+  <ul>
+    <li><strong>Strona 404.</strong> Plik nie leży tam, gdzie myślisz. Przejdź od razu do sekcji o ścieżkach.</li>
+    <li><strong>Ładuje się strona główna.</strong> Serwer po cichu przekierowuje nieznane adresy z powrotem na witrynę, co znaczy, że pliku nie ma, a framework to zasłania. Naprawa jak przy 404, ale po kodzie odpowiedzi nigdy byś tego nie zauważył.</li>
+    <li><strong>Ikona uszkodzonego obrazka.</strong> Plik jest, ale przeglądarka nie potrafi go odczytać. To problem z przemianowaniem, niżej.</li>
+  </ul>
+
+  <p>Jeśli ikona pod własnym adresem wyświetla się poprawnie, plik jest w porządku, a problem siedzi w pamięci podręcznej albo w kodzie strony.</p>
+
+  <h2>Przyczyna 1: cache, i jest gorzej, niż myślisz</h2>
+
+  <p>Przeglądarki trzymają favicony znacznie uparciej niż cokolwiek innego. Zwykłe odświeżenie ich nie pobiera ponownie. Twarde odświeżenie w większości przeglądarek też nie. Magazyn ikon żyje osobno od zwykłej pamięci podręcznej stron i przeżywa rzeczy, po których spodziewałbyś się, że zniknie.</p>
+
+  <p>Nie ufaj więc odświeżaniu. Testuj inaczej:</p>
+
+  <ul>
+    <li>Otwórz stronę w oknie prywatnym. Świeży profil, pusty magazyn ikon.</li>
+    <li>Albo otwórz adres ikony bezpośrednio, a potem przeładuj stronę.</li>
+    <li>Albo sprawdź na telefonie lub w przeglądarce, w której nigdy tej strony nie otwierałeś.</li>
+  </ul>
+
+  <p>Jeśli w oknie prywatnym ikona jest, a w zwykłym nie, masz już odpowiedź. Nic nie jest zepsute. Twoja przeglądarka po prostu trzyma się starej ikony i sama ją puści w ciągu kilku dni.</p>
+
+  <p>Jedno zastrzeżenie, jeśli przed stroną stoi CDN. Cloudflare i podobne trzymają ikonę również u siebie, a czyszczenie własnej przeglądarki tam nie sięga. Wyczyść plik w panelu CDN, potem sprawdź w oknie prywatnym.</p>
+
+  <h2>Przyczyna 2: ścieżka w znaczniku link</h2>
+
+  <p>Na tym potyka się najwięcej osób i prawie zawsze winna jest ścieżka względna. Spójrz:</p>
+
+  <p><code>&lt;link rel="icon" href="favicon.ico"&gt;</code></p>
+
+  <p>Na stronie głównej rozwija się do <code>/favicon.ico</code> i działa. Na <code>/blog/moj-wpis/</code> rozwija się do <code>/blog/moj-wpis/favicon.ico</code>, a takiego pliku nie ma. Ikona raz się pojawia, raz znika, i wygląda to przypadkowo, dopóki nie zauważysz wzorca.</p>
+
+  <p>Zawsze używaj ścieżki zaczynającej się od ukośnika:</p>
+
+  <p><code>&lt;link rel="icon" href="/favicon.ico"&gt;</code></p>
+
+  <p>Przy okazji sprawdź, czy znacznik jest wewnątrz <code>&lt;head&gt;</code>. Link, który wylądował w treści strony, jest ignorowany i nikt cię o tym nie ostrzeże.</p>
+
+  <h2>Przyczyna 3: plik przemianowano, a nie przekonwertowano</h2>
+
+  <p>Zmiana nazwy <code>logo.png</code> na <code>favicon.ico</code> nie robi z niego pliku ICO. Robi z niego PNG z mylącą nazwą. Część przeglądarek jest wyrozumiała i pokaże go mimo to, i tu tkwi okrucieństwo: u ciebie działa, a u odwiedzającego z inną przeglądarką nie, więc tego błędu nigdy nie zobaczysz.</p>
+
+  <p>ICO to kontener z własnym nagłówkiem. Może zmieścić kilka rozmiarów w jednym pliku i właśnie dlatego format wciąż żyje. PNG nie ma takiej struktury w ogóle.</p>
+
+  <p>Konwertuj porządnie, zamiast zmieniać nazwę. <a href="/pl/image/png-to-ico/">Konwerter PNG na ICO</a> tworzy prawdziwy wielorozmiarowy plik ICO, a <a href="/pl/image/svg-to-ico/">SVG na ICO</a> robi to samo startując z wektora. Jeśli chcesz cały komplet naraz, razem z rozmiarami PNG i ikoną dla Apple, <a href="/pl/image/favicon-generator/">generator faviconów</a> złoży pełny pakiet z jednego wgrania.</p>
+
+  <h2>Przyczyna 4: ikona nie leży w katalogu głównym</h2>
+
+  <p>Gdy żaden znacznik nie mówi inaczej, przeglądarka szuka <code>/favicon.ico</code> na samej górze domeny. Jeśli twoja strona mieszka w podkatalogu albo wdrożyłeś ją jako stronę projektu zamiast na katalog główny domeny, to automatyczne zapytanie chybia.</p>
+
+  <p>Częste na hostingu statycznym. Strona serwowana z <code>uzytkownik.github.io/projekt/</code> ma katalog główny <code>uzytkownik.github.io</code> i właśnie tam idzie zapytanie. Twojej ikony w folderze projektu nikt nie pyta.</p>
+
+  <p>Dwa wyjścia: położyć plik w prawdziwym katalogu głównym domeny albo jawnie wskazać jego rzeczywiste miejsce znacznikiem link. Jawny znacznik jest pewniejszy i i tak będzie ci potrzebny, gdy rozmiarów zrobi się więcej niż jeden.</p>
+
+  <h2>Przyczyna 5: serwer oddaje coś innego</h2>
+
+  <p>Niektóre konfiguracje zwracają stronę błędu w HTML ze statusem 200. Przeglądarka prosi o ikonę, dostaje HTML i nie pokazuje nic. A ponieważ status mówi, że wszystko się udało, w zakładce sieci na pierwszy rzut oka nic nie wygląda podejrzanie.</p>
+
+  <p>Sprawdź, co naprawdę przychodzi:</p>
+
+  <p><code>curl -I https://twojastrona.pl/favicon.ico</code></p>
+
+  <p>Dla ICO chcesz <code>content-type: image/x-icon</code> albo <code>image/vnd.microsoft.icon</code>, a dla ikony PNG <code>image/png</code>. Jeśli widzisz <code>text/html</code>, serwer oddaje stronę, a nie plik.</p>
+
+  <p>Zajrzyj przy okazji do <code>robots.txt</code>. Zablokowany katalog z ikonami nie przeszkodzi przeglądarce, ale przeszkodzi wyszukiwarce, a to ma znaczenie w następnej sekcji.</p>
+
+  <h2>Przyczyna 6: platforma nadpisuje twój znacznik</h2>
+
+  <p>WordPress, Shopify, Squarespace i Wix wstrzykują własny kod favicona z ustawień motywu. Jeśli ręcznie edytowałeś szablon i dodałeś swój znacznik, są teraz dwa, a zwykle wygrywa ten od platformy, bo znajduje się w nagłówku niżej.</p>
+
+  <p>Obejrzyj źródło gotowej strony, nie swojego szablonu, i poszukaj <code>rel="icon"</code>. Jeśli znajdziesz więcej niż jeden, usuń swój i ustaw ikonę przez własne pole platformy. W WordPressie to «Ikona witryny» w Wyglądzie, i chce kwadratowego obrazu od 512 pikseli.</p>
+
+  <h2>Przyczyna 7: wyniki Google mają własny harmonogram</h2>
+
+  <p>To już inny problem w tym samym przebraniu. W przeglądarce favicon widać, a obok twojego wyniku w wyszukiwarce nie, i żadne czyszczenie pamięci podręcznej tego nie zmienia.</p>
+
+  <p>Google trzyma osobną pamięć faviconów, odświeżaną we własnym rytmie. Kilka tygodni to norma. Przycisku «przyspiesz» nie ma. To, co możesz zrobić, to usunąć wszystko, co zablokuje aktualizację, gdy już nadejdzie:</p>
+
+  <ul>
+    <li>Ikona musi być dostępna dla Googlebota, więc nie za regułą w robots.txt ani za logowaniem.</li>
+    <li>Musi być kwadratowa i mieć co najmniej 48 na 48 pikseli. Mniejsze są ignorowane.</li>
+    <li>Ta sama ikona powinna obowiązywać na całej witrynie i być zadeklarowana na stronie głównej.</li>
+    <li>Adres ikony powinien być stabilny. Zmiana nazwy przy każdym wdrożeniu zeruje licznik.</li>
+  </ul>
+
+  <p>Gdy to jest spełnione, zostaje już tylko cierpliwość.</p>
+
+  <h2>Krótka lista kontrolna</h2>
+
+  <ul>
+    <li>Czy ikona otwiera się pod bezpośrednim adresem?</li>
+    <li>Czy sprawdziłeś w oknie prywatnym, zanim wyciągnąłeś wnioski?</li>
+    <li>Czy <code>href</code> jest bezwzględny i zaczyna się od ukośnika?</li>
+    <li>Czy znacznik jest w <code>&lt;head&gt;</code> i czy jest jedyny?</li>
+    <li>Czy plik został przekonwertowany do ICO, a nie przemianowany?</li>
+    <li>Czy <code>curl -I</code> zwraca typ obrazu?</li>
+    <li>Jeśli jest CDN, czy wyczyściłeś jego pamięć?</li>
+    <li>Dla wyszukiwarki: czy ikona jest kwadratowa, od 48 pikseli i dostępna dla robota?</li>
+  </ul>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Dlaczego favicon widać na jednych stronach, a na innych nie?</h3>
+  <p>Przez względną ścieżkę w znaczniku link. Rozwija się względem bieżącego adresu, więc na stronie głównej trafia gdzie trzeba, a na głębszych stronach w pustkę. Zmień <code>href="favicon.ico"</code> na <code>href="/favicon.ico"</code>.</p>
+
+  <h3>Wyczyściłem cache, a ikona dalej jest stara.</h3>
+  <p>Czyszczenie danych przeglądania nie zawsze opróżnia magazyn faviconów, który przeglądarka trzyma osobno. Sprawdź w oknie prywatnym, czy nowa ikona jest w ogóle serwowana. Jeśli tam jest, plik masz dobry, a zwykły profil niedługo się dostroi.</p>
+
+  <h3>Czy favicon.ico jest nadal potrzebny, skoro mam ikony PNG?</h3>
+  <p>Zostaw go. Przeglądarki proszą o <code>/favicon.ico</code> w katalogu głównym nawet gdy zadeklarowałeś ikony PNG, a część narzędzi i robotów szuka go po nazwie. Trzymanie obu kosztuje kilka kilobajtów.</p>
+
+  <h3>Czy mogę po prostu zmienić nazwę PNG na .ico?</h3>
+  <p>Nie, choć w akurat twojej przeglądarce może to wyglądać na działające. ICO ma własną strukturę kontenera. Przekonwertuj plik naprawdę, a przestaniesz mieć błąd, który widzi tylko część odwiedzających.</p>
+
+  <h3>Ile czeka się na favicon w Google?</h3>
+  <p>Zwykle kilka tygodni i nie da się poprosić o szybciej. Upewnij się, że ikona jest kwadratowa, ma co najmniej 48 pikseli, jest dostępna dla robota i zadeklarowana na stronie głównej, a potem zostaw ją w spokoju.</p>
+
+  <h3>Dlaczego w karcie jest ostro, a na ekranie głównym telefonu rozmazane?</h3>
+  <p>Ekran główny bierze dużo większą ikonę, na iOS 180 pikseli, i rozciąga tę małą. Potrzebujesz osobnego <code>apple-touch-icon</code> we właściwym rozmiarze, a nie jednego maleńkiego pliku do wszystkiego.</p>
+
+  <h2>Zacznij od czystego kompletu plików</h2>
+
+  <p>Jeśli od dłuższego czasu łatasz jeden plik ikony, zwykle szybciej wychodzi wygenerować cały komplet od nowa niż dalej go debugować. Wgraj logo do <a href="/pl/image/favicon-generator/">generatora faviconów</a> i dostaniesz wszystkie rozmiary, o które prosi przeglądarka, prawdziwy wielorozmiarowy ICO, ikonę dla Apple i gotowy HTML do wklejenia. Do pojedynczych konwersji są <a href="/pl/image/png-to-ico/">PNG na ICO</a>, <a href="/pl/image/jpg-to-ico/">JPG na ICO</a> i <a href="/pl/image/webp-to-ico/">WebP na ICO</a>, a <a href="/pl/image/ico-to-png/">ICO na PNG</a> działa w drugą stronę, gdy chcesz zajrzeć do środka istniejącej ikony. Jeśli szukasz nie napraw, a teorii o rozmiarach i znacznikach, to jest w <a href="/pl/blog/how-to-create-a-favicon/">pełnym poradniku tworzenia favicona</a>.</p>

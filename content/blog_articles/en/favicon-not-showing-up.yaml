@@ -1,0 +1,174 @@
+slug: favicon-not-showing-up
+cover_image: blog/images/cover-favicon-not-showing-up.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: generate_favicon
+title_en: "Favicon Not Showing Up? Work Through These Causes in Order"
+meta_title_en: "Favicon Not Showing Up: Fix It in Order | Convertica"
+meta_description_en: "Your favicon is uploaded but the tab still shows a blank page icon. Here are the real causes, ordered from most to least common, each with a check that takes seconds."
+meta_keywords_en: "favicon not showing up, favicon not showing in chrome, favicon not updating, favicon.ico not found, favicon not showing in google search, favicon not working, favicon cache"
+excerpt_en: "You uploaded the icon, you added the link tag, and the browser tab still shows a blank sheet of paper. Almost every case comes down to one of seven things, and you can rule each one out in under a minute. Here they are in the order you should check them."
+ai_metadata:
+  topics:
+    - favicon troubleshooting
+    - browser favicon caching
+    - favicon link tag and paths
+    - favicon in Google search results
+    - ICO file validity
+  entities:
+    - favicon
+    - favicon.ico
+    - apple-touch-icon
+    - Chrome DevTools
+    - Cloudflare
+    - Googlebot
+    - WordPress
+    - ICO
+    - PNG
+    - Convertica
+  summary: "A troubleshooting guide for favicons that do not appear, ordered by how often each cause actually occurs: browser and CDN caching, a wrong or relative path in the link tag, a PNG renamed to .ico rather than converted, icons placed outside the site root, servers returning HTML with a 200 status instead of the file, platform themes overriding the tag, and the separate and much slower favicon cache used by Google search results. Each cause comes with a check that can be run in seconds, plus a final checklist and answers to common questions."
+  related_terms:
+    - favicon not updating chrome
+    - favicon 404
+    - hard refresh favicon
+    - favicon not showing in search results
+    - invalid ico file
+    - favicon cache clear
+  reading_time_minutes: 7
+  target_audience: "Anyone who has added a favicon to a site and cannot get it to appear: developers, designers, WordPress and Shopify owners, and people maintaining a small site who would rather not guess."
+content_en: |
+  You made the icon, you put it on the server, you added the link tag, and the browser tab still shows that blank sheet of paper. This is one of those problems where everything looks correct and nothing works, which is exactly why people end up re-uploading the same file six times.
+
+  The good news is that the list of real causes is short. Work through them in the order below, because that order matches how often each one actually turns out to be the problem. Most people stop at the second step.
+
+  <h2>Step zero: prove the file is really there</h2>
+
+  <p>Before touching anything else, open the icon by its own URL. Type it straight into the address bar:</p>
+
+  <p><code>https://yoursite.com/favicon.ico</code></p>
+
+  <p>You should see the image itself, alone on a white page. Three things can happen instead, and each one points somewhere different:</p>
+
+  <ul>
+    <li><strong>A 404 page.</strong> The file is not where you think it is. Skip ahead to the path section below.</li>
+    <li><strong>Your homepage loads instead.</strong> The server is quietly rewriting unknown URLs back to the site, which means the file is missing and the framework is catching it. Same fix as a 404, but you would never have noticed from the status code.</li>
+    <li><strong>A broken image icon.</strong> The file exists but the browser cannot read it. That is the renamed-file problem, covered further down.</li>
+  </ul>
+
+  <p>If the icon does display correctly at its own URL, the file is fine and the problem is in caching or in the markup.</p>
+
+  <h2>Cause 1: the cache, and it is worse than you think</h2>
+
+  <p>Browsers cache favicons far more aggressively than they cache anything else. A normal reload does not refetch them. Neither does a hard refresh, in most browsers. The favicon store is separate from the ordinary page cache, and it survives things you would expect to clear it.</p>
+
+  <p>So do not trust a reload to tell you anything. Test like this instead:</p>
+
+  <ul>
+    <li>Open the site in a private or incognito window. Fresh profile, no favicon store.</li>
+    <li>Or open the icon URL directly, as above, then reload the page.</li>
+    <li>Or check on a phone, or a browser you never use for this site.</li>
+  </ul>
+
+  <p>If the icon appears in a private window but not in your normal one, you already have your answer. Nothing is broken. Your browser is just holding on to the old icon, and it will let go on its own within a few days.</p>
+
+  <p>One caveat if you sit behind a CDN. Cloudflare and similar services cache the icon at the edge too, and clearing your own browser will not touch that. Purge the file in your CDN dashboard, then test in a private window.</p>
+
+  <h2>Cause 2: the path in the link tag</h2>
+
+  <p>This is the one that catches most people, and it is almost always a relative path. Consider this tag:</p>
+
+  <p><code>&lt;link rel="icon" href="favicon.ico"&gt;</code></p>
+
+  <p>On your homepage that resolves to <code>/favicon.ico</code> and works. On <code>/blog/my-post/</code> it resolves to <code>/blog/my-post/favicon.ico</code>, which does not exist. The icon appears on some pages and vanishes on others, which feels random until you notice the pattern.</p>
+
+  <p>Always use a path starting with a slash:</p>
+
+  <p><code>&lt;link rel="icon" href="/favicon.ico"&gt;</code></p>
+
+  <p>While you are there, check the tag is inside <code>&lt;head&gt;</code>. A link tag that ended up in the body is ignored, and nothing warns you about it.</p>
+
+  <h2>Cause 3: the file was renamed, not converted</h2>
+
+  <p>Renaming <code>logo.png</code> to <code>favicon.ico</code> does not make it an ICO file. It makes it a PNG with a misleading name. Some browsers are forgiving and will render it anyway, which is the cruel part: it works for you and fails for a visitor on a different browser, so you never see the bug yourself.</p>
+
+  <p>ICO is a container format with its own header. It can hold several sizes in one file, which is the whole reason it is still used. A PNG has none of that structure.</p>
+
+  <p>Convert properly rather than renaming. The <a href="/en/image/png-to-ico/">PNG to ICO converter</a> writes a real multi-size ICO, and <a href="/en/image/svg-to-ico/">SVG to ICO</a> does the same starting from vector art. If you want the complete set of files at once, including the PNG sizes and the Apple touch icon, the <a href="/en/image/favicon-generator/">favicon generator</a> produces the whole package from one upload.</p>
+
+  <h2>Cause 4: the icon is not at the site root</h2>
+
+  <p>Browsers look for <code>/favicon.ico</code> at the very top of the domain when no link tag tells them otherwise. If your site lives in a subdirectory, or you deployed to a project page rather than a domain root, the automatic lookup misses.</p>
+
+  <p>This is common on static hosting. A site served from <code>username.github.io/project/</code> has a root of <code>username.github.io</code>, and that is where the automatic request goes. Your icon in the project folder is never requested.</p>
+
+  <p>Two ways out: put the file at the actual domain root, or declare its real location with an explicit link tag. The explicit tag is more reliable, and it is what you want anyway once you have more than one icon size.</p>
+
+  <h2>Cause 5: the server sends the wrong thing</h2>
+
+  <p>Some setups return an HTML error page with a 200 status code. The browser asks for an icon, receives a page of HTML, and shows nothing. Because the status says success, nothing looks wrong in the network tab at a glance.</p>
+
+  <p>Check what actually comes back:</p>
+
+  <p><code>curl -I https://yoursite.com/favicon.ico</code></p>
+
+  <p>You want <code>content-type: image/x-icon</code> or <code>image/vnd.microsoft.icon</code> for an ICO, and <code>image/png</code> for a PNG icon. If you see <code>text/html</code>, the server is handing back a page, not a file.</p>
+
+  <p>Also worth a look: your <code>robots.txt</code>. Blocking a directory that contains the icons does not stop browsers, but it does stop search engines, which matters for the next section.</p>
+
+  <h2>Cause 6: your platform is overriding the tag</h2>
+
+  <p>WordPress, Shopify, Squarespace and Wix all inject their own favicon markup from a theme setting. If you hand-edit a template and add a second link tag, you now have two, and the one the platform injects usually wins because it comes later in the head.</p>
+
+  <p>View the rendered page source, not your template, and search for <code>rel="icon"</code>. If you find more than one, remove yours and set the icon through the platform's own field instead. In WordPress that is the Site Icon under Appearance, and it wants a square image of at least 512 pixels.</p>
+
+  <h2>Cause 7: Google search results have their own timeline</h2>
+
+  <p>This is a different problem wearing the same clothes. Your favicon shows fine in the browser but not next to your listing in search results, and no amount of cache clearing changes it.</p>
+
+  <p>Google keeps a separate favicon cache, refreshed on its own schedule. Weeks is normal. There is no button to speed it up. What you can do is make sure nothing blocks the refresh when it comes:</p>
+
+  <ul>
+    <li>The icon must be reachable by Googlebot, so it must not sit behind a robots.txt rule or a login.</li>
+    <li>It must be a square image, and at least 48 by 48 pixels. Smaller icons are ignored.</li>
+    <li>The same icon should apply across the whole site, declared on the homepage.</li>
+    <li>The URL of the icon should stay stable. Changing the filename on every deploy resets the clock.</li>
+  </ul>
+
+  <p>Once those hold, the only remaining ingredient is patience.</p>
+
+  <h2>The short checklist</h2>
+
+  <ul>
+    <li>Open the icon URL directly. Does the image appear?</li>
+    <li>Test in a private window before concluding anything.</li>
+    <li>Is the <code>href</code> absolute, starting with a slash?</li>
+    <li>Is the link tag inside <code>&lt;head&gt;</code>, and is it the only one?</li>
+    <li>Was the file converted to ICO, not renamed?</li>
+    <li>Does <code>curl -I</code> return an image content type?</li>
+    <li>If it is a CDN, did you purge the edge cache?</li>
+    <li>For search results, is the icon square, at least 48 pixels, and crawlable?</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Why does my favicon show on some pages but not others?</h3>
+  <p>A relative path in the link tag. It resolves against the current URL, so it points somewhere valid on the homepage and somewhere empty on deeper pages. Change <code>href="favicon.ico"</code> to <code>href="/favicon.ico"</code>.</p>
+
+  <h3>I cleared my cache and it still shows the old icon.</h3>
+  <p>Clearing browsing data does not always clear the favicon store, which browsers keep separately. Use a private window to check whether the new icon is actually being served. If it appears there, your file is correct and your normal profile will catch up shortly.</p>
+
+  <h3>Do I still need favicon.ico if I use PNG icons?</h3>
+  <p>Keep it. Browsers request <code>/favicon.ico</code> at the root even when you have declared PNG icons, and some tools and crawlers look for it by name. It costs a few kilobytes to have both.</p>
+
+  <h3>Can I just rename a PNG to .ico?</h3>
+  <p>No, though it may appear to work in whichever browser you happen to test. ICO has its own container structure. Convert the file so it is genuinely an ICO, and you stop having a bug that only some visitors see.</p>
+
+  <h3>How long until my favicon appears in Google?</h3>
+  <p>Usually a few weeks, and there is no way to request it sooner. Make sure the icon is square, at least 48 pixels, crawlable, and declared on your homepage, then leave it alone.</p>
+
+  <h3>Why does the icon look sharp in the tab but blurry on a phone home screen?</h3>
+  <p>The home screen uses a much larger icon, 180 pixels on iOS, and it is pulling the small favicon and scaling it up. You need a dedicated <code>apple-touch-icon</code> at the right size rather than one tiny file doing every job.</p>
+
+  <h2>Start from a clean set of files</h2>
+
+  <p>If you have been patching one icon file for a while, it is often faster to regenerate the whole set than to keep debugging it. Upload your logo to the <a href="/en/image/favicon-generator/">favicon generator</a> and you get every size a browser asks for, a real multi-size ICO, the Apple touch icon, and the HTML to paste in. For single conversions the <a href="/en/image/png-to-ico/">PNG to ICO</a>, <a href="/en/image/jpg-to-ico/">JPG to ICO</a> and <a href="/en/image/webp-to-ico/">WebP to ICO</a> tools each do one job, and <a href="/en/image/ico-to-png/">ICO to PNG</a> goes the other way when you need to inspect what is inside an existing icon. If you want the background on sizes and markup rather than the fixes, the full <a href="/en/blog/how-to-create-a-favicon/">guide to creating a favicon</a> covers that ground.</p>

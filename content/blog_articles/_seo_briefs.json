@@ -1310,5 +1310,261 @@
     "primary_keyword": "repair corrupted pdf",
     "status": "planned",
     "relevant_tool": "all_tools"
+  },
+  {
+    "slug": "favicon-not-showing-up",
+    "type": "troubleshooting",
+    "primary_keyword": "favicon not showing up",
+    "cluster": "favicon",
+    "intent": "informational",
+    "relevant_tool": "generate_favicon",
+    "category": "how-to-guides",
+    "queries": [
+      "favicon not showing up",
+      "favicon not showing in chrome",
+      "favicon not updating",
+      "favicon not showing after deploy",
+      "favicon.ico not found",
+      "favicon not showing in google search",
+      "favicon not showing wordpress"
+    ],
+    "unique_angle": "Каждая причина проверяется одной командой curl или одной вкладкой DevTools; порядок от самой частой к самой редкой. Отдельный раздел про кеш Google, который держит старый значок неделями.",
+    "target_word_count": 1600,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "favicon-size-for-wordpress-shopify-squarespace",
+    "type": "how_to",
+    "primary_keyword": "best favicon size for website",
+    "cluster": "favicon",
+    "intent": "informational",
+    "relevant_tool": "generate_favicon",
+    "category": "how-to-guides",
+    "queries": [
+      "best favicon size for wordpress",
+      "best favicon size for shopify",
+      "best favicon size for squarespace",
+      "best favicon size for google",
+      "favicon dimensions",
+      "android favicon size",
+      "apple touch icon size"
+    ],
+    "unique_angle": "Таблица: платформа, какой файл она реально просит, что она делает с загруженным изображением сама, и где её требования расходятся со стандартом.",
+    "target_word_count": 1500,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "convert-image-to-ico-windows",
+    "type": "how_to",
+    "primary_keyword": "convert image to ico",
+    "cluster": "ico",
+    "intent": "transactional",
+    "relevant_tool": "png_to_ico",
+    "category": "how-to-guides",
+    "queries": [
+      "convert image to ico",
+      "convert image to icon file windows 11",
+      "convert image to ico windows 10",
+      "png to ico",
+      "jpg to ico",
+      "svg to ico",
+      "best png to ico converter"
+    ],
+    "unique_angle": "Windows не умеет делать .ico штатно, и это главная причина запроса. Показываем что именно ломается при переименовании png в ico и почему многоразмерный ico нужен для ярлыков.",
+    "target_word_count": 1500,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "ico-vs-png-file-format",
+    "type": "comparison",
+    "primary_keyword": "ico vs png",
+    "cluster": "ico",
+    "intent": "informational",
+    "relevant_tool": "ico_to_png",
+    "category": "comparisons",
+    "queries": [
+      "ico vs png",
+      "what is an ico file",
+      "ico file format",
+      "ico file size",
+      "open ico file",
+      "ico transparent",
+      "multiple sizes in one ico"
+    ],
+    "unique_angle": "ICO это контейнер, а не формат картинки: внутри лежит несколько png или bmp разного размера. Разбор на реальном файле с гексдампом заголовка.",
+    "target_word_count": 1400,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "zip-password-not-working",
+    "type": "troubleshooting",
+    "primary_keyword": "zip password not working",
+    "cluster": "zip",
+    "intent": "informational",
+    "relevant_tool": "unlock_zip",
+    "category": "how-to-guides",
+    "queries": [
+      "zip password not working",
+      "password protected zip file not asking for password",
+      "7 zip password not working",
+      "windows can't open password protected zip",
+      "zip file not prompting for password",
+      "why can't i password protect a zip file windows 10"
+    ],
+    "unique_angle": "Главная причина: встроенный проводник Windows умеет ЧИТАТЬ zip, но не умеет шифровать, и молча отдаёт незашифрованный архив. Плюс разбор «файл не просит пароль» = зашифрованы имена или только содержимое.",
+    "target_word_count": 1600,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "is-zip-encryption-secure",
+    "type": "explainer",
+    "primary_keyword": "is zip encryption secure",
+    "cluster": "zip",
+    "intent": "informational",
+    "relevant_tool": "protect_zip",
+    "category": "best-practices",
+    "queries": [
+      "are password protected zip files secure",
+      "is zip encryption secure",
+      "zipcrypto vs aes-256",
+      "how secure is zip encryption",
+      "zip password strength"
+    ],
+    "unique_angle": "Два разных шифрования под одним словом «пароль»: legacy ZipCrypto ломается за секунды известной атакой, AES-256 нет. Как понять, что внутри вашего архива.",
+    "target_word_count": 1500,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "heic-vs-jpeg-quality-and-size",
+    "type": "comparison",
+    "primary_keyword": "heic vs jpeg",
+    "cluster": "heic",
+    "intent": "informational",
+    "relevant_tool": "heic_to_jpg",
+    "category": "comparisons",
+    "queries": [
+      "heic vs jpeg which is better",
+      "heic vs jpg size",
+      "heic to jpg without losing quality",
+      "heic to jpg best quality",
+      "heic to jpg blurry",
+      "heic vs jpeg file size",
+      "difference between heif and heic"
+    ],
+    "unique_angle": "НАШИ СОБСТВЕННЫЕ ЗАМЕРЫ: прогнать набор реальных снимков с iPhone через конвертер и опубликовать таблицу размеров и потерь. Таких цифр ни у кого из конкурентов нет.",
+    "target_word_count": 1700,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "heic-not-opening-windows",
+    "type": "troubleshooting",
+    "primary_keyword": "heic not opening windows 11",
+    "cluster": "heic",
+    "intent": "informational",
+    "relevant_tool": "heic_to_jpg",
+    "category": "how-to-guides",
+    "queries": [
+      "heic not opening windows 11",
+      "heic files not opening windows 10",
+      "heic not supported by windows",
+      "android can't open heic",
+      "can't open heic on mac",
+      "heic not opening in photos"
+    ],
+    "unique_angle": "Разные системы ломаются по-разному: Windows требует платный кодек от Microsoft, Android зависит от версии, старые macOS не тянут 10-битный HEIC. Дерево решений по симптому.",
+    "target_word_count": 1600,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "epub-vs-pdf-which-to-use",
+    "type": "comparison",
+    "primary_keyword": "epub vs pdf",
+    "cluster": "epub",
+    "intent": "informational",
+    "relevant_tool": "pdf_to_epub",
+    "category": "comparisons",
+    "queries": [
+      "epub vs pdf",
+      "epub vs pdf for kindle",
+      "epub vs pdf for ipad",
+      "epub or pdf which is better",
+      "epub vs pdf file size",
+      "epub vs pdf for textbooks",
+      "pdf vs epub"
+    ],
+    "unique_angle": "Не «что лучше», а «что ломается»: PDF с фиксированной вёрсткой на 6-дюймовом экране и EPUB с таблицами и формулами. По устройствам, а не абстрактно.",
+    "target_word_count": 1700,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "epub-to-pdf-without-losing-quality",
+    "type": "how_to",
+    "primary_keyword": "epub to pdf without losing quality",
+    "cluster": "epub",
+    "intent": "transactional",
+    "relevant_tool": "epub_to_pdf",
+    "category": "how-to-guides",
+    "queries": [
+      "epub to pdf without losing quality",
+      "epub to pdf best quality",
+      "epub not converting to pdf",
+      "epub to pdf safe",
+      "convert epub to pdf online high quality"
+    ],
+    "unique_angle": "Наш реальный опыт (v2.2.244): почему заголовки едут, где живут шрифты внутри epub и что происходит с ними при экспорте. Знание из собственного кода, не из справки.",
+    "target_word_count": 1500,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "markdown-vs-pdf-vs-word",
+    "type": "comparison",
+    "primary_keyword": "markdown vs pdf",
+    "cluster": "markdown",
+    "intent": "informational",
+    "relevant_tool": "pdf_to_markdown",
+    "category": "comparisons",
+    "queries": [
+      "markdown vs pdf",
+      "markdown file vs word",
+      "markdown file vs html",
+      "what is markdown vs plain text",
+      "md file vs txt",
+      "markdown file vs docx"
+    ],
+    "unique_angle": "Три формата решают три разные задачи: markdown для правки, pdf для доставки, docx для совместной работы. Когда конвертация между ними теряет смысл.",
+    "target_word_count": 1500,
+    "status": "planned",
+    "wave": "niche-2026-09"
+  },
+  {
+    "slug": "what-is-an-md-file",
+    "type": "explainer",
+    "primary_keyword": "md file",
+    "cluster": "markdown",
+    "intent": "informational",
+    "relevant_tool": "pdf_to_markdown",
+    "category": "how-to-guides",
+    "queries": [
+      "what is an md file",
+      "md file not opening",
+      "how to open md file",
+      "md file vs txt",
+      "markdown file",
+      "open md file windows"
+    ],
+    "unique_angle": "Файл .md это обычный текст, и именно поэтому он «не открывается»: система не знает, чем его показать. Как читать, как править, чем открыть на каждой ОС.",
+    "target_word_count": 1400,
+    "status": "planned",
+    "wave": "niche-2026-09"
   }
 ]
