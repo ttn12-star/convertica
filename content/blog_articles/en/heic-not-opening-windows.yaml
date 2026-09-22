@@ -1,0 +1,130 @@
+slug: heic-not-opening-windows
+cover_image: blog/images/cover-heic-not-opening-windows.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: heic_to_jpg
+title_en: "HEIC Files Not Opening? Find Your Symptom, Then Fix It"
+meta_title_en: "HEIC Not Opening on Windows, Android, Mac | Convertica"
+meta_description_en: "Windows wants a paid codec, Android depends on the version, older Macs choke on 10-bit files. Match your symptom to the cause and pick the fix that fits."
+meta_keywords_en: "heic not opening windows 11, heic files not opening windows 10, heic not supported by windows, android cannot open heic, cannot open heic on mac, heic not opening in photos"
+excerpt_en: "The same file opens fine on an iPhone and refuses to open everywhere else, and each system fails for its own reason. Windows wants a codec Microsoft charges for, Android support depends on the version, and older Macs stumble on 10-bit files. Find the symptom that matches yours."
+ai_metadata:
+  topics:
+    - opening HEIC on Windows
+    - HEIF Image Extensions codec
+    - HEIC on Android and its version limits
+    - HEIC on older macOS
+    - converting instead of installing codecs
+  entities:
+    - HEIC
+    - HEIF
+    - Windows 10
+    - Windows 11
+    - HEVC Video Extensions
+    - Android
+    - macOS
+    - Google Photos
+    - Convertica
+  summary: "A symptom-led guide to HEIC files that will not open, organised by platform because each one fails differently. Covers Windows, where the built-in Photos app needs the free HEIF Image Extensions plus the HEVC Video Extensions that Microsoft charges for, and where a missing codec shows as a grey box or a generic error. Covers Android, where support arrived in version 10 and older phones and many gallery apps still cannot decode the format. Covers macOS, where support exists from High Sierra but 10-bit HEIC from newer iPhones can still fail on older machines. Also explains why a file sent through a chat app sometimes arrives as JPEG and sometimes as HEIC, and when converting is simply faster than fixing the system."
+  related_terms:
+    - heif image extensions
+    - hevc video extensions cost
+    - heic thumbnail not showing
+    - open iphone photo on pc
+    - heic grey box windows
+  reading_time_minutes: 7
+  target_audience: "Anyone who received iPhone photos and cannot open them on their own device: Windows users, Android owners, people on older Macs, and those who just need the picture without installing anything."
+content_en: |
+  A HEIC file that opens instantly on an iPhone can be completely inert everywhere else, and the reason differs by system. So rather than a single list of fixes, start by matching the symptom.
+
+  <h2>Windows: the codec Microsoft charges for</h2>
+
+  <p>This is the most common case and the most annoying, because the fix is split in two and only one half is free.</p>
+
+  <p>Windows 10 and 11 can display HEIC, but only with two components installed:</p>
+
+  <ul>
+    <li><strong>HEIF Image Extensions.</strong> Free in the Microsoft Store. This handles the container.</li>
+    <li><strong>HEVC Video Extensions.</strong> Not free. Microsoft lists it at a small charge. This handles the actual image decoding, since HEIC images are encoded with HEVC.</li>
+  </ul>
+
+  <p>Install only the first and you get the frustrating half-working state people describe: thumbnails may appear, but opening the file shows an error or an empty grey box. The container is understood, the picture inside is not.</p>
+
+  <p>There is a wrinkle worth knowing. Some PCs ship with the HEVC extension already licensed by the manufacturer, which is why one colleague opens the file fine and another cannot, on what looks like the same version of Windows.</p>
+
+  <h3>Symptoms and what they mean on Windows</h3>
+
+  <ul>
+    <li><strong>Grey box or "cannot be displayed".</strong> HEIF extension present, HEVC missing.</li>
+    <li><strong>File shows a blank icon and Photos will not open it at all.</strong> Neither extension installed.</li>
+    <li><strong>Thumbnails in Explorer but nothing in the viewer.</strong> Same as the first case, the thumbnail comes from an embedded preview rather than a full decode.</li>
+    <li><strong>Photos opens it but editing fails.</strong> Decoding works, the editing pipeline does not support the format. Convert before editing.</li>
+  </ul>
+
+  <p>If you only need the picture, converting is faster than buying and installing a codec. The <a href="/en/image/heic-to-jpg/">HEIC to JPG converter</a> runs in the browser and gives you a file Windows has understood since the nineties.</p>
+
+  <h2>Android: it depends on your version</h2>
+
+  <p>Android gained system-level HEIF support in version 10. Before that, nothing in the system decodes it, and the file is simply unreadable without an app that brings its own decoder.</p>
+
+  <p>Even on Android 10 and later, support is not uniform. The system can decode the format, but individual gallery and file manager apps decide whether to use that. So you can hit a situation where Google Photos shows the image and your phone's own gallery does not, on the same device.</p>
+
+  <p>Worth checking in this order:</p>
+
+  <ul>
+    <li>Open the file in Google Photos or another app known to handle HEIF, before concluding the phone cannot.</li>
+    <li>Check your Android version. Below 10, no app using the system decoder will work, and you need one with its own.</li>
+    <li>If the file arrived through a chat app, look at the extension. Some apps convert on the way in, some do not, which is why one photo from the same sender opens and another does not.</li>
+  </ul>
+
+  <h2>macOS: usually fine, with one exception</h2>
+
+  <p>Macs have handled HEIC since High Sierra, so a file that will not open on a reasonably current Mac is unusual. When it happens, the cause is normally one of these:</p>
+
+  <ul>
+    <li><strong>An older macOS.</strong> Anything before High Sierra has no support at all.</li>
+    <li><strong>10-bit HEIC.</strong> Newer iPhones can write 10-bit files, and older machines that handle ordinary HEIC can still fail on those. The file opens on the phone, fails on the Mac, and nothing about the error says why.</li>
+    <li><strong>A third-party app rather than the system.</strong> Preview and Photos use the system decoder. An older graphics application may not.</li>
+  </ul>
+
+  <h2>Why one photo opens and the next one does not</h2>
+
+  <p>This drives people to conclude a file is corrupted when it is not. Two ordinary explanations:</p>
+
+  <p><strong>The sending app converted some files and not others.</strong> Several messaging apps convert HEIC to JPEG when sending "as photo" but pass the original through when sending "as file". Same sender, same phone, different result, entirely depending on which button they pressed.</p>
+
+  <p><strong>The photo came from a different capture mode.</strong> Live Photos, portrait shots and burst frames are stored differently, and a viewer that handles a plain HEIC can still refuse one of those.</p>
+
+  <p>Before assuming a file is broken, check the extension and the size. A file of a few kilobytes really is broken. A file of two megabytes is fine and your viewer is not.</p>
+
+  <h2>Stopping the problem at the source</h2>
+
+  <p>If you are the one taking the photos and you keep hitting this, the iPhone setting is under Camera, Formats. "High Efficiency" writes HEIC, "Most Compatible" writes JPEG.</p>
+
+  <p>Before switching, weigh it: JPEG files are roughly 1.8 times larger for the same visible quality, which we measured in detail in the <a href="/en/blog/heic-vs-jpeg-quality-and-size/">HEIC versus JPEG comparison</a>. Changing the camera setting costs you storage on every photo forever, to avoid an occasional conversion. For most people it is the wrong trade.</p>
+
+  <p>There is also a middle option people miss. Keep shooting HEIC, and set Transfer to Mac or PC to "Automatic" rather than "Keep Originals". Your phone then converts on the way out, and the photos arrive as JPEG without you changing how they are stored.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Why does Windows charge for HEVC Video Extensions?</h3>
+  <p>HEVC is a patented codec with licensing costs, which Microsoft passes on. The HEIF Image Extensions that handle the container are free, but on their own they are not enough to display the picture.</p>
+
+  <h3>I installed the extension and it still does not open.</h3>
+  <p>You most likely installed HEIF Image Extensions but not HEVC Video Extensions. That combination produces exactly this: the file is recognised but cannot be decoded.</p>
+
+  <h3>Can I open HEIC without installing anything?</h3>
+  <p>Yes. Convert it in a browser and open the JPEG, which every system already supports. That is usually faster than installing a codec, and it is the only option on a machine where you cannot install software.</p>
+
+  <h3>My Android phone shows the photo in Google Photos but not in the gallery.</h3>
+  <p>Individual apps decide whether to use the system HEIF decoder. Google Photos does, some manufacturer galleries do not. The file is fine.</p>
+
+  <h3>Are HEIC thumbnails showing but images failing?</h3>
+  <p>Thumbnails often come from a small preview embedded in the file, which needs no HEVC decoding. Seeing the thumbnail tells you the file is intact, not that your system can decode it.</p>
+
+  <h3>Will converting to JPEG ruin the quality?</h3>
+  <p>No. We measured it: PSNR of 42 to 52 dB and SSIM above 0.995, which is past the point where a difference can be seen. You pay in file size, not in picture quality.</p>
+
+  <h2>When you just need the picture</h2>
+
+  <p>Installing codecs is worth it if you handle these files daily. For a handful of photos from a family member, converting takes seconds: drop them into the <a href="/en/image/heic-to-jpg/">HEIC to JPG converter</a> and you get files that open anywhere. The same tool writes PNG when you need transparency preserved, and PDF when the recipient wants a document rather than an image. If the converted files are still too heavy for an upload form, <a href="/en/image/optimize/">image optimizer</a> brings them down.</p>
