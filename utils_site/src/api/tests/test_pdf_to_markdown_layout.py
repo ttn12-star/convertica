@@ -63,3 +63,18 @@ class PdfToMarkdownLayoutTests(SimpleTestCase):
 
         self.assertIn("- Reopen East\n- Hire a manager\n1. First step\n\n", markdown)
         self.assertIn("\n\nClosing paragraph.", markdown)
+
+    def test_right_column_after_a_list_is_not_glued_to_the_last_item(self):
+        def build(page):
+            for i, line in enumerate(LEFT):
+                page.insert_text((40, 100 + i * 16), line, fontsize=10)
+            for i, item in enumerate(["Reopen East", "Hire a manager"]):
+                y = 148 + i * 16
+                page.draw_circle((52, y - 3.5), 1.5, color=(0, 0, 0), fill=(0, 0, 0))
+                page.insert_text((62, y), item, fontsize=10)
+            for i, line in enumerate(RIGHT):
+                page.insert_text((310, 100 + i * 16), line, fontsize=10)
+
+        markdown = _convert(build)
+
+        self.assertIn("- Hire a manager\n\n" + "\n".join(RIGHT), markdown)
