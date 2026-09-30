@@ -478,9 +478,13 @@ def convert_pdf_to_markdown(
                             if (
                                 item["type"] == "text"
                                 and not item_text.startswith("#")
-                                and float(item["x"]) > list_x + 1
+                                and list_x + 1
+                                < float(item["x"])
+                                <= list_x + body_size * 4
                             ):
                                 # Wrapped item text, indented past the marker.
+                                # The upper bound keeps the next column (far
+                                # right of the marker) out of the last item.
                                 page_lines.append(f"  {item_text}")
                                 continue
                             # Without a blank line the next paragraph would be
