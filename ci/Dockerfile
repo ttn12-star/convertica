@@ -117,11 +117,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
+# One tesseract pack per language in ocr_utils.SITE_LANGUAGES: the OCR tools
+# offer all of them, and a missing pack fails the whole request.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     ghostscript \
     tesseract-ocr \
     tesseract-ocr-eng \
+    tesseract-ocr-ara tesseract-ocr-chi-sim tesseract-ocr-chi-tra \
+    tesseract-ocr-deu tesseract-ocr-fra tesseract-ocr-hin tesseract-ocr-ind \
+    tesseract-ocr-ita tesseract-ocr-jpn tesseract-ocr-kor tesseract-ocr-pol \
+    tesseract-ocr-por tesseract-ocr-rus tesseract-ocr-spa tesseract-ocr-tur \
+    tesseract-ocr-ukr \
     libmupdf-dev \
     libfreetype6-dev \
     && rm -rf /var/lib/apt/lists/*

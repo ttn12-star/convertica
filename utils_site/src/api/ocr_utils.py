@@ -90,8 +90,12 @@ def get_ocr_language_code(user_language: str = None) -> str:
     # Normalize language code
     user_language = user_language.lower().strip()
 
-    # Map to Tesseract code
-    tesseract_lang = SITE_LANGUAGES.get(user_language, DEFAULT_OCR_LANG)
+    # Map to Tesseract code. PDF→Word's select already sends Tesseract codes
+    # ("pol", "chi_sim"); without the passthrough they all fell back to English.
+    if user_language in SITE_LANGUAGES.values():
+        tesseract_lang = user_language
+    else:
+        tesseract_lang = SITE_LANGUAGES.get(user_language, DEFAULT_OCR_LANG)
 
     logger.debug(
         f"Language mapping: {user_language} -> {tesseract_lang}",

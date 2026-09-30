@@ -31,9 +31,13 @@ BACKGROUND_TASK_PREFIX = "background_task:"
 BACKGROUND_TASK_TTL = 3600  # 1 hour TTL (matches async temp file TTL)
 
 
-def mark_task_cancelled(task_id: str) -> None:
-    """Mark a task as cancelled in Redis cache."""
-    cache.set(f"{CANCELLED_TASK_PREFIX}{task_id}", True, CANCELLED_TASK_TTL)
+def mark_task_cancelled(task_id: str) -> bool:
+    """Mark a task as cancelled in Redis cache.
+
+    Returns False if it was already marked. `cache.add` is atomic, so of two
+    racing cancel requests exactly one wins.
+    """
+    return cache.add(f"{CANCELLED_TASK_PREFIX}{task_id}", True, CANCELLED_TASK_TTL)
 
 
 def is_task_cancelled(task_id: str) -> bool:
@@ -123,8 +127,22 @@ def cancel_task(request):
         # 2. Revoke without terminate - marks in worker memory
         # 3. Revoke with terminate - kills if already running
 
-        # Mark cancelled in Redis cache (survives worker restart)
-        mark_task_cancelled(task_id)
+        # Mark cancelled in Redis cache (survives worker restart). A tab close
+        # fires both `beforeunload` and `pagehide`, so the same task arrives
+        # here twice within milliseconds. Revoking again would SIGTERM the
+        # worker child mid-shutdown, and the pool then fails to store the
+        # result ("SystemExit is not JSON serializable", CONVERTICA-63).
+        if not mark_task_cancelled(task_id):
+            return JsonResponse(
+                {
+                    "status": "success",
+                    "message": "Task cancellation already requested",
+                    "task_id": task_id,
+                    "previous_state": current_state,
+                    "current_state": current_state,
+                },
+                status=status.HTTP_200_OK,
+            )
 
         # Analytics (best-effort)
         try:
