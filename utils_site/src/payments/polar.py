@@ -36,6 +36,12 @@ class PolarClient:
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": f"Bearer {self._api_key}",
+                # Without a pin every request follows Polar's "Current" version,
+                # which moves each quarter (first move: 2026-10-01). 2026-04 is
+                # the contract the shapes below were verified against; it is
+                # removed at the January 2027 release, so migrate before then.
+                # Webhook endpoints are versioned separately (dashboard/API).
+                "Polar-Version": "2026-04",
             }
         )
 
