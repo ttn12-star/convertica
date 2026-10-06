@@ -3,7 +3,9 @@
 import os
 import tempfile
 
+import pytesseract
 from PIL import Image, ImageOps
+from src.exceptions import ConversionError
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -73,6 +75,10 @@ def run_image_ocr(
             user_language=language,
             confidence_threshold=confidence_threshold,
         )
+    except pytesseract.TesseractError as e:
+        # A bare TesseractError reached the view as an anonymous 500
+        # ("view bypassed BaseConversionAPIView catch", CONVERTICA-62).
+        raise ConversionError(f"Text recognition failed: {e.message or e}") from e
     finally:
         rgb.close()  # release the converted-image buffer (mirrors convert_heic)
 

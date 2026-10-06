@@ -469,6 +469,7 @@ def extract_text_from_pdf(
         # multi-page PDFs blew past the worker's per-child memory budget
         # (CONVERTICA-59 OOM pattern). Peak RSS is now one page, not N pages.
         extracted_texts = []
+        failed_pages = []
         for i in range(total_pages):
             try:
                 page_images = convert_from_path(
@@ -487,8 +488,17 @@ def extract_text_from_pdf(
                     extra={**context, "page": i + 1, "error": str(e)[:200]},
                 )
                 extracted_texts.append("")  # keep page alignment
+                failed_pages.append(e)
             finally:
                 page_images = None
+
+        if total_pages and len(failed_pages) == total_pages:
+            # Every page failed (e.g. a language pack missing): an empty
+            # document handed over as a success hid the problem.
+            raise ConversionError(
+                "Text recognition failed on every page of this PDF.",
+                context=context,
+            ) from failed_pages[0]
 
         # Combine all pages
         full_text = "\n\n".join(extracted_texts)
