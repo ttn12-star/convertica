@@ -146,6 +146,18 @@ def convert_pdf_to_pdfa(
         except Exception:
             pass
 
+        # gs "converts" garbage into a one-page blank PDF/A and reports
+        # success. Require a document MuPDF (which repairs a lot) can open.
+        try:
+            with fitz.open(pdf_path) as probe:
+                readable = probe.page_count > 0
+        except Exception:
+            readable = False
+        if not readable:
+            raise InvalidPDFError(
+                "The file is damaged or is not a PDF.", context=context
+            )
+
         icc_path = _resolve_icc()
         def_ps = _render_def_ps(processor.tmp_dir, icc_path, title=uploaded_file.name)
 
