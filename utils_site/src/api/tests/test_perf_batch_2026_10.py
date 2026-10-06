@@ -1116,6 +1116,30 @@ class DamagedPdfIs400Tests(TestCase):
             self.assertIn(response.status_code, (200, 400), path)
             if path == "/api/pdf-to-html/":
                 self.assertEqual(response.status_code, 400, response.content[:200])
+        # Split and merge have their own error handlers.
+        response = client.post(
+            "/api/pdf-organize/split/",
+            {
+                "pdf_file": SimpleUploadedFile(
+                    "t.pdf", b"%PDF-1.4 junk", "application/pdf"
+                )
+            },
+        )
+        self.assertEqual(response.status_code, 400, response.content[:200])
+        response = client.post(
+            "/api/pdf-organize/merge/",
+            {
+                "pdf_files": [
+                    SimpleUploadedFile("t.pdf", truncated, "application/pdf"),
+                    SimpleUploadedFile("ok.pdf", raw, "application/pdf"),
+                ]
+            },
+        )
+        self.assertIn(
+            response.status_code,
+            (200, 400),
+            response.content[:200] if response.status_code != 200 else "",
+        )
 
 
 class OrganizeBatchTests(TestCase):

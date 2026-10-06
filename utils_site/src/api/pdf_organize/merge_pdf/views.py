@@ -10,6 +10,7 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from src.api.conversion_limits import ConversionTimeoutError, run_with_timeout
+from src.api.file_validation import scrub_internal_paths
 from src.api.logging_utils import (
     build_request_context,
     get_logger,
@@ -23,6 +24,7 @@ from src.exceptions import (
     EncryptedPDFError,
     InvalidPDFError,
     StorageError,
+    caused_by_damaged_input,
 )
 
 from .decorators import merge_pdf_docs
@@ -197,17 +199,25 @@ class MergePDFAPIView(APIView):
                 logger, "MERGE_PDF", context, e, start_time, level="warning"
             )
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-        except (StorageError, ConversionError) as e:
-            log_conversion_error(
-                logger, "MERGE_PDF", context, e, start_time, level="exception"
-            )
-            return Response(
-                {"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
         except Exception as e:
+            # This view has its own handlers (not BaseConversionAPIView's):
+            # a damaged PDF must be the user's 400 here too.
+            if caused_by_damaged_input(e):
+                log_conversion_error(
+                    logger, "MERGE_PDF", context, e, start_time, level="warning"
+                )
+                return Response(
+                    {"error": "Invalid file: The file is damaged or incomplete."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
             log_conversion_error(
                 logger, "MERGE_PDF", context, e, start_time, level="exception"
             )
+            if isinstance(e, StorageError | ConversionError):
+                return Response(
+                    {"error": scrub_internal_paths(str(e))},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
             return Response(
                 {"error": "Internal server error"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,

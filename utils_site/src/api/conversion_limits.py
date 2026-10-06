@@ -705,9 +705,11 @@ def validate_file_for_operation(
 
         return True, None
 
-    except (ValueError, OSError) as e:
+    except Exception as e:  # pypdf's own errors too, not only ValueError/OSError
+        # If we can't validate, let conversion handle it: a damaged file then
+        # fails as a 400 there. A PdfStreamError escaping from here made the
+        # async submit itself a 500 ("Failed to start conversion").
         logger.warning("Failed to validate PDF for operation: %s", e)
-        # If we can't validate, let conversion handle it
         return True, None
 
 
