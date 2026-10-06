@@ -329,3 +329,22 @@ class CeleryDoesNotReplayHopelessFailuresTests(TestCase):
 
         retries, _ = self._run_task(ConversionError("soffice crashed"))
         self.assertEqual(retries, 1)
+
+
+class UprightMpoTests(TestCase):
+    def test_phone_mpo_stays_a_jpeg(self):
+        # Pillow reports many phone JPEGs as MPO; written back as PNG they were
+        # ~6x bigger and bloated the PDF.
+        import tempfile
+
+        from PIL import Image
+        from src.api.pdf_convert.jpg_to_pdf_optimized import upright_image_file
+
+        img = Image.new("RGB", (800, 400), (200, 30, 30))
+        exif = img.getexif()
+        exif[0x0112] = 6
+        path = os.path.join(tempfile.mkdtemp(), "a.jpg")
+        img.save(path, "MPO", save_all=True, append_images=[img.copy()], exif=exif)
+        upright_image_file(path)
+        with Image.open(path) as out:
+            self.assertEqual((out.format, out.size), ("JPEG", (400, 800)))
