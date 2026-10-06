@@ -67,13 +67,18 @@ def organize_pdf(
 
             if operation == "reorder" and page_order:
                 if len(page_order) != total_pages:
-                    raise ValueError(
-                        f"page_order length ({len(page_order)}) doesn't match PDF page count ({total_pages})"
+                    # The user's page list, not our failure: a 400 (a
+                    # ValueError here surfaced as a 500).
+                    raise InvalidPDFError(
+                        f"The new page order lists {len(page_order)} pages, "
+                        f"but the PDF has {total_pages}."
                     )
                 if not all(0 <= idx < total_pages for idx in page_order):
-                    raise ValueError("page_order contains invalid page indices")
+                    raise InvalidPDFError(
+                        "The new page order refers to pages that do not exist."
+                    )
                 if len(set(page_order)) != len(page_order):
-                    raise ValueError("page_order contains duplicate page indices")
+                    raise InvalidPDFError("The new page order lists a page twice.")
                 for page_idx in page_order:
                     writer.add_page(reader.pages[page_idx])
             else:
