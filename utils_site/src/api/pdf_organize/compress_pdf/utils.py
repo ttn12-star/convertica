@@ -66,7 +66,7 @@ def compress_pdf(
                     "linear": False,
                     "deflate_images": True,
                     "deflate_fonts": True,
-                    "compression_effort": 9,
+                    "use_objstms": 1,
                 }
             if level == "medium":
                 return {
@@ -76,16 +76,16 @@ def compress_pdf(
                     "linear": False,
                     "deflate_images": True,
                     "deflate_fonts": True,
-                    "compression_effort": 6,
+                    "use_objstms": 1,
                 }
             return {
-                "garbage": 1,
+                "garbage": 3,
                 "deflate": True,
                 "clean": False,
                 "linear": False,
                 "deflate_images": False,
                 "deflate_fonts": False,
-                "compression_effort": 2,
+                "use_objstms": 1,
             }
 
         def _save_with_fallback(
@@ -104,7 +104,7 @@ def compress_pdf(
             for key in [
                 "deflate_images",
                 "deflate_fonts",
-                "compression_effort",
+                "use_objstms",
                 "linear",
             ]:
                 reduced.pop(key, None)
