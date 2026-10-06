@@ -50,7 +50,7 @@ PDF_MAGIC = b"%PDF"
 DOCX_MAGIC = b"PK\x03\x04"  # DOCX is a ZIP file
 DOC_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"  # OLE2 format (old .doc)
 
-# Macro-enabled office formats — disallowed because LibreOffice/unoserver
+# Macro-enabled office formats — disallowed because LibreOffice
 # could execute embedded VBA on conversion. PARSE_MAX_FILE_SIZE caps any
 # parser entry point as a defence-in-depth ceiling.
 MACRO_ENABLED_EXTENSIONS = {".docm", ".dotm", ".xlsm", ".xltm", ".pptm", ".potm"}
@@ -192,7 +192,7 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
         is_doc = file_ext == ".doc"
 
         # Reject macro-enabled formats outright — LibreOffice can execute VBA
-        # during conversion, which would be RCE on the unoserver host.
+        # during conversion, which would be RCE on the worker.
         if file_ext in MACRO_ENABLED_EXTENSIONS:
             logger.warning(
                 "Macro-enabled office file rejected",
@@ -231,7 +231,7 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                 # DOCX MUST be a valid OOXML package — require BOTH the
                 # Content_Types manifest and word/document.xml. A file with
                 # just a PK header and arbitrary contents would otherwise
-                # reach LibreOffice/unoserver, where it has been a recurring
+                # reach LibreOffice, where it has been a recurring
                 # CVE surface (CVE-2024-* family on crafted Office files).
                 try:
                     import zipfile

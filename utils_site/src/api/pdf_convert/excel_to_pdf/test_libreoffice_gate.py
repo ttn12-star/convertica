@@ -6,7 +6,7 @@ PATH" that aborted valid Excel->PDF conversions: the old gate spawned
 profile lock and timed out under load. The gate now uses shutil.which, so a
 missing binary still raises, but a present one is never falsely rejected.
 
-No LibreOffice or network needed (unoserver + which are patched).
+No LibreOffice or network needed (which is patched).
 
 Run standalone:  python test_libreoffice_gate.py
 Or via pytest:   pytest test_libreoffice_gate.py
@@ -20,14 +20,11 @@ from src.exceptions import ConversionError
 
 
 def _run_gate():
-    """Drive the subprocess path (unoserver forced off) and return/raise."""
+    """Drive the LibreOffice path and return/raise."""
     conv = ExcelToPDFConverter()
-    with mock.patch(
-        "src.api.unoserver_client.convert_with_unoserver", return_value=False
-    ):
-        return asyncio.new_event_loop().run_until_complete(
-            conv._convert_with_libreoffice_async("/tmp/x.xlsx", "/tmp/x.pdf", {})
-        )
+    return asyncio.new_event_loop().run_until_complete(
+        conv._convert_with_libreoffice_async("/tmp/x.xlsx", "/tmp/x.pdf", {})
+    )
 
 
 def test_missing_binary_raises_path_error():

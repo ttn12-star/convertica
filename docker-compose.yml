@@ -175,44 +175,7 @@ services:
       - convertica_network
     restart: unless-stopped
 
-  # unoserver — keeps LibreOffice warm for fast office document conversions.
-  # Word/Excel/PPT → PDF conversions call this via HTTP instead of spawning a
-  # new LibreOffice subprocess (cold start ~10-15s) each time.
-  # Falls back automatically to subprocess if this service is unavailable.
-  unoserver:
-    image: ghcr.io/unoserver/unoserver:latest
-    container_name: convertica_unoserver
-    expose:
-      - "2003"
-    deploy:
-      resources:
-        limits:
-          cpus: '0.8'
-          memory: 750M
-        reservations:
-          cpus: '0.2'
-          memory: 300M
-    healthcheck:
-      # unoserver 2.x returns 200 on GET /
-      test: ["CMD-SHELL", "curl -sf http://localhost:2003/ || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 60s  # LibreOffice takes ~30-60s to warm up
-    labels:
-      - "autoheal=true"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "2"
-    networks:
-      - convertica_network
-    restart: unless-stopped
-
   # Celery Worker - optimized for 4GB server (2 vCPU)
-  # Memory reduced from 2.2G to 1.5G because LibreOffice now runs in unoserver,
-  # not as a subprocess inside the worker.
   # Queues: fast (priority) → regular → maintenance → default
   # "fast" queue handles quick PDF-only ops (compress, split, merge, rotate, etc.)
   # so they don't wait behind long Word/Excel→PDF conversions in "regular".
@@ -226,7 +189,7 @@ services:
       resources:
         limits:
           cpus: '1.3'
-          memory: 1.5G  # Reduced from 2.2G (no LibreOffice subprocess overhead)
+          memory: 1.5G
         reservations:
           cpus: '0.5'
           memory: 700M
@@ -242,7 +205,6 @@ services:
       # worker_max_memory_per_child=250000 (250MB) in utils_site/celery.py;
       # max-tasks/pool are set on the `command:` line. Kept only as docs.
       - CELERY_WORKER_MAX_TASKS_PER_CHILD=50
-      - UNOSERVER_URL=http://unoserver:2003
     depends_on:
       db:
         condition: service_healthy
@@ -292,7 +254,6 @@ services:
       # NOTE: not read by the hardcoded worker command above; real per-child
       # memory cap is worker_max_memory_per_child=250000 in celery.py.
       - CELERY_WORKER_MAX_TASKS_PER_CHILD=50
-      - UNOSERVER_URL=http://unoserver:2003
     depends_on:
       db:
         condition: service_healthy

@@ -118,7 +118,7 @@ class PowerPointToPDFConverter:
                     "Output PDF file was not created by LibreOffice", context=context
                 )
 
-            # Validate output. LibreOffice/unoserver can report success yet
+            # Validate output. LibreOffice can report success yet
             # leave a 0-byte or truncated PDF on disk; an exists-only check
             # would hand that broken file to the user. Confirm it opens and has
             # at least one page.
@@ -166,43 +166,8 @@ class PowerPointToPDFConverter:
     async def _convert_with_libreoffice_async(
         self, ppt_path: str, pdf_path: str, context: dict
     ) -> None:
-        """Convert PowerPoint to PDF using LibreOffice with async execution.
-
-        Tries unoserver (warm LibreOffice HTTP daemon) first for speed,
-        then falls back to the direct LibreOffice subprocess.
-        """
+        """Convert PowerPoint to PDF using LibreOffice with async execution."""
         loop = asyncio.get_event_loop()
-
-        # --- Fast path: unoserver warm instance ---
-        def _try_unoserver() -> bool:
-            try:
-                from src.api.unoserver_client import convert_with_unoserver
-
-                filterin = (
-                    "Impress MS PowerPoint 2007 XML"
-                    if ppt_path.lower().endswith(".pptx")
-                    else "MS PowerPoint 97"
-                )
-                return convert_with_unoserver(
-                    ppt_path,
-                    pdf_path,
-                    filterin=filterin,
-                    filterout="pdf:impress_pdf_Export",
-                    timeout=self.timeout_seconds,
-                )
-            except Exception as exc:
-                logger.warning(
-                    f"unoserver attempt failed ({exc}), falling back to subprocess",
-                    extra={**context, "event": "unoserver_fallback"},
-                )
-                return False
-
-        used_unoserver = await loop.run_in_executor(None, _try_unoserver)
-        if used_unoserver:
-            # unoserver writes directly to pdf_path; rename logic below is skipped.
-            return
-
-        # --- Slow path: LibreOffice subprocess (original logic below) ---
 
         def _convert_with_libreoffice():
             """Perform LibreOffice conversion with retry logic."""

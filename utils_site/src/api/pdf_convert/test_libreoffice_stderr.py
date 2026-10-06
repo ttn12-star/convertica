@@ -28,9 +28,6 @@ def _run(converter, returncode, stderr):
     """
     err = subprocess.CalledProcessError(returncode, ["libreoffice"], stderr=stderr)
     with (
-        mock.patch(
-            "src.api.unoserver_client.convert_with_unoserver", return_value=False
-        ),
         mock.patch("shutil.which", return_value="/usr/bin/libreoffice"),
         mock.patch(
             "src.api.pdf_convert.excel_to_pdf.utils._run_libreoffice", side_effect=err
