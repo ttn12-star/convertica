@@ -76,8 +76,10 @@ class SlidingSessionMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         session = getattr(request, "session", None)
-        # No cookie -> no key -> nothing loaded or written (anonymous traffic).
-        if session is not None and session.session_key and not session.is_empty():
+        # Logged-in sessions only: no cookie means no key (nothing loaded or
+        # written), and an expired or forged cookie loads as empty, so it
+        # gets no fresh session row out of this.
+        if session is not None and session.session_key and session.get("_auth_user_id"):
             now = int(time.time())
             if now - session.get("_slid_at", 0) > self.REFRESH_SECONDS:
                 session["_slid_at"] = now

@@ -54,3 +54,17 @@ class SessionLifetimeTests(TestCase):
             q for q in queries if "django_session" in q["sql"] and "UPDATE" in q["sql"]
         ]
         self.assertEqual(writes, [])
+
+    def test_a_stale_cookie_gets_no_new_session_row(self):
+        # The re-stamp marked an empty (expired/forged) session modified, so
+        # Django created a fresh row for it.
+        from django.contrib.sessions.middleware import SessionMiddleware
+        from django.http import HttpResponse
+        from django.test import RequestFactory
+        from src.users.middleware import SlidingSessionMiddleware
+
+        request = RequestFactory().get("/")
+        request.COOKIES[settings.SESSION_COOKIE_NAME] = "0" * 32
+        before = Session.objects.count()
+        SessionMiddleware(SlidingSessionMiddleware(lambda r: HttpResponse()))(request)
+        self.assertEqual(Session.objects.count(), before)

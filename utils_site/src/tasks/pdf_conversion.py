@@ -630,7 +630,7 @@ def generic_conversion_task(
                 "convert_pdf_to_pdfa",
             ),
             "compress_pdf": ("src.api.pdf_organize.compress_pdf.utils", "compress_pdf"),
-            "merge_pdf": ("src.api.pdf_organize.merge_pdf.utils", "merge_pdfs"),
+            "merge_pdf": ("src.api.pdf_organize.merge_pdf.utils", "merge_pdf"),
             "split_pdf": ("src.api.pdf_organize.split_pdf.utils", "split_pdf"),
             "rotate_pdf": ("src.api.pdf_edit.rotate_pdf.utils", "rotate_pdf"),
             "add_watermark": ("src.api.pdf_edit.add_watermark.utils", "add_watermark"),
