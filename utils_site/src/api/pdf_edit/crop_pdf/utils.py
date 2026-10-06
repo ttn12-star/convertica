@@ -82,7 +82,9 @@ def crop_pdf(
             original_height = float(first_page.mediabox.height)
             # The UI selects on the page as displayed: a /Rotate 90/270 page
             # is wider than its MediaBox, so bound the selection by that.
-            if (first_page.rotation or 0) % 180:
+            # (The fast path below sets the unrotated CropBox, so it keeps the
+            # MediaBox bounds.)
+            if scale_to_page_size and (first_page.rotation or 0) % 180:
                 original_width, original_height = original_height, original_width
 
             # Ensure x, y, width, height are valid numbers

@@ -61,23 +61,24 @@ def _is_real_table(table: list[list[str | None]]) -> bool:
 #   "007", 12+ digit integers: codes, IDs, phone numbers
 #   "1,5", "1 234,5": decimal comma
 # "1,234,567" and "1,234.56" are unambiguous (several groups, or a dot after).
-_PLAIN_NUMBER = re.compile(r"-?(0|[1-9]\d{0,10})(\.(\d{1,2}|\d{4,}))?")
+_PLAIN_NUMBER = re.compile(r"-?([1-9]\d{0,10}(\.(\d{1,2}|\d{4,}))?|0(\.\d+)?)")
 _THOUSANDS_NUMBER = re.compile(r"-?[1-9]\d{0,2}((,\d{3}){2,4}(\.\d+)?|,\d{3}\.\d+)")
 
 
 def _numeric_or_text(column):
-    """(column as numbers, decimals to display) if every cell is one, else (column, None).
+    """(column as numbers, Excel number format) if every cell is one, else (column, None).
 
     pdfplumber returns every cell as text, so Excel showed "number stored as
-    text" and SUM() ignored the column. The decimals keep "12.30" from
-    displaying as 12.3.
+    text" and SUM() ignored the column. The format keeps "12.30" and
+    "1,234" looking as they did in the PDF.
     """
     values = [str(v).strip() for v in column if v is not None and str(v).strip()]
     if not values or not all(
         _PLAIN_NUMBER.fullmatch(v) or _THOUSANDS_NUMBER.fullmatch(v) for v in values
     ):
         return column, None
-    decimals = max(len(v.partition(".")[2]) for v in values)
+    places = {len(v.partition(".")[2]) for v in values}
+    decimals = max(places)
     numbers = column.map(
         lambda v: (
             float(str(v).strip().replace(",", ""))
@@ -85,7 +86,12 @@ def _numeric_or_text(column):
             else None
         )
     ).map(lambda f: int(f) if f is not None and f.is_integer() and not decimals else f)
-    return numbers, decimals
+    # Show it as the PDF did: thousands separators if it had them, and fixed
+    # decimals only when every value had the same number (else General).
+    grouping = "#,##0" if any("," in v for v in values) else "0"
+    if len(places) == 1:
+        return numbers, grouping + ("." + "0" * decimals if decimals else "")
+    return numbers, (grouping if grouping != "0" and not decimals else None)
 
 
 def convert_pdf_to_excel(
@@ -239,9 +245,9 @@ def convert_pdf_to_excel(
                     continue
                 decimal_columns = {}
                 for col in df.columns:
-                    df[col], decimals = _numeric_or_text(df[col])
-                    if decimals:
-                        decimal_columns[col] = decimals
+                    df[col], number_format = _numeric_or_text(df[col])
+                    if number_format and number_format != "0":
+                        decimal_columns[col] = number_format
 
                 # A second table from the same page used to be written into
                 # the same "Page N" sheet from A1, overwriting the first.
@@ -253,12 +259,12 @@ def convert_pdf_to_excel(
                 used_sheets.add(sheet_name)
                 df.to_excel(writer, sheet_name=sheet_name[:31], index=False)
                 sheet = writer.sheets[sheet_name[:31]]
-                for col, decimals in decimal_columns.items():
+                for col, number_format in decimal_columns.items():
                     col_idx = list(df.columns).index(col) + 1
                     for (cell,) in sheet.iter_rows(
                         min_row=2, min_col=col_idx, max_col=col_idx
                     ):
-                        cell.number_format = "0." + "0" * decimals
+                        cell.number_format = number_format
 
             for item in text_pages:
                 page_num = item["page"]
