@@ -115,7 +115,10 @@ def _polar_keys(secret: str) -> list[bytes]:
     """
     keys = [secret.encode("utf-8")]
     try:
-        standard = base64.b64decode(secret.removeprefix("whsec_"), validate=True)
+        payload = secret.removeprefix("whsec_")
+        # Pad as Polar's SDK does: a secret pasted into .env without its
+        # trailing "=" must still verify.
+        standard = base64.b64decode(payload + "=" * (-len(payload) % 4), validate=True)
     except Exception:
         standard = b""
     if standard and standard not in keys:

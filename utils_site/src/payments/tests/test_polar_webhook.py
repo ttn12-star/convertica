@@ -510,6 +510,8 @@ class PolarStandardWebhooksSchemeTests(TestCase):
             "webhook-signature": f"v1,{sig}",
         }
         self.assertTrue(verify_polar_signature(body, headers, secret))
+        # Same secret with its "=" padding lost in .env still verifies.
+        self.assertTrue(verify_polar_signature(body, headers, secret.rstrip("=")))
         with self.assertLogs("src.payments.webhook_security", "WARNING") as logs:
             self.assertFalse(verify_polar_signature(body, headers, "whsec_" + "A" * 44))
         self.assertIn("neither secret scheme", logs.output[0])
