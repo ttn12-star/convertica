@@ -562,3 +562,34 @@ class PdfToExcelTablesTests(TestCase):
         # Real numbers where unambiguous; codes with leading zeros stay text.
         self.assertTrue({3, 10, 1250.5, 99, 709000, 291000} <= cells, cells)
         self.assertTrue({"007", "012"} <= cells, cells)
+
+
+class CropScaleToPageVectorTests(TestCase):
+    def test_scaled_crop_keeps_text_as_text(self):
+        # scale_to_page_size rasterized every page at 150 DPI: the text was
+        # gone (an image), untouched pages included, and the crop was stretched.
+        from src.api.pdf_edit.crop_pdf.utils import crop_pdf
+
+        doc = fitz.open()
+        for n in range(2):
+            page = doc.new_page(width=595, height=842)
+            page.insert_text((60, 120), f"KEEP{n} inside the crop", fontsize=14)
+            page.insert_text((60, 700), f"DROP{n} outside the crop", fontsize=14)
+        upload = SimpleUploadedFile("t.pdf", doc.tobytes(), "application/pdf")
+        # PDF units from the bottom-left: a box around the top text only.
+        _, out = crop_pdf(
+            upload,
+            x=40,
+            y=842 - 200,
+            width=400,
+            height=150,
+            pages="1",
+            scale_to_page_size=True,
+        )
+        with fitz.open(out) as result:
+            cropped, untouched = result[0].get_text(), result[1].get_text()
+            self.assertEqual(result[0].rect, fitz.Rect(0, 0, 595, 842))
+        self.assertIn("KEEP0", cropped)
+        self.assertNotIn("DROP0", cropped)
+        self.assertIn("KEEP1", untouched)
+        self.assertIn("DROP1", untouched)
