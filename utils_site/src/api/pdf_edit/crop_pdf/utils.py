@@ -2,7 +2,6 @@ import os
 
 from django.core.files.uploadedfile import UploadedFile
 from pypdf import PdfReader, PdfWriter
-from reportlab.pdfgen import canvas
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -130,138 +129,34 @@ def crop_pdf(
                 processor.validate_output_pdf(output_path, min_size=1000)
                 return pdf_path, output_path
 
-            # Slow path: keep old behavior (scale_to_page_size=True) with rasterization
-            from pdf2image import convert_from_path
+            # Scale the crop up to the original page size, vector to vector:
+            # this path used to rasterize EVERY page at 150 DPI (text became
+            # a picture, untouched pages included) and stretch the crop to the
+            # page without keeping its proportions.
+            import fitz
 
-            if not tmp_dir:
-                tmp_dir = os.path.dirname(output_path)
-
-            # Create new PDF with cropped pages
-            # Determine initial page size based on whether first page is cropped
-            # Render one page at a time: the whole document at 150 DPI held
-            # ~1.3 GB of bitmaps for a 200-page file (worker cgroup is 1.5 GB).
-            _window: dict = {"start": -1, "pages": []}
-
-            def _render(n: int):
-                # Windows of 10 pages: one pdftoppm spawn per window instead of
-                # per page, still far below the whole-document footprint.
-                if not (_window["start"] <= n < _window["start"] + 10):
-                    _window["start"] = n - (n % 10)
-                    _window["pages"] = convert_from_path(
-                        pdf_path,
-                        dpi=150,
-                        first_page=_window["start"] + 1,
-                        last_page=min(_window["start"] + 10, total_pages),
-                        timeout=180,
-                    )
-                idx = n - _window["start"]
-                return _window["pages"][idx] if idx < len(_window["pages"]) else None
-
-            first_page_img = _render(0) if total_pages else None
-            if first_page_img and 0 in pages_to_crop:
-                initial_page_size = (crop_width, crop_height)
-            elif first_page_img:
-                dpi_ratio = 150 / 72
-                initial_page_size = (
-                    first_page_img.width / dpi_ratio * 72,
-                    first_page_img.height / dpi_ratio * 72,
-                )
-            else:
-                initial_page_size = (crop_width, crop_height)
-
-            can = canvas.Canvas(output_path, pagesize=initial_page_size)
-            dpi_ratio = 150 / 72
-
-            for page_num in range(total_pages):
-                img = first_page_img if page_num == 0 else _render(page_num)
-                if img is None:
-                    continue
-
-                img_width_px = img.width
-                img_height_px = img.height
-
-                if page_num in pages_to_crop:
-                    # Crop this page
-                    # Convert crop coordinates from PDF points to image pixels
-                    # PDF coordinates: crop_x is left, crop_y is bottom (from bottom-left origin)
-                    # Image coordinates: (0,0) is top-left
-                    crop_left_px = int(crop_x * dpi_ratio)
-                    crop_bottom_px = int(crop_y * dpi_ratio)
-                    crop_width_px = int(crop_width * dpi_ratio)
-                    crop_height_px = int(crop_height * dpi_ratio)
-
-                    # Convert PDF bottom-left origin to image top-left origin
-                    crop_top_px = img_height_px - crop_bottom_px - crop_height_px
-
-                    # Ensure crop area is within image bounds
-                    crop_left_px = max(0, min(crop_left_px, img_width_px))
-                    crop_top_px = max(0, min(crop_top_px, img_height_px))
-                    crop_width_px = min(crop_width_px, img_width_px - crop_left_px)
-                    crop_height_px = min(crop_height_px, img_height_px - crop_top_px)
-
-                    if crop_width_px > 0 and crop_height_px > 0:
-                        # Crop the image
-                        cropped_img = img.crop(
-                            (
-                                crop_left_px,
-                                crop_top_px,
-                                crop_left_px + crop_width_px,
-                                crop_top_px + crop_height_px,
-                            )
-                        )
-
-                        # Set page size for cropped page
-                        if scale_to_page_size:
-                            # Scale cropped area to full page size
-                            page_size = (original_width, original_height)
-                        else:
-                            # Use cropped area size
-                            page_size = (crop_width, crop_height)
-
-                        can.setPageSize(page_size)
-
-                        # Save cropped image temporarily
-                        img_path = os.path.join(tmp_dir, f"cropped_page_{page_num}.png")
-                        cropped_img.save(img_path, "PNG")
-
-                        if scale_to_page_size:
-                            # Draw cropped image scaled to full page size
-                            can.drawImage(
-                                img_path,
-                                0,
-                                0,
-                                width=original_width,
-                                height=original_height,
-                            )
-                        else:
-                            # Draw cropped image at actual size
-                            can.drawImage(
-                                img_path, 0, 0, width=crop_width, height=crop_height
-                            )
-
-                        logger.debug(
-                            ("Cropping page %d: x=%.2f, y=%.2f, w=%.2f, h=%.2f"),
-                            page_num + 1,
+            with fitz.open(pdf_path) as src, fitz.open() as out:
+                for page_num, page in enumerate(src):
+                    if page_num not in pages_to_crop:
+                        out.insert_pdf(src, from_page=page_num, to_page=page_num)
+                        continue
+                    # crop_* are PDF units from the bottom-left of the page;
+                    # PyMuPDF measures from the top-left of the unrotated page.
+                    height = page.cropbox.height
+                    clip = (
+                        fitz.Rect(
                             crop_x,
-                            crop_y,
-                            crop_width,
-                            crop_height,
-                            extra=context,
+                            height - crop_y - crop_height,
+                            crop_x + crop_width,
+                            height - crop_y,
                         )
-                else:
-                    # Keep original page (no crop)
-                    page_width = img_width_px / dpi_ratio * 72
-                    page_height = img_height_px / dpi_ratio * 72
-                    can.setPageSize((page_width, page_height))
-
-                    # Save original image temporarily
-                    img_path = os.path.join(tmp_dir, f"page_{page_num}.png")
-                    img.save(img_path, "PNG")
-                    can.drawImage(img_path, 0, 0, width=page_width, height=page_height)
-
-                can.showPage()
-
-            can.save()
+                        * page.rotation_matrix
+                    )
+                    target = out.new_page(width=original_width, height=original_height)
+                    target.show_pdf_page(
+                        target.rect, src, page_num, clip=clip, keep_proportion=True
+                    )
+                out.save(output_path, garbage=3, deflate=True)
 
         except InvalidPDFError:
             raise  # user-facing 400 (e.g. page range "5-2"), not a 500
