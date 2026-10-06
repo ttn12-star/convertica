@@ -145,7 +145,7 @@ class CeleryHardTimeoutCascadeFilterTests(SimpleTestCase):
 
 
 class LibreOfficeIntermediateLogLevelTests(SimpleTestCase):
-    """Guard that the 4 intermediate retry-path log calls stay at WARNING.
+    """Guard that the non-final retry-path log calls stay at WARNING.
 
     These checks are intentionally source-level: each event tag is unique
     enough that an ``event="<tag>"`` string locates exactly one call site,
@@ -162,10 +162,8 @@ class LibreOfficeIntermediateLogLevelTests(SimpleTestCase):
 
     # Tag -> reason it must stay non-error.
     INTERMEDIATE_EVENTS = {
-        "no_pdf_created": "first attempt; fallback runs next",
-        "no_pdf_created_fallback": "second attempt; third (simple) follows",
-        "conversion_fallback_timeout": "raised; outer retry can run",
-        "conversion_all_failed": "raised; outer retry can run",
+        "conversion_retry": "a crashed soffice; the next attempt runs",
+        "conversion_unopenable": "the user's damaged file; a 400, not our bug",
     }
 
     def setUp(self):

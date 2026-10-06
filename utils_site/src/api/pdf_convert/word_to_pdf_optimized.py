@@ -576,11 +576,14 @@ class OptimizedWordToPDFConverter:
             except ConversionError as e:
                 # Only a crashed soffice is worth another run. A file it cannot
                 # open, an OOM kill or a timeout fails the same way every time.
-                if (
-                    attempt == self.max_retries
-                    or isinstance(e, InvalidPDFError)
-                    or not getattr(e, "retryable", True)
-                ):
+                if isinstance(e, InvalidPDFError):
+                    # The user's file, not our failure: no Sentry alert.
+                    logger.warning(
+                        f"LibreOffice could not open the document: {e}",
+                        extra={**context, "event": "conversion_unopenable"},
+                    )
+                    raise
+                if attempt == self.max_retries or not getattr(e, "retryable", True):
                     logger.error(
                         f"LibreOffice conversion failed after {attempt + 1} attempts: {e}",
                         extra={
