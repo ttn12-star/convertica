@@ -1125,3 +1125,38 @@ class OrganizeBatchTests(TestCase):
             {"pdf_files": files(), "page_order": "[0, 1]"},
         )
         self.assertEqual(bad.status_code, 400)
+
+
+class OcrFailureIsVisibleTests(TestCase):
+    def test_tesseract_failure_is_a_named_error_not_an_empty_success(self):
+        # image->text: a bare TesseractError was an anonymous 500.
+        # pdf OCR: every page failing returned an empty document as success.
+        import io
+        from unittest import mock
+
+        import pytesseract
+        from PIL import Image
+        from src.api import ocr_utils
+        from src.api.image_tools.image_to_text.utils import run_image_ocr
+        from src.exceptions import ConversionError
+
+        boom = pytesseract.TesseractError(1, "Failed loading language 'pol'")
+        png = io.BytesIO()
+        Image.new("RGB", (60, 40), "white").save(png, "PNG")
+        with (
+            mock.patch(
+                "src.api.image_tools.image_to_text.utils.extract_text_from_image",
+                side_effect=boom,
+            ),
+            self.assertRaises(ConversionError),
+        ):
+            run_image_ocr(SimpleUploadedFile("a.png", png.getvalue(), "image/png"))
+
+        with (
+            mock.patch.object(ocr_utils, "extract_text_from_image", side_effect=boom),
+            self.assertRaises(ConversionError),
+        ):
+            ocr_utils.extract_text_from_pdf(
+                SimpleUploadedFile("s.pdf", _text_pdf(pages=2), "application/pdf"),
+                dpi=50,
+            )
