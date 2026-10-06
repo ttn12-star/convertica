@@ -286,11 +286,12 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                     return False, "DOC file is too small to be valid"
                 return True, None
 
-            # Text saved under a .doc name: RTF, HTML/MHT and WordML from "export
-            # to Word" in 1C, banks and CRMs, plain text, any encoding.
+            # Text saved under a .doc name (a .docx must be a ZIP): RTF,
+            # HTML/MHT and WordML from "export to Word" in 1C, banks and CRMs,
+            # plain text, any encoding.
             # LibreOffice opens them with its text filters, no macros; the CVE
             # surface is the binary Office parsers, which need ZIP/OLE magic.
-            elif _looks_like_text(head):
+            elif not is_docx and _looks_like_text(head):
                 return True, None
 
             else:
