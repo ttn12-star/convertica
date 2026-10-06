@@ -161,10 +161,7 @@ def polar_webhook(request):
 
     body = request.body
     if not verify_polar_signature(body, request.headers, secret):
-        logger.warning(
-            "Polar webhook signature verification failed",
-            extra={"event": "polar_webhook_bad_signature"},
-        )
+        # verify_polar_signature already logged why.
         return HttpResponse("Invalid signature", status=400)
 
     try:
