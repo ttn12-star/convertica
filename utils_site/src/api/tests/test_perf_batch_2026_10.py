@@ -1324,3 +1324,33 @@ class DamagedBatchTests(TestCase):
         response = self.client.post("/api/pdf-to-html/batch/", {"pdf_files": junk})
         self.assertEqual(response.status_code, 400, response.content[:300])
         self.assertNotIn(b"/tmp", response.content)
+
+
+class DamagedInputMoreToolsTests(TestCase):
+    def test_pdfa_rejects_garbage_and_jpg_to_pdf_a_cut_off_photo(self):
+        import io
+
+        from django.core.cache import cache
+        from django.test import Client
+        from PIL import Image
+        from src.api.pdf_convert.pdf_to_pdfa.utils import convert_pdf_to_pdfa
+        from src.exceptions import InvalidPDFError
+
+        # gs turned garbage into a blank one-page "PDF/A" and called it success.
+        with self.assertRaises(InvalidPDFError):
+            convert_pdf_to_pdfa(
+                SimpleUploadedFile("g.pdf", b"%PDF-1.7\n" + b"\0" * 500)
+            )
+
+        # A cut-off JPEG was a PIL OSError, answered as a 500.
+        cache.clear()
+        buf = io.BytesIO()
+        Image.frombytes("RGB", (300, 300), os.urandom(300 * 300 * 3)).save(buf, "JPEG")
+        cut = buf.getvalue()[: len(buf.getvalue()) // 2]
+        response = Client().post(
+            "/api/jpg-to-pdf/",
+            {"image_file": SimpleUploadedFile("p.jpg", cut, "image/jpeg")},
+        )
+        self.assertEqual(
+            response.status_code, 400, getattr(response, "content", b"")[:200]
+        )

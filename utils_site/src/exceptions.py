@@ -87,6 +87,9 @@ def caused_by_damaged_input(error: BaseException) -> bool:
         seen.add(id(error))
         if isinstance(error, InvalidPDFError):  # already judged the input's fault
             return True
+        # PIL reports a cut-off JPEG/PNG as a plain OSError.
+        if isinstance(error, OSError) and "truncated" in str(error).lower():
+            return True
         for klass in type(error).__mro__:
             if (klass.__module__, klass.__name__) in _DAMAGED_INPUT_ERRORS:
                 return True
