@@ -107,7 +107,11 @@ def convert_pdf_to_ppt(
 
         # One page at a time: pdf2image rendered the whole document into RAM
         # first (~4 GB for 200 pages, in a web worker).
-        with fitz.open(input_path) as doc:
+        try:
+            doc = fitz.open(input_path)
+        except (fitz.FileDataError, RuntimeError) as e:
+            raise InvalidPDFError("Invalid or corrupt PDF file.") from e
+        with doc:
             if doc.page_count == 0:
                 raise ConversionError("Failed to extract pages from PDF")
             num_pages = doc.page_count
