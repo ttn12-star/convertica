@@ -225,9 +225,13 @@ class PowerPointToPDFConverter:
                     f"LibreOffice conversion timed out after {self.timeout_seconds} seconds",
                     extra={**context, "event": "libreoffice_timeout"},
                 )
-                raise ConversionError(
+                error = ConversionError(
                     "LibreOffice conversion timed out", context=context
                 )
+                # Same file, same hang: retrying stacks 3x the timeout past the
+                # gunicorn (300s) and Celery (420s) limits.
+                error.retryable = False
+                raise error
 
             except subprocess.CalledProcessError as e:
                 # subprocess.run(text=True) already decodes stderr: calling

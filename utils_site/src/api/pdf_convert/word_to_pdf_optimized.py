@@ -108,6 +108,21 @@ except ImportError:
     logger.warning("olefile not available, .doc orientation detection will be limited")
 
 
+# writer_pdf_Export with explicit options (bookmarks, embedded standard fonts).
+_WORD_PDF_FILTER = (
+    "pdf:writer_pdf_Export:"
+    "{"
+    '"UseLosslessCompression":{"type":"boolean","value":"true"},'
+    '"Quality":{"type":"long","value":"95"},'
+    '"ReduceImageResolution":{"type":"boolean","value":"false"},'
+    '"MaxImageResolution":{"type":"long","value":"300"},'
+    '"ExportBookmarks":{"type":"boolean","value":"true"},'
+    '"ExportNotes":{"type":"boolean","value":"false"},'
+    '"EmbedStandardFonts":{"type":"boolean","value":"true"}'
+    "}"
+)
+
+
 class OptimizedWordToPDFConverter:
     """
     Optimized Word to PDF converter with parallel processing and memory management.
@@ -426,378 +441,85 @@ class OptimizedWordToPDFConverter:
                 shutil.copyfile(docx_path, safe_input_path)
                 needs_cleanup = True
 
-            # Use writer_pdf_Export filter with parameters for better formatting preservation
-            # This helps preserve word wrapping, hyphenation, and other formatting from Word
-            # Determine appropriate infilter based on file extension
-            infilter = None
-            if safe_input_path.lower().endswith(".docx"):
-                infilter = "MS Word 2007 XML"
-            elif safe_input_path.lower().endswith(".doc"):
-                infilter = "MS Word 97"
+            # No --infilter: LibreOffice only accepts the --infilter=... form, so
+            # the space-separated one made every first run exit 1 and the real
+            # work happened in a second run. The correct form refuses .doc
+            # files that are really RTF or .docx; content sniffing opens them.
+            cmd = [
+                "libreoffice",
+                "--headless",
+                "--nodefault",
+                "--nolockcheck",
+                "--convert-to",
+                _WORD_PDF_FILTER,
+                "--outdir",
+                os.path.dirname(pdf_path),
+                safe_input_path,
+            ]
+            output_dir = os.path.dirname(pdf_path)
 
-            def _build_cmd(
-                use_infilter: bool, use_advanced_pdf: bool = True
-            ) -> list[str]:
-                cmd = [
-                    "libreoffice",
-                    "--headless",
-                    "--nodefault",
-                    "--nolockcheck",
-                ]
-
-                # Some documents fail with explicit infilter; keep it as an optimization
-                # but allow fallback run without it.
-                if use_infilter and infilter:
-                    cmd.extend(["--infilter", infilter])
-
-                # PDF export filter with advanced parameters for better quality
-                # Using JSON-style filter options for optimal formatting preservation
-                if use_advanced_pdf:
-                    # Advanced PDF export parameters for better quality and formatting
-                    pdf_filter = (
-                        "pdf:writer_pdf_Export:"
-                        "{"
-                        '"UseLosslessCompression":{"type":"boolean","value":"true"},'
-                        '"Quality":{"type":"long","value":"95"},'
-                        '"ReduceImageResolution":{"type":"boolean","value":"false"},'
-                        '"MaxImageResolution":{"type":"long","value":"300"},'
-                        '"ExportBookmarks":{"type":"boolean","value":"true"},'
-                        '"ExportNotes":{"type":"boolean","value":"false"},'
-                        '"EmbedStandardFonts":{"type":"boolean","value":"true"}'
-                        "}"
-                    )
-                else:
-                    # Fallback: simple format for maximum compatibility
-                    pdf_filter = "pdf"
-
-                cmd.extend(
-                    [
-                        "--convert-to",
-                        pdf_filter,
-                        "--outdir",
-                        os.path.dirname(pdf_path),
-                        safe_input_path,
-                    ]
-                )
-                return cmd
+            def _pdf_created() -> bool:
+                return any(f.lower().endswith(".pdf") for f in os.listdir(output_dir))
 
             try:
                 if callable(check_cancelled):
                     check_cancelled()
-                cmd = _build_cmd(use_infilter=True)
                 logger.info(
                     f"Running LibreOffice command: {' '.join(cmd)}",
                     extra={**context, "event": "conversion_command"},
                 )
-
-                process = _run_libreoffice(cmd, env, self.timeout_seconds)
-
-                # Log LibreOffice output for debugging
-                stdout_output = (
-                    process.stdout.decode(errors="replace") if process.stdout else ""
-                )
-                stderr_output = (
-                    process.stderr.decode(errors="replace") if process.stderr else ""
-                )
-
-                logger.info(
-                    f"LibreOffice stdout: {stdout_output[:500]}",
-                    extra={**context, "event": "conversion_stdout"},
-                )
-
-                if stderr_output:
-                    logger.warning(
-                        f"LibreOffice stderr: {stderr_output[:500]}",
-                        extra={**context, "event": "conversion_stderr"},
-                    )
-
-                # Log all files in output directory for debugging
-                output_dir = os.path.dirname(pdf_path)
-                files_after = os.listdir(output_dir)
-                pdf_files = [f for f in files_after if f.lower().endswith(".pdf")]
-
-                logger.info(
-                    f"Files in output directory after conversion: {files_after}. PDF files: {pdf_files}",
-                    extra={
-                        **context,
-                        "event": "conversion_files",
-                        "pdf_files": pdf_files,
-                    },
-                )
-
-                # Check if PDF was actually created
-                if not pdf_files:
-                    # Intermediate failure of the first attempt — a fallback
-                    # (no-infilter) is attempted next. Only the final, post-
-                    # retry failure should escalate to Sentry as an error.
-                    logger.warning(
-                        "LibreOffice completed successfully but no PDF file was created",
-                        extra={**context, "event": "no_pdf_created"},
-                    )
-                    return False
-
-                return process.returncode == 0
-            except subprocess.TimeoutExpired as timeout_error:
-                logger.warning(
-                    f"LibreOffice conversion timed out after {self.timeout_seconds} seconds",
-                    extra={**context, "event": "conversion_timeout"},
-                )
-                raise ConversionError(
-                    "LibreOffice conversion timed out", context=context
-                ) from timeout_error
-            except subprocess.CalledProcessError as e:
-                # Retry once without --infilter inside the same attempt.
-                stderr_preview = (
-                    e.stderr.decode(errors="replace")[:1000] if e.stderr else ""
-                )
-                stdout_preview = (
-                    e.stdout.decode(errors="replace")[:500] if e.stdout else ""
-                )
-
-                # LibreOffice sometimes exits non-zero only due to a harmless Java
-                # warning ("failed to launch javaldx"). If the output PDF was actually
-                # created, treat the conversion as successful.
-                _JAVA_WARNINGS = ("failed to launch javaldx", "java may not function")
-                if stderr_preview and all(
-                    w in stderr_preview.lower() for w in _JAVA_WARNINGS
-                ):
-                    output_dir = os.path.dirname(pdf_path)
-                    pdf_files = [
-                        f for f in os.listdir(output_dir) if f.lower().endswith(".pdf")
-                    ]
-                    if pdf_files:
-                        logger.warning(
-                            "LibreOffice exited non-zero due to javaldx warning but PDF "
-                            "was created; treating as success",
-                            extra={
-                                **context,
-                                "event": "conversion_javaldx_warning_ignored",
-                                "stderr_preview": stderr_preview[:500],
-                                "pdf_files": pdf_files,
-                            },
-                        )
-                        return True
-
-                # First attempt failed — log as warning because a fallback
-                # conversion without --infilter will be attempted next.
-                # Only escalate to error if all attempts are exhausted.
-                logger.warning(
-                    f"LibreOffice first attempt failed (will retry without infilter): "
-                    f"{stderr_preview or 'Unknown error'}",
-                    extra={
-                        **context,
-                        "event": "conversion_first_attempt_failed",
-                        "return_code": e.returncode,
-                        "stdout_preview": stdout_preview,
-                        "command": " ".join(getattr(e, "cmd", []) or []),
-                    },
-                )
-
                 try:
-                    fallback_cmd = _build_cmd(use_infilter=False)
-                    logger.info(
-                        f"Running LibreOffice fallback command: {' '.join(fallback_cmd)}",
-                        extra={**context, "event": "conversion_fallback_command"},
-                    )
-
-                    fallback_process = _run_libreoffice(
-                        fallback_cmd, env, self.timeout_seconds
-                    )
-
-                    # Log fallback output
-                    fallback_stdout = (
-                        fallback_process.stdout.decode(errors="replace")
-                        if fallback_process.stdout
-                        else ""
-                    )
-                    fallback_stderr = (
-                        fallback_process.stderr.decode(errors="replace")
-                        if fallback_process.stderr
-                        else ""
-                    )
-
-                    logger.info(
-                        f"LibreOffice fallback stdout: {fallback_stdout[:500]}",
-                        extra={**context, "event": "conversion_fallback_stdout"},
-                    )
-
-                    if fallback_stderr:
-                        logger.warning(
-                            f"LibreOffice fallback stderr: {fallback_stderr[:500]}",
-                            extra={**context, "event": "conversion_fallback_stderr"},
-                        )
-
-                    output_dir = os.path.dirname(pdf_path)
-                    files_after = os.listdir(output_dir)
-                    pdf_files = [f for f in files_after if f.lower().endswith(".pdf")]
-
-                    logger.info(
-                        f"LibreOffice conversion successful without infilter; files: {files_after}. PDF files: {pdf_files}",
-                        extra={
-                            **context,
-                            "event": "conversion_fallback_success",
-                            "pdf_files": pdf_files,
-                        },
-                    )
-
-                    # Check if PDF was created
-                    if not pdf_files:
-                        # Intermediate: a third (simple-filter) attempt
-                        # follows. Final fail is reported below.
-                        logger.warning(
-                            "LibreOffice fallback completed but no PDF file was created",
-                            extra={**context, "event": "no_pdf_created_fallback"},
-                        )
-                        return False
-
-                    return fallback_process.returncode == 0
-                except subprocess.TimeoutExpired as fallback_timeout:
-                    # Intermediate: the raised ConversionError is caught by
-                    # the outer retry loop in _convert_with_libreoffice_async;
-                    # final failure is logged there at error level.
-                    logger.warning(
-                        f"LibreOffice fallback conversion timed out after {self.timeout_seconds} seconds",
-                        extra={
-                            **context,
-                            "event": "conversion_fallback_timeout",
-                        },
-                    )
-                    raise ConversionError(
-                        "LibreOffice conversion timed out on fallback attempt",
+                    _run_libreoffice(cmd, env, self.timeout_seconds)
+                except subprocess.TimeoutExpired as e:
+                    error = ConversionError(
+                        f"LibreOffice conversion timed out after {self.timeout_seconds} seconds",
                         context=context,
-                    ) from fallback_timeout
-                except subprocess.CalledProcessError as fallback_e:
-                    fallback_stderr_preview = (
-                        fallback_e.stderr.decode(errors="replace")[:1000]
-                        if fallback_e.stderr
-                        else ""
                     )
-
-                    # Check if fallback also failed only due to the harmless javaldx warning.
-                    if fallback_stderr_preview and all(
-                        w in fallback_stderr_preview.lower() for w in _JAVA_WARNINGS
+                    # Same document, same hang: a retry only stacks another
+                    # timeout on top, past the Celery and gunicorn limits.
+                    error.retryable = False
+                    raise error from e
+                except subprocess.CalledProcessError as e:
+                    stderr = (
+                        e.stderr.decode(errors="replace")
+                        if isinstance(e.stderr, bytes)
+                        else e.stderr or ""
+                    ).strip()
+                    # soffice exits non-zero when it cannot start Java even
+                    # though the PDF is fine.
+                    _JAVA_WARNINGS = (
+                        "failed to launch javaldx",
+                        "java may not function",
+                    )
+                    if (
+                        stderr
+                        and all(w in stderr.lower() for w in _JAVA_WARNINGS)
+                        and _pdf_created()
                     ):
-                        output_dir = os.path.dirname(pdf_path)
-                        pdf_files = [
-                            f
-                            for f in os.listdir(output_dir)
-                            if f.lower().endswith(".pdf")
-                        ]
-                        if pdf_files:
-                            logger.warning(
-                                "LibreOffice fallback exited non-zero due to javaldx "
-                                "warning but PDF was created; treating as success",
-                                extra={
-                                    **context,
-                                    "event": "conversion_javaldx_warning_ignored_fallback",
-                                    "stderr_preview": fallback_stderr_preview[:500],
-                                    "pdf_files": pdf_files,
-                                },
-                            )
-                            return True
-
-                    logger.warning(
-                        f"LibreOffice fallback conversion failed: {fallback_stderr_preview or 'Unknown error'}",
-                        extra={
-                            **context,
-                            "event": "conversion_fallback_error",
-                            "return_code": fallback_e.returncode,
-                            "command": " ".join(getattr(fallback_e, "cmd", []) or []),
-                        },
+                        return
+                    oom = e.returncode in (137, -9)  # 137 via shell, -9 via Popen
+                    error = ConversionError(
+                        "LibreOffice conversion failed: "
+                        + (
+                            "the file is too large or complex to convert"
+                            if oom
+                            else stderr[:500] or f"exit code {e.returncode}"
+                        ),
+                        context=context,
                     )
+                    # A retry re-runs the same allocation: two more OOM kills
+                    # in a cgroup shared with the other workers.
+                    error.retryable = not oom
+                    raise error from e
 
-                    # Third attempt: simple PDF filter without advanced parameters
-                    try:
-                        if callable(check_cancelled):
-                            check_cancelled()
-                        simple_cmd = _build_cmd(
-                            use_infilter=False, use_advanced_pdf=False
-                        )
-                        logger.info(
-                            f"Running LibreOffice with simple PDF filter: {' '.join(simple_cmd)}",
-                            extra={**context, "event": "conversion_simple_pdf_command"},
-                        )
-
-                        simple_process = _run_libreoffice(
-                            simple_cmd, env, self.timeout_seconds
-                        )
-
-                        output_dir = os.path.dirname(pdf_path)
-                        files_after = os.listdir(output_dir)
-                        pdf_files = [
-                            f for f in files_after if f.lower().endswith(".pdf")
-                        ]
-
-                        logger.info(
-                            f"LibreOffice conversion successful with simple PDF filter; files: {pdf_files}",
-                            extra={
-                                **context,
-                                "event": "conversion_simple_success",
-                                "pdf_files": pdf_files,
-                            },
-                        )
-
-                        if not pdf_files:
-                            logger.error(
-                                "LibreOffice simple conversion completed but no PDF file was created",
-                                extra={**context, "event": "no_pdf_created_simple"},
-                            )
-                            return False
-
-                        return simple_process.returncode == 0
-                    except (
-                        subprocess.TimeoutExpired,
-                        subprocess.CalledProcessError,
-                    ) as simple_e:
-                        # One final check: if all three attempts failed only because of the
-                        # harmless javaldx Java warning, but the PDF was still produced, treat
-                        # the conversion as successful rather than raising to Sentry.
-                        if isinstance(simple_e, subprocess.CalledProcessError):
-                            simple_stderr_preview = (
-                                simple_e.stderr.decode(errors="replace")[:1000]
-                                if simple_e.stderr
-                                else ""
-                            )
-                            if simple_stderr_preview and all(
-                                w in simple_stderr_preview.lower()
-                                for w in _JAVA_WARNINGS
-                            ):
-                                output_dir = os.path.dirname(pdf_path)
-                                pdf_files = [
-                                    f
-                                    for f in os.listdir(output_dir)
-                                    if f.lower().endswith(".pdf")
-                                ]
-                                if pdf_files:
-                                    logger.warning(
-                                        "LibreOffice simple attempt exited non-zero due to "
-                                        "javaldx warning but PDF was created; treating as success",
-                                        extra={
-                                            **context,
-                                            "event": "conversion_javaldx_warning_ignored_simple",
-                                            "stderr_preview": simple_stderr_preview[
-                                                :500
-                                            ],
-                                            "pdf_files": pdf_files,
-                                        },
-                                    )
-                                    return True
-
-                        # Intermediate inside _convert (all 3 internal filter
-                        # attempts failed). The raised ConversionError is
-                        # caught and possibly retried by the outer
-                        # _convert_with_libreoffice_async loop; the
-                        # post-retry final failure escalates to error there.
-                        logger.warning(
-                            f"All LibreOffice conversion attempts failed. Simple filter error: {simple_e}",
-                            extra={**context, "event": "conversion_all_failed"},
-                        )
-                        # All three attempts failed
-                        raise ConversionError(
-                            f"LibreOffice conversion failed after 3 attempts. "
-                            f"Advanced filter: {e}. No infilter: {fallback_e}. Simple filter: {simple_e}",
-                            context=context,
-                        ) from simple_e
+                if not _pdf_created():
+                    # LibreOffice exits 0 with no output when it cannot open the
+                    # input. Retrying cannot fix the file, and it is the user's.
+                    raise InvalidPDFError(
+                        "The document could not be opened. It may be damaged or "
+                        "not a real Word file.",
+                        context=context,
+                    )
             finally:
                 # Cleanup temporary safe_input_path if it was created
                 if needs_cleanup and safe_input_path != docx_path:
@@ -838,46 +560,45 @@ class OptimizedWordToPDFConverter:
         )
 
         for attempt in range(self.max_retries + 1):
+            if callable(check_cancelled):
+                check_cancelled()
             try:
-                if callable(check_cancelled):
-                    check_cancelled()
-                success = await loop.run_in_executor(None, _convert)
-                if success:
-                    logger.info(
-                        f"LibreOffice conversion successful on attempt {attempt + 1}",
-                        extra={
-                            **context,
-                            "event": "conversion_success",
-                            "attempt": attempt + 1,
-                        },
-                    )
-                    return
-                else:
-                    raise ConversionError(
-                        "LibreOffice conversion returned non-zero exit code",
-                        context=context,
-                    )
-            except Exception:
-                if attempt == self.max_retries:
+                await loop.run_in_executor(None, _convert)
+                logger.info(
+                    f"LibreOffice conversion successful on attempt {attempt + 1}",
+                    extra={
+                        **context,
+                        "event": "conversion_success",
+                        "attempt": attempt + 1,
+                    },
+                )
+                return
+            except ConversionError as e:
+                # Only a crashed soffice is worth another run. A file it cannot
+                # open, an OOM kill or a timeout fails the same way every time.
+                if (
+                    attempt == self.max_retries
+                    or isinstance(e, InvalidPDFError)
+                    or not getattr(e, "retryable", True)
+                ):
                     logger.error(
-                        f"LibreOffice conversion failed after {self.max_retries + 1} attempts",
+                        f"LibreOffice conversion failed after {attempt + 1} attempts: {e}",
                         extra={
                             **context,
                             "event": "conversion_failed",
-                            "attempts": self.max_retries + 1,
+                            "attempts": attempt + 1,
                         },
                     )
                     raise
-                else:
-                    logger.warning(
-                        f"LibreOffice conversion attempt {attempt + 1} failed, retrying...",
-                        extra={
-                            **context,
-                            "event": "conversion_retry",
-                            "attempt": attempt + 1,
-                        },
-                    )
-                    await asyncio.sleep(1)  # Brief delay before retry
+                logger.warning(
+                    f"LibreOffice conversion attempt {attempt + 1} failed, retrying...",
+                    extra={
+                        **context,
+                        "event": "conversion_retry",
+                        "attempt": attempt + 1,
+                    },
+                )
+                await asyncio.sleep(1)  # Brief delay before retry
 
     async def _get_word_orientation_async(
         self, docx_path: str, context: dict
