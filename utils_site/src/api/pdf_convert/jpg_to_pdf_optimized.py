@@ -6,7 +6,7 @@ import os
 import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
-from PIL import Image
+from PIL import Image, ImageOps
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
@@ -16,6 +16,31 @@ from src.api.parallel_processing import get_optimal_batch_size, process_images_p
 from src.exceptions import ConversionError
 
 logger = get_logger(__name__)
+
+_EXIF_ORIENTATION = 0x0112
+
+
+def upright_image_file(path: str) -> None:
+    """Bake the EXIF Orientation into the pixels, in place.
+
+    Phones store portrait shots as landscape pixels plus an Orientation tag.
+    PIL/reportlab ignore the tag, so every path that places the file on a page
+    (including the >=90 quality pass-through) put such photos sideways.
+    No-op for upright images, so the pass-through keeps its zero-loss copy.
+    """
+    try:
+        with Image.open(path) as img:
+            if img.getexif().get(_EXIF_ORIENTATION, 1) == 1:
+                return
+            fmt = img.format if img.format in ("JPEG", "PNG", "WEBP", "TIFF") else "PNG"
+            upright = ImageOps.exif_transpose(img)
+        if fmt == "JPEG":
+            upright.save(path, fmt, quality=95, subsampling=0)
+        else:
+            upright.save(path, fmt)
+    except Exception as e:
+        # Leave the file as is; the caller's own open/verify reports bad input.
+        logger.debug("upright_image_file skipped %s: %s", path, e)
 
 
 class OptimizedJPGToPDFConverter:
@@ -116,6 +141,9 @@ class OptimizedJPGToPDFConverter:
         """
         if context is None:
             context = {}
+
+        for image_path in image_paths:
+            upright_image_file(image_path)
 
         # Get page dimensions
         if page_size.lower() == "a4":

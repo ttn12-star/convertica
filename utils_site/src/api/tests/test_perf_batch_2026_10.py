@@ -92,3 +92,45 @@ class PdfToExcelPageCacheTests(TestCase):
         finally:
             tracemalloc.stop()
         self.assertLess(peak, 50 * 1024 * 1024)
+
+
+def _sideways_phone_jpeg() -> bytes:
+    # Landscape pixels + Orientation=6: a portrait photo as phones store it.
+    from io import BytesIO
+
+    from PIL import Image
+
+    img = Image.new("RGB", (800, 400), (200, 30, 30))
+    exif = img.getexif()
+    exif[0x0112] = 6
+    buf = BytesIO()
+    img.save(buf, "JPEG", exif=exif)
+    return buf.getvalue()
+
+
+class JpgToPdfExifOrientationTests(TestCase):
+    def _placed_image_is_portrait(self, pdf_path: str) -> bool:
+        with fitz.open(pdf_path) as doc:
+            x0, y0, x1, y1 = doc[0].get_image_info()[0]["bbox"]
+        return (y1 - y0) > (x1 - x0)
+
+    def test_phone_photo_is_upright_on_every_path_and_quality(self):
+        import asyncio
+
+        from src.api.pdf_convert.jpg_to_pdf.utils import _convert_jpg_to_pdf_sequential
+        from src.api.pdf_convert.jpg_to_pdf_optimized import (
+            convert_jpg_to_pdf_optimized,
+        )
+
+        for name, convert in (
+            ("sequential", _convert_jpg_to_pdf_sequential),
+            ("optimized", convert_jpg_to_pdf_optimized),
+        ):
+            for quality in (85, 95):
+                upload = SimpleUploadedFile("p.jpg", _sideways_phone_jpeg())
+                _, pdf = asyncio.new_event_loop().run_until_complete(
+                    convert(upload, quality=quality)
+                )
+                self.assertTrue(
+                    self._placed_image_is_portrait(pdf), f"{name} q{quality}"
+                )

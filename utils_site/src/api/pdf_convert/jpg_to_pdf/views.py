@@ -18,6 +18,7 @@ from rest_framework.response import Response
 from ...base_views import BaseConversionAPIView
 from ...logging_utils import build_request_context
 from ...spam_protection import validate_spam_protection
+from ..jpg_to_pdf_optimized import upright_image_file
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
 from .utils import convert_jpg_to_pdf
@@ -142,6 +143,7 @@ class JPGToPDFAPIView(BaseConversionAPIView):
                         status=status.HTTP_400_BAD_REQUEST,
                     )
 
+                upright_image_file(image_path)
                 with Image.open(image_path) as img:
                     needs_conversion = img.mode in ("RGBA", "LA", "P")
 

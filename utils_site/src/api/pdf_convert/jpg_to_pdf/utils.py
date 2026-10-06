@@ -10,6 +10,7 @@ from reportlab.pdfgen import canvas
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
 from ...optimization_manager import optimization_manager
+from ..jpg_to_pdf_optimized import upright_image_file
 
 logger = get_logger(__name__)
 
@@ -82,6 +83,7 @@ async def _convert_jpg_to_pdf_sequential(
             "Please upload image files (JPG, PNG, WebP) only. "
             "If you want to convert PDF pages to images, use the 'PDF to JPG' tool instead."
         )
+    upright_image_file(image_path)
     with Image.open(image_path) as image:
         needs_conversion = image.mode in ("RGBA", "LA", "P")
 
