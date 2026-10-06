@@ -973,3 +973,50 @@ class PremiumBatchEndpointsTests(TestCase):
             self.client.post("/api/excel-to-pdf/batch/", {"excel_files": files})
         )
         self.assertEqual(len(archive.namelist()), 2)
+
+    def test_page_numbers_sign_resize_flatten_batches_work(self):
+        # Four more premium batches failed every request (wrong base view or
+        # wrong keyword for the converter).
+        import io
+
+        from PIL import Image
+
+        def pdfs():
+            return [
+                SimpleUploadedFile(f"{n}.pdf", _text_pdf(pages=2)) for n in ("a", "b")
+            ]
+
+        archive = self._zip(
+            self.client.post(
+                "/api/pdf-edit/add-page-numbers/batch/",
+                {"pdf_files": pdfs(), "format": "page_of_total"},
+            )
+        )
+        with fitz.open(stream=archive.read(archive.namelist()[0]), filetype="pdf") as d:
+            self.assertIn("Page 2 of 2", d[1].get_text())
+
+        sig = io.BytesIO()
+        Image.new("RGB", (120, 40), (0, 0, 200)).save(sig, "PNG")
+        archive = self._zip(
+            self.client.post(
+                "/api/pdf-edit/sign/batch/",
+                {
+                    "pdf_files": pdfs(),
+                    "signature_image": SimpleUploadedFile(
+                        "s.png", sig.getvalue(), "image/png"
+                    ),
+                },
+            )
+        )
+        for name in archive.namelist():
+            with fitz.open(stream=archive.read(name), filetype="pdf") as d:
+                self.assertEqual(len(d[0].get_images()), 1, name)
+
+        for path in ("/api/pdf-edit/page-size/batch/", "/api/pdf-edit/flatten/batch/"):
+            self.assertEqual(
+                len(
+                    self._zip(self.client.post(path, {"pdf_files": pdfs()})).namelist()
+                ),
+                2,
+                path,
+            )

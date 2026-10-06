@@ -1,61 +1,54 @@
-"""
-Batch PDF page numbers API views.
+"""Batch page numbering for premium users: same settings for every PDF, ZIP out."""
 
-Supports processing up to 10 PDF files simultaneously for premium users.
-All files get page numbers with the same parameters and returned as a ZIP archive.
-"""
+import os
 
 from django.http import HttpRequest
+from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from ...base_views import BaseConversionAPIView
-from .batch_serializers import AddPageNumbersBatchSerializer
-from .decorators import add_page_numbers_docs
 from .utils import add_page_numbers
 
+# Older clients send the batch serializer's "format" choice instead of format_str.
+_FORMATS = {"number": "{page}", "page_of_total": "Page {page} of {total}"}
 
-class AddPageNumbersBatchAPIView(BaseConversionAPIView):
-    """Handle batch PDF page numbers requests."""
 
-    MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB per file
-    ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
-    ALLOWED_EXTENSIONS = {".pdf"}
-    CONVERSION_TYPE = "add_page_numbers_batch"
-    FILE_FIELD_NAME = "pdf_files"
-    VALIDATE_PDF_PAGES = False  # Client-side validation
+class AddPageNumbersBatchAPIView(BaseBatchAPIView):
+    """Used to subclass the single-file view, which read the pdf_files list as
+    one file (500 "'list' object has no attribute 'name'") and passed
+    arguments add_page_numbers() does not take."""
 
-    def get_serializer_class(self):
-        """Return appropriate serializer for this view."""
-        return AddPageNumbersBatchSerializer
+    CONVERSION_TYPE = "ADD_PAGE_NUMBERS_BATCH"
+    TMP_PREFIX = "page_numbers_batch_"
+    OUTPUT_ZIP_FILENAME = "numbered_pdfs.zip"
 
-    def get_docs_decorator(self):
-        """Return Swagger documentation decorator for this view."""
-        return add_page_numbers_docs
+    def get_post_params(self, request):
+        def number(name, default):
+            try:
+                return int(request.POST.get(name) or default)
+            except ValueError:
+                return default
+
+        return {
+            "position": request.POST.get("position") or "bottom-center",
+            "font_size": number("font_size", 12),
+            "start_number": number("start_number", 1),
+            "format_str": request.POST.get("format_str")
+            or _FORMATS.get(request.POST.get("format"), "{page}"),
+        }
+
+    def convert_single(self, uploaded_file, context, **params):
+        input_path, output_path = add_page_numbers(
+            uploaded_file, suffix="_numbered", **params
+        )
+        return os.path.dirname(input_path), output_path
+
+    def get_zip_entry_name(self, original_name, output_path):
+        return f"{os.path.splitext(original_name)[0]}_numbered.pdf"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @add_page_numbers_docs()
+    @batch_premium_docs(
+        summary="Add Page Numbers (batch, premium)", file_field="pdf_files"
+    )
     def post(self, request: HttpRequest):
-        """Handle POST request with Swagger documentation."""
-        return super().post(request)
-
-    def perform_conversion(self, uploaded_file, context, **kwargs) -> tuple[str, str]:
-        """Add page numbers to PDF with specified parameters."""
-        position = kwargs.get("position", "bottom-center")
-        font_size = int(kwargs.get("font_size", 12))
-        color = kwargs.get("color", "#000000")
-        format_type = kwargs.get("format", "number")
-        start_number = int(kwargs.get("start_number", 1))
-        pages = kwargs.get("pages", "all")
-
-        input_path, output_path = add_page_numbers(
-            uploaded_file=uploaded_file,
-            position=position,
-            font_size=font_size,
-            color=color,
-            format_type=format_type,
-            start_number=start_number,
-            pages=pages,
-            suffix="_numbered",
-        )
-
-        return input_path, output_path
+        return self._process_batch(request)

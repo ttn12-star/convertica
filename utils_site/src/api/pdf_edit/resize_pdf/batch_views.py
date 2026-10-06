@@ -25,8 +25,10 @@ class ResizePDFBatchAPIView(BaseBatchAPIView):
         }
 
     def convert_single(self, uploaded_file, context, **params):
+        # resize_pdf's first parameter is pdf_file: the keyword failed every
+        # file ("unexpected keyword argument 'uploaded_file'").
         input_path, output_path = resize_pdf(
-            uploaded_file=uploaded_file,
+            uploaded_file,
             target_size=params.get("target_size", "letter"),
             mode=params.get("mode", "auto"),
             suffix="_resized",
