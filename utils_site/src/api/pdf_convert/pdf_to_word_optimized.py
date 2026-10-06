@@ -14,6 +14,10 @@ import fitz
 from django.core.cache import cache
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
+from src.api.cooperative_stop import install_pdf2docx_hook
+
+# An abandoned conversion (time limit, cancel) stops at its next page.
+install_pdf2docx_hook()
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.font_utils import unicode_font_file
 from src.api.logging_utils import get_logger

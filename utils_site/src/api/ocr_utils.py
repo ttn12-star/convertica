@@ -26,6 +26,7 @@ from PIL import Image, ImageEnhance, ImageFilter
 from scipy import ndimage
 from src.exceptions import ConversionError, StorageError
 
+from .cooperative_stop import check as check_stop
 from .file_validation import check_disk_space, sanitize_filename
 from .logging_utils import get_logger
 
@@ -471,6 +472,7 @@ def extract_text_from_pdf(
         extracted_texts = []
         failed_pages = []
         for i in range(total_pages):
+            check_stop()  # abandoned by its task: stop between pages
             try:
                 page_images = convert_from_path(
                     pdf_path, dpi=dpi, first_page=i + 1, last_page=i + 1, timeout=120
