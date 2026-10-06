@@ -71,3 +71,24 @@ class WordInputValidationTests(TestCase):
             self.assertEqual(validate_word_file(f.name, {}), (True, None))
         finally:
             os.unlink(f.name)
+
+
+class PdfToExcelPageCacheTests(TestCase):
+    def test_parsed_pages_are_not_kept_alive(self):
+        # Without flush_cache pdfplumber kept every parsed page alive: 200 pages
+        # peaked at ~900 MB in a celery child sharing 2G with two others.
+        # 40 pages: ~120 MB traced without the fix, ~16 MB with it.
+        import tracemalloc
+
+        from src.api.pdf_convert.pdf_to_excel.utils import convert_pdf_to_excel
+
+        upload = SimpleUploadedFile(
+            "t.pdf", _text_pdf(pages=40), content_type="application/pdf"
+        )
+        tracemalloc.start()
+        try:
+            convert_pdf_to_excel(upload)
+            peak = tracemalloc.get_traced_memory()[1]
+        finally:
+            tracemalloc.stop()
+        self.assertLess(peak, 50 * 1024 * 1024)

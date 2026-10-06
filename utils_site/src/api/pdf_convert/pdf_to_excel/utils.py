@@ -146,35 +146,44 @@ def convert_pdf_to_excel(
                     continue
 
                 page = pdf.pages[idx]
-                page_has_content = False
-
-                extracted_tables = []
+                # pdfplumber caches every parsed page on the Page object until the
+                # document closes: ~900 MB on a 200-page file in a celery child
+                # that shares 2G with two neighbours. Drop it as we go.
                 try:
-                    extracted_tables = page.extract_tables() or []
-                except Exception:
+                    page_has_content = False
+
                     extracted_tables = []
+                    try:
+                        extracted_tables = page.extract_tables() or []
+                    except Exception:
+                        extracted_tables = []
 
-                for table in extracted_tables:
-                    if _is_real_table(table):
-                        tables.append({"page": idx + 1, "table": table})
-                        page_has_content = True
+                    for table in extracted_tables:
+                        if _is_real_table(table):
+                            tables.append({"page": idx + 1, "table": table})
+                            page_has_content = True
 
-                if page_has_content:
-                    continue
-
-                try:
-                    text = page.extract_text()
-                except Exception:
-                    text = None
-
-                if text:
-                    lines = [_normalize_text_line(line) for line in text.splitlines()]
-                    lines = [l for l in lines if l]
-                    if lines:
-                        text_pages.append({"page": idx + 1, "lines": lines})
+                    if page_has_content:
                         continue
 
-                image_pages.append(idx)
+                    try:
+                        text = page.extract_text()
+                    except Exception:
+                        text = None
+
+                    if text:
+                        lines = [
+                            _normalize_text_line(line) for line in text.splitlines()
+                        ]
+                        lines = [l for l in lines if l]
+                        if lines:
+                            text_pages.append({"page": idx + 1, "lines": lines})
+                            continue
+
+                    image_pages.append(idx)
+                finally:
+                    page.flush_cache()
+                    page.close()
 
         with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
             for i, item in enumerate(tables):
