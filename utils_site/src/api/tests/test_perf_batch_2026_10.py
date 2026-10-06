@@ -734,9 +734,18 @@ class ChunkedUploadTests(TestCase):
                     "total_size": 100,
                 },
             )
-        self.assertLessEqual(
-            len(glob.glob(f"{ASYNC_TEMP_DIR}/upload_*")), MAX_UNFINISHED_PER_USER
-        )
+        from src.api.chunked_upload import _load_meta
+
+        metas = [
+            _load_meta(d.rsplit("upload_", 1)[1]) or {}
+            for d in glob.glob(f"{ASYNC_TEMP_DIR}/upload_*")
+        ]
+        unfinished = [  # other tests leave finished uploads in the shared dir
+            m
+            for m in metas
+            if m.get("user_id") == self.user.pk and m["received"] < m["total"]
+        ]
+        self.assertLessEqual(len(unfinished), MAX_UNFINISHED_PER_USER)
         finished = [self._upload(self.client, _text_pdf(pages=1)) for _ in range(5)]
         response = self.client.post(
             "/api/pdf-organize/compress/batch/",
