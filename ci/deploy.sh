@@ -28,11 +28,10 @@ if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build ng
   echo "   This may be due to network issues pulling base image"
 fi
 # Build other services
-docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build web celery celery-beat
+docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build web celery celery-beat celery-premium
 
 # Rolling deployment with automatic rollback strategy
 echo "🔄 Starting rolling deployment with automatic rollback..."
-echo "📊 Current memory usage: ~2.1GB limits, server has 2GB RAM + 2GB swap = 4GB total"
 echo "✅ Deployment strategy: Sequential (old stops before new starts) - fits in resources"
 
 # Save current container IDs for rollback BEFORE starting new ones
@@ -363,21 +362,25 @@ docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web p
 
 # Step 7: Restart other services (with rollback on failure)
 echo "🔄 Restarting background workers..."
-if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat; then
+if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat celery-premium; then
   echo "⚠️ Failed to restart celery services, but web is healthy - continuing..."
 fi
 
-# Step 8: new nginx.conf. Restart, not `nginx -s reload`: git reset
+# Step 8: new nginx.conf. Recreate, not `nginx -s reload`: git reset
 # gives ci/nginx.conf a fresh inode while the container's bind-mount
 # stays on the orphaned one, so SIGHUP is a no-op (hit on prod, the
-# container was Up 3 months). Restart re-binds it. ~2-3s of 502s.
+# container was Up 3 months). ~2-3s of 502s.
 echo "🔄 Validating nginx config..."
-if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -t; then
+# Test in a throwaway container: `exec` into the running one would check its
+# orphaned old inode, and could not see a newly added mount at all.
+if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml run --rm --no-deps --entrypoint nginx nginx -t; then
   echo "❌ nginx config invalid — leaving previous config running"
   exit 1
 fi
-echo "✅ nginx config valid; restarting container to re-bind mount..."
-docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
+# Recreate, not restart: restart keeps the old container, so a rebuilt image
+# or a new bind-mount never reaches it.
+echo "✅ nginx config valid; recreating container..."
+docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --force-recreate nginx
 
 # Step 9: Clean up old stopped containers (only if new ones are healthy)
 echo "🧹 Cleaning up old stopped containers..."
@@ -402,5 +405,8 @@ chmod 644 /etc/cron.d/convertica-async-temp-reaper
 # unfiltered prune would delete the only quick rollback target.
 echo "🧹 Cleaning up old Docker images..."
 docker image prune -f --filter "until=48h" || true
+# Build cache is never needed for rollback and grew 8 GB in the first day
+# on the new host; a week keeps rebuilds warm.
+docker builder prune -f --filter "until=168h" || true
 
 echo "✅ Deployment completed!"

@@ -28,6 +28,10 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    volumes:
+      # Authenticated Origin Pulls: nginx.conf only accepts TLS clients that
+      # present Cloudflare's certificate, so the bare origin IP serves nothing.
+      - ./ci/cloudflare-origin-pull-ca.pem:/etc/nginx/cloudflare-origin-pull-ca.pem:ro
 
   web:
     build:
@@ -58,14 +62,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${WEB_CPU_LIMIT:-1.0}'
-          memory: ${WEB_MEMORY_LIMIT:-1.8G}
+          cpus: '${WEB_CPU_LIMIT:-2.0}'
+          memory: ${WEB_MEMORY_LIMIT:-2.5G}
         reservations:
           cpus: '${WEB_CPU_RESERVATION:-0.5}'
           memory: ${WEB_MEMORY_RESERVATION:-1G}
-    # Allow container to use host swap (memory + swap total = 2.5G)
+    # Allow container to use host swap (memory + swap total = 3G)
     # Without this, container is killed when hitting memory limit even if host has swap
-    memswap_limit: 2.5G
+    memswap_limit: 3G
     healthcheck:
       # Liveness only: verify gunicorn accepts TCP connections.
       # Avoid request-based checks here, because /livez can fail under worker saturation
@@ -96,10 +100,9 @@ services:
     # Trade-off vs the dedicated `celery-premium` service: this single worker
     # round-robins across queues, so premium isn't strictly first ahead of
     # regular at the queue-consumption level (priority field still used inside
-    # each queue). For dedicated premium isolation, run with the `premium`
-    # profile (`docker compose --profile premium up -d`) which adds
-    # `celery-premium` from the base compose file.
-    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --pool=prefork --max-tasks-per-child=50 --max-memory-per-child=250000 -Q fast,regular,premium,maintenance,default
+    # each queue). Hence the dedicated `celery-premium` below; this worker
+    # keeps `premium` as overflow for it.
+    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-3} --pool=prefork --max-tasks-per-child=50 --max-memory-per-child=250000 -Q fast,regular,premium,maintenance,default
     env_file:
       - .env
     environment:
@@ -115,15 +118,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${CELERY_CPU_LIMIT:-0.5}'
-          # Increased from 512M to 1G for heavy PDF operations (image-heavy files)
-          # PDF to Word/Excel can use 500-800MB for large files
-          memory: ${CELERY_MEMORY_LIMIT:-1G}
+          cpus: '${CELERY_CPU_LIMIT:-2.0}'
+          # 3 children; PDF to Word/Excel can use 500-800MB each on large files
+          memory: ${CELERY_MEMORY_LIMIT:-2G}
         reservations:
           cpus: '${CELERY_CPU_RESERVATION:-0.2}'
           memory: ${CELERY_MEMORY_RESERVATION:-256M}
-    # Allow celery to use swap for heavy PDF operations (memory + swap = 1.5G)
-    memswap_limit: 1.5G
+    # Allow celery to use swap for heavy PDF operations (memory + swap = 2.5G)
+    memswap_limit: 2.5G
     healthcheck:
       # `|| exit 0` made this unfailable, so autoheal never restarted a wedged
       # worker. retries=10 x 60s still tolerates slow starts.
@@ -132,6 +134,36 @@ services:
       timeout: 45s  # the check itself imports Django; --timeout bounds only the reply wait
       retries: 10
       start_period: 30s
+    restart: always
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Dedicated premium capacity (profile "premium" in the base file; deploy.sh
+  # names it explicitly, which starts it). Prefork with one child rather than
+  # solo: an OOM kills the child, not the worker, and per-child recycling works.
+  # The main `celery` still consumes `premium` too, as overflow and fallback.
+  celery-premium:
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=prefork --max-tasks-per-child=50 --max-memory-per-child=250000 -Q premium
+    environment:
+      - SERVICE_NAME=celery-premium
+      - CELERY_WORKER_POOL=prefork
+      - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
+      - SENTRY_RELEASE=${SENTRY_RELEASE}
+      - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
+    deploy:
+      resources:
+        limits:
+          cpus: '${CELERY_PREMIUM_CPU_LIMIT:-1.0}'
+          memory: ${CELERY_PREMIUM_MEMORY_LIMIT:-1.5G}
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    memswap_limit: 2G
     restart: always
     labels:
       - "autoheal=true"
@@ -164,7 +196,7 @@ services:
       resources:
         limits:
           cpus: '${CELERY_BEAT_CPU_LIMIT:-0.1}'
-          memory: ${CELERY_BEAT_MEMORY_LIMIT:-256M}  # Increased from 128M - Django import needs memory at startup
+          memory: ${CELERY_BEAT_MEMORY_LIMIT:-384M}  # sat at 189M of 256M after the OVH move
         reservations:
           cpus: '${CELERY_BEAT_CPU_RESERVATION:-0.05}'
           memory: ${CELERY_BEAT_MEMORY_RESERVATION:-128M}
