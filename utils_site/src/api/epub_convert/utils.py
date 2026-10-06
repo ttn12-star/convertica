@@ -589,7 +589,8 @@ def convert_pdf_to_epub(
                     page_headings.append(heading)
 
         if not page_htmls:
-            raise ConversionError("PDF does not contain extractable text content.")
+            # The input's property, not our failure: a 400.
+            raise InvalidPDFError("PDF does not contain extractable text content.")
 
         pages_per_chapter = 15
         chapters = _chunk_pages_for_epub(page_htmls, pages_per_chapter)

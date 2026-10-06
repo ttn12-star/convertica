@@ -1009,11 +1009,20 @@ def generic_conversion_task(
             }
 
         if _is_user_input_error(exc):
+            from src.exceptions import InvalidPDFError, caused_by_damaged_input
+
             return {
                 "status": "error",
                 # Converter messages are user-facing, but some embed the
                 # internal working path; strip anything that looks like one.
-                "error": scrub_internal_paths(error_message),
+                # A parser's own words ("No /Root object!") mean nothing to a
+                # user: same sentence as the sync API.
+                "error": (
+                    "The file is damaged or incomplete."
+                    if caused_by_damaged_input(exc)
+                    and not isinstance(exc, InvalidPDFError)
+                    else scrub_internal_paths(error_message)
+                ),
                 "conversion_type": conversion_type,
             }
 

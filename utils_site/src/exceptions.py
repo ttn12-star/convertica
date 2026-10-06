@@ -41,6 +41,8 @@ class InvalidPDFError(ConversionError):
 class OCRFailedError(ConversionError):
     """OCR was requested and failed on every page: report it, don't degrade."""
 
+    retryable = False  # a missing language pack fails the same way again
+
 
 class StorageError(ConversionError):
     """Raised when file system / storage operations fail."""
@@ -67,7 +69,8 @@ _DAMAGED_INPUT_ERRORS = (
     ("pymupdf", "FileDataError"),
     ("pymupdf.mupdf", "FzErrorFormat"),
     ("pymupdf.mupdf", "FzErrorArgument"),
-    ("pdfminer.pdfparser", "PDFSyntaxError"),
+    # Base of PSEOF/PSSyntaxError and every PDFException pdfminer raises.
+    ("pdfminer.psexceptions", "PSException"),
     ("pdfplumber.utils.exceptions", "PdfminerException"),
 )
 
@@ -88,7 +91,10 @@ def caused_by_damaged_input(error: BaseException) -> bool:
         if isinstance(error, InvalidPDFError):  # already judged the input's fault
             return True
         # PIL reports a cut-off JPEG/PNG as a plain OSError.
-        if isinstance(error, OSError) and "truncated" in str(error).lower():
+        if isinstance(error, OSError) and (
+            "image file is truncated" in str(error)
+            or "Truncated File Read" in str(error)
+        ):
             return True
         for klass in type(error).__mro__:
             if (klass.__module__, klass.__name__) in _DAMAGED_INPUT_ERRORS:
