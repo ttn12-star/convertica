@@ -55,31 +55,37 @@ def _is_real_table(table: list[list[str | None]]) -> bool:
     return max_cols >= 2 and non_empty_cells >= 4
 
 
-# Unambiguous numbers only: "1234", "-12.5", "1,234,567.89". Leading zeros
-# (IDs, codes), more than 15 digits (float precision) and "1,5" / "1 234,5"
-# (locale-dependent) stay text rather than becoming a wrong number.
-_PLAIN_NUMBER = re.compile(r"-?(0|[1-9]\d{0,14})(\.\d+)?")
-_THOUSANDS_NUMBER = re.compile(r"-?[1-9]\d{0,2}(,\d{3}){1,4}(\.\d+)?")
+# Unambiguous numbers only. Text stays text when the number could be read two
+# ways or is not really a quantity:
+#   "1.200", "1,234": one separator + 3 digits = thousands in de/ru/pl/es
+#   "007", 12+ digit integers: codes, IDs, phone numbers
+#   "1,5", "1 234,5": decimal comma
+# "1,234,567" and "1,234.56" are unambiguous (several groups, or a dot after).
+_PLAIN_NUMBER = re.compile(r"-?(0|[1-9]\d{0,10})(\.(\d{1,2}|\d{4,}))?")
+_THOUSANDS_NUMBER = re.compile(r"-?[1-9]\d{0,2}((,\d{3}){2,4}(\.\d+)?|,\d{3}\.\d+)")
 
 
 def _numeric_or_text(column):
-    """The column as numbers if every non-empty cell is one, else unchanged.
+    """(column as numbers, decimals to display) if every cell is one, else (column, None).
 
     pdfplumber returns every cell as text, so Excel showed "number stored as
-    text" and SUM() ignored the column.
+    text" and SUM() ignored the column. The decimals keep "12.30" from
+    displaying as 12.3.
     """
     values = [str(v).strip() for v in column if v is not None and str(v).strip()]
     if not values or not all(
         _PLAIN_NUMBER.fullmatch(v) or _THOUSANDS_NUMBER.fullmatch(v) for v in values
     ):
-        return column
-    return column.map(
+        return column, None
+    decimals = max(len(v.partition(".")[2]) for v in values)
+    numbers = column.map(
         lambda v: (
             float(str(v).strip().replace(",", ""))
             if v is not None and str(v).strip()
             else None
         )
-    ).map(lambda f: int(f) if f is not None and f.is_integer() else f)
+    ).map(lambda f: int(f) if f is not None and f.is_integer() and not decimals else f)
+    return numbers, decimals
 
 
 def convert_pdf_to_excel(
@@ -231,8 +237,11 @@ def convert_pdf_to_excel(
                 df = df.dropna(how="all").dropna(axis=1, how="all")
                 if df.empty:
                     continue
+                decimal_columns = {}
                 for col in df.columns:
-                    df[col] = _numeric_or_text(df[col])
+                    df[col], decimals = _numeric_or_text(df[col])
+                    if decimals:
+                        decimal_columns[col] = decimals
 
                 # A second table from the same page used to be written into
                 # the same "Page N" sheet from A1, overwriting the first.
@@ -243,6 +252,13 @@ def convert_pdf_to_excel(
                     copy += 1
                 used_sheets.add(sheet_name)
                 df.to_excel(writer, sheet_name=sheet_name[:31], index=False)
+                sheet = writer.sheets[sheet_name[:31]]
+                for col, decimals in decimal_columns.items():
+                    col_idx = list(df.columns).index(col) + 1
+                    for (cell,) in sheet.iter_rows(
+                        min_row=2, min_col=col_idx, max_col=col_idx
+                    ):
+                        cell.number_format = "0." + "0" * decimals
 
             for item in text_pages:
                 page_num = item["page"]
