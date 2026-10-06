@@ -23,7 +23,7 @@ from src.api.font_utils import unicode_font_file
 from src.api.logging_utils import get_logger
 from src.api.ocr_utils import extract_text_from_pdf_async
 from src.api.pdf_utils import repair_pdf
-from src.exceptions import ConversionError, StorageError
+from src.exceptions import ConversionError, OCRFailedError, StorageError
 
 logger = get_logger(__name__)
 
@@ -383,6 +383,8 @@ class OptimizedPDFToWordConverter:
 
             return extracted_text
 
+        except OCRFailedError:
+            raise  # asked for OCR and got none: not a silent text-less docx
         except Exception as e:
             logger.warning(
                 f"OCR processing failed: {str(e)[:200]}",

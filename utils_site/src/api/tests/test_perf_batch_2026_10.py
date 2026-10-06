@@ -1257,3 +1257,33 @@ class AbandonedThreadStopsTests(TestCase):
         stopped_at = time.monotonic()
         self.assertTrue(done.wait(3), "the abandoned thread kept converting")
         self.assertLess(time.monotonic() - stopped_at, 3)
+
+
+class OcrFailureReachesTheUserTests(TestCase):
+    def test_pdf_to_word_with_ocr_reports_a_total_ocr_failure(self):
+        # Both pdf->word paths swallowed the "every page failed" error and
+        # returned a text-less docx as a success.
+        import asyncio
+        from unittest import mock
+
+        import pytesseract
+        from src.api import ocr_utils
+        from src.api.pdf_convert.pdf_to_word_optimized import (
+            OptimizedPDFToWordConverter,
+        )
+        from src.exceptions import OCRFailedError
+
+        upload = SimpleUploadedFile("s.pdf", _text_pdf(pages=2), "application/pdf")
+        with (
+            mock.patch.object(
+                ocr_utils,
+                "extract_text_from_image",
+                side_effect=pytesseract.TesseractError(1, "no language pack"),
+            ),
+            self.assertRaises(OCRFailedError),
+        ):
+            asyncio.new_event_loop().run_until_complete(
+                OptimizedPDFToWordConverter().convert_pdf_to_docx_optimized(
+                    upload, ocr_enabled=True, ocr_language="en"
+                )
+            )

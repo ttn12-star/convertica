@@ -24,7 +24,7 @@ from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_path, pdfinfo_from_path
 from PIL import Image, ImageEnhance, ImageFilter
 from scipy import ndimage
-from src.exceptions import ConversionError, StorageError
+from src.exceptions import ConversionError, OCRFailedError, StorageError
 
 from .cooperative_stop import check as check_stop
 from .file_validation import check_disk_space, sanitize_filename
@@ -497,7 +497,7 @@ def extract_text_from_pdf(
         if total_pages and len(failed_pages) == total_pages:
             # Every page failed (e.g. a language pack missing): an empty
             # document handed over as a success hid the problem.
-            raise ConversionError(
+            raise OCRFailedError(
                 "Text recognition failed on every page of this PDF.",
                 context=context,
             ) from failed_pages[0]

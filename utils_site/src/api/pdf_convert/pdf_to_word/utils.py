@@ -10,6 +10,7 @@ from ....exceptions import (
     ConversionError,
     EncryptedPDFError,
     InvalidPDFError,
+    OCRFailedError,
     StorageError,
 )
 from ...file_validation import check_disk_space, sanitize_filename, validate_output_file
@@ -217,6 +218,8 @@ async def _convert_pdf_to_docx_sequential(
                     "OCR processing completed successfully",
                     extra={**context, "event": "ocr_success"},
                 )
+            except OCRFailedError:
+                raise  # asked for OCR and got none: not a silent text-less docx
             except (ConversionError, StorageError, OSError) as ocr_exc:
                 logger.warning(
                     "OCR processing failed, continuing with standard conversion: %s",
