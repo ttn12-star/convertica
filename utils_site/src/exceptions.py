@@ -65,13 +65,15 @@ class InvalidArchiveError(InvalidPDFError):
 
 # Parser errors that mean "this file is damaged", not "our code failed".
 _DAMAGED_INPUT_ERRORS = (
-    ("pypdf.errors", "PyPdfError"),
+    # (top-level package, class name): libraries move their exceptions between
+    # modules across versions (pdfminer's PSException: psparser in 20231228,
+    # psexceptions later), so the exact module path is not compared.
+    ("pypdf", "PyPdfError"),
     ("pymupdf", "FileDataError"),
-    ("pymupdf.mupdf", "FzErrorFormat"),
-    ("pymupdf.mupdf", "FzErrorArgument"),
-    # Base of PSEOF/PSSyntaxError and every PDFException pdfminer raises.
-    ("pdfminer.psexceptions", "PSException"),
-    ("pdfplumber.utils.exceptions", "PdfminerException"),
+    ("pymupdf", "FzErrorFormat"),
+    ("pymupdf", "FzErrorArgument"),
+    ("pdfminer", "PSException"),  # base of PSEOF and every PDFException
+    ("pdfplumber", "PdfminerException"),
 )
 
 
@@ -97,7 +99,8 @@ def caused_by_damaged_input(error: BaseException) -> bool:
         ):
             return True
         for klass in type(error).__mro__:
-            if (klass.__module__, klass.__name__) in _DAMAGED_INPUT_ERRORS:
+            package = klass.__module__.split(".", 1)[0]
+            if (package, klass.__name__) in _DAMAGED_INPUT_ERRORS:
                 return True
         error = error.__cause__
     return False

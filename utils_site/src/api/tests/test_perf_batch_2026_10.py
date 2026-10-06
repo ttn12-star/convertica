@@ -1391,7 +1391,7 @@ class AbandonedLibreOfficeIsKilledTests(TestCase):
 
 class DamagedInputClassifierTests(TestCase):
     def test_what_counts_as_the_users_damaged_file(self):
-        from pdfminer.psexceptions import PSEOF
+        from pdfminer.psparser import PSEOF  # pinned 20231228; later: psexceptions
         from src.exceptions import (
             ConversionError,
             OCRFailedError,
