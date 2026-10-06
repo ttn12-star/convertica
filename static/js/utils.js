@@ -1303,7 +1303,7 @@ function _csrfTokenFor(init) {
     return input ? input.value : '';
 }
 
-async function _uploadInChunks(file, nativeFetch, csrfToken) {
+async function _uploadInChunks(file, nativeFetch, csrfToken, signal) {
     let uploadId = '';
     for (let index = 0, offset = 0; offset < file.size; index++, offset += CHUNK_SIZE) {
         const form = new FormData();
@@ -1318,9 +1318,17 @@ async function _uploadInChunks(file, nativeFetch, csrfToken) {
             body: form,
             credentials: 'same-origin',
             headers: { 'X-CSRFToken': csrfToken },
+            signal,  // the tool's Cancel stops the remaining chunks too
         });
         if (!response.ok) return { error: response };
-        uploadId = (await response.json()).upload_id;
+        let payload = null;
+        try { payload = await response.json(); } catch (e) { /* not JSON */ }
+        uploadId = payload && payload.upload_id;
+        if (!uploadId) {
+            return { error: new Response(JSON.stringify({ error: 'Upload failed, please try again.' }), {
+                status: 502, headers: { 'Content-Type': 'application/json' },
+            }) };
+        }
     }
     return { uploadId };
 }
@@ -1333,7 +1341,7 @@ function _installChunkedUpload() {
 
     window.fetch = async function (input, init) {
         const body = init && init.body;
-        const url = typeof input === 'string' ? input : (input && input.url) || '';
+        const url = typeof input === 'string' ? input : String((input && input.url) || input || '');
         if (!(body instanceof FormData) || !url.includes('/api/') || url.includes('/api/uploads/')) {
             return nativeFetch(input, init);
         }
@@ -1345,7 +1353,7 @@ function _installChunkedUpload() {
         const form = new FormData();
         for (const [key, value] of entries) {
             if (value instanceof Blob && value.size > CHUNKED_UPLOAD_THRESHOLD) {
-                const result = await _uploadInChunks(value, nativeFetch, csrfToken);
+                const result = await _uploadInChunks(value, nativeFetch, csrfToken, init.signal);
                 if (result.error) return result.error;  // the tool shows its message
                 form.append(key + '__upload_id', result.uploadId);
             } else {
