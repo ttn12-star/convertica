@@ -593,3 +593,34 @@ class CropScaleToPageVectorTests(TestCase):
         self.assertNotIn("DROP0", cropped)
         self.assertIn("KEEP1", untouched)
         self.assertIn("DROP1", untouched)
+
+
+class ExcelPrintFitKeepsContentTests(TestCase):
+    def test_text_box_survives_and_plain_sheets_still_fit(self):
+        # openpyxl's load/save dropped text boxes before LibreOffice saw the file.
+        import tempfile
+        import zipfile
+
+        import xlsxwriter
+        from src.api.pdf_convert.excel_to_pdf.utils import _apply_print_fit
+
+        d = tempfile.mkdtemp()
+        for rich in (False, True):
+            path = os.path.join(d, f"{rich}.xlsx")
+            wb = xlsxwriter.Workbook(path)
+            ws = wb.add_worksheet()
+            for r in range(30):
+                ws.write_row(r, 0, list(range(25)))
+            if rich:
+                ws.insert_textbox("B40", "Shape text", {"width": 300, "height": 60})
+            wb.close()
+            _apply_print_fit(path, {})
+            with zipfile.ZipFile(path) as z:
+                sheet = z.read("xl/worksheets/sheet1.xml")
+                drawings = b"".join(
+                    z.read(n) for n in z.namelist() if n.startswith("xl/drawings/")
+                )
+            if rich:
+                self.assertIn(b"Shape text", drawings)
+            else:
+                self.assertIn(b"fitToPage", sheet)
