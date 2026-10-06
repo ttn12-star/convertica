@@ -405,8 +405,8 @@ chmod 644 /etc/cron.d/convertica-async-temp-reaper
 # unfiltered prune would delete the only quick rollback target.
 echo "🧹 Cleaning up old Docker images..."
 docker image prune -f --filter "until=48h" || true
-# Build cache is never needed for rollback and grew 8 GB in the first day
-# on the new host; a week keeps rebuilds warm.
-docker builder prune -f --filter "until=168h" || true
+# Build cache is never needed for rollback and grows ~8 GB per deploy; an
+# age filter let it reach 16 GB in a day. Cap the size instead, LRU-first.
+docker builder prune -f --max-used-space 10GB || true
 
 echo "✅ Deployment completed!"
