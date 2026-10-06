@@ -47,6 +47,32 @@ def _estimate_content_width_pt(ws) -> float:
     return total_chars * _CHARS_TO_PT
 
 
+def _openpyxl_would_lose_content(excel_path: str) -> bool:
+    """Whether a load/save round trip through openpyxl would change the book.
+
+    openpyxl drops text boxes/shapes, form controls and ActiveX, and rewrites
+    charts in its own style: the PDF lost a text box that was in the file.
+    """
+    import zipfile
+
+    try:
+        with zipfile.ZipFile(excel_path) as z:
+            names = z.namelist()
+            if any(
+                n.startswith(("xl/ctrlProps/", "xl/activeX/", "xl/charts/"))
+                for n in names
+            ):
+                return True
+            for n in names:
+                if n.startswith("xl/drawings/") and n.endswith(".xml"):
+                    with z.open(n) as f:
+                        if b"<xdr:sp" in f.read(5 * 1024 * 1024):
+                            return True
+    except Exception:
+        return True  # unreadable here: do not let openpyxl rewrite it either
+    return False
+
+
 def _apply_print_fit(
     excel_path: str,
     context: dict,
@@ -73,6 +99,13 @@ def _apply_print_fit(
     ponytail: legacy .xls skipped; convert .xls -> .xlsx first if it matters.
     """
     if not excel_path.lower().endswith((".xlsx", ".xlsm")):
+        return
+    if _openpyxl_would_lose_content(excel_path):
+        # Content beats layout: LibreOffice prints the original as is.
+        logger.info(
+            "Skipping print-fit: workbook has shapes/controls/charts",
+            extra={**context, "event": "excel_print_fit_skipped"},
+        )
         return
     # Only auto+fit_width is the implicit default; anything else is a
     # deliberate user choice that should override an author's own print setup.
