@@ -819,10 +819,16 @@ def generic_conversion_task(
         self.update_state(state="REVOKED", meta={"error": "Task was cancelled"})
         raise Ignore()
 
-    except SoftTimeLimitExceeded:
-        # Task exceeded soft time limit - check if it was user cancellation
+    except (SoftTimeLimitExceeded, SystemExit) as stop_exc:
+        # Cancel revokes with terminate=True/SIGTERM, which the prefork child
+        # raises as SystemExit. Left alone, Celery tried to store SystemExit as
+        # the task result and failed with EncodeError (CONVERTICA-63) instead
+        # of recording a cancellation. A SystemExit nobody asked for (worker
+        # shutdown) still propagates.
+        if isinstance(stop_exc, SystemExit) and not is_task_cancelled(cancellation_id):
+            raise
         logger.warning(
-            f"Task {cancellation_id} exceeded soft time limit",
+            f"Task {cancellation_id} stopped: {type(stop_exc).__name__}",
             extra={"conversion_type": conversion_type},
         )
 

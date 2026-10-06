@@ -348,3 +348,51 @@ class UprightMpoTests(TestCase):
         upright_image_file(path)
         with Image.open(path) as out:
             self.assertEqual((out.format, out.size), ("JPEG", (400, 800)))
+
+
+class CancelSigtermTests(TestCase):
+    """Cancel = revoke(terminate=True, SIGTERM) = SystemExit in the child.
+
+    It reached Celery's result store and failed with EncodeError
+    (CONVERTICA-63) instead of being recorded as a cancellation."""
+
+    def _run(self, cancelled: bool):
+        import tempfile
+        from unittest import mock
+
+        from src.tasks.pdf_conversion import generic_conversion_task
+
+        tmp = tempfile.mkdtemp()
+        path = os.path.join(tmp, "a.docx")
+        with open(path, "wb") as f:
+            f.write(b"PK\x03\x04x")
+        flag = {"cancelled": False}
+
+        def sigterm_mid_conversion(*args, **kwargs):
+            flag["cancelled"] = cancelled  # the cancel view sets it, then revokes
+            raise SystemExit(1)
+
+        with (
+            mock.patch(
+                "src.api.optimization_manager.optimization_manager.convert_word_to_pdf",
+                side_effect=sigterm_mid_conversion,
+            ) as convert,
+            mock.patch(
+                "src.tasks.pdf_conversion.is_task_cancelled",
+                side_effect=lambda *a: flag["cancelled"],
+            ),
+        ):
+            result = generic_conversion_task.apply(
+                args=("c-" + os.path.basename(tmp), path, "a.docx", "word_to_pdf")
+            )
+        self.assertEqual(convert.call_count, 1)
+        return result
+
+    def test_cancelled_task_ends_as_cancellation(self):
+        result = self._run(cancelled=True)
+        self.assertNotIsInstance(result.result, SystemExit)
+        self.assertEqual(result.state, "IGNORED")
+
+    def test_unrequested_system_exit_still_propagates(self):
+        with self.assertRaises(SystemExit):
+            self._run(cancelled=False).get()
