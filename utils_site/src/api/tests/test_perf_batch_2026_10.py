@@ -1311,3 +1311,16 @@ class OcrFailureReachesTheUserTests(TestCase):
                     upload, ocr_enabled=True, ocr_language="en"
                 )
             )
+
+
+class DamagedBatchTests(TestCase):
+    setUp = PremiumBatchEndpointsTests.setUp
+
+    def test_a_batch_of_damaged_files_is_a_400_without_paths(self):
+        junk = [
+            SimpleUploadedFile(f"{n}.pdf", b"%PDF-1.4 junk" * 10, "application/pdf")
+            for n in "ab"
+        ]
+        response = self.client.post("/api/pdf-to-html/batch/", {"pdf_files": junk})
+        self.assertEqual(response.status_code, 400, response.content[:300])
+        self.assertNotIn(b"/tmp", response.content)
