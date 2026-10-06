@@ -78,7 +78,12 @@ def run_image_ocr(
     except pytesseract.TesseractError as e:
         # A bare TesseractError reached the view as an anonymous 500
         # ("view bypassed BaseConversionAPIView catch", CONVERTICA-62).
-        raise ConversionError(f"Text recognition failed: {e.message or e}") from e
+        # tesseract's stderr names system paths and env vars: log it, show
+        # the user a plain sentence.
+        logger.error("tesseract failed: %s", e)
+        raise ConversionError(
+            "Text recognition failed for this image. Please try again later."
+        ) from e
     finally:
         rgb.close()  # release the converted-image buffer (mirrors convert_heic)
 

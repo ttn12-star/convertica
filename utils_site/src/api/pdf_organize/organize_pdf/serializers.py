@@ -31,7 +31,9 @@ class OrganizePDFSerializer(serializers.Serializer):
                 raise serializers.ValidationError("page_order must be a JSON array.")
             if not order:
                 raise serializers.ValidationError("page_order cannot be empty.")
-            if not all(isinstance(x, int) and x >= 0 for x in order):
+            if not all(
+                isinstance(x, int) and not isinstance(x, bool) and x >= 0 for x in order
+            ):
                 raise serializers.ValidationError(
                     "page_order must contain non-negative integers."
                 )

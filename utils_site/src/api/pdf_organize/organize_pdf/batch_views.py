@@ -33,7 +33,9 @@ class OrganizePDFBatchAPIView(BaseBatchAPIView):
         if order is not None and not (
             isinstance(order, list)
             and order
-            and all(isinstance(i, int) and i >= 0 for i in order)
+            and all(
+                isinstance(i, int) and not isinstance(i, bool) and i >= 0 for i in order
+            )
         ):
             return False, "page_order must be a JSON array of page indices."
         return True, None
