@@ -8,6 +8,7 @@ import shutil
 import signal
 import subprocess
 import tempfile
+import time
 import uuid
 from collections.abc import Callable
 
@@ -68,15 +69,33 @@ def _run_libreoffice(
         stderr=subprocess.PIPE,
         start_new_session=True,
     )
-    try:
-        stdout, stderr = proc.communicate(timeout=timeout)
-    except subprocess.TimeoutExpired:
+    from src.api.cooperative_stop import Stopped, check
+
+    # Wait in short slices: a task that gave up (time limit, cancel) left
+    # soffice converting at full CPU for its whole run otherwise.
+    deadline = time.monotonic() + timeout
+    while True:
         try:
-            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
-        except (ProcessLookupError, PermissionError):
-            proc.kill()
-        proc.communicate()  # reap the (now-killed) process group
-        raise
+            stdout, stderr = proc.communicate(
+                timeout=max(min(1.0, deadline - time.monotonic()), 0.01)
+            )
+            break
+        except subprocess.TimeoutExpired as expired:
+            stop = None
+            try:
+                check()
+            except Stopped as abandoned:
+                stop = abandoned
+            if stop is None and time.monotonic() < deadline:
+                continue
+            try:
+                os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+            except (ProcessLookupError, PermissionError):
+                proc.kill()
+            proc.communicate()  # reap the (now-killed) process group
+            if stop is not None:
+                raise stop
+            raise subprocess.TimeoutExpired(cmd, timeout) from expired
     if proc.returncode != 0:
         raise subprocess.CalledProcessError(
             proc.returncode, cmd, output=stdout, stderr=stderr
