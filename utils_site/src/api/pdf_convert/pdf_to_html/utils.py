@@ -5,6 +5,7 @@ Converts PDF documents to HTML format with text extraction and optional image em
 """
 
 import base64
+import html
 import os
 import tempfile
 from pathlib import Path
@@ -142,7 +143,9 @@ def convert_pdf_to_html(
                     paragraphs = text.split("\n\n")
                     for para in paragraphs:
                         if para.strip():
-                            html_content += f"<p>{para.strip()}</p>\n"
+                            # PDF text is data: an unescaped "<" broke the
+                            # markup and a "<script>" in the PDF ran on open.
+                            html_content += f"<p>{html.escape(para.strip())}</p>\n"
             except Exception as e:
                 logger.warning(
                     f"Failed to extract text from page {page_num + 1}: {e}",
