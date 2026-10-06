@@ -1359,3 +1359,31 @@ class DamagedInputMoreToolsTests(TestCase):
         self.assertEqual(
             response.status_code, 400, getattr(response, "content", b"")[:200]
         )
+
+
+class AbandonedLibreOfficeIsKilledTests(TestCase):
+    def test_soffice_is_killed_when_its_task_gives_up(self):
+        # The thread waited in communicate(timeout=180) while soffice kept
+        # converting at full CPU after the task was cancelled.
+        import threading
+        import time
+
+        from src.api.cooperative_stop import Stopped, request_stop
+        from src.api.pdf_convert.word_to_pdf_optimized import _run_libreoffice
+
+        outcome = {}
+
+        def run():
+            try:
+                _run_libreoffice(["sleep", "30"], dict(os.environ), 60)
+            except Stopped:
+                outcome["stopped"] = time.monotonic()
+
+        worker = threading.Thread(target=run)
+        worker.start()
+        time.sleep(0.3)
+        asked = time.monotonic()
+        request_stop([worker])
+        worker.join(5)
+        self.assertIn("stopped", outcome)
+        self.assertLess(outcome["stopped"] - asked, 2.5)

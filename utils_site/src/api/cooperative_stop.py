@@ -49,4 +49,5 @@ def install_pdf2docx_hook() -> None:
 
     RawPage.restore = checked(RawPage.restore)  # layout extraction, per page
     Page.parse = checked(Page.parse)  # docx structure, per page
+    Page.make_docx = checked(Page.make_docx)  # writing, per page
     _pdf2docx_hooked = True
