@@ -14,6 +14,7 @@ from src.exceptions import (
     StorageError,
 )
 
+from ...cooperative_stop import check as check_stop
 from ...logging_utils import get_logger
 from ...pdf_processing import BasePDFProcessor
 
@@ -197,6 +198,7 @@ def compress_pdf(
                 # Check cancellation at the start of each page
                 if callable(check_cancelled):
                     check_cancelled()
+                check_stop()  # abandoned by its task (time limit, cancel)
                 for img in page.get_images(full=True):
                     xref = img[0]
                     if xref in seen:

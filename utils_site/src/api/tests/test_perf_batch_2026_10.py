@@ -1206,3 +1206,54 @@ class SoftLimitReachesHandlerTests(TestCase):
             signal.setitimer(signal.ITIMER_REAL, 0)
             signal.signal(signal.SIGALRM, previous)
         self.assertLess(time.monotonic() - started, 2)
+
+
+class AbandonedThreadStopsTests(TestCase):
+    def test_pdf2docx_left_behind_by_a_time_limit_stops_at_its_next_page(self):
+        # The hard limit is per task: once the task ended at the soft limit,
+        # pdf2docx ran on in its thread for minutes, slowing every next task
+        # in that worker child 10-30x.
+        import asyncio
+        import signal
+        import tempfile
+        import threading
+        import time
+
+        import src.api.pdf_convert.pdf_to_word_optimized  # noqa: F401 (installs the hook)
+        from pdf2docx import Converter
+        from src.tasks.pdf_conversion import _run_coro
+
+        folder = tempfile.mkdtemp()
+        pdf = os.path.join(folder, "big.pdf")
+        with open(pdf, "wb") as f:
+            f.write(_text_pdf(pages=80))
+        done = threading.Event()
+
+        def convert():
+            try:
+                cv = Converter(pdf)
+                cv.convert(os.path.join(folder, "out.docx"))
+                cv.close()
+            finally:
+                done.set()
+
+        async def task():
+            await asyncio.get_running_loop().run_in_executor(None, convert)
+
+        class SoftLimit(Exception):
+            pass
+
+        def raise_soft_limit(*_):
+            raise SoftLimit
+
+        previous = signal.signal(signal.SIGALRM, raise_soft_limit)
+        try:
+            signal.setitimer(signal.ITIMER_REAL, 0.5)
+            with self.assertRaises(SoftLimit):
+                _run_coro(task())
+        finally:
+            signal.setitimer(signal.ITIMER_REAL, 0)
+            signal.signal(signal.SIGALRM, previous)
+        stopped_at = time.monotonic()
+        self.assertTrue(done.wait(3), "the abandoned thread kept converting")
+        self.assertLess(time.monotonic() - stopped_at, 3)

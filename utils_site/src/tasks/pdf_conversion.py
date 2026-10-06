@@ -136,12 +136,24 @@ def _run_coro(coro):
     asyncio.run() still joined that thread (up to 300 s) before the exception
     reached our handlers, so a stuck conversion ran into the hard limit and a
     SIGKILL instead of ending as a recorded timeout. Cancel the coroutine and
-    close the loop without waiting; the hard limit still ends a stuck thread.
+    close the loop without waiting. The hard limit does NOT end the abandoned
+    thread (the task is already over), so it is told to stop cooperatively
+    (api/cooperative_stop) and unwinds at its next page.
     """
     loop = asyncio.new_event_loop()
+    finished = False
     try:
-        return loop.run_until_complete(coro)
+        result = loop.run_until_complete(coro)
+        finished = True
+        return result
     finally:
+        if not finished:
+            # The task is giving up (time limit, cancel): tell the converter
+            # threads to stop at their next page instead of running on.
+            from src.api.cooperative_stop import request_stop
+
+            executor = getattr(loop, "_default_executor", None)
+            request_stop(list(getattr(executor, "_threads", ())))
         try:
             pending = asyncio.all_tasks(loop)
             for task in pending:
