@@ -39,3 +39,18 @@ class SessionLifetimeTests(TestCase):
 
         refreshed = Session.objects.get(pk=session.pk)
         self.assertGreater(refreshed.expire_date, stale)
+
+    def test_session_is_written_once_a_day_not_on_every_request(self):
+        # SESSION_SAVE_EVERY_REQUEST wrote django_session on every poll of a
+        # logged-in user; the window now moves in one-day steps.
+        from django.db import connection
+        from django.test.utils import CaptureQueriesContext
+
+        self.assertTrue(self.client.login(email="sess@t.test", password=PASSWORD))
+        self.client.get("/")  # first request of the day re-stamps
+        with CaptureQueriesContext(connection) as queries:
+            self.client.get("/")
+        writes = [
+            q for q in queries if "django_session" in q["sql"] and "UPDATE" in q["sql"]
+        ]
+        self.assertEqual(writes, [])
