@@ -7,6 +7,7 @@ to prevent blocking the main request/response cycle and Cloudflare timeouts.
 Tasks report progress via self.update_state() for real-time progress bars.
 """
 
+import asyncio
 import hashlib
 import inspect
 import json
@@ -125,6 +126,33 @@ def _is_user_input_error(exc: BaseException) -> bool:
         return True
     msg = str(exc).lower()
     return any(token in msg for token in _USER_ERROR_TOKENS)
+
+
+def _run_coro(coro):
+    """asyncio.run() that does not wait for executor threads on the way out.
+
+    Converters run blocking work (pdf2docx, LibreOffice) in the default
+    executor. When the soft time limit or a cancel raises in the main thread,
+    asyncio.run() still joined that thread (up to 300 s) before the exception
+    reached our handlers, so a stuck conversion ran into the hard limit and a
+    SIGKILL instead of ending as a recorded timeout. Cancel the coroutine and
+    close the loop without waiting; the hard limit still ends a stuck thread.
+    """
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(coro)
+    finally:
+        try:
+            pending = asyncio.all_tasks(loop)
+            for task in pending:
+                task.cancel()
+            if pending:
+                loop.run_until_complete(
+                    asyncio.gather(*pending, return_exceptions=True)
+                )
+            loop.run_until_complete(loop.shutdown_asyncgens())
+        finally:
+            loop.close()  # executor.shutdown(wait=False)
 
 
 def _rearm_sigterm() -> None:
@@ -648,7 +676,6 @@ def generic_conversion_task(
         # Call converter function
         if conversion_type == "pdf_to_word":
             # Handle async function for pdf_to_word
-            import asyncio
 
             # Generate output filename first
             output_filename = (
@@ -669,7 +696,7 @@ def generic_conversion_task(
                 )
             )
 
-            _, _ = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
+            _, _ = _run_coro(converter_func(uploaded_file, **filtered_kwargs))
 
             # File should already be copied by converter
             if os.path.exists(final_output_path):
@@ -678,11 +705,10 @@ def generic_conversion_task(
                 raise FileNotFoundError(f"Output file not found: {final_output_path}")
         elif conversion_type == "word_to_pdf":
             # Handle async function for word_to_pdf
-            import asyncio
 
             if inspect.iscoroutinefunction(converter_func):
                 # Handle async function
-                result = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
+                result = _run_coro(converter_func(uploaded_file, **filtered_kwargs))
                 if isinstance(result, tuple) and len(result) == 2:
                     # For word_to_pdf, result is (docx_path, pdf_path) - we want pdf_path
                     _, output_path = result
@@ -698,11 +724,10 @@ def generic_conversion_task(
                     output_path = result
         else:
             # Handle other converters (check if async)
-            import asyncio
 
             if inspect.iscoroutinefunction(converter_func):
                 # Handle async function
-                result = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
+                result = _run_coro(converter_func(uploaded_file, **filtered_kwargs))
                 if isinstance(result, tuple) and len(result) == 2:
                     _, output_path = result
                 else:

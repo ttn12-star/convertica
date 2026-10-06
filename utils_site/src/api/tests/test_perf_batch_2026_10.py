@@ -1174,3 +1174,35 @@ class OcrFailureIsVisibleTests(TestCase):
                 SimpleUploadedFile("s.pdf", _text_pdf(pages=2), "application/pdf"),
                 dpi=50,
             )
+
+
+class SoftLimitReachesHandlerTests(TestCase):
+    def test_time_limit_is_not_held_up_by_a_busy_converter_thread(self):
+        # asyncio.run() joined the converter's thread before the soft-limit
+        # exception reached the task's handler: a stuck pdf2docx ran on into
+        # the hard limit and a SIGKILL instead of a recorded timeout.
+        import asyncio
+        import signal
+        import time
+
+        from src.tasks.pdf_conversion import _run_coro
+
+        class SoftLimit(Exception):
+            pass
+
+        def raise_soft_limit(*_):
+            raise SoftLimit
+
+        async def stuck_converter():
+            await asyncio.get_running_loop().run_in_executor(None, time.sleep, 4)
+
+        previous = signal.signal(signal.SIGALRM, raise_soft_limit)
+        started = time.monotonic()
+        try:
+            signal.setitimer(signal.ITIMER_REAL, 0.3)
+            with self.assertRaises(SoftLimit):
+                _run_coro(stuck_converter())
+        finally:
+            signal.setitimer(signal.ITIMER_REAL, 0)
+            signal.signal(signal.SIGALRM, previous)
+        self.assertLess(time.monotonic() - started, 2)
