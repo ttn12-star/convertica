@@ -1102,3 +1102,26 @@ class DamagedPdfIs400Tests(TestCase):
             self.assertIn(response.status_code, (200, 400), path)
             if path == "/api/pdf-to-html/":
                 self.assertEqual(response.status_code, 400, response.content[:200])
+
+
+class OrganizeBatchTests(TestCase):
+    setUp = PremiumBatchEndpointsTests.setUp
+    _zip = PremiumBatchEndpointsTests._zip
+
+    def test_reorder_batch_works_and_a_wrong_order_is_a_400(self):
+        def files():
+            return [SimpleUploadedFile(f"{n}.pdf", _text_pdf(pages=3)) for n in "ab"]
+
+        archive = self._zip(
+            self.client.post(
+                "/api/pdf-organize/organize/batch/",
+                {"pdf_files": files(), "page_order": "[2, 0, 1]"},
+            )
+        )
+        with fitz.open(stream=archive.read(archive.namelist()[0]), filetype="pdf") as d:
+            self.assertTrue(d[0].get_text().startswith("Line 2-0"))
+        bad = self.client.post(
+            "/api/pdf-organize/organize/batch/",
+            {"pdf_files": files(), "page_order": "[0, 1]"},
+        )
+        self.assertEqual(bad.status_code, 400)
