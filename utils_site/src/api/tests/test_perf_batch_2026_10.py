@@ -642,10 +642,10 @@ class ExcelPrintFitKeepsContentTests(TestCase):
                 drawings = b"".join(
                     z.read(n) for n in z.namelist() if n.startswith("xl/drawings/")
                 )
+            # Every book gets fit-to-width now, and nothing else changes.
+            self.assertIn(b"fitToPage", sheet)
             if rich:
                 self.assertIn(b"Shape text", drawings)
-            else:
-                self.assertIn(b"fitToPage", sheet)
 
 
 class ChunkedUploadTests(TestCase):
