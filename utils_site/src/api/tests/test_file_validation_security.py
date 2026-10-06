@@ -31,7 +31,12 @@ def _tmp(data: bytes, suffix: str) -> str:
 def _valid_docx_bytes() -> bytes:
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w") as z:
-        z.writestr("[Content_Types].xml", "<Types/>")
+        z.writestr(
+            "[Content_Types].xml",
+            '<Types><Override PartName="/word/document.xml" ContentType="application/'
+            'vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
+            "</Types>",
+        )
         z.writestr("word/document.xml", "<document/>")
     return buf.getvalue()
 
