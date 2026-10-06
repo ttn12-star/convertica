@@ -38,6 +38,10 @@ class InvalidPDFError(ConversionError):
     """Raised when PDF structure is invalid or cannot be parsed."""
 
 
+class OCRFailedError(ConversionError):
+    """OCR was requested and failed on every page: report it, don't degrade."""
+
+
 class StorageError(ConversionError):
     """Raised when file system / storage operations fail."""
 
