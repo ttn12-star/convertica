@@ -427,3 +427,25 @@ class PdfToPptTests(TestCase):
 
         with self.assertRaises(InvalidPDFError):
             convert_pdf_to_ppt(SimpleUploadedFile("t.pdf", b"%PDF-1.4 junk"))
+
+
+class PdfToHtmlMemoryTests(TestCase):
+    def test_page_images_render_one_at_a_time(self):
+        # 60 pages: 1.24 GB peak with pdf2image, 141 MB page by page.
+        import tracemalloc
+
+        from src.api.pdf_convert.pdf_to_html.utils import convert_pdf_to_html
+
+        doc = fitz.open()
+        for i in range(30):
+            doc.new_page().insert_text((50, 80), f"Page {i}")
+        upload = SimpleUploadedFile("t.pdf", doc.tobytes(), "application/pdf")
+        tracemalloc.start()
+        try:
+            _, out = convert_pdf_to_html(upload)
+            peak = tracemalloc.get_traced_memory()[1]
+        finally:
+            tracemalloc.stop()
+        with open(out, encoding="utf-8") as f:
+            self.assertEqual(f.read().count("<img"), 30)
+        self.assertLess(peak, 150 * 1024 * 1024)

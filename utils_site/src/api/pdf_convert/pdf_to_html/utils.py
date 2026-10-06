@@ -10,9 +10,9 @@ import os
 import tempfile
 from pathlib import Path
 
+import fitz
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
-from pdf2image import convert_from_path
 from pypdf import PdfReader
 from src.api.file_validation import (
     check_disk_space,
@@ -162,24 +162,20 @@ def convert_pdf_to_html(
         if extract_images:
             logger.info("Converting pages to images", extra=context)
             try:
-                images = convert_from_path(input_path, dpi=150)
-
                 html_content += '<div class="page">\n'
                 html_content += "<h2>PDF Pages as Images</h2>\n"
 
-                for idx, image in enumerate(images):
-                    # Save image temporarily
-                    img_path = os.path.join(tmp_dir, f"page_{idx + 1}.png")
-                    image.save(img_path, "PNG")
-
-                    # Read and encode image as base64
-                    with open(img_path, "rb") as img_file:
-                        img_data = base64.b64encode(img_file.read()).decode()
-
-                    html_content += f'<img src="data:image/png;base64,{img_data}" alt="Page {idx + 1}" />\n'
-
-                    # Clean up temp image
-                    os.remove(img_path)
+                # One page at a time: pdf2image rendered the whole document
+                # into RAM first (~4 GB for 200 pages, in a web worker).
+                with fitz.open(input_path) as doc:
+                    for idx, page in enumerate(doc):
+                        dpi = int(
+                            min(150, 4000 * 72 / max(page.rect.width, page.rect.height))
+                        )
+                        pix = page.get_pixmap(dpi=dpi, alpha=False)
+                        img_data = base64.b64encode(pix.tobytes("png")).decode()
+                        del pix
+                        html_content += f'<img src="data:image/png;base64,{img_data}" alt="Page {idx + 1}" />\n'
 
                 html_content += "</div>\n"
             except Exception as e:
@@ -215,6 +211,8 @@ def convert_pdf_to_html(
 
         return input_path, output_path
 
+    except InvalidPDFError:
+        raise  # a 400 for the user's file, not a 500
     except Exception as e:
         logger.exception(
             "PDF to HTML conversion failed",
