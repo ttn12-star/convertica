@@ -827,6 +827,19 @@ def _ink(pix):
 
 
 class CropRotatedPagesTests(TestCase):
+    def test_fast_path_on_a_rotated_first_page_keeps_the_whole_page(self):
+        # The visible-size bound meant for the scaled path also hit the fast
+        # path, which works in the unrotated box: an API call without
+        # width/height cut 247 pt off a /Rotate 90 page.
+        from src.api.pdf_edit.crop_pdf.utils import crop_pdf
+
+        doc = fitz.open()
+        doc.new_page(width=595, height=842).insert_text((60, 100), "x")
+        doc[0].set_rotation(90)
+        _, out = crop_pdf(SimpleUploadedFile("r.pdf", doc.tobytes(), "application/pdf"))
+        with fitz.open(out) as result:
+            self.assertEqual(result[0].cropbox, fitz.Rect(0, 0, 595, 842))
+
     def test_selection_on_a_rotated_page_is_what_the_user_saw(self):
         # The UI sends the selection in the visible (rotated) page; the vector
         # path clipped the unrotated page and drew it sideways.
@@ -876,12 +889,15 @@ class PdfToExcelAmbiguousNumbersTests(TestCase):
         from src.api.pdf_convert.pdf_to_excel.utils import _numeric_or_text
 
         for values in (["1.200", "3.450"], ["1,234"], ["380501234567"], ["007"]):
-            out, decimals = _numeric_or_text(pd.Series(values))
+            out, number_format = _numeric_or_text(pd.Series(values))
             self.assertEqual(list(out), values)
-            self.assertIsNone(decimals)
-        out, decimals = _numeric_or_text(pd.Series(["0.50", "12.30", "1,234.56"]))
+            self.assertIsNone(number_format)
+        out, number_format = _numeric_or_text(pd.Series(["0.50", "12.30", "1,234.56"]))
         self.assertEqual(list(out), [0.5, 12.3, 1234.56])
-        self.assertEqual(decimals, 2)  # shown as 0.50, 12.30
+        self.assertEqual(number_format, "#,##0.00")  # shown as 0.50, 1,234.56
+        out, number_format = _numeric_or_text(pd.Series(["0.125", "0.5", "1"]))
+        self.assertEqual(list(out), [0.125, 0.5, 1])  # leading 0: not thousands
+        self.assertIsNone(number_format)  # mixed precision: General
 
 
 class PremiumBatchEndpointsTests(TestCase):
