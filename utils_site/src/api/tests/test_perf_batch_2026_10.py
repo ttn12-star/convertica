@@ -1078,3 +1078,27 @@ class ExcelSheetPatchTests(TestCase):
         self.assertIsNone(out.find(".//x:cfRule/x:pageSetup", ns))
         self.assertEqual(out.find("x:sheetPr/x:pageSetUpPr", ns).get("fitToPage"), "1")
         self.assertEqual(out.prefix, "x")
+
+
+class DamagedPdfIs400Tests(TestCase):
+    def test_truncated_pdf_is_the_users_problem_not_a_500(self):
+        # pypdf/MuPDF parse errors wrapped in ConversionError answered 500
+        # "Internal server error" for the user's own damaged file.
+        from django.core.cache import cache
+        from django.test import Client
+
+        cache.clear()
+        raw = _text_pdf(pages=3)
+        truncated = raw[: len(raw) // 2]
+        client = Client()
+        for path, field in (
+            ("/api/pdf-to-html/", "pdf_file"),
+            ("/api/pdf-organize/compress/", "pdf_file"),
+        ):
+            response = client.post(
+                path, {field: SimpleUploadedFile("t.pdf", truncated, "application/pdf")}
+            )
+            # 400, or 200 when MuPDF manages to repair it; never a 500.
+            self.assertIn(response.status_code, (200, 400), path)
+            if path == "/api/pdf-to-html/":
+                self.assertEqual(response.status_code, 400, response.content[:200])

@@ -55,3 +55,32 @@ class InvalidArchiveError(InvalidPDFError):
 
     Subclasses InvalidPDFError so the API base view returns HTTP 400.
     """
+
+
+# Parser errors that mean "this file is damaged", not "our code failed".
+_DAMAGED_INPUT_ERRORS = (
+    ("pypdf.errors", "PyPdfError"),
+    ("pymupdf", "FileDataError"),
+    ("pymupdf.mupdf", "FzErrorFormat"),
+    ("pymupdf.mupdf", "FzErrorArgument"),
+    ("pdfminer.pdfparser", "PDFSyntaxError"),
+    ("pdfplumber.utils.exceptions", "PdfminerException"),
+)
+
+
+def caused_by_damaged_input(error: BaseException) -> bool:
+    """Whether a converter's error is really the parser rejecting the file.
+
+    Converters wrap such errors in a ConversionError, which reads as a 500
+    ("Internal server error") for what is the user's truncated or corrupt PDF.
+    Walks the __cause__/__context__ chain; matched by class name so no parser
+    has to be importable here.
+    """
+    seen = set()
+    while error is not None and id(error) not in seen:
+        seen.add(id(error))
+        for klass in type(error).__mro__:
+            if (klass.__module__, klass.__name__) in _DAMAGED_INPUT_ERRORS:
+                return True
+        error = error.__cause__ or error.__context__
+    return False

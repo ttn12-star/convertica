@@ -113,9 +113,15 @@ def _is_user_input_error(exc: BaseException) -> bool:
     # The converters already say so by type; the token match below only
     # catches what they did not classify ("could not be opened", "not a
     # valid ZIP archive" slipped through and were retried twice).
-    from src.exceptions import EncryptedPDFError, InvalidPDFError
+    from src.exceptions import (
+        EncryptedPDFError,
+        InvalidPDFError,
+        caused_by_damaged_input,
+    )
 
     if isinstance(exc, InvalidPDFError | EncryptedPDFError):
+        return True
+    if caused_by_damaged_input(exc):
         return True
     msg = str(exc).lower()
     return any(token in msg for token in _USER_ERROR_TOKENS)

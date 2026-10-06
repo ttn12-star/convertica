@@ -31,6 +31,7 @@ from src.exceptions import (
     EncryptedPDFError,
     InvalidPDFError,
     StorageError,
+    caused_by_damaged_input,
 )
 
 from .conversion_limits import (
@@ -368,7 +369,7 @@ class BaseConversionAPIView(APIView, ABC):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        elif isinstance(error, InvalidPDFError):
+        elif isinstance(error, InvalidPDFError) or caused_by_damaged_input(error):
             log_conversion_error(
                 logger,
                 self.CONVERSION_TYPE,
