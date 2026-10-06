@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 from collections.abc import Callable
 from io import BytesIO
@@ -48,7 +49,33 @@ def _flate_image_is_safe(doc: fitz.Document, xref: int) -> bool:
             colorspace = doc.xref_object(int(colorspace.split()[0]), compressed=True)
         except Exception:
             return False
-    return "/ICCBased" in colorspace
+    # The family is the first array element: [/Separation /Spot [/ICCBased ..] f]
+    # and [/Indexed [/ICCBased ..] ..] also *contain* /ICCBased, but a 1-channel
+    # tint is not gray (it rendered inverted) and a palette is not RGB.
+    return colorspace.lstrip("[ ").startswith("/ICCBased")
+
+
+def _icc_colorspace(doc: fitz.Document, xref: int) -> str | None:
+    """The image's ColorSpace value if it is ICCBased, else None."""
+    try:
+        value = doc.xref_get_key(xref, "ColorSpace")[1] or ""
+        resolved = (
+            doc.xref_object(int(value.split()[0]), compressed=True)
+            if value.endswith(" R")
+            else value
+        )
+    except Exception:
+        return None
+    return value if resolved.lstrip("[ ").startswith("/ICCBased") else None
+
+
+def _is_pdfa1(doc: fitz.Document) -> bool:
+    """PDF/A-1 forbids object streams (PDF 1.4 base)."""
+    try:
+        xmp = doc.get_xml_metadata() or ""
+    except Exception:
+        return False
+    return bool(re.search(r"pdfaid:part\W{1,3}1\b", xmp))
 
 
 def compress_pdf(
@@ -219,6 +246,11 @@ def compress_pdf(
                             continue
                     else:
                         continue
+                    icc = _icc_colorspace(doc, xref)
+                    channels = len(im.getbands())
+                    # A Flate original is lossless: JPEG has to earn its
+                    # artifacts (screenshots with small text saved ~14%).
+                    min_saving = 0.6 if flt == "/FlateDecode" else 0.9
 
                     # Skip images that are not RGB or grayscale to prevent color space issues
                     if im.mode not in {"RGB", "L", "CMYK"}:
@@ -277,7 +309,7 @@ def compress_pdf(
                         continue
 
                     # Only replace if we save at least 10% (not just any reduction)
-                    if len(new_bytes) >= stored_size * 0.9:
+                    if len(new_bytes) >= stored_size * min_saving:
                         continue
 
                     try:
@@ -292,11 +324,14 @@ def compress_pdf(
                         doc.xref_set_key(xref, "Height", str(im.height))
                         doc.xref_set_key(xref, "Filter", "/DCTDecode")
                         doc.xref_set_key(xref, "DecodeParms", "null")
-                        doc.xref_set_key(
-                            xref,
-                            "ColorSpace",
-                            "/DeviceGray" if im.mode == "L" else "/DeviceRGB",
-                        )
+                        # Samples are still in the image's ICC space: keep the
+                        # profile, or Adobe RGB/ProPhoto shifted colour as sRGB.
+                        if not (icc and len(im.getbands()) == channels):
+                            doc.xref_set_key(
+                                xref,
+                                "ColorSpace",
+                                "/DeviceGray" if im.mode == "L" else "/DeviceRGB",
+                            )
                         doc.xref_set_key(xref, "BitsPerComponent", "8")
                     except Exception as e:
                         logger.debug(
@@ -332,7 +367,10 @@ def compress_pdf(
                             pass
 
                 _recompress_jpegs(doc, compression_level)
-                _save_with_fallback(doc, output_path, _save_kwargs(compression_level))
+                kwargs = _save_kwargs(compression_level)
+                if _is_pdfa1(doc):
+                    kwargs.pop("use_objstms", None)
+                _save_with_fallback(doc, output_path, kwargs)
             finally:
                 doc.close()
 
@@ -342,7 +380,10 @@ def compress_pdf(
                 if in_size > 0 and out_size > in_size and compression_level != "low":
                     doc2 = fitz.open(input_pdf_path)
                     try:
-                        _save_with_fallback(doc2, output_path, _save_kwargs("low"))
+                        kwargs = _save_kwargs("low")
+                        if _is_pdfa1(doc2):
+                            kwargs.pop("use_objstms", None)
+                        _save_with_fallback(doc2, output_path, kwargs)
                     finally:
                         doc2.close()
                 # Last resort: an already-optimized PDF can still grow on

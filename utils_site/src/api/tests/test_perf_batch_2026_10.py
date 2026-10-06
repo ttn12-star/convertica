@@ -716,3 +716,63 @@ class ChunkedUploadTests(TestCase):
             "/api/pdf-organize/compress/", {"pdf_file__upload_id": upload_id}
         )
         self.assertEqual(response.status_code, 400)
+
+
+class CompressColourSafetyTests(TestCase):
+    def test_spot_colour_image_is_not_inverted(self):
+        # [/Separation /Spot [/ICCBased ..] f] *contains* /ICCBased; its
+        # 1-channel tint was re-tagged DeviceGray and rendered inverted.
+        import io
+
+        import numpy as np
+        from PIL import Image
+        from src.api.pdf_organize.compress_pdf.utils import compress_pdf
+
+        rng = np.random.default_rng(1)
+        doc = fitz.open()
+        page = doc.new_page(width=300, height=400)
+        buf = io.BytesIO()
+        Image.fromarray((128 + rng.integers(-60, 60, (900, 700))).astype("uint8")).save(
+            buf, "PNG"
+        )
+        xref = page.insert_image(page.rect, stream=buf.getvalue())
+        icc = doc.get_new_xref()
+        doc.update_object(icc, "<< /N 3 /Alternate /DeviceRGB >>")
+        doc.update_stream(icc, b"\0" * 128)
+        sep = doc.get_new_xref()
+        doc.update_object(
+            sep,
+            f"[/Separation /Spot [/ICCBased {icc} 0 R] "
+            "<< /FunctionType 2 /Domain [0 1] /C0 [1 1 1] /C1 [0.8 0.1 0.1] /N 1 >>]",
+        )
+        doc.xref_set_key(xref, "ColorSpace", f"{sep} 0 R")
+        raw = doc.tobytes(garbage=3, deflate=True)
+        _, out = compress_pdf(
+            SimpleUploadedFile("s.pdf", raw, "application/pdf"),
+            compression_level="high",
+        )
+        with fitz.open(stream=raw, filetype="pdf") as a, fitz.open(out) as b:
+            pa, pb = (
+                np.frombuffer(d[0].get_pixmap(dpi=36).samples, "uint8").astype(int)
+                for d in (a, b)
+            )
+        self.assertLess(np.abs(pa - pb).mean(), 3)
+
+    def test_pdfa1_gets_no_object_streams(self):
+        # PDF/A-1 forbids object streams; use_objstms broke conformance.
+        from src.api.pdf_organize.compress_pdf.utils import compress_pdf
+
+        doc = fitz.open(stream=_text_pdf(pages=5), filetype="pdf")
+        doc.set_xml_metadata(
+            '<x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF '
+            'xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">'
+            '<rdf:Description xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/" '
+            'pdfaid:part="1" pdfaid:conformance="B"/></rdf:RDF></x:xmpmeta>'
+        )
+        raw = doc.tobytes()
+        _, out = compress_pdf(
+            SimpleUploadedFile("a.pdf", raw, "application/pdf"),
+            compression_level="medium",
+        )
+        with open(out, "rb") as f:
+            self.assertNotIn(b"/ObjStm", f.read())
