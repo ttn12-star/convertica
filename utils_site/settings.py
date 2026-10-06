@@ -427,6 +427,7 @@ MIDDLEWARE = [
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
     "src.api.middleware.CSPNonceMiddleware",  # Generate CSP nonce for each request
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
+    "src.users.middleware.SlidingSessionMiddleware",  # 30-day sliding expiry, one write a day
     "src.frontend.middleware.CaptchaRequirementMiddleware",  # Track failed attempts for CAPTCHA
     "django.middleware.locale.LocaleMiddleware",  # ✅ ТОЛЬКО ОДИН РАЗ! Должна быть ДО CommonMiddleware
     "django.middleware.common.CommonMiddleware",
@@ -1257,10 +1258,10 @@ except ImportError:
 # anonymous visitor without noticing they'd lost their paid limits.
 SESSION_COOKIE_AGE = config("SESSION_COOKIE_AGE", default=30 * 86400, cast=int)
 SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access
-# Re-stamp the expiry on each request, so the 30 days count from last use, not
-# from login. Only sessions that exist are written, so anonymous traffic (which
-# never creates one) is unaffected.
-SESSION_SAVE_EVERY_REQUEST = True
+# The 30 days count from last use, not from login: SlidingSessionMiddleware
+# re-stamps the expiry once a day (saving on every request wrote the DB on
+# each poll and let concurrent requests overwrite each other's session).
+SESSION_SAVE_EVERY_REQUEST = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keep session after browser close
 
 # Celery Configuration

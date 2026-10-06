@@ -1,6 +1,7 @@
 """Middleware for users app: runtime settings + SMTP-failure 503 mapping."""
 
 import logging
+import time
 
 from django.http import HttpResponse
 from django.template import TemplateDoesNotExist
@@ -54,3 +55,30 @@ class EmailDeliveryErrorMiddleware:
         except TemplateDoesNotExist:
             html = f"<h1>503 Service Unavailable</h1><p>{exception}</p>"
         return HttpResponse(html, status=503, content_type="text/html")
+
+
+class SlidingSessionMiddleware:
+    """Keep the 30-day session sliding, writing it at most once a day.
+
+    SESSION_SAVE_EVERY_REQUEST did the sliding by saving the session on every
+    request of a logged-in user: an UPDATE per status poll and page view, and
+    concurrent requests (a poll plus an action) overwrote each other's session
+    data. Touching a timestamp once a day marks the session modified, so
+    Django saves it with a fresh expiry; the window moves in one-day steps.
+    Must sit inside SessionMiddleware, which saves on the way out.
+    """
+
+    REFRESH_SECONDS = 86400
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        session = getattr(request, "session", None)
+        # No cookie -> no key -> nothing loaded or written (anonymous traffic).
+        if session is not None and session.session_key and not session.is_empty():
+            now = int(time.time())
+            if now - session.get("_slid_at", 0) > self.REFRESH_SECONDS:
+                session["_slid_at"] = now
+        return response
