@@ -696,6 +696,24 @@ class ChunkedUploadTests(TestCase):
             self.assertEqual(a[9].get_text(), b[9].get_text())
         self.assertFalse(os.path.exists(_upload_dir(upload_id)))  # single use
 
+    def test_one_account_holds_at_most_three_uploads(self):
+        # Unfinished uploads filled the shared disk with no per-user bound.
+        import glob
+
+        from src.api.chunked_upload import ASYNC_TEMP_DIR, MAX_UPLOADS_PER_USER
+
+        for _ in range(MAX_UPLOADS_PER_USER + 2):
+            self.client.post(
+                "/api/uploads/chunk/",
+                {
+                    "chunk": SimpleUploadedFile("b", b"x" * 10),
+                    "index": 0,
+                    "total_size": 100,
+                },
+            )
+        mine = glob.glob(f"{ASYNC_TEMP_DIR}/upload_*")
+        self.assertLessEqual(len(mine), MAX_UPLOADS_PER_USER)
+
     def test_free_users_and_other_owners_are_refused(self):
         from django.contrib.auth import get_user_model
         from django.test import Client
