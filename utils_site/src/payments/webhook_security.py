@@ -5,6 +5,10 @@ import hashlib
 import hmac
 import time
 
+from src.api.logging_utils import get_logger
+
+logger = get_logger(__name__)
+
 # Paddle signatures older than this are rejected: a valid signature stays valid
 # forever otherwise, so a captured delivery could be replayed at any point.
 # Paddle retries for days, but each retry is re-signed with a fresh timestamp.
@@ -90,22 +94,33 @@ def verify_paddle_signature(
 POLAR_MAX_SIGNATURE_AGE = 5 * 60
 
 
-def _polar_key(secret: str) -> bytes:
-    """Derive the HMAC key from a Polar webhook secret: it is the raw bytes.
+def _polar_keys(secret: str) -> list[bytes]:
+    """HMAC keys a Polar webhook secret can sign with, legacy first.
 
-    Standard Webhooks on its own treats the secret as base64 and decodes it,
-    but Polar base64-ENCODES the secret before handing it to that library:
+    Legacy signing (endpoints created before 8 September 2026, ours): the key
+    is the secret's raw UTF-8 bytes. Polar base64-ENCODES the secret before
+    handing it to Standard Webhooks, which decodes it back:
 
         const base64Secret = Buffer.from(secret, "utf-8").toString("base64");
         const webhook = new Webhook(base64Secret);
             -- polarsource/polar-js, src/webhooks.ts
 
-    The two transforms cancel, so the key is simply the secret's UTF-8 bytes,
-    and there is no `whsec_` prefix to strip. Decoding the secret as base64
-    here instead produced a different key and rejected every real delivery
-    with a 400 -- verified against live production deliveries on 2026-08-28.
+    Decoding the secret as base64 instead rejected every real delivery with a
+    400 (verified against live deliveries on 2026-08-28).
+
+    Standard Webhooks (endpoints created, or secrets reset, from 8 September
+    2026): the key is the base64 payload after the `whsec_` prefix. Resetting
+    the secret in the dashboard switches the endpoint to it, so try both, as
+    Polar's own SDKs do; otherwise one reset silently 400s every payment.
     """
-    return secret.encode("utf-8")
+    keys = [secret.encode("utf-8")]
+    try:
+        standard = base64.b64decode(secret.removeprefix("whsec_"), validate=True)
+    except Exception:
+        standard = b""
+    if standard and standard not in keys:
+        keys.append(standard)
+    return keys
 
 
 def verify_polar_signature(
@@ -133,26 +148,24 @@ def verify_polar_signature(
     msg_ts = headers.get("webhook-timestamp") or ""
     msg_sig = headers.get("webhook-signature") or ""
     if not msg_id or not msg_ts or not msg_sig:
-        return False
+        return _polar_reject("missing webhook-id/timestamp/signature header", msg_id)
 
     try:
         ts_float = float(msg_ts)
     except (TypeError, ValueError):
-        return False
+        return _polar_reject("non-numeric webhook-timestamp", msg_id)
 
     current = time.time() if now is None else now
     age = current - ts_float
     if age > max_age or age < -max_age:
-        return False
+        return _polar_reject(
+            f"timestamp outside the replay window ({age:.0f}s)", msg_id
+        )
 
-    try:
-        key = _polar_key(secret)
-        if not key:
-            return False
-        to_sign = f"{msg_id}.{msg_ts}.".encode() + body
-        expected = hmac.new(key, to_sign, hashlib.sha256).digest()
-    except Exception:
-        return False
+    to_sign = f"{msg_id}.{msg_ts}.".encode() + body
+    expected = [
+        hmac.new(key, to_sign, hashlib.sha256).digest() for key in _polar_keys(secret)
+    ]
 
     for entry in msg_sig.split(" "):
         version, _, candidate = entry.partition(",")
@@ -162,6 +175,20 @@ def verify_polar_signature(
             given = base64.b64decode(candidate)
         except Exception:
             continue
-        if hmac.compare_digest(expected, given):
+        if any(hmac.compare_digest(e, given) for e in expected):
             return True
+    # Usually a different secret: another Polar account (the sandbox) pointed at
+    # this URL, or the dashboard secret was reset without updating .env.
+    return _polar_reject("signature matches neither secret scheme", msg_id)
+
+
+def _polar_reject(reason: str, msg_id: str) -> bool:
+    logger.warning(
+        f"Polar webhook rejected: {reason}",
+        extra={
+            "event": "polar_signature_rejected",
+            "reason": reason,
+            "webhook_id": msg_id,
+        },
+    )
     return False

@@ -487,3 +487,29 @@ class PricingPageProviderScriptTests(TestCase):
     @override_settings(PAYMENT_PROVIDER="lemonsqueezy", PAYMENTS_ENABLED=True)
     def test_lemonsqueezy_still_loads_lemon_js(self):
         self.assertIn("lemonsqueezy.com/js/lemon.js", self._html())
+
+
+class PolarStandardWebhooksSchemeTests(TestCase):
+    def test_reset_secret_in_standard_scheme_still_verifies(self):
+        # Resetting the secret in Polar's dashboard (from 8 Sep 2026) moves the
+        # endpoint to Standard Webhooks: key = base64 payload after "whsec_".
+        # Only the legacy raw-bytes key was accepted, so a reset would have 400'd
+        # every payment webhook.
+        raw_key = b"k" * 32
+        secret = "whsec_" + base64.b64encode(raw_key).decode()
+        body = b'{"type":"order.paid"}'
+        msg_id, ts = "msg_1", str(int(time.time()))
+        sig = base64.b64encode(
+            hmac.new(
+                raw_key, f"{msg_id}.{ts}.".encode() + body, hashlib.sha256
+            ).digest()
+        ).decode()
+        headers = {
+            "webhook-id": msg_id,
+            "webhook-timestamp": ts,
+            "webhook-signature": f"v1,{sig}",
+        }
+        self.assertTrue(verify_polar_signature(body, headers, secret))
+        with self.assertLogs("src.payments.webhook_security", "WARNING") as logs:
+            self.assertFalse(verify_polar_signature(body, headers, "whsec_" + "A" * 44))
+        self.assertIn("neither secret scheme", logs.output[0])
