@@ -521,3 +521,44 @@ class CompressScannedPdfTests(TestCase):
             self.assertEqual(
                 a[0].get_pixmap(dpi=36).samples, b[0].get_pixmap(dpi=36).samples
             )
+
+
+def _ruled_table(page, top, rows):
+    col_w, row_h, left = 120, 20, 50
+    for r, row in enumerate(rows):
+        for c, value in enumerate(row):
+            rect = fitz.Rect(
+                left + c * col_w,
+                top + r * row_h,
+                left + (c + 1) * col_w,
+                top + (r + 1) * row_h,
+            )
+            page.draw_rect(rect, color=(0, 0, 0), width=0.8)
+            page.insert_text((rect.x0 + 4, rect.y1 - 6), value, fontsize=9)
+
+
+class PdfToExcelTablesTests(TestCase):
+    def test_two_tables_on_a_page_both_survive_with_real_numbers(self):
+        import openpyxl
+        from src.api.pdf_convert.pdf_to_excel.utils import convert_pdf_to_excel
+
+        doc = fitz.open()
+        page = doc.new_page()
+        _ruled_table(
+            page,
+            60,
+            [["Code", "Qty", "Price"], ["007", "3", "1,250.50"], ["012", "10", "99"]],
+        )
+        _ruled_table(
+            page, 300, [["City", "People"], ["Oslo", "709000"], ["Bergen", "291000"]]
+        )
+        upload = SimpleUploadedFile("t.pdf", doc.tobytes(), "application/pdf")
+        _, out = convert_pdf_to_excel(upload)
+
+        wb = openpyxl.load_workbook(out)
+        cells = {c.value for ws in wb for row in ws.iter_rows() for c in row}
+        # Both tables made it (the second used to overwrite the first's sheet).
+        self.assertTrue({"Code", "City", "Oslo", "Bergen"} <= cells, cells)
+        # Real numbers where unambiguous; codes with leading zeros stay text.
+        self.assertTrue({3, 10, 1250.5, 99, 709000, 291000} <= cells, cells)
+        self.assertTrue({"007", "012"} <= cells, cells)

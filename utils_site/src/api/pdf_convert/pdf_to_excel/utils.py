@@ -55,6 +55,33 @@ def _is_real_table(table: list[list[str | None]]) -> bool:
     return max_cols >= 2 and non_empty_cells >= 4
 
 
+# Unambiguous numbers only: "1234", "-12.5", "1,234,567.89". Leading zeros
+# (IDs, codes), more than 15 digits (float precision) and "1,5" / "1 234,5"
+# (locale-dependent) stay text rather than becoming a wrong number.
+_PLAIN_NUMBER = re.compile(r"-?(0|[1-9]\d{0,14})(\.\d+)?")
+_THOUSANDS_NUMBER = re.compile(r"-?[1-9]\d{0,2}(,\d{3}){1,4}(\.\d+)?")
+
+
+def _numeric_or_text(column):
+    """The column as numbers if every non-empty cell is one, else unchanged.
+
+    pdfplumber returns every cell as text, so Excel showed "number stored as
+    text" and SUM() ignored the column.
+    """
+    values = [str(v).strip() for v in column if v is not None and str(v).strip()]
+    if not values or not all(
+        _PLAIN_NUMBER.fullmatch(v) or _THOUSANDS_NUMBER.fullmatch(v) for v in values
+    ):
+        return column
+    return column.map(
+        lambda v: (
+            float(str(v).strip().replace(",", ""))
+            if v is not None and str(v).strip()
+            else None
+        )
+    ).map(lambda f: int(f) if f is not None and f.is_integer() else f)
+
+
 def convert_pdf_to_excel(
     uploaded_file: UploadedFile,
     pages: str = "all",
@@ -185,6 +212,7 @@ def convert_pdf_to_excel(
                     page.flush_cache()
                     page.close()
 
+        used_sheets = set()
         with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
             for i, item in enumerate(tables):
                 table = item["table"]
@@ -203,10 +231,18 @@ def convert_pdf_to_excel(
                 df = df.dropna(how="all").dropna(axis=1, how="all")
                 if df.empty:
                     continue
+                for col in df.columns:
+                    df[col] = _numeric_or_text(df[col])
 
+                # A second table from the same page used to be written into
+                # the same "Page N" sheet from A1, overwriting the first.
                 sheet_name = f"Page {page_num}"
-                sheet_name = sheet_name[:31]
-                df.to_excel(writer, sheet_name=sheet_name, index=False)
+                copy = 2
+                while sheet_name in used_sheets:
+                    sheet_name = f"Page {page_num} ({copy})"
+                    copy += 1
+                used_sheets.add(sheet_name)
+                df.to_excel(writer, sheet_name=sheet_name[:31], index=False)
 
             for item in text_pages:
                 page_num = item["page"]
