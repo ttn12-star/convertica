@@ -5,67 +5,65 @@ Supports processing up to 10 PDF files simultaneously for premium users.
 All files are watermarked with the same parameters and returned as a ZIP archive.
 """
 
+import os
+
 from django.http import HttpRequest
+from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from ...base_views import BaseConversionAPIView
-from .batch_serializers import AddWatermarkBatchSerializer
-from .decorators import add_watermark_docs
 from .utils import add_watermark
 
 
-class AddWatermarkBatchAPIView(BaseConversionAPIView):
-    """Handle batch PDF watermark requests."""
+def _number(request, name, default, kind=float):
+    value = request.POST.get(name)
+    try:
+        return kind(value) if value not in (None, "") else default
+    except ValueError:
+        return default
 
-    MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB per file
-    ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
-    ALLOWED_EXTENSIONS = {".pdf"}
-    CONVERSION_TYPE = "add_watermark_batch"
-    FILE_FIELD_NAME = "pdf_files"
-    VALIDATE_PDF_PAGES = False  # Client-side validation
 
-    def get_serializer_class(self):
-        """Return appropriate serializer for this view."""
-        return AddWatermarkBatchSerializer
+class AddWatermarkBatchAPIView(BaseBatchAPIView):
+    """Handle batch PDF watermark requests.
 
-    def get_docs_decorator(self):
-        """Return Swagger documentation decorator for this view."""
-        return add_watermark_docs
+    Used to subclass the single-file view, which read the pdf_files list as one
+    file (500 "'list' object has no attribute 'name'") and passed parameters
+    add_watermark() does not take.
+    """
+
+    CONVERSION_TYPE = "ADD_WATERMARK_BATCH"
+    TMP_PREFIX = "watermark_batch_"
+    OUTPUT_ZIP_FILENAME = "watermarked_pdfs.zip"
+
+    def get_post_params(self, request):
+        return {
+            "watermark_text": request.POST.get("watermark_text") or "CONFIDENTIAL",
+            # Same image for every file: add_watermark() rewinds it each time.
+            "watermark_file": request.FILES.get("watermark_file")
+            or request.FILES.get("watermark_image"),
+            "position": request.POST.get("position") or "diagonal",
+            "x": _number(request, "x", None),
+            "y": _number(request, "y", None),
+            "color": request.POST.get("color") or "#000000",
+            "opacity": _number(request, "opacity", 0.3),
+            "font_size": _number(request, "font_size", 72, int),
+            "rotation": _number(request, "rotation", 0.0),
+            "scale": _number(request, "scale", 1.0),
+            "pages": request.POST.get("pages") or "all",
+        }
+
+    def convert_single(self, uploaded_file, context, **params):
+        input_path, output_path = add_watermark(
+            uploaded_file, suffix="_watermarked", **params
+        )
+        return os.path.dirname(input_path), output_path
+
+    def get_zip_entry_name(self, original_name, output_path):
+        return f"{os.path.splitext(original_name)[0]}_watermarked.pdf"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @add_watermark_docs()
+    @batch_premium_docs(
+        summary="Add Watermark (batch, premium)", file_field="pdf_files"
+    )
     def post(self, request: HttpRequest):
-        """Handle POST request with Swagger documentation."""
-        return super().post(request)
-
-    def perform_conversion(self, uploaded_file, context, **kwargs) -> tuple[str, str]:
-        """Add watermark to PDF with specified parameters."""
-        watermark_type = kwargs.get("watermark_type", "text")
-        watermark_text = kwargs.get("watermark_text", "CONFIDENTIAL")
-        watermark_image = kwargs.get("watermark_image")
-        x = float(kwargs.get("x", 0))
-        y = float(kwargs.get("y", 0))
-        opacity = float(kwargs.get("opacity", 0.3))
-        rotation = float(kwargs.get("rotation", 0))
-        scale = float(kwargs.get("scale", 1.0))
-        color = kwargs.get("color", "#000000")
-        font_size = int(kwargs.get("font_size", 72))
-        pages = kwargs.get("pages", "all")
-
-        input_path, output_path = add_watermark(
-            uploaded_file=uploaded_file,
-            watermark_type=watermark_type,
-            watermark_text=watermark_text,
-            watermark_image=watermark_image,
-            x=x,
-            y=y,
-            opacity=opacity,
-            rotation=rotation,
-            scale=scale,
-            color=color,
-            font_size=font_size,
-            pages=pages,
-            suffix="_watermarked",
-        )
-
-        return input_path, output_path
+        return self._process_batch(request)

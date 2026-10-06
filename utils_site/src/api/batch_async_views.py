@@ -116,6 +116,15 @@ class BatchAsyncSubmitAPIView(APIView):
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
             input_files.append({"path": input_path, "name": uploaded_file.name})
+        # A file among the tool's params (the watermark image) cannot travel
+        # in the task's JSON: store it next to the inputs and pass its path.
+        for key, value in list(params.items()):
+            if hasattr(value, "chunks"):
+                param_path = os.path.join(task_dir, f"param_{key}")
+                with open(param_path, "wb") as f:
+                    for chunk in value.chunks():
+                        f.write(chunk)
+                params[key] = {"__file__": param_path, "name": value.name}
 
         context = build_request_context(request)
         context["request_id"] = ensure_request_id(request)

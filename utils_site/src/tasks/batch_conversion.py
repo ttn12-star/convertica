@@ -97,6 +97,15 @@ def batch_conversion_task(
     task_dir = os.path.dirname(input_files[0]["path"]) if input_files else None
     cleanup_dirs: set[str] = set()
 
+    # File params (see batch_async_views) come back as open files.
+    param_files = []
+    for key, value in list(params.items()):
+        if isinstance(value, dict) and "__file__" in value:
+            param_files.append(
+                File(open(value["__file__"], "rb"), name=value["name"])
+            )  # noqa: SIM115
+            params[key] = param_files[-1]
+
     try:
         output_files: list[tuple[str, str]] = []
         failed_files: list[tuple[str, str]] = []
@@ -145,9 +154,16 @@ def batch_conversion_task(
         update_progress(self, 92, "Packing archive...")
         zip_path = os.path.join(task_dir, output_zip_filename)
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+            # Lazy: this module loads with Celery, before Django apps are ready.
+            from src.api.base_batch_views import unique_zip_name
+
+            used_names: set[str] = set()
             for original_name, output_path in output_files:
                 zipf.write(
-                    output_path, view.get_zip_entry_name(original_name, output_path)
+                    output_path,
+                    unique_zip_name(
+                        view.get_zip_entry_name(original_name, output_path), used_names
+                    ),
                 )
             if failed_files:
                 zipf.writestr(
@@ -227,6 +243,8 @@ def batch_conversion_task(
         )
         raise
     finally:
+        for param_file in param_files:
+            param_file.close()
         for d in cleanup_dirs:
             if d and os.path.isdir(d):
                 shutil.rmtree(d, ignore_errors=True)

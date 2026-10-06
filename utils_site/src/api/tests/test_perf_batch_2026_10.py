@@ -882,3 +882,70 @@ class PdfToExcelAmbiguousNumbersTests(TestCase):
         out, decimals = _numeric_or_text(pd.Series(["0.50", "12.30", "1,234.56"]))
         self.assertEqual(list(out), [0.5, 12.3, 1234.56])
         self.assertEqual(decimals, 2)  # shown as 0.50, 12.30
+
+
+class PremiumBatchEndpointsTests(TestCase):
+    """Two premium batch tools answered 500 for every request."""
+
+    def setUp(self):
+        from datetime import timedelta
+
+        from django.contrib.auth import get_user_model
+        from django.core.cache import cache
+        from django.test import Client
+        from django.utils import timezone
+
+        cache.clear()
+        user = get_user_model().objects.create_user(
+            username="batch",
+            email="batch@example.com",
+            password="x",
+            is_premium=True,
+            subscription_end_date=timezone.now() + timedelta(days=30),
+        )
+        self.client = Client()
+        self.client.force_login(user)
+
+    def _zip(self, response):
+        import io
+        import zipfile
+
+        self.assertEqual(
+            response.status_code, 200, getattr(response, "content", b"")[:300]
+        )
+        body = (
+            b"".join(response.streaming_content)
+            if response.streaming
+            else response.content
+        )
+        return zipfile.ZipFile(io.BytesIO(body))
+
+    def test_watermark_batch_marks_every_file(self):
+        files = [SimpleUploadedFile(f"{n}.pdf", _text_pdf(pages=2)) for n in ("a", "b")]
+        archive = self._zip(
+            self.client.post(
+                "/api/pdf-edit/add-watermark/batch/",
+                {"pdf_files": files, "watermark_text": "WMARK"},
+            )
+        )
+        self.assertEqual(len(archive.namelist()), 2)
+        for name in archive.namelist():
+            with fitz.open(stream=archive.read(name), filetype="pdf") as doc:
+                self.assertTrue(all("WMARK" in p.get_text() for p in doc), name)
+
+    def test_excel_batch_converts_every_file(self):
+        import io
+
+        import openpyxl
+
+        files = []
+        for n in ("a", "b"):
+            wb = openpyxl.Workbook()
+            wb.active.append([f"ROW-{n}", 1, 2])
+            buf = io.BytesIO()
+            wb.save(buf)
+            files.append(SimpleUploadedFile(f"{n}.xlsx", buf.getvalue()))
+        archive = self._zip(
+            self.client.post("/api/excel-to-pdf/batch/", {"excel_files": files})
+        )
+        self.assertEqual(len(archive.namelist()), 2)

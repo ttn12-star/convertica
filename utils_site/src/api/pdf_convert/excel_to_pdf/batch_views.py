@@ -2,7 +2,6 @@
 
 import os
 
-from asgiref.sync import async_to_sync
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
 from src.api.batch_docs import batch_premium_docs
@@ -26,7 +25,9 @@ class ExcelToPDFBatchAPIView(BaseBatchAPIView):
         return True, None
 
     def convert_single(self, uploaded_file, context, **params):
-        input_path, output_path = async_to_sync(convert_excel_to_pdf)(
+        # convert_excel_to_pdf is synchronous; async_to_sync() on it failed
+        # every file ("object tuple can't be used in 'await' expression").
+        input_path, output_path = convert_excel_to_pdf(
             uploaded_file, suffix="_convertica"
         )
         return os.path.dirname(input_path), output_path

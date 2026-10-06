@@ -51,6 +51,21 @@ from .premium_utils import (
 logger = get_logger(__name__)
 
 
+def unique_zip_name(name: str, used: set[str]) -> str:
+    """name, or name_2/_3... if already in the archive; records it in used.
+
+    Two uploads called invoice.pdf produced two entries with one name;
+    extractors keep the last -> silent data loss.
+    """
+    stem, ext = os.path.splitext(name)
+    n = 2
+    while name in used:
+        name = f"{stem}_{n}{ext}"
+        n += 1
+    used.add(name)
+    return name
+
+
 class BaseBatchAPIView(APIView):
     """Base class for batch conversion views (multiple files → ZIP)."""
 
@@ -317,15 +332,9 @@ class BaseBatchAPIView(APIView):
             with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
                 used_names: set[str] = set()
                 for original_name, output_path in output_files:
-                    zip_name = self.get_zip_entry_name(original_name, output_path)
-                    # Two uploads called invoice.pdf produced two entries with
-                    # one name; extractors keep the last -> silent data loss.
-                    stem, ext = os.path.splitext(zip_name)
-                    n = 2
-                    while zip_name in used_names:
-                        zip_name = f"{stem}_{n}{ext}"
-                        n += 1
-                    used_names.add(zip_name)
+                    zip_name = unique_zip_name(
+                        self.get_zip_entry_name(original_name, output_path), used_names
+                    )
                     zipf.write(output_path, zip_name)
                 if failed_files:
                     # Name the dropped files inside the archive itself — the
