@@ -1163,6 +1163,11 @@ class OrganizeBatchTests(TestCase):
             {"pdf_files": files(), "page_order": "[0, 1]"},
         )
         self.assertEqual(bad.status_code, 400)
+        bools = self.client.post(  # bool is an int in Python: [true, false, 2]
+            "/api/pdf-organize/organize/batch/",
+            {"pdf_files": files(), "page_order": "[true, false, 2]"},
+        )
+        self.assertEqual(bools.status_code, 400)
 
 
 class OcrFailureIsVisibleTests(TestCase):
