@@ -33,7 +33,13 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from src.exceptions import ConversionError, EncryptedPDFError, InvalidPDFError
+from src.api.file_validation import scrub_internal_paths
+from src.exceptions import (
+    ConversionError,
+    EncryptedPDFError,
+    InvalidPDFError,
+    caused_by_damaged_input,
+)
 
 from .conversion_limits import (
     get_file_size_limits,
@@ -49,6 +55,27 @@ from .premium_utils import (
 )
 
 logger = get_logger(__name__)
+
+
+def classify_batch_failure(error: BaseException) -> tuple[bool, str]:
+    """(is it the user's input?, reason safe to show) for one failed file.
+
+    Both batch paths classified by type only, so a batch of damaged PDFs
+    answered 500 (\"Batch conversion failed\") and the manifest showed
+    temp paths from the parsers' messages.
+    """
+    explicit = isinstance(error, EncryptedPDFError | InvalidPDFError)
+    is_user_input = explicit or caused_by_damaged_input(error)
+    message = scrub_internal_paths(str(error).strip())
+    if explicit and message:
+        reason = message  # written for the user
+    elif is_user_input:
+        reason = "the file is damaged or incomplete"  # a parser's own words
+    elif isinstance(error, ConversionError) and message:
+        reason = message
+    else:
+        reason = "conversion failed"  # internals stay out of the manifest
+    return is_user_input, reason
 
 
 def unique_zip_name(name: str, used: set[str]) -> str:
@@ -293,7 +320,7 @@ class BaseBatchAPIView(APIView):
                     output_files.append((uploaded_file.name, output_path))
 
                 except Exception as e:
-                    is_user_input = isinstance(e, EncryptedPDFError | InvalidPDFError)
+                    is_user_input, reason = classify_batch_failure(e)
                     if not is_user_input:
                         all_failures_user_input = False
                     # User-input failures (bad/encrypted PDF) are expected and
@@ -302,14 +329,6 @@ class BaseBatchAPIView(APIView):
                     log(
                         f"Failed to process {uploaded_file.name}: {e}",
                         extra={**context, "file_index": idx, "error": str(e)},
-                    )
-                    # ConversionError messages are written to be user-facing
-                    # (same contract as the single-file path); anything else
-                    # stays generic so internals don't leak into the manifest.
-                    reason = (
-                        str(e).strip()
-                        if isinstance(e, ConversionError) and str(e).strip()
-                        else "conversion failed"
                     )
                     failed_files.append(
                         (uploaded_file.name or f"file_{idx + 1}", reason)

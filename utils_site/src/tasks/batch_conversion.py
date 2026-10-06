@@ -129,18 +129,16 @@ def batch_conversion_task(
                 cleanup_dirs.add(cleanup_dir)
                 output_files.append((name, output_path))
             except Exception as e:  # mirror the sync batch failure contract
-                is_user_input = isinstance(e, EncryptedPDFError | InvalidPDFError)
+                # Lazy: this module loads with Celery, before Django apps are ready.
+                from src.api.base_batch_views import classify_batch_failure
+
+                is_user_input, reason = classify_batch_failure(e)
                 if not is_user_input:
                     all_failures_user_input = False
                 log = logger.warning if is_user_input else logger.error
                 log(
                     f"Batch item failed {name}: {e}",
                     extra={**context, "file_index": idx},
-                )
-                reason = (
-                    str(e).strip()
-                    if isinstance(e, ConversionError) and str(e).strip()
-                    else "conversion failed"
                 )
                 failed_files.append((name or f"file_{idx + 1}", reason))
 
