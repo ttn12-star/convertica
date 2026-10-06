@@ -8,6 +8,7 @@ specialized libraries or services for better quality conversion.
 
 import os
 import tempfile
+from collections import Counter
 from io import BytesIO
 from pathlib import Path
 
@@ -116,14 +117,15 @@ def convert_pdf_to_ppt(
                 raise ConversionError("Failed to extract pages from PDF")
             num_pages = doc.page_count
 
-            # Slide shape follows the first page; every page is fitted into it
-            # without stretching (a fixed 4:3 slide distorted portrait A4 1.9x).
-            first = doc[0].rect
+            # Slide shape follows the most common page shape; every page is
+            # fitted into it without stretching (a fixed 4:3 slide distorted
+            # portrait A4 1.9x, and a banner first page shrank all the rest).
+            aspect = Counter(
+                round(page.rect.height / page.rect.width, 2) for page in doc
+            ).most_common(1)[0][0]
             prs = Presentation()
             prs.slide_width = Inches(_SLIDE_LONG_SIDE_IN)
-            prs.slide_height = Inches(
-                min(max(_SLIDE_LONG_SIDE_IN * first.height / first.width, 1), 56)
-            )
+            prs.slide_height = Inches(min(max(_SLIDE_LONG_SIDE_IN * aspect, 1), 56))
             blank_slide_layout = prs.slide_layouts[6]  # Blank layout
 
             for page in doc:
