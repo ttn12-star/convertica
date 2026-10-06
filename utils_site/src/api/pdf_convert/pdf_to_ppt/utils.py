@@ -8,8 +8,10 @@ specialized libraries or services for better quality conversion.
 
 import os
 import tempfile
+from io import BytesIO
 from pathlib import Path
 
+import fitz
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import (
@@ -21,6 +23,14 @@ from src.api.logging_utils import get_logger
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 logger = get_logger(__name__)
+
+
+_SLIDE_LONG_SIDE_IN = 10
+_MAX_RENDER_PIXELS = 4000  # longest side; an A0 page at 150 DPI would be ~7000
+
+
+def _dpi_for(rect) -> int:
+    return int(min(150, _MAX_RENDER_PIXELS * 72 / max(rect.width, rect.height)))
 
 
 def convert_pdf_to_ppt(
@@ -50,13 +60,6 @@ def convert_pdf_to_ppt(
     }
 
     logger.info("Starting PDF to PowerPoint conversion", extra=context)
-
-    try:
-        from pdf2image import convert_from_path
-    except ModuleNotFoundError as e:
-        raise ConversionError(
-            "PDF to PowerPoint conversion requires 'pdf2image' to be installed."
-        ) from e
 
     try:
         from pptx import Presentation
@@ -102,47 +105,47 @@ def convert_pdf_to_ppt(
             },
         )
 
-        # Convert PDF pages to images
-        logger.info("Converting PDF pages to images", extra=context)
-        images = convert_from_path(input_path, dpi=150)
+        # One page at a time: pdf2image rendered the whole document into RAM
+        # first (~4 GB for 200 pages, in a web worker).
+        with fitz.open(input_path) as doc:
+            if doc.page_count == 0:
+                raise ConversionError("Failed to extract pages from PDF")
+            num_pages = doc.page_count
 
-        if not images:
-            raise ConversionError("Failed to extract pages from PDF")
+            # Slide shape follows the first page; every page is fitted into it
+            # without stretching (a fixed 4:3 slide distorted portrait A4 1.9x).
+            first = doc[0].rect
+            prs = Presentation()
+            prs.slide_width = Inches(_SLIDE_LONG_SIDE_IN)
+            prs.slide_height = Inches(
+                min(max(_SLIDE_LONG_SIDE_IN * first.height / first.width, 1), 56)
+            )
+            blank_slide_layout = prs.slide_layouts[6]  # Blank layout
+
+            for page in doc:
+                pix = page.get_pixmap(dpi=_dpi_for(page.rect), alpha=False)
+                image = BytesIO(pix.tobytes("jpeg", jpg_quality=90))
+                del pix
+
+                slide = prs.slides.add_slide(blank_slide_layout)
+                scale = min(
+                    prs.slide_width / page.rect.width,
+                    prs.slide_height / page.rect.height,
+                )
+                width = int(page.rect.width * scale)
+                height = int(page.rect.height * scale)
+                slide.shapes.add_picture(
+                    image,
+                    (prs.slide_width - width) // 2,
+                    (prs.slide_height - height) // 2,
+                    width=width,
+                    height=height,
+                )
 
         logger.info(
-            f"Extracted {len(images)} pages from PDF",
-            extra={**context, "num_pages": len(images)},
+            f"Rendered {num_pages} pages into slides",
+            extra={**context, "num_pages": num_pages},
         )
-
-        # Create PowerPoint presentation
-        prs = Presentation()
-        prs.slide_width = Inches(10)
-        prs.slide_height = Inches(7.5)
-
-        for idx, image in enumerate(images):
-            logger.debug(
-                f"Adding slide {idx + 1}/{len(images)}",
-                extra={**context, "slide_number": idx + 1},
-            )
-
-            # Add blank slide
-            blank_slide_layout = prs.slide_layouts[6]  # Blank layout
-            slide = prs.slides.add_slide(blank_slide_layout)
-
-            # Save image temporarily
-            img_path = os.path.join(tmp_dir, f"page_{idx + 1}.png")
-            image.save(img_path, "PNG")
-
-            # Add image to slide
-            left = Inches(0)
-            top = Inches(0)
-            width = prs.slide_width
-            height = prs.slide_height
-
-            slide.shapes.add_picture(img_path, left, top, width=width, height=height)
-
-            # Clean up temp image
-            os.remove(img_path)
 
         # Save PowerPoint file
         base_name = Path(safe_filename).stem
@@ -158,12 +161,14 @@ def convert_pdf_to_ppt(
                 **context,
                 "output_path": output_path,
                 "output_size": output_size,
-                "num_slides": len(images),
+                "num_slides": num_pages,
             },
         )
 
         return input_path, output_path
 
+    except InvalidPDFError:
+        raise  # a 400 for the user's file, not a 500
     except Exception as e:
         logger.exception(
             "PDF to PowerPoint conversion failed",

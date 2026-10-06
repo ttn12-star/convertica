@@ -396,3 +396,34 @@ class CancelSigtermTests(TestCase):
     def test_unrequested_system_exit_still_propagates(self):
         with self.assertRaises(SystemExit):
             self._run(cancelled=False).get()
+
+
+class PdfToPptTests(TestCase):
+    def test_pages_render_one_at_a_time_and_keep_their_shape(self):
+        # pdf2image rendered the whole document into RAM first (~4 GB for 200
+        # pages in a web worker) and stretched every page onto a 4:3 slide.
+        import tracemalloc
+
+        from pptx import Presentation
+        from src.api.pdf_convert.pdf_to_ppt.utils import convert_pdf_to_ppt
+
+        doc = fitz.open()
+        for i in range(30):
+            doc.new_page(width=595, height=842).insert_text((50, 80), f"Slide {i}")
+        upload = SimpleUploadedFile("t.pdf", doc.tobytes(), "application/pdf")
+        tracemalloc.start()
+        try:
+            _, out = convert_pdf_to_ppt(upload)
+            peak = tracemalloc.get_traced_memory()[1]
+        finally:
+            tracemalloc.stop()
+        picture = Presentation(out).slides[0].shapes[0]
+        self.assertAlmostEqual(picture.width / picture.height, 595 / 842, places=2)
+        self.assertLess(peak, 150 * 1024 * 1024)
+
+    def test_corrupt_pdf_is_a_400_not_a_500(self):
+        from src.api.pdf_convert.pdf_to_ppt.utils import convert_pdf_to_ppt
+        from src.exceptions import InvalidPDFError
+
+        with self.assertRaises(InvalidPDFError):
+            convert_pdf_to_ppt(SimpleUploadedFile("t.pdf", b"%PDF-1.4 junk"))
