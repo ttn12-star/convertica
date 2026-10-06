@@ -475,3 +475,49 @@ class WatermarkOverlayReuseTests(TestCase):
             for page in (result[0], result[-1]):
                 centre = page.get_pixmap(clip=fitz.Rect(280, 400, 320, 440))
                 self.assertNotEqual(set(centre.samples), {255}, page.number)
+
+
+class CompressScannedPdfTests(TestCase):
+    def _pdf(self, decode_inverted: bool = False) -> bytes:
+        import io
+
+        import numpy as np
+        from PIL import Image
+
+        rng = np.random.default_rng(0)
+        doc = fitz.open()
+        for _ in range(2):
+            scan = (240 + rng.integers(-12, 12, (1200, 900))).clip(0, 255)
+            buf = io.BytesIO()
+            Image.fromarray(scan.astype("uint8")).save(buf, "PNG")  # -> FlateDecode
+            page = doc.new_page(width=300, height=400)
+            xref = page.insert_image(page.rect, stream=buf.getvalue())
+            if decode_inverted:
+                doc.xref_set_key(xref, "Decode", "[1 0]")
+        return doc.tobytes(garbage=3, deflate=True)
+
+    def test_scanned_pages_shrink(self):
+        # Only DCT images were recompressed: a scanned PDF was 0% smaller.
+        from src.api.pdf_organize.compress_pdf.utils import compress_pdf
+
+        raw = self._pdf()
+        _, out = compress_pdf(
+            SimpleUploadedFile("s.pdf", raw, "application/pdf"),
+            compression_level="medium",
+        )
+        self.assertLess(os.path.getsize(out), len(raw) * 0.5)
+
+    def test_decode_array_image_is_left_alone(self):
+        # The pixmap already applies /Decode; re-encoding it and keeping the key
+        # rendered the image inverted.
+        from src.api.pdf_organize.compress_pdf.utils import compress_pdf
+
+        raw = self._pdf(decode_inverted=True)
+        _, out = compress_pdf(
+            SimpleUploadedFile("s.pdf", raw, "application/pdf"),
+            compression_level="high",
+        )
+        with fitz.open(stream=raw, filetype="pdf") as a, fitz.open(out) as b:
+            self.assertEqual(
+                a[0].get_pixmap(dpi=36).samples, b[0].get_pixmap(dpi=36).samples
+            )
