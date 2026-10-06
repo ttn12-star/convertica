@@ -978,9 +978,26 @@ class PremiumBatchEndpointsTests(TestCase):
             buf = io.BytesIO()
             wb.save(buf)
             files.append(SimpleUploadedFile(f"{n}.xlsx", buf.getvalue()))
-        archive = self._zip(
-            self.client.post("/api/excel-to-pdf/batch/", {"excel_files": files})
-        )
+        # The bug was the async_to_sync() wrapper around a synchronous
+        # converter, not LibreOffice (absent in CI): a synchronous stand-in
+        # still fails under the old wrapper.
+        import tempfile
+        from unittest import mock
+
+        def fake_convert(uploaded_file, suffix="_convertica", **kwargs):
+            folder = tempfile.mkdtemp()
+            pdf = os.path.join(folder, f"{os.path.splitext(uploaded_file.name)[0]}.pdf")
+            with open(pdf, "wb") as f:
+                f.write(_text_pdf(pages=1))
+            return os.path.join(folder, uploaded_file.name), pdf
+
+        with mock.patch(
+            "src.api.pdf_convert.excel_to_pdf.batch_views.convert_excel_to_pdf",
+            side_effect=fake_convert,
+        ):
+            archive = self._zip(
+                self.client.post("/api/excel-to-pdf/batch/", {"excel_files": files})
+            )
         self.assertEqual(len(archive.namelist()), 2)
 
     def test_page_numbers_sign_resize_flatten_batches_work(self):
