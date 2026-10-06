@@ -32,12 +32,18 @@ def upright_image_file(path: str) -> None:
         with Image.open(path) as img:
             if img.getexif().get(_EXIF_ORIENTATION, 1) == 1:
                 return
-            fmt = img.format if img.format in ("JPEG", "PNG", "WEBP", "TIFF") else "PNG"
+            # MPO is how Pillow reports the JPEGs many phones write (an extra
+            # depth/preview frame); as PNG they came out 6x bigger.
+            fmt = "JPEG" if img.format == "MPO" else img.format
+            if fmt not in ("JPEG", "PNG", "WEBP", "TIFF"):
+                fmt = "PNG"
             upright = ImageOps.exif_transpose(img)
+        tmp = path + ".upright"
         if fmt == "JPEG":
-            upright.save(path, fmt, quality=95, subsampling=0)
+            upright.save(tmp, fmt, quality=95, subsampling=0)
         else:
-            upright.save(path, fmt)
+            upright.save(tmp, fmt)
+        os.replace(tmp, path)  # a failed save leaves the original intact
     except Exception as e:
         # Leave the file as is; the caller's own open/verify reports bad input.
         logger.debug("upright_image_file skipped %s: %s", path, e)

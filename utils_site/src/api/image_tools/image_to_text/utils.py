@@ -64,7 +64,8 @@ def run_image_ocr(
     with Image.open(input_path) as img:
         # First frame to RGB (covers animated GIF / multi-page TIFF / palette / CMYK),
         # upright: tesseract reads a sideways phone photo as noise.
-        rgb = ImageOps.exif_transpose(img).convert("RGB")
+        rgb = img.convert("RGB")
+    ImageOps.exif_transpose(rgb, in_place=True)
 
     try:
         text = extract_text_from_image(
