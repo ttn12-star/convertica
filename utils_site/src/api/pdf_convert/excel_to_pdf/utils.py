@@ -7,6 +7,7 @@ Supports batch processing for premium users.
 
 import asyncio
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -36,41 +37,121 @@ _DEFAULT_COL_WIDTH_CHARS = 8.43
 _CHARS_TO_PT = 5.25
 
 
-def _estimate_content_width_pt(ws) -> float:
+# Children of <worksheet> that come after <pageSetup> in the schema; a new
+# pageSetup goes before the first one present.
+_AFTER_PAGE_SETUP = (
+    "headerFooter", "rowBreaks", "colBreaks", "customProperties", "cellWatches",
+    "ignoredErrors", "smartTags", "drawing", "legacyDrawing", "legacyDrawingHF",
+    "drawingHF", "picture", "oleObjects", "controls", "webPublishItems",
+    "tableParts", "extLst",
+)  # fmt: skip
+
+
+def _column_index(letters: str) -> int:
+    index = 0
+    for ch in letters:
+        index = index * 26 + ord(ch) - 64
+    return index
+
+
+def _estimate_content_width_pt(sheet_xml: str) -> float:
     """Approximate the printed width of a sheet's used columns, in points."""
-    from openpyxl.utils import get_column_letter
+    used = re.search(r'<dimension ref="[A-Z]+\d+:([A-Z]+)\d+"', sheet_xml)
+    last = _column_index(used.group(1)) if used else 0
+    widths = {}
+    for col in re.finditer(r"<col\b[^>]*>", sheet_xml):
+        attrs = dict(re.findall(r'(\w+)="([^"]*)"', col.group(0)))
+        try:
+            low, high, width = (
+                int(attrs["min"]),
+                int(attrs["max"]),
+                float(attrs["width"]),
+            )
+        except (KeyError, ValueError):
+            continue
+        for index in range(low, min(high, last) + 1):
+            widths[index] = width
+    total = sum(widths.get(i, _DEFAULT_COL_WIDTH_CHARS) for i in range(1, last + 1))
+    return total * _CHARS_TO_PT
 
-    total_chars = 0.0
-    for col in range(1, (ws.max_column or 0) + 1):
-        cd = ws.column_dimensions.get(get_column_letter(col))
-        total_chars += cd.width if (cd and cd.width) else _DEFAULT_COL_WIDTH_CHARS
-    return total_chars * _CHARS_TO_PT
+
+def _with_attrs(tag: str, attrs: dict) -> str:
+    """Set attributes on one start/empty tag, replacing existing values."""
+    for name, value in attrs.items():
+        existing = re.compile(rf'\s{name}="[^"]*"')
+        if existing.search(tag):
+            tag = existing.sub(f' {name}="{value}"', tag, count=1)
+        else:
+            tag = re.sub(r"\s*(/?>)$", rf' {name}="{value}"\1', tag, count=1)
+    return tag
 
 
-def _openpyxl_would_lose_content(excel_path: str) -> bool:
-    """Whether a load/save round trip through openpyxl would change the book.
+def _patch_sheet(xml: str, orientation: str, fit_mode: str, user_chose: bool):
+    """The sheet XML with print scaling set, or None to leave it as is."""
+    if not re.search(r"<worksheet[\s>]", xml):
+        return None  # prefixed or unusual serialisation: don't guess
+    page_setup = re.search(r"<pageSetup\b[^>]*>", xml)
+    setup_pr = re.search(r"<pageSetUpPr\b[^>]*>", xml)
+    authored = (setup_pr and re.search(r'fitToPage="(1|true)"', setup_pr.group(0))) or (
+        page_setup and re.search(r'\sscale="\d+"', page_setup.group(0))
+    )
+    if authored and not user_chose:
+        return None  # respect an author who already configured print scaling
 
-    openpyxl drops text boxes/shapes, form controls and ActiveX, and rewrites
-    charts in its own style: the PDF lost a text box that was in the file.
-    """
-    import zipfile
+    attrs = {}
+    if fit_mode == "fit_width":
+        attrs.update(fitToWidth="1", fitToHeight="0")  # 0 = as many pages tall
+    if orientation in ("portrait", "landscape"):
+        attrs["orientation"] = orientation
+    elif (
+        fit_mode == "fit_width"
+        and not (page_setup and "orientation=" in page_setup.group(0))
+        and _estimate_content_width_pt(xml) > _LANDSCAPE_WIDTH_THRESHOLD_PT
+    ):
+        attrs["orientation"] = "landscape"
+    if not attrs:
+        return None
 
-    try:
-        with zipfile.ZipFile(excel_path) as z:
-            names = z.namelist()
-            if any(
-                n.startswith(("xl/ctrlProps/", "xl/activeX/", "xl/charts/"))
-                for n in names
-            ):
-                return True
-            for n in names:
-                if n.startswith("xl/drawings/") and n.endswith(".xml"):
-                    with z.open(n) as f:
-                        if b"<xdr:sp" in f.read(5 * 1024 * 1024):
-                            return True
-    except Exception:
-        return True  # unreadable here: do not let openpyxl rewrite it either
-    return False
+    if page_setup:
+        xml = (
+            xml[: page_setup.start()]
+            + _with_attrs(page_setup.group(0), attrs)
+            + xml[page_setup.end() :]
+        )
+    else:
+        tag = _with_attrs("<pageSetup/>", attrs)
+        nxt = re.search(r"<(%s)[\s/>]" % "|".join(_AFTER_PAGE_SETUP), xml)
+        at = nxt.start() if nxt else xml.rindex("</worksheet>")
+        xml = xml[:at] + tag + xml[at:]
+
+    if fit_mode == "fit_width":
+        setup_pr = re.search(r"<pageSetUpPr\b[^>]*>", xml)
+        sheet_pr = re.search(r"<sheetPr\b[^>]*?(/?)>", xml)
+        fit = '<pageSetUpPr fitToPage="1"/>'
+        if setup_pr:
+            xml = (
+                xml[: setup_pr.start()]
+                + _with_attrs(setup_pr.group(0), {"fitToPage": "1"})
+                + xml[setup_pr.end() :]
+            )
+        elif sheet_pr and sheet_pr.group(1):  # <sheetPr .../>
+            opened = sheet_pr.group(0)[:-2].rstrip() + ">"
+            xml = (
+                xml[: sheet_pr.start()]
+                + opened
+                + fit
+                + "</sheetPr>"
+                + xml[sheet_pr.end() :]
+            )
+        elif sheet_pr:  # pageSetUpPr is sheetPr's last child
+            at = xml.index("</sheetPr>", sheet_pr.end())
+            xml = xml[:at] + fit + xml[at:]
+        else:  # sheetPr is the first child of <worksheet>
+            root = re.search(r"<worksheet\b[^>]*>", xml)
+            xml = (
+                xml[: root.end()] + "<sheetPr>" + fit + "</sheetPr>" + xml[root.end() :]
+            )
+    return xml
 
 
 def _apply_print_fit(
@@ -87,6 +168,10 @@ def _apply_print_fit(
     fit-to-width, keeping every column on one page-width; a very wide table
     also flips to landscape so it isn't shrunk to an unreadable size.
 
+    Edits only the page-setup elements inside each worksheet's XML. Saving the
+    book through openpyxl instead dropped text boxes, shapes, form controls,
+    sparklines and rich text, and restyled charts.
+
     Args:
         orientation: "auto" (landscape only for wide sheets), "portrait"
             or "landscape" to force it on every sheet.
@@ -94,51 +179,33 @@ def _apply_print_fit(
             leaves the sheet at its native size (may span pages sideways —
             an explicit user choice for very wide sheets).
 
-    Best-effort: only .xlsx/.xlsm (openpyxl can't rewrite legacy .xls), and any
-    failure leaves the original file untouched so conversion still proceeds.
+    Best-effort: only .xlsx/.xlsm, and any failure leaves the original file
+    untouched so conversion still proceeds.
     ponytail: legacy .xls skipped; convert .xls -> .xlsx first if it matters.
     """
     if not excel_path.lower().endswith((".xlsx", ".xlsm")):
-        return
-    if _openpyxl_would_lose_content(excel_path):
-        # Content beats layout: LibreOffice prints the original as is.
-        logger.info(
-            "Skipping print-fit: workbook has shapes/controls/charts",
-            extra={**context, "event": "excel_print_fit_skipped"},
-        )
         return
     # Only auto+fit_width is the implicit default; anything else is a
     # deliberate user choice that should override an author's own print setup.
     user_chose = orientation != "auto" or fit_mode != "fit_width"
     try:
-        import openpyxl
-        from openpyxl.worksheet.properties import PageSetupProperties
+        import zipfile
 
-        wb = openpyxl.load_workbook(excel_path)
-        changed = False
-        for ws in wb.worksheets:
-            ps = ws.sheet_properties.pageSetUpPr
-            if not user_chose and ((ps and ps.fitToPage) or ws.page_setup.scale):
-                # Respect an author who already configured print scaling.
-                continue
-            applied = False
-            if fit_mode == "fit_width":
-                ws.page_setup.fitToWidth = 1
-                ws.page_setup.fitToHeight = 0  # 0 = as many pages tall as needed
-                ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
-                applied = True
-            if orientation in ("portrait", "landscape"):
-                ws.page_setup.orientation = orientation
-                applied = True
-            elif (
-                fit_mode == "fit_width"
-                and not ws.page_setup.orientation
-                and _estimate_content_width_pt(ws) > _LANDSCAPE_WIDTH_THRESHOLD_PT
-            ):
-                ws.page_setup.orientation = "landscape"
-            changed = changed or applied
-        if changed:
-            wb.save(excel_path)
+        patched = {}
+        with zipfile.ZipFile(excel_path) as book:
+            for name in book.namelist():
+                if re.fullmatch(r"xl/worksheets/[^/]+\.xml", name):
+                    xml = book.read(name).decode("utf-8")
+                    new = _patch_sheet(xml, orientation, fit_mode, user_chose)
+                    if new is not None:
+                        patched[name] = new.encode("utf-8")
+            if not patched:
+                return
+            tmp_path = excel_path + ".fit"
+            with zipfile.ZipFile(tmp_path, "w") as out:
+                for item in book.infolist():
+                    out.writestr(item, patched.get(item.filename) or book.read(item))
+        os.replace(tmp_path, excel_path)
     except Exception as exc:
         logger.warning(
             f"print-fit preprocessing skipped ({exc}); converting original file",
