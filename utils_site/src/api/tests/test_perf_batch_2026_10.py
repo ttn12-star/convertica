@@ -816,3 +816,54 @@ class CompressColourSafetyTests(TestCase):
         )
         with open(out, "rb") as f:
             self.assertNotIn(b"/ObjStm", f.read())
+
+
+def _ink(pix):
+    """Grayscale image cropped to its non-white content."""
+    from PIL import Image, ImageOps
+
+    img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples).convert("L")
+    return img.crop(ImageOps.invert(img).getbbox())
+
+
+class CropRotatedPagesTests(TestCase):
+    def test_selection_on_a_rotated_page_is_what_the_user_saw(self):
+        # The UI sends the selection in the visible (rotated) page; the vector
+        # path clipped the unrotated page and drew it sideways.
+        from src.api.pdf_edit.crop_pdf.utils import crop_pdf
+
+        for rotation in (90, 180, 270):
+            doc = fitz.open()
+            page = doc.new_page(width=595, height=842)
+            page.insert_text((60, 100), "ALPHA", fontsize=20)
+            page.insert_text((400, 780), "OMEGA", fontsize=20)
+            page.set_rotation(rotation)
+            # get_text() reports unrotated coordinates; the UI sees rotated ones.
+            words = {
+                w[4]: fitz.Rect(w[:4]) * page.rotation_matrix
+                for w in page.get_text("words")
+            }
+            target = words["ALPHA"] + (-10, -10, 10, 10)
+            visible_h = page.rect.height
+            raw = doc.tobytes()
+            _, out = crop_pdf(
+                SimpleUploadedFile("r.pdf", raw, "application/pdf"),
+                x=target.x0,
+                y=visible_h - target.y1,
+                width=target.width,
+                height=target.height,
+                pages="1",
+                scale_to_page_size=True,
+            )
+            with fitz.open(out) as result:
+                text = result[0].get_text()
+                got = _ink(result[0].get_pixmap(dpi=72))
+            want = _ink(page.get_pixmap(dpi=72, clip=target))  # what the user saw
+            self.assertIn("ALPHA", text, rotation)
+            self.assertNotIn("OMEGA", text, rotation)
+            # Same picture, same way up: compare the inked areas at one size.
+            got = got.resize(want.size)
+            diff = sum(
+                abs(a - b) for a, b in zip(got.getdata(), want.getdata(), strict=False)
+            )
+            self.assertLess(diff / (want.width * want.height), 40, rotation)
