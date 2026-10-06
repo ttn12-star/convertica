@@ -109,12 +109,15 @@ except ImportError:
 
 
 # writer_pdf_Export with explicit options (bookmarks, embedded standard fonts).
+# Images as JPEG 90 at <=300 DPI: lossless kept PNG photos as Flate, a docx
+# with three photos became a 37.8 MB PDF; now 2.5 MB, pixel difference ~1/255
+# at 150 DPI, text identical. LibreOffice < 7.4 ignores these JSON options.
 _WORD_PDF_FILTER = (
     "pdf:writer_pdf_Export:"
     "{"
-    '"UseLosslessCompression":{"type":"boolean","value":"true"},'
-    '"Quality":{"type":"long","value":"95"},'
-    '"ReduceImageResolution":{"type":"boolean","value":"false"},'
+    '"UseLosslessCompression":{"type":"boolean","value":"false"},'
+    '"Quality":{"type":"long","value":"90"},'
+    '"ReduceImageResolution":{"type":"boolean","value":"true"},'
     '"MaxImageResolution":{"type":"long","value":"300"},'
     '"ExportBookmarks":{"type":"boolean","value":"true"},'
     '"ExportNotes":{"type":"boolean","value":"false"},'
