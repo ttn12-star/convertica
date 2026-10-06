@@ -144,10 +144,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Noto core adds Arabic + Devanagari (+ many scripts), small (~15MB). CJK
 # (fonts-noto-cjk, ~100MB) is intentionally omitted: not a target audience and
 # src.api.font_utils falls back to DejaVu gracefully. Add it if CJK demand appears.
+# Liberation/Carlito/Caladea are metric-compatible with Arial+Times/Calibri/
+# Cambria: without them LibreOffice renders Office documents in Noto Serif and
+# the page count drifts (11 -> 14 pages on a Calibri docx).
 RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-dejavu-core \
     fonts-noto-core \
+    fonts-liberation \
+    fonts-crosextra-carlito \
+    fonts-crosextra-caladea \
     && rm -rf /var/lib/apt/lists/*
+COPY ci/fonts/30-office-aliases.conf /etc/fonts/conf.d/30-office-aliases.conf
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libnss3 \
