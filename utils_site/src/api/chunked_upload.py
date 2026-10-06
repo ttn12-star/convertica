@@ -38,7 +38,7 @@ UPLOAD_ID_SUFFIX = "__upload_id"
 # The browser sends 50 MB; anything near Cloudflare's 100 MB would never get here.
 CHUNK_MAX_BYTES = 60 * 1024 * 1024
 _UPLOAD_ID = re.compile(r"[0-9a-f]{32}")
-MAX_UPLOADS_PER_USER = 3
+MAX_UNFINISHED_PER_USER = 2
 
 
 def _upload_dir(upload_id: str) -> str:
@@ -61,22 +61,31 @@ def _error(message: str, status: int) -> JsonResponse:
 
 def _start_upload(user, total: int, request) -> tuple[str | None, dict | None, str]:
     """Open a new upload; returns (upload_id, meta, error)."""
+    # Bound the disk one account can hold. Unfinished uploads (failed or
+    # abandoned attempts) beyond the newest one go first; finished ones wait
+    # for their tool request, and a batch sends up to MAX_BATCH_FILES_PREMIUM
+    # of them one after another, so they are bounded by that instead.
+    unfinished, finished = [], []
+    for folder in glob.glob(os.path.join(ASYNC_TEMP_DIR, "upload_*")):
+        meta = _load_meta(os.path.basename(folder)[len("upload_") :])
+        if meta and meta["user_id"] == user.pk:
+            done = meta["received"] == meta["total"]
+            (finished if done else unfinished).append(
+                (os.path.getmtime(folder), folder)
+            )
+    batch_limit = getattr(settings, "MAX_BATCH_FILES_PREMIUM", 10)
+    for group, keep in (
+        (unfinished, MAX_UNFINISHED_PER_USER - 1),
+        (finished, batch_limit),
+    ):
+        for _mtime, folder in sorted(group)[: max(0, len(group) - keep)]:
+            shutil.rmtree(folder, ignore_errors=True)
+
     has_space, _reason = check_disk_space(
         ASYNC_TEMP_DIR, required_mb=total // (1024 * 1024) + 500
     )
     if not has_space:
         return None, None, _("The server is out of space; please try again later.")
-    # Bound the disk one account can hold: keep its newest uploads only. A
-    # normal user has one in flight; leftovers from failed attempts go first.
-    mine = []
-    for folder in glob.glob(os.path.join(ASYNC_TEMP_DIR, "upload_*")):
-        meta = _load_meta(os.path.basename(folder)[len("upload_") :])
-        if meta and meta["user_id"] == user.pk:
-            mine.append((os.path.getmtime(folder), folder))
-    for _mtime, folder in sorted(mine)[
-        : max(0, len(mine) - (MAX_UPLOADS_PER_USER - 1))
-    ]:
-        shutil.rmtree(folder, ignore_errors=True)
 
     upload_id = uuid.uuid4().hex
     os.makedirs(_upload_dir(upload_id))
@@ -110,6 +119,7 @@ def chunk_upload(request):
         return _error(_("This file is larger than your plan allows."), 400)
 
     upload_id = request.POST.get("upload_id") or ""
+    meta = None  # a continuing upload re-reads it under the lock
     if index == 0 and not upload_id:
         if chunk.size > total:
             return _error(_("Invalid upload request."), 400)
@@ -119,9 +129,17 @@ def chunk_upload(request):
     elif _load_meta(upload_id) is None:
         return _error(_("The upload expired; please upload the file again."), 404)
 
-    folder = _upload_dir(upload_id)
     # One writer per upload: parallel requests for the same index used to
     # each append, leaving more bytes on disk than the size checks were told.
+    try:
+        return _write_chunk(request, user, upload_id, index, total, chunk, meta)
+    except FileNotFoundError:
+        # Evicted or reaped between our check and the write.
+        return _error(_("The upload expired; please upload the file again."), 404)
+
+
+def _write_chunk(request, user, upload_id, index, total, chunk, meta):
+    folder = _upload_dir(upload_id)
     with open(os.path.join(folder, "lock"), "a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         if index != 0 or request.POST.get("upload_id"):
