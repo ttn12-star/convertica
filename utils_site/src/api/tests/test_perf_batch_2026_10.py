@@ -449,3 +449,29 @@ class PdfToHtmlMemoryTests(TestCase):
         with open(out, encoding="utf-8") as f:
             self.assertEqual(f.read().count("<img"), 30)
         self.assertLess(peak, 150 * 1024 * 1024)
+
+
+class WatermarkOverlayReuseTests(TestCase):
+    def test_logo_is_stored_once_and_still_on_every_page(self):
+        # A fresh overlay per page copied the logo into each page:
+        # 50 pages + a 1.4 MB PNG came out at 90 MB.
+        import io
+
+        from PIL import Image
+        from src.api.pdf_edit.add_watermark.utils import add_watermark
+
+        doc = fitz.open()
+        for i in range(20):
+            doc.new_page().insert_text((50, 80), f"Page {i}")
+        logo = io.BytesIO()
+        Image.frombytes("RGB", (400, 400), os.urandom(400 * 400 * 3)).save(logo, "PNG")
+        _, out = add_watermark(
+            SimpleUploadedFile("t.pdf", doc.tobytes(), "application/pdf"),
+            watermark_file=SimpleUploadedFile("logo.png", logo.getvalue(), "image/png"),
+            opacity=1.0,
+        )
+        self.assertLess(os.path.getsize(out), 3 * len(logo.getvalue()))
+        with fitz.open(out) as result:
+            for page in (result[0], result[-1]):
+                centre = page.get_pixmap(clip=fitz.Rect(280, 400, 320, 440))
+                self.assertNotEqual(set(centre.samples), {255}, page.number)
