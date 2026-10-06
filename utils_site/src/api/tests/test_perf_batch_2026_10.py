@@ -443,6 +443,20 @@ class PdfToPptTests(TestCase):
         self.assertAlmostEqual(picture.width / picture.height, 595 / 842, places=2)
         self.assertLess(peak, 150 * 1024 * 1024)
 
+    def test_a_banner_first_page_does_not_shrink_the_rest(self):
+        from pptx import Presentation
+        from src.api.pdf_convert.pdf_to_ppt.utils import convert_pdf_to_ppt
+
+        doc = fitz.open()
+        doc.new_page(width=2000, height=100)  # banner
+        for _ in range(3):
+            doc.new_page(width=595, height=842)
+        _, out = convert_pdf_to_ppt(
+            SimpleUploadedFile("b.pdf", doc.tobytes(), "application/pdf")
+        )
+        prs = Presentation(out)
+        self.assertAlmostEqual(prs.slide_height / prs.slide_width, 842 / 595, places=2)
+
     def test_corrupt_pdf_is_a_400_not_a_500(self):
         from src.api.pdf_convert.pdf_to_ppt.utils import convert_pdf_to_ppt
         from src.exceptions import InvalidPDFError
