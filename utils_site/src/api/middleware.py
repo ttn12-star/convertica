@@ -243,6 +243,9 @@ def is_conversion_request(request) -> bool:
         "/api/cancel-task/",
         "/api/operation-abandon/",
         "/api/task-background/",
+        # Pieces of a file, not an operation: the tool request that uses
+        # the assembled upload is the one that counts.
+        "/api/uploads/chunk/",
     ):
         return False
     # Non-conversion v1 endpoints (token issuance, feedback). The v1

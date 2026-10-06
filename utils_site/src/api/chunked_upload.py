@@ -23,6 +23,7 @@ import uuid
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import JsonResponse
+from django.http.multipartparser import MultiPartParserError
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
@@ -177,9 +178,15 @@ class ChunkedUploadMiddleware:
         ):
             return self.get_response(request)
 
+        try:
+            keys = list(request.POST.keys())
+        except MultiPartParserError:
+            # Malformed body: let DRF answer it as before (JSON parse error).
+            return self.get_response(request)
+
         used, opened = [], []
         try:
-            for key in list(request.POST.keys()):
+            for key in keys:
                 if not key.endswith(UPLOAD_ID_SUFFIX):
                     continue
                 field = key[: -len(UPLOAD_ID_SUFFIX)]
