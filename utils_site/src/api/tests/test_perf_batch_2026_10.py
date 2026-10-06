@@ -234,3 +234,26 @@ class ExcelPptTimeoutNotRetriedTests(TestCase):
                     conv._convert_with_libreoffice_async("/tmp/x.in", "/tmp/x.pdf", {})
                 )
             self.assertEqual(run.call_count, 1, module)
+
+
+class OcrSkewDetectionTests(TestCase):
+    def test_angle_is_found_on_a_downscaled_copy(self):
+        # 22 full-size rotations of a 300 DPI A4 scan took ~3.5 s per page.
+        from unittest import mock
+
+        from PIL import Image, ImageDraw
+        from scipy import ndimage
+        from src.api import ocr_utils
+
+        img = Image.new("L", (2480, 3508), 255)
+        draw = ImageDraw.Draw(img)
+        for y in range(200, 3300, 60):
+            draw.rectangle((200, y, 2200, y + 20), fill=0)
+        img = img.rotate(2, fillcolor=255)
+
+        with mock.patch.object(
+            ocr_utils.ndimage, "rotate", wraps=ndimage.rotate
+        ) as rotate:
+            angle = ocr_utils.detect_skew_angle(img)
+        self.assertEqual(angle, -2.0)
+        self.assertLessEqual(max(rotate.call_args[0][0].shape), 1000)

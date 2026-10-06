@@ -31,6 +31,11 @@ from .logging_utils import get_logger
 
 logger = get_logger(__name__)
 
+# tesseract's OpenMP spreads one page over every core the host has (it does
+# not see the cgroup limit): ~3x CPU for ~15% less wall time, while the other
+# celery children and OCR threads starve. One thread per tesseract process.
+os.environ.setdefault("OMP_THREAD_LIMIT", "1")
+
 # Thread pool for async OCR processing
 OCR_THREAD_POOL = ThreadPoolExecutor(max_workers=2, thread_name_prefix="ocr")
 
@@ -123,6 +128,9 @@ def calculate_image_contrast(image: Image.Image) -> float:
     return float(np.std(img_array))
 
 
+_SKEW_MAX_SIDE = 1000
+
+
 def detect_skew_angle(image: Image.Image) -> float:
     """
     Detect skew angle of text in image using projection profile method.
@@ -134,7 +142,12 @@ def detect_skew_angle(image: Image.Image) -> float:
         Skew angle in degrees (-45 to 45)
     """
     try:
-        # Convert to numpy array
+        # The projection profile only needs line structure: 22 full-size
+        # rotations of a 300 DPI A4 scan took ~3.5 s, over half the page's OCR
+        # time. ~1000 px finds the same angle at 0.5-degree steps.
+        if max(image.size) > _SKEW_MAX_SIDE:
+            image = image.copy()
+            image.thumbnail((_SKEW_MAX_SIDE, _SKEW_MAX_SIDE))
         img_array = np.array(image)
 
         # Binarize image for edge detection
