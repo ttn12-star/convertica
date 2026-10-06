@@ -369,7 +369,14 @@ class CancelSigtermTests(TestCase):
         flag = {"cancelled": False}
 
         def sigterm_mid_conversion(*args, **kwargs):
+            import signal
+
+            from billiard import common
+
             flag["cancelled"] = cancelled  # the cancel view sets it, then revokes
+            # What billiard's _shutdown_cleanup does before raising SystemExit.
+            signal.signal(signal.SIGTERM, signal.SIG_DFL)
+            common._should_have_exited[0] = True
             raise SystemExit(1)
 
         with (
@@ -392,6 +399,21 @@ class CancelSigtermTests(TestCase):
         result = self._run(cancelled=True)
         self.assertNotIsInstance(result.result, SystemExit)
         self.assertEqual(result.state, "IGNORED")
+
+    def test_child_can_be_cancelled_again(self):
+        # The surviving child kept SIGTERM=SIG_DFL: the next cancel killed it.
+        import signal
+
+        from billiard import common
+
+        original = signal.getsignal(signal.SIGTERM)
+        try:
+            self._run(cancelled=True)
+            self.assertIs(signal.getsignal(signal.SIGTERM), common._shutdown_cleanup)
+            self.assertFalse(common._should_have_exited[0])
+        finally:
+            signal.signal(signal.SIGTERM, original)
+            common._should_have_exited[0] = False
 
     def test_unrequested_system_exit_still_propagates(self):
         with self.assertRaises(SystemExit):

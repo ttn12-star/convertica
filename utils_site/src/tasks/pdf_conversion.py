@@ -121,6 +121,25 @@ def _is_user_input_error(exc: BaseException) -> bool:
     return any(token in msg for token in _USER_ERROR_TOKENS)
 
 
+def _rearm_sigterm() -> None:
+    """Make this prefork child cancellable again after surviving a SIGTERM.
+
+    billiard's handler sets SIGTERM to SIG_DFL and flags "already exiting"
+    before raising SystemExit. A cancelled task swallows that SystemExit and
+    the child lives on, so the next cancel in it would kill it outright: no
+    finally, no OperationRun update, no cleanup (WorkerLostError).
+    """
+    import signal
+
+    try:
+        from billiard import common
+
+        common._should_have_exited[0] = False
+        common.maybe_setsignal(signal.SIGTERM, common._shutdown_cleanup)
+    except Exception as exc:  # private API: never let it break the cancel
+        logger.warning("Could not re-arm SIGTERM after a cancel: %s", exc)
+
+
 class TaskCancelledException(Exception):
     """Raised when a task has been cancelled by the user."""
 
@@ -862,6 +881,8 @@ def generic_conversion_task(
                     "OperationRun 'cancelled' (soft limit) update failed: %s", db_exc
                 )
             self.update_state(state="REVOKED", meta={"error": "Task was cancelled"})
+            if isinstance(stop_exc, SystemExit):
+                _rearm_sigterm()
             raise Ignore()
 
         # Record timeout as error (best-effort)
