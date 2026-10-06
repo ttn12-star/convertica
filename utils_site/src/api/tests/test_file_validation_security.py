@@ -1,7 +1,7 @@
 """Security-branch coverage for file_validation (CONVERTICA audit).
 
 validate_word_file / validate_pdf_file are the primary defense in front of
-LibreOffice/unoserver and PyPDF (macro-RCE, crafted-OOXML CVEs, memory DoS).
+LibreOffice and PyPDF (macro-RCE, crafted-OOXML CVEs, memory DoS).
 They had effectively zero direct test coverage. These pin the reject/accept
 behavior so a regression that loosens validation is caught.
 """

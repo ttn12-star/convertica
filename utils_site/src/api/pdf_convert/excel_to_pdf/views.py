@@ -62,7 +62,7 @@ class ExcelToPDFAPIView(BaseConversionAPIView):
         This used to live in a `validate_file()` override that BaseConversionAPIView
         never calls (its `super().validate_file()` would even AttributeError), so
         the magic-byte check ran ONLY on the batch path — a file with an .xlsx
-        name and octet-stream content reached LibreOffice/unoserver unvalidated,
+        name and octet-stream content reached LibreOffice unvalidated,
         defeating the CVE mitigation validate_excel_file exists for.
         """
         is_valid, error = validate_excel_file(uploaded_file)

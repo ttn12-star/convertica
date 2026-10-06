@@ -1,6 +1,6 @@
 """Output PDF validation for Word->PDF (CONVERTICA audit Sec-2).
 
-The unoserver fast path (and subprocess fallback) validated output only with a
+The LibreOffice path validated output only with a
 file_size==0 check, so a truncated/partial PDF (valid %PDF- header, no xref/EOF)
 was returned to the user as a successful conversion. Validate the PDF actually
 opens and has >=1 page.
