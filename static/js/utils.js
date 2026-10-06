@@ -1280,9 +1280,86 @@ function _installCaptchaAutoRetry() {
     };
 }
 
+/**
+ * Send files Cloudflare would reject as too big, in pieces.
+ *
+ * Cloudflare refuses a request body over 100 MB before it reaches us, while
+ * premium files go up to 200 MB. Every tool posts a FormData through fetch, so
+ * this is the one place that sees them all: a file over the threshold is first
+ * uploaded in 50 MB chunks to /api/uploads/chunk/, and the tool's request then
+ * carries `<field>__upload_id` instead, which the server swaps back into the
+ * uploaded files (src/api/chunked_upload.py). Smaller requests pass untouched.
+ */
+const CHUNKED_UPLOAD_THRESHOLD = 90 * 1024 * 1024;
+const CHUNK_SIZE = 50 * 1024 * 1024;
+
+function _csrfTokenFor(init) {
+    const headers = new Headers((init && init.headers) || {});
+    const fromHeader = headers.get('X-CSRFToken');
+    if (fromHeader) return fromHeader;
+    const cookie = document.cookie.split('; ').find((c) => c.startsWith('csrftoken='));
+    if (cookie) return decodeURIComponent(cookie.split('=')[1]);
+    const input = document.querySelector('[name=csrfmiddlewaretoken]');
+    return input ? input.value : '';
+}
+
+async function _uploadInChunks(file, nativeFetch, csrfToken) {
+    let uploadId = '';
+    for (let index = 0, offset = 0; offset < file.size; index++, offset += CHUNK_SIZE) {
+        const form = new FormData();
+        form.append('chunk', file.slice(offset, offset + CHUNK_SIZE), 'chunk');
+        form.append('index', String(index));
+        form.append('total_size', String(file.size));
+        form.append('upload_id', uploadId);
+        form.append('filename', file.name || 'upload');
+        form.append('content_type', file.type || '');
+        const response = await nativeFetch('/api/uploads/chunk/', {
+            method: 'POST',
+            body: form,
+            credentials: 'same-origin',
+            headers: { 'X-CSRFToken': csrfToken },
+        });
+        if (!response.ok) return { error: response };
+        uploadId = (await response.json()).upload_id;
+    }
+    return { uploadId };
+}
+
+function _installChunkedUpload() {
+    if (window._chunkedUploadInstalled || typeof window.fetch !== 'function'
+        || typeof FormData === 'undefined') return;
+    window._chunkedUploadInstalled = true;
+    const nativeFetch = window.fetch.bind(window);
+
+    window.fetch = async function (input, init) {
+        const body = init && init.body;
+        const url = typeof input === 'string' ? input : (input && input.url) || '';
+        if (!(body instanceof FormData) || !url.includes('/api/') || url.includes('/api/uploads/')) {
+            return nativeFetch(input, init);
+        }
+        const entries = Array.from(body.entries());
+        if (!entries.some(([, v]) => v instanceof Blob && v.size > CHUNKED_UPLOAD_THRESHOLD)) {
+            return nativeFetch(input, init);
+        }
+        const csrfToken = _csrfTokenFor(init);
+        const form = new FormData();
+        for (const [key, value] of entries) {
+            if (value instanceof Blob && value.size > CHUNKED_UPLOAD_THRESHOLD) {
+                const result = await _uploadInChunks(value, nativeFetch, csrfToken);
+                if (result.error) return result.error;  // the tool shows its message
+                form.append(key + '__upload_id', result.uploadId);
+            } else {
+                form.append(key, value);
+            }
+        }
+        return nativeFetch(input, Object.assign({}, init, { body: form }));
+    };
+}
+
 // Export functions to global scope
 if (typeof window !== 'undefined') {
     _installCaptchaAutoRetry();
+    _installChunkedUpload();
     window.formatFileSize = formatFileSize;
     window.escapeHtml = escapeHtml;
     window.showError = showError;

@@ -11,6 +11,7 @@ from .cancel_task_view import (
     mark_operation_abandoned,
     mark_task_background,
 )
+from .chunked_upload import chunk_upload
 from .epub_convert.async_views import EPUBToPDFAsyncAPIView, PDFToEPUBAsyncAPIView
 from .epub_convert.views import EPUBToPDFAPIView, PDFToEPUBAPIView
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
@@ -100,6 +101,8 @@ urlpatterns = [
     # User info endpoint
     path("user-info/", UserInfoAPIView.as_view(), name="user_info_api"),
     # Async task endpoints (for progress polling and result download)
+    # Chunks of a premium file too big for one request body (see chunked_upload)
+    path("uploads/chunk/", chunk_upload, name="chunk_upload"),
     path(
         "tasks/<str:task_id>/status/", TaskStatusAPIView.as_view(), name="task_status"
     ),

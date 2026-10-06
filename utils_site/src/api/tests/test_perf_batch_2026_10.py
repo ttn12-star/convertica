@@ -624,3 +624,95 @@ class ExcelPrintFitKeepsContentTests(TestCase):
                 self.assertIn(b"Shape text", drawings)
             else:
                 self.assertIn(b"fitToPage", sheet)
+
+
+class ChunkedUploadTests(TestCase):
+    """Premium files over Cloudflare's 100 MB body limit arrive in chunks and
+    are swapped back into request.FILES, so every tool works unchanged."""
+
+    def setUp(self):
+        from datetime import timedelta
+
+        from django.contrib.auth import get_user_model
+        from django.core.cache import cache
+        from django.test import Client
+        from django.utils import timezone
+
+        cache.clear()
+        User = get_user_model()
+        self.user = User.objects.create_user(
+            username="chunk",
+            email="chunk@example.com",
+            password="x",
+            is_premium=True,
+            subscription_end_date=timezone.now() + timedelta(days=30),
+        )
+        self.client = Client()
+        self.client.force_login(self.user)
+
+    def _upload(self, client, data: bytes, parts: int = 3) -> str:
+        size = -(-len(data) // parts)
+        upload_id = ""
+        for index in range(parts):
+            piece = data[index * size : (index + 1) * size]
+            response = client.post(
+                "/api/uploads/chunk/",
+                {
+                    "chunk": SimpleUploadedFile("blob", piece),
+                    "index": index,
+                    "total_size": len(data),
+                    "upload_id": upload_id,
+                    "filename": "big.pdf",
+                    "content_type": "application/pdf",
+                },
+            )
+            self.assertEqual(response.status_code, 200, response.content)
+            upload_id = response.json()["upload_id"]
+        self.assertTrue(response.json()["complete"])
+        return upload_id
+
+    def test_a_tool_receives_the_reassembled_file(self):
+        from src.api.chunked_upload import _upload_dir
+
+        raw = _text_pdf(pages=10)
+        upload_id = self._upload(self.client, raw)
+        response = self.client.post(
+            "/api/pdf-organize/compress/",
+            {"pdf_file__upload_id": upload_id, "compression_level": "medium"},
+        )
+        self.assertEqual(
+            response.status_code, 200, getattr(response, "content", b"")[:300]
+        )
+        body = (
+            b"".join(response.streaming_content)
+            if response.streaming
+            else response.content
+        )
+        with (
+            fitz.open(stream=raw, filetype="pdf") as a,
+            fitz.open(stream=body, filetype="pdf") as b,
+        ):
+            self.assertEqual(a.page_count, b.page_count)
+            self.assertEqual(a[9].get_text(), b[9].get_text())
+        self.assertFalse(os.path.exists(_upload_dir(upload_id)))  # single use
+
+    def test_free_users_and_other_owners_are_refused(self):
+        from django.contrib.auth import get_user_model
+        from django.test import Client
+
+        anon = Client().post(
+            "/api/uploads/chunk/",
+            {"chunk": SimpleUploadedFile("b", b"x"), "index": 0, "total_size": 1},
+        )
+        self.assertEqual(anon.status_code, 403)
+
+        upload_id = self._upload(self.client, _text_pdf(pages=2))
+        other = get_user_model().objects.create_user(
+            username="other", email="o@example.com", password="x"
+        )
+        thief = Client()
+        thief.force_login(other)
+        response = thief.post(
+            "/api/pdf-organize/compress/", {"pdf_file__upload_id": upload_id}
+        )
+        self.assertEqual(response.status_code, 400)
