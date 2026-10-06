@@ -867,3 +867,18 @@ class CropRotatedPagesTests(TestCase):
                 abs(a - b) for a, b in zip(got.getdata(), want.getdata(), strict=False)
             )
             self.assertLess(diff / (want.width * want.height), 40, rotation)
+
+
+class PdfToExcelAmbiguousNumbersTests(TestCase):
+    def test_numbers_that_read_two_ways_stay_text(self):
+        # "1.200" (German thousands) became 1.2: a 1000x error, silently.
+        import pandas as pd
+        from src.api.pdf_convert.pdf_to_excel.utils import _numeric_or_text
+
+        for values in (["1.200", "3.450"], ["1,234"], ["380501234567"], ["007"]):
+            out, decimals = _numeric_or_text(pd.Series(values))
+            self.assertEqual(list(out), values)
+            self.assertIsNone(decimals)
+        out, decimals = _numeric_or_text(pd.Series(["0.50", "12.30", "1,234.56"]))
+        self.assertEqual(list(out), [0.5, 12.3, 1234.56])
+        self.assertEqual(decimals, 2)  # shown as 0.50, 12.30
