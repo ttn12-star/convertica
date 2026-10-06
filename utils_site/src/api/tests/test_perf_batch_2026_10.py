@@ -718,13 +718,14 @@ class ChunkedUploadTests(TestCase):
             self.assertEqual(a[9].get_text(), b[9].get_text())
         self.assertFalse(os.path.exists(_upload_dir(upload_id)))  # single use
 
-    def test_one_account_holds_at_most_three_uploads(self):
-        # Unfinished uploads filled the shared disk with no per-user bound.
+    def test_abandoned_uploads_are_bounded_but_a_batch_is_not_cut(self):
+        # Unfinished uploads filled the shared disk with no per-user bound;
+        # the first bound then evicted finished files of a 4+ file batch.
         import glob
 
-        from src.api.chunked_upload import ASYNC_TEMP_DIR, MAX_UPLOADS_PER_USER
+        from src.api.chunked_upload import ASYNC_TEMP_DIR, MAX_UNFINISHED_PER_USER
 
-        for _ in range(MAX_UPLOADS_PER_USER + 2):
+        for _ in range(MAX_UNFINISHED_PER_USER + 3):  # abandoned after chunk 0
             self.client.post(
                 "/api/uploads/chunk/",
                 {
@@ -733,8 +734,15 @@ class ChunkedUploadTests(TestCase):
                     "total_size": 100,
                 },
             )
-        mine = glob.glob(f"{ASYNC_TEMP_DIR}/upload_*")
-        self.assertLessEqual(len(mine), MAX_UPLOADS_PER_USER)
+        self.assertLessEqual(
+            len(glob.glob(f"{ASYNC_TEMP_DIR}/upload_*")), MAX_UNFINISHED_PER_USER
+        )
+        finished = [self._upload(self.client, _text_pdf(pages=1)) for _ in range(5)]
+        response = self.client.post(
+            "/api/pdf-organize/compress/batch/",
+            {"pdf_files__upload_id": finished, "compression_level": "low"},
+        )
+        self.assertEqual(response.status_code, 200)
 
     def test_free_users_and_other_owners_are_refused(self):
         from django.contrib.auth import get_user_model
