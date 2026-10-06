@@ -437,6 +437,10 @@ MIDDLEWARE = [
     # so paying API callers aren't treated as anonymous free-tier. Must sit
     # after AuthenticationMiddleware (whose session default it overrides).
     "src.api.middleware.APIKeyIdentityMiddleware",
+    # Chunked uploads (>100 MB, past Cloudflare's body limit) back into
+    # request.FILES: after auth (uploads are per user), before anything that
+    # reads the files (analytics, quota).
+    "src.api.chunked_upload.ChunkedUploadMiddleware",
     "src.api.middleware.APIKeyQuotaRefundMiddleware",  # Refund API-key quota on non-2xx
     "src.api.middleware.OperationRunTrackingMiddleware",  # DB analytics for all operations
     "src.api.middleware.DailyQuotaMiddleware",  # Free-tier daily conversion cap (after tracking so 429s land in analytics)
