@@ -1296,6 +1296,7 @@ class OcrFailureReachesTheUserTests(TestCase):
         from unittest import mock
 
         import pytesseract
+        from PIL import Image
         from src.api import ocr_utils
         from src.api.pdf_convert.pdf_to_word_optimized import (
             OptimizedPDFToWordConverter,
@@ -1304,6 +1305,15 @@ class OcrFailureReachesTheUserTests(TestCase):
 
         upload = SimpleUploadedFile("s.pdf", _text_pdf(pages=2), "application/pdf")
         with (
+            # The CI runner has no poppler: count and rasterise without it.
+            mock.patch.object(
+                ocr_utils, "pdfinfo_from_path", return_value={"Pages": 2}
+            ),
+            mock.patch.object(
+                ocr_utils,
+                "convert_from_path",
+                return_value=[Image.new("RGB", (10, 10), "white")],
+            ),
             mock.patch.object(
                 ocr_utils,
                 "extract_text_from_image",
