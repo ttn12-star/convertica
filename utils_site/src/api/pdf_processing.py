@@ -158,7 +158,21 @@ class BasePDFProcessor:
         def _check(path: str) -> None:
             from pypdf import PdfReader
 
-            reader = PdfReader(path, strict=False)
+            try:
+                reader = PdfReader(path, strict=False)
+                len(reader.pages)
+            except Exception:
+                # MuPDF repairs damaged input and writes a file it reads fine
+                # but pypdf may not (add-text, editor). It wrote it: ask it.
+                import fitz
+
+                with fitz.open(path) as doc:
+                    if doc.needs_pass and allow_encrypted:
+                        return
+                    if doc.page_count > 0 and not doc.needs_pass:
+                        return
+                raise
+
             if reader.is_encrypted:
                 if allow_encrypted:
                     # Output is password-protected as expected (e.g. protect_pdf).

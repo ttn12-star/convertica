@@ -1387,3 +1387,33 @@ class AbandonedLibreOfficeIsKilledTests(TestCase):
         worker.join(5)
         self.assertIn("stopped", outcome)
         self.assertLess(outcome["stopped"] - asked, 2.5)
+
+
+class DamagedInputClassifierTests(TestCase):
+    def test_what_counts_as_the_users_damaged_file(self):
+        from pdfminer.psexceptions import PSEOF
+        from src.exceptions import (
+            ConversionError,
+            OCRFailedError,
+            caused_by_damaged_input,
+        )
+
+        self.assertTrue(
+            caused_by_damaged_input(PSEOF("Unexpected EOF"))
+        )  # raw pdfminer
+        try:
+            try:
+                raise OSError("image file is truncated (17 bytes not processed)")
+            except OSError as e:
+                raise ConversionError("x") from e
+        except ConversionError as wrapped:
+            self.assertTrue(caused_by_damaged_input(wrapped))
+        # Our own I/O trouble that merely says "truncated" is not the user's.
+        try:
+            try:
+                raise OSError("write truncated by our pipe")
+            except OSError as e:
+                raise ConversionError("x") from e
+        except ConversionError as ours:
+            self.assertFalse(caused_by_damaged_input(ours))
+        self.assertFalse(OCRFailedError("x").retryable)  # same failure on a replay
