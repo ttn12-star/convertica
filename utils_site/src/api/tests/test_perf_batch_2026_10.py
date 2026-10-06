@@ -134,3 +134,103 @@ class JpgToPdfExifOrientationTests(TestCase):
                 self.assertTrue(
                     self._placed_image_is_portrait(pdf), f"{name} q{quality}"
                 )
+
+
+class WordLibreOfficeRetryTests(TestCase):
+    """One LibreOffice run per conversion; retry only a crashed soffice."""
+
+    def _run(self, side_effect):
+        import asyncio
+        import tempfile
+        from unittest import mock
+
+        from src.api.pdf_convert.word_to_pdf_optimized import (
+            OptimizedWordToPDFConverter,
+        )
+
+        tmp = tempfile.mkdtemp()
+        docx, pdf = os.path.join(tmp, "a.docx"), os.path.join(tmp, "a.pdf")
+        with (
+            mock.patch("shutil.which", return_value="/usr/bin/libreoffice"),
+            mock.patch(
+                "src.api.pdf_convert.word_to_pdf_optimized._run_libreoffice",
+                side_effect=side_effect,
+            ) as run,
+            mock.patch("asyncio.sleep"),
+        ):
+            try:
+                asyncio.new_event_loop().run_until_complete(
+                    OptimizedWordToPDFConverter()._convert_with_libreoffice_async(
+                        docx, pdf, {}
+                    )
+                )
+                return run, None, tmp
+            except Exception as e:  # noqa: BLE001 - the test inspects it
+                return run, e, tmp
+
+    def test_good_file_is_one_run_without_infilter(self):
+        def ok(cmd, env, timeout):
+            open(os.path.join(os.path.dirname(cmd[-1]), "a.pdf"), "wb").close()
+
+        run, err, _ = self._run(ok)
+        self.assertIsNone(err)
+        self.assertEqual(run.call_count, 1)
+        self.assertFalse(any("infilter" in a for a in run.call_args[0][0]))
+
+    def test_unopenable_file_is_400_after_one_run(self):
+        from src.exceptions import InvalidPDFError
+
+        run, err, _ = self._run(lambda *a: None)  # rc=0, no PDF
+        self.assertIsInstance(err, InvalidPDFError)
+        self.assertEqual(run.call_count, 1)
+
+    def test_oom_kill_and_timeout_are_not_retried(self):
+        import subprocess
+
+        from src.exceptions import ConversionError
+
+        for exc in (
+            subprocess.CalledProcessError(-9, ["libreoffice"], stderr=b""),
+            subprocess.TimeoutExpired(["libreoffice"], 180),
+        ):
+            run, err, _ = self._run(exc)
+            self.assertIsInstance(err, ConversionError)
+            self.assertEqual(run.call_count, 1, type(exc).__name__)
+
+    def test_crashed_soffice_is_retried(self):
+        import subprocess
+
+        run, err, _ = self._run(
+            subprocess.CalledProcessError(1, ["libreoffice"], stderr=b"crash")
+        )
+        self.assertIsNotNone(err)
+        self.assertEqual(run.call_count, 3)
+
+
+class ExcelPptTimeoutNotRetriedTests(TestCase):
+    def test_timeout_is_one_run(self):
+        import asyncio
+        import subprocess
+        from unittest import mock
+
+        from src.api.pdf_convert.excel_to_pdf.utils import ExcelToPDFConverter
+        from src.api.pdf_convert.ppt_to_pdf.utils import PowerPointToPDFConverter
+        from src.exceptions import ConversionError
+
+        for module, conv in (
+            ("excel_to_pdf", ExcelToPDFConverter()),
+            ("ppt_to_pdf", PowerPointToPDFConverter()),
+        ):
+            with (
+                mock.patch("shutil.which", return_value="/usr/bin/libreoffice"),
+                mock.patch(
+                    f"src.api.pdf_convert.{module}.utils._run_libreoffice",
+                    side_effect=subprocess.TimeoutExpired(["libreoffice"], 1),
+                ) as run,
+                mock.patch("asyncio.sleep"),
+                self.assertRaises(ConversionError),
+            ):
+                asyncio.new_event_loop().run_until_complete(
+                    conv._convert_with_libreoffice_async("/tmp/x.in", "/tmp/x.pdf", {})
+                )
+            self.assertEqual(run.call_count, 1, module)
