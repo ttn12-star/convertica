@@ -107,10 +107,6 @@ except ImportError:
     OLEFILE_AVAILABLE = False
     logger.warning("olefile not available, .doc orientation detection will be limited")
 
-# Magic numbers for DOCX/DOC validation
-DOCX_MAGIC = b"PK\x03\x04"
-DOC_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
-
 
 class OptimizedWordToPDFConverter:
     """
@@ -213,16 +209,14 @@ class OptimizedWordToPDFConverter:
                 }
             )
 
-            # Validate magic number before writing
-            await self._validate_magic_number_async(uploaded_file, context)
-
             # Save uploaded file
             await self._save_uploaded_file_async(
                 uploaded_file, docx_path, context, check_cancelled=check_cancelled
             )
 
-            # Validate Word file (temporarily disabled for testing)
-            # await self._validate_word_file_async(docx_path, context)
+            # Magic bytes + OOXML structure before LibreOffice sees it: crafted
+            # Office files are a recurring LibreOffice CVE surface.
+            await self._validate_word_file_async(docx_path, context)
 
             # Perform optimized LibreOffice conversion
             # LibreOffice handles orientation correctly, no need for post-processing
@@ -329,36 +323,6 @@ class OptimizedWordToPDFConverter:
                 and os.path.exists(tmp_dir)
             ):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
-
-    async def _validate_magic_number_async(
-        self, uploaded_file: UploadedFile, context: dict
-    ):
-        """Validate Word file magic number asynchronously."""
-
-        def _validate():
-            try:
-                header = uploaded_file.read(16)
-                uploaded_file.seek(0)
-
-                # Lenient: allow .doc/.docx even if magic missing. This is an
-                # intentional pass-through (extension+size already vetted), so
-                # log at info — historically captured as a Sentry warning even
-                # though no remediation is possible from the warning alone.
-                if not (header.startswith(DOCX_MAGIC) or header.startswith(DOC_MAGIC)):
-                    logger.info(
-                        "Word magic number missing, allowing based on extension/size",
-                        extra={**context, "event": "word_magic_missing"},
-                    )
-            except Exception as e:
-                raise InvalidPDFError(f"Failed to validate Word file: {e}") from e
-
-        loop = asyncio.get_event_loop()
-        await loop.run_in_executor(None, _validate)
-
-        logger.debug(
-            "Magic number validation passed",
-            extra={**context, "event": "magic_number_valid"},
-        )
 
     async def _save_uploaded_file_async(
         self,

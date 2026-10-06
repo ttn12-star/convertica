@@ -34,3 +34,40 @@ class CompressTextPdfTests(TestCase):
             upload = SimpleUploadedFile("t.pdf", raw, content_type="application/pdf")
             _, out = compress_pdf(upload, compression_level=level)
             self.assertLess(os.path.getsize(out), len(raw) * 0.7, level)
+
+
+class WordInputValidationTests(TestCase):
+    def test_junk_docx_is_rejected_before_libreoffice(self):
+        # validate_word_file was commented out "temporarily for testing", so
+        # any bytes named .doc/.docx reached LibreOffice (CVE surface) and a
+        # broken file came back as a 500 after three LibreOffice runs.
+        import asyncio
+        from unittest import mock
+
+        from src.api.pdf_convert.word_to_pdf_optimized import (
+            OptimizedWordToPDFConverter,
+        )
+        from src.exceptions import InvalidPDFError
+
+        upload = SimpleUploadedFile("x.docx", b"PK\x03\x04" + b"junk" * 500)
+        conv = OptimizedWordToPDFConverter()
+        with (
+            mock.patch.object(conv, "_convert_with_libreoffice_async") as lo,
+            self.assertRaises(InvalidPDFError),
+        ):
+            asyncio.new_event_loop().run_until_complete(
+                conv.convert_word_to_pdf_optimized(upload)
+            )
+        lo.assert_not_called()
+
+    def test_rtf_saved_as_doc_still_passes(self):
+        import tempfile
+
+        from src.api.file_validation import validate_word_file
+
+        with tempfile.NamedTemporaryFile(suffix=".doc", delete=False) as f:
+            f.write(b"{\\rtf1\\ansi Hello}")
+        try:
+            self.assertEqual(validate_word_file(f.name, {}), (True, None))
+        finally:
+            os.unlink(f.name)

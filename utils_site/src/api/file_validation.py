@@ -270,8 +270,13 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                     return False, "DOC file is too small to be valid"
                 return True, None
 
+            # RTF saved under a .doc name: old apps do this and LibreOffice
+            # converts it fine. Plain text format, no macros.
+            elif header.startswith(b"{\\rtf"):
+                return True, None
+
             else:
-                # No PK/OLE2 magic — reject. A real .docx/.doc always carries
+                # No PK/OLE2/RTF magic — reject. A real .docx/.doc always carries
                 # the right magic bytes; "lenient extension-based" passes were
                 # the path that let crafted payloads reach LibreOffice.
                 header_hex = header[:8].hex() if len(header) >= 8 else header.hex()
