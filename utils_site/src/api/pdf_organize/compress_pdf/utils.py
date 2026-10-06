@@ -19,6 +19,38 @@ from ...pdf_processing import BasePDFProcessor
 logger = get_logger(__name__)
 
 
+def _flate_image_is_safe(doc: fitz.Document, xref: int) -> bool:
+    """Whether a Flate image survives becoming an 8-bit Gray/RGB JPEG intact.
+
+    Each skipped key breaks a naive re-encode: /Decode inverts the image once
+    the pixmap has already applied it, a colour-key /Mask stops matching after
+    JPEG noise, ImageMask/1-bit/Indexed art turns into blurry, larger JPEG,
+    and CMYK is kept for print, as the JPEG branch does.
+    """
+
+    def key(name: str) -> str:
+        try:
+            return doc.xref_get_key(xref, name)[1] or "null"
+        except Exception:
+            return "null"
+
+    if key("ImageMask") == "true" or key("BitsPerComponent") != "8":
+        return False
+    if key("Mask") != "null" or key("Decode") != "null":
+        return False
+    colorspace = key("ColorSpace")
+    if colorspace in ("/DeviceGray", "/DeviceRGB"):
+        return True
+    # Scanner/phone output is often [/ICCBased <ref>], inline or by reference;
+    # the caller still requires a 1- or 3-channel pixmap (Gray/RGB profile).
+    if colorspace.endswith(" R"):
+        try:
+            colorspace = doc.xref_object(int(colorspace.split()[0]), compressed=True)
+        except Exception:
+            return False
+    return "/ICCBased" in colorspace
+
+
 def compress_pdf(
     uploaded_file: UploadedFile,
     compression_level: str = "medium",
@@ -144,40 +176,48 @@ def compress_pdf(
                         continue
                     seen.add(xref)
 
+                    # Filter first: extract_image re-encodes a Flate image to
+                    # PNG (~1.5 s per scanned page) only for us to skip it.
                     try:
-                        info = doc.extract_image(xref)
-                    except Exception as e:
-                        logger.debug(
-                            "compress_pdf: skip image xref=%d — extract_image failed: %s",
-                            xref,
-                            e,
-                        )
-                        continue
-
-                    ext = (info.get("ext") or "").lower()
-                    if ext not in {"jpeg", "jpg"}:
-                        continue
-
-                    try:
-                        flt = doc.xref_get_key(xref, "Filter")[1]
+                        flt = doc.xref_get_key(xref, "Filter")[1] or ""
                     except Exception:
                         flt = ""
-                    if "DCTDecode" not in (flt or ""):
-                        continue
 
-                    img_bytes = info.get("image")
-                    if not img_bytes:
-                        continue
-
-                    try:
-                        im = Image.open(BytesIO(img_bytes))
-                        im.load()
-                    except Exception as e:
-                        logger.debug(
-                            "compress_pdf: skip image xref=%d — PIL open failed: %s",
-                            xref,
-                            e,
-                        )
+                    if flt == "/DCTDecode":
+                        try:
+                            img_bytes = doc.extract_image(xref).get("image")
+                            im = Image.open(BytesIO(img_bytes))
+                            im.load()
+                        except Exception as e:
+                            logger.debug(
+                                "compress_pdf: skip image xref=%d — JPEG open failed: %s",
+                                xref,
+                                e,
+                            )
+                            continue
+                        stored_size = len(img_bytes or b"")
+                    elif flt == "/FlateDecode" and _flate_image_is_safe(doc, xref):
+                        # Scans and PNGs: these were never touched, so a scanned
+                        # PDF came out 0% smaller on every level.
+                        try:
+                            pix = fitz.Pixmap(doc, xref)
+                            if pix.alpha or pix.n not in (1, 3):
+                                continue
+                            im = Image.frombytes(
+                                "L" if pix.n == 1 else "RGB",
+                                (pix.width, pix.height),
+                                pix.samples,
+                            )
+                            del pix
+                            stored_size = len(doc.xref_stream_raw(xref))
+                        except Exception as e:
+                            logger.debug(
+                                "compress_pdf: skip image xref=%d — pixmap failed: %s",
+                                xref,
+                                e,
+                            )
+                            continue
+                    else:
                         continue
 
                     # Skip images that are not RGB or grayscale to prevent color space issues
@@ -237,7 +277,7 @@ def compress_pdf(
                         continue
 
                     # Only replace if we save at least 10% (not just any reduction)
-                    if len(new_bytes) >= len(img_bytes) * 0.9:
+                    if len(new_bytes) >= stored_size * 0.9:
                         continue
 
                     try:
