@@ -257,3 +257,17 @@ class OcrSkewDetectionTests(TestCase):
             angle = ocr_utils.detect_skew_angle(img)
         self.assertEqual(angle, -2.0)
         self.assertLessEqual(max(rotate.call_args[0][0].shape), 1000)
+
+
+class PdfToHtmlEscapingTests(TestCase):
+    def test_pdf_text_cannot_inject_markup(self):
+        from src.api.pdf_convert.pdf_to_html.utils import convert_pdf_to_html
+
+        doc = fitz.open()
+        doc.new_page().insert_text((50, 60), "a < b <script>alert(1)</script>")
+        upload = SimpleUploadedFile("x.pdf", doc.tobytes(), "application/pdf")
+        _, out = convert_pdf_to_html(upload, extract_images=False)
+        with open(out, encoding="utf-8") as f:
+            page = f.read()
+        self.assertNotIn("<script>alert", page)
+        self.assertIn("&lt;script&gt;", page)
