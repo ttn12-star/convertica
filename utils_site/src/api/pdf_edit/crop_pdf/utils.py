@@ -80,6 +80,10 @@ def crop_pdf(
             first_page = reader.pages[0]
             original_width = float(first_page.mediabox.width)
             original_height = float(first_page.mediabox.height)
+            # The UI selects on the page as displayed: a /Rotate 90/270 page
+            # is wider than its MediaBox, so bound the selection by that.
+            if (first_page.rotation or 0) % 180:
+                original_width, original_height = original_height, original_width
 
             # Ensure x, y, width, height are valid numbers
             crop_x = float(x) if x is not None else 0.0
@@ -135,26 +139,44 @@ def crop_pdf(
             # page without keeping its proportions.
             import fitz
 
-            with fitz.open(pdf_path) as src, fitz.open() as out:
-                for page_num, page in enumerate(src):
-                    if page_num not in pages_to_crop:
-                        out.insert_pdf(src, from_page=page_num, to_page=page_num)
-                        continue
-                    # crop_* are PDF units from the bottom-left of the page;
-                    # PyMuPDF measures from the top-left of the unrotated page.
-                    height = page.cropbox.height
-                    clip = (
+            with (
+                fitz.open(pdf_path) as src,
+                fitz.open(pdf_path) as flat,
+                fitz.open() as out,
+            ):
+                # Cropped pages are redrawn as content, which drops form
+                # fields and annotations: draw them from a copy where they are
+                # baked in. Untouched pages are copied from src, still live.
+                flat.bake()
+                for page_num in range(src.page_count):
+                    page = flat[page_num]
+                    visible = page.rect  # what the user saw, rotation applied
+                    # crop_* are PDF units from the bottom-left of that view.
+                    selection = (
                         fitz.Rect(
                             crop_x,
-                            height - crop_y - crop_height,
+                            visible.height - crop_y - crop_height,
                             crop_x + crop_width,
-                            height - crop_y,
+                            visible.height - crop_y,
                         )
-                        * page.rotation_matrix
+                        & visible
                     )
+                    if page_num not in pages_to_crop or selection.is_empty:
+                        # Not selected, or a smaller page the box misses
+                        # entirely: keep it rather than fail the document.
+                        out.insert_pdf(src, from_page=page_num, to_page=page_num)
+                        continue
+                    clip = selection * page.derotation_matrix
+                    rotation = page.rotation
+                    page.set_rotation(0)
                     target = out.new_page(width=original_width, height=original_height)
                     target.show_pdf_page(
-                        target.rect, src, page_num, clip=clip, keep_proportion=True
+                        target.rect,
+                        flat,
+                        page_num,
+                        clip=clip,
+                        keep_proportion=True,
+                        rotate=-rotation,
                     )
                 out.save(output_path, garbage=3, deflate=True)
 
