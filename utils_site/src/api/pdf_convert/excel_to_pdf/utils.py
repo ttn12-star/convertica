@@ -54,20 +54,18 @@ def _column_index(letters: str) -> int:
     return index
 
 
-def _estimate_content_width_pt(sheet_xml: str) -> float:
+def _estimate_content_width_pt(sheet, ns: str) -> float:
     """Approximate the printed width of a sheet's used columns, in points."""
-    used = re.search(r'<dimension ref="[A-Z]+\d+:([A-Z]+)\d+"', sheet_xml)
+    dimension = sheet.find(f"{{{ns}}}dimension")
+    ref = dimension.get("ref", "") if dimension is not None else ""
+    used = re.fullmatch(r"[A-Z]+\d+:([A-Z]+)\d+", ref)
     last = _column_index(used.group(1)) if used else 0
     widths = {}
-    for col in re.finditer(r"<col\b[^>]*>", sheet_xml):
-        attrs = dict(re.findall(r'(\w+)="([^"]*)"', col.group(0)))
+    for col in sheet.iterfind(f"{{{ns}}}cols/{{{ns}}}col"):
         try:
-            low, high, width = (
-                int(attrs["min"]),
-                int(attrs["max"]),
-                float(attrs["width"]),
-            )
-        except (KeyError, ValueError):
+            low, high = int(col.get("min")), int(col.get("max"))
+            width = float(col.get("width"))
+        except (TypeError, ValueError):
             continue
         for index in range(low, min(high, last) + 1):
             widths[index] = width
@@ -75,26 +73,31 @@ def _estimate_content_width_pt(sheet_xml: str) -> float:
     return total * _CHARS_TO_PT
 
 
-def _with_attrs(tag: str, attrs: dict) -> str:
-    """Set attributes on one start/empty tag, replacing existing values."""
-    for name, value in attrs.items():
-        existing = re.compile(rf'\s{name}="[^"]*"')
-        if existing.search(tag):
-            tag = existing.sub(f' {name}="{value}"', tag, count=1)
-        else:
-            tag = re.sub(r"\s*(/?>)$", rf' {name}="{value}"\1', tag, count=1)
-    return tag
+def _patch_sheet(xml: bytes, orientation: str, fit_mode: str, user_chose: bool):
+    """The sheet XML with print scaling set, or None to leave it as is.
 
+    A real parser, not text search: <pageSetup> also lives inside
+    <customSheetView>, <extLst> inside data-bar <cfRule>s, attributes may be
+    single-quoted and the root may carry a prefix (<x:worksheet>). lxml keeps
+    every prefix and namespace declaration the other parts refer to.
+    """
+    from lxml import etree
 
-def _patch_sheet(xml: str, orientation: str, fit_mode: str, user_chose: bool):
-    """The sheet XML with print scaling set, or None to leave it as is."""
-    if not re.search(r"<worksheet[\s>]", xml):
-        return None  # prefixed or unusual serialisation: don't guess
-    page_setup = re.search(r"<pageSetup\b[^>]*>", xml)
-    setup_pr = re.search(r"<pageSetUpPr\b[^>]*>", xml)
-    authored = (setup_pr and re.search(r'fitToPage="(1|true)"', setup_pr.group(0))) or (
-        page_setup and re.search(r'\sscale="\d+"', page_setup.group(0))
-    )
+    sheet = etree.fromstring(xml)
+    if etree.QName(sheet).localname != "worksheet":
+        return None
+    ns = etree.QName(sheet).namespace
+
+    def tag(name):
+        return f"{{{ns}}}{name}"
+
+    page_setup = sheet.find(tag("pageSetup"))  # direct children only
+    sheet_pr = sheet.find(tag("sheetPr"))
+    setup_pr = sheet_pr.find(tag("pageSetUpPr")) if sheet_pr is not None else None
+    # scale="100" is the default (LibreOffice always writes it), not a choice.
+    authored = (
+        setup_pr is not None and setup_pr.get("fitToPage") in ("1", "true")
+    ) or (page_setup is not None and page_setup.get("scale") not in (None, "100"))
     if authored and not user_chose:
         return None  # respect an author who already configured print scaling
 
@@ -105,53 +108,35 @@ def _patch_sheet(xml: str, orientation: str, fit_mode: str, user_chose: bool):
         attrs["orientation"] = orientation
     elif (
         fit_mode == "fit_width"
-        and not (page_setup and "orientation=" in page_setup.group(0))
-        and _estimate_content_width_pt(xml) > _LANDSCAPE_WIDTH_THRESHOLD_PT
+        and (page_setup is None or page_setup.get("orientation") is None)
+        and _estimate_content_width_pt(sheet, ns) > _LANDSCAPE_WIDTH_THRESHOLD_PT
     ):
         attrs["orientation"] = "landscape"
     if not attrs:
         return None
 
-    if page_setup:
-        xml = (
-            xml[: page_setup.start()]
-            + _with_attrs(page_setup.group(0), attrs)
-            + xml[page_setup.end() :]
-        )
-    else:
-        tag = _with_attrs("<pageSetup/>", attrs)
-        nxt = re.search(r"<(%s)[\s/>]" % "|".join(_AFTER_PAGE_SETUP), xml)
-        at = nxt.start() if nxt else xml.rindex("</worksheet>")
-        xml = xml[:at] + tag + xml[at:]
+    if page_setup is None:
+        page_setup = etree.Element(tag("pageSetup"))
+        later = [
+            i
+            for i, child in enumerate(sheet)
+            if isinstance(child.tag, str)
+            and etree.QName(child).localname in _AFTER_PAGE_SETUP
+        ]
+        sheet.insert(later[0] if later else len(sheet), page_setup)
+    for name, value in attrs.items():
+        page_setup.set(name, value)
 
     if fit_mode == "fit_width":
-        setup_pr = re.search(r"<pageSetUpPr\b[^>]*>", xml)
-        sheet_pr = re.search(r"<sheetPr\b[^>]*?(/?)>", xml)
-        fit = '<pageSetUpPr fitToPage="1"/>'
-        if setup_pr:
-            xml = (
-                xml[: setup_pr.start()]
-                + _with_attrs(setup_pr.group(0), {"fitToPage": "1"})
-                + xml[setup_pr.end() :]
-            )
-        elif sheet_pr and sheet_pr.group(1):  # <sheetPr .../>
-            opened = sheet_pr.group(0)[:-2].rstrip() + ">"
-            xml = (
-                xml[: sheet_pr.start()]
-                + opened
-                + fit
-                + "</sheetPr>"
-                + xml[sheet_pr.end() :]
-            )
-        elif sheet_pr:  # pageSetUpPr is sheetPr's last child
-            at = xml.index("</sheetPr>", sheet_pr.end())
-            xml = xml[:at] + fit + xml[at:]
-        else:  # sheetPr is the first child of <worksheet>
-            root = re.search(r"<worksheet\b[^>]*>", xml)
-            xml = (
-                xml[: root.end()] + "<sheetPr>" + fit + "</sheetPr>" + xml[root.end() :]
-            )
-    return xml
+        if sheet_pr is None:
+            sheet_pr = etree.Element(tag("sheetPr"))
+            sheet.insert(0, sheet_pr)  # first child of <worksheet>
+        if setup_pr is None:
+            setup_pr = etree.SubElement(sheet_pr, tag("pageSetUpPr"))  # last child
+        setup_pr.set("fitToPage", "1")
+    return etree.tostring(
+        sheet, xml_declaration=True, encoding="UTF-8", standalone=True
+    )
 
 
 def _apply_print_fit(
@@ -195,10 +180,11 @@ def _apply_print_fit(
         with zipfile.ZipFile(excel_path) as book:
             for name in book.namelist():
                 if re.fullmatch(r"xl/worksheets/[^/]+\.xml", name):
-                    xml = book.read(name).decode("utf-8")
-                    new = _patch_sheet(xml, orientation, fit_mode, user_chose)
+                    new = _patch_sheet(
+                        book.read(name), orientation, fit_mode, user_chose
+                    )
                     if new is not None:
-                        patched[name] = new.encode("utf-8")
+                        patched[name] = new
             if not patched:
                 return
             tmp_path = excel_path + ".fit"

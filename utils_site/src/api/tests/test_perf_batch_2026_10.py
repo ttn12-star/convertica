@@ -1020,3 +1020,35 @@ class PremiumBatchEndpointsTests(TestCase):
                 2,
                 path,
             )
+
+
+class ExcelSheetPatchTests(TestCase):
+    def test_only_the_sheets_own_page_setup_is_touched(self):
+        # Text search found <pageSetup> inside <customSheetView> and anchored
+        # the insert on an <extLst> nested in a data-bar <cfRule>; quotes and
+        # prefixes broke it too. Only top-level children may change.
+        from lxml import etree
+        from src.api.pdf_convert.excel_to_pdf.utils import _patch_sheet
+
+        main = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+        xml = (
+            f"<x:worksheet xmlns:x='{main}'><x:dimension ref='A1:B2'/>"
+            "<x:customSheetViews><x:customSheetView guid='{1}'>"
+            "<x:pageSetup orientation='portrait'/></x:customSheetView></x:customSheetViews>"
+            "<x:sheetData/><x:conditionalFormatting sqref='A1'><x:cfRule type='dataBar'>"
+            "<x:extLst><x:ext uri='u'/></x:extLst></x:cfRule></x:conditionalFormatting>"
+            "<x:pageMargins left='1' right='1' top='1' bottom='1' header='0' footer='0'/>"
+            "</x:worksheet>"
+        ).encode()
+        out = etree.fromstring(_patch_sheet(xml, "landscape", "fit_width", True))
+        ns = {"x": main}
+        top = out.find("x:pageSetup", ns)
+        self.assertEqual(top.get("orientation"), "landscape")
+        self.assertEqual(out.index(top), out.index(out.find("x:pageMargins", ns)) + 1)
+        self.assertEqual(
+            out.find("x:customSheetViews//x:pageSetup", ns).get("orientation"),
+            "portrait",
+        )
+        self.assertIsNone(out.find(".//x:cfRule/x:pageSetup", ns))
+        self.assertEqual(out.find("x:sheetPr/x:pageSetUpPr", ns).get("fitToPage"), "1")
+        self.assertEqual(out.prefix, "x")
