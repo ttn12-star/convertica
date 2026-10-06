@@ -19,9 +19,9 @@ class FlattenPDFBatchAPIView(BaseBatchAPIView):
     VALIDATE_PDF_PAGES = False  # Parity with single FlattenPDFAPIView
 
     def convert_single(self, uploaded_file, context, **params):
-        input_path, output_path = flatten_pdf(
-            uploaded_file=uploaded_file, suffix="_flattened"
-        )
+        # flatten_pdf's first parameter is pdf_file: the keyword failed every
+        # file ("unexpected keyword argument 'uploaded_file'").
+        input_path, output_path = flatten_pdf(uploaded_file, suffix="_flattened")
         return os.path.dirname(input_path), output_path
 
     def get_zip_entry_name(self, original_name, output_path):
