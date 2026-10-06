@@ -171,13 +171,15 @@ def protect_pdf(
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):
         raise
-    except fitz.FileNotDecryptedError as e:
-        raise EncryptedPDFError(
-            "This PDF is password-protected and cannot be read. "
-            "Please use the 'Unlock PDF' tool first to remove the existing password.",
-            context=context,
-        ) from e
     except Exception as e:
+        # PyMuPDF has no FileNotDecryptedError: that except clause itself
+        # raised AttributeError whenever anything failed here.
+        if "encrypted" in str(e).lower() or "password" in str(e).lower():
+            raise EncryptedPDFError(
+                "This PDF is password-protected and cannot be read. "
+                "Please use the 'Unlock PDF' tool first to remove the existing password.",
+                context=context,
+            ) from e
         logger.exception(
             "Unexpected error",
             extra={

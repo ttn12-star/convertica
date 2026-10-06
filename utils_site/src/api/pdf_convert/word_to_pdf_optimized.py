@@ -36,9 +36,12 @@ def _validate_output_pdf(pdf_path: str, context: dict | None = None) -> None:
         except ConversionError:
             raise
         except Exception as exc:
+            # Our output: no parser error in the chain (that would read as the
+            # user's damaged file).
             raise ConversionError(
-                "Output PDF is invalid or truncated", context=context
-            ) from exc
+                f"Output PDF is invalid or truncated ({type(exc).__name__})",
+                context=context,
+            ) from None
         if page_count < 1:
             raise ConversionError("Output PDF has no pages", context=context)
 

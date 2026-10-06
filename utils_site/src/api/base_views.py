@@ -378,8 +378,15 @@ class BaseConversionAPIView(APIView, ABC):
                 start_time,
                 level="warning",
             )
+            # A parser's own message names our temp path and says little to a
+            # user; a damaged file gets a plain sentence instead.
+            message = (
+                scrub_internal_paths(str(error))
+                if isinstance(error, InvalidPDFError)
+                else "The file is damaged or incomplete."
+            )
             return Response(
-                {"error": f"Invalid file: {str(error)}"},
+                {"error": f"Invalid file: {message}"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
