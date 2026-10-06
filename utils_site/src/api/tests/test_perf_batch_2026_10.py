@@ -60,17 +60,28 @@ class WordInputValidationTests(TestCase):
             )
         lo.assert_not_called()
 
-    def test_rtf_saved_as_doc_still_passes(self):
+    def test_text_exports_named_doc_still_pass_and_binary_junk_does_not(self):
+        # "Export to Word" from 1C/banks/CRMs writes HTML, RTF or WordML under
+        # a .doc name; LibreOffice converts them with its text filters. Only
+        # binary content without ZIP/OLE magic is the CVE-shaped input.
         import tempfile
 
         from src.api.file_validation import validate_word_file
 
-        with tempfile.NamedTemporaryFile(suffix=".doc", delete=False) as f:
-            f.write(b"{\\rtf1\\ansi Hello}")
-        try:
-            self.assertEqual(validate_word_file(f.name, {}), (True, None))
-        finally:
-            os.unlink(f.name)
+        cases = {
+            b"{\\rtf1\\ansi Hello}" * 20: True,
+            b"\xef\xbb\xbf{\\rtf1 BOM}" * 20: True,
+            "<html><p>Привет</p></html>".encode("cp1251") * 20: True,
+            b'<?xml version="1.0"?><w:wordDocument/>': True,
+            os.urandom(4000): False,
+        }
+        for data, expected in cases.items():
+            with tempfile.NamedTemporaryFile(suffix=".doc", delete=False) as f:
+                f.write(data)
+            try:
+                self.assertEqual(validate_word_file(f.name, {})[0], expected, data[:20])
+            finally:
+                os.unlink(f.name)
 
 
 class PdfToExcelPageCacheTests(TestCase):
@@ -271,3 +282,50 @@ class PdfToHtmlEscapingTests(TestCase):
             page = f.read()
         self.assertNotIn("<script>alert", page)
         self.assertIn("&lt;script&gt;", page)
+
+
+class CeleryDoesNotReplayHopelessFailuresTests(TestCase):
+    """The async path (the front end's main one) re-ran the whole conversion
+    twice on a damaged file, an OOM kill or a timeout: the converter's own
+    'do not retry' never reached the task's retry decision."""
+
+    def _run_task(self, exc):
+        import tempfile
+        from unittest import mock
+
+        from celery.exceptions import Retry
+        from src.tasks.pdf_conversion import generic_conversion_task
+
+        tmp = tempfile.mkdtemp()
+        path = os.path.join(tmp, "a.docx")
+        with open(path, "wb") as f:
+            f.write(b"PK\x03\x04x")
+        with (
+            mock.patch(
+                "src.api.optimization_manager.optimization_manager.convert_word_to_pdf",
+                side_effect=exc,
+            ),
+            mock.patch.object(
+                generic_conversion_task, "retry", side_effect=Retry("retry")
+            ) as retry,
+        ):
+            result = generic_conversion_task.apply(
+                args=("t-" + os.path.basename(tmp), path, "a.docx", "word_to_pdf")
+            )
+        return retry.call_count, result.result
+
+    def test_damaged_file_oom_and_timeout_are_not_retried(self):
+        from src.exceptions import ConversionError, InvalidPDFError
+
+        oom = ConversionError("LibreOffice conversion failed: the file is too large")
+        oom.retryable = False
+        for exc in (InvalidPDFError("The document could not be opened."), oom):
+            retries, result = self._run_task(exc)
+            self.assertEqual(retries, 0, exc)
+            self.assertEqual(result["status"], "error")
+
+    def test_transient_failure_is_still_retried(self):
+        from src.exceptions import ConversionError
+
+        retries, _ = self._run_task(ConversionError("soffice crashed"))
+        self.assertEqual(retries, 1)

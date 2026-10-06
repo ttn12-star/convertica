@@ -110,6 +110,13 @@ def _is_user_input_error(exc: BaseException) -> bool:
     """
     if isinstance(exc, FileNotFoundError):
         return False
+    # The converters already say so by type; the token match below only
+    # catches what they did not classify ("could not be opened", "not a
+    # valid ZIP archive" slipped through and were retried twice).
+    from src.exceptions import EncryptedPDFError, InvalidPDFError
+
+    if isinstance(exc, InvalidPDFError | EncryptedPDFError):
+        return True
     msg = str(exc).lower()
     return any(token in msg for token in _USER_ERROR_TOKENS)
 
@@ -957,6 +964,16 @@ def generic_conversion_task(
                     "This file needs more memory than the server allows. "
                     "Try a smaller file, fewer pages, or split it first."
                 ),
+                "conversion_type": conversion_type,
+            }
+
+        # A converter that marked the failure non-retryable (LibreOffice OOM
+        # kill or timeout) fails the same way on every replay: re-running it
+        # means more OOM kills in the shared cgroup or another full timeout.
+        if getattr(exc, "retryable", True) is False:
+            return {
+                "status": "error",
+                "error": scrub_internal_paths(error_message),
                 "conversion_type": conversion_type,
             }
 
