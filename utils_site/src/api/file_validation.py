@@ -170,6 +170,19 @@ def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
         return False, f"Error validating PDF: {str(e)}"
 
 
+_WORD_MAIN_TYPES = (
+    b"wordprocessingml.document.main+xml",
+    b"wordprocessingml.template.main+xml",
+)
+
+
+def _looks_like_text(head: bytes) -> bool:
+    """True for text in any single-byte or UTF encoding, False for binary."""
+    if head.startswith((b"\xff\xfe", b"\xfe\xff")):  # UTF-16 BOM
+        return True
+    return bool(head) and not any(b < 0x20 and b not in b"\t\n\r\f" for b in head)
+
+
 def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]:
     """
     Validate Word file structure (.doc or .docx).
@@ -224,29 +237,32 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
 
         # Check magic number
         with open(file_path, "rb") as f:
-            header = f.read(16)  # Read more bytes for better detection
+            head = f.read(4096)
+            header = head[:16]
 
             # Check for DOCX (ZIP format) - PK\x03\x04
             if header.startswith(DOCX_MAGIC):
-                # DOCX MUST be a valid OOXML package — require BOTH the
-                # Content_Types manifest and word/document.xml. A file with
-                # just a PK header and arbitrary contents would otherwise
-                # reach LibreOffice, where it has been a recurring
-                # CVE surface (CVE-2024-* family on crafted Office files).
+                # DOCX MUST be a valid OOXML package whose manifest declares a
+                # Word main part. A file with just a PK header and arbitrary
+                # contents would otherwise reach LibreOffice, a recurring CVE
+                # surface (CVE-2024-* family on crafted Office files). The main
+                # part is found by content type, not by name: Word Online
+                # saves it as word/document2.xml.
                 try:
                     import zipfile
 
                     with zipfile.ZipFile(file_path, "r") as zip_file:
-                        file_list = zip_file.namelist()
-                        if (
-                            "[Content_Types].xml" not in file_list
-                            or "word/document.xml" not in file_list
-                        ):
+                        try:
+                            with zip_file.open("[Content_Types].xml") as ct:
+                                content_types = ct.read(1024 * 1024)
+                        except KeyError:
+                            content_types = b""
+                        if not any(t in content_types for t in _WORD_MAIN_TYPES):
                             logger.warning(
-                                "DOCX missing required files",
+                                "DOCX missing a Word main part",
                                 extra={
                                     **context,
-                                    "file_list": file_list[:10],
+                                    "file_list": zip_file.namelist()[:10],
                                     "event": "docx_structure_invalid",
                                 },
                             )
@@ -270,29 +286,24 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                     return False, "DOC file is too small to be valid"
                 return True, None
 
-            # RTF saved under a .doc name: old apps do this and LibreOffice
-            # converts it fine. Plain text format, no macros.
-            elif header.startswith(b"{\\rtf"):
+            # Text saved under a .doc name: RTF, HTML/MHT and WordML from "export
+            # to Word" in 1C, banks and CRMs, plain text, any encoding.
+            # LibreOffice opens them with its text filters, no macros; the CVE
+            # surface is the binary Office parsers, which need ZIP/OLE magic.
+            elif _looks_like_text(head):
                 return True, None
 
             else:
-                # No PK/OLE2/RTF magic — reject. A real .docx/.doc always carries
-                # the right magic bytes; "lenient extension-based" passes were
-                # the path that let crafted payloads reach LibreOffice.
-                header_hex = header[:8].hex() if len(header) >= 8 else header.hex()
                 logger.warning(
-                    "Word file rejected — missing magic bytes",
+                    "Word file rejected — binary without ZIP/OLE magic",
                     extra={
                         **context,
                         "file_ext": file_ext,
-                        "header_hex": header_hex,
+                        "header_hex": header[:8].hex(),
                         "event": "word_magic_missing",
                     },
                 )
-                return (
-                    False,
-                    f"File does not appear to be a valid Word document (header: {header_hex[:16]})",
-                )
+                return False, "File does not appear to be a valid Word document"
 
     except Exception as e:
         logger.error(
