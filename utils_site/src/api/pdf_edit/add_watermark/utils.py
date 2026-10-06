@@ -135,6 +135,7 @@ def add_watermark(
             pages_to_watermark = parse_pages(pages, total_pages)
             context["pages_to_watermark"] = len(pages_to_watermark)
 
+            overlays = {}
             for page_num in range(total_pages):
                 page = reader.pages[page_num]
 
@@ -146,181 +147,253 @@ def add_watermark(
                 page_width = float(page.mediabox.width)
                 page_height = float(page.mediabox.height)
 
-                # Create watermark overlay
-                packet = BytesIO()
-                can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-                can.setFillAlpha(opacity)
+                # One overlay per page size, shared by every page of that size:
+                # pypdf then writes the image/font once. A fresh overlay per
+                # page copied a 1.4 MB logo into each one (50 pages: 90 MB, 27 s).
+                overlay_key = (page_width, page_height)
+                overlay_page = overlays.get(overlay_key)
+                if overlay_page is None:
+                    # Create watermark overlay
+                    packet = BytesIO()
+                    can = canvas.Canvas(packet, pagesize=(page_width, page_height))
+                    can.setFillAlpha(opacity)
 
-                # Parse color (hex to RGB)
-                try:
-                    color_hex = color.lstrip("#")
-                    color_r = int(color_hex[0:2], 16) / 255.0
-                    color_g = int(color_hex[2:4], 16) / 255.0
-                    color_b = int(color_hex[4:6], 16) / 255.0
-                    can.setFillColorRGB(color_r, color_g, color_b)
-                    logger.debug(
-                        "Page %d: Applied color RGB(%.3f, %.3f, %.3f) from %s, opacity=%s",
-                        page_num + 1,
-                        color_r,
-                        color_g,
-                        color_b,
-                        color,
-                        opacity,
-                        extra=context,
-                    )
-                except (ValueError, IndexError):
-                    # Default to black if color parsing fails
-                    can.setFillColorRGB(0, 0, 0)
-                    logger.warning(
-                        "Page %d: Failed to parse color '%s', using black",
-                        page_num + 1,
-                        color,
-                        extra=context,
-                    )
-
-                if watermark_file:
-                    # Image watermark
+                    # Parse color (hex to RGB)
                     try:
-                        # Reset file pointer to beginning
-                        watermark_file.seek(0)
-                        img = Image.open(watermark_file)
-
-                        # Convert to RGB if necessary (for PNG with transparency, etc.)
-                        if img.mode in ("RGBA", "LA", "P"):
-                            # Create a white background for transparent images
-                            background = Image.new("RGB", img.size, (255, 255, 255))
-                            if img.mode == "P":
-                                img = img.convert("RGBA")
-                            background.paste(
-                                img,
-                                mask=(
-                                    img.split()[-1]
-                                    if img.mode in ("RGBA", "LA")
-                                    else None
-                                ),
-                            )
-                            img = background
-                        elif img.mode != "RGB":
-                            img = img.convert("RGB")
-
-                        img_width, img_height = img.size
+                        color_hex = color.lstrip("#")
+                        color_r = int(color_hex[0:2], 16) / 255.0
+                        color_g = int(color_hex[2:4], 16) / 255.0
+                        color_b = int(color_hex[4:6], 16) / 255.0
+                        can.setFillColorRGB(color_r, color_g, color_b)
                         logger.debug(
-                            "Image watermark loaded: %dx%d, mode: %s",
-                            img_width,
-                            img_height,
-                            img.mode,
+                            "Page %d: Applied color RGB(%.3f, %.3f, %.3f) from %s, opacity=%s",
+                            page_num + 1,
+                            color_r,
+                            color_g,
+                            color_b,
+                            color,
+                            opacity,
                             extra=context,
                         )
-
-                        # Scale to fit page, then apply user scale
-                        base_scale = (
-                            min(page_width / img_width, page_height / img_height) * 0.5
-                        )
-                        scaled_width = img_width * base_scale * scale
-                        scaled_height = img_height * base_scale * scale
-
-                        # Calculate position
-                        # For images, coordinates (x, y) represent the center point
-                        # Priority: if coordinates are provided, use them regardless of position parameter
-                        # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
-                        # to PDF system (bottom-left origin) before sending, so use them directly
-                        if x is not None and y is not None:
-                            # JavaScript sends coordinates already in PDF system (bottom-left origin)
-                            # Use them directly without conversion
-                            watermark_center_x = x
-                            watermark_center_y = y
-                            logger.debug(
-                                "Page %d: Using provided coordinates (PDF: %.2f, %.2f) for image watermark",
-                                page_num + 1,
-                                watermark_center_x,
-                                watermark_center_y,
-                                extra=context,
-                            )
-                        elif position == "center":
-                            watermark_center_x = page_width / 2
-                            watermark_center_y = page_height / 2
-                            logger.debug(
-                                "Page %d: Using center position for image watermark",
-                                page_num + 1,
-                                extra=context,
-                            )
-                        else:  # diagonal (default) or custom without coordinates
-                            # Place at center, rotation will be applied if needed
-                            watermark_center_x = page_width / 2
-                            watermark_center_y = page_height / 2
-                            logger.debug(
-                                "Page %d: Using default center position for image watermark",
-                                page_num + 1,
-                                extra=context,
-                            )
-
-                        # Calculate bottom-left corner for drawImage (ReportLab uses bottom-left origin)
-                        watermark_x = watermark_center_x - scaled_width / 2
-                        watermark_y = watermark_center_y - scaled_height / 2
-
-                        # Save image to temp as PNG (ReportLab can handle PNG)
-                        img_path = os.path.join(tmp_dir, "watermark_%d.png" % page_num)
-                        # Save as RGB PNG (ReportLab works best with RGB)
-                        img.save(img_path, "PNG")
-                        logger.debug(
-                            "Saved watermark image to %s", img_path, extra=context
-                        )
-
-                        # Apply rotation and scale transformations
-                        # Only apply diagonal rotation if position='diagonal' AND rotation=0 AND no custom coordinates
-                        should_apply_diagonal = (
-                            position == "diagonal"
-                            and rotation == 0
-                            and (x is None or y is None)
-                        )
-
-                        if rotation != 0:
-                            # Save state, apply rotation around center, draw, restore
-                            can.saveState()
-                            can.translate(watermark_center_x, watermark_center_y)
-                            can.rotate(rotation)
-                            can.translate(-watermark_center_x, -watermark_center_y)
-                            can.drawImage(
-                                img_path,
-                                watermark_x,
-                                watermark_y,
-                                width=scaled_width,
-                                height=scaled_height,
-                                mask="auto",
-                            )
-                            can.restoreState()
-                        elif should_apply_diagonal:
-                            # Apply diagonal rotation only if no custom coordinates and rotation=0
-                            can.saveState()
-                            can.translate(watermark_center_x, watermark_center_y)
-                            can.rotate(45)
-                            can.translate(-watermark_center_x, -watermark_center_y)
-                            can.drawImage(
-                                img_path,
-                                watermark_x,
-                                watermark_y,
-                                width=scaled_width,
-                                height=scaled_height,
-                                mask="auto",
-                            )
-                            can.restoreState()
-                        else:
-                            can.drawImage(
-                                img_path,
-                                watermark_x,
-                                watermark_y,
-                                width=scaled_width,
-                                height=scaled_height,
-                                mask="auto",
-                            )
-                    except Exception as img_err:
+                    except (ValueError, IndexError):
+                        # Default to black if color parsing fails
+                        can.setFillColorRGB(0, 0, 0)
                         logger.warning(
-                            "Failed to use image watermark: %s, using text",
-                            img_err,
+                            "Page %d: Failed to parse color '%s', using black",
+                            page_num + 1,
+                            color,
                             extra=context,
                         )
-                        # Fallback to text - use same logic as text watermark below
+
+                    if watermark_file:
+                        # Image watermark
+                        try:
+                            # Reset file pointer to beginning
+                            watermark_file.seek(0)
+                            img = Image.open(watermark_file)
+
+                            # Convert to RGB if necessary (for PNG with transparency, etc.)
+                            if img.mode in ("RGBA", "LA", "P"):
+                                # Create a white background for transparent images
+                                background = Image.new("RGB", img.size, (255, 255, 255))
+                                if img.mode == "P":
+                                    img = img.convert("RGBA")
+                                background.paste(
+                                    img,
+                                    mask=(
+                                        img.split()[-1]
+                                        if img.mode in ("RGBA", "LA")
+                                        else None
+                                    ),
+                                )
+                                img = background
+                            elif img.mode != "RGB":
+                                img = img.convert("RGB")
+
+                            img_width, img_height = img.size
+                            logger.debug(
+                                "Image watermark loaded: %dx%d, mode: %s",
+                                img_width,
+                                img_height,
+                                img.mode,
+                                extra=context,
+                            )
+
+                            # Scale to fit page, then apply user scale
+                            base_scale = (
+                                min(page_width / img_width, page_height / img_height)
+                                * 0.5
+                            )
+                            scaled_width = img_width * base_scale * scale
+                            scaled_height = img_height * base_scale * scale
+
+                            # Calculate position
+                            # For images, coordinates (x, y) represent the center point
+                            # Priority: if coordinates are provided, use them regardless of position parameter
+                            # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
+                            # to PDF system (bottom-left origin) before sending, so use them directly
+                            if x is not None and y is not None:
+                                # JavaScript sends coordinates already in PDF system (bottom-left origin)
+                                # Use them directly without conversion
+                                watermark_center_x = x
+                                watermark_center_y = y
+                                logger.debug(
+                                    "Page %d: Using provided coordinates (PDF: %.2f, %.2f) for image watermark",
+                                    page_num + 1,
+                                    watermark_center_x,
+                                    watermark_center_y,
+                                    extra=context,
+                                )
+                            elif position == "center":
+                                watermark_center_x = page_width / 2
+                                watermark_center_y = page_height / 2
+                                logger.debug(
+                                    "Page %d: Using center position for image watermark",
+                                    page_num + 1,
+                                    extra=context,
+                                )
+                            else:  # diagonal (default) or custom without coordinates
+                                # Place at center, rotation will be applied if needed
+                                watermark_center_x = page_width / 2
+                                watermark_center_y = page_height / 2
+                                logger.debug(
+                                    "Page %d: Using default center position for image watermark",
+                                    page_num + 1,
+                                    extra=context,
+                                )
+
+                            # Calculate bottom-left corner for drawImage (ReportLab uses bottom-left origin)
+                            watermark_x = watermark_center_x - scaled_width / 2
+                            watermark_y = watermark_center_y - scaled_height / 2
+
+                            # Save image to temp as PNG (ReportLab can handle PNG)
+                            img_path = os.path.join(
+                                tmp_dir, "watermark_%d.png" % page_num
+                            )
+                            # Save as RGB PNG (ReportLab works best with RGB)
+                            img.save(img_path, "PNG")
+                            logger.debug(
+                                "Saved watermark image to %s", img_path, extra=context
+                            )
+
+                            # Apply rotation and scale transformations
+                            # Only apply diagonal rotation if position='diagonal' AND rotation=0 AND no custom coordinates
+                            should_apply_diagonal = (
+                                position == "diagonal"
+                                and rotation == 0
+                                and (x is None or y is None)
+                            )
+
+                            if rotation != 0:
+                                # Save state, apply rotation around center, draw, restore
+                                can.saveState()
+                                can.translate(watermark_center_x, watermark_center_y)
+                                can.rotate(rotation)
+                                can.translate(-watermark_center_x, -watermark_center_y)
+                                can.drawImage(
+                                    img_path,
+                                    watermark_x,
+                                    watermark_y,
+                                    width=scaled_width,
+                                    height=scaled_height,
+                                    mask="auto",
+                                )
+                                can.restoreState()
+                            elif should_apply_diagonal:
+                                # Apply diagonal rotation only if no custom coordinates and rotation=0
+                                can.saveState()
+                                can.translate(watermark_center_x, watermark_center_y)
+                                can.rotate(45)
+                                can.translate(-watermark_center_x, -watermark_center_y)
+                                can.drawImage(
+                                    img_path,
+                                    watermark_x,
+                                    watermark_y,
+                                    width=scaled_width,
+                                    height=scaled_height,
+                                    mask="auto",
+                                )
+                                can.restoreState()
+                            else:
+                                can.drawImage(
+                                    img_path,
+                                    watermark_x,
+                                    watermark_y,
+                                    width=scaled_width,
+                                    height=scaled_height,
+                                    mask="auto",
+                                )
+                        except Exception as img_err:
+                            logger.warning(
+                                "Failed to use image watermark: %s, using text",
+                                img_err,
+                                extra=context,
+                            )
+                            # Fallback to text - use same logic as text watermark below
+                            _register_watermark_font()
+                            scaled_font_size = font_size * scale
+                            # Try to use Unicode font, fallback to Helvetica
+                            try:
+                                can.setFont("WatermarkFontBold", scaled_font_size)
+                            except Exception:
+                                can.setFont("Helvetica-Bold", scaled_font_size)
+
+                            # Calculate text position (center point)
+                            # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
+                            # to PDF system (bottom-left origin) before sending, so use them directly
+                            if position == "custom" and x is not None and y is not None:
+                                # JavaScript sends coordinates already in PDF system (bottom-left origin)
+                                # Use them directly without conversion
+                                watermark_x = x
+                                watermark_y = y
+                            else:
+                                watermark_x = page_width / 2
+                                watermark_y = page_height / 2
+
+                            # Apply rotation and draw text
+                            # Only apply diagonal rotation if position='diagonal' AND rotation=0 AND no custom coordinates
+                            should_apply_diagonal = (
+                                position == "diagonal"
+                                and rotation == 0
+                                and (x is None or y is None)
+                            )
+
+                            if rotation != 0:
+                                can.saveState()
+                                can.translate(watermark_x, watermark_y)
+                                can.rotate(rotation)
+                                can.translate(-watermark_x, -watermark_y)
+                                can.drawCentredString(
+                                    watermark_x, watermark_y, watermark_text
+                                )
+                                can.restoreState()
+                            elif should_apply_diagonal:
+                                can.saveState()
+                                can.translate(watermark_x, watermark_y)
+                                can.rotate(45)
+                                can.translate(-watermark_x, -watermark_y)
+                                can.drawCentredString(
+                                    watermark_x, watermark_y, watermark_text
+                                )
+                                can.restoreState()
+                            else:
+                                can.drawCentredString(
+                                    watermark_x, watermark_y, watermark_text
+                                )
+                    else:
+                        # Text watermark
+                        # Ensure watermark_text is not empty
+                        if not watermark_text or not watermark_text.strip():
+                            watermark_text = "CONFIDENTIAL"
+                            logger.warning(
+                                "Empty watermark_text, using default 'CONFIDENTIAL'",
+                                extra=context,
+                            )
+
+                        # Register Unicode font if not already registered
                         _register_watermark_font()
+
+                        # Apply scale to font size
                         scaled_font_size = font_size * scale
                         # Try to use Unicode font, fallback to Helvetica
                         try:
@@ -328,19 +401,46 @@ def add_watermark(
                         except Exception:
                             can.setFont("Helvetica-Bold", scaled_font_size)
 
-                        # Calculate text position (center point)
+                        # Calculate text position
+                        # For text, coordinates (x, y) represent the center point
                         # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
                         # to PDF system (bottom-left origin) before sending, so use them directly
-                        if position == "custom" and x is not None and y is not None:
+                        if x is not None and y is not None:
                             # JavaScript sends coordinates already in PDF system (bottom-left origin)
                             # Use them directly without conversion
                             watermark_x = x
                             watermark_y = y
-                        else:
+                            logger.debug(
+                                "Page %d: Using custom coordinates (PDF: %.2f, %.2f)",
+                                page_num + 1,
+                                watermark_x,
+                                watermark_y,
+                                extra=context,
+                            )
+                        elif position == "center":
                             watermark_x = page_width / 2
                             watermark_y = page_height / 2
+                            logger.debug(
+                                "Page %d: Using center position (%.2f, %.2f)",
+                                page_num + 1,
+                                watermark_x,
+                                watermark_y,
+                                extra=context,
+                            )
+                        else:  # diagonal (default) or custom without coordinates
+                            # Place at center, rotation will be applied if needed
+                            watermark_x = page_width / 2
+                            watermark_y = page_height / 2
+                            logger.debug(
+                                "Page %d: Using default center position (%.2f, %.2f)",
+                                page_num + 1,
+                                watermark_x,
+                                watermark_y,
+                                extra=context,
+                            )
 
-                        # Apply rotation and draw text
+                        # Apply rotation and scale, then draw text
+                        # Text is drawn centered at (watermark_x, watermark_y)
                         # Only apply diagonal rotation if position='diagonal' AND rotation=0 AND no custom coordinates
                         should_apply_diagonal = (
                             position == "diagonal"
@@ -348,16 +448,46 @@ def add_watermark(
                             and (x is None or y is None)
                         )
 
+                        logger.debug(
+                            "Page %d text watermark: text='%s', "
+                            "font_size=%s, position='%s', "
+                            "x=%s, y=%s, watermark_pos=(%.2f, %.2f), "
+                            "rotation=%s, scale=%s, should_apply_diagonal=%s, "
+                            "color=%s, opacity=%s",
+                            page_num + 1,
+                            watermark_text,
+                            scaled_font_size,
+                            position,
+                            x,
+                            y,
+                            watermark_x,
+                            watermark_y,
+                            rotation,
+                            scale,
+                            should_apply_diagonal,
+                            color,
+                            opacity,
+                            extra=context,
+                        )
+
                         if rotation != 0:
+                            # Save state, apply rotation around text center, draw, restore
                             can.saveState()
                             can.translate(watermark_x, watermark_y)
                             can.rotate(rotation)
                             can.translate(-watermark_x, -watermark_y)
+                            # Scale font size is already applied via scaled_font_size
                             can.drawCentredString(
                                 watermark_x, watermark_y, watermark_text
                             )
                             can.restoreState()
+                            logger.debug(
+                                "Applied rotation %s degrees to text watermark",
+                                rotation,
+                                extra=context,
+                            )
                         elif should_apply_diagonal:
+                            # Only diagonal rotation if no custom coordinates and no custom rotation
                             can.saveState()
                             can.translate(watermark_x, watermark_y)
                             can.rotate(45)
@@ -366,142 +496,29 @@ def add_watermark(
                                 watermark_x, watermark_y, watermark_text
                             )
                             can.restoreState()
+                            logger.debug(
+                                "Applied diagonal rotation (45 degrees) to text watermark",
+                                extra=context,
+                            )
                         else:
+                            # Center position or custom with no rotation
                             can.drawCentredString(
                                 watermark_x, watermark_y, watermark_text
                             )
-                else:
-                    # Text watermark
-                    # Ensure watermark_text is not empty
-                    if not watermark_text or not watermark_text.strip():
-                        watermark_text = "CONFIDENTIAL"
-                        logger.warning(
-                            "Empty watermark_text, using default 'CONFIDENTIAL'",
-                            extra=context,
-                        )
+                            logger.debug(
+                                "Drew text watermark at (%.2f, %.2f) without rotation",
+                                watermark_x,
+                                watermark_y,
+                                extra=context,
+                            )
 
-                    # Register Unicode font if not already registered
-                    _register_watermark_font()
+                    can.save()
 
-                    # Apply scale to font size
-                    scaled_font_size = font_size * scale
-                    # Try to use Unicode font, fallback to Helvetica
-                    try:
-                        can.setFont("WatermarkFontBold", scaled_font_size)
-                    except Exception:
-                        can.setFont("Helvetica-Bold", scaled_font_size)
-
-                    # Calculate text position
-                    # For text, coordinates (x, y) represent the center point
-                    # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
-                    # to PDF system (bottom-left origin) before sending, so use them directly
-                    if x is not None and y is not None:
-                        # JavaScript sends coordinates already in PDF system (bottom-left origin)
-                        # Use them directly without conversion
-                        watermark_x = x
-                        watermark_y = y
-                        logger.debug(
-                            "Page %d: Using custom coordinates (PDF: %.2f, %.2f)",
-                            page_num + 1,
-                            watermark_x,
-                            watermark_y,
-                            extra=context,
-                        )
-                    elif position == "center":
-                        watermark_x = page_width / 2
-                        watermark_y = page_height / 2
-                        logger.debug(
-                            "Page %d: Using center position (%.2f, %.2f)",
-                            page_num + 1,
-                            watermark_x,
-                            watermark_y,
-                            extra=context,
-                        )
-                    else:  # diagonal (default) or custom without coordinates
-                        # Place at center, rotation will be applied if needed
-                        watermark_x = page_width / 2
-                        watermark_y = page_height / 2
-                        logger.debug(
-                            "Page %d: Using default center position (%.2f, %.2f)",
-                            page_num + 1,
-                            watermark_x,
-                            watermark_y,
-                            extra=context,
-                        )
-
-                    # Apply rotation and scale, then draw text
-                    # Text is drawn centered at (watermark_x, watermark_y)
-                    # Only apply diagonal rotation if position='diagonal' AND rotation=0 AND no custom coordinates
-                    should_apply_diagonal = (
-                        position == "diagonal"
-                        and rotation == 0
-                        and (x is None or y is None)
-                    )
-
-                    logger.debug(
-                        "Page %d text watermark: text='%s', "
-                        "font_size=%s, position='%s', "
-                        "x=%s, y=%s, watermark_pos=(%.2f, %.2f), "
-                        "rotation=%s, scale=%s, should_apply_diagonal=%s, "
-                        "color=%s, opacity=%s",
-                        page_num + 1,
-                        watermark_text,
-                        scaled_font_size,
-                        position,
-                        x,
-                        y,
-                        watermark_x,
-                        watermark_y,
-                        rotation,
-                        scale,
-                        should_apply_diagonal,
-                        color,
-                        opacity,
-                        extra=context,
-                    )
-
-                    if rotation != 0:
-                        # Save state, apply rotation around text center, draw, restore
-                        can.saveState()
-                        can.translate(watermark_x, watermark_y)
-                        can.rotate(rotation)
-                        can.translate(-watermark_x, -watermark_y)
-                        # Scale font size is already applied via scaled_font_size
-                        can.drawCentredString(watermark_x, watermark_y, watermark_text)
-                        can.restoreState()
-                        logger.debug(
-                            "Applied rotation %s degrees to text watermark",
-                            rotation,
-                            extra=context,
-                        )
-                    elif should_apply_diagonal:
-                        # Only diagonal rotation if no custom coordinates and no custom rotation
-                        can.saveState()
-                        can.translate(watermark_x, watermark_y)
-                        can.rotate(45)
-                        can.translate(-watermark_x, -watermark_y)
-                        can.drawCentredString(watermark_x, watermark_y, watermark_text)
-                        can.restoreState()
-                        logger.debug(
-                            "Applied diagonal rotation (45 degrees) to text watermark",
-                            extra=context,
-                        )
-                    else:
-                        # Center position or custom with no rotation
-                        can.drawCentredString(watermark_x, watermark_y, watermark_text)
-                        logger.debug(
-                            "Drew text watermark at (%.2f, %.2f) without rotation",
-                            watermark_x,
-                            watermark_y,
-                            extra=context,
-                        )
-
-                can.save()
-
-                # Merge watermark with page
-                packet.seek(0)
-                overlay = PdfReader(packet)
-                overlay_page = overlay.pages[0]
+                    # Merge watermark with page
+                    packet.seek(0)
+                    overlay = PdfReader(packet)
+                    overlay_page = overlay.pages[0]
+                    overlays[overlay_key] = overlay_page
                 page.merge_page(overlay_page)
                 writer.add_page(page)
 
