@@ -73,8 +73,10 @@ def caused_by_damaged_input(error: BaseException) -> bool:
 
     Converters wrap such errors in a ConversionError, which reads as a 500
     ("Internal server error") for what is the user's truncated or corrupt PDF.
-    Walks the __cause__/__context__ chain; matched by class name so no parser
-    has to be importable here.
+    Follows only explicit `raise ... from` links: an implicit __context__
+    means our own code failed while handling a parser error (a typo in an
+    except clause, say), and that must stay a 500. Matched by class name so
+    no parser has to be importable here.
     """
     seen = set()
     while error is not None and id(error) not in seen:
@@ -82,5 +84,5 @@ def caused_by_damaged_input(error: BaseException) -> bool:
         for klass in type(error).__mro__:
             if (klass.__module__, klass.__name__) in _DAMAGED_INPUT_ERRORS:
                 return True
-        error = error.__cause__ or error.__context__
+        error = error.__cause__
     return False

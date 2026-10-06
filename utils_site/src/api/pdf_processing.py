@@ -175,7 +175,16 @@ class BasePDFProcessor:
             return
         except Exception:
             repair_pdf(output_path, output_path)
+        try:
             _check(output_path)
+        except (EncryptedPDFError, ConversionError):
+            raise
+        except Exception as e:
+            # Our output, not the user's input: no parser error in the chain,
+            # or it would be reported to them as their damaged file.
+            raise ConversionError(
+                f"Output PDF is unreadable ({type(e).__name__})", context=self.context
+            ) from None
 
 
 class BasePDFMultiProcessor:
