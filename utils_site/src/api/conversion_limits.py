@@ -241,8 +241,16 @@ def get_file_size_limits(operation: str = None) -> tuple[int, int]:
     constants — or a user rejected at 15 MB is told the free limit is 25 MB.
     Read at call time so admin RuntimeSetting overrides are picked up.
     """
-    if (operation or "").lower() in HEAVY_OPERATIONS:
+    op = (operation or "").lower()
+    if op in HEAVY_OPERATIONS:
         return MAX_FILE_SIZE_HEAVY, MAX_FILE_SIZE_HEAVY_PREMIUM
+    if op == "split_pdf":
+        # Split always allowed MAX_UPLOAD_SIZE (50 MB) to everyone, which left
+        # Premium below the 200 MB it is sold with. Keep the free 50, lift Premium.
+        from django.conf import settings
+
+        upload = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
+        return max(MAX_FILE_SIZE, upload), max(MAX_FILE_SIZE_PREMIUM, upload)
     return MAX_FILE_SIZE, MAX_FILE_SIZE_PREMIUM
 
 
@@ -256,20 +264,15 @@ def get_max_file_size_for_user(user, operation: str = None) -> int:
     Returns:
         Maximum file size in bytes
     """
-    operation_key = (operation or "").lower()
-
-    # Premium users with active subscription get much higher limits
-    if user.is_authenticated and hasattr(user, "is_premium") and user.is_premium:
-        if hasattr(user, "is_subscription_active") and user.is_subscription_active():
-            # Premium users get much higher limits
-            if operation_key in HEAVY_OPERATIONS:
-                return MAX_FILE_SIZE_HEAVY_PREMIUM
-            return MAX_FILE_SIZE_PREMIUM
-
-    # Free users get standard limits
-    if operation_key in HEAVY_OPERATIONS:
-        return MAX_FILE_SIZE_HEAVY
-    return MAX_FILE_SIZE
+    free_limit, premium_limit = get_file_size_limits(operation)
+    if (
+        user.is_authenticated
+        and getattr(user, "is_premium", False)
+        and hasattr(user, "is_subscription_active")
+        and user.is_subscription_active()
+    ):
+        return premium_limit
+    return free_limit
 
 
 def get_max_pages_for_user(user, operation: str = None) -> int:
