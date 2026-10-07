@@ -184,43 +184,37 @@ if settings.DEBUG:
 
 # Custom error handlers. (No @cache_page: Django's cache middleware only stores
 # status 200/304, so it never cached these and only cost a lookup per error.)
-def handler400(request, exception):  # noqa: ARG001
-    """Custom 400 error handler with caching."""
-    response = render(request, "400.html", status=400)
+# Error pages must not sit in Cloudflare's edge cache: a 500 during a deploy
+# restart or a 403 for one client was served to everyone for an hour, and a
+# URL looked up before it was deployed stayed "not found" for an hour after.
+_NO_STORE = "no-store"
+# A short 404 TTL still absorbs scanner floods at the edge.
+_NOT_FOUND_CACHE = "public, max-age=60, s-maxage=60"
+
+
+def _error_page(request, code: int, cache_control: str):
+    response = render(request, f"{code}.html", status=code)
     # Add noindex to prevent search engines from indexing error pages
     response["X-Robots-Tag"] = "noindex, nofollow"
-    # Aggressive caching headers
-    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
+    response["Cache-Control"] = cache_control
     return response
+
+
+def handler400(request, exception):  # noqa: ARG001
+    return _error_page(request, 400, _NO_STORE)
 
 
 def handler403(request, exception):  # noqa: ARG001
-    """Custom 403 error handler with caching."""
-    response = render(request, "403.html", status=403)
-    response["X-Robots-Tag"] = "noindex, nofollow"
-    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
-    return response
+    return _error_page(request, 403, _NO_STORE)
 
 
 def handler404(request, exception):  # noqa: ARG001
-    """Custom 404 error handler with caching."""
-    response = render(request, "404.html", status=404)
-    response["X-Robots-Tag"] = "noindex, nofollow"
-    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
-    return response
+    return _error_page(request, 404, _NOT_FOUND_CACHE)
 
 
 def handler500(request):  # noqa: ARG001
-    """Custom 500 error handler with caching."""
-    response = render(request, "500.html", status=500)
-    response["X-Robots-Tag"] = "noindex, nofollow"
-    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
-    return response
+    return _error_page(request, 500, _NO_STORE)
 
 
 def handler502(request):  # noqa: ARG001
-    """Custom 502 error handler with caching."""
-    response = render(request, "502.html", status=502)
-    response["X-Robots-Tag"] = "noindex, nofollow"
-    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
-    return response
+    return _error_page(request, 502, _NO_STORE)
