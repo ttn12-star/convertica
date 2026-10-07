@@ -1,0 +1,101 @@
+slug: excel-to-pdf-borders-fill-gridlines
+title_pl: "Excel do PDF: za grube obramowania, kolor wypełnienia i linie siatki"
+meta_title_pl: "Za grube obramowania w PDF z Excela? | Convertica"
+meta_description_pl: "Obramowania w PDF są grubsze niż na ekranie, wypełnienia zjadają tusz, linie siatki znikają. Zmierzone grubości linii i ustawienia, które nimi sterują."
+meta_keywords_pl: "excel do pdf za grube obramowania, excel pdf cienkie linie, excel do pdf bez koloru wypełnienia, drukowanie linii siatki excel pdf, excel pdf czarno-biały, cienkie obramowanie excel, linie siatki nie widać w pdf"
+excerpt_pl: "Na ekranie tabela wygląda lekko i czysto. W PDF każde obramowanie wygląda jak narysowane flamastrem. Sprawdziliśmy, jak grubo naprawdę drukuje się każdy styl obramowania w Excelu i jak uzyskać taki wygląd, jakiego chcesz."
+ai_metadata:
+  topics:
+    - dlaczego obramowania z Excela wyglądają w PDF na grubsze
+    - rzeczywista grubość stylów obramowania Excela na wydruku
+    - drukowanie linii siatki do PDF
+    - usuwanie koloru wypełnienia przed PDF i drukiem
+    - ustawienia przeglądarki PDF, które pogrubiają cienkie linie
+  entities:
+    - Microsoft Excel
+    - Formatuj komórki
+    - Ustawienia strony
+    - Adobe Acrobat Reader
+    - LibreOffice
+    - Convertica
+  summary: "Wyjaśnia, dlaczego obramowania komórek w PDF utworzonym z Excela wyglądają na grubsze niż na ekranie, podaje zmierzone grubości najcieńszego, cienkiego i średniego stylu obramowania na wydruku, pokazuje, jak przejść na najcieńszy styl, jak drukować albo ukryć linie siatki, jak usunąć kolory wypełnienia przed drukiem, które z tych ustawień respektuje internetowy konwerter Excel do PDF oraz które ustawienie przeglądarki PDF sprawia, że cienkie linie wyglądają na pogrubione."
+  related_terms:
+    - obramowania excel pogrubione w pdf
+    - jak zmniejszyć grubość obramowania excel pdf
+    - zapisać excel do pdf bez koloru wypełnienia
+    - linie siatki excel nie pokazują się w pdf
+    - excel pdf linie za grube
+  reading_time_minutes: 6
+  target_audience: "Księgowi, pracownicy biurowi i wszyscy, którzy wysyłają arkusze jako PDF i chcą mieć w tabeli czyste, lekkie linie albo wersję, która dobrze wydrukuje się na czarno-białej drukarce."
+content_pl: |
+  Ekran rysuje obramowanie jako jeden piksel, bez względu na jego styl. Papier i PDF rysują je w rzeczywistej grubości. Dlatego tabela, która w Excelu wygląda delikatnie, w PDF potrafi przypominać kratkę narysowaną flamastrem. Nic się przy tym nie zepsuło: widzisz po prostu grubość, jaką ten styl obramowania miał od zawsze.
+
+  Zmierzyliśmy, w co zamienia się każdy styl, kiedy renderuje go <a href="/pl/excel-to-pdf/">konwerter Excel do PDF</a>, i na tej podstawie opisaliśmy, co z tym zrobić.
+
+  <h2>Jak grubo naprawdę drukuje się każdy styl obramowania</h2>
+
+  <ul>
+    <li><strong>Najcieńsza linia</strong> (pierwszy styl na liście): około 0,1 pt. W praktyce najcieńsza linia, jaką drukarka w ogóle potrafi narysować.</li>
+    <li><strong>Cienka</strong> (domyślna po kliknięciu przycisku Obramowania): 0,75 pt. To właśnie ją ludzie nazywają „pogrubioną”.</li>
+    <li><strong>Średnia</strong>: 1,75 pt, ponad dwa razy więcej niż cienka.</li>
+  </ul>
+
+  <p>Dla porównania: typowa linia w tabeli w drukowanej książce ma od 0,25 do 0,5 pt. Domyślne obramowanie Excela jest więc grubsze niż w większości drukowanych tabel, a na gęstym arkuszu z liniami wokół każdej komórki to się sumuje.</p>
+
+  <h2>Cieńsze linie: użyj najcieńszego stylu</h2>
+
+  <ol>
+    <li>Zaznacz tabelę.</li>
+    <li>Kliknij prawym przyciskiem, wybierz <strong>Formatuj komórki</strong> i przejdź na kartę <strong>Obramowanie</strong>.</li>
+    <li>Na liście <strong>Styl</strong> wybierz pierwszą linię pod „Brak”. Na ekranie wygląda jak drobna kropkowana linia. To właśnie najcieńszy styl, a na wydruku daje ciągłą, bardzo cienką linię.</li>
+    <li>Kliknij <strong>Kontur</strong> i <strong>Wewnątrz</strong> (albo pojedyncze krawędzie, które chcesz), potem OK.</li>
+  </ol>
+
+  <p>Częsty kompromis, który dobrze wygląda na papierze: najcieńsza linia wewnątrz tabeli, a cienka dookoła i pod wierszem nagłówka.</p>
+
+  <h2>Linie siatki: drukować czy nie</h2>
+
+  <p>Bladoszare linie siatki, które widzisz w Excelu, to nie są obramowania i domyślnie się nie drukują. Jeśli tabela nie ma obramowań, w PDF nie będzie żadnych linii, co zaskakuje wiele osób.</p>
+
+  <p>Żeby je wydrukować: karta <strong>Układ strony</strong>, grupa <strong>Opcje arkusza</strong>, zaznacz <strong>Drukuj</strong> pod <strong>Linie siatki</strong>. W naszych testach wychodzą jako linie 0,1 pt, takie same jak najcieńsze obramowanie, więc to najszybszy sposób na lekką siatkę na dużym arkuszu. Konwerter respektuje to ustawienie.</p>
+
+  <p>Chcesz odwrotnie, czysty arkusz bez żadnych linii? Upewnij się, że Drukuj pod Linie siatki jest odznaczone, a komórki nie mają obramowań.</p>
+
+  <h2>Kolory wypełnienia i kolorowy tekst</h2>
+
+  <p>Wypełnienia wyglądają dobrze na ekranie i w kolorowym PDF, ale kosztują tusz, a na czarno-białej drukarce potrafią zamienić się w brudną szarość. Są dwa sposoby:</p>
+
+  <ul>
+    <li><strong>Tryb czarno-biały w samym Excelu.</strong> Układ strony, okno Ustawienia strony, karta <strong>Arkusz</strong>, zaznacz <strong>Czarno-biały</strong>. Jeśli potem zapiszesz PDF w Excelu przez Plik, Zapisz jako, PDF, wypełnienia znikną, a tekst wydrukuje się na czarno. Sam plik zachowa przy tym swoje kolory.</li>
+    <li><strong>W konwerterze internetowym usuń samo wypełnienie.</strong> Sprawdziliśmy ustawienie Czarno-biały z naszym konwerterem i nie jest ono stosowane: wypełnienia i kolorowy tekst zostają w PDF. Jeśli więc konwertujesz online, zrób kopię arkusza, zaznacz tabelę, wejdź w Narzędzia główne, <strong>Kolor wypełnienia</strong>, <strong>Brak wypełnienia</strong>, a kolor czcionki ustaw na Automatyczny. Dopiero wtedy konwertuj kopię.</li>
+  </ul>
+
+  <h2>Linie są grube tylko w Twojej przeglądarce PDF</h2>
+
+  <p>Czasem PDF jest w porządku, a przesadza program, w którym go oglądasz. Adobe Acrobat i Reader mają w Preferencjach, w sekcji wyświetlania strony, opcję wzmacniania cienkich linii (w wersji angielskiej <strong>Enhance thin lines</strong>). Rysuje ona każdą cienką linię na co najmniej jeden piksel przy dowolnym powiększeniu. Przy 50% strona pełna najcieńszych linii wygląda wtedy, jakby ktoś narysował ją markerem. Ustaw powiększenie 100% albo odznacz tę opcję: jeśli linie zrobią się cienkie, plik przez cały czas był dobry. Na wydruk to ustawienie nie wpływa.</p>
+
+  <h2>Co jeszcze pogrubia linie</h2>
+
+  <ul>
+    <li><strong>Skalowanie wydruku powyżej 100%.</strong> Jeśli w Ustawieniach strony masz Dopasuj do 120%, każde obramowanie też jest o 20% grubsze. Dopasowanie do szerokości strony zwykle arkusz zmniejsza, więc linie robią się cieńsze, a nie grubsze.</li>
+    <li><strong>Podwójne obramowanie na styku dwóch komórek.</strong> Jeśli jedna komórka ma prawe obramowanie, a sąsiednia lewe, rysują się jedno na drugim. Zwykle to nie szkodzi, ale przy stylu średnim wygląda na wyjątkowo ciężkie. Nakładaj obramowanie od razu na cały zakres, a nie komórka po komórce.</li>
+    <li><strong>Wąskie kolumny.</strong> Linie nie są wtedy grubsze, ale całość wygląda na stłoczoną: kiedy tekst ledwo się mieści, linie wydają się cięższe. Lekkie poszerzenie kolumn pomaga i czytelności, i wyglądowi.</li>
+  </ul>
+
+  <h2>Najczęstsze pytania</h2>
+
+  <h3>Dlaczego w podglądzie wydruku w Excelu obramowania wyglądały dobrze, a w PDF są ciężkie?</h3>
+  <p>Podgląd wydruku jest przeskalowany do rozmiaru ekranu, więc linia 0,75 pt kończy jako jeden piksel. PDF przy powiększeniu 100% pokazuje rzeczywistą grubość. Pomniejsz PDF do tego samego rozmiaru, a będą wyglądać tak samo.</p>
+
+  <h3>Czy mogę pocienić obramowania w PDF, który już mam?</h3>
+  <p>W praktyce nie: linie są wrysowane w stronę. Zmień styl obramowania w arkuszu i skonwertuj go jeszcze raz.</p>
+
+  <h3>Czy konwerter zachowuje kolory obramowań?</h3>
+  <p>Tak. Kolory obramowań, wypełnień i czcionek zostają takie, jakie są w pliku.</p>
+
+  <h3>Czy najcieńsze obramowanie będzie widać na taniej drukarce?</h3>
+  <p>Tak. Przy 0,1 pt drukarka laserowa czy atramentowa rysuje najcieńszą linię, na jaką ją stać, i ta linia jest nadal wyraźnie widoczna. Jeśli linie mają przetrwać faks albo kserokopię, użyj stylu cienkiego.</p>
+
+  <h2>Wypróbuj</h2>
+
+  <p>Zmień obramowania na najcieńszy styl, zdecyduj o liniach siatki i wypełnieniach, zapisz plik i skonwertuj go w <a href="/pl/excel-to-pdf/">konwerterze Excel do PDF</a>. Jeśli tabela dodatkowo wychodzi poza stronę albo pojawiają się puste strony, zajrzyj do poradnika o tym, <a href="/pl/blog/excel-to-pdf-cut-off-blank-pages-fix/">dlaczego Excel do PDF ucina kolumny</a>, a przy długiej tabeli przyda się tekst o <a href="/pl/blog/excel-to-pdf-repeat-header-row-every-page/">powtarzaniu wiersza nagłówka na każdej stronie</a>.</p>

@@ -1,0 +1,103 @@
+slug: excel-to-pdf-borders-fill-gridlines
+title_es: "Excel a PDF: bordes demasiado gruesos, colores de relleno y líneas de cuadrícula, resuelto"
+meta_title_es: "Excel a PDF con bordes gruesos: líneas finas | Convertica"
+meta_description_es: "Los bordes salen más gruesos que en pantalla, el relleno gasta tinta y la cuadrícula desaparece. Grosores medidos y el ajuste que controla cada cosa."
+meta_keywords_es: "excel a pdf bordes gruesos, exportar excel a pdf sin que cambie líneas, excel a pdf sin color de relleno, excel pdf líneas finas, imprimir líneas de cuadrícula excel pdf, excel pdf blanco y negro, borde más fino excel"
+excerpt_es: "En pantalla la tabla se ve nítida. En el PDF cada borde parece hecho con rotulador. Aquí tienes cuánto mide de verdad cada estilo de borde de Excel al imprimirse y cómo conseguir el aspecto que buscas."
+ai_metadata:
+  topics:
+    - por qué los bordes de Excel se ven más gruesos en un PDF
+    - grosor impreso de los estilos de borde de Excel
+    - imprimir las líneas de cuadrícula en el PDF
+    - quitar el color de relleno para PDF e impresión
+    - ajustes del visor que engrosan las líneas finas
+  entities:
+    - Microsoft Excel
+    - Formato de celdas
+    - Configurar página
+    - Adobe Acrobat Reader
+    - LibreOffice
+    - Convertica
+  summary: "Explica por qué los bordes de celda se ven más gruesos en un PDF hecho desde Excel que en pantalla, da el grosor impreso medido de los estilos de borde más fino, fino y medio, muestra cómo pasar al estilo más fino, cómo imprimir u ocultar las líneas de cuadrícula, cómo quitar los colores de relleno para imprimir, cuáles de estos ajustes respeta un conversor de Excel a PDF en línea y qué ajuste del visor de PDF hace que las líneas finas parezcan gruesas."
+  related_terms:
+    - bordes de excel en negrita en pdf
+    - reducir grosor de bordes excel pdf
+    - guardar excel en pdf sin color de relleno
+    - no salen las líneas de cuadrícula de excel en pdf
+    - líneas de excel muy gruesas en pdf
+  reading_time_minutes: 6
+  target_audience: "Contables, personal de oficina y cualquiera que envía hojas de cálculo en PDF y quiere líneas de tabla limpias y ligeras, o una versión que salga bien en una impresora en blanco y negro."
+content_es: |
+  Una pantalla dibuja cualquier borde con un píxel, sea del estilo que sea. El papel y el PDF lo dibujan con su grosor real. Por eso una tabla que en Excel se ve delicada puede salir en el PDF como una cuadrícula hecha con rotulador, y no hay nada roto: simplemente ves el grosor que ese estilo de borde tuvo siempre.
+
+  Medimos en qué se convierte cada estilo cuando lo procesa el <a href="/es/excel-to-pdf/">conversor de Excel a PDF</a> y a partir de ahí buscamos las soluciones.
+
+  <h2>Cuánto mide de verdad cada estilo de borde al imprimirse</h2>
+
+  <ul>
+    <li><strong>El más fino</strong> (el primer estilo de la lista): unos 0,1 pt. Es prácticamente la línea más fina que puede dibujar una impresora.</li>
+    <li><strong>Fino</strong> (el que se aplica al pulsar el botón Bordes): 0,75 pt. Es el que la gente describe como «en negrita».</li>
+    <li><strong>Medio</strong>: 1,75 pt, más del doble que el fino.</li>
+  </ul>
+
+  <p>Para comparar, la raya de una tabla en un libro impreso suele andar entre 0,25 y 0,5 pt. O sea, el borde por defecto de Excel es más grueso que el de la mayoría de las tablas impresas, y en una hoja densa con líneas alrededor de cada celda se nota mucho.</p>
+
+  <h2>Líneas más finas: usa el estilo más fino</h2>
+
+  <ol>
+    <li>Selecciona la tabla.</li>
+    <li>Clic derecho, <strong>Formato de celdas</strong> y luego la pestaña <strong>Bordes</strong>.</li>
+    <li>En la lista <strong>Estilo</strong>, elige la primera línea que hay debajo de «Ninguno». En pantalla parece una línea de puntos muy fina; ese es el estilo más fino, y se imprime como una línea continua muy delgada.</li>
+    <li>Pulsa <strong>Contorno</strong> e <strong>Interior</strong> (o los bordes concretos que quieras) y luego Aceptar.</li>
+  </ol>
+
+  <p>Una combinación que queda bien en papel: el estilo más fino dentro de la tabla y el fino alrededor y bajo la fila de encabezados.</p>
+
+  <h2>Líneas de cuadrícula: imprimirlas o no</h2>
+
+  <p>Las líneas gris claro que ves en Excel no son bordes y no se imprimen por defecto. Si tu tabla no tiene bordes, el PDF no tendrá ninguna línea, y eso sorprende a mucha gente.</p>
+
+  <p>Para imprimirlas: pestaña <strong>Diseño de página</strong>, grupo <strong>Opciones de la hoja</strong>, marca <strong>Imprimir</strong> debajo de Líneas de cuadrícula. En nuestras pruebas salen como líneas de 0,1 pt, igual que los bordes más finos, así que es la forma más rápida de tener una cuadrícula ligera en una hoja grande. El conversor respeta este ajuste.</p>
+
+  <p>¿Quieres lo contrario, una hoja limpia sin ninguna línea? Comprueba que Imprimir en Líneas de cuadrícula está desmarcado y que las celdas no tienen bordes.</p>
+
+  <h2>Colores de relleno y texto en color</h2>
+
+  <p>Los rellenos se ven bien en pantalla y en un PDF a color, pero gastan tinta y en una impresora en blanco y negro pueden quedar grises y borrosos. Hay dos formas de resolverlo:</p>
+
+  <ul>
+    <li><strong>El modo blanco y negro del propio Excel.</strong> Diseño de página, Configurar página, pestaña <strong>Hoja</strong>, marca <strong>Blanco y negro</strong>. Si después usas Archivo, Guardar como, PDF en Excel, los rellenos desaparecen y el texto sale en negro, mientras el archivo conserva sus colores.</li>
+    <li><strong>Con el conversor en línea, quita el relleno en sí.</strong> Probamos el ajuste de blanco y negro con nuestro conversor y no se aplica: los rellenos y el texto en color siguen en el PDF. Así que, si conviertes en línea y quieres el PDF sin color de relleno, haz una copia de la hoja, selecciona la tabla, Inicio, <strong>Color de relleno</strong>, <strong>Sin relleno</strong>, y pon el color de fuente en Automático. Luego convierte la copia.</li>
+  </ul>
+
+  <h2>Las líneas solo se ven gruesas en tu visor de PDF</h2>
+
+  <p>A veces el PDF está bien y es el visor el que exagera. Adobe Acrobat y Reader tienen un ajuste en Preferencias, Presentación de página, <strong>Mejorar líneas finas</strong>, que dibuja cualquier línea fina con al menos un píxel de grosor sea cual sea el zoom. Con el zoom al 50 %, una página llena de líneas finísimas parece dibujada con rotulador. Pon el zoom al 100 % o desmarca la opción: si las líneas se vuelven finas, el archivo estaba bien desde el principio. La impresión no se ve afectada por este ajuste.</p>
+
+  <h2>Otras cosas que engrosan las líneas</h2>
+
+  <ul>
+    <li><strong>Escala de impresión por encima del 100 %.</strong> Si en Configurar página tienes «Ajustar al» 120 %, cada borde también es un 20 % más grueso. Ajustar al ancho de la página normalmente reduce la hoja, con lo que las líneas salen más finas, no más gruesas.</li>
+    <li><strong>Bordes dobles donde se tocan dos celdas.</strong> Si una celda tiene borde derecho y la de al lado borde izquierdo, se dibujan uno encima del otro. Casi nunca molesta, pero con el estilo medio se lee como una línea extragruesa. Aplica los bordes a todo el rango de una vez en lugar de celda por celda.</li>
+    <li><strong>Columnas estrechas.</strong> No engrosan las líneas, pero dan sensación de agobio: si el texto apenas cabe, las líneas parecen más pesadas. Ensanchar un poco las columnas mejora la lectura y el aspecto.</li>
+  </ul>
+
+  <p>Dicho de otro modo, si lo que buscas es exportar Excel a PDF sin que cambien las líneas, lo que hay que vigilar es el estilo de borde, la escala y el visor, no el conversor.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Por qué los bordes se veían bien en la vista previa de Excel y gruesos en el PDF?</h3>
+  <p>La vista previa se escala para caber en tu pantalla, así que una línea de 0,75 pt acaba midiendo un píxel. El PDF al 100 % muestra el grosor real. Reduce el zoom del PDF al mismo tamaño y se verán iguales.</p>
+
+  <h3>¿Puedo hacer los bordes más finos en un PDF que ya tengo?</h3>
+  <p>No de ninguna forma práctica: las líneas están dibujadas en la página. Cambia el estilo de borde en la hoja de cálculo y convierte otra vez.</p>
+
+  <h3>¿El conversor conserva el color de los bordes?</h3>
+  <p>Sí. Los colores de borde, los rellenos y los colores de fuente se mantienen tal como están en el archivo.</p>
+
+  <h3>¿Los bordes más finos se ven en una impresora barata?</h3>
+  <p>Sí. A 0,1 pt una impresora láser o de tinta dibuja la línea más fina que puede, y aun así se ve con claridad. Si necesitas líneas que aguanten un fax o una fotocopia, usa el estilo fino.</p>
+
+  <h2>Pruébalo</h2>
+
+  <p>Cambia los bordes al estilo más fino, decide qué haces con la cuadrícula y los rellenos, guarda y convierte con el <a href="/es/excel-to-pdf/">conversor de Excel a PDF</a>. Si además la tabla se sale de la página o aparecen hojas en blanco, mira <a href="/es/blog/excel-to-pdf-cut-off-blank-pages-fix/">qué hacer cuando Excel a PDF corta columnas</a>, y para una tabla larga, <a href="/es/blog/excel-to-pdf-repeat-header-row-every-page/">cómo repetir la fila de encabezados en cada página</a>.</p>

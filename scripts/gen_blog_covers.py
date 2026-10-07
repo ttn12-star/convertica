@@ -347,6 +347,13 @@ COVERS = {
         "#fde68a",
         "table",
     ),
+    "excel-to-pdf-borders-fill-gridlines": (
+        "Excel to PDF:\nLighter Borders",
+        "EXCEL → PDF",
+        ("#0f766e", "#4338ca"),
+        "#c7d2fe",
+        "table",
+    ),
     "what-is-pdf-a-and-how-to-convert": (
         "What Is PDF/A?\nArchive-Ready PDFs",
         "PDF · ARCHIVE",
