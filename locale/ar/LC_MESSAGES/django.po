@@ -16823,3 +16823,24 @@ msgstr "مقدار التقليل"
 
 msgid "Could not get below {target}. This is the smallest version we could make."
 msgstr "تعذّر الوصول إلى أقل من {target}. هذه أصغر نسخة تمكّنا من إنشائها."
+
+msgid "Compress PDF to %(size)s Online Free | Convertica"
+msgstr "ضغط PDF إلى %(size)s مجانًا عبر الإنترنت | Convertica"
+
+msgid "Make a PDF smaller than %(size)s for upload forms and email. Image quality goes down only as far as needed. Free, no registration, no watermark."
+msgstr "صغّر ملف PDF إلى أقل من %(size)s لنماذج الرفع والبريد الإلكتروني. تنخفض جودة الصور بالقدر اللازم فقط. مجانًا، بلا تسجيل وبلا علامة مائية."
+
+msgid "Compress PDF to %(size)s"
+msgstr "ضغط ملف PDF إلى %(size)s"
+
+msgid "Get a PDF under a %(size)s upload limit"
+msgstr "اجعل ملف PDF أصغر من حد الرفع %(size)s"
+
+msgid "How to compress a PDF to %(size)s"
+msgstr "كيف تضغط ملف PDF إلى %(size)s"
+
+msgid "<p>Upload forms, job portals and exam applications often reject anything over %(size)s. Drop your PDF into the box at the top of the page with %(size)s already selected: the converter lowers image quality and resolution step by step and keeps the mildest setting that fits. Text and line art are left as they are.</p><p>What to expect, from our tests with scanned text pages at 300 dpi: one to three pages fit under 100 KB and stay readable, ten pages need about 500 KB to stay sharp, and squeezing ten pages into 200 KB leaves the text blurry. A PDF that is mostly typed text is usually small already. If %(size)s is out of reach, you get the smallest version we can make and a note saying so.</p>"
+msgstr "<p>كثيرًا ما ترفض نماذج الرفع وبوابات التوظيف وطلبات الاختبارات أي ملف يتجاوز %(size)s. أسقط ملف PDF في المربع أعلى الصفحة وقد اختير الحجم %(size)s مسبقًا: يخفض المحوّل جودة الصور ودقتها خطوة بعد خطوة، ويحتفظ بأخف إعداد يحقق الحجم المطلوب. أما النص والرسوم الخطية فتبقى كما هي.</p><p>ما الذي تتوقعه، بحسب اختباراتنا على صفحات نصية ممسوحة ضوئيًا بدقة 300 dpi: من صفحة إلى ثلاث صفحات تتسع تحت 100 كيلوبايت وتبقى مقروءة، وعشر صفحات تحتاج إلى نحو 500 كيلوبايت لتبقى واضحة، وحشر عشر صفحات في 200 كيلوبايت يجعل النص ضبابيًا. أما ملف PDF الذي معظمه نص مكتوب فيكون صغيرًا عادة من الأساس. وإن تعذّر الوصول إلى %(size)s، تحصل على أصغر نسخة يمكننا صنعها مع ملاحظة توضح ذلك.</p>"
+
+msgid "Need a specific size?"
+msgstr "تحتاج إلى حجم محدد؟"

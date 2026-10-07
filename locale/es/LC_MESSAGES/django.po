@@ -17813,3 +17813,24 @@ msgstr "Reducción de tamaño"
 
 msgid "Could not get below {target}. This is the smallest version we could make."
 msgstr "No se pudo bajar de {target}. Esta es la versión más pequeña que pudimos generar."
+
+msgid "Compress PDF to %(size)s Online Free | Convertica"
+msgstr "Comprimir PDF a %(size)s en línea gratis | Convertica"
+
+msgid "Make a PDF smaller than %(size)s for upload forms and email. Image quality goes down only as far as needed. Free, no registration, no watermark."
+msgstr "Reduce un PDF a menos de %(size)s para formularios de subida y correo. La calidad de imagen baja solo lo necesario. Gratis, sin registro y sin marca de agua."
+
+msgid "Compress PDF to %(size)s"
+msgstr "Comprimir PDF a %(size)s"
+
+msgid "Get a PDF under a %(size)s upload limit"
+msgstr "Consigue un PDF por debajo del límite de subida de %(size)s"
+
+msgid "How to compress a PDF to %(size)s"
+msgstr "Cómo comprimir un PDF a %(size)s"
+
+msgid "<p>Upload forms, job portals and exam applications often reject anything over %(size)s. Drop your PDF into the box at the top of the page with %(size)s already selected: the converter lowers image quality and resolution step by step and keeps the mildest setting that fits. Text and line art are left as they are.</p><p>What to expect, from our tests with scanned text pages at 300 dpi: one to three pages fit under 100 KB and stay readable, ten pages need about 500 KB to stay sharp, and squeezing ten pages into 200 KB leaves the text blurry. A PDF that is mostly typed text is usually small already. If %(size)s is out of reach, you get the smallest version we can make and a note saying so.</p>"
+msgstr "<p>Los formularios de subida, los portales de empleo y las inscripciones a exámenes suelen rechazar cualquier archivo de más de %(size)s. Suelta tu PDF en el recuadro de arriba, con %(size)s ya seleccionado: el conversor baja la calidad y la resolución de las imágenes paso a paso y se queda con el ajuste más suave que cabe. El texto y los dibujos de líneas se quedan como están.</p><p>Qué esperar, según nuestras pruebas con páginas de texto escaneadas a 300 ppp: de una a tres páginas caben por debajo de 100 KB y siguen siendo legibles, diez páginas necesitan unos 500 KB para verse nítidas, y meter diez páginas en 200 KB deja el texto borroso. Un PDF que es sobre todo texto escrito a máquina normalmente ya pesa poco. Si no se puede llegar a %(size)s, recibes la versión más pequeña que podemos conseguir y un aviso que lo indica.</p>"
+
+msgid "Need a specific size?"
+msgstr "¿Necesitas un tamaño concreto?"

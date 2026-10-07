@@ -17800,3 +17800,24 @@ msgstr "Zmniejszenie rozmiaru"
 
 msgid "Could not get below {target}. This is the smallest version we could make."
 msgstr "Nie udało się zejść poniżej {target}. To najmniejsza wersja, jaką udało się zrobić."
+
+msgid "Compress PDF to %(size)s Online Free | Convertica"
+msgstr "Kompresja PDF do %(size)s online za darmo | Convertica"
+
+msgid "Make a PDF smaller than %(size)s for upload forms and email. Image quality goes down only as far as needed. Free, no registration, no watermark."
+msgstr "Zmniejsz PDF poniżej %(size)s do formularzy i e-maila. Jakość obrazów spada tylko tyle, ile trzeba. Za darmo, bez rejestracji i bez znaku wodnego."
+
+msgid "Compress PDF to %(size)s"
+msgstr "Kompresja PDF do %(size)s"
+
+msgid "Get a PDF under a %(size)s upload limit"
+msgstr "Zmieść PDF w limicie %(size)s"
+
+msgid "How to compress a PDF to %(size)s"
+msgstr "Jak zmniejszyć PDF do %(size)s"
+
+msgid "<p>Upload forms, job portals and exam applications often reject anything over %(size)s. Drop your PDF into the box at the top of the page with %(size)s already selected: the converter lowers image quality and resolution step by step and keeps the mildest setting that fits. Text and line art are left as they are.</p><p>What to expect, from our tests with scanned text pages at 300 dpi: one to three pages fit under 100 KB and stay readable, ten pages need about 500 KB to stay sharp, and squeezing ten pages into 200 KB leaves the text blurry. A PDF that is mostly typed text is usually small already. If %(size)s is out of reach, you get the smallest version we can make and a note saying so.</p>"
+msgstr "<p>Formularze zgłoszeniowe, portale z ofertami pracy i systemy rekrutacji na egzaminy często odrzucają pliki większe niż %(size)s. Wrzuć PDF do pola na górze strony, %(size)s jest już wybrane: konwerter krok po kroku obniża jakość i rozdzielczość obrazów i zatrzymuje się na najłagodniejszym ustawieniu, które się mieści. Tekst i grafika wektorowa zostają bez zmian.</p><p>Czego się spodziewać, na podstawie naszych testów ze skanami stron tekstu w 300 dpi: od jednej do trzech stron mieści się poniżej 100 KB i nadal da się je przeczytać, dziesięć stron potrzebuje około 500 KB, żeby zostać ostre, a ściśnięcie dziesięciu stron do 200 KB rozmywa tekst. PDF, który jest głównie tekstem pisanym na komputerze, zwykle i tak jest mały. Jeśli %(size)s jest poza zasięgiem, dostajesz najmniejszą wersję, jaką da się zrobić, wraz z informacją o tym.</p>"
+
+msgid "Need a specific size?"
+msgstr "Potrzebujesz konkretnego rozmiaru?"

@@ -137,6 +137,11 @@ urlpatterns = [
     ),
     path("pdf-organize/organize/", views.organize_pdf_page, name="organize_pdf_page"),
     path("pdf-organize/compress/", views.compress_pdf_page, name="compress_pdf_page"),
+    path(
+        "pdf-organize/compress/to-<slug:size>/",
+        views.compress_pdf_size_page,
+        name="compress_pdf_size_page",
+    ),
     # PDF Security pages
     path("pdf-security/protect/", views.protect_pdf_page, name="protect_pdf_page"),
     path("pdf-security/unlock/", views.unlock_pdf_page, name="unlock_pdf_page"),
