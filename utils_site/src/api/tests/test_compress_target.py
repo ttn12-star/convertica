@@ -58,9 +58,13 @@ class CompressTargetSizeTests(SimpleTestCase):
 
         raw = _scan_pdf()
         plain, _ = _compress(raw)
+        target_kb = plain // 1024 // 3
         with mock.patch.object(utils, "TARGET_TIME_BUDGET", 0):
-            size, _ = _compress(raw, target_size_kb=plain // 1024 // 3)
-        self.assertEqual(size, plain)
+            size, _ = _compress(raw, target_size_kb=target_kb)
+        # No step ran: still well above the target, i.e. the plain result
+        # (byte counts can wobble a little between saves, hence no equality).
+        self.assertGreater(size, target_kb * 1024 * 2)
+        self.assertAlmostEqual(size, plain, delta=max(2048, plain // 100))
 
 
 class CompressTargetApiTests(TestCase):

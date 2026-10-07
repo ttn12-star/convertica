@@ -3,6 +3,7 @@ import re
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.test import TestCase
+from django.utils import translation
 
 
 def _selected(html: str, select_id: str) -> str:
@@ -13,6 +14,11 @@ def _selected(html: str, select_id: str) -> str:
 class OcrLanguageDefaultTests(TestCase):
     def setUp(self):
         cache.clear()
+
+    def tearDown(self):
+        # Rendering /pl/, /hi/... leaves that language active in this worker
+        # thread; later tests asserting English messages would then fail.
+        translation.activate("en")
 
     def test_ocr_defaults_to_the_page_language(self):
         # "auto" is eng+rus+deu+fra+spa+chi_sim: on /pl/ Polish came back as
