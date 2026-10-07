@@ -17,7 +17,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "merge PDF, combine PDF, merge pdf online free, join pdf files, "
                 "combine two pdfs into one, merge pdf without watermark, pdf merger, "
                 # Feature-based keywords
-                "merge pdf drag and drop, merge pdf reorder pages, merge pdf preserve bookmarks, "
+                "merge pdf drag and drop, merge pdf reorder pages, "
                 "merge pdf no quality loss, merge pdf keep links, combine pdf pages in order, "
                 # Use case keywords
                 "merge pdf thesis chapters, merge pdf invoices, merge pdf contracts, "
@@ -31,7 +31,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "merge pdf iphone, merge pdf android, merge pdf chromebook, "
                 # Free/No registration keywords
                 "merge pdf free, merge pdf no registration, merge pdf no sign up, "
-                "pdf merger unlimited, merge pdf safe, merge pdf secure, "
+                "merge pdf safe, merge pdf secure, "
                 # Comparison keywords
                 "smallpdf merge alternative, ilovepdf merge alternative, pdf merge best 2026"
             ),
@@ -76,7 +76,7 @@ PDF_ORGANIZE_CONFIGS = {
                     "gradient": "from-amber-500 to-orange-600",
                     "title": _("Merge Up to 10 Files"),
                     "description": _(
-                        "Combine 2-10 PDF files at once. Premium users can merge even more"
+                        "Combine 2 to 10 PDF files in one go, on any plan"
                     ),
                 },
             ],
@@ -85,16 +85,13 @@ PDF_ORGANIZE_CONFIGS = {
                 {
                     "question": _("How many PDF files can I merge at once?"),
                     "answer": _(
-                        "Free users can merge 2-10 PDF files in one operation. Simply select all your files, "
-                        "arrange them in the desired order using drag and drop, and click Merge. "
-                        "Premium users can merge even more files with higher page limits."
+                        "You can merge 2 to 10 PDF files in one operation, on any plan. Select your files, drag them into the order you want and click Merge. To combine more than 10, merge them in groups and then merge the results."
                     ),
                 },
                 {
-                    "question": _("Will bookmarks and links be preserved?"),
+                    "question": _("Are bookmarks and links kept after merging?"),
                     "answer": _(
-                        "Yes, internal bookmarks and hyperlinks within each PDF are preserved after merging. "
-                        "The merged PDF will contain all bookmarks from all source files, making navigation easy."
+                        "Every page is copied as it is, so text, images and links to websites stay. Bookmarks (the outline panel in a PDF reader) are not carried over; if you need them, add them again in a PDF editor after merging."
                     ),
                 },
                 {
@@ -110,9 +107,7 @@ PDF_ORGANIZE_CONFIGS = {
                 {
                     "question": _("Is there a file size limit for merging?"),
                     "answer": _(
-                        "Free users can merge PDFs with a combined total of up to 50 pages. "
-                        "For larger documents, Premium subscription provides higher limits. "
-                        "There's no limit on individual file sizes."
+                        "There is no page limit. The files can add up to 50 MB for each file you merge (two files up to 100 MB in total), with an overall ceiling of about 200 MB per upload."
                     ),
                 },
                 {
@@ -183,7 +178,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "pdf splitter iphone, pdf splitter android, "
                 # Free keywords
                 "split pdf free, pdf splitter no registration, split pdf no ads, "
-                "pdf splitter unlimited, split pdf safe, split pdf secure"
+                "split pdf safe, split pdf secure"
             ),
             "page_subtitle": _("Split your PDF into multiple files"),
             "header_text": _("Split PDF"),
@@ -266,8 +261,7 @@ PDF_ORGANIZE_CONFIGS = {
                 {
                     "question": _("Is there a limit on how many pages I can split?"),
                     "answer": _(
-                        "Free users can split PDFs up to 50 pages. Premium users have higher limits. "
-                        "For very large documents, you may need to process them in batches."
+                        "There is no page limit. Free users can split files up to 50 MB, Premium users up to 200 MB. Any number of pages can be split into ranges or single pages."
                     ),
                 },
             ],
@@ -327,7 +321,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "delete pdf pages mobile, remove pdf pages iphone, remove pdf pages android, "
                 # Free keywords
                 "remove pdf pages free, remove pdf pages no registration, remove pdf pages no signup, "
-                "delete pdf pages free online, pdf page remover unlimited, "
+                "delete pdf pages free online, "
                 # Comparison keywords
                 "smallpdf delete pages alternative, ilovepdf remove pages alternative"
             ),
@@ -453,7 +447,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "extract pdf pages mobile, extract pdf pages iphone, extract pdf pages android, "
                 # Free keywords
                 "extract pdf pages free, extract pdf pages no registration, extract pdf pages no signup, "
-                "pdf page extractor unlimited, extract pages pdf safe, "
+                "extract pages pdf safe, "
                 # Comparison keywords
                 "smallpdf extract pages alternative, ilovepdf extract alternative"
             ),
@@ -583,7 +577,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "pdf organizer mobile, reorder pdf iphone, reorder pdf android, "
                 # Free keywords
                 "organize pdf free, organize pdf no registration, reorder pdf no signup, "
-                "pdf organizer unlimited, organize pdf no watermark, "
+                "organize pdf no watermark, "
                 # Comparison keywords
                 "smallpdf organize alternative, ilovepdf reorder alternative"
             ),
@@ -714,7 +708,7 @@ PDF_ORGANIZE_CONFIGS = {
                 "compress pdf iphone, compress pdf android, compress pdf from phone, "
                 # Free/No registration keywords
                 "compress pdf free, compress pdf no registration, compress pdf no watermark, "
-                "pdf compressor unlimited, compress pdf safe, compress pdf secure, "
+                "compress pdf safe, compress pdf secure, "
                 # Percentage keywords
                 "compress pdf 50 percent, compress pdf 90 percent, reduce pdf size by half, "
                 # Comparison keywords
