@@ -305,7 +305,28 @@ def breadcrumbs(request):
             "frontend:install_page": _("Install the App"),
         }
 
-        if view_name in breadcrumb_names:
+        if view_name == "frontend:compress_pdf_size_page":
+            # Size landings sit under Compress PDF; the slug ("to-200kb") is
+            # not a name, so the leaf repeats the page's H1.
+            from django.utils.translation import gettext
+
+            from .views import COMPRESS_SIZE_LANDINGS, _size_label
+
+            kb = COMPRESS_SIZE_LANDINGS.get(resolved.kwargs.get("size"), 0)
+            breadcrumbs_list.append(
+                {
+                    "name": breadcrumb_names["frontend:compress_pdf_page"],
+                    "url": reverse("frontend:compress_pdf_page"),
+                }
+            )
+            breadcrumbs_list.append(
+                {
+                    "name": gettext("Compress PDF to %(size)s")
+                    % {"size": _size_label(kb)},
+                    "url": request.path,
+                }
+            )
+        elif view_name in breadcrumb_names:
             breadcrumbs_list.append(
                 {"name": breadcrumb_names[view_name], "url": request.path}
             )

@@ -727,15 +727,22 @@ EMAIL_RESULT_ASYNC_TOOLS = {
 }
 
 
-def _render_tool_page(request, tool_key: str) -> HttpResponse:
+def _render_tool_page(
+    request, tool_key: str, overrides: dict | None = None
+) -> HttpResponse:
     """Generic renderer for the 25 standard tool pages.
 
     Reads configuration from TOOL_CONFIGS[tool_key], builds context via
     _get_converter_context(), merges SEO data and optional extras, then renders.
+    overrides: context keys replaced after all of that (landing variants).
     """
     config = TOOL_CONFIGS[tool_key]
+    converter_args = dict(config["converter_args"])
+    for key in list(converter_args):
+        if overrides and key in overrides:
+            converter_args[key] = overrides[key]
     context = _get_converter_context(
-        request, conversion_type=tool_key, **config["converter_args"]
+        request, conversion_type=tool_key, **converter_args
     )
     # window.CONVERSION_TYPE for background-tasks.js: without it queued tasks
     # show "Type: -" and "Open Tool" can't find the way back to the converter.
@@ -753,6 +760,8 @@ def _render_tool_page(request, tool_key: str) -> HttpResponse:
         context.setdefault("og_image_filename", shots[1])
     if "extra" in config:
         context.update(config["extra"])
+    if overrides:
+        context.update(overrides)
     return render(request, config["template"], context)
 
 
@@ -968,7 +977,66 @@ def pdf_to_html_page(request):
 @anonymous_cache_page(60 * 60)
 def compress_pdf_page(request):
     """Compress PDF page."""
-    return _render_tool_page(request, "compress_pdf")
+    return _render_tool_page(
+        request, "compress_pdf", {"compress_size_landings": COMPRESS_SIZE_LANDINGS}
+    )
+
+
+# Upload limits people search for ("compress pdf to 100kb"): slug -> KB.
+COMPRESS_SIZE_LANDINGS = {"100kb": 100, "200kb": 200, "500kb": 500, "1mb": 1024}
+
+
+def _size_label(kb: int) -> str:
+    from django.utils.translation import gettext
+
+    if kb >= 1024:
+        return f"{kb // 1024} {gettext('MB')}"
+    return f"{kb} {gettext('KB')}"
+
+
+@anonymous_cache_page(60 * 60)
+def compress_pdf_size_page(request, size: str):
+    """Compress PDF with a target size preselected (landing per upload limit)."""
+    from django.http import Http404
+    from django.utils.translation import gettext
+
+    kb = COMPRESS_SIZE_LANDINGS.get(size)
+    if kb is None:
+        raise Http404("Unknown size")
+    label = {"size": _size_label(kb)}
+    return _render_tool_page(
+        request,
+        "compress_pdf",
+        {
+            "page_title": gettext("Compress PDF to %(size)s Online Free | Convertica")
+            % label,
+            "page_description": gettext(
+                "Make a PDF smaller than %(size)s for upload forms and email. Image "
+                "quality goes down only as far as needed. Free, no registration, "
+                "no watermark."
+            )
+            % label,
+            "header_text": gettext("Compress PDF to %(size)s") % label,
+            "page_subtitle": gettext("Get a PDF under a %(size)s upload limit") % label,
+            "page_content_title": gettext("How to compress a PDF to %(size)s") % label,
+            "page_content_body": gettext(
+                "<p>Upload forms, job portals and exam applications often reject "
+                "anything over %(size)s. Drop your PDF into the box at the top of the "
+                "page with %(size)s already selected: the converter lowers image quality and resolution step "
+                "by step and keeps the mildest setting that fits. Text and line art "
+                "are left as they are.</p><p>What to expect, from our tests with "
+                "scanned text pages at 300 dpi: one to three pages fit under 100 KB "
+                "and stay readable, ten pages need about 500 KB to stay sharp, and "
+                "squeezing ten pages into 200 KB leaves the text blurry. A PDF that "
+                "is mostly typed text is usually small already. If %(size)s is out "
+                "of reach, you get the smallest version we can make and a note "
+                "saying so.</p>"
+            )
+            % label,
+            "target_size_kb_default": kb,
+            "compress_size_landings": COMPRESS_SIZE_LANDINGS,
+        },
+    )
 
 
 @anonymous_cache_page(60 * 60)
@@ -2426,6 +2494,14 @@ def _get_sitemap_pages():
         {"url": "ppt-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "html-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "text-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
+        *(
+            {
+                "url": f"pdf-organize/compress/to-{slug}/",
+                "priority": "0.6",
+                "changefreq": "monthly",
+            }
+            for slug in COMPRESS_SIZE_LANDINGS
+        ),
         {"url": "pdf-to-ppt/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-to-html/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/rotate/", "priority": "0.8", "changefreq": "weekly"},
@@ -2553,7 +2629,7 @@ def sitemap_lang(request, lang: str):
     # v8: image/password-protect-image/ (v7) + /pdf-edit/page-size/ — both
     # landed as v7 on separate branches, so bump again or the cached
     # sitemap never picks up the second one.
-    cache_key = f"sitemap_{lang}_v12"
+    cache_key = f"sitemap_{lang}_v13"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")

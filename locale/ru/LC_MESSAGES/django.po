@@ -17641,3 +17641,24 @@ msgstr "Уменьшение размера"
 
 msgid "Could not get below {target}. This is the smallest version we could make."
 msgstr "Не удалось уменьшить файл до {target}. Это самая маленькая версия, которую удалось сделать."
+
+msgid "Compress PDF to %(size)s Online Free | Convertica"
+msgstr "Сжать ПДФ до %(size)s онлайн бесплатно | Convertica"
+
+msgid "Make a PDF smaller than %(size)s for upload forms and email. Image quality goes down only as far as needed. Free, no registration, no watermark."
+msgstr "Уменьшите PDF до размера меньше %(size)s для форм загрузки и почты. Качество изображений снижается ровно настолько, насколько нужно. Бесплатно, без регистрации и водяных знаков."
+
+msgid "Compress PDF to %(size)s"
+msgstr "Сжать ПДФ до %(size)s"
+
+msgid "Get a PDF under a %(size)s upload limit"
+msgstr "ПДФ меньше %(size)s, чтобы пройти лимит загрузки"
+
+msgid "How to compress a PDF to %(size)s"
+msgstr "Как сжать ПДФ до %(size)s"
+
+msgid "<p>Upload forms, job portals and exam applications often reject anything over %(size)s. Drop your PDF into the box at the top of the page with %(size)s already selected: the converter lowers image quality and resolution step by step and keeps the mildest setting that fits. Text and line art are left as they are.</p><p>What to expect, from our tests with scanned text pages at 300 dpi: one to three pages fit under 100 KB and stay readable, ten pages need about 500 KB to stay sharp, and squeezing ten pages into 200 KB leaves the text blurry. A PDF that is mostly typed text is usually small already. If %(size)s is out of reach, you get the smallest version we can make and a note saying so.</p>"
+msgstr "<p>Формы загрузки, сайты вакансий и заявки на экзамены часто не принимают файлы больше %(size)s. Перетащите ПДФ в поле вверху страницы, размер %(size)s уже выбран: конвертер шаг за шагом снижает качество и разрешение изображений и останавливается на самой мягкой настройке, при которой файл влезает. Текст и линии остаются как есть.</p><p>Чего ожидать, по нашим тестам на отсканированных текстовых страницах в 300 dpi: от одной до трёх страниц укладываются в 100 КБ и остаются читаемыми, десяти страницам нужно около 500 КБ, чтобы сохранить чёткость, а если втиснуть десять страниц в 200 КБ, текст становится размытым. ПДФ, в котором в основном набранный текст, обычно и так небольшой. Если до %(size)s сжать не получается, вы получите самую маленькую версию, какую мы можем сделать, и сообщение об этом.</p>"
+
+msgid "Need a specific size?"
+msgstr "Нужен конкретный размер?"

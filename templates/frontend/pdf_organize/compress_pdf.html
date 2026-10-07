@@ -28,17 +28,25 @@
         </label>
         <select id="target_size_kb" name="target_size_kb"
                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
-          <option value="" selected>{% trans "No target (use the compression level)" %}</option>
-          <option value="100">100 {% trans "KB" %}</option>
-          <option value="200">200 {% trans "KB" %}</option>
-          <option value="500">500 {% trans "KB" %}</option>
-          <option value="1024">1 {% trans "MB" %}</option>
-          <option value="2048">2 {% trans "MB" %}</option>
-          <option value="5120">5 {% trans "MB" %}</option>
+          <option value=""{% if not target_size_kb_default %} selected{% endif %}>{% trans "No target (use the compression level)" %}</option>
+          <option value="100"{% if target_size_kb_default == 100 %} selected{% endif %}>100 {% trans "KB" %}</option>
+          <option value="200"{% if target_size_kb_default == 200 %} selected{% endif %}>200 {% trans "KB" %}</option>
+          <option value="500"{% if target_size_kb_default == 500 %} selected{% endif %}>500 {% trans "KB" %}</option>
+          <option value="1024"{% if target_size_kb_default == 1024 %} selected{% endif %}>1 {% trans "MB" %}</option>
+          <option value="2048"{% if target_size_kb_default == 2048 %} selected{% endif %}>2 {% trans "MB" %}</option>
+          <option value="5120"{% if target_size_kb_default == 5120 %} selected{% endif %}>5 {% trans "MB" %}</option>
         </select>
         <p class="mt-1.5 text-xs text-gray-500">
           {% trans "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make." %}
         </p>
+        {% if compress_size_landings %}
+          <p class="mt-2 text-xs text-gray-500">
+            {% trans "Need a specific size?" %}
+            {% for slug, kb in compress_size_landings.items %}
+              <a href="{% url 'frontend:compress_pdf_size_page' size=slug %}" class="text-blue-600 hover:underline">{% if kb >= 1024 %}{% widthratio kb 1024 1 %} {% trans "MB" %}{% else %}{{ kb }} {% trans "KB" %}{% endif %}</a>{% if not forloop.last %} · {% endif %}
+            {% endfor %}
+          </p>
+        {% endif %}
       </div>
     </div>
   </div>
