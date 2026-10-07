@@ -1,0 +1,131 @@
+slug: excel-to-pdf-cut-off-blank-pages-fix
+title_id: "Excel ke PDF Terpotong atau Muncul Halaman Kosong? Penyebab dan Solusinya"
+meta_title_id: "Excel ke PDF Terpotong atau Halaman Kosong? Ini Solusinya"
+meta_description_id: "Kolom pindah ke halaman lain, puluhan halaman kosong, teks kecil sekali, #### di sel angka. Enam penyebab Excel ke PDF terpotong dan cara memperbaikinya."
+meta_keywords_id: "excel ke pdf terpotong, excel ke pdf halaman kosong, kenapa file excel dikonversi ke pdf tabelnya terpisah jadi dua halaman, excel ke pdf kolom tidak muncul semua, excel ke pdf satu halaman, pdf dari excel tulisan kecil, excel ke pdf halaman berlebih"
+excerpt_id: "Di layar spreadsheet-nya rapi, tapi PDF-nya seperti habis masuk mesin penghancur kertas. Hampir semua kasus berujung pada enam penyebab, dan semuanya bisa dicek dalam lima menit."
+ai_metadata:
+  topics:
+    - Excel ke PDF memotong kolom
+    - halaman kosong saat mengekspor Excel ke PDF
+    - memuatkan sheet dalam satu lebar halaman
+    - sel nyasar dan used range
+    - tanda pagar dan teks terpotong di PDF
+    - menengahkan sheet di halaman PDF
+  entities:
+    - Microsoft Excel
+    - Page Break Preview
+    - Print Area
+    - Scale to Fit
+    - LibreOffice
+    - Convertica
+  summary: "Mendiagnosis kesalahan umum saat mengekspor Excel ke PDF: kolom yang meluber ke halaman tambahan, deretan halaman kosong akibat sel nyasar jauh di luar tabel, teks yang terlalu kecil setelah sheet sangat lebar dipaksa muat, tanda pagar dan teks terpotong karena kolom sempit, tabel yang tidak di tengah, dan sheet yang hilang pada workbook dengan banyak tab. Memberikan perbaikan di Excel untuk setiap kasus, menjelaskan cara menemukan sel nyasar dengan Ctrl+End, dan menyebutkan apa yang dilakukan otomatis oleh konverter Excel ke PDF online berdasarkan uji dengan file nyata."
+  related_terms:
+    - pdf dari excel cuma setengah sheet
+    - excel ke pdf ribuan halaman kosong
+    - kolom excel terpisah halaman di pdf
+    - tulisan pdf dari excel terlalu kecil
+    - excel ke pdf tidak di tengah
+    - pdf excel muncul tanda pagar
+  reading_time_minutes: 8
+  target_audience: "Siapa saja yang mengekspor spreadsheet ke PDF untuk klien, pembukuan, sekolah atau cetak: daftar harga, invoice, laporan dan jadwal yang hasilnya terpotong, mengecil atau penuh halaman kosong."
+content_id: |
+  Spreadsheet adalah grid tanpa ujung. PDF adalah tumpukan kertas berukuran tetap. Semua masalah Excel ke PDF pada dasarnya sama: konverter harus menebak di mana grid Anda berakhir dan bagaimana memotongnya menjadi halaman, lalu tebakannya meleset.
+
+  Kabar baiknya, tebakan yang meleset itu datang dari daftar penyebab yang pendek. Cari penyebab Anda di bawah, perbaiki sekali di file, dan setiap ekspor berikutnya dari file itu akan keluar dengan benar.
+
+  <h2>1. Kolom pindah ke halaman terpisah</h2>
+
+  <p><strong>Yang terlihat:</strong> halaman 1 berisi kolom A sampai F, sedangkan kolom G sampai K muncul sendirian di halaman 4, setelah semua baris, tanpa label baris. Inilah kasus klasik "kenapa file Excel dikonversi ke PDF tabelnya terpisah jadi dua halaman".</p>
+
+  <p><strong>Penyebab:</strong> secara bawaan sheet dicetak dengan ukuran 100%. Kalau tabel lebih lebar dari kertas, kolom yang tidak muat dipindahkan ke halaman sendiri, dicetak setelah blok baris pertama. Dari situlah kesan "setengah sheet saya hilang": sebenarnya tidak hilang, hanya ada tiga halaman kemudian.</p>
+
+  <p><strong>Perbaikan di Excel:</strong> tab Page Layout, grup <strong>Scale to Fit</strong>. Isi <strong>Width</strong> dengan "1 page" dan biarkan <strong>Height</strong> di "Automatic". Tabel kini mengecil secukupnya agar muat melebar, dan memanjang ke bawah sebanyak halaman yang dibutuhkan. Untuk tabel lebar, ubah juga <strong>Orientation</strong> ke Landscape, yang memberi lebar sekitar 40% lebih banyak sebelum ada yang perlu dikecilkan.</p>
+
+  <p>Jangan mengisi width dan height sama-sama 1 page untuk tabel yang panjang. Itu memaksa 300 baris masuk ke satu lembar, dan Anda langsung bertemu masalah nomor 3.</p>
+
+  <p><a href="/id/excel-to-pdf/">Konverter Excel ke PDF</a> mengurus bagian lebar ini untuk Anda: kecuali file sudah punya pengaturan skala cetak sendiri, semua kolom dimuatkan ke lebar halaman dan tabel lebar diputar ke landscape. Dalam uji kami, tabel 25 kolom yang dengan konversi biasa menjadi empat halaman muat di satu halaman landscape.</p>
+
+  <h2>2. Puluhan (atau ribuan) halaman kosong</h2>
+
+  <p><strong>Yang terlihat:</strong> data Anda cuma dua halaman, tapi PDF-nya 40 halaman dan hampir semuanya kosong. Atau satu halaman data, disusul halaman-halaman berisi garis grid saja.</p>
+
+  <p><strong>Penyebab:</strong> konverter mencetak semuanya sampai sel terakhir yang dianggap terpakai. Sel itu sering kali bukan baris data terakhir Anda. Biang keladi yang umum:</p>
+
+  <ul>
+    <li>spasi yang pernah diketik di sel jauh di bawah atau di kanan, lalu terlupakan;</li>
+    <li>rumus yang disalin sampai baris 5000 dan menghasilkan string kosong (<code>=IF(A2="","",...)</code>);</li>
+    <li>di Excel sendiri, border atau warna isian yang diterapkan ke seluruh baris atau kolom, yang oleh Excel juga dihitung sebagai terpakai.</li>
+  </ul>
+
+  <p><strong>Cara menemukannya:</strong> klik sel mana saja lalu tekan <strong>Ctrl+End</strong> (Cmd+Fn+panah kanan di Mac). Excel melompat ke sudut kanan bawah dari area yang dianggapnya terpakai. Kalau yang dituju sel AZ4000 padahal tabel Anda berakhir di F120, semua di antaranya itulah yang berubah menjadi halaman kosong.</p>
+
+  <p><strong>Perbaikan:</strong> pilih baris di bawah tabel (klik nomor baris kosong pertama, lalu Ctrl+Shift+panah bawah), klik kanan, <strong>Delete</strong>. Lakukan hal yang sama untuk kolom di sebelah kanan. Lalu simpan file: Excel baru menghitung ulang used range saat file disimpan. Menekan tombol Delete pada sel saja tidak cukup, karena itu hanya menghapus nilai dan formatnya tetap tertinggal; yang dibutuhkan adalah perintah Delete untuk baris dan kolom.</p>
+
+  <p><strong>Atau tetapkan area cetak</strong>, maka sisa sheet tidak lagi berpengaruh: pilih tabel, Page Layout, Print Area, Set Print Area.</p>
+
+  <p>Konverter Excel ke PDF mengabaikan sel yang hanya berisi warna isian atau border. Pada workbook tanpa rumus, spasi nyasar yang ada setelah ujung tabel juga dikosongkan, sehingga tidak lagi menghasilkan halaman kosong. Spasi tepat setelah teks di baris yang sama tetap dibiarkan, karena begitulah orang biasanya mencegah catatan panjang meluber ke kolom berikutnya. Workbook yang berisi rumus dikonversi apa adanya, sebab bisa saja ada rumus yang menghitung sel-sel tersebut, jadi untuk file seperti itu pembersihan dengan Ctrl+End di atas tetap jalan keluarnya. Print Area yang Anda tetapkan sendiri selalu diutamakan.</p>
+
+  <h2>3. Semua muat, tapi tulisannya mikroskopis</h2>
+
+  <p><strong>Yang terlihat:</strong> satu halaman, semua kolom ada, tapi ukuran hurufnya seperti catatan kaki kontrak.</p>
+
+  <p>Ada dua penyebab. Bisa jadi sheet-nya memang sangat lebar (40 atau 50 kolom akan selalu kecil dalam satu lebar halaman), atau ada sel nyasar jauh di kanan (lihat penyebab 2) yang membuat konverter memuatkan 52 kolom padahal Anda hanya punya 6. Cek Ctrl+End dulu, itu yang paling murah.</p>
+
+  <p>Kalau tabelnya memang lebar, pilih kompromi yang Anda mau:</p>
+
+  <ul>
+    <li>Landscape ditambah fit to width: masih terbaca sampai kira-kira 20 hingga 25 kolom biasa di kertas A4.</li>
+    <li>Sembunyikan kolom yang tidak perlu ada di PDF sebelum ekspor. Kolom tersembunyi tidak dicetak.</li>
+    <li>Pecah tabelnya: letakkan tiap kelompok kolom di sheet sendiri, masing-masing dengan kolom ID yang diulang (lihat <a href="/id/blog/excel-to-pdf-repeat-header-row-every-page/">mengulang baris dan kolom judul</a>).</li>
+    <li>Pilih "Keep original size" di opsi tata letak konverter: teks berukuran penuh, dan kolom berlanjut ke halaman tambahan, kebalikan dari opsi pertama.</li>
+  </ul>
+
+  <h2>4. Tanda pagar (####) atau teks terpotong di tengah kata</h2>
+
+  <p><strong>Yang terlihat:</strong> <code>#####</code> di tempat yang seharusnya berisi angka atau tanggal, atau kalimat yang berhenti di tepi sel.</p>
+
+  <p><strong>Penyebab:</strong> PDF menampilkan persis apa yang akan muncul di hasil cetak. Angka yang tidak muat di kolomnya ditampilkan sebagai tanda pagar, di layar maupun di kertas. Teks yang tidak muat terpotong di tepi sel setiap kali sel di sebelah kanannya berisi sesuatu.</p>
+
+  <p><strong>Perbaikan:</strong> lebarkan kolom (klik dua kali tepi kanan huruf kolom untuk auto-fit), atau aktifkan Wrap Text untuk sel berisi teks panjang agar sel memanjang ke bawah. Periksa di zoom 100%; di zoom 85% kolom bisa tampak baik di layar tapi tetap menampilkan #### saat dicetak.</p>
+
+  <h2>5. Tabel nyangkut di pojok halaman</h2>
+
+  <p>Tabel yang sempit secara bawaan dicetak di pojok kiri atas, yang terlihat janggal pada invoice atau formulir. Buka Page Layout, Margins, <strong>Custom Margins</strong>, lalu centang <strong>Horizontally</strong> di bagian "Center on page". Centang juga Vertically untuk formulir satu halaman. Pengaturan ini tersimpan di file, jadi PDF ikut menerapkannya.</p>
+
+  <p>Kejutan sejenis datang dari ukuran kertas. Sheet yang disiapkan untuk US Letter lalu dicetak di A4 (atau sebaliknya) mendapat atau kehilangan sebidang ruang di bagian bawah, dan bisa mendorong baris terakhir ke halaman tersendiri. Di AS, Kanada, Meksiko dan beberapa negara Amerika Latin lain standarnya Letter; hampir di semua negara lainnya A4. Di Indonesia standarnya A4, meski sebagian dokumen kantor masih memakai F4 (Folio). Panduan <a href="/id/blog/a4-vs-us-letter-printable-sizes/">A4 vs Letter</a> kami memuat ukuran persisnya. Kalau file tidak menyebutkan ukuran kertas, konverter memakai A4.</p>
+
+  <h2>6. Sebagian sheet tidak ada di PDF</h2>
+
+  <p>File, Save As, PDF di Excel hanya menyimpan sheet yang aktif, kecuali Anda membuka <strong>Options</strong> dan memilih "Entire workbook". Memilih beberapa tab sebelum menyimpan juga bisa. Konverter online mengambil setiap sheet yang terlihat di workbook, masing-masing dimulai di halaman baru. Sheet tersembunyi dilewati, jadi tampilkan dulu sheet yang ingin disertakan.</p>
+
+  <h2>Cek lima menit sebelum ekspor</h2>
+
+  <ol>
+    <li>Ctrl+End di setiap sheet. Hapus baris dan kolom di luar tabel yang sebenarnya, lalu simpan.</li>
+    <li>View, <strong>Page Break Preview</strong>. Garis biru menunjukkan persis di mana halaman akan terpotong; seret garisnya untuk memindahkan batas halaman.</li>
+    <li>Scale to Fit: width 1 page, height Automatic. Landscape kalau tabelnya lebar.</li>
+    <li>Print Titles kalau tabelnya lebih dari satu halaman.</li>
+    <li>File, Print, gulir semua halaman di pratinjau. Apa yang Anda lihat di sana itulah yang masuk ke PDF.</li>
+  </ol>
+
+  <h2>FAQ</h2>
+
+  <h3>Kenapa PDF saya berbeda dari hasil Save as PDF bawaan Excel?</h3>
+  <p>Excel merender dengan driver printer dan font yang terpasang di komputer Anda; konverter online merender di server dengan font sendiri dan tanpa printer. Pengaturan tata letak yang tersimpan di file (print area, skala, orientasi, margin, Print Titles) diikuti keduanya. Hasilnya berbeda terutama ketika file mengandalkan pengaturan bawaan, atau memakai font yang tidak ada di server.</p>
+
+  <h3>Bisakah PDF yang sudah terpotong diperbaiki?</h3>
+  <p>Tidak dengan mengedit PDF-nya: bagian yang hilang memang tidak pernah digambar. Perbaiki spreadsheet-nya lalu konversi ulang. Kalau file aslinya sudah tidak ada, <a href="/id/pdf-to-excel/">ubah PDF kembali ke Excel</a>, perbaiki, lalu ekspor sekali lagi.</p>
+
+  <h3>Kenapa Print Preview Excel menunjukkan 1 halaman tapi PDF-nya lebih?</h3>
+  <p>Biasanya PDF dibuat dari sheet lain, atau Print Preview hanya menampilkan seleksi. Periksa sheet mana yang aktif, dan pastikan "Print Selection" tidak dipilih.</p>
+
+  <h3>Apakah baris tersembunyi ikut masuk ke PDF?</h3>
+  <p>Tidak. Baris dan kolom tersembunyi tetap tersembunyi, baik di ekspor bawaan Excel maupun di konverter.</p>
+
+  <h3>Apakah konverter merusak rumus atau grafik saya?</h3>
+  <p>Tidak. PDF menampilkan nilai hasil rumus dan grafik sebagaimana digambar. Spreadsheet asli tidak diubah; Anda menerima PDF baru.</p>
+
+  <h2>Konversi sekarang</h2>
+
+  <p>Jalankan cek sebelum ekspor tadi, lalu masukkan filenya ke <a href="/id/excel-to-pdf/">konverter Excel ke PDF</a>. Kalau masalahnya hanya halaman 2 dan seterusnya tidak punya nama kolom, baca <a href="/id/blog/excel-to-pdf-repeat-header-row-every-page/">cara mengulang baris judul di setiap halaman</a>, dan untuk daftar periksa yang lebih luas, <a href="/id/blog/convert-excel-to-pdf-keep-formatting/">mengubah Excel ke PDF tanpa merusak format</a>.</p>

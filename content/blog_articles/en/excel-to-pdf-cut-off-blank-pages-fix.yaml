@@ -1,0 +1,135 @@
+slug: excel-to-pdf-cut-off-blank-pages-fix
+cover_image: blog/images/cover-excel-to-pdf-cut-off-blank-pages-fix.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: excel_to_pdf
+title_en: "Excel to PDF Cuts Off Columns or Adds Blank Pages? Causes and Fixes"
+meta_title_en: "Excel to PDF Cutting Off Columns or Blank Pages? Fix It"
+meta_description_en: "Columns on a separate page, dozens of blank pages, tiny text, ### instead of numbers. Six causes of a broken Excel to PDF export, and the fix for each one."
+meta_keywords_en: "excel to pdf cut off, excel to pdf blank pages, excel to pdf not showing all columns, fit excel sheet on one page pdf, excel pdf too small, excel to pdf without page breaks, excel pdf extra pages"
+excerpt_en: "The spreadsheet looks perfect on screen and the PDF looks like it went through a shredder. Almost every case comes down to six causes, and you can check all of them in five minutes."
+ai_metadata:
+  topics:
+    - Excel to PDF cutting off columns
+    - blank pages when exporting Excel to PDF
+    - fitting a sheet on one page width
+    - stray cells and the used range
+    - hash marks and clipped text in PDF
+    - centering a sheet on the PDF page
+  entities:
+    - Microsoft Excel
+    - Page Break Preview
+    - Print Area
+    - Scale to Fit
+    - LibreOffice
+    - Convertica
+  summary: "Diagnoses the common ways an Excel to PDF export goes wrong: columns spilling onto extra pages, runs of blank pages caused by stray cells far outside the table, unreadably small text after fitting a very wide sheet, hash marks and clipped text from narrow columns, off-centre tables, and missing sheets in multi-tab workbooks. Gives a fix in Excel for each, explains how to find stray cells with Ctrl+End, and states what an online Excel to PDF converter does automatically, based on tests with real files."
+  related_terms:
+    - excel pdf only showing half the sheet
+    - excel to pdf thousands of blank pages
+    - excel columns on different pages pdf
+    - pdf from excel text too small
+    - excel to pdf not centered
+    - excel pdf hash marks
+  reading_time_minutes: 8
+  target_audience: "Anyone exporting spreadsheets to PDF for clients, accounting, school or printing: price lists, invoices, reports and schedules that come out sliced, shrunk or padded with empty pages."
+content_en: |
+  A spreadsheet is an endless grid. A PDF is a stack of fixed-size sheets of paper. Every Excel to PDF problem is some version of the converter trying to decide where your grid ends and how to cut it into pages, and guessing wrong.
+
+  The good news is that the wrong guesses come from a short list of causes. Find yours below, fix it once in the file, and every future export of that file comes out right.
+
+  <h2>1. Columns end up on a separate page</h2>
+
+  <p><strong>What you see:</strong> page 1 has columns A to F, and columns G to K turn up alone on page 4, after all the rows, with no row labels.</p>
+
+  <p><strong>Why:</strong> by default a sheet prints at 100% size. If the table is wider than the paper, the columns that do not fit go to their own pages, printed after the first block of rows. That is the "half my sheet is missing" effect: it is not missing, it is three pages later.</p>
+
+  <p><strong>Fix in Excel:</strong> Page Layout tab, the <strong>Scale to Fit</strong> group. Set <strong>Width</strong> to "1 page" and leave <strong>Height</strong> on "Automatic". The table now shrinks just enough to fit across, and runs down as many pages as it needs. For a wide table also switch <strong>Orientation</strong> to Landscape, which gives you about 40% more width before anything has to shrink.</p>
+
+  <p>Avoid setting both width and height to 1 page on a long table. That squeezes 300 rows onto one sheet, and you get the next problem.</p>
+
+  <p>The <a href="/en/excel-to-pdf/">Excel to PDF converter</a> does the width part for you: unless the file already has its own print scaling, it fits all columns to the page width and turns wide tables to landscape. In our tests a 25-column table that came out as four pages with a plain conversion fit on a single landscape page.</p>
+
+  <h2>2. Dozens (or thousands) of blank pages</h2>
+
+  <p><strong>What you see:</strong> your data fills two pages, and the PDF has 40, almost all empty. Or one page of data followed by pages with nothing but grid lines.</p>
+
+  <p><strong>Why:</strong> the converter prints everything up to the last cell it thinks is used. That is often not your last row of data. Common culprits:</p>
+
+  <ul>
+    <li>a space typed into a cell far below or to the right, then forgotten;</li>
+    <li>a formula copied down to row 5000 that returns an empty string (<code>=IF(A2="","",...)</code>);</li>
+    <li>in Excel itself, a border or fill colour applied to whole rows or columns, which Excel counts as used too.</li>
+  </ul>
+
+  <p><strong>Find it:</strong> click any cell and press <strong>Ctrl+End</strong> (Cmd+Fn+Right arrow on a Mac). Excel jumps to the bottom-right corner of what it considers the used range. If that is cell AZ4000 and your table ends at F120, everything between is what is turning into blank pages.</p>
+
+  <p><strong>Fix:</strong> select the rows below your table (click the first empty row number, then Ctrl+Shift+Down arrow), right-click, <strong>Delete</strong>. Do the same for the columns to the right. Then save the file: Excel only recalculates the used range on save. Pressing Delete on the cells is not enough, because it clears values and keeps the formatting; you need the row and column Delete command.</p>
+
+  <p><strong>Or set a print area</strong> and the rest of the sheet stops mattering: select the table, Page Layout, Print Area, Set Print Area.</p>
+
+  <p>The Excel to PDF converter ignores cells that only carry a fill or a border. In a workbook without formulas it also empties stray spaces sitting past the end of your table, so they stop producing blank pages. A space right after text in the same row stays, because that is how people stop a long note from running into the next column. Workbooks with formulas are converted exactly as they are, since a formula might be counting those cells, so for them the Ctrl+End clean-up above is still the way. A print area you set yourself always wins.</p>
+
+  <h2>3. Everything fits, but the text is microscopic</h2>
+
+  <p><strong>What you see:</strong> one page, all columns present, font size of a legal disclaimer.</p>
+
+  <p>Two causes. Either the sheet really is very wide (40 or 50 columns will always be small on one page width), or a stray cell far to the right (see cause 2) made the converter fit 52 columns when you have 6. Check Ctrl+End first; it is the cheap one.</p>
+
+  <p>If the table is genuinely wide, pick which trade-off you want:</p>
+
+  <ul>
+    <li>Landscape plus fit to width: readable up to roughly 20 to 25 normal columns on A4.</li>
+    <li>Hide columns nobody needs in the PDF before exporting. Hidden columns do not print.</li>
+    <li>Split it: put each group of columns on its own sheet, each with the ID column repeated (see <a href="/en/blog/excel-to-pdf-repeat-header-row-every-page/">repeating header rows and columns</a>).</li>
+    <li>Choose "Keep original size" in the converter's layout options: full-size text, with columns continuing on extra pages, like option 1 in reverse.</li>
+  </ul>
+
+  <h2>4. Hash marks (####) or text cut mid-word</h2>
+
+  <p><strong>What you see:</strong> <code>#####</code> where a number or date should be, or a sentence that stops at the cell edge.</p>
+
+  <p><strong>Why:</strong> the PDF shows exactly what a printout would. A number that does not fit its column is shown as hash marks, on screen and on paper. Text that does not fit is cut at the cell edge whenever the next cell to the right has something in it.</p>
+
+  <p><strong>Fix:</strong> widen the column (double-click the right edge of the column letter to auto-fit), or turn on Wrap Text for long text cells so they grow downwards instead. Check at 100% zoom; at 85% a column can look fine on screen and still show #### when printed.</p>
+
+  <h2>5. The table is stuck in a corner of the page</h2>
+
+  <p>A narrow table prints in the top-left corner by default, which looks odd on an invoice or a form. Page Layout, Margins, <strong>Custom Margins</strong>, then tick <strong>Horizontally</strong> under "Center on page". Tick Vertically too for a one-page form. The setting is saved in the file, so the PDF picks it up.</p>
+
+  <p>A related surprise is paper size. A sheet set up for US Letter and printed on A4 (or the reverse) gains or loses a strip at the bottom and can push the last row to a page of its own. In the US, Canada, Mexico and several other Latin American countries the standard is Letter; almost everywhere else it is A4. Our <a href="/en/blog/a4-vs-us-letter-printable-sizes/">A4 vs Letter guide</a> has the exact measurements. When a file does not say which paper it wants, the converter uses A4.</p>
+
+  <h2>6. Some sheets are missing from the PDF</h2>
+
+  <p>Excel's File, Save As, PDF saves only the active sheet unless you open <strong>Options</strong> and pick "Entire workbook". Selecting several tabs before saving also works. The online converter takes every visible sheet in the workbook, each starting on a new page. Hidden sheets are skipped, so unhide anything you want included.</p>
+
+  <h2>A five-minute pre-flight check</h2>
+
+  <ol>
+    <li>Ctrl+End on each sheet. Delete rows and columns past the real table, then save.</li>
+    <li>View, <strong>Page Break Preview</strong>. The blue lines show exactly where pages will split; drag them to move a break.</li>
+    <li>Scale to Fit: width 1 page, height Automatic. Landscape if wide.</li>
+    <li>Print Titles if the table runs over several pages.</li>
+    <li>File, Print preview, scroll through all pages. What you see there is what the PDF gets.</li>
+  </ol>
+
+  <h2>FAQ</h2>
+
+  <h3>Why does my PDF look different from Excel's own Save as PDF?</h3>
+  <p>Excel renders with your printer driver and installed fonts; an online converter renders on a server with its own fonts and no printer. Layout settings saved in the file (print area, scaling, orientation, margins, print titles) are honoured by both. Results differ mostly when the file relies on defaults, or uses a font the server does not have.</p>
+
+  <h3>Can I fix a PDF that is already cut off?</h3>
+  <p>Not by editing the PDF: the missing part was never drawn. Fix the spreadsheet and convert again. If the original is gone, <a href="/en/pdf-to-excel/">convert the PDF back to Excel</a>, repair it, and export once more.</p>
+
+  <h3>Why does Excel show 1 page in Print Preview but the PDF has more?</h3>
+  <p>Usually the PDF was made from a different sheet, or Print Preview was looking at a selection only. Check which sheet is active, and that "Print Selection" is not chosen.</p>
+
+  <h3>Do hidden rows end up in the PDF?</h3>
+  <p>No. Hidden rows and columns stay hidden, in Excel's own export and in the converter.</p>
+
+  <h3>Will the converter break my formulas or charts?</h3>
+  <p>No. The PDF shows the values the formulas produced and the charts as drawn. The original spreadsheet is not modified; you get a new PDF back.</p>
+
+  <h2>Convert it</h2>
+
+  <p>Run through the pre-flight check, then drop the file into the <a href="/en/excel-to-pdf/">Excel to PDF converter</a>. If the problem is only that page 2 onwards has no column names, see <a href="/en/blog/excel-to-pdf-repeat-header-row-every-page/">how to repeat the header row on every page</a>, and for the wider checklist, <a href="/en/blog/convert-excel-to-pdf-keep-formatting/">converting Excel to PDF without losing formatting</a>.</p>

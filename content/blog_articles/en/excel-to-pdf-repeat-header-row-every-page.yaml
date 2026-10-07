@@ -1,0 +1,114 @@
+slug: excel-to-pdf-repeat-header-row-every-page
+cover_image: blog/images/cover-excel-to-pdf-repeat-header-row-every-page.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: excel_to_pdf
+title_en: "How to Repeat the Header Row on Every Page When You Convert Excel to PDF"
+meta_title_en: "Repeat Excel Header Row on Every PDF Page | Convertica"
+meta_description_en: "Your PDF shows column names on page 1 only? Freeze Panes is not the fix. Set Print Titles once and the header row repeats on every page, in any PDF converter."
+meta_keywords_en: "excel to pdf repeat header row, keep header on every page excel pdf, print titles excel, rows to repeat at top, excel header row every page, freeze panes pdf, repeat column headings pdf"
+excerpt_en: "Page 1 of the PDF has the column names, pages 2 to 40 are anonymous numbers. The fix takes thirty seconds, and it is not the one most people try first."
+ai_metadata:
+  topics:
+    - repeating a header row on every page of a PDF made from Excel
+    - why Freeze Panes does not carry into a PDF
+    - Print Titles in Excel for Windows and Mac
+    - repeating rows in Google Sheets and LibreOffice Calc
+    - multi-sheet workbooks and repeated headers
+  entities:
+    - Microsoft Excel
+    - Print Titles
+    - Rows to repeat at top
+    - Freeze Panes
+    - Google Sheets
+    - LibreOffice Calc
+    - Convertica
+  summary: "Explains why a long spreadsheet exported to PDF shows its column headings only on the first page, why Freeze Panes and Excel table headers do not fix it, and how to set Print Titles (rows to repeat at top, columns to repeat at left) in Excel for Windows and Mac, Google Sheets and LibreOffice Calc. Covers per-sheet settings in multi-tab workbooks, the difference between a header row and the page header, and confirms the setting survives conversion with an online Excel to PDF converter."
+  related_terms:
+    - excel header on each page pdf
+    - keep top row on every page pdf
+    - print header row on all pages excel
+    - repeat column headings when printing
+    - excel pdf heading vanishes
+    - freeze headers in pdf
+  reading_time_minutes: 6
+  target_audience: "Office staff, accountants, teachers and anyone who sends long Excel tables as PDF and gets complaints that page 7 has no column names."
+content_en: |
+  You send a 30-page PDF of a price list or a class register, and the reply comes back within minutes: "which column is which on page 5?" Page 1 has the header row. Every page after it is a wall of numbers with no labels.
+
+  Excel can repeat the header row on every printed page, and a PDF is a printed page as far as Excel is concerned. The setting is called Print Titles. It takes about thirty seconds, it is saved inside the file, and once it is there every decent PDF converter respects it.
+
+  <h2>First, the two things that do not work</h2>
+
+  <p><strong>Freeze Panes.</strong> This is what almost everyone tries first, because on screen it does exactly the right thing: the top row stays put while you scroll. But Freeze Panes is a view setting. It controls your window, not the paper, so a PDF ignores it completely. You can freeze row 1 and still get headings on page 1 only.</p>
+
+  <p><strong>Formatting the range as a Table.</strong> An Excel Table (Insert, Table) shows its column names in place of the A, B, C letters while you scroll. Same story: that is a screen trick, and the printout does not repeat them.</p>
+
+  <p>One more source of confusion: the <em>page header</em> (Insert, Header &amp; Footer) is a different thing. It is a line of text in the top margin, like a report title or a page number. It repeats on every page, but it cannot hold your column names lined up with the columns. What you want is a repeated <em>row</em> of the sheet itself.</p>
+
+  <h2>Set Print Titles in Excel (Windows)</h2>
+
+  <ol>
+    <li>Open the sheet and go to the <strong>Page Layout</strong> tab.</li>
+    <li>Click <strong>Print Titles</strong>. The Page Setup window opens on the Sheet tab.</li>
+    <li>Click into <strong>Rows to repeat at top</strong>, then click the row number of your header row in the sheet. Excel fills in <code>$1:$1</code>. If your header takes two rows (a title row and a column-name row, say), drag across both and you get <code>$1:$2</code>.</li>
+    <li>If the table is also wide and spills onto extra pages to the right, do the same in <strong>Columns to repeat at left</strong> for the column that names each row, such as an ID or a product name.</li>
+    <li>Click OK. Check with File, Print: page 2 of the preview should now start with your header row.</li>
+  </ol>
+
+  <p>The setting is stored in the workbook, so save the file after you set it. That is the part that matters for PDF conversion later.</p>
+
+  <h2>Excel for Mac</h2>
+
+  <p>Same idea, slightly different path: <strong>Page Layout</strong> tab, then <strong>Print Titles</strong>, then the same Rows to repeat at top field. In older Mac versions it lives under File, Page Setup, Sheet. The result in the file is identical.</p>
+
+  <h2>Google Sheets</h2>
+
+  <p>Sheets ties this to freezing, which makes it the one place where freezing actually helps. Freeze the header row (View, Freeze, 1 row), then open File, Print. Under <strong>Headers &amp; footers</strong>, tick <strong>Repeat frozen rows</strong>. Download as PDF from that same print screen.</p>
+
+  <p>If you download the sheet as .xlsx instead and convert it somewhere else, set Print Titles in Excel or Calc first. The frozen rows do not turn into print titles on export.</p>
+
+  <h2>LibreOffice Calc</h2>
+
+  <p>Go to <strong>Format, Print Ranges, Edit</strong>. In <strong>Rows to repeat</strong>, choose "user defined" and type <code>$1</code> (or <code>$1:$2</code> for two rows). Calc saves this into .xlsx files as proper Excel print titles, so the setting travels with the file.</p>
+
+  <h2>Workbooks with several tabs</h2>
+
+  <p>Print Titles belong to a sheet, not to the workbook. If your file has a tab per month, each tab needs its own setting, and each can repeat a different row. This is why people sometimes see headers on every page of January and on page 1 only of February.</p>
+
+  <p>The quick way through twelve tabs: set it once on the first sheet, then repeat it on the others. There is no "apply to all sheets" button for Print Titles in Excel, even when sheets are grouped, so budget a minute for a big workbook.</p>
+
+  <h2>Converting the file to PDF</h2>
+
+  <p>Once Print Titles are saved in the file, you can convert it however you like. We tested this on the <a href="/en/excel-to-pdf/">Excel to PDF converter</a> with a 120-row table spread over three pages: with Print Titles set, all three pages start with the header row; without them, only the first one does. The converter also keeps wide tables on one page width by default, so a header that repeats is also a header you can read.</p>
+
+  <p>If you prefer Excel's own route, File, Save As, PDF works too. Just check the Options button there: by default Excel saves only the active sheet, so a multi-tab workbook needs "Entire workbook" selected.</p>
+
+  <h2>When the header still does not repeat</h2>
+
+  <ul>
+    <li><strong>The setting is on a different sheet.</strong> Click the tab you are actually converting and open Print Titles again. Empty field means nothing is set there.</li>
+    <li><strong>The file was saved as .csv.</strong> CSV keeps only values: no print titles, no column widths, nothing. Save as .xlsx.</li>
+    <li><strong>You converted an old .xls file.</strong> Print titles work there too, but if a tool misbehaves, open it and save as .xlsx first. It costs nothing.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Can I repeat a header row in a PDF that is already made?</h3>
+  <p>Not really. A PDF stores pages as drawn, and there is no "repeat this row" concept inside it. Go back to the spreadsheet, set Print Titles and convert again. If all you have is the PDF, convert it <a href="/en/pdf-to-excel/">back to Excel</a> first, fix it there, then export.</p>
+
+  <h3>Can each page have a different header?</h3>
+  <p>Within one sheet, no: the repeated rows are the same on every page. Put differently titled tables on separate sheets and give each sheet its own Print Titles.</p>
+
+  <h3>Does Freeze Panes ever affect the PDF?</h3>
+  <p>In Excel and Calc, no. In Google Sheets only when you tick "Repeat frozen rows" in the print settings.</p>
+
+  <h3>How do I keep the first column on every page of a wide table?</h3>
+  <p>Use <strong>Columns to repeat at left</strong> in the same Print Titles window. It works exactly like the row version, sideways.</p>
+
+  <h3>Will the converted PDF keep my filters and hidden rows?</h3>
+  <p>Hidden rows stay hidden, which is usually what you want. Filter buttons do not exist in a PDF: you get whatever rows were visible when the file was saved.</p>
+
+  <h2>Try it</h2>
+
+  <p>Set Print Titles, save, and drop the file into the <a href="/en/excel-to-pdf/">Excel to PDF converter</a>. If the table also runs off the edge of the page or picks up blank pages, our guide on <a href="/en/blog/excel-to-pdf-cut-off-blank-pages-fix/">Excel to PDF cutting off columns</a> covers the rest, and <a href="/en/blog/convert-excel-to-pdf-keep-formatting/">keeping Excel formatting in a PDF</a> has the full checklist.</p>
