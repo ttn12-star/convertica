@@ -10024,8 +10024,8 @@ msgstr ""
 msgid "Is there a file size limit for merging?"
 msgstr "Есть ли ограничение на размер файлов при объединении?"
 
-msgid "There is no page limit. The files can add up to 50 MB for each file you merge (two files up to 100 MB in total), with an overall ceiling of about 200 MB per upload."
-msgstr "Ограничения по числу страниц нет. Размер файлов может составлять до 50 МБ на каждый объединяемый файл (два файла в сумме до 100 МБ), при общем потолке около 200 МБ на одну загрузку."
+msgid "There is no page limit. Free users can upload up to 50 MB per file you merge (two files up to 100 MB in total); Premium users up to 200 MB per file. Either way, one upload is capped at about 200 MB."
+msgstr "Ограничения по страницам нет. Бесплатно можно загрузить до 50 МБ на каждый объединяемый файл (два файла дают до 100 МБ в сумме), с Premium до 200 МБ на файл. В любом случае одна загрузка ограничена примерно 200 МБ."
 
 msgid "Can I merge scanned PDFs?"
 msgstr "Можно ли объединять отсканированные ПДФ?"

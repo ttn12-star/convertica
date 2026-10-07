@@ -9,7 +9,11 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from src.api.conversion_limits import ConversionTimeoutError, run_with_timeout
+from src.api.conversion_limits import (
+    ConversionTimeoutError,
+    get_max_file_size_for_user,
+    run_with_timeout,
+)
 from src.api.file_validation import scrub_internal_paths
 from src.api.logging_utils import (
     build_request_context,
@@ -134,8 +138,14 @@ class MergePDFAPIView(APIView):
             )
 
             # Check total size
+            # 50 MB per file on average for everyone; Premium gets the 200 MB
+            # it is sold with (nginx's 210 MB body limit caps the total anyway).
+            per_file = max(
+                self.MAX_UPLOAD_SIZE,
+                get_max_file_size_for_user(request.user, "merge_pdf"),
+            )
             total_size = sum(f.size for f in pdf_files)
-            if total_size > self.MAX_UPLOAD_SIZE * len(pdf_files):
+            if total_size > per_file * len(pdf_files):
                 return Response(
                     {"error": "Total file size exceeds limit"},
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,

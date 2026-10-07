@@ -14,6 +14,7 @@ class SplitPDFBatchAPIView(BaseBatchAPIView):
     CONVERSION_TYPE = "SPLIT_PDF_BATCH"
     TMP_PREFIX = "split_batch_"
     OUTPUT_ZIP_FILENAME = "split_pdfs.zip"
+    VALIDATE_PDF_PAGES = False  # Parity with single SplitPDFAPIView (no page cap)
 
     def get_post_params(self, request):
         return {
