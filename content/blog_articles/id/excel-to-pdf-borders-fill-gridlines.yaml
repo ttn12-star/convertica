@@ -1,0 +1,101 @@
+slug: excel-to-pdf-borders-fill-gridlines
+title_id: "Excel ke PDF: Garis Border Terlalu Tebal, Warna Isian dan Gridline, Ini Solusinya"
+meta_title_id: "Border Excel Tebal di PDF? Garis Tipis, Tanpa Warna"
+meta_description_id: "Garis border di PDF lebih tebal dari di layar, warna isian boros tinta, gridline hilang. Ketebalan garis hasil ukur dan pengaturan untuk masing-masing."
+meta_keywords_id: "garis border excel tebal saat jadi pdf, excel ke pdf tanpa warna, cara print gridline excel ke pdf, garis tipis excel pdf, excel pdf hitam putih, border hairline excel"
+excerpt_id: "Di layar tabelnya tampak rapi. Di PDF setiap garis seperti digambar pakai spidol. Berikut ketebalan sebenarnya tiap gaya border Excel saat dicetak, dan cara mendapatkan tampilan yang Anda mau."
+ai_metadata:
+  topics:
+    - kenapa border Excel terlihat lebih tebal di PDF
+    - ketebalan cetak gaya border Excel
+    - mencetak gridline ke PDF
+    - menghapus warna isian untuk PDF dan cetak
+    - pengaturan penampil PDF yang menebalkan garis tipis
+  entities:
+    - Microsoft Excel
+    - Format Cells
+    - Page Setup
+    - Adobe Acrobat Reader
+    - LibreOffice
+    - Convertica
+  summary: "Menjelaskan kenapa border sel terlihat lebih tebal di PDF dari Excel dibanding di layar, memberikan ketebalan cetak hasil ukur untuk gaya border hairline, thin dan medium, menunjukkan cara beralih ke gaya hairline, cara mencetak atau menyembunyikan gridline, cara membuang warna isian untuk dicetak, pengaturan mana yang diikuti konverter Excel ke PDF online, dan pengaturan penampil PDF mana yang membuat garis tipis tampak tebal."
+  related_terms:
+    - border excel jadi tebal di pdf
+    - menipiskan garis tabel excel di pdf
+    - simpan excel ke pdf tanpa warna isian
+    - gridline excel tidak muncul di pdf
+    - garis pdf dari excel terlalu tebal
+  reading_time_minutes: 6
+  target_audience: "Staf keuangan, staf kantor dan siapa saja yang mengirim spreadsheet sebagai PDF dan ingin garis tabel yang bersih dan ringan, atau versi yang tetap bagus dicetak di printer hitam putih."
+content_id: |
+  Layar menggambar border sebagai satu piksel, apa pun gayanya. Kertas dan PDF menggambarnya dengan lebar sebenarnya. Jadi tabel yang tampak halus di Excel bisa keluar di PDF seperti kotak-kotak yang digambar pakai spidol, padahal tidak ada yang rusak: Anda hanya melihat ketebalan yang memang dimiliki gaya border itu sejak awal.
+
+  Kami mengukur hasil tiap gaya saat dirender oleh <a href="/id/excel-to-pdf/">konverter Excel ke PDF</a>, lalu menyusun perbaikannya dari situ.
+
+  <h2>Seberapa tebal tiap gaya border saat dicetak</h2>
+
+  <ul>
+    <li><strong>Hairline</strong> (gaya paling tipis): sekitar 0,1 pt. Praktis garis tertipis yang bisa digambar printer.</li>
+    <li><strong>Thin</strong> (bawaan saat Anda menekan tombol Borders): 0,75 pt. Inilah garis yang sering disebut orang "tebal".</li>
+    <li><strong>Medium</strong>: 1,75 pt, lebih dari dua kali garis thin.</li>
+  </ul>
+
+  <p>Sebagai pembanding, garis tabel di buku cetak umumnya sekitar 0,25 sampai 0,5 pt. Jadi border bawaan Excel lebih tebal daripada kebanyakan tabel cetak, dan di sheet padat dengan garis di sekeliling setiap sel, efeknya menumpuk.</p>
+
+  <h2>Menipiskan garis: pakai gaya hairline</h2>
+
+  <ol>
+    <li>Pilih tabelnya.</li>
+    <li>Klik kanan, <strong>Format Cells</strong>, lalu tab <strong>Border</strong>.</li>
+    <li>Di daftar <strong>Style</strong>, pilih garis pertama di bawah "None". Di layar ia tampak seperti garis titik-titik halus; itulah hairline, dan saat dicetak ia menjadi garis utuh yang sangat tipis.</li>
+    <li>Klik <strong>Outline</strong> dan <strong>Inside</strong> (atau sisi tertentu yang Anda mau), lalu OK.</li>
+  </ol>
+
+  <p>Kompromi yang enak dilihat di kertas: hairline di bagian dalam tabel, thin di sekeliling luar dan di bawah baris judul.</p>
+
+  <h2>Gridline: dicetak atau tidak</h2>
+
+  <p>Garis abu-abu pucat yang Anda lihat di Excel bukan border dan secara bawaan tidak ikut dicetak. Kalau tabel Anda tidak punya border, PDF-nya tidak akan punya garis sama sekali, dan ini sering bikin kaget.</p>
+
+  <p>Cara print gridline Excel ke PDF: tab <strong>Page Layout</strong>, grup <strong>Sheet Options</strong>, centang <strong>Print</strong> di bawah Gridlines. Dalam uji kami garisnya keluar setebal 0,1 pt, sama dengan border hairline, jadi ini cara tercepat untuk mendapat kisi tipis di sheet yang besar. Konverter mengikuti pengaturan ini.</p>
+
+  <p>Mau sebaliknya, sheet bersih tanpa garis sama sekali? Pastikan Print di bawah Gridlines tidak dicentang dan sel-selnya tidak punya border.</p>
+
+  <h2>Warna isian dan teks berwarna</h2>
+
+  <p>Warna isian tampak bagus di layar dan di PDF berwarna, tapi boros tinta dan bisa berubah jadi abu-abu kusam di printer hitam putih. Ada dua cara menanganinya:</p>
+
+  <ul>
+    <li><strong>Mode hitam putih bawaan Excel.</strong> Page Layout, Page Setup, tab <strong>Sheet</strong>, centang <strong>Black and white</strong>. Kalau setelah itu Anda memakai File, Save As, PDF di Excel, warna isian dibuang dan teks dicetak hitam, sementara filenya sendiri tetap berwarna.</li>
+    <li><strong>Untuk konverter online, hapus warna isiannya langsung.</strong> Kami sudah menguji pengaturan Black and white dengan konverter kami, dan pengaturan itu tidak diterapkan: warna isian dan teks berwarna tetap ada di PDF. Jadi kalau Anda ingin Excel ke PDF tanpa warna lewat konverter online, buat salinan sheet, pilih tabel, Home, <strong>Fill Color</strong>, <strong>No Fill</strong>, lalu atur warna font ke Automatic. Setelah itu konversi salinannya.</li>
+  </ul>
+
+  <h2>Garis tampak tebal hanya di penampil PDF</h2>
+
+  <p>Kadang PDF-nya baik-baik saja dan penampilnya yang melebih-lebihkan. Adobe Acrobat dan Reader punya pengaturan Preferences, Page Display, <strong>Enhance thin lines</strong>, yang menggambar setiap garis tipis minimal satu piksel di zoom berapa pun. Di zoom 50%, halaman penuh garis hairline jadi terlihat seperti digambar pakai spidol. Perbesar ke 100% atau hilangkan centang opsi itu: kalau garisnya jadi halus, berarti filenya memang sudah benar sejak awal. Hasil cetak tidak terpengaruh pengaturan ini.</p>
+
+  <h2>Hal lain yang menebalkan garis</h2>
+
+  <ul>
+    <li><strong>Skala cetak di atas 100%.</strong> Kalau Page Setup diatur Adjust to 120%, setiap border juga 20% lebih tebal. Fit to page width biasanya justru mengecilkan sheet, sehingga garis jadi lebih tipis, bukan lebih tebal.</li>
+    <li><strong>Border ganda di pertemuan dua sel.</strong> Kalau satu sel punya border kanan dan sel sebelahnya border kiri, keduanya digambar bertumpuk. Biasanya tidak masalah, tapi dengan gaya medium hasilnya terlihat ekstra tebal. Terapkan border ke seluruh range sekaligus, jangan sel per sel.</li>
+    <li><strong>Kolom sempit.</strong> Garisnya tidak lebih tebal, tapi tampilannya sesak: kalau teks nyaris tidak muat, garis terasa lebih berat. Melebarkan kolom sedikit membantu keterbacaan sekaligus tampilannya.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Kenapa border tampak normal di print preview Excel tapi tebal di PDF?</h3>
+  <p>Print preview diskalakan agar muat di layar, sehingga garis 0,75 pt hanya selebar satu piksel. PDF di zoom 100% menampilkan lebar sebenarnya. Perkecil PDF ke ukuran yang sama dan keduanya akan terlihat mirip.</p>
+
+  <h3>Bisakah border di PDF yang sudah jadi ditipiskan?</h3>
+  <p>Tidak dengan cara yang praktis: garisnya sudah tergambar di halaman. Ubah gaya border di spreadsheet lalu konversi ulang.</p>
+
+  <h3>Apakah konverter mempertahankan warna border saya?</h3>
+  <p>Ya. Warna border, warna isian dan warna font dipertahankan seperti di file.</p>
+
+  <h3>Apakah border hairline terlihat di printer murah?</h3>
+  <p>Ya. Pada 0,1 pt printer laser atau inkjet menggambar garis tertipis yang ia bisa, dan garis itu tetap jelas terlihat. Kalau garisnya harus selamat setelah difaks atau difotokopi, pakai thin.</p>
+
+  <h2>Coba sekarang</h2>
+
+  <p>Ganti border ke hairline, tentukan soal gridline dan warna isian, simpan, lalu konversi dengan <a href="/id/excel-to-pdf/">konverter Excel ke PDF</a>. Kalau tabelnya juga terpotong di tepi halaman atau muncul halaman kosong, baca <a href="/id/blog/excel-to-pdf-cut-off-blank-pages-fix/">Excel ke PDF terpotong</a>, dan untuk tabel panjang, <a href="/id/blog/excel-to-pdf-repeat-header-row-every-page/">cara mengulang baris judul di setiap halaman</a>.</p>

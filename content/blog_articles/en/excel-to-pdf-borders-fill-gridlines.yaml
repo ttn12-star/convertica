@@ -1,0 +1,105 @@
+slug: excel-to-pdf-borders-fill-gridlines
+cover_image: blog/images/cover-excel-to-pdf-borders-fill-gridlines.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: excel_to_pdf
+title_en: "Excel to PDF: Borders Too Thick, Fill Colours and Gridlines, Fixed"
+meta_title_en: "Excel to PDF Borders Too Thick? Thinner Lines, No Fill"
+meta_description_en: "Cell borders print heavier than on screen, colour fills waste ink, gridlines vanish. Measured line widths and the settings that control each one."
+meta_keywords_en: "excel to pdf borders too thick, excel pdf thin lines, excel to pdf without fill colour, print excel gridlines pdf, excel pdf black and white, hairline border excel"
+excerpt_en: "On screen the table looks crisp. In the PDF every border looks drawn with a marker. Here is how thick each Excel border style really prints, and how to get the look you want."
+ai_metadata:
+  topics:
+    - why Excel borders look thicker in a PDF
+    - printed width of Excel border styles
+    - printing gridlines to PDF
+    - removing fill colour for PDF and print
+    - viewer settings that thicken thin lines
+  entities:
+    - Microsoft Excel
+    - Format Cells
+    - Page Setup
+    - Adobe Acrobat Reader
+    - LibreOffice
+    - Convertica
+  summary: "Explains why cell borders look heavier in a PDF made from Excel than on screen, gives measured printed widths of the hair, thin and medium border styles, shows how to switch to the hairline style, how to print or hide gridlines, how to drop fill colours for printing, which of these settings an online Excel to PDF converter honours, and which PDF viewer setting makes thin lines look bold."
+  related_terms:
+    - excel borders bold in pdf
+    - reduce border thickness excel pdf
+    - save excel to pdf without fill colour
+    - excel gridlines not showing in pdf
+    - excel pdf lines too thick
+  reading_time_minutes: 6
+  target_audience: "Accountants, office staff and anyone who sends spreadsheets as PDF and wants clean, light table lines, or a version that prints well on a black-and-white printer."
+content_en: |
+  A screen draws a border as one pixel, whatever its style. Paper and PDF draw it at its real width. So a table that looks delicate in Excel can come out of the PDF looking like a grid drawn with a felt-tip pen, and nothing is broken: you are just seeing the width the border style always had.
+
+  We measured what each style turns into when the <a href="/en/excel-to-pdf/">Excel to PDF converter</a> renders it, then worked out the fixes from there.
+
+  <h2>How thick each border style actually prints</h2>
+
+  <ul>
+    <li><strong>Hairline</strong> (the thinnest style): about 0.1 pt. Practically the thinnest line a printer can draw.</li>
+    <li><strong>Thin</strong> (the default when you click the Borders button): 0.75 pt. This is the one people call "bold".</li>
+    <li><strong>Medium</strong>: 1.75 pt, more than twice the thin line.</li>
+  </ul>
+
+  <p>For comparison, a typical table rule in a printed book is around 0.25 to 0.5 pt. So the default Excel border is heavier than most printed tables, and on a dense sheet with lines around every cell it adds up.</p>
+
+  <h2>Make the lines thinner: use the hairline style</h2>
+
+  <ol>
+    <li>Select the table.</li>
+    <li>Right-click, <strong>Format Cells</strong>, then the <strong>Border</strong> tab.</li>
+    <li>In the <strong>Style</strong> list, pick the first line under "None". On screen it looks like a fine dotted line; that is the hairline, and it prints as a solid, very thin line.</li>
+    <li>Click <strong>Outline</strong> and <strong>Inside</strong> (or the individual edges you want), then OK.</li>
+  </ol>
+
+  <p>A common compromise that looks good on paper: hairline inside the table, thin around the outside and under the header row.</p>
+
+  <h2>Gridlines: print them or not</h2>
+
+  <p>The pale grey gridlines you see in Excel are not borders and do not print by default. If your table has no borders, the PDF will have no lines at all, which surprises many people.</p>
+
+  <p>To print them: <strong>Page Layout</strong> tab, <strong>Sheet Options</strong> group, tick <strong>Print</strong> under Gridlines. In our tests they come out as 0.1 pt lines, the same as hairline borders, so this is the quickest way to get a light grid on a large sheet. The converter honours this setting.</p>
+
+  <p>Want the opposite, a clean sheet with no lines at all? Make sure Print under Gridlines is unticked and the cells have no borders.</p>
+
+  <h2>Fill colours and coloured text</h2>
+
+  <p>Fills look fine on screen and on a colour PDF, but they cost ink and can turn grey and muddy on a black-and-white printer. Two ways to deal with them:</p>
+
+  <ul>
+    <li><strong>Excel's own black-and-white mode.</strong> Page Layout, Page Setup, <strong>Sheet</strong> tab, tick <strong>Black and white</strong>. When you then use File, Save As, PDF in Excel, fills are dropped and text prints black, while the file itself keeps its colours.</li>
+    <li><strong>For the online converter, remove the fill itself.</strong> We tested the black-and-white setting with our converter and it is not applied: fills and coloured text stay in the PDF. So if you convert online, make a copy of the sheet, select the table, Home, <strong>Fill Color</strong>, <strong>No Fill</strong>, and set the font colour to Automatic. Then convert the copy.</li>
+  </ul>
+
+  <h2>Lines look bold only in your PDF viewer</h2>
+
+  <p>Sometimes the PDF is fine and the viewer is exaggerating. Adobe Acrobat and Reader have a setting, Preferences, Page Display, <strong>Enhance thin lines</strong>, which draws every thin line at least one pixel thick at any zoom. At 50% zoom a page of hairlines then looks like it was drawn with a marker. Zoom to 100% or untick the option: if the lines become fine, the file was fine all along. Printing is not affected by this setting.</p>
+
+  <h2>Other things that thicken lines</h2>
+
+  <ul>
+    <li><strong>Print scaling above 100%.</strong> If Page Setup has Adjust to 120%, every border is 20% thicker too. Fit to page width usually shrinks a sheet, which makes lines thinner, not thicker.</li>
+    <li><strong>Double borders where two cells meet.</strong> If one cell has a right border and its neighbour a left border, they draw on top of each other. Usually harmless, but on a medium style it reads as extra heavy. Apply borders to the whole range at once instead of cell by cell.</li>
+    <li><strong>Narrow columns.</strong> Not thicker lines, but a crowded look: if text barely fits, the lines feel heavier. Widening columns slightly helps both readability and the look.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Why did my borders look fine in Excel's print preview but heavy in the PDF?</h3>
+  <p>Print preview is scaled to fit your screen, so a 0.75 pt line ends up one pixel wide. The PDF at 100% zoom shows the real width. Zoom the PDF out to the same size and they will look alike.</p>
+
+  <h3>Can I make borders thinner in a PDF I already have?</h3>
+  <p>Not in any practical way: the lines are drawn into the page. Change the border style in the spreadsheet and convert again.</p>
+
+  <h3>Does the converter keep my border colours?</h3>
+  <p>Yes. Border colours, fills and font colours are kept as they are in the file.</p>
+
+  <h3>Will hairline borders show up on a cheap printer?</h3>
+  <p>Yes. At 0.1 pt a laser or inkjet printer draws its thinnest possible line, which is still clearly visible. If you need lines that survive a fax or a photocopy, use thin instead.</p>
+
+  <h2>Try it</h2>
+
+  <p>Switch your borders to hairline, decide on gridlines and fills, save, and convert with the <a href="/en/excel-to-pdf/">Excel to PDF converter</a>. If the table also runs off the page or picks up blank pages, see <a href="/en/blog/excel-to-pdf-cut-off-blank-pages-fix/">Excel to PDF cutting off columns</a>, and for a long table, <a href="/en/blog/excel-to-pdf-repeat-header-row-every-page/">repeating the header row on every page</a>.</p>
