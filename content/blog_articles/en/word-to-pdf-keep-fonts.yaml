@@ -1,0 +1,110 @@
+slug: word-to-pdf-keep-fonts
+cover_image: blog/images/cover-word-to-pdf-keep-fonts.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: word_to_pdf
+title_en: "Word to PDF Changed Your Font? How to Keep Fonts, Arabic Included"
+meta_title_en: "Word to PDF Without Losing Fonts (Arabic Too) | Convertica"
+meta_description_en: "Why an online Word to PDF converter swaps fonts, which ones it replaces with exact metric twins, and the Word setting that makes it use your own font."
+meta_keywords_en: "word to pdf keep fonts, word to pdf font changed, embed fonts in word, convert word to pdf arabic font, word to pdf traditional arabic, preserve fonts pdf"
+excerpt_en: "Your heading font turned into something plain, or the Arabic text came out in a different style. Here is what the converter can and cannot see, and the one Word setting that fixes it."
+ai_metadata:
+  topics:
+    - why fonts change when converting Word to PDF online
+    - metric-compatible substitutes for Office fonts
+    - embedding fonts in a Word document
+    - Arabic fonts and right-to-left text in Word to PDF
+    - checking which fonts a PDF uses
+  entities:
+    - Microsoft Word
+    - Calibri
+    - Arial
+    - Times New Roman
+    - Traditional Arabic
+    - Noto Naskh Arabic
+    - LibreOffice
+    - Convertica
+  summary: "Explains that an online Word to PDF converter can only use fonts installed on its server or embedded in the document, lists the Office fonts that are replaced by metric-compatible equivalents so the layout does not move, shows how to embed fonts in Word so the converter uses the original typeface, covers Arabic documents (correct letter joining, right-to-left order and digits, with Windows naskh fonts replaced by Noto Naskh Arabic unless embedded), and how to check which fonts ended up in the PDF."
+  related_terms:
+    - word to pdf changes font
+    - how to embed fonts in word
+    - arabic font word to pdf
+    - keep font when saving as pdf
+    - pdf font substitution
+  reading_time_minutes: 7
+  target_audience: "Anyone converting Word files that use brand fonts, decorative headings or Arabic script, who needs the PDF to look like the original."
+content_en: |
+  Word on your computer draws text with the fonts installed on your computer. An online converter runs on a server, and it can only draw with the fonts that server has, plus any font travelling inside the document itself. When your font is in neither place, the converter picks a replacement. Everything in this guide follows from that one fact.
+
+  We checked how the <a href="/en/word-to-pdf/">Word to PDF converter</a> handles common Office fonts, custom fonts and Arabic documents. Here is what happens, and what you can do about it.
+
+  <h2>Fonts that are swapped for exact twins</h2>
+
+  <p>The most common Office fonts are not on a Linux server, but they have free twins drawn with the same character widths. Text set in them wraps at exactly the same places, so your page breaks and line lengths stay put:</p>
+
+  <ul>
+    <li><strong>Arial</strong> → Liberation Sans</li>
+    <li><strong>Times New Roman</strong> → Liberation Serif</li>
+    <li><strong>Courier New</strong> → Liberation Mono</li>
+    <li><strong>Calibri</strong> → Carlito</li>
+    <li><strong>Cambria</strong> → Caladea</li>
+  </ul>
+
+  <p>The letter shapes differ slightly if you look closely, but a 12-page document stays 12 pages. Two newer Microsoft fonts have no exact twin: <strong>Aptos</strong> (the new Office default) is replaced by Carlito and <strong>Segoe UI</strong> by Liberation Sans, the closest widths available, so lines can shift a little.</p>
+
+  <h2>Fonts that are replaced by something different</h2>
+
+  <p>Anything else, a brand font, a script font for an invitation, a font you downloaded for a CV, is unknown to the server. The converter falls back to a similar style (sans for sans, serif for serif), and the result usually looks plainer and runs to a different length.</p>
+
+  <p>That is not something a converter can guess its way out of. The font file has to come along with the document.</p>
+
+  <h2>The fix: embed the fonts in the Word file</h2>
+
+  <p>Word can store the fonts a document uses inside the .docx file. We tested this: a document with an embedded font the server does not have came out of the converter in that exact font. Without embedding, the same document came out in a fallback font.</p>
+
+  <ol>
+    <li>In Word, go to <strong>File</strong>, <strong>Options</strong>, <strong>Save</strong>.</li>
+    <li>Under "Preserve fidelity when sharing this document", tick <strong>Embed fonts in the file</strong>.</li>
+    <li>Tick <strong>Embed only the characters used in the document</strong> to keep the file small. For a PDF that is all you need.</li>
+    <li>Untick <strong>Do not embed common system fonts</strong> if your font came with Windows (Traditional Arabic, Sakkal Majalla, Segoe UI and similar). Otherwise Word assumes everyone already has them and leaves them out.</li>
+    <li>Save the document, then convert it.</li>
+  </ol>
+
+  <p>On a Mac, Word for Mac has the same option under <strong>Word</strong>, <strong>Preferences</strong>, <strong>Save</strong>. Some commercial fonts forbid embedding in their licence; Word quietly skips those, and they will still be replaced.</p>
+
+  <h2>Arabic documents</h2>
+
+  <p>Arabic is where font problems are most visible, so we tested it separately with a document using ten common fonts.</p>
+
+  <ul>
+    <li><strong>The text itself is safe.</strong> Letters join correctly, lines run right to left, and Arabic-Indic digits (٢٠٢٦) stay as they are next to Western digits (1500).</li>
+    <li><strong>Windows Arabic fonts are not on the server.</strong> Traditional Arabic, Simplified Arabic, Sakkal Majalla and Arabic Typesetting are replaced by <strong>Noto Naskh Arabic</strong>, a naskh design close to what those fonts look like. Arabic text set in Arial, Tahoma or Calibri uses <strong>Noto Sans Arabic</strong>, which matches their plainer style.</li>
+    <li><strong>Lines may break in slightly different places,</strong> because the replacement letters are not exactly the same width. A tightly fitted one-page form can spill onto a second page.</li>
+    <li><strong>For the exact original look,</strong> embed the fonts as described above, remembering to untick "Do not embed common system fonts", since the Arabic fonts are Windows system fonts.</li>
+  </ul>
+
+  <h2>The other route: Word's own PDF export</h2>
+
+  <p>If you have Word on the computer where the fonts are installed, <strong>File</strong>, <strong>Save As</strong>, <strong>PDF</strong> uses those fonts directly. That is the most faithful option when you can use it. An online converter is the answer when you are on a phone, a shared computer, or a machine without Word.</p>
+
+  <h2>How to check which fonts ended up in the PDF</h2>
+
+  <p>Open the PDF in Adobe Acrobat Reader, then <strong>File</strong>, <strong>Properties</strong>, <strong>Fonts</strong> tab. Every font in the file is listed. If you see Liberation Sans where you used Arial, that is the expected twin. If you see a fallback where you expected your brand font, embed it and convert again.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Why does my PDF have more pages than the Word document?</h3>
+  <p>A replacement font with wider letters makes lines wrap earlier, and the text grows. With the Office fonts listed above this does not happen. With custom fonts it can, which is one more reason to embed them.</p>
+
+  <h3>Does embedding fonts make the Word file much bigger?</h3>
+  <p>With "Embed only the characters used" it usually adds tens to a few hundred kilobytes per font. A full font with every character, especially a CJK or Arabic one, can add several megabytes.</p>
+
+  <h3>Is my Arabic text searchable and copyable in the PDF?</h3>
+  <p>Yes. The converter writes real text, not pictures of text, so you can search it and copy it.</p>
+
+  <h3>Will Hindi, Russian or Chinese text survive?</h3>
+  <p>Cyrillic and Greek are covered by the Office font twins. Devanagari and other scripts are drawn with Noto fonts. As with Arabic, embed the original font if the exact design matters.</p>
+
+  <h2>Convert your document</h2>
+
+  <p>Embed your fonts if they are unusual, save, and drop the file into the <a href="/en/word-to-pdf/">Word to PDF converter</a>. For the bigger picture on layout, tables and images, see <a href="/en/blog/word-to-pdf-converter-online-free-2025/">getting a clean PDF from Word every time</a>.</p>
