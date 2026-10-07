@@ -1,0 +1,110 @@
+slug: excel-to-pdf-repeat-header-row-every-page
+title_pl: "Jak powtórzyć wiersz nagłówka na każdej stronie przy konwersji Excela do PDF"
+meta_title_pl: "Nagłówek na każdej stronie: Excel do PDF | Convertica"
+meta_description_pl: "Nazwy kolumn są w PDF tylko na pierwszej stronie? Zablokuj okienka tu nie pomoże. Ustaw raz Tytuły wydruku, a nagłówek pojawi się na każdej stronie."
+meta_keywords_pl: "nagłówek na każdej stronie excel pdf, excel do pdf powtarzanie nagłówka, tytuły wydruku excel, wiersze do powtarzania u góry, excel nagłówek tabeli na każdej stronie, zablokuj okienka pdf, powtarzaj zablokowane wiersze, excel do pdf"
+excerpt_pl: "Na pierwszej stronie PDF są nazwy kolumn, a na stronach od 2 do 40 same anonimowe liczby. Naprawa zajmuje pół minuty, tylko że to nie jest ta opcja, po którą większość ludzi sięga najpierw."
+ai_metadata:
+  topics:
+    - powtarzanie wiersza nagłówka na każdej stronie PDF utworzonego z Excela
+    - dlaczego Zablokuj okienka nie działa w PDF
+    - Tytuły wydruku w Excelu dla Windows i Mac
+    - powtarzanie wierszy w Arkuszach Google i LibreOffice Calc
+    - skoroszyty z wieloma arkuszami a powtarzane nagłówki
+  entities:
+    - Microsoft Excel
+    - Tytuły wydruku
+    - Wiersze do powtarzania u góry
+    - Zablokuj okienka
+    - Arkusze Google
+    - LibreOffice Calc
+    - Convertica
+  summary: "Wyjaśnia, dlaczego długi arkusz wyeksportowany do PDF ma nazwy kolumn tylko na pierwszej stronie, dlaczego Zablokuj okienka i nagłówki tabeli Excela tego nie naprawiają oraz jak ustawić Tytuły wydruku (wiersze do powtarzania u góry, kolumny do powtarzania z lewej) w Excelu dla Windows i Mac, w Arkuszach Google i w LibreOffice Calc. Omawia ustawienia osobne dla każdego arkusza w skoroszycie, różnicę między wierszem nagłówka a nagłówkiem strony i potwierdza, że ustawienie przetrwa konwersję w internetowym konwerterze Excel do PDF."
+  related_terms:
+    - nagłówek excel na każdej stronie pdf
+    - górny wiersz na każdej stronie pdf
+    - drukowanie wiersza nagłówka na wszystkich stronach excel
+    - powtarzanie nazw kolumn przy drukowaniu
+    - nagłówek znika w pdf z excela
+    - zablokowanie nagłówka w pdf
+  reading_time_minutes: 6
+  target_audience: "Pracownicy biurowi, księgowi, nauczyciele i wszyscy, którzy wysyłają długie tabele z Excela jako PDF i słyszą potem, że na stronie 7 nie wiadomo, która kolumna jest która."
+content_pl: |
+  Wysyłasz trzydziestostronicowy PDF z cennikiem albo dziennikiem ocen i po kilku minutach przychodzi odpowiedź: „a która kolumna to która na stronie 5?”. Na pierwszej stronie jest wiersz nagłówka. Na każdej kolejnej tylko ściana liczb bez podpisów.
+
+  Excel potrafi powtarzać wiersz nagłówka na każdej drukowanej stronie, a dla Excela PDF to po prostu wydruk. Ustawienie nazywa się Tytuły wydruku. Zajmuje mniej więcej pół minuty, zapisuje się w pliku i od tej chwili respektuje je każdy porządny konwerter PDF.
+
+  <h2>Najpierw dwie rzeczy, które nie działają</h2>
+
+  <p><strong>Zablokuj okienka.</strong> Od tego zaczyna prawie każdy, bo na ekranie działa idealnie: górny wiersz stoi w miejscu, kiedy przewijasz. Tyle że Zablokuj okienka to ustawienie widoku. Dotyczy okna programu, a nie papieru, więc PDF całkowicie je ignoruje. Możesz zablokować wiersz 1 i dalej mieć nagłówki tylko na pierwszej stronie.</p>
+
+  <p><strong>Sformatowanie zakresu jako tabeli.</strong> Tabela Excela (Wstawianie, Tabela) podczas przewijania pokazuje nazwy kolumn w miejscu liter A, B, C. Historia ta sama: to sztuczka ekranowa, a wydruk tych nazw nie powtarza.</p>
+
+  <p>Jeszcze jedno źródło pomyłek: <em>nagłówek strony</em> (Wstawianie, Nagłówek i stopka) to zupełnie co innego. To linijka tekstu w górnym marginesie, na przykład tytuł raportu albo numer strony. Powtarza się na każdej stronie, ale nie da się w nim ustawić nazw kolumn równo nad kolumnami. Potrzebujesz powtarzanego <em>wiersza</em> samego arkusza.</p>
+
+  <h2>Tytuły wydruku w Excelu (Windows)</h2>
+
+  <ol>
+    <li>Otwórz arkusz i przejdź na kartę <strong>Układ strony</strong>.</li>
+    <li>Kliknij <strong>Tytuły wydruku</strong>. Otworzy się okno Ustawienia strony na karcie Arkusz.</li>
+    <li>Kliknij w pole <strong>Wiersze do powtarzania u góry</strong>, a potem w numer wiersza z nagłówkiem w arkuszu. Excel wpisze <code>$1:$1</code>. Jeśli nagłówek zajmuje dwa wiersze (powiedzmy wiersz z tytułem i wiersz z nazwami kolumn), przeciągnij przez oba i dostaniesz <code>$1:$2</code>.</li>
+    <li>Jeśli tabela jest też szeroka i wychodzi na dodatkowe strony w prawo, zrób to samo w polu <strong>Kolumny do powtarzania z lewej</strong> dla kolumny, która opisuje każdy wiersz, na przykład z numerem ID albo nazwą produktu.</li>
+    <li>Kliknij OK. Sprawdź przez Plik, Drukuj: druga strona podglądu powinna teraz zaczynać się od wiersza nagłówka.</li>
+  </ol>
+
+  <p>Ustawienie jest przechowywane w skoroszycie, więc po wszystkim zapisz plik. To właśnie ten krok ma znaczenie przy późniejszej konwersji do PDF.</p>
+
+  <h2>Excel na Maca</h2>
+
+  <p>Zasada ta sama, droga trochę inna: karta <strong>Układ strony</strong>, potem <strong>Tytuły wydruku</strong> i to samo pole Wiersze do powtarzania u góry. W starszych wersjach na Maca znajdziesz je w menu Plik, Ustawienia strony, Arkusz. W pliku zapisuje się dokładnie to samo.</p>
+
+  <h2>Arkusze Google</h2>
+
+  <p>Arkusze Google łączą to z blokowaniem wierszy, więc to jedyne miejsce, w którym blokowanie naprawdę pomaga. Zablokuj wiersz nagłówka (Widok, Zablokuj, 1 wiersz), a potem otwórz Plik, Drukuj. W sekcji <strong>Nagłówki i stopki</strong> zaznacz <strong>Powtarzaj zablokowane wiersze</strong>. PDF pobierzesz z tego samego ekranu drukowania.</p>
+
+  <p>Jeśli zamiast tego pobierasz arkusz jako .xlsx i konwertujesz go gdzie indziej, najpierw ustaw Tytuły wydruku w Excelu albo w Calcu. Zablokowane wiersze przy eksporcie nie zamieniają się w tytuły wydruku.</p>
+
+  <h2>LibreOffice Calc</h2>
+
+  <p>Wejdź w <strong>Format, Zakresy wydruku, Edytuj</strong>. W polu z wierszami do powtarzania wybierz opcję zdefiniowaną przez użytkownika i wpisz <code>$1</code> (albo <code>$1:$2</code> dla dwóch wierszy). Calc zapisuje to w plikach .xlsx jako normalne tytuły wydruku Excela, więc ustawienie podróżuje razem z plikiem.</p>
+
+  <h2>Skoroszyty z kilkoma arkuszami</h2>
+
+  <p>Tytuły wydruku należą do arkusza, a nie do całego skoroszytu. Jeśli plik ma osobną kartę na każdy miesiąc, każda karta potrzebuje własnego ustawienia i każda może powtarzać inny wiersz. Dlatego czasem styczeń ma nagłówki na każdej stronie, a luty tylko na pierwszej.</p>
+
+  <p>Przy dwunastu kartach najszybciej jest ustawić to raz na pierwszym arkuszu, a potem powtórzyć na pozostałych. W Excelu nie ma przycisku „zastosuj do wszystkich arkuszy” dla Tytułów wydruku, nawet gdy arkusze są zgrupowane, więc przy dużym skoroszycie zarezerwuj sobie minutę.</p>
+
+  <h2>Konwersja pliku do PDF</h2>
+
+  <p>Kiedy Tytuły wydruku są zapisane w pliku, możesz go konwertować, jak chcesz. Sprawdziliśmy to w <a href="/pl/excel-to-pdf/">konwerterze Excel do PDF</a> na tabeli ze 120 wierszami rozłożonej na trzy strony: z ustawionymi Tytułami wydruku wszystkie trzy strony zaczynają się od wiersza nagłówka, bez nich tylko pierwsza. Konwerter domyślnie mieści też szerokie tabele na szerokości jednej strony, więc powtórzony nagłówek da się jeszcze przeczytać.</p>
+
+  <p>Jeśli wolisz drogę przez sam Excel, Plik, Zapisz jako, PDF też zadziała. Zajrzyj tylko w przycisk Opcje: domyślnie Excel zapisuje wyłącznie aktywny arkusz, więc przy skoroszycie z wieloma kartami trzeba wybrać „Cały skoroszyt”.</p>
+
+  <h2>Gdy nagłówek nadal się nie powtarza</h2>
+
+  <ul>
+    <li><strong>Ustawienie jest na innym arkuszu.</strong> Kliknij kartę, którą faktycznie konwertujesz, i jeszcze raz otwórz Tytuły wydruku. Puste pole oznacza, że na tym arkuszu nic nie ustawiono.</li>
+    <li><strong>Plik zapisano jako .csv.</strong> CSV przechowuje tylko wartości: bez tytułów wydruku, bez szerokości kolumn, bez niczego. Zapisz jako .xlsx.</li>
+    <li><strong>Konwertujesz stary plik .xls.</strong> Tytuły wydruku działają i tam, ale jeśli jakieś narzędzie zachowuje się dziwnie, otwórz plik i zapisz go najpierw jako .xlsx. Nic to nie kosztuje.</li>
+  </ul>
+
+  <h2>Najczęstsze pytania</h2>
+
+  <h3>Czy da się powtórzyć wiersz nagłówka w gotowym PDF?</h3>
+  <p>Właściwie nie. PDF przechowuje strony tak, jak zostały narysowane, i nie zna pojęcia „powtórz ten wiersz”. Wróć do arkusza, ustaw Tytuły wydruku i skonwertuj jeszcze raz. Jeśli masz tylko PDF, najpierw przerób go <a href="/pl/pdf-to-excel/">z powrotem na Excela</a>, popraw tam i wyeksportuj ponownie.</p>
+
+  <h3>Czy każda strona może mieć inny nagłówek?</h3>
+  <p>W obrębie jednego arkusza nie: powtarzane wiersze są takie same na każdej stronie. Tabele z różnymi nagłówkami umieść na osobnych arkuszach i każdemu ustaw własne Tytuły wydruku.</p>
+
+  <h3>Czy Zablokuj okienka kiedykolwiek wpływa na PDF?</h3>
+  <p>W Excelu i Calcu nie. W Arkuszach Google tylko wtedy, gdy w ustawieniach drukowania zaznaczysz „Powtarzaj zablokowane wiersze”.</p>
+
+  <h3>Jak zachować pierwszą kolumnę na każdej stronie szerokiej tabeli?</h3>
+  <p>Użyj pola <strong>Kolumny do powtarzania z lewej</strong> w tym samym oknie Tytułów wydruku. Działa dokładnie jak wersja dla wierszy, tylko w poziomie.</p>
+
+  <h3>Czy skonwertowany PDF zachowa filtry i ukryte wiersze?</h3>
+  <p>Ukryte wiersze zostają ukryte i zwykle o to właśnie chodzi. Przycisków filtrów w PDF nie ma: dostajesz te wiersze, które były widoczne w chwili zapisania pliku.</p>
+
+  <h2>Wypróbuj</h2>
+
+  <p>Ustaw Tytuły wydruku, zapisz plik i wrzuć go do <a href="/pl/excel-to-pdf/">konwertera Excel do PDF</a>. Jeśli tabela dodatkowo wychodzi poza krawędź strony albo w PDF pojawiają się puste strony, resztę opisuje nasz poradnik o tym, <a href="/pl/blog/excel-to-pdf-cut-off-blank-pages-fix/">dlaczego Excel do PDF ucina kolumny</a>, a pełną listę kontrolną znajdziesz w tekście o <a href="/pl/blog/convert-excel-to-pdf-keep-formatting/">zachowaniu formatowania Excela w PDF</a>.</p>

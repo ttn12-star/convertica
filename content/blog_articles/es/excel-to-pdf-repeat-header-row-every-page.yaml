@@ -1,0 +1,110 @@
+slug: excel-to-pdf-repeat-header-row-every-page
+title_es: "Cómo repetir la fila de encabezados en cada página al pasar Excel a PDF"
+meta_title_es: "Encabezados de Excel a PDF en cada página | Convertica"
+meta_description_es: "¿El PDF solo muestra los nombres de columna en la página 1? Inmovilizar paneles no sirve. Configura Imprimir títulos una vez y el encabezado se repite en todas."
+meta_keywords_es: "encabezados de excel a pdf en cada página, repetir fila de encabezado excel pdf, imprimir títulos excel, repetir filas en extremo superior, encabezado en todas las páginas excel, inmovilizar paneles pdf, repetir títulos de columna pdf"
+excerpt_es: "La página 1 del PDF trae los nombres de las columnas y de la 2 a la 40 solo hay números sin nombre. Se arregla en treinta segundos, y no con lo que casi todo el mundo prueba primero."
+ai_metadata:
+  topics:
+    - repetir una fila de encabezados en cada página de un PDF hecho desde Excel
+    - por qué Inmovilizar paneles no llega al PDF
+    - Imprimir títulos en Excel para Windows y Mac
+    - repetir filas en Google Sheets y LibreOffice Calc
+    - libros con varias hojas y encabezados repetidos
+  entities:
+    - Microsoft Excel
+    - Imprimir títulos
+    - Repetir filas en extremo superior
+    - Inmovilizar paneles
+    - Google Sheets
+    - LibreOffice Calc
+    - Convertica
+  summary: "Explica por qué una hoja de cálculo larga exportada a PDF muestra los títulos de columna solo en la primera página, por qué ni Inmovilizar paneles ni el formato de tabla de Excel lo resuelven, y cómo configurar Imprimir títulos (filas en extremo superior y columnas a la izquierda) en Excel para Windows y Mac, Google Sheets y LibreOffice Calc. Trata la configuración por hoja en libros con varias pestañas, la diferencia entre una fila de encabezado y el encabezado de página, y confirma que el ajuste se mantiene al convertir con un conversor de Excel a PDF en línea."
+  related_terms:
+    - encabezado de excel en cada hoja del pdf
+    - mantener la primera fila en todas las páginas pdf
+    - imprimir fila de títulos en todas las páginas excel
+    - repetir títulos de columna al imprimir
+    - el encabezado de excel desaparece en el pdf
+    - fijar encabezados en pdf
+  reading_time_minutes: 6
+  target_audience: "Personal de oficina, contables, docentes y cualquiera que envía tablas largas de Excel en PDF y recibe quejas porque la página 7 no tiene nombres de columna."
+content_es: |
+  Mandas un PDF de 30 páginas con una lista de precios o un registro de alumnos y a los pocos minutos llega la respuesta: «¿qué columna es cuál en la página 5?». La página 1 tiene la fila de encabezados. Todas las demás son un muro de números sin etiquetas.
+
+  Excel puede repetir la fila de encabezados en cada página impresa, y para Excel un PDF no es más que una página impresa. La opción se llama Imprimir títulos. Se configura en unos treinta segundos, queda guardada dentro del archivo y, una vez puesta, cualquier conversor a PDF que se precie la respeta.
+
+  <h2>Antes, las dos cosas que no funcionan</h2>
+
+  <p><strong>Inmovilizar paneles.</strong> Es lo primero que prueba casi todo el mundo, porque en pantalla hace justo lo que uno quiere: la fila de arriba se queda quieta mientras te desplazas. Pero Inmovilizar paneles es un ajuste de vista. Controla tu ventana, no el papel, así que el PDF lo ignora por completo. Puedes inmovilizar la fila 1 y seguir teniendo encabezados solo en la primera página.</p>
+
+  <p><strong>Dar formato de tabla al rango.</strong> Una tabla de Excel (Insertar, Tabla) muestra los nombres de columna en lugar de las letras A, B, C cuando te desplazas. Pasa lo mismo: es un truco de pantalla y la impresión no los repite.</p>
+
+  <p>Otra fuente de confusión: el <em>encabezado de página</em> (Insertar, Encabezado y pie de página) es otra cosa. Es una línea de texto en el margen superior, como el título de un informe o el número de página. Se repite en todas las páginas, pero no puede llevar los nombres de las columnas alineados con ellas. Lo que necesitas es repetir una <em>fila</em> de la propia hoja.</p>
+
+  <h2>Configurar Imprimir títulos en Excel (Windows)</h2>
+
+  <ol>
+    <li>Abre la hoja y ve a la pestaña <strong>Diseño de página</strong>.</li>
+    <li>Haz clic en <strong>Imprimir títulos</strong>. Se abre la ventana Configurar página en la pestaña Hoja.</li>
+    <li>Haz clic en el campo <strong>Repetir filas en extremo superior</strong> y luego en el número de la fila de encabezados de la hoja. Excel escribe <code>$1:$1</code>. Si el encabezado ocupa dos filas (por ejemplo, una de título y otra con los nombres de columna), arrastra sobre las dos y obtendrás <code>$1:$2</code>.</li>
+    <li>Si la tabla además es ancha y se sale hacia la derecha en páginas extra, haz lo mismo en <strong>Repetir columnas a la izquierda</strong> con la columna que identifica cada fila, como un código o el nombre del producto.</li>
+    <li>Pulsa Aceptar. Compruébalo en Archivo, Imprimir: la página 2 de la vista previa ya debería empezar con tu fila de encabezados.</li>
+  </ol>
+
+  <p>El ajuste se guarda en el libro, así que guarda el archivo después de configurarlo. Eso es lo que importa cuando luego lo conviertas a PDF.</p>
+
+  <h2>Excel para Mac</h2>
+
+  <p>La misma idea con un camino algo distinto: pestaña <strong>Diseño de página</strong>, luego <strong>Imprimir títulos</strong> y el mismo campo Repetir filas en extremo superior. En versiones antiguas para Mac está en Archivo, Configurar página, Hoja. El resultado en el archivo es idéntico.</p>
+
+  <h2>Google Sheets</h2>
+
+  <p>Hojas de cálculo de Google lo vincula a la inmovilización, así que es el único sitio donde inmovilizar sí ayuda. Inmoviliza la fila de encabezados (Ver, Inmovilizar, 1 fila) y abre Archivo, Imprimir. En <strong>Encabezados y pies de página</strong>, marca <strong>Repetir filas inmovilizadas</strong>. Descarga el PDF desde esa misma pantalla de impresión.</p>
+
+  <p>Si en cambio descargas la hoja como .xlsx y la conviertes en otro sitio, configura antes Imprimir títulos en Excel o en Calc. Las filas inmovilizadas no se convierten en títulos de impresión al exportar.</p>
+
+  <h2>LibreOffice Calc</h2>
+
+  <p>Ve a <strong>Formato, Rangos de impresión, Editar</strong>. En <strong>Filas que repetir</strong>, elige la opción definida por el usuario y escribe <code>$1</code> (o <code>$1:$2</code> para dos filas). Calc guarda esto en los archivos .xlsx como títulos de impresión de Excel normales y corrientes, así que el ajuste viaja con el archivo.</p>
+
+  <h2>Libros con varias hojas</h2>
+
+  <p>Imprimir títulos pertenece a cada hoja, no al libro. Si tu archivo tiene una pestaña por mes, cada pestaña necesita su propio ajuste, y cada una puede repetir una fila distinta. Por eso a veces enero sale con encabezados en todas las páginas y febrero solo en la primera.</p>
+
+  <p>Para doce pestañas, lo más rápido es configurarlo en la primera hoja y repetirlo en las demás. Excel no tiene un botón de «aplicar a todas las hojas» para Imprimir títulos, ni siquiera con las hojas agrupadas, así que cuenta con un minuto si el libro es grande.</p>
+
+  <h2>Convertir el archivo a PDF</h2>
+
+  <p>Con Imprimir títulos guardado en el archivo, puedes convertirlo como prefieras. Lo probamos en el <a href="/es/excel-to-pdf/">conversor de Excel a PDF</a> con una tabla de 120 filas repartida en tres páginas: con Imprimir títulos configurado, las tres empiezan con la fila de encabezados; sin él, solo la primera. El conversor además mantiene las tablas anchas dentro del ancho de una página por defecto, así que el encabezado que se repite también se puede leer.</p>
+
+  <p>Si prefieres hacerlo desde el propio Excel, Archivo, Guardar como, PDF también funciona. Eso sí, revisa el botón Opciones: por defecto Excel guarda solo la hoja activa, así que en un libro con varias pestañas tienes que elegir «Todo el libro».</p>
+
+  <h2>Si el encabezado sigue sin repetirse</h2>
+
+  <ul>
+    <li><strong>El ajuste está en otra hoja.</strong> Haz clic en la pestaña que de verdad estás convirtiendo y vuelve a abrir Imprimir títulos. Si el campo está vacío, en esa hoja no hay nada configurado.</li>
+    <li><strong>El archivo se guardó como .csv.</strong> Un CSV solo conserva valores: ni títulos de impresión, ni anchos de columna, nada. Guárdalo como .xlsx.</li>
+    <li><strong>Convertiste un .xls antiguo.</strong> Los títulos de impresión también funcionan ahí, pero si alguna herramienta da guerra, ábrelo y guárdalo antes como .xlsx. No cuesta nada.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Puedo repetir una fila de encabezados en un PDF que ya está hecho?</h3>
+  <p>En la práctica, no. Un PDF guarda las páginas tal como se dibujaron y no tiene ningún concepto de «repetir esta fila». Vuelve a la hoja de cálculo, configura Imprimir títulos y convierte otra vez. Si solo tienes el PDF, pásalo antes <a href="/es/pdf-to-excel/">de nuevo a Excel</a>, arréglalo ahí y expórtalo.</p>
+
+  <h3>¿Puede cada página tener un encabezado distinto?</h3>
+  <p>Dentro de una misma hoja, no: las filas repetidas son las mismas en todas las páginas. Pon las tablas con títulos diferentes en hojas separadas y dale a cada hoja su propio Imprimir títulos.</p>
+
+  <h3>¿Inmovilizar paneles afecta alguna vez al PDF?</h3>
+  <p>En Excel y en Calc, no. En Google Sheets, solo si marcas «Repetir filas inmovilizadas» en las opciones de impresión.</p>
+
+  <h3>¿Cómo mantengo la primera columna en todas las páginas de una tabla ancha?</h3>
+  <p>Usa <strong>Repetir columnas a la izquierda</strong> en la misma ventana de Imprimir títulos. Funciona igual que la versión para filas, pero de lado.</p>
+
+  <h3>¿El PDF convertido conserva los filtros y las filas ocultas?</h3>
+  <p>Las filas ocultas siguen ocultas, que normalmente es lo que quieres. Los botones de filtro no existen en un PDF: obtienes las filas que estaban visibles cuando se guardó el archivo.</p>
+
+  <h2>Pruébalo</h2>
+
+  <p>Configura Imprimir títulos, guarda y arrastra el archivo al <a href="/es/excel-to-pdf/">conversor de Excel a PDF</a>. Si además la tabla se sale del borde de la página o aparecen hojas en blanco, nuestra guía sobre <a href="/es/blog/excel-to-pdf-cut-off-blank-pages-fix/">pasar Excel a PDF sin que se corten las columnas</a> cubre el resto, y en <a href="/es/blog/convert-excel-to-pdf-keep-formatting/">cómo mantener el formato de Excel en un PDF</a> tienes la lista completa.</p>

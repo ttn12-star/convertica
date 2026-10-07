@@ -333,6 +333,20 @@ COVERS = {
         "#fcd34d",
         "markdown",
     ),
+    "excel-to-pdf-repeat-header-row-every-page": (
+        "Header Row on\nEvery PDF Page",
+        "EXCEL → PDF",
+        ("#047857", "#1d4ed8"),
+        "#a7f3d0",
+        "table",
+    ),
+    "excel-to-pdf-cut-off-blank-pages-fix": (
+        "Excel to PDF:\nNo Cut-Offs, No Blanks",
+        "EXCEL → PDF",
+        ("#065f46", "#b45309"),
+        "#fde68a",
+        "table",
+    ),
     "what-is-pdf-a-and-how-to-convert": (
         "What Is PDF/A?\nArchive-Ready PDFs",
         "PDF · ARCHIVE",

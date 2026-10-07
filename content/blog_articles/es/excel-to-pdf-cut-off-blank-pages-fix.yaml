@@ -1,0 +1,131 @@
+slug: excel-to-pdf-cut-off-blank-pages-fix
+title_es: "¿Al pasar Excel a PDF se cortan columnas o salen hojas en blanco? Causas y soluciones"
+meta_title_es: "Excel a PDF sin cortes ni hojas en blanco | Convertica"
+meta_description_es: "Columnas en otra página, decenas de hojas en blanco, letra diminuta, #### en vez de números. Seis causas de un Excel a PDF que sale mal y cómo arreglar cada una."
+meta_keywords_es: "pasar excel a pdf sin que se corte, excel a pdf sin cortes, excel a pdf hojas en blanco, excel a pdf no salen todas las columnas, ajustar hoja de excel a una página pdf, al pasar excel a pdf no sale centrado, como evitar que salgan almohadillas al pasar a pdf un excel, excel a pdf letra muy pequeña"
+excerpt_es: "En pantalla la hoja de cálculo está perfecta y el PDF parece salido de una trituradora. Casi siempre se debe a una de seis causas, y puedes revisarlas todas en cinco minutos."
+ai_metadata:
+  topics:
+    - columnas cortadas al pasar Excel a PDF
+    - hojas en blanco al exportar Excel a PDF
+    - ajustar una hoja al ancho de una página
+    - celdas perdidas y el rango usado
+    - almohadillas y texto cortado en el PDF
+    - centrar una hoja en la página del PDF
+  entities:
+    - Microsoft Excel
+    - Vista previa de salto de página
+    - Área de impresión
+    - Ajustar área de impresión
+    - LibreOffice
+    - Convertica
+  summary: "Diagnostica los fallos habituales al exportar Excel a PDF: columnas que pasan a páginas extra, series de hojas en blanco causadas por celdas perdidas muy lejos de la tabla, texto ilegible tras ajustar una hoja muy ancha, almohadillas y texto cortado por columnas estrechas, tablas descentradas y hojas que faltan en libros con varias pestañas. Da la solución en Excel para cada caso, explica cómo localizar celdas perdidas con Ctrl+Fin y cuenta qué hace automáticamente un conversor de Excel a PDF en línea, según pruebas con archivos reales."
+  related_terms:
+    - excel a pdf solo sale la mitad de la hoja
+    - excel a pdf miles de páginas en blanco
+    - columnas de excel en páginas distintas pdf
+    - pdf de excel con letra muy pequeña
+    - excel a pdf no sale centrado
+    - almohadillas en pdf de excel
+  reading_time_minutes: 8
+  target_audience: "Cualquiera que exporta hojas de cálculo a PDF para clientes, contabilidad, clase o imprenta: listas de precios, facturas, informes y horarios que salen cortados, encogidos o rellenos de páginas vacías."
+content_es: |
+  Una hoja de cálculo es una cuadrícula infinita. Un PDF es un montón de hojas de papel de tamaño fijo. Todos los problemas al pasar Excel a PDF son alguna variante de lo mismo: el conversor intenta decidir dónde termina tu cuadrícula y cómo partirla en páginas, y se equivoca.
+
+  La buena noticia es que esos errores salen de una lista corta de causas. Busca la tuya más abajo, corrígela una vez en el archivo y todas las exportaciones futuras de ese archivo saldrán bien.
+
+  <h2>1. Las columnas acaban en otra página</h2>
+
+  <p><strong>Lo que ves:</strong> la página 1 tiene las columnas de la A a la F, y las columnas de la G a la K aparecen solas en la página 4, después de todas las filas y sin etiquetas de fila.</p>
+
+  <p><strong>Por qué:</strong> por defecto una hoja se imprime al 100 %. Si la tabla es más ancha que el papel, las columnas que no caben van a sus propias páginas, que se imprimen después del primer bloque de filas. Es el efecto de «me falta media hoja»: no falta, está tres páginas más adelante.</p>
+
+  <p><strong>Solución en Excel:</strong> pestaña Diseño de página, grupo <strong>Ajustar área de impresión</strong>. Pon <strong>Ancho: 1 página</strong> y deja <strong>Alto</strong> en «Automático». La tabla se reduce lo justo para caber a lo ancho y ocupa hacia abajo las páginas que necesite. Si la tabla es ancha, cambia además la <strong>Orientación</strong> a Horizontal, que te da alrededor de un 40 % más de ancho antes de tener que encoger nada.</p>
+
+  <p>No pongas ancho y alto a 1 página en una tabla larga. Eso aprieta 300 filas en una sola hoja y te encuentras con el problema siguiente.</p>
+
+  <p>El <a href="/es/excel-to-pdf/">conversor de Excel a PDF</a> se encarga del ancho por ti: salvo que el archivo ya tenga su propio escalado de impresión, ajusta todas las columnas al ancho de la página y pone las tablas anchas en horizontal. En nuestras pruebas, una tabla de 25 columnas que con una conversión normal salía en cuatro páginas cupo en una sola página horizontal.</p>
+
+  <h2>2. Decenas (o miles) de hojas en blanco</h2>
+
+  <p><strong>Lo que ves:</strong> tus datos ocupan dos páginas y el PDF tiene 40, casi todas vacías. O una página de datos seguida de páginas con nada más que líneas de cuadrícula.</p>
+
+  <p><strong>Por qué:</strong> el conversor imprime todo hasta la última celda que considera usada. Muchas veces esa no es tu última fila de datos. Los sospechosos habituales:</p>
+
+  <ul>
+    <li>un espacio escrito en una celda muy abajo o muy a la derecha, y olvidado;</li>
+    <li>una fórmula copiada hasta la fila 5000 que devuelve una cadena vacía (<code>=SI(A2="";"";...)</code>);</li>
+    <li>en el propio Excel, un borde o un color de relleno aplicado a filas o columnas enteras, que Excel también cuenta como usado.</li>
+  </ul>
+
+  <p><strong>Cómo encontrarlo:</strong> haz clic en cualquier celda y pulsa <strong>Ctrl+Fin</strong> (Cmd+Fn+Flecha derecha en Mac). Excel salta a la esquina inferior derecha de lo que considera el rango usado. Si esa celda es AZ4000 y tu tabla termina en F120, todo lo que hay en medio es lo que se convierte en hojas en blanco.</p>
+
+  <p><strong>Solución:</strong> selecciona las filas que hay debajo de la tabla (clic en el número de la primera fila vacía y luego Ctrl+Mayús+Flecha abajo), clic derecho, <strong>Eliminar</strong>. Haz lo mismo con las columnas de la derecha. Después guarda el archivo: Excel solo recalcula el rango usado al guardar. Pulsar la tecla Supr sobre las celdas no basta, porque borra los valores pero deja el formato; necesitas el comando Eliminar de filas y columnas.</p>
+
+  <p><strong>O define un área de impresión</strong> y el resto de la hoja deja de importar: selecciona la tabla, Diseño de página, Área de impresión, Establecer área de impresión.</p>
+
+  <p>El conversor de Excel a PDF ignora las celdas que solo tienen relleno o borde. En un libro sin fórmulas, además vacía los espacios sueltos que quedan más allá del final de la tabla, para que dejen de generar hojas en blanco. Un espacio justo después de un texto en la misma fila se queda, porque así es como mucha gente evita que una nota larga invada la columna siguiente. Los libros con fórmulas se convierten tal cual, ya que una fórmula podría estar contando esas celdas, así que en ese caso la limpieza con Ctrl+Fin que explicamos arriba sigue siendo el camino. Un área de impresión definida por ti siempre manda.</p>
+
+  <h2>3. Todo cabe, pero la letra es microscópica</h2>
+
+  <p><strong>Lo que ves:</strong> una sola página, todas las columnas presentes, con letra del tamaño de la letra pequeña de un contrato.</p>
+
+  <p>Hay dos causas. O la hoja de verdad es muy ancha (40 o 50 columnas siempre se verán pequeñas en el ancho de una página), o una celda perdida muy a la derecha (mira la causa 2) hizo que el conversor ajustara 52 columnas cuando tú tienes 6. Revisa primero Ctrl+Fin, que es lo más fácil.</p>
+
+  <p>Si la tabla es ancha de verdad, elige qué sacrificas:</p>
+
+  <ul>
+    <li>Horizontal más ajuste al ancho: se lee bien hasta unas 20 o 25 columnas normales en A4.</li>
+    <li>Oculta antes de exportar las columnas que nadie necesita en el PDF. Las columnas ocultas no se imprimen.</li>
+    <li>Divídela: pon cada grupo de columnas en su propia hoja, cada una con la columna del código repetida (mira <a href="/es/blog/excel-to-pdf-repeat-header-row-every-page/">cómo repetir filas y columnas de encabezado</a>).</li>
+    <li>Elige «Mantener tamaño original» en las opciones de diseño del conversor: texto a tamaño completo, con las columnas continuando en páginas extra, es decir, lo contrario de la opción 1.</li>
+  </ul>
+
+  <h2>4. Almohadillas (####) o texto cortado a media palabra</h2>
+
+  <p><strong>Lo que ves:</strong> <code>#####</code> donde debería haber un número o una fecha, o una frase que se corta en el borde de la celda.</p>
+
+  <p><strong>Por qué:</strong> el PDF muestra exactamente lo que saldría en papel. Un número que no cabe en su columna se muestra como almohadillas, en pantalla y en papel. El texto que no cabe se corta en el borde de la celda siempre que la celda de la derecha tenga algo.</p>
+
+  <p><strong>Solución:</strong> ensancha la columna (doble clic en el borde derecho de la letra de la columna para autoajustarla) o activa Ajustar texto en las celdas con texto largo para que crezcan hacia abajo. Compruébalo con el zoom al 100 %: al 85 % una columna puede verse bien en pantalla y aun así mostrar #### al imprimir.</p>
+
+  <h2>5. La tabla queda arrinconada en la página</h2>
+
+  <p>Al pasar Excel a PDF, una tabla estrecha se imprime por defecto en la esquina superior izquierda, y por eso no sale centrada, algo que queda raro en una factura o un formulario. Ve a Diseño de página, Márgenes, <strong>Márgenes personalizados</strong> y marca <strong>Horizontalmente</strong> en «Centrar en la página». Para un formulario de una sola página, marca también Verticalmente. El ajuste se guarda en el archivo, así que el PDF lo recoge.</p>
+
+  <p>Otra sorpresa relacionada es el tamaño del papel. Una hoja preparada para tamaño carta e impresa en A4 (o al revés) gana o pierde una franja abajo y puede mandar la última fila a una página propia. En España y en el resto de Europa se usa A4; en Estados Unidos y Canadá, carta, y también en México, Colombia, Chile, Venezuela y otros países de Latinoamérica el tamaño carta es el habitual. Usa el que use quien vaya a recibir el PDF. Nuestra <a href="/es/blog/a4-vs-us-letter-printable-sizes/">guía de A4 frente a carta</a> tiene las medidas exactas. Cuando un archivo no indica qué papel quiere, el conversor usa A4.</p>
+
+  <h2>6. Faltan hojas en el PDF</h2>
+
+  <p>En Excel, Archivo, Guardar como, PDF guarda solo la hoja activa salvo que abras <strong>Opciones</strong> y elijas «Todo el libro». Seleccionar varias pestañas antes de guardar también funciona. El conversor en línea toma todas las hojas visibles del libro, y cada una empieza en una página nueva. Las hojas ocultas se omiten, así que muestra las que quieras incluir.</p>
+
+  <h2>Revisión previa de cinco minutos</h2>
+
+  <ol>
+    <li>Ctrl+Fin en cada hoja. Elimina las filas y columnas que sobran tras la tabla real y guarda.</li>
+    <li>Vista, <strong>Vista previa de salto de página</strong>. Las líneas azules muestran exactamente dónde se partirán las páginas; arrástralas para mover un salto.</li>
+    <li>Ajustar área de impresión: Ancho: 1 página, Alto: Automático. Horizontal si es ancha.</li>
+    <li>Imprimir títulos si la tabla ocupa varias páginas.</li>
+    <li>Archivo, Imprimir, y recorre la vista previa de todas las páginas. Lo que ves ahí es lo que tendrá el PDF.</li>
+  </ol>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Por qué mi PDF se ve distinto del que hace Excel con Guardar como PDF?</h3>
+  <p>Excel genera el PDF con tu controlador de impresora y tus fuentes instaladas; un conversor en línea lo genera en un servidor con sus propias fuentes y sin impresora. Los dos respetan los ajustes de diseño guardados en el archivo (área de impresión, escalado, orientación, márgenes, títulos de impresión). Las diferencias aparecen sobre todo cuando el archivo depende de valores por defecto o usa una fuente que el servidor no tiene.</p>
+
+  <h3>¿Puedo arreglar un PDF que ya salió cortado?</h3>
+  <p>No editando el PDF: la parte que falta nunca llegó a dibujarse. Arregla la hoja de cálculo y convierte de nuevo. Si ya no tienes el original, <a href="/es/pdf-to-excel/">convierte el PDF de vuelta a Excel</a>, repáralo y expórtalo otra vez.</p>
+
+  <h3>¿Por qué la vista previa de Excel muestra 1 página y el PDF tiene más?</h3>
+  <p>Normalmente el PDF se hizo desde otra hoja, o la vista previa estaba mostrando solo una selección. Comprueba qué hoja está activa y que no esté elegido «Imprimir selección».</p>
+
+  <h3>¿Las filas ocultas acaban en el PDF?</h3>
+  <p>No. Las filas y columnas ocultas siguen ocultas, tanto en la exportación del propio Excel como en el conversor.</p>
+
+  <h3>¿El conversor me estropea las fórmulas o los gráficos?</h3>
+  <p>No. El PDF muestra los valores que dieron las fórmulas y los gráficos tal como se dibujaron. La hoja de cálculo original no se modifica; recibes un PDF nuevo.</p>
+
+  <h2>Conviértelo</h2>
+
+  <p>Haz la revisión previa y arrastra el archivo al <a href="/es/excel-to-pdf/">conversor de Excel a PDF</a>. Si el único problema es que desde la página 2 no hay nombres de columna, mira <a href="/es/blog/excel-to-pdf-repeat-header-row-every-page/">cómo repetir la fila de encabezados en cada página</a>, y para la lista completa, <a href="/es/blog/convert-excel-to-pdf-keep-formatting/">cómo pasar Excel a PDF sin perder el formato</a>.</p>

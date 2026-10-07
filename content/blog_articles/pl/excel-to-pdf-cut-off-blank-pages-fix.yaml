@@ -1,0 +1,131 @@
+slug: excel-to-pdf-cut-off-blank-pages-fix
+title_pl: "Excel do PDF ucina kolumny albo dodaje puste strony? Przyczyny i naprawa"
+meta_title_pl: "Excel do PDF ucina kolumny lub dodaje puste strony"
+meta_description_pl: "Kolumny na osobnej stronie, dziesiątki pustych stron, mikroskopijny tekst, #### zamiast liczb. Sześć przyczyn zepsutego eksportu Excela do PDF i naprawa każdej."
+meta_keywords_pl: "excel do pdf ucina kolumny, excel do pdf puste strony, excel do pdf nie pokazuje wszystkich kolumn, zmieścić arkusz excel na jednej stronie pdf, excel pdf za mały tekst, jak z excela zrobić obszar wydruku i później pdf, excel do pdf źle zaznacza się strona, excel pdf dodatkowe strony"
+excerpt_pl: "Na ekranie arkusz wygląda idealnie, a PDF jakby przeszedł przez niszczarkę. Prawie zawsze winna jest jedna z sześciu przyczyn, a wszystkie sprawdzisz w pięć minut."
+ai_metadata:
+  topics:
+    - Excel do PDF ucina kolumny
+    - puste strony przy eksporcie Excela do PDF
+    - dopasowanie arkusza do szerokości jednej strony
+    - zabłąkane komórki i używany zakres
+    - krzyżyki i ucięty tekst w PDF
+    - wyśrodkowanie arkusza na stronie PDF
+  entities:
+    - Microsoft Excel
+    - Podgląd podziału stron
+    - Obszar wydruku
+    - Skaluj do rozmiaru
+    - LibreOffice
+    - Convertica
+  summary: "Diagnozuje typowe problemy przy eksporcie z Excela do PDF: kolumny przechodzące na dodatkowe strony, serie pustych stron spowodowane zabłąkanymi komórkami daleko poza tabelą, nieczytelnie mały tekst po dopasowaniu bardzo szerokiego arkusza, krzyżyki i ucięty tekst w wąskich kolumnach, tabele niewyśrodkowane na stronie oraz brakujące arkusze w skoroszytach z wieloma kartami. Dla każdego problemu podaje rozwiązanie w Excelu, wyjaśnia, jak znaleźć zabłąkane komórki skrótem Ctrl+End, i opisuje, co internetowy konwerter Excel do PDF robi automatycznie, na podstawie testów na prawdziwych plikach."
+  related_terms:
+    - pdf z excela pokazuje tylko pół arkusza
+    - excel do pdf tysiące pustych stron
+    - kolumny excela na różnych stronach pdf
+    - pdf z excela za mały tekst
+    - excel do pdf niewyśrodkowany
+    - krzyżyki w pdf z excela
+  reading_time_minutes: 8
+  target_audience: "Każdy, kto eksportuje arkusze do PDF dla klientów, księgowości, szkoły albo do druku: cenniki, faktury, raporty i grafiki, które wychodzą pocięte, pomniejszone albo napchane pustymi stronami."
+content_pl: |
+  Arkusz kalkulacyjny to siatka bez końca. PDF to stos kartek o stałym rozmiarze. Każdy problem z konwersją Excela do PDF sprowadza się do tego, że konwerter próbuje zgadnąć, gdzie kończy się Twoja siatka i jak pociąć ją na strony, i zgaduje źle.
+
+  Dobra wiadomość jest taka, że złe zgadywanie ma krótką listę przyczyn. Znajdź swoją poniżej, popraw ją raz w pliku, a każdy kolejny eksport tego pliku wyjdzie prawidłowo.
+
+  <h2>1. Kolumny lądują na osobnej stronie</h2>
+
+  <p><strong>Co widzisz:</strong> na stronie 1 są kolumny od A do F, a kolumny od G do K pojawiają się same na stronie 4, po wszystkich wierszach, bez podpisów wierszy.</p>
+
+  <p><strong>Dlaczego:</strong> domyślnie arkusz drukuje się w skali 100%. Jeśli tabela jest szersza niż kartka, kolumny, które się nie zmieściły, trafiają na własne strony, drukowane po pierwszym bloku wierszy. Stąd wrażenie, że „połowy arkusza brakuje”: nie brakuje jej, jest trzy strony dalej.</p>
+
+  <p><strong>Naprawa w Excelu:</strong> karta Układ strony, grupa <strong>Skaluj do rozmiaru</strong>. Ustaw <strong>Szerokość</strong> na „1 strona”, a <strong>Wysokość</strong> zostaw na „Automatycznie”. Tabela zmniejszy się dokładnie na tyle, żeby zmieścić się wszerz, a w dół zajmie tyle stron, ile potrzeba. Przy szerokiej tabeli zmień też <strong>Orientację</strong> na poziomą, co daje mniej więcej 40% więcej szerokości, zanim cokolwiek musi się zmniejszać.</p>
+
+  <p>Nie ustawiaj przy długiej tabeli i szerokości, i wysokości na 1 stronę. Wtedy 300 wierszy zostaje ściśniętych na jednej kartce i masz kolejny problem.</p>
+
+  <p><a href="/pl/excel-to-pdf/">Konwerter Excel do PDF</a> załatwia część z szerokością za Ciebie: o ile plik nie ma własnego skalowania wydruku, dopasowuje wszystkie kolumny do szerokości strony i obraca szerokie tabele do orientacji poziomej. W naszych testach tabela z 25 kolumnami, która przy zwykłej konwersji wychodziła na czterech stronach, zmieściła się na jednej stronie w poziomie.</p>
+
+  <h2>2. Dziesiątki (albo tysiące) pustych stron</h2>
+
+  <p><strong>Co widzisz:</strong> dane zajmują dwie strony, a PDF ma ich 40, prawie wszystkie puste. Albo jedna strona danych, a po niej strony z samymi liniami siatki.</p>
+
+  <p><strong>Dlaczego:</strong> konwerter drukuje wszystko aż do ostatniej komórki, którą uważa za używaną. Często nie jest to ostatni wiersz Twoich danych. Typowi winowajcy:</p>
+
+  <ul>
+    <li>spacja wpisana gdzieś daleko w dół albo w prawo i zapomniana;</li>
+    <li>formuła skopiowana do wiersza 5000, która zwraca pusty tekst (<code>=JEŻELI(A2="";"";...)</code>);</li>
+    <li>w samym Excelu obramowanie lub kolor wypełnienia nałożone na całe wiersze albo kolumny, które Excel też liczy jako używane.</li>
+  </ul>
+
+  <p><strong>Jak to znaleźć:</strong> kliknij dowolną komórkę i naciśnij <strong>Ctrl+End</strong> (na Macu Cmd+Fn+strzałka w prawo). Excel skoczy do prawego dolnego rogu tego, co uważa za używany zakres. Jeśli to komórka AZ4000, a Twoja tabela kończy się na F120, wszystko pomiędzy zamienia się właśnie w puste strony.</p>
+
+  <p><strong>Naprawa:</strong> zaznacz wiersze pod tabelą (kliknij numer pierwszego pustego wiersza, potem Ctrl+Shift+strzałka w dół), kliknij prawym przyciskiem i wybierz <strong>Usuń</strong>. To samo zrób z kolumnami po prawej. Potem zapisz plik: Excel przelicza używany zakres dopiero przy zapisie. Sam klawisz Delete na komórkach nie wystarczy, bo czyści wartości, a zostawia formatowanie. Potrzebne jest polecenie Usuń dla całych wierszy i kolumn.</p>
+
+  <p><strong>Albo ustaw obszar wydruku</strong> i reszta arkusza przestaje mieć znaczenie. Jeśli zastanawiasz się, jak z Excela zrobić obszar wydruku i później PDF: zaznacz tabelę, wejdź w Układ strony, Obszar wydruku, Ustaw obszar wydruku, zapisz plik i dopiero wtedy konwertuj.</p>
+
+  <p>Konwerter Excel do PDF pomija komórki, które mają tylko wypełnienie albo obramowanie. W skoroszycie bez formuł czyści też zabłąkane spacje leżące za końcem tabeli, więc przestają one generować puste strony. Spacja tuż za tekstem w tym samym wierszu zostaje, bo w ten sposób ludzie zatrzymują długą notatkę, żeby nie wchodziła na następną kolumnę. Skoroszyty z formułami są konwertowane dokładnie tak, jak są, bo formuła może liczyć te komórki, więc w ich przypadku nadal trzeba posprzątać ręcznie przez Ctrl+End, jak opisano wyżej. Obszar wydruku ustawiony przez Ciebie zawsze ma pierwszeństwo.</p>
+
+  <h2>3. Wszystko się mieści, ale tekst jest mikroskopijny</h2>
+
+  <p><strong>Co widzisz:</strong> jedna strona, wszystkie kolumny na miejscu, a czcionka jak w drobnym druku umowy.</p>
+
+  <p>Przyczyny są dwie. Albo arkusz naprawdę jest bardzo szeroki (40 czy 50 kolumn zawsze będzie małe na szerokości jednej strony), albo zabłąkana komórka daleko w prawo (patrz przyczyna 2) sprawiła, że konwerter dopasował 52 kolumny, choć masz ich 6. Najpierw sprawdź Ctrl+End, to tańsza opcja.</p>
+
+  <p>Jeśli tabela faktycznie jest szeroka, wybierz kompromis, który Ci odpowiada:</p>
+
+  <ul>
+    <li>Orientacja pozioma plus dopasowanie do szerokości: czytelne mniej więcej do 20 lub 25 zwykłych kolumn na A4.</li>
+    <li>Ukryj przed eksportem kolumny, których nikt w PDF nie potrzebuje. Ukryte kolumny się nie drukują.</li>
+    <li>Podziel tabelę: każdą grupę kolumn przenieś na osobny arkusz i w każdym powtarzaj kolumnę z ID (zobacz <a href="/pl/blog/excel-to-pdf-repeat-header-row-every-page/">powtarzanie wierszy i kolumn nagłówka</a>).</li>
+    <li>Wybierz w opcjach układu konwertera „Zachowaj oryginalny rozmiar”: tekst w pełnym rozmiarze, a kolumny przechodzą na dodatkowe strony, czyli przypadek 1 na odwrót.</li>
+  </ul>
+
+  <h2>4. Krzyżyki (####) albo tekst ucięty w pół słowa</h2>
+
+  <p><strong>Co widzisz:</strong> <code>#####</code> tam, gdzie powinna być liczba albo data, albo zdanie urwane na krawędzi komórki.</p>
+
+  <p><strong>Dlaczego:</strong> PDF pokazuje dokładnie to, co pokazałby wydruk. Liczba, która nie mieści się w kolumnie, wyświetla się jako krzyżyki, na ekranie i na papierze. Tekst, który się nie mieści, jest ucinany na krawędzi komórki zawsze wtedy, gdy w sąsiedniej komórce po prawej coś jest.</p>
+
+  <p><strong>Naprawa:</strong> poszerz kolumnę (dwuklik na prawej krawędzi litery kolumny dopasowuje szerokość automatycznie) albo włącz Zawijaj tekst dla długich komórek tekstowych, żeby rosły w dół. Sprawdzaj przy powiększeniu 100%: przy 85% kolumna może wyglądać na ekranie dobrze, a na wydruku i tak pokazać ####.</p>
+
+  <h2>5. Tabela utknęła w rogu strony</h2>
+
+  <p>Wąska tabela domyślnie drukuje się w lewym górnym rogu, co na fakturze albo formularzu wygląda dziwnie. Układ strony, Marginesy, <strong>Marginesy niestandardowe</strong>, a potem zaznacz <strong>Poziomo</strong> w sekcji „Wyśrodkuj na stronie”. Przy jednostronicowym formularzu zaznacz też Pionowo. Ustawienie zapisuje się w pliku, więc PDF je przejmie.</p>
+
+  <p>Podobną niespodziankę robi rozmiar papieru i często to on stoi za sytuacją, gdy przy eksporcie z Excela do PDF źle zaznacza się strona. Arkusz ustawiony pod US Letter i drukowany na A4 (albo odwrotnie) zyskuje lub traci pasek na dole i może zepchnąć ostatni wiersz na osobną stronę. W USA, Kanadzie, Meksyku i kilku innych krajach Ameryki Łacińskiej standardem jest Letter, praktycznie wszędzie indziej A4. Dokładne wymiary znajdziesz w naszym <a href="/pl/blog/a4-vs-us-letter-printable-sizes/">porównaniu A4 i Letter</a>. Gdy plik nie określa, jakiego papieru chce, konwerter używa A4.</p>
+
+  <h2>6. W PDF brakuje części arkuszy</h2>
+
+  <p>W Excelu Plik, Zapisz jako, PDF zapisuje tylko aktywny arkusz, chyba że otworzysz <strong>Opcje</strong> i wybierzesz „Cały skoroszyt”. Zaznaczenie kilku kart przed zapisem też działa. Konwerter internetowy bierze każdy widoczny arkusz skoroszytu i każdy zaczyna od nowej strony. Ukryte arkusze są pomijane, więc odkryj wszystko, co ma się znaleźć w PDF.</p>
+
+  <h2>Pięciominutowa kontrola przed eksportem</h2>
+
+  <ol>
+    <li>Ctrl+End na każdym arkuszu. Usuń wiersze i kolumny za prawdziwą tabelą, potem zapisz.</li>
+    <li>Widok, <strong>Podgląd podziału stron</strong>. Niebieskie linie pokazują dokładnie, gdzie strony się podzielą. Przeciągnij je, żeby przesunąć podział.</li>
+    <li>Skaluj do rozmiaru: szerokość 1 strona, wysokość Automatycznie. Orientacja pozioma, jeśli tabela jest szeroka.</li>
+    <li>Tytuły wydruku, jeśli tabela zajmuje kilka stron.</li>
+    <li>Plik, Drukuj i przewiń podgląd przez wszystkie strony. To, co tam widzisz, trafi do PDF.</li>
+  </ol>
+
+  <h2>Najczęstsze pytania</h2>
+
+  <h3>Dlaczego mój PDF wygląda inaczej niż z Zapisz jako PDF w Excelu?</h3>
+  <p>Excel renderuje za pomocą sterownika Twojej drukarki i zainstalowanych czcionek, a konwerter internetowy na serwerze z własnymi czcionkami i bez drukarki. Ustawienia układu zapisane w pliku (obszar wydruku, skalowanie, orientację, marginesy, tytuły wydruku) respektują oba. Wyniki różnią się głównie wtedy, gdy plik polega na ustawieniach domyślnych albo używa czcionki, której serwer nie ma.</p>
+
+  <h3>Czy da się naprawić PDF, który już jest ucięty?</h3>
+  <p>Nie przez edycję PDF: brakujący fragment nigdy nie został narysowany. Popraw arkusz i skonwertuj go jeszcze raz. Jeśli oryginału już nie ma, <a href="/pl/pdf-to-excel/">przekonwertuj PDF z powrotem na Excela</a>, popraw go i wyeksportuj ponownie.</p>
+
+  <h3>Dlaczego podgląd wydruku w Excelu pokazuje 1 stronę, a PDF ma więcej?</h3>
+  <p>Zwykle PDF powstał z innego arkusza albo podgląd wydruku pokazywał tylko zaznaczenie. Sprawdź, który arkusz jest aktywny i czy nie jest wybrana opcja „Drukuj zaznaczenie”.</p>
+
+  <h3>Czy ukryte wiersze trafiają do PDF?</h3>
+  <p>Nie. Ukryte wiersze i kolumny zostają ukryte, zarówno przy eksporcie z samego Excela, jak i w konwerterze.</p>
+
+  <h3>Czy konwerter zepsuje moje formuły albo wykresy?</h3>
+  <p>Nie. PDF pokazuje wartości, które wyliczyły formuły, i wykresy w takiej postaci, w jakiej są narysowane. Oryginalny arkusz nie jest zmieniany, dostajesz z powrotem nowy plik PDF.</p>
+
+  <h2>Konwertuj</h2>
+
+  <p>Przejdź przez kontrolę przed eksportem, a potem wrzuć plik do <a href="/pl/excel-to-pdf/">konwertera Excel do PDF</a>. Jeśli jedynym problemem jest to, że od strony 2 nie ma nazw kolumn, zobacz, <a href="/pl/blog/excel-to-pdf-repeat-header-row-every-page/">jak powtórzyć wiersz nagłówka na każdej stronie</a>, a szerszą listę kontrolną znajdziesz w poradniku o <a href="/pl/blog/convert-excel-to-pdf-keep-formatting/">konwersji Excela do PDF bez utraty formatowania</a>.</p>

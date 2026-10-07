@@ -1,0 +1,110 @@
+slug: excel-to-pdf-repeat-header-row-every-page
+title_id: "Cara Agar Judul Tabel Excel Muncul di Setiap Halaman PDF"
+meta_title_id: "Judul Tabel Excel di Setiap Halaman PDF | Convertica"
+meta_description_id: "Judul kolom cuma ada di halaman 1 PDF? Freeze Panes bukan jawabannya. Atur Print Titles sekali, dan baris judul tercetak di setiap halaman PDF."
+meta_keywords_id: "cara agar judul tabel muncul di setiap halaman pdf excel, excel ke pdf judul kolom berulang, print titles excel, rows to repeat at top, header excel di setiap halaman, freeze panes pdf, judul tabel hilang di halaman 2 pdf"
+excerpt_id: "Halaman 1 PDF punya nama kolom, halaman 2 sampai 40 isinya angka tanpa keterangan. Perbaikannya cuma tiga puluh detik, dan bukan cara yang biasanya dicoba orang lebih dulu."
+ai_metadata:
+  topics:
+    - mengulang baris judul tabel di setiap halaman PDF dari Excel
+    - kenapa Freeze Panes tidak terbawa ke PDF
+    - Print Titles di Excel untuk Windows dan Mac
+    - mengulang baris di Google Sheets dan LibreOffice Calc
+    - workbook dengan banyak sheet dan judul berulang
+  entities:
+    - Microsoft Excel
+    - Print Titles
+    - Rows to repeat at top
+    - Freeze Panes
+    - Google Sheets
+    - LibreOffice Calc
+    - Convertica
+  summary: "Menjelaskan kenapa tabel Excel yang panjang setelah diekspor ke PDF hanya menampilkan judul kolom di halaman pertama, kenapa Freeze Panes dan header Excel Table tidak menyelesaikannya, serta cara mengatur Print Titles (Rows to repeat at top dan Columns to repeat at left) di Excel untuk Windows dan Mac, Google Sheets dan LibreOffice Calc. Membahas pengaturan per sheet pada workbook dengan banyak tab, beda baris judul dengan header halaman, dan memastikan pengaturan ini tetap berlaku saat file dikonversi dengan konverter Excel ke PDF online."
+  related_terms:
+    - judul kolom excel di tiap halaman pdf
+    - baris atas excel muncul di semua halaman
+    - cetak judul tabel di setiap halaman excel
+    - header tabel hilang di pdf
+    - judul tabel tidak berulang saat print
+    - freeze header di pdf
+  reading_time_minutes: 6
+  target_audience: "Staf kantor, bagian keuangan, guru dan siapa saja yang mengirim tabel Excel panjang dalam bentuk PDF lalu ditanya kolom mana yang mana di halaman 7."
+content_id: |
+  Anda mengirim PDF daftar harga atau rekap nilai siswa setebal 30 halaman, dan beberapa menit kemudian datang balasan: "di halaman 5 ini kolom mana yang mana?" Halaman 1 punya baris judul. Halaman sesudahnya cuma deretan angka tanpa keterangan apa pun.
+
+  Excel sebenarnya bisa mencetak ulang baris judul di setiap halaman, dan bagi Excel, PDF hanyalah halaman cetak. Pengaturannya bernama Print Titles. Butuh sekitar tiga puluh detik, tersimpan di dalam file, dan begitu sudah diatur, konverter PDF yang layak akan mengikutinya.
+
+  <h2>Dua cara yang tidak berhasil</h2>
+
+  <p><strong>Freeze Panes.</strong> Hampir semua orang mencoba ini lebih dulu, karena di layar hasilnya pas: baris teratas diam di tempat saat Anda menggulir. Masalahnya, Freeze Panes adalah pengaturan tampilan. Ia mengatur jendela Anda, bukan kertasnya, jadi PDF sama sekali mengabaikannya. Baris 1 bisa dibekukan dan judul tetap cuma muncul di halaman 1.</p>
+
+  <p><strong>Mengubah range menjadi Table.</strong> Excel Table (Insert, Table) menampilkan nama kolom di posisi huruf A, B, C ketika Anda menggulir. Ceritanya sama: itu trik layar, dan hasil cetaknya tidak mengulang judul tersebut.</p>
+
+  <p>Satu lagi yang sering bikin bingung: <em>header halaman</em> (Insert, Header &amp; Footer) itu hal lain. Isinya sebaris teks di margin atas, misalnya judul laporan atau nomor halaman. Memang muncul di setiap halaman, tapi tidak bisa memuat nama kolom yang sejajar dengan kolomnya. Yang Anda perlukan adalah <em>baris</em> sheet itu sendiri yang diulang.</p>
+
+  <h2>Mengatur Print Titles di Excel (Windows)</h2>
+
+  <ol>
+    <li>Buka sheet-nya, lalu masuk ke tab <strong>Page Layout</strong>.</li>
+    <li>Klik <strong>Print Titles</strong>. Jendela Page Setup terbuka di tab Sheet.</li>
+    <li>Klik kolom isian <strong>Rows to repeat at top</strong>, lalu klik nomor baris judul di sheet. Excel otomatis mengisi <code>$1:$1</code>. Kalau judul Anda terdiri dari dua baris (misalnya baris judul laporan dan baris nama kolom), seret melewati keduanya sehingga terisi <code>$1:$2</code>.</li>
+    <li>Kalau tabelnya juga lebar dan meluber ke halaman tambahan di sebelah kanan, lakukan hal yang sama di <strong>Columns to repeat at left</strong> untuk kolom yang menjadi penanda tiap baris, seperti ID atau nama produk.</li>
+    <li>Klik OK. Cek lewat File, Print: halaman 2 di pratinjau sekarang harus diawali baris judul Anda.</li>
+  </ol>
+
+  <p>Pengaturan ini disimpan di dalam workbook, jadi simpan file setelah mengaturnya. Bagian inilah yang menentukan hasil konversi ke PDF nanti.</p>
+
+  <h2>Excel untuk Mac</h2>
+
+  <p>Prinsipnya sama, jalurnya sedikit berbeda: tab <strong>Page Layout</strong>, lalu <strong>Print Titles</strong>, lalu kolom Rows to repeat at top yang sama. Di versi Mac yang lebih lama, letaknya di File, Page Setup, Sheet. Hasilnya di dalam file persis sama.</p>
+
+  <h2>Google Sheets</h2>
+
+  <p>Sheets mengaitkan fitur ini dengan pembekuan baris, jadi inilah satu-satunya tempat di mana membekukan baris benar-benar membantu. Bekukan baris judul (View, Freeze, 1 row), lalu buka File, Print. Di bagian <strong>Headers &amp; footers</strong>, centang <strong>Repeat frozen rows</strong>. Unduh sebagai PDF langsung dari layar cetak itu.</p>
+
+  <p>Kalau Anda malah mengunduh sheet sebagai .xlsx lalu mengonversinya di tempat lain, atur dulu Print Titles di Excel atau Calc. Baris yang dibekukan tidak berubah menjadi Print Titles saat diekspor.</p>
+
+  <h2>LibreOffice Calc</h2>
+
+  <p>Buka <strong>Format, Print Ranges, Edit</strong>. Di <strong>Rows to repeat</strong>, pilih "user defined" lalu ketik <code>$1</code> (atau <code>$1:$2</code> untuk dua baris). Calc menyimpannya ke file .xlsx sebagai Print Titles Excel yang sah, jadi pengaturannya ikut terbawa bersama file.</p>
+
+  <h2>Workbook dengan banyak tab</h2>
+
+  <p>Print Titles melekat pada sheet, bukan pada workbook. Kalau file Anda punya satu tab per bulan, setiap tab perlu diatur sendiri, dan masing-masing boleh mengulang baris yang berbeda. Itu sebabnya kadang judul muncul di semua halaman tab Januari, tapi di tab Februari cuma di halaman 1.</p>
+
+  <p>Cara cepat untuk dua belas tab: atur di sheet pertama, lalu ulangi di sheet lainnya. Excel tidak punya tombol "terapkan ke semua sheet" untuk Print Titles, bahkan saat sheet dikelompokkan, jadi sisihkan sekitar satu menit untuk workbook yang besar.</p>
+
+  <h2>Mengonversi file ke PDF</h2>
+
+  <p>Setelah Print Titles tersimpan di file, Anda bebas mengonversinya dengan cara apa pun. Kami mengujinya di <a href="/id/excel-to-pdf/">konverter Excel ke PDF</a> dengan tabel 120 baris yang tersebar di tiga halaman: dengan Print Titles, ketiga halaman diawali baris judul; tanpa Print Titles, hanya halaman pertama. Secara bawaan konverter juga menjaga tabel lebar tetap muat dalam satu lebar halaman, jadi judul yang berulang itu juga tetap terbaca.</p>
+
+  <p>Kalau lebih suka jalur bawaan Excel, File, Save As, PDF juga bisa. Hanya saja periksa tombol Options di sana: secara bawaan Excel cuma menyimpan sheet yang sedang aktif, jadi untuk workbook dengan banyak tab pilih "Entire workbook".</p>
+
+  <h2>Kalau judul tetap tidak berulang</h2>
+
+  <ul>
+    <li><strong>Pengaturannya ada di sheet lain.</strong> Klik tab yang benar-benar Anda konversi lalu buka lagi Print Titles. Kolom isian kosong berarti di sheet itu belum ada pengaturan.</li>
+    <li><strong>File disimpan sebagai .csv.</strong> CSV hanya menyimpan nilai: tanpa Print Titles, tanpa lebar kolom, tanpa apa pun. Simpan sebagai .xlsx.</li>
+    <li><strong>Yang dikonversi file .xls lama.</strong> Print Titles sebenarnya juga berfungsi di sana, tapi kalau ada alat yang bertingkah aneh, buka filenya dan simpan ulang sebagai .xlsx. Tidak ada ruginya.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Bisakah baris judul diulang di PDF yang sudah jadi?</h3>
+  <p>Praktis tidak. PDF menyimpan halaman sebagaimana digambar, dan di dalamnya tidak ada konsep "ulangi baris ini". Kembali ke spreadsheet, atur Print Titles, lalu konversi ulang. Kalau yang Anda pegang hanya PDF-nya, ubah dulu <a href="/id/pdf-to-excel/">kembali ke Excel</a>, perbaiki di sana, lalu ekspor lagi.</p>
+
+  <h3>Bisakah tiap halaman punya judul berbeda?</h3>
+  <p>Dalam satu sheet, tidak: baris yang diulang sama di setiap halaman. Letakkan tabel dengan judul berbeda di sheet terpisah, lalu beri masing-masing sheet Print Titles sendiri.</p>
+
+  <h3>Apakah Freeze Panes pernah memengaruhi PDF?</h3>
+  <p>Di Excel dan Calc, tidak. Di Google Sheets hanya jika Anda mencentang "Repeat frozen rows" di pengaturan cetak.</p>
+
+  <h3>Bagaimana agar kolom pertama muncul di setiap halaman tabel yang lebar?</h3>
+  <p>Gunakan <strong>Columns to repeat at left</strong> di jendela Print Titles yang sama. Cara kerjanya persis seperti versi baris, hanya arahnya menyamping.</p>
+
+  <h3>Apakah PDF hasil konversi menyimpan filter dan baris tersembunyi?</h3>
+  <p>Baris tersembunyi tetap tersembunyi, dan biasanya memang itu yang diinginkan. Tombol filter tidak ada di PDF: yang Anda dapat adalah baris yang terlihat saat file terakhir disimpan.</p>
+
+  <h2>Coba sekarang</h2>
+
+  <p>Atur Print Titles, simpan, lalu masukkan filenya ke <a href="/id/excel-to-pdf/">konverter Excel ke PDF</a>. Kalau tabelnya juga terpotong di tepi halaman atau muncul halaman kosong, panduan kami soal <a href="/id/blog/excel-to-pdf-cut-off-blank-pages-fix/">Excel ke PDF terpotong</a> membahas sisanya, dan <a href="/id/blog/convert-excel-to-pdf-keep-formatting/">menjaga format Excel di PDF</a> berisi daftar periksa lengkapnya.</p>
