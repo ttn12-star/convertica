@@ -9,6 +9,7 @@ with HTTP 500 (Sentry CONVERTICA-5J).
 import fitz
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import SimpleTestCase
+from django.utils import translation
 from src.api.pdf_convert.pdf_to_text.utils import convert_pdf_to_text
 from src.exceptions import InvalidPDFError
 
@@ -28,7 +29,9 @@ class PdfToTextNoTextLayerTests(SimpleTestCase):
             "scan.pdf", _pdf_without_text_layer(), content_type="application/pdf"
         )
 
-        with self.assertRaises(InvalidPDFError) as caught:
+        # The message is translated: pin English, or a test that rendered
+        # /pl/ earlier in this worker thread leaves Polish active.
+        with translation.override("en"), self.assertRaises(InvalidPDFError) as caught:
             convert_pdf_to_text(upload)
 
         # InvalidPDFError is what base_views maps to HTTP 400 + a warning log.
