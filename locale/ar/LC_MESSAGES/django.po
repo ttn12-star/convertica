@@ -16790,3 +16790,36 @@ msgstr "ضع الصور في ملف PDF محمي بكلمة مرور"
 #: templates/users/account_status.html
 msgid "From day 1"
 msgstr "من اليوم الأول"
+
+msgid "Target file size"
+msgstr "حجم الملف المطلوب"
+
+msgid "No target (use the compression level)"
+msgstr "بدون حجم محدد (حسب مستوى الضغط)"
+
+msgid "KB"
+msgstr "كيلوبايت"
+
+msgid "MB"
+msgstr "ميغابايت"
+
+msgid "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make."
+msgstr "تُخفَّض جودة الصور خطوة بخطوة حتى يصل الملف إلى الحجم المطلوب. ملف PDF الذي يغلب عليه النص قد لا يصغر إلى هذا الحد، وعندها تحصل على أصغر نسخة يمكننا إنشاؤها."
+
+msgid "File compressed"
+msgstr "تم ضغط الملف"
+
+msgid "File processed"
+msgstr "تمت معالجة الملف"
+
+msgid "Original size"
+msgstr "الحجم الأصلي"
+
+msgid "Compressed size"
+msgstr "الحجم بعد الضغط"
+
+msgid "Size reduction"
+msgstr "مقدار التقليل"
+
+msgid "Could not get below {target}. This is the smallest version we could make."
+msgstr "تعذّر الوصول إلى أقل من {target}. هذه أصغر نسخة تمكّنا من إنشائها."

@@ -18,7 +18,14 @@ class CompressPDFBatchAPIView(BaseBatchAPIView):
     OUTPUT_ZIP_FILENAME = "compressed_pdfs.zip"
 
     def get_post_params(self, request):
-        return {"compression_level": request.POST.get("compression_level", "medium")}
+        params = {"compression_level": request.POST.get("compression_level", "medium")}
+        try:
+            target = int(request.POST.get("target_size_kb") or 0)
+        except ValueError:
+            target = 0
+        if 20 <= target <= 500_000:
+            params["target_size_kb"] = target
+        return params
 
     def convert_single(self, uploaded_file, context, **params):
         input_path, output_path = compress_pdf(

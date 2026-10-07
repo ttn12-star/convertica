@@ -17608,3 +17608,36 @@ msgstr "Упакуйте изображения в PDF с паролем"
 #: templates/users/account_status.html
 msgid "From day 1"
 msgstr "С первого дня"
+
+msgid "Target file size"
+msgstr "Целевой размер файла"
+
+msgid "No target (use the compression level)"
+msgstr "Без цели (по уровню сжатия)"
+
+msgid "KB"
+msgstr "КБ"
+
+msgid "MB"
+msgstr "МБ"
+
+msgid "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make."
+msgstr "Качество изображений снижается шаг за шагом, пока файл не уложится в размер. ПДФ, в котором почти один текст, может не сжаться так сильно: тогда вы получите самую маленькую версию, какую удалось сделать."
+
+msgid "File compressed"
+msgstr "Файл сжат"
+
+msgid "File processed"
+msgstr "Файл обработан"
+
+msgid "Original size"
+msgstr "Исходный размер"
+
+msgid "Compressed size"
+msgstr "Размер после сжатия"
+
+msgid "Size reduction"
+msgstr "Уменьшение размера"
+
+msgid "Could not get below {target}. This is the smallest version we could make."
+msgstr "Не удалось уменьшить файл до {target}. Это самая маленькая версия, которую удалось сделать."

@@ -79,11 +79,73 @@ def _is_pdfa1(doc: fitz.Document) -> bool:
     return bool(re.search(r"pdfaid:part\W{1,3}1\b", xmp))
 
 
+# (JPEG quality, longest image side in px), mildest first. The last step is
+# roughly 65 dpi on an A4 scan: still readable, the floor for "make it fit".
+TARGET_STEPS = [
+    (70, 2400),
+    (60, 1800),
+    (50, 1400),
+    (42, 1100),
+    (35, 900),
+    (28, 700),
+    (22, 550),
+]
+
+
+def _shrink_to_target(processor, op, output_path: str, target: int, level: str) -> None:
+    """Replace output_path with the mildest step result that fits target.
+
+    Sizes fall as steps get harsher, so: try the harshest first (if even that
+    doesn't fit, nothing will; keep the smallest file we have), binary search
+    the rest, then one pass halfway between the step that missed and the one
+    that fit, because the steps are coarse. At most ~5 extra passes.
+    """
+    tmp_dir = os.path.dirname(output_path)
+    results = {}
+
+    def attempt(step: tuple[int, int]) -> int:
+        path = os.path.join(tmp_dir, f"_target_q{step[0]}_d{step[1]}.pdf")
+        processor.run_pdf_operation_with_repair(
+            op, output_path=path, compression_level=level, step=step
+        )
+        results[step] = (os.path.getsize(path), path)
+        return results[step][0]
+
+    steps = TARGET_STEPS
+    last = len(steps) - 1
+    if attempt(steps[last]) > target:
+        best = steps[last]
+        if results[best][0] >= os.path.getsize(output_path):
+            best = None  # the level's own result is already the smallest
+    else:
+        lo, hi = 0, last  # invariant: steps[hi] fits
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if attempt(steps[mid]) <= target:
+                hi = mid
+            else:
+                lo = mid + 1
+        best = steps[hi]
+        if hi > 0:
+            (q1, d1), (q2, d2) = steps[hi - 1], steps[hi]
+            between = ((q1 + q2) // 2, (d1 + d2) // 2)
+            if between not in results and attempt(between) <= target:
+                best = between
+    try:
+        if best is not None:
+            shutil.move(results[best][1], output_path)
+    finally:
+        for _, path in results.values():
+            if os.path.exists(path):
+                os.remove(path)
+
+
 def compress_pdf(
     uploaded_file: UploadedFile,
     compression_level: str = "medium",
     suffix: str = "_convertica",
     check_cancelled: Callable[[], None] | None = None,
+    target_size_kb: int | None = None,
     **kwargs,
 ) -> tuple[str, str]:
     """Compress PDF to reduce file size.
@@ -92,6 +154,9 @@ def compress_pdf(
         uploaded_file: PDF file to compress
         compression_level: Compression level ("low", "medium", "high")
         suffix: Suffix for output filename
+        target_size_kb: When set and the level's result is bigger, lower image
+            quality/resolution step by step and keep the mildest step that
+            fits. If even the last step doesn't fit, the smallest result wins.
 
     Returns:
         Tuple of (input_path, output_path)
@@ -186,12 +251,15 @@ def compress_pdf(
                 return 2800  # Was 2400
             return 4000
 
-        def _recompress_jpegs(doc: fitz.Document, level: str) -> None:
-            if level not in {"medium", "high"}:
+        def _recompress_jpegs(
+            doc: fitz.Document, level: str, step: tuple[int, int] | None = None
+        ) -> None:
+            """step=(jpeg quality, max side px) overrides the level: target mode,
+            where any saving counts and downscaling isn't capped at 75%."""
+            if step is None and level not in {"medium", "high"}:
                 return
 
-            quality = _jpeg_quality(level)
-            max_dim = _jpeg_max_dim(level)
+            quality, max_dim = step or (_jpeg_quality(level), _jpeg_max_dim(level))
             seen = set()
 
             for page in doc:
@@ -253,6 +321,8 @@ def compress_pdf(
                     # A Flate original is lossless: JPEG has to earn its
                     # artifacts (screenshots with small text saved ~14%).
                     min_saving = 0.6 if flt == "/FlateDecode" else 0.9
+                    if step:
+                        min_saving = 1.0
 
                     # Skip images that are not RGB or grayscale to prevent color space issues
                     if im.mode not in {"RGB", "L", "CMYK"}:
@@ -286,7 +356,7 @@ def compress_pdf(
                         # Don't resize if it would reduce quality too much
                         new_pixels = new_size[0] * new_size[1]
                         if (
-                            new_pixels < original_pixels * 0.25
+                            not step and new_pixels < original_pixels * 0.25
                         ):  # Don't reduce by more than 75%
                             continue
 
@@ -343,14 +413,20 @@ def compress_pdf(
                         )
                         continue
 
-        def _op(input_pdf_path: str, *, output_path: str, compression_level: str):
+        def _op(
+            input_pdf_path: str,
+            *,
+            output_path: str,
+            compression_level: str,
+            step: tuple[int, int] | None = None,
+        ):
             # Check cancellation before opening document
             if callable(check_cancelled):
                 check_cancelled()
 
             doc = fitz.open(input_pdf_path)
             try:
-                if compression_level == "high":
+                if compression_level == "high" and step is None:
                     for page in doc:
                         # Check cancellation for each page
                         if callable(check_cancelled):
@@ -368,8 +444,8 @@ def compress_pdf(
                         except Exception:
                             pass
 
-                _recompress_jpegs(doc, compression_level)
-                kwargs = _save_kwargs(compression_level)
+                _recompress_jpegs(doc, compression_level, step)
+                kwargs = _save_kwargs("high" if step else compression_level)
                 if _is_pdfa1(doc):
                     kwargs.pop("use_objstms", None)
                 _save_with_fallback(doc, output_path, kwargs)
@@ -403,6 +479,9 @@ def compress_pdf(
             output_path=output_path,
             compression_level=compression_level,
         )
+        target = target_size_kb * 1024 if target_size_kb else None
+        if target and os.path.getsize(output_path) > target:
+            _shrink_to_target(processor, _op, output_path, target, compression_level)
         processor.validate_output_pdf(output_path, min_size=1000)
         return pdf_path, output_path
 

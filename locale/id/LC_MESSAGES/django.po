@@ -17548,3 +17548,36 @@ msgstr "Bungkus gambar dalam PDF yang dilindungi kata sandi"
 #: templates/users/account_status.html
 msgid "From day 1"
 msgstr "Sejak hari pertama"
+
+msgid "Target file size"
+msgstr "Ukuran file target"
+
+msgid "No target (use the compression level)"
+msgstr "Tanpa target (pakai tingkat kompresi)"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make."
+msgstr "Kualitas gambar diturunkan bertahap sampai file muat. PDF yang sebagian besar berisi teks mungkin tidak bisa sekecil itu; Anda akan mendapat versi terkecil yang bisa kami buat."
+
+msgid "File compressed"
+msgstr "File berhasil dikompresi"
+
+msgid "File processed"
+msgstr "File diproses"
+
+msgid "Original size"
+msgstr "Ukuran asli"
+
+msgid "Compressed size"
+msgstr "Ukuran setelah kompresi"
+
+msgid "Size reduction"
+msgstr "Pengurangan ukuran"
+
+msgid "Could not get below {target}. This is the smallest version we could make."
+msgstr "Tidak bisa di bawah {target}. Ini versi terkecil yang bisa kami buat."
