@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from functools import wraps
+from types import SimpleNamespace
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -14,12 +15,16 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
-from src.api.conversion_limits import get_file_size_limits
+from src.api.conversion_limits import get_file_size_limits, get_max_pages_for_user
 from src.frontend.seo import indexable_languages, noindex_languages
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS
 from src.frontend.workbench import TOOL_URL_NAME_OVERRIDES as _TOOL_URL_NAME_OVERRIDES
 from src.frontend.workbench import build_catalog, build_templates, limits_for
+
+_ACTIVE_PREMIUM = SimpleNamespace(
+    is_authenticated=True, is_premium=True, is_subscription_active=lambda: True
+)
 
 
 def anonymous_cache_page(timeout):
@@ -645,6 +650,9 @@ def _get_converter_context(
     free_bytes, premium_bytes = get_file_size_limits(conversion_type)
     free_mb = int(free_bytes / (1024 * 1024))
     premium_mb = int(premium_bytes / (1024 * 1024))
+    # Same lookup the API runs for a paying user (PREMIUM_PAGE_LIMITS per op),
+    # so the page never quotes a different Premium page cap than it enforces.
+    premium_pages = get_max_pages_for_user(_ACTIVE_PREMIUM, conversion_type)
 
     return {
         "page_title": page_title,
@@ -668,6 +676,7 @@ def _get_converter_context(
         "max_file_size_mb_free": free_mb,
         "max_file_size_mb_premium": premium_mb,
         "max_file_size_mb_current": premium_mb if is_premium_active else free_mb,
+        "max_pdf_pages_premium_tool": premium_pages,
         # Signal base.html to auto-generate SoftwareApplication + HowTo schema.
         # Set to False in specific views that define their own structured_data block.
         "auto_generate_tool_schema": True,

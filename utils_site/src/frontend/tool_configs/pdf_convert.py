@@ -119,9 +119,7 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "question": _("What is the maximum file size I can convert?"),
                     "answer": _(
-                        "Free users can convert PDF files up to 50 pages. "
-                        "For larger documents, you can split them first using our Split PDF tool, "
-                        "or upgrade to Premium for higher limits up to 500 pages per file."
+                        "Free users can convert PDFs of up to 30 pages and 15 MB. For longer documents, split them first with our Split PDF tool, or upgrade to Premium for much higher limits."
                     ),
                 },
                 {
@@ -142,7 +140,7 @@ PDF_CONVERT_CONFIGS = {
                     "For best results, use PDFs created from Word or other text editors, not screenshots"
                 ),
                 _(
-                    "Large files (over 50 pages) may take longer - consider splitting them first"
+                    "Long documents take longer to convert. If you only need part of one, split it first"
                 ),
                 _(
                     "If tables look misaligned, try re-saving the original PDF before converting"
@@ -152,15 +150,7 @@ PDF_CONVERT_CONFIGS = {
             "tips_title": _("Tips for Best PDF to Word Conversion"),
             "page_content_title": _("Convert PDF to Word Online - Fast & Accurate"),
             "page_content_body": _(
-                "<p>Need to edit a PDF document? Our <strong>free PDF to Word converter</strong> "
-                "transforms your PDF files into fully editable Word documents (.docx) while "
-                "preserving the original formatting, including tables, images, fonts, and layout.</p>"
-                "<p>Whether you're converting a <strong>resume, contract, invoice, or academic paper</strong>, "
-                "Convertica ensures high-quality PDF to DOCX conversion. Unlike other tools, we maintain "
-                "complex formatting elements like multi-column layouts, headers, footers, and embedded graphics.</p>"
-                "<p><strong>For scanned PDFs:</strong> Premium users can enable OCR (Optical Character "
-                "Recognition) to extract text from image-based PDFs. Our OCR supports 15+ languages "
-                "including English, Russian, German, French, Spanish, Chinese, Japanese, and Arabic.</p>"
+                "<p>Need to edit a PDF document? Our <strong>free PDF to Word converter</strong> transforms your PDF files into fully editable Word documents (.docx) while preserving the original formatting, including tables, images, fonts, and layout.</p><p>Whether you're converting a <strong>resume, contract, invoice, or academic paper</strong>, Convertica ensures high-quality PDF to DOCX conversion. It keeps complex formatting elements like multi-column layouts, headers, footers, and embedded graphics.</p><p><strong>For scanned PDFs:</strong> Premium users can enable OCR (Optical Character Recognition) to extract text from image-based PDFs. Our OCR supports 15+ languages including English, Russian, German, French, Spanish, Chinese, Japanese, and Arabic.</p>"
             ),
         },
         "extra": {
@@ -216,9 +206,9 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
                     "gradient": "from-green-500 to-green-600",
-                    "title": _("Perfect Formatting"),
+                    "title": _("Layout Kept"),
                     "description": _(
-                        "Fonts, images, tables, and layout are preserved exactly as in your Word document"
+                        "Images, tables and layout stay as in your Word document. Common Office fonts are swapped for metric-identical twins, so pages break in the same places"
                     ),
                 },
                 {
@@ -251,9 +241,7 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "question": _("Will my fonts be preserved in the PDF?"),
                     "answer": _(
-                        "Yes! Our Word to PDF converter embeds fonts in the PDF, ensuring your document "
-                        "looks exactly the same on any device. This includes custom fonts, special characters, "
-                        "and text formatting like bold, italic, and underline."
+                        "Common fonts such as Arial, Times New Roman and Calibri are replaced by metric-identical equivalents, so the layout does not move. Fonts the server does not have are replaced with a similar style unless you embed them in the Word file (File, Options, Save, Embed fonts in the file), in which case they are used as they are. Bold, italic and underline are always kept."
                     ),
                 },
                 {
@@ -787,10 +775,7 @@ PDF_CONVERT_CONFIGS = {
                 "Excel to PDF Converter Online Free - Convert XLSX to PDF | Convertica"
             ),
             "page_description": _(
-                "Convert Excel to PDF online free with high quality. "
-                "Convert XLS and XLSX spreadsheets to PDF format. "
-                "Preserve formatting, charts, and formulas. "
-                "No registration required."
+                "Convert Excel to PDF online free with high quality. Convert XLS and XLSX spreadsheets to PDF format. Preserve formatting, charts and cell values. No registration required."
             ),
             "page_keywords": (
                 "Excel to PDF, XLSX to PDF, XLS to PDF, convert Excel to PDF online free, "
@@ -821,9 +806,7 @@ PDF_CONVERT_CONFIGS = {
                     "gradient": "from-green-500 to-green-600",
                     "title": _("Perfect Formatting Preservation"),
                     "description": _(
-                        "Convert Excel spreadsheets to PDF while maintaining all formatting, "
-                        "including fonts, colors, borders, merged cells, and column widths. "
-                        "Your PDF will look exactly like your Excel file."
+                        "Convert Excel spreadsheets to PDF while keeping fonts, colors, borders, merged cells and proportional column widths. Your PDF closely matches your spreadsheet."
                     ),
                 },
                 {
@@ -891,9 +874,7 @@ PDF_CONVERT_CONFIGS = {
                         "Is there a file size limit for Excel to PDF conversion?"
                     ),
                     "answer": _(
-                        "Free users can convert Excel files within reasonable size limits. "
-                        "For very large spreadsheets with many rows or complex formulas, "
-                        "consider splitting them into smaller files for optimal results."
+                        "Free users can convert Excel files up to 15 MB; Premium raises the limit to 200 MB. For very large spreadsheets, splitting them into smaller files gives faster and cleaner results."
                     ),
                 },
             ],
@@ -936,10 +917,7 @@ PDF_CONVERT_CONFIGS = {
                 "PowerPoint to PDF Converter Online Free - PPT to PDF | Convertica"
             ),
             "page_description": _(
-                "Convert PowerPoint to PDF online free with high quality. "
-                "Convert PPT and PPTX presentations to PDF format. "
-                "Preserve slides, animations, and formatting. "
-                "No registration required."
+                "Convert PowerPoint to PDF online free with high quality. Convert PPT and PPTX presentations to PDF format, one page per slide, with images and formatting kept. No registration required."
             ),
             "page_keywords": (
                 "PowerPoint to PDF, PPT to PDF, PPTX to PDF, convert PowerPoint to PDF online free, "
@@ -969,8 +947,7 @@ PDF_CONVERT_CONFIGS = {
                     "gradient": "from-orange-500 to-red-500",
                     "title": _("Slide-Perfect Conversion"),
                     "description": _(
-                        "Every slide in your PowerPoint is converted to PDF with pixel-perfect accuracy. "
-                        "Fonts, colors, transitions, and layouts are preserved exactly as designed."
+                        "Every slide in your presentation becomes one PDF page. Colors, images and layouts are kept as designed."
                     ),
                 },
                 {
@@ -985,10 +962,9 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
                     "gradient": "from-purple-500 to-purple-600",
-                    "title": _("Speaker Notes Optional"),
+                    "title": _("One Slide, One Page"),
                     "description": _(
-                        "Convert slides with or without speaker notes. Share clean presentations "
-                        "with clients or include notes for detailed documentation."
+                        "Slides come out in the same order, one per page, ready to share or print. Speaker notes and animations are not included, as a PDF has no place for them."
                     ),
                 },
                 {
@@ -1029,8 +1005,7 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "question": _("What PowerPoint formats are supported?"),
                     "answer": _(
-                        "We support both PPT (PowerPoint 97-2003) and PPTX (PowerPoint 2007 and later) "
-                        "formats. OpenDocument presentations (ODP) can also be converted."
+                        "We support both PPT (PowerPoint 97-2003) and PPTX (PowerPoint 2007 and later) formats."
                     ),
                 },
                 {
@@ -1276,10 +1251,9 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>',
                     "gradient": "from-green-500 to-green-600",
-                    "title": _("Every Language Supported"),
+                    "title": _("Many Scripts, Right-to-Left Too"),
                     "description": _(
-                        "Arabic, Hindi, Chinese, Cyrillic and Latin scripts all render "
-                        "correctly, including right-to-left text."
+                        "Latin, Cyrillic, Greek, Arabic and Hindi scripts render correctly, including right-to-left text. Chinese, Japanese and Korean are not supported yet."
                     ),
                 },
                 {
@@ -1319,8 +1293,7 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "question": _("Does it work with non-English text?"),
                     "answer": _(
-                        "Yes. The converter renders Arabic, Hindi, Chinese, Cyrillic and "
-                        "other scripts correctly, and detects right-to-left text automatically."
+                        "Yes. It renders Latin, Cyrillic, Greek, Arabic and Hindi text correctly and detects right-to-left text automatically. Chinese, Japanese and Korean characters are not supported yet."
                     ),
                 },
                 {
@@ -1343,17 +1316,7 @@ PDF_CONVERT_CONFIGS = {
             ],
             "page_content_title": _("Turn Plain Text into a Clean PDF"),
             "page_content_body": _(
-                "<p>Sometimes you just have some text and you need it as a PDF: a letter, "
-                "a set of notes, a quick handout, or a snippet you want to share in a "
-                "portable format. Instead of opening a word processor, you can paste the "
-                "text here, choose a few style options, and download a tidy PDF in seconds.</p>"
-                "<p>You control the font family, text size, color, alignment, page size, "
-                "and margins, so the result matches what you need, whether that is a "
-                "printable document or a simple share. Line breaks and spacing from your "
-                "original text are preserved exactly.</p>"
-                "<p>The converter renders every language correctly, from Latin and Cyrillic "
-                "to Arabic, Hindi, and Chinese, and it detects right-to-left text so your "
-                "documents always read the right way.</p>"
+                "<p>Sometimes you just have some text and you need it as a PDF: a letter, a set of notes, a quick handout, or a snippet you want to share in a portable format. Instead of opening a word processor, you can paste the text here, choose a few style options, and download a tidy PDF in seconds.</p><p>You control the font family, text size, color, alignment, page size, and margins, so the result matches what you need, whether that is a printable document or a simple share. Line breaks and spacing from your original text are preserved exactly.</p><p>The converter renders every language correctly, from Latin and Cyrillic to Arabic and Hindi, and it detects right-to-left text so your documents always read the right way.</p>"
             ),
         },
         "extra": {
@@ -1876,8 +1839,7 @@ PDF_CONVERT_CONFIGS = {
                     "gradient": "from-amber-500 to-orange-600",
                     "title": _("Private & Secure"),
                     "description": _(
-                        "Files are processed over an encrypted connection and deleted "
-                        "right after conversion. No registration for the landing page"
+                        "Files are processed over an encrypted connection and deleted after you download the result; anything left is removed automatically within two hours."
                     ),
                 },
             ],
@@ -1886,12 +1848,7 @@ PDF_CONVERT_CONFIGS = {
                 {
                     "question": _("What is PDF/A and why do I need it?"),
                     "answer": _(
-                        "PDF/A (ISO 19005) is the archival standard for PDF. A PDF/A file is "
-                        "fully self-contained: all fonts are embedded, colors are described by "
-                        "an ICC profile, and features that would break long-term display "
-                        "(JavaScript, encryption, external links, audio/video) are removed. "
-                        "Courts, government agencies, tax authorities and universities often "
-                        "require PDF/A because the file will look the same for decades."
+                        "PDF/A (ISO 19005) is the archival standard for PDF. A PDF/A file is fully self-contained: all fonts are embedded, colors are described by an ICC profile, and features that would break long-term display (JavaScript, encryption, audio and video) are not allowed. Courts, government agencies, tax authorities and universities often require PDF/A because the format is designed to look the same for decades."
                     ),
                 },
                 {
@@ -1963,21 +1920,7 @@ PDF_CONVERT_CONFIGS = {
                 "Convert PDF to PDF/A for archiving, courts and compliance"
             ),
             "page_content_body": _(
-                "<p>The <strong>PDF to PDF/A converter</strong> turns an ordinary PDF into an "
-                "<strong>ISO 19005</strong> archival file that is guaranteed to display the same "
-                "way for decades. It embeds all fonts, converts colors to an ICC "
-                "<strong>OutputIntent</strong>, and strips features the standard forbids "
-                "(JavaScript, encryption, external media), then verifies the result actually "
-                "declares conformance.</p>"
-                "<p>PDF/A is the format of choice for <strong>court filings, tax records, tenders, "
-                "medical archives and university theses</strong> - anywhere a document must remain "
-                "readable and unchanged for the long term. We support <strong>PDF/A-1b</strong> "
-                "(maximum compatibility), <strong>PDF/A-2b</strong> (the modern default) and "
-                "<strong>PDF/A-3b</strong> (allows embedded attachments such as ZUGFeRD invoice XML).</p>"
-                "<p>Conversion is a Premium action. The output is validated structurally against "
-                "the level you choose; for legally binding submissions we recommend a final pass "
-                "through the open-source <strong>veraPDF</strong> validator - and we say so "
-                "honestly rather than overpromising.</p>"
+                "<p>The <strong>PDF to PDF/A converter</strong> turns an ordinary PDF into an <strong>ISO 19005</strong> archival file that is designed to display the same way for decades. It embeds all fonts, converts colors to an ICC <strong>OutputIntent</strong>, and strips features the standard forbids (JavaScript, encryption, external media), then verifies the result actually declares conformance.</p><p>PDF/A is the format of choice for <strong>court filings, tax records, tenders, medical archives and university theses</strong> - anywhere a document must remain readable and unchanged for the long term. We support <strong>PDF/A-1b</strong> (maximum compatibility), <strong>PDF/A-2b</strong> (the modern default) and <strong>PDF/A-3b</strong> (allows embedded attachments such as ZUGFeRD invoice XML).</p><p>Conversion is a Premium action. The output is validated structurally against the level you choose; for legally binding submissions we recommend a final pass through the open-source <strong>veraPDF</strong> validator - and we say so honestly rather than overpromising.</p>"
             ),
         },
         "extra": {
