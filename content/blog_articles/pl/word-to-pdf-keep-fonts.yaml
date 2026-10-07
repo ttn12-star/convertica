@@ -1,0 +1,106 @@
+slug: word-to-pdf-keep-fonts
+title_pl: "Word do PDF zmienia czcionkę? Jak zachować czcionki, także arabskie"
+meta_title_pl: "Word do PDF bez zmiany czcionek | Convertica"
+meta_description_pl: "Dlaczego konwerter Word do PDF online zmienia czcionki, które zastępuje odpowiednikami o identycznych wymiarach i jakie ustawienie Worda zachowa Twoją czcionkę."
+meta_keywords_pl: "word do pdf zmienia czcionkę, jak zachować czcionki word pdf, osadzanie czcionek word, osadź czcionki w pliku, word do pdf czcionka arabska, zachowanie czcionek w pdf, word do pdf"
+excerpt_pl: "Czcionka nagłówka zrobiła się zwyczajna albo arabski tekst wyszedł innym krojem. Wyjaśniamy, co konwerter widzi, czego nie widzi, i które jedno ustawienie w Wordzie to naprawia."
+ai_metadata:
+  topics:
+    - dlaczego czcionki zmieniają się przy konwersji Worda do PDF online
+    - zamienniki czcionek Office o identycznych wymiarach
+    - osadzanie czcionek w dokumencie Word
+    - czcionki arabskie i tekst od prawej do lewej przy konwersji Word do PDF
+    - sprawdzanie, jakich czcionek używa PDF
+  entities:
+    - Microsoft Word
+    - Calibri
+    - Arial
+    - Times New Roman
+    - Traditional Arabic
+    - Noto Naskh Arabic
+    - LibreOffice
+    - Convertica
+  summary: "Wyjaśnia, że internetowy konwerter Word do PDF może używać tylko czcionek zainstalowanych na serwerze albo osadzonych w dokumencie, wymienia czcionki Office zastępowane odpowiednikami o identycznych wymiarach, dzięki czemu układ się nie przesuwa, pokazuje, jak osadzić czcionki w Wordzie, żeby konwerter użył oryginalnego kroju, omawia dokumenty arabskie (poprawne łączenie liter, kolejność od prawej do lewej i cyfry, przy czym windowsowe czcionki naskh są zastępowane przez Noto Naskh Arabic, jeśli nie zostały osadzone) oraz sposób sprawdzenia, jakie czcionki trafiły do PDF."
+  related_terms:
+    - word do pdf zmienia font
+    - jak osadzić czcionki w wordzie
+    - czcionka arabska word do pdf
+    - zachować czcionkę przy zapisie do pdf
+    - zamiana czcionek w pdf
+  reading_time_minutes: 7
+  target_audience: "Każdy, kto konwertuje pliki Word z czcionkami firmowymi, ozdobnymi nagłówkami albo pismem arabskim i potrzebuje PDF, który wygląda jak oryginał."
+content_pl: |
+  Word na Twoim komputerze rysuje tekst czcionkami zainstalowanymi na Twoim komputerze. Konwerter internetowy działa na serwerze i może rysować tylko czcionkami, które ma ten serwer, oraz tymi, które podróżują w samym dokumencie. Jeśli Twojej czcionki nie ma ani tu, ani tu, konwerter wybiera zamiennik. Cała reszta tego poradnika wynika z tego jednego faktu.
+
+  Sprawdziliśmy, jak <a href="/pl/word-to-pdf/">konwerter Word do PDF</a> radzi sobie z popularnymi czcionkami Office, czcionkami niestandardowymi i dokumentami po arabsku. Oto co się dzieje i co możesz z tym zrobić.
+
+  <h2>Czcionki zamieniane na dokładne odpowiedniki</h2>
+
+  <p>Najpopularniejszych czcionek Office nie ma na serwerze z Linuksem, ale mają one darmowe odpowiedniki o takich samych szerokościach znaków. Tekst nimi złożony łamie się dokładnie w tych samych miejscach, więc podziały stron i długości wierszy zostają bez zmian:</p>
+
+  <ul>
+    <li><strong>Arial</strong> → Liberation Sans</li>
+    <li><strong>Times New Roman</strong> → Liberation Serif</li>
+    <li><strong>Courier New</strong> → Liberation Mono</li>
+    <li><strong>Calibri</strong> → Carlito</li>
+    <li><strong>Cambria</strong> → Caladea</li>
+  </ul>
+
+  <p>Kształty liter przy bliższym przyjrzeniu się trochę się różnią, ale dokument na 12 stron zostaje dokumentem na 12 stron. Dwie nowsze czcionki Microsoftu nie mają dokładnego odpowiednika: <strong>Aptos</strong> (nowa domyślna czcionka Office) jest zastępowana przez Carlito, a <strong>Segoe UI</strong> przez Liberation Sans. To najbliższe dostępne szerokości, więc wiersze mogą się lekko przesunąć.</p>
+
+  <h2>Czcionki zastępowane czymś innym</h2>
+
+  <p>Każdej innej czcionki serwer po prostu nie zna: czcionki firmowej, ozdobnego kroju na zaproszenie, czcionki pobranej specjalnie do CV. Konwerter sięga wtedy po podobny styl (bezszeryfowy za bezszeryfowy, szeryfowy za szeryfowy), a wynik zwykle wygląda skromniej i ma inną długość.</p>
+
+  <p>Tego konwerter nie jest w stanie zgadnąć. Plik czcionki musi przyjść razem z dokumentem.</p>
+
+  <h2>Rozwiązanie: osadzanie czcionek w pliku Word</h2>
+
+  <p>Word potrafi zapisać czcionki używane w dokumencie wewnątrz pliku .docx. Przetestowaliśmy to: dokument z osadzoną czcionką, której serwer nie ma, wyszedł z konwertera dokładnie w tej czcionce. Bez osadzania ten sam dokument wyszedł w czcionce zastępczej.</p>
+
+  <ol>
+    <li>W Wordzie wejdź w <strong>Plik</strong>, <strong>Opcje</strong>, <strong>Zapisywanie</strong>.</li>
+    <li>W sekcji o zachowaniu wierności przy udostępnianiu dokumentu zaznacz <strong>Osadź czcionki w pliku</strong>.</li>
+    <li>Zaznacz <strong>Osadź tylko znaki używane w dokumencie</strong>, żeby plik był mały. Do PDF to w zupełności wystarczy.</li>
+    <li>Odznacz <strong>Nie osadzaj typowych czcionek systemowych</strong>, jeśli Twoja czcionka przyszła z Windowsem (Traditional Arabic, Sakkal Majalla, Segoe UI i podobne). Inaczej Word założy, że każdy już je ma, i ich nie dołączy.</li>
+    <li>Zapisz dokument, a potem go skonwertuj.</li>
+  </ol>
+
+  <p>Word na Maca ma tę samą opcję w menu <strong>Word</strong>, <strong>Preferencje</strong>, w ustawieniach zapisywania. Licencje niektórych komercyjnych czcionek zabraniają osadzania. Word po cichu je pomija, więc i tak zostaną zastąpione.</p>
+
+  <h2>Dokumenty po arabsku</h2>
+
+  <p>Przy arabskim problemy z czcionkami widać najbardziej, dlatego sprawdziliśmy go osobno na dokumencie z dziesięcioma popularnymi czcionkami.</p>
+
+  <ul>
+    <li><strong>Sam tekst jest bezpieczny.</strong> Litery łączą się poprawnie, wiersze biegną od prawej do lewej, a cyfry arabsko-indyjskie (٢٠٢٦) zostają takie, jakie są, obok cyfr zachodnich (1500).</li>
+    <li><strong>Windowsowych czcionek arabskich nie ma na serwerze.</strong> Traditional Arabic, Simplified Arabic, Sakkal Majalla i Arabic Typesetting są zastępowane przez <strong>Noto Naskh Arabic</strong>, krój naskh zbliżony wyglądem do tamtych czcionek. Tekst arabski złożony w Arialu, Tahomie albo Calibri dostaje <strong>Noto Sans Arabic</strong>, który pasuje do ich prostszego stylu.</li>
+    <li><strong>Wiersze mogą łamać się w nieco innych miejscach,</strong> bo zastępcze litery nie mają dokładnie tej samej szerokości. Ciasno dopasowany jednostronicowy formularz może wyjść na drugą stronę.</li>
+    <li><strong>Żeby zachować dokładnie oryginalny wygląd,</strong> osadź czcionki tak, jak opisano wyżej, i pamiętaj o odznaczeniu „Nie osadzaj typowych czcionek systemowych”, bo czcionki arabskie są czcionkami systemowymi Windows.</li>
+  </ul>
+
+  <h2>Druga droga: eksport do PDF w samym Wordzie</h2>
+
+  <p>Jeśli masz Worda na komputerze, na którym są zainstalowane te czcionki, <strong>Plik</strong>, <strong>Zapisz jako</strong>, <strong>PDF</strong> użyje ich bezpośrednio. Gdy możesz z tego skorzystać, to najwierniejsza opcja. Konwerter internetowy przydaje się wtedy, gdy jesteś na telefonie, na wspólnym komputerze albo na maszynie bez Worda.</p>
+
+  <h2>Jak sprawdzić, jakie czcionki trafiły do PDF</h2>
+
+  <p>Otwórz PDF w Adobe Acrobat Reader, a potem <strong>Plik</strong>, <strong>Właściwości</strong>, karta <strong>Czcionki</strong>. Zobaczysz listę wszystkich czcionek w pliku. Jeśli widzisz Liberation Sans tam, gdzie użyłeś Ariala, to spodziewany odpowiednik. Jeśli widzisz czcionkę zastępczą tam, gdzie miała być Twoja firmowa, osadź ją i skonwertuj jeszcze raz.</p>
+
+  <h2>Najczęstsze pytania</h2>
+
+  <h3>Dlaczego PDF ma więcej stron niż dokument Word?</h3>
+  <p>Czcionka zastępcza z szerszymi literami sprawia, że wiersze łamią się wcześniej i tekst się wydłuża. Przy czcionkach Office z listy powyżej tak się nie dzieje. Przy czcionkach niestandardowych może, co jest kolejnym powodem, żeby je osadzić.</p>
+
+  <h3>Czy osadzanie czcionek bardzo powiększa plik Word?</h3>
+  <p>Z opcją „Osadź tylko znaki używane w dokumencie” zwykle dochodzi od kilkudziesięciu do kilkuset kilobajtów na czcionkę. Pełna czcionka ze wszystkimi znakami, zwłaszcza chińska, japońska, koreańska albo arabska, może dodać kilka megabajtów.</p>
+
+  <h3>Czy arabski tekst w PDF da się przeszukiwać i kopiować?</h3>
+  <p>Tak. Konwerter zapisuje prawdziwy tekst, a nie obrazki tekstu, więc możesz go wyszukiwać i kopiować.</p>
+
+  <h3>Czy tekst w hindi, po rosyjsku albo po chińsku przetrwa konwersję?</h3>
+  <p>Cyrylicę i grekę obsługują odpowiedniki czcionek Office. Dewanagari i inne pisma są rysowane czcionkami Noto. Tak jak przy arabskim, osadź oryginalną czcionkę, jeśli zależy Ci na dokładnym wyglądzie.</p>
+
+  <h2>Skonwertuj dokument</h2>
+
+  <p>Osadź czcionki, jeśli są nietypowe, zapisz plik i wrzuć go do <a href="/pl/word-to-pdf/">konwertera Word do PDF</a>. Szerszy obraz, czyli układ, tabele i obrazy, znajdziesz w poradniku o tym, <a href="/pl/blog/word-to-pdf-converter-online-free-2025/">jak za każdym razem dostać z Worda czysty PDF</a>.</p>

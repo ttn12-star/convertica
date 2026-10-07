@@ -155,6 +155,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-crosextra-caladea \
     && rm -rf /var/lib/apt/lists/*
 COPY ci/fonts/30-office-aliases.conf /etc/fonts/conf.d/30-office-aliases.conf
+COPY ci/fonts/65-arabic-fallback.conf /etc/fonts/conf.d/65-arabic-fallback.conf
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libnss3 \

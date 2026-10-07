@@ -354,6 +354,13 @@ COVERS = {
         "#c7d2fe",
         "table",
     ),
+    "word-to-pdf-keep-fonts": (
+        "Word to PDF:\nKeep Your Fonts",
+        "WORD → PDF",
+        ("#1d4ed8", "#7c3aed"),
+        "#c4b5fd",
+        "word",
+    ),
     "what-is-pdf-a-and-how-to-convert": (
         "What Is PDF/A?\nArchive-Ready PDFs",
         "PDF · ARCHIVE",

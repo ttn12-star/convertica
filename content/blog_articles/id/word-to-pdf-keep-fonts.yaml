@@ -1,0 +1,106 @@
+slug: word-to-pdf-keep-fonts
+title_id: "Font Berubah Saat Word Dijadikan PDF? Cara Menjaga Font, Termasuk Arab"
+meta_title_id: "Word ke PDF Tanpa Mengubah Font (Arab Juga) | Convertica"
+meta_description_id: "Kenapa konverter Word ke PDF online mengganti font, font mana yang diganti kembaran metrik persis, dan pengaturan Word agar font Anda sendiri yang dipakai."
+meta_keywords_id: "word ke pdf font berubah, cara convert word ke pdf tanpa merubah font, embed font di word, word ke pdf font arab, word ke pdf traditional arabic, font pdf tidak sama dengan word"
+excerpt_id: "Font judul Anda berubah jadi polos, atau teks Arab keluar dengan gaya lain. Berikut apa yang bisa dan tidak bisa dilihat konverter, dan satu pengaturan Word yang membereskannya."
+ai_metadata:
+  topics:
+    - kenapa font berubah saat Word dikonversi ke PDF online
+    - pengganti font Office dengan metrik yang sama
+    - menyematkan font di dokumen Word
+    - font Arab dan teks kanan ke kiri dari Word ke PDF
+    - memeriksa font apa yang dipakai PDF
+  entities:
+    - Microsoft Word
+    - Calibri
+    - Arial
+    - Times New Roman
+    - Traditional Arabic
+    - Noto Naskh Arabic
+    - LibreOffice
+    - Convertica
+  summary: "Menjelaskan bahwa konverter Word ke PDF online hanya bisa memakai font yang terpasang di servernya atau yang tersemat di dokumen, mendaftar font Office yang diganti padanan dengan metrik sama sehingga tata letak tidak bergeser, menunjukkan cara menyematkan font di Word agar konverter memakai font aslinya, membahas dokumen berbahasa Arab (sambungan huruf yang benar, arah kanan ke kiri dan angka, dengan font naskh Windows diganti Noto Naskh Arabic kecuali disematkan), serta cara memeriksa font apa yang akhirnya ada di PDF."
+  related_terms:
+    - font word berubah jadi pdf
+    - cara embed font di word
+    - font arab word ke pdf
+    - font tetap sama saat simpan pdf
+    - penggantian font di pdf
+  reading_time_minutes: 7
+  target_audience: "Siapa saja yang mengonversi file Word dengan font brand, judul dekoratif atau aksara Arab, dan butuh PDF yang tampak sama seperti aslinya."
+content_id: |
+  Word di komputer Anda menggambar teks dengan font yang terpasang di komputer itu. Konverter online berjalan di server, dan ia hanya bisa menggambar dengan font yang ada di server tersebut, ditambah font yang ikut terbawa di dalam dokumen. Kalau font Anda tidak ada di kedua tempat itu, konverter memilih pengganti. Seluruh isi panduan ini berangkat dari satu fakta tersebut.
+
+  Kami memeriksa bagaimana <a href="/id/word-to-pdf/">konverter Word ke PDF</a> menangani font Office yang umum, font kustom dan dokumen berbahasa Arab. Inilah yang terjadi, dan apa yang bisa Anda lakukan.
+
+  <h2>Font yang diganti dengan kembaran persis</h2>
+
+  <p>Font Office yang paling umum tidak ada di server Linux, tapi punya kembaran gratis yang digambar dengan lebar karakter yang sama. Teks yang memakainya pindah baris di titik yang persis sama, jadi batas halaman dan panjang baris Anda tidak bergeser:</p>
+
+  <ul>
+    <li><strong>Arial</strong> → Liberation Sans</li>
+    <li><strong>Times New Roman</strong> → Liberation Serif</li>
+    <li><strong>Courier New</strong> → Liberation Mono</li>
+    <li><strong>Calibri</strong> → Carlito</li>
+    <li><strong>Cambria</strong> → Caladea</li>
+  </ul>
+
+  <p>Bentuk hurufnya sedikit berbeda kalau diperhatikan dari dekat, tapi dokumen 12 halaman tetap 12 halaman. Dua font Microsoft yang lebih baru tidak punya kembaran persis: <strong>Aptos</strong> (font bawaan Office yang baru) diganti Carlito dan <strong>Segoe UI</strong> diganti Liberation Sans, yang lebarnya paling mendekati, sehingga baris bisa sedikit bergeser.</p>
+
+  <h2>Font yang diganti dengan sesuatu yang berbeda</h2>
+
+  <p>Font lain, entah font brand, font tulisan tangan untuk undangan, atau font yang Anda unduh untuk CV, tidak dikenal server. Konverter beralih ke gaya yang mirip (sans untuk sans, serif untuk serif), dan hasilnya biasanya tampak lebih polos dan panjang teksnya jadi berbeda. Inilah penyebab paling umum keluhan "word ke pdf font berubah".</p>
+
+  <p>Konverter tidak bisa menebak jalan keluarnya sendiri. File font itu harus ikut bersama dokumen.</p>
+
+  <h2>Solusinya: sematkan font di file Word</h2>
+
+  <p>Word bisa menyimpan font yang dipakai dokumen di dalam file .docx. Kami sudah mengujinya: dokumen dengan font tersemat yang tidak ada di server keluar dari konverter dengan font yang persis sama. Tanpa penyematan, dokumen yang sama keluar dengan font pengganti. Jadi kalau Anda mencari cara convert Word ke PDF tanpa merubah font, inilah langkahnya.</p>
+
+  <ol>
+    <li>Di Word, buka <strong>File</strong>, <strong>Options</strong>, <strong>Save</strong>.</li>
+    <li>Di bawah "Preserve fidelity when sharing this document", centang <strong>Embed fonts in the file</strong>.</li>
+    <li>Centang <strong>Embed only the characters used in the document</strong> agar file tetap kecil. Untuk PDF, itu sudah cukup.</li>
+    <li>Hilangkan centang <strong>Do not embed common system fonts</strong> kalau font Anda bawaan Windows (Traditional Arabic, Sakkal Majalla, Segoe UI dan sejenisnya). Kalau tidak, Word menganggap semua orang sudah punya font itu dan tidak menyertakannya.</li>
+    <li>Simpan dokumen, lalu konversi.</li>
+  </ol>
+
+  <p>Di Mac, Word for Mac punya opsi yang sama di <strong>Word</strong>, <strong>Preferences</strong>, <strong>Save</strong>. Sebagian font komersial melarang penyematan dalam lisensinya; Word diam-diam melewatkan font seperti itu, dan font tersebut tetap akan diganti.</p>
+
+  <h2>Dokumen berbahasa Arab</h2>
+
+  <p>Masalah font paling kelihatan pada teks Arab, jadi kami mengujinya terpisah dengan dokumen yang memakai sepuluh font umum.</p>
+
+  <ul>
+    <li><strong>Teksnya sendiri aman.</strong> Huruf tersambung dengan benar, baris berjalan dari kanan ke kiri, dan angka Arab-India (٢٠٢٦) tetap seperti aslinya di samping angka Barat (1500).</li>
+    <li><strong>Font Arab Windows tidak ada di server.</strong> Traditional Arabic, Simplified Arabic, Sakkal Majalla dan Arabic Typesetting diganti <strong>Noto Naskh Arabic</strong>, desain naskh yang mirip dengan tampilan font-font tersebut. Teks Arab yang memakai Arial, Tahoma atau Calibri menggunakan <strong>Noto Sans Arabic</strong>, yang cocok dengan gaya mereka yang lebih polos.</li>
+    <li><strong>Baris bisa terpotong di tempat yang sedikit berbeda,</strong> karena huruf pengganti tidak persis sama lebarnya. Formulir satu halaman yang pas-pasan bisa meluber ke halaman kedua.</li>
+    <li><strong>Untuk tampilan yang persis seperti asli,</strong> sematkan font seperti dijelaskan di atas, dan jangan lupa hilangkan centang "Do not embed common system fonts", karena font Arab itu termasuk font sistem Windows.</li>
+  </ul>
+
+  <h2>Jalur lain: ekspor PDF bawaan Word</h2>
+
+  <p>Kalau Anda punya Word di komputer tempat font itu terpasang, <strong>File</strong>, <strong>Save As</strong>, <strong>PDF</strong> langsung memakai font tersebut. Itulah pilihan paling setia kalau memungkinkan. Konverter online menjadi jawabannya saat Anda memakai ponsel, komputer bersama, atau perangkat tanpa Word.</p>
+
+  <h2>Cara memeriksa font apa yang masuk ke PDF</h2>
+
+  <p>Buka PDF di Adobe Acrobat Reader, lalu <strong>File</strong>, <strong>Properties</strong>, tab <strong>Fonts</strong>. Semua font di file itu tercantum di sana. Kalau Anda melihat Liberation Sans padahal Anda memakai Arial, itu memang kembaran yang diharapkan. Kalau yang muncul font pengganti padahal Anda mengharapkan font brand Anda, sematkan font itu lalu konversi lagi.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Kenapa PDF saya punya lebih banyak halaman daripada dokumen Word-nya?</h3>
+  <p>Font pengganti dengan huruf yang lebih lebar membuat baris pindah lebih awal, dan teks jadi memanjang. Dengan font Office di daftar atas, hal ini tidak terjadi. Dengan font kustom bisa terjadi, dan itu satu alasan lagi untuk menyematkannya.</p>
+
+  <h3>Apakah menyematkan font membuat file Word jauh lebih besar?</h3>
+  <p>Dengan "Embed only the characters used", biasanya tambahannya puluhan sampai beberapa ratus kilobyte per font. Font lengkap dengan semua karakternya, terutama font CJK atau Arab, bisa menambah beberapa megabyte.</p>
+
+  <h3>Apakah teks Arab di PDF bisa dicari dan disalin?</h3>
+  <p>Ya. Konverter menulis teks sungguhan, bukan gambar teks, jadi Anda bisa mencari dan menyalinnya.</p>
+
+  <h3>Apakah teks Hindi, Rusia atau Tionghoa tetap aman?</h3>
+  <p>Aksara Sirilik dan Yunani sudah tercakup oleh kembaran font Office. Devanagari dan aksara lain digambar dengan font Noto. Sama seperti Arab, sematkan font aslinya kalau desain persisnya penting.</p>
+
+  <h2>Konversi dokumen Anda</h2>
+
+  <p>Sematkan font kalau font Anda tidak umum, simpan, lalu masukkan filenya ke <a href="/id/word-to-pdf/">konverter Word ke PDF</a>. Untuk gambaran lebih luas soal tata letak, tabel dan gambar, baca <a href="/id/blog/word-to-pdf-converter-online-free-2025/">cara selalu mendapat PDF yang rapi dari Word</a>.</p>

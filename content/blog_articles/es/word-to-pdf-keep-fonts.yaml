@@ -1,0 +1,106 @@
+slug: word-to-pdf-keep-fonts
+title_es: "¿Al pasar Word a PDF cambia la fuente? Cómo conservarla, también en árabe"
+meta_title_es: "Word a PDF sin perder fuentes (también árabe) | Convertica"
+meta_description_es: "Por qué un conversor de Word a PDF en línea cambia la fuente, cuáles sustituye por gemelas con las mismas métricas y el ajuste de Word para que use la tuya."
+meta_keywords_es: "word a pdf cambia la fuente, convertir word a pdf sin perder fuentes, incrustar fuentes en word, word a pdf fuente árabe, word a pdf traditional arabic, conservar fuentes en pdf"
+excerpt_es: "La fuente de tus títulos se volvió algo sin gracia, o el texto en árabe salió con otro estilo. Esto es lo que el conversor puede ver y lo que no, y el único ajuste de Word que lo arregla."
+ai_metadata:
+  topics:
+    - por qué cambian las fuentes al convertir Word a PDF en línea
+    - sustitutos con las mismas métricas para las fuentes de Office
+    - incrustar fuentes en un documento de Word
+    - fuentes árabes y texto de derecha a izquierda al pasar Word a PDF
+    - comprobar qué fuentes usa un PDF
+  entities:
+    - Microsoft Word
+    - Calibri
+    - Arial
+    - Times New Roman
+    - Traditional Arabic
+    - Noto Naskh Arabic
+    - LibreOffice
+    - Convertica
+  summary: "Explica que un conversor de Word a PDF en línea solo puede usar las fuentes instaladas en su servidor o incrustadas en el documento, enumera las fuentes de Office que se sustituyen por equivalentes con las mismas métricas para que el diseño no se mueva, muestra cómo incrustar fuentes en Word para que el conversor use la tipografía original, trata los documentos en árabe (unión correcta de letras, orden de derecha a izquierda y cifras, con las fuentes naskh de Windows sustituidas por Noto Naskh Arabic salvo que se incrusten) y explica cómo comprobar qué fuentes acabaron en el PDF."
+  related_terms:
+    - word a pdf cambia la letra
+    - cómo incrustar fuentes en word
+    - fuente árabe word a pdf
+    - mantener la fuente al guardar como pdf
+    - sustitución de fuentes en pdf
+  reading_time_minutes: 7
+  target_audience: "Cualquiera que convierte archivos de Word con fuentes corporativas, títulos decorativos o escritura árabe y necesita que el PDF se vea como el original."
+content_es: |
+  Word, en tu ordenador, dibuja el texto con las fuentes instaladas en tu ordenador. Un conversor en línea funciona en un servidor y solo puede dibujar con las fuentes que tiene ese servidor, más las que viajen dentro del propio documento. Si tu fuente no está en ninguno de los dos sitios, el conversor elige una sustituta. Todo lo que cuenta esta guía sale de ese único hecho.
+
+  Comprobamos cómo trata el <a href="/es/word-to-pdf/">conversor de Word a PDF</a> las fuentes habituales de Office, las fuentes personalizadas y los documentos en árabe. Esto es lo que pasa y lo que puedes hacer al respecto.
+
+  <h2>Fuentes que se cambian por gemelas exactas</h2>
+
+  <p>Las fuentes de Office más comunes no están en un servidor Linux, pero tienen gemelas gratuitas dibujadas con los mismos anchos de carácter. El texto escrito con ellas salta de línea exactamente en los mismos sitios, así que los saltos de página y la longitud de las líneas no se mueven:</p>
+
+  <ul>
+    <li><strong>Arial</strong> → Liberation Sans</li>
+    <li><strong>Times New Roman</strong> → Liberation Serif</li>
+    <li><strong>Courier New</strong> → Liberation Mono</li>
+    <li><strong>Calibri</strong> → Carlito</li>
+    <li><strong>Cambria</strong> → Caladea</li>
+  </ul>
+
+  <p>Si te fijas bien, la forma de las letras cambia un poco, pero un documento de 12 páginas sigue teniendo 12. Dos fuentes más recientes de Microsoft no tienen gemela exacta: <strong>Aptos</strong> (la nueva fuente predeterminada de Office) se sustituye por Carlito y <strong>Segoe UI</strong> por Liberation Sans, que son los anchos más parecidos disponibles, así que las líneas pueden desplazarse un poco.</p>
+
+  <h2>Fuentes que se sustituyen por otra distinta</h2>
+
+  <p>Cualquier otra, ya sea una fuente corporativa, una caligráfica para una invitación o una que descargaste para el currículum, es desconocida para el servidor. El conversor recurre a un estilo parecido (sin serifa por sin serifa, con serifa por con serifa), y el resultado suele verse más sencillo y ocupar una longitud distinta.</p>
+
+  <p>Eso no es algo que un conversor pueda adivinar. El archivo de la fuente tiene que acompañar al documento.</p>
+
+  <h2>La solución: incrustar las fuentes en el archivo de Word</h2>
+
+  <p>Word puede guardar dentro del .docx las fuentes que usa el documento. Lo probamos: un documento con una fuente incrustada que el servidor no tiene salió del conversor con esa misma fuente. Sin incrustarla, el mismo documento salió con una fuente de reserva.</p>
+
+  <ol>
+    <li>En Word, ve a <strong>Archivo</strong>, <strong>Opciones</strong>, <strong>Guardar</strong>.</li>
+    <li>En el apartado para conservar la fidelidad al compartir el documento, marca <strong>Incrustar fuentes en el archivo</strong>.</li>
+    <li>Marca <strong>Incrustar solo los caracteres utilizados en el documento</strong> para que el archivo no crezca. Para un PDF no necesitas más.</li>
+    <li>Desmarca <strong>No incrustar fuentes comunes del sistema</strong> si tu fuente venía con Windows (Traditional Arabic, Sakkal Majalla, Segoe UI y similares). Si no, Word da por hecho que todo el mundo ya las tiene y las deja fuera.</li>
+    <li>Guarda el documento y luego conviértelo.</li>
+  </ol>
+
+  <p>En Mac, Word para Mac tiene la misma opción en <strong>Word</strong>, <strong>Preferencias</strong>, <strong>Guardar</strong>. Algunas fuentes comerciales prohíben la incrustación en su licencia; Word se las salta sin avisar y seguirán sustituyéndose.</p>
+
+  <h2>Documentos en árabe</h2>
+
+  <p>El árabe es donde más se notan los problemas de fuentes, así que lo probamos aparte con un documento que usaba diez fuentes habituales.</p>
+
+  <ul>
+    <li><strong>El texto en sí no corre peligro.</strong> Las letras se unen correctamente, las líneas van de derecha a izquierda y las cifras arábigo-índicas (٢٠٢٦) se mantienen tal cual junto a las cifras occidentales (1500).</li>
+    <li><strong>Las fuentes árabes de Windows no están en el servidor.</strong> Traditional Arabic, Simplified Arabic, Sakkal Majalla y Arabic Typesetting se sustituyen por <strong>Noto Naskh Arabic</strong>, un diseño naskh parecido al aspecto de esas fuentes. El texto árabe escrito en Arial, Tahoma o Calibri usa <strong>Noto Sans Arabic</strong>, que encaja con su estilo más sencillo.</li>
+    <li><strong>Las líneas pueden cortarse en sitios algo distintos,</strong> porque las letras sustitutas no tienen exactamente el mismo ancho. Un formulario de una página muy ajustado puede pasar a una segunda.</li>
+    <li><strong>Para el aspecto original exacto,</strong> incrusta las fuentes como se explica arriba y acuérdate de desmarcar «No incrustar fuentes comunes del sistema», porque las fuentes árabes son fuentes del sistema de Windows.</li>
+  </ul>
+
+  <h2>La otra vía: la exportación a PDF del propio Word</h2>
+
+  <p>Si tienes Word en el ordenador donde están instaladas las fuentes, <strong>Archivo</strong>, <strong>Guardar como</strong>, <strong>PDF</strong> usa esas fuentes directamente. Es la opción más fiel cuando puedes usarla. Un conversor en línea es la respuesta cuando estás en el móvil, en un ordenador compartido o en un equipo sin Word.</p>
+
+  <h2>Cómo comprobar qué fuentes acabaron en el PDF</h2>
+
+  <p>Abre el PDF en Adobe Acrobat Reader y ve a <strong>Archivo</strong>, <strong>Propiedades</strong>, pestaña <strong>Fuentes</strong>. Ahí aparecen todas las fuentes del archivo. Si ves Liberation Sans donde usaste Arial, es la gemela esperada. Si ves una fuente de reserva donde esperabas tu fuente corporativa, incrústala y convierte de nuevo.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Por qué mi PDF tiene más páginas que el documento de Word?</h3>
+  <p>Una fuente sustituta con letras más anchas hace que las líneas salten antes y el texto crezca. Con las fuentes de Office de la lista de arriba no pasa. Con fuentes personalizadas puede pasar, y es un motivo más para incrustarlas.</p>
+
+  <h3>¿Incrustar fuentes hace mucho más grande el archivo de Word?</h3>
+  <p>Con «Incrustar solo los caracteres utilizados» suele añadir entre decenas y unos cientos de kilobytes por fuente. Una fuente completa con todos sus caracteres, sobre todo una CJK o árabe, puede añadir varios megabytes.</p>
+
+  <h3>¿Se puede buscar y copiar mi texto en árabe en el PDF?</h3>
+  <p>Sí. El conversor escribe texto real, no imágenes de texto, así que puedes buscarlo y copiarlo.</p>
+
+  <h3>¿Sobrevive el texto en hindi, ruso o chino?</h3>
+  <p>El cirílico y el griego están cubiertos por las gemelas de las fuentes de Office. El devanagari y otras escrituras se dibujan con fuentes Noto. Igual que con el árabe, incrusta la fuente original si te importa el diseño exacto.</p>
+
+  <h2>Convierte tu documento</h2>
+
+  <p>Si tus fuentes son poco habituales, incrústalas, guarda y arrastra el archivo al <a href="/es/word-to-pdf/">conversor de Word a PDF</a>. Para una visión más amplia sobre diseño, tablas e imágenes, mira <a href="/es/blog/word-to-pdf-converter-online-free-2025/">cómo conseguir siempre un PDF limpio desde Word</a>.</p>
