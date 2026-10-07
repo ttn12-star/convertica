@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import time
 from collections.abc import Callable
 from io import BytesIO
 
@@ -92,16 +93,31 @@ TARGET_STEPS = [
 ]
 
 
-def _shrink_to_target(processor, op, output_path: str, target: int, level: str) -> None:
+# Extra seconds the target search may add on top of the plain compression.
+# The page posts synchronously and Cloudflare cuts a request at 100 s.
+TARGET_TIME_BUDGET = 45
+
+
+def _shrink_to_target(
+    processor, op, output_path: str, target: int, level: str, pass_seconds: float
+) -> None:
     """Replace output_path with the mildest step result that fits target.
 
     Sizes fall as steps get harsher, so: try the harshest first (if even that
     doesn't fit, nothing will; keep the smallest file we have), binary search
     the rest, then one pass halfway between the step that missed and the one
-    that fit, because the steps are coarse. At most ~5 extra passes.
+    that fit, because the steps are coarse. At most ~5 extra passes, fewer
+    when a pass is slow: the search stops at the best fit found so far once
+    the next pass (estimated from the plain one) would overrun the budget.
+    ponytail: per-pass estimate is linear; route big scans to async if needed.
     """
     tmp_dir = os.path.dirname(output_path)
     results = {}
+    deadline = time.monotonic() + TARGET_TIME_BUDGET
+    est = max(pass_seconds, 0.1) * 1.5  # image passes cost more than a plain save
+
+    def affordable() -> bool:
+        return time.monotonic() + est <= deadline
 
     def attempt(step: tuple[int, int]) -> int:
         path = os.path.join(tmp_dir, f"_target_q{step[0]}_d{step[1]}.pdf")
@@ -113,13 +129,15 @@ def _shrink_to_target(processor, op, output_path: str, target: int, level: str) 
 
     steps = TARGET_STEPS
     last = len(steps) - 1
+    if not affordable():
+        return  # keep the level's result; the page reports the miss
     if attempt(steps[last]) > target:
         best = steps[last]
         if results[best][0] >= os.path.getsize(output_path):
             best = None  # the level's own result is already the smallest
     else:
         lo, hi = 0, last  # invariant: steps[hi] fits
-        while lo < hi:
+        while lo < hi and affordable():
             mid = (lo + hi) // 2
             if attempt(steps[mid]) <= target:
                 hi = mid
@@ -129,7 +147,7 @@ def _shrink_to_target(processor, op, output_path: str, target: int, level: str) 
         if hi > 0:
             (q1, d1), (q2, d2) = steps[hi - 1], steps[hi]
             between = ((q1 + q2) // 2, (d1 + d2) // 2)
-            if between not in results and attempt(between) <= target:
+            if between not in results and affordable() and attempt(between) <= target:
                 best = between
     try:
         if best is not None:
@@ -474,6 +492,7 @@ def compress_pdf(
 
             return output_path
 
+        started = time.monotonic()
         processor.run_pdf_operation_with_repair(
             _op,
             output_path=output_path,
@@ -481,7 +500,14 @@ def compress_pdf(
         )
         target = target_size_kb * 1024 if target_size_kb else None
         if target and os.path.getsize(output_path) > target:
-            _shrink_to_target(processor, _op, output_path, target, compression_level)
+            _shrink_to_target(
+                processor,
+                _op,
+                output_path,
+                target,
+                compression_level,
+                pass_seconds=time.monotonic() - started,
+            )
         processor.validate_output_pdf(output_path, min_size=1000)
         return pdf_path, output_path
 
