@@ -107,7 +107,7 @@ PDF_ORGANIZE_CONFIGS = {
                 {
                     "question": _("Is there a file size limit for merging?"),
                     "answer": _(
-                        "There is no page limit. The files can add up to 50 MB for each file you merge (two files up to 100 MB in total), with an overall ceiling of about 200 MB per upload."
+                        "There is no page limit. Free users can upload up to 50 MB per file you merge (two files up to 100 MB in total); Premium users up to 200 MB per file. Either way, one upload is capped at about 200 MB."
                     ),
                 },
                 {
