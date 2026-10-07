@@ -8,6 +8,7 @@ from django.http import FileResponse, HttpRequest
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from src.api.conversion_limits import get_max_file_size_for_user
 from src.api.file_validation import scrub_internal_paths
 from src.exceptions import (
     ConversionError,
@@ -37,7 +38,6 @@ class SplitPDFAPIView(APIView):
     """Handle PDF split requests."""
 
     CONVERSION_TYPE = "SPLIT_PDF"
-    MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
 
     def get_serializer_class(self):
         return SplitPDFSerializer
@@ -66,8 +66,9 @@ class SplitPDFAPIView(APIView):
             split_type = serializer.validated_data.get("split_type", "page")
             pages = serializer.validated_data.get("pages")
 
-            if pdf_file.size > self.MAX_UPLOAD_SIZE:
-                max_size_mb = int(self.MAX_UPLOAD_SIZE / (1024 * 1024))
+            max_size = get_max_file_size_for_user(request.user, "split_pdf")
+            if pdf_file.size > max_size:
+                max_size_mb = int(max_size / (1024 * 1024))
                 return Response(
                     {"error": "File too large. Maximum size is %d MB." % max_size_mb},
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
