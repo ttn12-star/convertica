@@ -310,6 +310,14 @@ class FrontendViewsTestCase(TestCase):
             self.assertContains(self.client.get("/sitemap-en.xml"), 'hreflang="ru"')
             self.assertNotContains(self.client.get("/sitemap-en.xml"), 'hreflang="hi"')
 
+    def test_all_locales_indexable_by_default(self):
+        """hi/id went back into the index 2026-10-07 (ADR 003 reverted)."""
+        hi = self.client.get("/hi/pdf-to-word/")
+        self.assertTrue(self._extract_robots(hi).startswith("index, follow"))
+        self.assertContains(self.client.get("/en/pdf-to-word/"), 'hreflang="id"')
+        self.assertContains(self.client.get("/sitemap.xml"), "sitemap-hi.xml")
+        self.assertContains(self.client.get("/sitemap-id.xml"), "<loc>")
+
     def test_blog_search_is_noindex_and_canonicalizes_to_listing(self):
         """Internal search should not be indexed."""
         response = self.client.get(f"{self._get_url_with_lang('blog/')}?q=pdf")

@@ -2496,7 +2496,7 @@ def sitemap_index(request):
 
     from django.core.cache import cache
 
-    cache_key = "sitemap_index_v3"
+    cache_key = "sitemap_index_v4"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
@@ -2544,7 +2544,7 @@ def sitemap_lang(request, lang: str):
     # v8: image/password-protect-image/ (v7) + /pdf-edit/page-size/ — both
     # landed as v7 on separate branches, so bump again or the cached
     # sitemap never picks up the second one.
-    cache_key = f"sitemap_{lang}_v11"
+    cache_key = f"sitemap_{lang}_v12"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")

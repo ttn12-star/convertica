@@ -645,12 +645,11 @@ LANGUAGES = [
     ("ar", "العربية"),
 ]
 
-# Locales Google has crawled and rejected wholesale since 2026-06 (GSC
-# "crawled, currently not indexed" is almost entirely /hi/ and /id/, and it
-# keeps re-crawling them instead of discovering new /en/ pages). They stay
-# reachable for users but are noindex'd and dropped from sitemaps + hreflang so
-# crawl budget goes to locales that do get indexed. Empty the list to re-enable.
-SEO_NOINDEX_LANGUAGES = ["hi", "id"]
+# Locales kept out of every search index: noindex'd and dropped from sitemaps +
+# hreflang, still reachable for users. hi/id were here 2026-09-09..10-07 (ADR 003)
+# to free Google crawl budget; the crawl rate didn't move, while Bing lost the
+# clicks it was sending to /id/blog/. The meta tag hits all engines, not just Google.
+SEO_NOINDEX_LANGUAGES: list[str] = []
 
 # Language detection settings
 # LocaleMiddleware will automatically detect language from:
