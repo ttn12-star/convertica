@@ -11,6 +11,7 @@ import os
 import tempfile
 
 import openpyxl
+from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.properties import PageSetupProperties
 from src.api.pdf_convert.excel_to_pdf.utils import _apply_print_fit
@@ -102,6 +103,66 @@ def test_user_choice_overrides_author_scale():
         assert ws.page_setup.orientation == "landscape"
 
 
+def test_paper_defaults_to_a4_but_author_letter_stays():
+    # No paperSize means US Letter in OOXML; every converted sheet came out Letter.
+    with tempfile.TemporaryDirectory() as d:
+        p = os.path.join(d, "paper.xlsx")
+        wb = openpyxl.Workbook()
+        wb.active["A1"] = "x"
+        letter = wb.create_sheet("Letter")
+        letter["A1"] = "x"
+        letter.page_setup.paperSize = 1
+        wb.save(p)
+        _apply_print_fit(p, {}, fit_mode="actual")
+        wb = openpyxl.load_workbook(p)
+        assert int(wb.worksheets[0].page_setup.paperSize) == 9
+        assert int(wb.worksheets[1].page_setup.paperSize) == 1
+
+
+def test_whitespace_past_the_table_is_emptied_and_nothing_else():
+    # A lone " " in AZ500 shrank the whole table to 2.4pt and added a blank page.
+    with tempfile.TemporaryDirectory() as d:
+        p = os.path.join(d, "stray.xlsx")
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        for r in range(1, 31):
+            for c in range(1, 7):
+                ws.cell(r, c, f"r{r}c{c}")
+        ws["C5"] = " "  # inside the table: keep
+        ws["G2"] = " "  # stops F2's text from running on: keep
+        ws["AZ500"] = " "
+        ws["AZ500"].fill = PatternFill("solid", fgColor="FFFF00")
+        ws.print_title_rows = "1:1"
+        fill_only = wb.create_sheet("Fill")
+        fill_only["A1"] = "x"
+        fill_only["AZ500"].fill = PatternFill("solid", fgColor="FFFF00")
+        wb.save(p)
+        _apply_print_fit(p, {})
+        wb = openpyxl.load_workbook(p)
+        ws, fill_only = wb.worksheets
+        assert ws["AZ500"].value is None
+        assert ws["AZ500"].fill.fgColor.rgb.endswith("FFFF00")  # format kept
+        assert ws["C5"].value == " " and ws["G2"].value == " "
+        assert ws["F30"].value == "r30c6"
+        assert ws.print_title_rows == "$1:$1", ws.print_title_rows
+        # A fill alone isn't printed: no flip to landscape.
+        assert fill_only.page_setup.orientation != "landscape"
+
+
+def test_books_with_formulas_keep_their_blanks():
+    # COUNTA/ISBLANK over a " " would change once LibreOffice recalculates.
+    with tempfile.TemporaryDirectory() as d:
+        p = os.path.join(d, "formulas.xlsx")
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.append(["a", "b"])
+        ws["B8"] = " "
+        ws["E1"] = "=COUNTA(B1:B100)"
+        wb.save(p)
+        _apply_print_fit(p, {})
+        assert openpyxl.load_workbook(p).active["B8"].value == " "
+
+
 if __name__ == "__main__":
     test_wide_table_fits_and_goes_landscape()
     test_narrow_table_fits_but_stays_portrait()
@@ -110,4 +171,7 @@ if __name__ == "__main__":
     test_forced_portrait_overrides_wide_heuristic()
     test_actual_mode_leaves_size_untouched()
     test_user_choice_overrides_author_scale()
+    test_paper_defaults_to_a4_but_author_letter_stays()
+    test_whitespace_past_the_table_is_emptied_and_nothing_else()
+    test_books_with_formulas_keep_their_blanks()
     print("OK: all print-fit checks passed")
