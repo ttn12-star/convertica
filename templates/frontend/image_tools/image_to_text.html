@@ -12,20 +12,20 @@
       </label>
       <select id="ocrLanguageSelect" name="language"
               class="w-full sm:w-auto min-w-[260px] px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-violet-500 focus:border-violet-500 bg-white text-gray-900 text-sm">
-        <option value="auto" selected>{% trans "Auto-detect" %}</option>
+        <option value="auto"{% if LANGUAGE_CODE == "en" %} selected{% endif %}>{% trans "Auto-detect" %}</option>
         <option value="en">{% trans "English" %}</option>
-        <option value="ru">{% trans "Russian" %}</option>
+        <option value="ru"{% if LANGUAGE_CODE == "ru" %} selected{% endif %}>{% trans "Russian" %}</option>
         <option value="de">{% trans "German" %}</option>
         <option value="fr">{% trans "French" %}</option>
-        <option value="es">{% trans "Spanish" %}</option>
+        <option value="es"{% if LANGUAGE_CODE == "es" %} selected{% endif %}>{% trans "Spanish" %}</option>
         <option value="it">{% trans "Italian" %}</option>
         <option value="pt">{% trans "Portuguese" %}</option>
-        <option value="pl">{% trans "Polish" %}</option>
+        <option value="pl"{% if LANGUAGE_CODE == "pl" %} selected{% endif %}>{% trans "Polish" %}</option>
         <option value="tr">{% trans "Turkish" %}</option>
         <option value="uk">{% trans "Ukrainian" %}</option>
-        <option value="hi">{% trans "Hindi" %}</option>
-        <option value="id">{% trans "Indonesian" %}</option>
-        <option value="ar">{% trans "Arabic" %}</option>
+        <option value="hi"{% if LANGUAGE_CODE == "hi" %} selected{% endif %}>{% trans "Hindi" %}</option>
+        <option value="id"{% if LANGUAGE_CODE == "id" %} selected{% endif %}>{% trans "Indonesian" %}</option>
+        <option value="ar"{% if LANGUAGE_CODE == "ar" %} selected{% endif %}>{% trans "Arabic" %}</option>
         <option value="zh-cn">{% trans "Chinese (Simplified)" %}</option>
         <option value="zh-tw">{% trans "Chinese (Traditional)" %}</option>
         <option value="ja">{% trans "Japanese" %}</option>
