@@ -21,8 +21,37 @@
           {% trans "Choose compression level based on your needs. Higher compression reduces file size more but takes longer." %}
         </p>
       </div>
+      <!-- Target size: portals and forms often cap uploads (100 KB, 1 MB...) -->
+      <div>
+        <label for="target_size_kb" class="block text-sm font-semibold text-gray-700 mb-2">
+          {% trans "Target file size" %}
+        </label>
+        <select id="target_size_kb" name="target_size_kb"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+          <option value="" selected>{% trans "No target (use the compression level)" %}</option>
+          <option value="100">100 {% trans "KB" %}</option>
+          <option value="200">200 {% trans "KB" %}</option>
+          <option value="500">500 {% trans "KB" %}</option>
+          <option value="1024">1 {% trans "MB" %}</option>
+          <option value="2048">2 {% trans "MB" %}</option>
+          <option value="5120">5 {% trans "MB" %}</option>
+        </select>
+        <p class="mt-1.5 text-xs text-gray-500">
+          {% trans "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make." %}
+        </p>
+      </div>
     </div>
   </div>
+  <script nonce="{{ csp_nonce }}">
+    window.COMPRESS_I18N = {
+      compressed: "{% filter escapejs %}{% trans 'File compressed' %}{% endfilter %}",
+      processed: "{% filter escapejs %}{% trans 'File processed' %}{% endfilter %}",
+      original: "{% filter escapejs %}{% trans 'Original size' %}{% endfilter %}",
+      result: "{% filter escapejs %}{% trans 'Compressed size' %}{% endfilter %}",
+      saved: "{% filter escapejs %}{% trans 'Size reduction' %}{% endfilter %}",
+      targetMissed: "{% filter escapejs %}{% trans 'Could not get below {target}. This is the smallest version we could make.' %}{% endfilter %}"
+    };
+  </script>
 {% endblock %}
 
 {% block help_section %}

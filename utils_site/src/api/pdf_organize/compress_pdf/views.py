@@ -130,8 +130,12 @@ class CompressPDFAPIView(BaseConversionAPIView):
             compression_level = serializer.validated_data.get(
                 "compression_level", "medium"
             )
+            target_size_kb = serializer.validated_data.get("target_size_kb")
             pdf_path, output_path = compress_pdf(
-                uploaded_file, compression_level=compression_level, suffix="_convertica"
+                uploaded_file,
+                compression_level=compression_level,
+                suffix="_convertica",
+                target_size_kb=target_size_kb,
             )
             tmp_dir = os.path.dirname(pdf_path)
 
@@ -154,6 +158,11 @@ class CompressPDFAPIView(BaseConversionAPIView):
             response["X-Output-Size"] = str(output_size)
             response["X-Compression-Ratio"] = f"{compression_ratio:.2f}"
             response["X-Compression-Level"] = compression_level
+            if target_size_kb:
+                response["X-Target-Size-Kb"] = str(target_size_kb)
+                response["X-Target-Met"] = (
+                    "true" if output_size <= target_size_kb * 1024 else "false"
+                )
 
             # Log success
             log_conversion_success(
@@ -179,6 +188,9 @@ class CompressPDFAPIView(BaseConversionAPIView):
         """Compress PDF."""
         compression_level = kwargs.get("compression_level", "medium")
         pdf_path, output_path = compress_pdf(
-            uploaded_file, compression_level=compression_level, suffix="_convertica"
+            uploaded_file,
+            compression_level=compression_level,
+            suffix="_convertica",
+            target_size_kb=kwargs.get("target_size_kb"),
         )
         return pdf_path, output_path

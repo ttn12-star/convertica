@@ -36,4 +36,5 @@ class CompressPDFAsyncAPIView(AsyncConversionAPIView):
         """Pass compression level parameter."""
         return {
             "compression_level": validated_data.get("compression_level", "medium"),
+            "target_size_kb": validated_data.get("target_size_kb"),
         }

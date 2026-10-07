@@ -17430,3 +17430,36 @@ msgstr "इमेज को पासवर्ड-सुरक्षित PDF �
 #: templates/users/account_status.html
 msgid "From day 1"
 msgstr "पहले दिन से"
+
+msgid "Target file size"
+msgstr "लक्ष्य फ़ाइल आकार"
+
+msgid "No target (use the compression level)"
+msgstr "कोई लक्ष्य नहीं (संपीड़न स्तर के अनुसार)"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make."
+msgstr "फ़ाइल के तय आकार में आने तक छवियों की गुणवत्ता धीरे-धीरे घटाई जाती है। जिस PDF में ज़्यादातर टेक्स्ट हो, वह शायद इतना छोटा न हो पाए; तब आपको सबसे छोटा संस्करण मिलेगा जो हम बना सकते हैं।"
+
+msgid "File compressed"
+msgstr "फ़ाइल संपीड़ित हो गई"
+
+msgid "File processed"
+msgstr "फ़ाइल प्रोसेस हो गई"
+
+msgid "Original size"
+msgstr "मूल आकार"
+
+msgid "Compressed size"
+msgstr "संपीड़ित आकार"
+
+msgid "Size reduction"
+msgstr "आकार में कमी"
+
+msgid "Could not get below {target}. This is the smallest version we could make."
+msgstr "{target} से कम नहीं हो सका। यह सबसे छोटा संस्करण है जो हम बना पाए।"

@@ -168,10 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (inputSize && outputSize && compressionRatio) {
                 // This is a compression response - show compression notification
+                const targetKb = response.headers.get('X-Target-Size-Kb');
                 showCompressionNotification(
                     parseInt(inputSize),
                     parseInt(outputSize),
-                    parseFloat(compressionRatio)
+                    parseFloat(compressionRatio),
+                    response.headers.get('X-Target-Met') === 'false' && targetKb
+                        ? parseInt(targetKb) * 1024 : null
                 );
             }
 
@@ -272,7 +275,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
     };
 
-    function showCompressionNotification(inputSize, outputSize, compressionRatio) {
+    function showCompressionNotification(inputSize, outputSize, compressionRatio, missedTarget) {
+        const t = Object.assign({
+            compressed: 'File compressed', processed: 'File processed',
+            original: 'Original size', result: 'Compressed size', saved: 'Size reduction',
+            targetMissed: 'Could not get below {target}. This is the smallest version we could make.'
+        }, window.COMPRESS_I18N || {});
         // Create notification container if it doesn't exist
         let notificationContainer = document.getElementById('compressionNotification');
         if (!notificationContainer) {
@@ -320,21 +328,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="flex-1 min-w-0">
                         <h4 class="text-lg font-bold ${textColor} mb-2">
-                            ${compressionRatio > 0 ? '✓ File Compressed Successfully!' : 'File Processed'}
+                            ${compressionRatio > 0 ? '✓ ' + t.compressed : t.processed}
                         </h4>
                         <div class="space-y-2 text-sm ${textColor}">
                             <div class="flex items-center justify-between">
-                                <span class="font-medium">Original Size:</span>
+                                <span class="font-medium">${t.original}:</span>
                                 <span class="font-mono">${inputSizeFormatted}</span>
                             </div>
                             <div class="flex items-center justify-between">
-                                <span class="font-medium">Compressed Size:</span>
+                                <span class="font-medium">${t.result}:</span>
                                 <span class="font-mono font-bold">${outputSizeFormatted}</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t ${borderColor}">
-                                <span class="font-bold">Size Reduction:</span>
+                                <span class="font-bold">${t.saved}:</span>
                                 <span class="font-mono font-bold">${compressionRatio.toFixed(1)}% (${savedSizeFormatted})</span>
                             </div>
+                            ${missedTarget ? `<p class="pt-2 font-medium">${t.targetMissed.replace('{target}', formatFileSize(missedTarget))}</p>` : ''}
                         </div>
                     </div>
                     <button onclick="this.parentElement.parentElement.remove()"

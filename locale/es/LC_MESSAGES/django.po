@@ -17780,3 +17780,36 @@ msgstr "Empaqueta imágenes en un PDF protegido con contraseña"
 #: templates/users/account_status.html
 msgid "From day 1"
 msgstr "Desde el primer día"
+
+msgid "Target file size"
+msgstr "Tamaño de archivo objetivo"
+
+msgid "No target (use the compression level)"
+msgstr "Sin objetivo (usar el nivel de compresión)"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make."
+msgstr "La calidad de las imágenes se reduce paso a paso hasta que el archivo cabe. Un PDF que es casi todo texto puede no reducirse tanto; en ese caso recibes la versión más pequeña que podemos generar."
+
+msgid "File compressed"
+msgstr "Archivo comprimido"
+
+msgid "File processed"
+msgstr "Archivo procesado"
+
+msgid "Original size"
+msgstr "Tamaño original"
+
+msgid "Compressed size"
+msgstr "Tamaño comprimido"
+
+msgid "Size reduction"
+msgstr "Reducción de tamaño"
+
+msgid "Could not get below {target}. This is the smallest version we could make."
+msgstr "No se pudo bajar de {target}. Esta es la versión más pequeña que pudimos generar."

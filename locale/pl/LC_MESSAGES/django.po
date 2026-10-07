@@ -17767,3 +17767,36 @@ msgstr "Zapakuj obrazy do PDF chronionego hasłem"
 #: templates/users/account_status.html
 msgid "From day 1"
 msgstr "Od pierwszego dnia"
+
+msgid "Target file size"
+msgstr "Docelowy rozmiar pliku"
+
+msgid "No target (use the compression level)"
+msgstr "Bez celu (według poziomu kompresji)"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Image quality is lowered step by step until the file fits. A PDF that is mostly text may not shrink that far; you then get the smallest version we can make."
+msgstr "Jakość obrazów jest obniżana krok po kroku, aż plik się zmieści. PDF, który jest głównie tekstem, może nie dać się tak zmniejszyć; dostaniesz wtedy najmniejszą wersję, jaką da się zrobić."
+
+msgid "File compressed"
+msgstr "Plik skompresowany"
+
+msgid "File processed"
+msgstr "Plik przetworzony"
+
+msgid "Original size"
+msgstr "Rozmiar oryginalny"
+
+msgid "Compressed size"
+msgstr "Rozmiar po kompresji"
+
+msgid "Size reduction"
+msgstr "Zmniejszenie rozmiaru"
+
+msgid "Could not get below {target}. This is the smallest version we could make."
+msgstr "Nie udało się zejść poniżej {target}. To najmniejsza wersja, jaką udało się zrobić."
