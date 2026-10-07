@@ -49,6 +49,19 @@ class CompressTargetSizeTests(SimpleTestCase):
         self.assertLessEqual(tiny, plain)  # never worse than no target
         self.assertEqual(len(doc), 3)
 
+    def test_no_time_left_keeps_the_plain_result(self):
+        # The page posts synchronously; a slow scan must not run past
+        # Cloudflare's 100 s, so the search yields when the budget is spent.
+        from unittest import mock
+
+        from src.api.pdf_organize.compress_pdf import utils
+
+        raw = _scan_pdf()
+        plain, _ = _compress(raw)
+        with mock.patch.object(utils, "TARGET_TIME_BUDGET", 0):
+            size, _ = _compress(raw, target_size_kb=plain // 1024 // 3)
+        self.assertEqual(size, plain)
+
 
 class CompressTargetApiTests(TestCase):
     def test_api_reports_whether_the_target_was_met(self):
