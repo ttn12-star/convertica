@@ -54,12 +54,8 @@ def _column_index(letters: str) -> int:
     return index
 
 
-def _estimate_content_width_pt(sheet, ns: str) -> float:
-    """Approximate the printed width of a sheet's used columns, in points."""
-    dimension = sheet.find(f"{{{ns}}}dimension")
-    ref = dimension.get("ref", "") if dimension is not None else ""
-    used = re.fullmatch(r"[A-Z]+\d+:([A-Z]+)\d+", ref)
-    last = _column_index(used.group(1)) if used else 0
+def _estimate_content_width_pt(sheet, ns: str, last: int) -> float:
+    """Approximate the printed width of a sheet's first `last` columns, in points."""
     widths = {}
     for col in sheet.iterfind(f"{{{ns}}}cols/{{{ns}}}col"):
         try:
@@ -73,7 +69,74 @@ def _estimate_content_width_pt(sheet, ns: str) -> float:
     return total * _CHARS_TO_PT
 
 
-def _patch_sheet(xml: bytes, orientation: str, fit_mode: str, user_chose: bool):
+def _clear_stray_blanks(sheet, ns: str, blank_strings: frozenset, clear: bool):
+    """Empty the whitespace-only cells past the table.
+
+    Returns (the table's last column, whether any cell was emptied).
+
+    A lone space typed at AZ500 is invisible but LibreOffice prints up to it:
+    fit-to-width then shrank a 6-column table to 2.4pt and added a blank page.
+    Dropping just the value keeps the cell's formatting, and a cell that only
+    carries a fill or border isn't printed, so the output loses nothing but
+    the empty area. Left alone: cells inside the table, and a blank right
+    after a value in its row (a space there is the usual way to stop a long
+    note running on). With clear=False (books with formulas, which could
+    count or test those blanks) only the last column is measured.
+    <dimension> isn't used: it also counts formatting-only cells, which
+    flipped narrow tables to landscape.
+    """
+    data = sheet.find(f"{{{ns}}}sheetData")
+    if data is None:
+        return 0, False
+    v_tag, is_tag, f_tag = (f"{{{ns}}}{t}" for t in ("v", "is", "f"))
+    last_row = last_col = 0
+    blanks = []
+    for row in data:
+        # Cells are in column order, so only the tail of each row matters.
+        stopper = None  # column of a blank that sits right after a value
+        for i in range(len(row) - 1, -1, -1):
+            cell = row[i]
+            value, inline = cell.find(v_tag), cell.find(is_tag)
+            if cell.find(f_tag) is None and value is None and inline is None:
+                continue
+            ref = re.fullmatch(r"([A-Z]+)(\d+)", cell.get("r") or "")
+            if not ref:
+                return 0, False  # position implied by order: leave it alone
+            at = (int(ref.group(2)), _column_index(ref.group(1)))
+            if cell.find(f_tag) is None:
+                if inline is not None:
+                    text = "".join(inline.itertext())
+                elif cell.get("t") == "s":
+                    text = "" if value is None or value.text in blank_strings else "x"
+                else:
+                    text = value.text if value is not None else ""
+                if not (text or "").strip():
+                    blanks.append((at, cell))
+                    continue
+            last_row, last_col = max(last_row, at[0]), max(last_col, at[1])
+            stopper = at[1] + 1
+            break
+        if stopper and blanks and blanks[-1][0] == (int(ref.group(2)), stopper):
+            blanks.pop()
+    cleared = False
+    if clear:
+        for (r, c), cell in blanks:
+            if r > last_row or c > last_col:
+                for child in list(cell):
+                    if child.tag in (v_tag, is_tag):
+                        cell.remove(child)
+                cell.attrib.pop("t", None)
+                cleared = True
+    return last_col, cleared
+
+
+def _patch_sheet(
+    xml: bytes,
+    orientation: str,
+    fit_mode: str,
+    user_chose: bool,
+    blank_strings: frozenset | None = None,
+):
     """The sheet XML with print scaling set, or None to leave it as is.
 
     A real parser, not text search: <pageSetup> also lives inside
@@ -91,6 +154,10 @@ def _patch_sheet(xml: bytes, orientation: str, fit_mode: str, user_chose: bool):
     def tag(name):
         return f"{{{ns}}}{name}"
 
+    last_col, cleared = _clear_stray_blanks(
+        sheet, ns, blank_strings or frozenset(), clear=blank_strings is not None
+    )
+
     page_setup = sheet.find(tag("pageSetup"))  # direct children only
     sheet_pr = sheet.find(tag("sheetPr"))
     setup_pr = sheet_pr.find(tag("pageSetUpPr")) if sheet_pr is not None else None
@@ -99,9 +166,14 @@ def _patch_sheet(xml: bytes, orientation: str, fit_mode: str, user_chose: bool):
         setup_pr is not None and setup_pr.get("fitToPage") in ("1", "true")
     ) or (page_setup is not None and page_setup.get("scale") not in (None, "100"))
     if authored and not user_chose:
-        return None  # respect an author who already configured print scaling
+        # Respect an author who already configured print scaling.
+        return _serialize(sheet) if cleared else None
 
     attrs = {}
+    if page_setup is None or page_setup.get("paperSize") is None:
+        # A missing paperSize means US Letter (OOXML default 1); Excel itself
+        # would use the printer's paper, which for nearly all our users is A4.
+        attrs["paperSize"] = "9"
     if fit_mode == "fit_width":
         attrs.update(fitToWidth="1", fitToHeight="0")  # 0 = as many pages tall
     if orientation in ("portrait", "landscape"):
@@ -109,11 +181,12 @@ def _patch_sheet(xml: bytes, orientation: str, fit_mode: str, user_chose: bool):
     elif (
         fit_mode == "fit_width"
         and (page_setup is None or page_setup.get("orientation") is None)
-        and _estimate_content_width_pt(sheet, ns) > _LANDSCAPE_WIDTH_THRESHOLD_PT
+        and _estimate_content_width_pt(sheet, ns, last_col)
+        > _LANDSCAPE_WIDTH_THRESHOLD_PT
     ):
         attrs["orientation"] = "landscape"
     if not attrs:
-        return None
+        return _serialize(sheet) if cleared else None
 
     if page_setup is None:
         page_setup = etree.Element(tag("pageSetup"))
@@ -134,8 +207,27 @@ def _patch_sheet(xml: bytes, orientation: str, fit_mode: str, user_chose: bool):
         if setup_pr is None:
             setup_pr = etree.SubElement(sheet_pr, tag("pageSetUpPr"))  # last child
         setup_pr.set("fitToPage", "1")
+    return _serialize(sheet)
+
+
+def _serialize(sheet) -> bytes:
+    from lxml import etree
+
     return etree.tostring(
         sheet, xml_declaration=True, encoding="UTF-8", standalone=True
+    )
+
+
+def _blank_shared_strings(xml: bytes) -> frozenset:
+    """Indexes (as text) of shared strings that are empty or only whitespace."""
+    from lxml import etree
+
+    root = etree.fromstring(xml)
+    si = f"{{{etree.QName(root).namespace}}}si"
+    return frozenset(
+        str(i)
+        for i, item in enumerate(root.iterfind(si))
+        if not "".join(item.itertext()).strip()
     )
 
 
@@ -178,10 +270,26 @@ def _apply_print_fit(
 
         patched = {}
         with zipfile.ZipFile(excel_path) as book:
-            for name in book.namelist():
-                if re.fullmatch(r"xl/worksheets/[^/]+\.xml", name):
+            names = book.namelist()
+            blank_strings = (
+                _blank_shared_strings(book.read("xl/sharedStrings.xml"))
+                if "xl/sharedStrings.xml" in names
+                else frozenset()
+            )
+            sheets = [n for n in names if re.fullmatch(r"xl/worksheets/[^/]+\.xml", n)]
+            if any(re.search(rb"<(\w+:)?f[\s>/]", book.read(n)) for n in sheets):
+                # Formulas may count or test those blanks (COUNTA, ISBLANK).
+                # ponytail: books with formulas keep their stray blanks; a
+                # per-reference check could narrow this if it matters.
+                blank_strings = None
+            for name in names:
+                if name in sheets:
                     new = _patch_sheet(
-                        book.read(name), orientation, fit_mode, user_chose
+                        book.read(name),
+                        orientation,
+                        fit_mode,
+                        user_chose,
+                        blank_strings,
                     )
                     if new is not None:
                         patched[name] = new
