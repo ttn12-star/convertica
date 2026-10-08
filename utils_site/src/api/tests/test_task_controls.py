@@ -280,3 +280,36 @@ class TaskStatusResultAuthorizationTests(TestCase):
     def test_result_anonymous_without_token_denied(self):
         response = self.client.get(f"/api/tasks/{self.anon_task_id}/result/")
         self.assertEqual(response.status_code, 403)
+
+
+class TaskStatusCancelledRoundTripTests(TestCase):
+    """Cancelled tasks write REVOKED for real; the status poll must decode it."""
+
+    def test_cancelled_task_status_is_200_not_500(self):
+        from celery import Celery
+        from celery.backends.cache import CacheBackend
+        from celery.result import AsyncResult
+        from src.tasks.pdf_conversion import _mark_cancelled
+
+        # Built directly: the app would pick CELERY_RESULT_BACKEND (redis) from env.
+        app = Celery(set_as_current=False)
+        app.conf.result_serializer = "json"
+        app.conf.accept_content = ["json"]
+        backend = CacheBackend(app=app, backend="memory")
+        task = MagicMock()
+        task.update_state.side_effect = lambda state, meta: backend.store_result(
+            "cancel-rt", meta, state
+        )
+        _mark_cancelled(task)
+
+        token = create_task_token("cancel-rt", None)
+        with patch(
+            "src.api.async_views.AsyncResult",
+            side_effect=lambda tid: AsyncResult(tid, backend=backend, app=app),
+        ):
+            response = self.client.get(
+                "/api/tasks/cancel-rt/status/", HTTP_X_TASK_TOKEN=token
+            )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data.get("status"), "REVOKED")
+        self.assertTrue(response.data.get("cancelled"))
