@@ -18,7 +18,7 @@ import threading
 import time
 
 from celery import shared_task
-from celery.exceptions import Ignore, SoftTimeLimitExceeded
+from celery.exceptions import Ignore, SoftTimeLimitExceeded, TaskRevokedError
 from django.core.files.base import File
 from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
 from src.api.file_validation import is_removable_tmp_dir, scrub_internal_paths
@@ -195,6 +195,15 @@ def check_task_cancelled(task_id: str) -> None:
     if is_task_cancelled(task_id):
         logger.info(f"Task {task_id} was cancelled by user, stopping execution")
         raise TaskCancelledException(f"Task {task_id} cancelled by user")
+
+
+def _mark_cancelled(task) -> None:
+    """Record REVOKED in the result backend.
+
+    REVOKED is an exception state: Celery decodes its result as an exception
+    and raises ValueError on a plain dict, so every status poll 500'd.
+    """
+    task.update_state(state="REVOKED", meta=TaskRevokedError("Task was cancelled"))
 
 
 def update_progress(task, progress: int, current_step: str = "", total_steps: int = 0):
@@ -878,7 +887,7 @@ def generic_conversion_task(
             logger.warning("OperationRun 'cancelled' update failed: %s", db_exc)
         # Ignore() writes nothing to the result backend; without this the
         # status endpoint keeps reporting the last PROGRESS for an hour.
-        self.update_state(state="REVOKED", meta={"error": "Task was cancelled"})
+        _mark_cancelled(self)
         raise Ignore()
 
     except (SoftTimeLimitExceeded, SystemExit) as stop_exc:
@@ -923,7 +932,7 @@ def generic_conversion_task(
                 logger.warning(
                     "OperationRun 'cancelled' (soft limit) update failed: %s", db_exc
                 )
-            self.update_state(state="REVOKED", meta={"error": "Task was cancelled"})
+            _mark_cancelled(self)
             if isinstance(stop_exc, SystemExit):
                 _rearm_sigterm()
             raise Ignore()
