@@ -181,6 +181,31 @@ class UnlockZipUtilTests(TestCase):
         with zipfile.ZipFile(out_path) as z:
             self.assertEqual(z.read(name), b"payload")
 
+    def test_unlocks_member_whose_local_header_name_differs(self):
+        """CONVERTICA-68/69: a Windows archiver wrote the CP866 name in the
+        central directory and different bytes in the local header. 7-Zip opens
+        it; pyzipper's sanity check raised its own BadZipFile, which slipped
+        past the stdlib except clause into a 500."""
+        from src.api.archive_tools.unlock_zip.utils import unlock_zip
+
+        for utf8_flag in (False, True):
+            with self.subTest(utf8_flag=utf8_flag):
+                raw = bytearray(
+                    _aes_zip_upload(
+                        {"diplom.pdf": b"payload"}, password=b"s3cret!"
+                    ).read()
+                )
+                lh = raw.index(b"PK\x03\x04")
+                raw[lh + 30 : lh + 40] = b"\xb3\x94\xb3\xbf\xb3\xbf\xb3-.p"
+                if utf8_flag:  # pyzipper decodes the header name as UTF-8
+                    cd = raw.index(b"PK\x01\x02")
+                    raw[cd + 9] |= 0x08  # general-purpose flag bit 11
+                up = SimpleUploadedFile("cp866.zip", bytes(raw))
+
+                _, out_path = unlock_zip(up, password="s3cret!")
+                with zipfile.ZipFile(out_path) as z:
+                    self.assertEqual(z.read("diplom.pdf"), b"payload")
+
 
 @override_settings(
     RATELIMIT_ENABLE=False,

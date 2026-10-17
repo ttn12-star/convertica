@@ -24,6 +24,29 @@ from ..protect_zip.utils import (
 logger = get_logger(__name__)
 
 
+class _LenientExtFile(pyzipper.zipfile_aes.AESZipExtFile):
+    """Tolerate a local-header name that disagrees with the central directory.
+
+    Windows archivers write the OEM-codepage name in one place and something
+    else in the other (CONVERTICA-68/69). 7-Zip and unzip ignore the mismatch;
+    the data sits at the central directory's offset either way and the CRC is
+    still checked on read.
+    """
+
+    def process_local_header(self):
+        try:
+            super().process_local_header()
+        except UnicodeDecodeError:
+            pass  # UTF-8 flag set, header name isn't UTF-8: same mismatch
+        except pyzipper.BadZipFile as e:
+            if not str(e).startswith("File name in directory"):
+                raise
+
+
+class _LenientAESZipFile(pyzipper.AESZipFile):
+    zipextfile_cls = _LenientExtFile
+
+
 def unlock_zip(
     uploaded_file: UploadedFile, password: str, suffix: str = "_convertica"
 ) -> tuple[str, str]:
@@ -64,7 +87,7 @@ def unlock_zip(
             ) from e
 
         try:
-            with pyzipper.AESZipFile(input_path) as zin:
+            with _LenientAESZipFile(input_path) as zin:
                 zin.setpassword(password.encode("utf-8"))
                 # Two parses of the same archive, and they disagree on names:
                 # stdlib zipfile honours the Info-ZIP Unicode Path extra field
@@ -96,7 +119,7 @@ def unlock_zip(
                         )
                         remaining -= len(data)
                         zout.writestr(zi.filename, data)
-        except (RuntimeError, zipfile.BadZipFile) as e:
+        except (RuntimeError, zipfile.BadZipFile, pyzipper.BadZipFile) as e:
             raise EncryptedArchiveError(
                 _("Incorrect password. Please check the password and try again."),
                 context=context,
