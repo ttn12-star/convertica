@@ -23,8 +23,13 @@ jobs:
 
       - name: Audit pinned requirements
         run: |
-          pip install --quiet pip-audit
-          # pip-audit --no-deps requires exact pins; fonttools is a ">=" floor
-          # (transitive via pdf2docx), so pin it to the floor for the scan.
-          sed 's/^fonttools>=/fonttools==/' requirements.txt > /tmp/req-audit.txt
-          pip-audit -r /tmp/req-audit.txt --disable-pip --no-deps
+          pip install --quiet pip-audit uv
+          # Audit the fully resolved tree, not just direct pins: pdfplumber hard-pinned
+          # a vulnerable pdfminer.six that a --no-deps scan of requirements.txt never saw.
+          uv pip compile requirements.txt --python-version 3.12 -q -o /tmp/req-audit.txt
+          # shortcut: twisted (via daphne) fixes these only in 26.10.0rc1; drop the
+          # ignores and pin twisted once a stable 26.10.0 ships.
+          pip-audit -r /tmp/req-audit.txt --disable-pip --no-deps \
+            --ignore-vuln CVE-2026-106454 --ignore-vuln CVE-2026-115778 \
+            --ignore-vuln CVE-2026-115774 --ignore-vuln CVE-2026-115775 \
+            --ignore-vuln CVE-2026-115776 --ignore-vuln CVE-2026-115877
