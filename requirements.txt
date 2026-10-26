@@ -5,9 +5,9 @@ Django==5.2.17
 daphne==4.2.2
 django-allauth==65.15.1
 tblib==3.2.1
-PyJWT==2.13.0
+PyJWT==2.15.0
 django-tailwind==4.4.1
-djangorestframework==3.17.2
+djangorestframework==3.18.2
 drf-yasg==1.21.11
 numpy==2.4.4
 scipy==1.17.1
@@ -25,7 +25,7 @@ pdf2image==1.17.0
 # on a patched line instead of whatever PyPI resolves at build time.
 fonttools>=4.61.0
 pdfplumber==0.11.4
-pillow==12.3.0
+pillow==13.0.0
 # HEIC/HEIF support for the premium HEIC converter (image_tools.convert_heic).
 # Adds a Pillow plugin that decodes Apple HEIC/HEIF photos so we can re-encode
 # them to JPG/PNG/PDF.
@@ -43,7 +43,7 @@ olefile==0.47
 pydantic==2.12.5
 pydantic_core==2.41.5
 # PDF processing libraries
-pypdf==6.16.2
+pypdf==6.21.2
 PyMuPDF==1.27.2.2
 # Async utilities
 aiofiles==24.1.0
@@ -70,7 +70,7 @@ reportlab==4.2.5
 # never needs chardet, so pin to the last <6 release: satisfies reportlab,
 # silences the warning, no functional change.
 chardet==5.2.0
-setuptools==83.0.0
+setuptools==84.1.0
 sqlparse==0.6.0
 typing-inspection==0.4.2
 typing_extensions==4.15.0
