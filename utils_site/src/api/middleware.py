@@ -677,6 +677,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://pagead2.googlesyndication.com "
             "https://partner.googleadservices.com "
             "https://cdnjs.cloudflare.com "
+            "https://static.cloudflareinsights.com "
             # Drive/Dropbox import: gapi loader + Dropbox Chooser SDK
             "https://apis.google.com " "https://www.dropbox.com",
             # Styles: self, inline (for Tailwind and dynamic styles)
@@ -716,6 +717,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://*.google-analytics.com "
             "https://www.googletagmanager.com "
             "https://region1.google-analytics.com "
+            "https://cloudflareinsights.com "
             "https://accounts.google.com "
             # Drive/Dropbox import: Drive file download + Dropbox direct links
             "https://www.googleapis.com "
