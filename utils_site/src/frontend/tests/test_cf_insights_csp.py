@@ -12,7 +12,13 @@ class CloudflareInsightsCSPTests(TestCase):
     def test_beacon_present_and_allowed(self):
         r = self.client.get("/en/")
         self.assertEqual(r.status_code, 200)
-        self.assertIn("https://static.cloudflareinsights.com/beacon.min.js", r.content.decode())
-        csp = dict(d.strip().split(" ", 1) for d in r["Content-Security-Policy"].split(";") if " " in d.strip())
+        self.assertIn(
+            "https://static.cloudflareinsights.com/beacon.min.js", r.content.decode()
+        )
+        csp = dict(
+            d.strip().split(" ", 1)
+            for d in r["Content-Security-Policy"].split(";")
+            if " " in d.strip()
+        )
         self.assertIn("https://static.cloudflareinsights.com", csp["script-src"])
         self.assertIn("https://cloudflareinsights.com", csp["connect-src"])
