@@ -5,7 +5,11 @@ base.html; without both CSP hosts the browser silently drops it and the
 dashboard just shows zero visits.
 """
 
+from pathlib import Path
+
 from django.test import TestCase
+
+LOCALE = Path(__file__).resolve().parents[4] / "locale"
 
 
 class CloudflareInsightsCSPTests(TestCase):
@@ -23,9 +27,16 @@ class CloudflareInsightsCSPTests(TestCase):
         self.assertIn("https://static.cloudflareinsights.com", csp["script-src"])
         self.assertIn("https://cloudflareinsights.com", csp["connect-src"])
 
-    def test_privacy_discloses_web_analytics_translated(self):
-        r = self.client.get("/pl/privacy/")
+    def test_privacy_discloses_web_analytics_in_every_locale(self):
+        r = self.client.get("/en/privacy/")
         self.assertEqual(r.status_code, 200)
-        html = r.content.decode()
-        self.assertIn("Cloudflare Web Analytics", html)
-        self.assertIn("art. 6 ust. 1 lit. f RODO", html)
+        self.assertIn("Cloudflare Web Analytics", r.content.decode())
+        msgid = 'msgid "We also use Cloudflare Web Analytics'
+        for po in sorted(LOCALE.glob("*/LC_MESSAGES/django.po")):
+            text = po.read_text(encoding="utf-8")
+            self.assertIn(msgid, text, po)
+            if po.parts[-3] != "en":
+                msgstr = (
+                    text.split(msgid, 1)[1].split("msgstr ", 1)[1].split("\n", 1)[0]
+                )
+                self.assertNotEqual(msgstr, '""', f"untranslated in {po}")
