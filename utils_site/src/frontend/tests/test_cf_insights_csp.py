@@ -22,3 +22,10 @@ class CloudflareInsightsCSPTests(TestCase):
         )
         self.assertIn("https://static.cloudflareinsights.com", csp["script-src"])
         self.assertIn("https://cloudflareinsights.com", csp["connect-src"])
+
+    def test_privacy_discloses_web_analytics_translated(self):
+        r = self.client.get("/pl/privacy/")
+        self.assertEqual(r.status_code, 200)
+        html = r.content.decode()
+        self.assertIn("Cloudflare Web Analytics", html)
+        self.assertIn("art. 6 ust. 1 lit. f RODO", html)
